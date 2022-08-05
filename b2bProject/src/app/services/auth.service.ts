@@ -25,20 +25,24 @@ getAuthentication():boolean
    return this.isAdmin;
   }
 
-  
+
   getUsername() : string {
-    return this.username; 
+    return this.username;
   }
 
   setUsername(username: string){
     this.username = username;
-    // this.usernameChanged.next(this.username);
-    localStorage.setItem("username", username);
+
   }
-  
+
 
   constructor() { }
 }
+
+
+
+
+
 
 
 

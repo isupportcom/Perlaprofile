@@ -23,6 +23,13 @@ export class AppComponent {
     // this.router.navigate(['log-in'])
   }
 
+  isAdmin = false;
+  handleGetAdmin(){
+   this.isAdmin = true; 
+   console.log("Hello");
+   
+  }
+
   logoutHandle(){
     localStorage.removeItem("username");
     this.loggedIn = false;

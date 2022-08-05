@@ -10,7 +10,7 @@ import {AuthService} from "../services/auth.service";
 })
 export class NavbarComponent implements OnInit{
   isAdminArea = false;
-
+  // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
   
  
@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit{
   isOpen = false;
   isToggelOpen = false;
   isAdmin : boolean = this.authService.getAdmin()
+  
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
   constructor(
@@ -29,7 +30,7 @@ export class NavbarComponent implements OnInit{
     username = localStorage.getItem("username");
 
   ngOnInit(): void {
-    // this.authService.usernameChanged.subscribe(
+    // this.authService.usernameChanged.subscribe(git
     //   (username: string) => {
     //     this.username = username;
     //   }
@@ -80,9 +81,11 @@ export class NavbarComponent implements OnInit{
       element.classList.remove('show');
     }
     
+    console.log(this.router.getCurrentNavigation()?.extras.state?.['isAdmin']);
     
   }
   logout(){
+    this.isAdmin = false;
     this.authService.setAuthentication(false);
     if(this.authService.getAdmin()){
       this.authService.setAdmin(false);

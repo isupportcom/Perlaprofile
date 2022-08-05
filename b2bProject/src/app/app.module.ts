@@ -16,8 +16,6 @@ import { SingleProductComponent } from './porducts/single-product/single-product
 import { ProductPageComponent } from './porducts/product-page/product-page.component';
 import { ProductListComponent } from './porducts/product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { ProfileComponent } from './profile/profile.component';
 
 const routes:Routes = [
 
@@ -27,7 +25,7 @@ const routes:Routes = [
   },
 
   {
-    path:'dashboard',
+    path:'dashborard',
     component:AdminAreaComponent
   },
   {
@@ -49,14 +47,6 @@ const routes:Routes = [
   {
     path: 'cart',
     component: CartComponent
-  },
-  {
-    path: 'my-orders',
-    component: MyOrdersComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
   }
 
 ]
@@ -77,8 +67,6 @@ const routes:Routes = [
     ProductPageComponent,
     ProductListComponent,
     CartComponent,
-    MyOrdersComponent,
-    ProfileComponent,
 
   ],
   imports: [
@@ -86,6 +74,7 @@ const routes:Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     CommonModule,
+    HttpClientModule
   ],
   exports: [
     RouterModule
