@@ -1,0 +1,117 @@
+<div class="container">
+
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+      <div class="slideshow-container">
+        <div class="Containers">  
+          <img src="../../../assets/35S-35SD.jpg" alt="image">
+        </div>   
+        <div class="Containers">  
+          <img src="../../../assets/PM35S.jpg" alt="image">
+        </div>   
+        <a class="Back" (click)="plusSlides(-1)">&#10094;</a>
+        <a class="forward" (click)="plusSlides(1)">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dots" (click)="currentSlide(1)"></span>
+        <span class="dots" (click)="currentSlide(2)"></span>
+      </div> 
+      
+      <hr>
+
+      <ul class="description">
+        <li><a [ngClass]="switchDesc ? '' : 'active'" (click)="showDescription1()" #description>Περιγραφή</a></li>
+        <li><a [ngClass]="switchDesc ? 'active' : ''" (click)="showDescription2()" #dataSheet>Data Sheet</a></li>
+      </ul>
+      <div style="margin-top: 50px;">
+        <div *ngIf="!switchDesc">
+          <p>- Ενσύρματο μοτέρ<br>
+            - 5 Καλώδια<br>
+            - Σύνδεσμος με εξωτερικό δέκτη<br>
+            - Μηχανικά όρια</p>
+        </div>
+        <div *ngIf="switchDesc" class="table">
+          <hr>
+          <span>Διάμετρος Σωλήνα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Ø35 mm</span>
+          <hr>
+          <span>Ονομαστική Ισχύς:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;121 W</span>
+          <hr>
+          <span>Ονομαστική Ροπή:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;13 Nm</span>
+          <hr>
+          <span>Ονομαστική Ταχύτητα (RPM):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;230 V DC</span>
+          <hr>
+          <span>Συχνότητα Λειτουργίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;50 Hz</span>
+          <hr>
+          <span>Ονομαστικό Ρεύμα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0,53 A</span>
+          <hr>
+          <span>Βαθμός Προστασίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;IP44</span>
+          <hr>
+          <span>Αριθμός Στροφών (max):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;36</span>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Right Column -->
+    <div class="right-column">
+
+      <!-- Product Description -->
+      <div class="product-description">
+        <span>μοτερ-ρολων-ασφαλειας</span>
+        <h1>PM35S-13/14</h1>
+        <h3>Σωληνωτό Μοτέρ 13Nm 14Rpm</h3>
+        
+        
+      </div>
+
+      <!-- Product Configuration -->
+      <div class="product-configuration">
+
+        <!-- Product Color -->
+        <div class="product-color">
+         
+          
+          
+          
+          
+          
+          <!-- <div class="color-choose">
+            <div>
+              <input data-image="red" type="radio" id="red" name="color" value="red" checked>
+              <label for="red"><span></span></label>
+            </div>
+            <div>
+              <input data-image="blue" type="radio" id="blue" name="color" value="blue">
+              <label for="blue"><span></span></label>
+            </div>
+            <div>
+              <input data-image="black" type="radio" id="black" name="color" value="black">
+              <label for="black"><span></span></label>
+            </div>
+          </div> -->
+
+        </div>
+
+        <!-- Cable Configuration -->
+        <!-- <div class="cable-config">
+          <span>Cable configuration</span> -->
+
+          <!-- <div class="cable-choose">
+            <button>Straight</button>
+            <button>Coiled</button>
+            <button>Long-coiled</button>
+          </div>
+
+          <a href="#">How to configurate your headphones</a>
+        </div> -->
+      <!-- </div> -->
+
+      <!-- Product Pricing -->
+      <div class="product-price">
+        <span>148$</span>
+        <a class="cart-btn">Add to cart</a>
+        <input type="number" class="form-control numberInput" value="1">
+      </div>
+    </div>
+</div>

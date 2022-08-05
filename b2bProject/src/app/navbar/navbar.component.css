@@ -1,0 +1,11 @@
+.nav-link{
+  color: rgba(0,0,0,.55);
+  transition: 0.5ms;
+}
+.nav-link:hover{
+  border-radius: 20px;
+  color: black !important;
+}
+.nav-link{
+  cursor: pointer;
+}

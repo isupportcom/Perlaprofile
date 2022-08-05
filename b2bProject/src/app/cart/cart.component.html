@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="left-side">
+        <div>
+            <div class="myCart">
+                <h2>My Cart</h2>
+            </div>
+            <div class="productAmount">
+                <h3>Products: 1</h3>
+            </div>
+        </div>
+        <hr class="first-hr">
+        <div class="product">
+            <img src="../../../assets/35S-35SD.jpg" alt="" style="width: 141px; height: 141px;">
+            <div class="description">
+                <div class="descLeft">
+                    <h4>Lorem</h4>
+                    <p>Lorem ipsum</p>
+                    <p>Quantity: 1</p>
+                    <img src="../../../assets/Vector.png" alt="">
+                </div>
+                <div class="descRight">
+                    <input type="number" class="form-control numberInput" value="1">
+                    <h3>$299</h3>
+                </div>
+            </div>
+        </div>
+        <hr class="second-hr">
+        <div class="continueShopping" (mouseover)="handleMouseOver()" (mouseleave)="handleMouseLeave()" (click)="handleClick()">
+            <div>
+                <img src="../../assets/Arrow 1.png" alt="">
+            </div>
+            <h5 #text>Continue Shopping</h5>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="continueToCheckout">
+            <h5>Total <cite>(with VAT)</cite>:&emsp;$299</h5>
+            <h5>Shipping Costs:&emsp;$? </h5>
+            <div class="coupon">
+                <div class="circle"><p>+</p></div>
+                <h5>Use Coupon</h5>
+            </div>
+            <hr>
+            <h5>Grand Total :&emsp;$299</h5>
+            <button class="cart-btn">Continue To Checkout</button>
+        </div>  
+        <div class="paymentMethod">
+            <h4>Payment Method</h4>
+            <div class="cards">
+                <img src="../../assets/Image Placeholder.png" alt="">
+                <img src="../../assets/Image Placeholder.png" alt="">
+                <img src="../../assets/Image Placeholder.png" alt="">
+                <img src="../../assets/Image Placeholder.png" alt="">
+            </div>
+        </div>
+        <div class="paymentMethod">
+            <h4>Return Policy</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. <cite style="font-weight: bold;">Learn More</cite></p>
+        </div>
+    </div>
+</div>

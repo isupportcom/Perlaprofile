@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  text-align: center;
+}
+
+* {
+  margin: 0px;
+  font-family: "Montserrat";
+}
+
+#productImg {
+  background-color: black;
+  height: 100px;
+  width: 50%;
+  margin-left: 25%;
+  margin-bottom: 15%;
+}
+
+#productCard {
+  cursor: pointer;
+  margin-left: 10%;
+  margin-top: 10%;
+  padding-top: 2%;
+  width: 20%;
+  height: 450px;
+  /* border: solid; */
+  border-radius: 5%;
+  text-align: center;
+  display: inline-block;
+}
+
+#productTitle {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+#productDescription {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+#productPrice h2 {
+  display: inline;
+  width: 50%;
+  padding: 5%;
+}
+#productPrice p {
+  display: inline;
+  padding: 5%;
+  width: 50%;
+}
+#productPrice {
+  padding-top: 5%;
+}
+
+#addToCart #addToCartBtn {
+  width: 50%;
+  display: inline;
+  margin-left: 5%;
+  border: none;
+  padding: 3% 3%;
+  border-radius: 16px;
+  color: white;
+  background-color: #2c3e50;
+  cursor: pointer;
+  font-size: 16px;
+}
+#addToCart #amount {
+  width: 50%;
+  display: inline;
+}
+#addToCart {
+  padding-top: 10%;
+}
