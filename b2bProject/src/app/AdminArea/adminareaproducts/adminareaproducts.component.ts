@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-// import axios from "axios"
+import axios from "axios"
 @Component({
   selector: 'app-adminareaproducts',
   templateUrl: './adminareaproducts.component.html',
@@ -13,10 +13,12 @@ export class AdminareaproductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
   updateDatabase(){
-    
+    axios.get("http://localhost/phpapi/Formated/index.php/?id=2").then(resData=>{
+      console.log(resData.data);
+    })
   }
 
 }
