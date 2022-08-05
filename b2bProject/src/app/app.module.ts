@@ -21,9 +21,12 @@ const routes:Routes = [
 
   {
     path:'',
-    component:LogInComponent
+    component: AppComponent,
   },
-
+  {
+    path: 'log-in',
+    component: LogInComponent
+  },
   {
     path:'dashborard',
     component:AdminAreaComponent

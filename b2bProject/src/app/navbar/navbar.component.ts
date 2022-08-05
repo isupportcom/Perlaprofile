@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {AuthService} from "../services/auth.service";
 
 
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit{
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
   
- 
+
 
   @ViewChild('dropdown') dropdown!: ElementRef;
   isOpen = false;
@@ -24,7 +24,8 @@ export class NavbarComponent implements OnInit{
   public isCollapsed = true;
   constructor(
     private authService: AuthService,
-    private router :Router) { }
+    private router :Router,
+    private route: ActivatedRoute) { }
    
 
     username = localStorage.getItem("username");
@@ -35,6 +36,10 @@ export class NavbarComponent implements OnInit{
     //     this.username = username;
     //   }
     // );    
+    this.route.queryParams.subscribe((params: any) => {
+      console.log(params.data);
+      this.isAdmin = params.data;
+    });
     
     
     
@@ -81,7 +86,7 @@ export class NavbarComponent implements OnInit{
       element.classList.remove('show');
     }
     
-    console.log(this.router.getCurrentNavigation()?.extras.state?.['isAdmin']);
+    
     
   }
   logout(){
