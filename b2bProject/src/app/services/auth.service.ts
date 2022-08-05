@@ -6,9 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  usernameChanged = new Subject<string>();
+  loggedIn = new Subject<boolean>();
+  cast = this.loggedIn.asObservable();
 
-  username = '';
+  sendLoggedIn(flag: boolean){
+    this.loggedIn.next(flag);
+  }
+
   isAuth:boolean = false;
   isAdmin:boolean = false;
  setAuthentication(value:boolean){
@@ -26,14 +30,6 @@ getAuthentication():boolean
   }
 
 
-  getUsername() : string {
-    return this.username;
-  }
-
-  setUsername(username: string){
-    this.username = username;
-
-  }
 
 
   constructor() { }
