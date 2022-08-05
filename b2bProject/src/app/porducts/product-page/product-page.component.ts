@@ -1,21 +1,51 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {ProductsService} from "../products.service";
+import {ActivatedRoute,Data} from "@angular/router";
+import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.css']
 })
-export class ProductPageComponent implements OnInit { 
+export class ProductPageComponent implements OnInit {
   slidePosition!: number;
   switchDesc = false;
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
+  data: product|any;
 
-  constructor(private renderer: Renderer2, private el: ElementRef) { }
 
-  ngOnInit(): void { 
+  name:string = ''
+  price:string =''
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private productsService: ProductsService,
+    private route:ActivatedRoute
+
+  ) { }
+
+  ngOnInit(): void {
+    // console.log(this.productsService.getIndex());
+    this.data = this.productsService.getIndex();
+    console.log(this.data.name)
+
+
+
     this.slidePosition = 1;
     this.SlideShow(this.slidePosition);
+
+    // this.productsService.productDetails.subscribe((res) => {
+    //
+    //   this.data = res;
+    //   console.log(this.data)
+    //
+    //
+    // })
+
+
+
   }
 
 
@@ -30,13 +60,13 @@ export class ProductPageComponent implements OnInit {
 
   SlideShow(n: number){
     console.log(n);
-    
+
     var i;
     var slides = this.el.nativeElement.querySelectorAll('.Containers');
     console.log(slides);
-    
+
     var circles = this.el.nativeElement.querySelectorAll('.dots');
-    
+
     if(n > slides.length){
       this.slidePosition = 1;
     }

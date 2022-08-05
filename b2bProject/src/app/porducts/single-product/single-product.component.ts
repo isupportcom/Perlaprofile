@@ -14,10 +14,12 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
   @Input() name:any;
   @Input() price:any;
+  @Input() index:any;
 
   constructor(private renderer: Renderer2, private router: Router, private route: ActivatedRoute,private productsService: ProductsService) { }
 
   ngOnInit(): void {
+
   }
 
 
@@ -54,6 +56,8 @@ export class SingleProductComponent implements OnInit {
   }
 
   handleClick(){
-    this.router.navigate(['product-page'], {relativeTo: this.route});
+     this.productsService.setIndex(this.index);
+      console.log(this.index)
+    this.router.navigate(['product-page'], {relativeTo: this.route,});
   }
 }

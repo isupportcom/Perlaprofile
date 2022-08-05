@@ -9,8 +9,24 @@ import {Subject} from "rxjs";
 export  class ProductsService {
   products = new Subject<product>();
   cast = this.products.asObservable();
+  product_page: product |any;
 
   sendProducts(products: product){
     this.products.next(products);
   }
+
+  productDetails = new Subject<Object>();
+  castProductDetails = this.productDetails.asObservable();
+
+  sendProductDetails(obj: Object){
+    this.productDetails.next(obj);
+  }
+
+  getIndex(){
+    return this.product_page
+  }
+  setIndex(index:product){
+      this.product_page = index;
+  }
+
 }

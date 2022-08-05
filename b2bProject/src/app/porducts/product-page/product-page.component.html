@@ -3,20 +3,20 @@
     <!-- Left Column / Headphones Image -->
     <div class="left-column">
       <div class="slideshow-container">
-        <div class="Containers">  
+        <div class="Containers">
           <img src="../../../assets/35S-35SD.jpg" alt="image">
-        </div>   
-        <div class="Containers">  
+        </div>
+        <div class="Containers">
           <img src="../../../assets/PM35S.jpg" alt="image">
-        </div>   
+        </div>
         <a class="Back" (click)="plusSlides(-1)">&#10094;</a>
         <a class="forward" (click)="plusSlides(1)">&#10095;</a>
       </div>
       <div style="text-align:center">
         <span class="dots" (click)="currentSlide(1)"></span>
         <span class="dots" (click)="currentSlide(2)"></span>
-      </div> 
-      
+      </div>
+
       <hr>
 
       <ul class="description">
@@ -58,11 +58,11 @@
 
       <!-- Product Description -->
       <div class="product-description">
-        <span>μοτερ-ρολων-ασφαλειας</span>
-        <h1>PM35S-13/14</h1>
-        <h3>Σωληνωτό Μοτέρ 13Nm 14Rpm</h3>
-        
-        
+        <span>{{ data.name1 }}</span>
+        <h1></h1>
+        <h3>{{ data.name }}</h3>
+
+
       </div>
 
       <!-- Product Configuration -->
@@ -70,12 +70,12 @@
 
         <!-- Product Color -->
         <div class="product-color">
-         
-          
-          
-          
-          
-          
+
+
+
+
+
+
           <!-- <div class="color-choose">
             <div>
               <input data-image="red" type="radio" id="red" name="color" value="red" checked>
@@ -109,7 +109,7 @@
 
       <!-- Product Pricing -->
       <div class="product-price">
-        <span>148$</span>
+        <span>{{ data.wholesale }}$</span>
         <a class="cart-btn">Add to cart</a>
         <input type="number" class="form-control numberInput" value="1">
       </div>
