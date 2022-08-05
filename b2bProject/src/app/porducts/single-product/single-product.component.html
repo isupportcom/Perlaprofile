@@ -1,17 +1,18 @@
 
-  <div id="productCard" (mouseover)="handleHover()" (mouseleave)="handleMouseLeave()" (click)="handleClick()" #productCard>
+
+<div id="productCard" (mouseover)="handleHover()" (mouseleave)="handleMouseLeave()" (click)="handleClick()" #productCard >
     <div id="productImg" #productImg>
       <img src="./images/PM300.jpg" alt="" width="100%" />
     </div>
-    <div id="productTitle" #productTitle><h2>Test Product</h2></div>
+    <div id="productTitle" #productTitle><h2>{{name}}</h2></div>
     <div id="productDescription" #productDescription>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
     </div>
     <div id="productPrice" #productPrice>
-      <p>Hello</p>
-      <h2>$399</h2>
+      <p>Price</p>
+      <h2>{{ price }}&#x20AC;</h2>
     </div>
     <div id="addToCart" (mouseover)="handleBtnHover()" (mouseleave)="handleBtnMouseLeave()" #addToCart>
       <p id="amount">- 1 +</p>

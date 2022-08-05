@@ -20,47 +20,18 @@ export interface product {
 
 export class AdminareaproductsComponent implements OnInit {
   totalProducts:any;
-  product : product| any=[] ;
+
   constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
-    axios.get("http://localhost/phpapi/Formated/index.php/?id=2").then(resData=>{
-      // console.log(resData.data)
-      for(let i = 0 ; i < resData.data.length;i++){
-        // @ts-ignore
-        this.product[i] ={
-          mtrl: resData.data[i].mtrl,
-          name     : resData.data[i].name,
-          name1    : resData.data[i].name1,
-          code     : resData.data[i].code,
-          retail   : resData.data[i].retailPrice,
-          wholesale: resData.data[i].wholesalePrice
-
-        }
-        console.log(this.product[i])
 
 
-      }
-    })
+
+
   }
   updateDatabase(){
-    axios.get("http://localhost/phpapi/Formated/index.php/?id=2").then(resData=>{
-        // console.log(resData.data)
-      for(let i = 0 ; i < resData.data.length;i++){
-        this.product[i] ={
-          mtrl     : resData.data[i].mtrl,
-          name     : resData.data[i].name,
-          name1    : resData.data[i].name1,
-          retail   : resData.data[i].retailPrice,
-          wholesale: resData.data[i].wholesalePrice
 
-        }
-        console.log(this.product[i])
-
-
-      }
-    })
   }
 
 }

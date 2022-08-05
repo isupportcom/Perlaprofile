@@ -1,2 +1,2 @@
 
-<app-single-product *ngFor="let prod of totalProducts"></app-single-product>
+<app-single-product *ngFor="let sProd of product" [name]="sProd.name" [price]="sProd.wholesale"></app-single-product>
