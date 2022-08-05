@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" #navToggle id="navbarNavDropdown" *ngIf="!isAdminArea">
     <ul class="navbar-nav" style="margin-left: 30px">
       <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('products')">NEKTARIE TON PAIRNEIS</a>
+        <a class="nav-link" (click)="navigateTo('products')">Products</a>
       </li>
 
       <li (click)="setDropdown(dropdownCat)" class="nav-item dropdown" #categories>
@@ -69,7 +69,7 @@
     </ul>
     <ul class="navbar nav ms-auto" >
       <li class="nav-item me-auto">
-        
+
         <button class="btn btn-primary me-auto" (click)="logout()" >Log Out</button>
       </li>
     </ul>

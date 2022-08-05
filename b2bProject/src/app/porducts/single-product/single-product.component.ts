@@ -1,6 +1,8 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import axios from "axios"
+import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
+import {ProductsService} from "../products.service";
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -10,23 +12,25 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('productCard') productCard: ElementRef | undefined;
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
-  
+  @Input() name:any;
+  @Input() price:any;
 
-  constructor(private renderer: Renderer2, private router: Router, private route: ActivatedRoute) { }
+  constructor(private renderer: Renderer2, private router: Router, private route: ActivatedRoute,private productsService: ProductsService) { }
 
   ngOnInit(): void {
   }
 
 
+
   handleHover(){
     this.renderer.setStyle(this.productCard?.nativeElement, 'box-shadow', 'rgba(100, 100, 111, 0.4) 0px 7px 29px 0px');
     this.renderer.setStyle(this.productCard?.nativeElement, 'transition', '0.2s box-shadow ease-in');
-  
+
     this.renderer.setStyle(this.productImg?.nativeElement, 'transform', 'scale(1.1)');
     this.renderer.setStyle(this.productImg?.nativeElement, 'transition' , '0.3s transform ease-in');
 
     this.renderer.setStyle(this.addToCartBtn?.nativeElement, 'box-shadow', 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px');
-    this.renderer.setStyle(this.addToCartBtn?.nativeElement, 'transform' , 'scale(1.02)'); 
+    this.renderer.setStyle(this.addToCartBtn?.nativeElement, 'transform' , 'scale(1.02)');
     this.renderer.setStyle(this.addToCartBtn?.nativeElement, 'transition' , '0.2s box-shadow ease-in, 0.2s transform ease-in' );
   }
 
@@ -48,7 +52,7 @@ export class SingleProductComponent implements OnInit {
   handleBtnMouseLeave(){
     this.renderer.setStyle(this.addToCartBtn?.nativeElement, 'background-color', '#2c3e50');
   }
-  
+
   handleClick(){
     this.router.navigate(['product-page'], {relativeTo: this.route});
   }
