@@ -8,6 +8,7 @@ import {AuthService} from "./services/auth.service";
 })
 export class AppComponent {
   title = 'b2bProject';
+  age = '10';
   loggedIn: boolean = true;
   constructor(
     private router:Router,
@@ -19,15 +20,15 @@ export class AppComponent {
     if(localStorage.getItem("userType") == "Admin"){
       this.authService.setAdmin(true);
     }
-    
+
     // this.router.navigate(['log-in'])
   }
 
   isAdmin = false;
   handleGetAdmin(){
-   this.isAdmin = true; 
+   this.isAdmin = true;
    console.log("Hello");
-   
+
   }
 
   logoutHandle(){
