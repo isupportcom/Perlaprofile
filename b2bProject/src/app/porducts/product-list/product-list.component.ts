@@ -8,9 +8,12 @@ import axios from "axios";
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  public totalProducts = [11,12,13,1,21,2,21];
   product :product |any =[];
   constructor(private productsService: ProductsService) { }
+
+  totalLength:number | undefined;
+  page:number = 1;
+
 
   ngOnInit(): void {
     axios.get("http://localhost/phpapi/Formated/index.php/?id=2").then(resData => {
@@ -26,8 +29,9 @@ export class ProductListComponent implements OnInit {
           wholesale: resData.data[i].wholesalePrice
 
         }
-        console.log(this.product[i])
       }
+      this.totalLength = this.product.length;
+      console.log(this.totalLength)
       this.productsService.sendProducts(this.product);
     })
   }

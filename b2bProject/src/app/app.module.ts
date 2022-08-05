@@ -17,6 +17,7 @@ import { ProductPageComponent } from './porducts/product-page/product-page.compo
 import { ProductListComponent } from './porducts/product-list/product-list.component';
 import { CartComponent } from './cart/cart.component'
 import {ProductsService} from "./porducts/products.service";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 const routes:Routes = [
@@ -79,7 +80,8 @@ const routes:Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   exports: [
     RouterModule

@@ -1,2 +1,12 @@
 
-<app-single-product *ngFor="let sProd of product" [name]="sProd.name" [price]="sProd.wholesale"></app-single-product>
+<app-single-product 
+*ngFor="let sProd of product | 
+paginate: { 
+    itemsPerPage: 10, 
+    currentPage: page ,
+    totalItems: totalLength
+}"
+[name]="sProd.name" 
+[price]="sProd.wholesale"></app-single-product>
+
+<pagination-controls class="text-center my-pagination" (pageChange)="page = $event"></pagination-controls>
