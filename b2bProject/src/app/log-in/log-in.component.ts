@@ -11,7 +11,7 @@ import data from "../../dummyData.json";
 })
 export class LogInComponent implements OnInit {
   @Output() getAdmin = new EventEmitter();
-  
+  name = "MPEOS"
   userType:string = '';
   username:string = '';
   password:string = '';
