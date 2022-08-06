@@ -1,21 +1,34 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {ProductsService} from "../products.service";
+import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.css']
 })
-export class ProductPageComponent implements OnInit { 
+export class ProductPageComponent implements OnInit {
   slidePosition!: number;
   switchDesc = false;
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
+   product :product|any;
+  constructor(
+      private renderer: Renderer2,
+      private el: ElementRef,
+      private productsService : ProductsService
+  ) { }
 
-  constructor(private renderer: Renderer2, private el: ElementRef) { }
-
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.slidePosition = 1;
     this.SlideShow(this.slidePosition);
+
+    this.product= this.productsService.getSingelProduct();
+    console.log(this.product)
+
+
+
+
   }
 
 
@@ -30,13 +43,13 @@ export class ProductPageComponent implements OnInit {
 
   SlideShow(n: number){
     console.log(n);
-    
+
     var i;
     var slides = this.el.nativeElement.querySelectorAll('.Containers');
     console.log(slides);
-    
+
     var circles = this.el.nativeElement.querySelectorAll('.dots');
-    
+
     if(n > slides.length){
       this.slidePosition = 1;
     }
