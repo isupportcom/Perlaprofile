@@ -7,10 +7,15 @@ import {Subject} from "rxjs";
   }
 )
 export  class ProductsService {
-  products = new Subject<product>();
-  cast = this.products.asObservable();
+   singleProduct : product | any
 
-  sendProducts(products: product){
-    this.products.next(products);
-  }
+ setSingleProduct(prod:product){
+     this.singleProduct = prod;
+ }
+ getSingelProduct(){
+     return this.singleProduct;
+ }
+
+
+
 }

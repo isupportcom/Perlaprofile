@@ -12,12 +12,17 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('productCard') productCard: ElementRef | undefined;
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
-  @Input() name:any;
-  @Input() price:any;
+  @Input() index:any;
 
-  constructor(private renderer: Renderer2, private router: Router, private route: ActivatedRoute,private productsService: ProductsService) { }
+  constructor(
+      private renderer: Renderer2,
+      private router: Router,
+      private route: ActivatedRoute,
+      private productsService: ProductsService
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.index)
   }
 
 
@@ -54,6 +59,7 @@ export class SingleProductComponent implements OnInit {
   }
 
   handleClick(){
+    this.productsService.setSingleProduct(this.index);
     this.router.navigate(['product-page'], {relativeTo: this.route});
   }
 }
