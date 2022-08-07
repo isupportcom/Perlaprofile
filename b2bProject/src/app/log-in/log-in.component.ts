@@ -38,7 +38,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   loginProcess(f:NgForm){
       this.username = f.value.username;
       this.password = f.value.password;
-      axios.get("http://localhost/phpapi/Formated/?id=3&username="+this.username+"&password="+this.password)
+      axios.get("https://testdatabaseconection.whouse.gr/?id=3&username="+this.username+"&password="+this.password)
         .then(resData=>{
           console.log(resData.data);
           this.user = {
