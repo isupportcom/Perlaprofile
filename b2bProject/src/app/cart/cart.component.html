@@ -10,7 +10,7 @@
         </div>
         <hr class="first-hr">
 
-        <app-cart-item></app-cart-item>
+        <app-cart-item *ngFor="let single of product"[single]="single"></app-cart-item>
 
 
         <hr class="second-hr">

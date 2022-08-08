@@ -35,10 +35,10 @@ export class ProductListComponent implements OnInit {
 
     })
   }
+  // console.log(this.product);
+
+
     // this.productsService.cast.subscribe((res: any) => {
     //   this.product = res;
-
-    // console.log(this.product);
-
 
 }

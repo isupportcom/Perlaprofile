@@ -71,6 +71,7 @@ export class LogInComponent implements OnInit, OnDestroy {
       this.username == this.user.username &&
       this.password == this.user.password
     ) {
+
       this.userType = 'admin';
       this.authService.setAuthentication(true);
       this.authService.setAdmin(true);
