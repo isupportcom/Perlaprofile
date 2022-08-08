@@ -18,6 +18,8 @@ import { ProductListComponent } from './porducts/product-list/product-list.compo
 import { CartComponent } from './cart/cart.component'
 import {ProductsService} from "./porducts/products.service";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+
 
 
 const routes:Routes = [
@@ -74,6 +76,8 @@ const routes:Routes = [
     ProductPageComponent,
     ProductListComponent,
     CartComponent,
+    CartItemComponent,
+
 
   ],
   imports: [

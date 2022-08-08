@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
+import {CartServiceService} from "./cart-service.service";
 
 @Component({
   selector: 'app-cart',
@@ -8,10 +10,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
   @ViewChild('text') text: ElementRef | undefined;
+  products :product[] = []
 
-  constructor(private renderer: Renderer2, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private renderer: Renderer2,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cartService : CartServiceService
+  ) { }
 
   ngOnInit(): void {
+    this.products = this.cartService.getItems();
+    console.log(this.products)
   }
 
   handleMouseOver(){
