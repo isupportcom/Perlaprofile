@@ -5,7 +5,9 @@ import {product} from "../AdminArea/adminareaproducts/adminareaproducts.componen
   providedIn: 'root'
 })
 export class CartServiceService {
+
   items :product[] =[];
+  index :number = 0
 
   constructor() { }
 
@@ -18,6 +20,15 @@ export class CartServiceService {
   clearCart(){
     this.items = [];
     return this.items;
+  }
+  removeItem(index:number){
+      delete this.items[index]
+  }
+  setIndex(index:number){
+    this.index = index;
+  }
+  getIndex(){
+    return this.index;
   }
 
 }

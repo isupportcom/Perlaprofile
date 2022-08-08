@@ -53,9 +53,9 @@ getAuthentication():boolean
 
 
 login(username: string, password:string){
- 
+
   this.http.post<AuthResponseData>(
-    "https://testdatabaseconection.whouse.gr/",{
+    "https://testdatabaseconection.whouse.gr/?id=3&username="+username+"&password="+password,{
       username: username,
       password: password,
       retrunSecureToken: true
@@ -76,7 +76,7 @@ private handleAuthentication(email: string, userId: string, token: string, expir
 private handleError(errorRes: HttpErrorResponse){
   let errorMessage = 'An unknown error occured!';
   if(!errorRes.error || !errorRes.error.error){
-      return throwError(errorMessage); 
+      return throwError(errorMessage);
   }
   switch(errorRes.error.error.message){
       case 'EMAIL_EXISTS':
@@ -98,7 +98,7 @@ autoLogin(){
    id: string,
    _token: string,
    _tokenExpirationDate: string
-  } = JSON.parse(localStorage.getItem('userData') || '{}'); 
+  } = JSON.parse(localStorage.getItem('userData') || '{}');
   if(!userData){
        return;
   }
@@ -108,7 +108,7 @@ autoLogin(){
   if(loadedUser.token){
        this.user.next(loadedUser);
        const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
-       this.autoLogout(expirationDuration);  
+       this.autoLogout(expirationDuration);
   }
 }
 
@@ -120,7 +120,7 @@ autoLogout(expirationDuration: number){
 
 logout(){
   this.user.next(null);
-  
+
   this.router.navigate(['/log-in']);
   localStorage.removeItem('userData');
   if(this.tokenExpirationTimer){
@@ -131,7 +131,7 @@ logout(){
 
 
 
-  
+
 }
 
 

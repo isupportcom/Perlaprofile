@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="left-side">
         <div>
@@ -11,7 +10,7 @@
         </div>
         <hr class="first-hr">
 
-        <app-cart-item *ngFor="let single of products;let index" [index]="index" ></app-cart-item>
+        <app-cart-item *ngFor="let single of products;let index = index" [item]="single" [index]="index" ></app-cart-item>
         <hr class="second-hr">
         <div class="continueShopping" (mouseover)="handleMouseOver()" (mouseleave)="handleMouseLeave()" (click)="handleClick()">
             <div>
