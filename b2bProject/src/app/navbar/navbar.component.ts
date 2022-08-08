@@ -90,13 +90,10 @@ export class NavbarComponent implements OnInit{
     
   }
   logout(){
-    this.isAdmin = false;
-    this.authService.setAuthentication(false);
-    if(this.authService.getAdmin()){
-      this.authService.setAdmin(false);
-    }
     localStorage.setItem("userType","notLoggin")
-    this.router.navigate([''])
+    this.router.navigate(['log-in'])
+    console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
+    
   }
   navigateTo(destination:string){
     this.router.navigate([destination]);

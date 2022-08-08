@@ -4,12 +4,12 @@ import {AuthService} from "../services/auth.service";
 import {NgForm} from "@angular/forms";
 import data from "../../dummyData.json";
 import axios from 'axios';
-export interface user{
-  name:string,
-  surname:string,
-  username:string,
-  password:string
-}
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
+
+import { User } from '../services/user.model';
+
+
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
@@ -19,10 +19,11 @@ export class LogInComponent implements OnInit, OnDestroy {
   userType:string = '';
   username:string = '';
   password:string = '';
-  user : user | any;
+  // user : user | any;
   constructor(private router:Router,
               private authService:AuthService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              ) { }
 
   ngOnInit(): void {
     if(localStorage.getItem("userType") != "notLoggin" ){
@@ -36,34 +37,40 @@ export class LogInComponent implements OnInit, OnDestroy {
   }
 
   loginProcess(f:NgForm){
-      this.username = f.value.username;
-      this.password = f.value.password;
-      axios.get("https://testdatabaseconection.whouse.gr/?id=3&username="+this.username+"&password="+this.password)
-        .then(resData=>{
-          console.log(resData.data);
-          this.user = {
-            name: resData.data[0].name,
-            sername: resData.data[0].sername,
-            username: resData.data[0].username,
-            password: resData.data[0].password
-          }
-          this.authenticationProcces();
-        })
-        
-        
-        
-      
+    this.username = f.value.username;
+    this.password = f.value.password;
+    // axios.get("https://testdatabaseconection.whouse.gr/?id=3&username="+this.username+"&password="+this.password)
+    // .then(resData=>{
+    // console.log(resData.data);
+    // this.user = {
+      // name: resData.data[0].name,
+      // surname: resData.data[0].surname,
+      // username: resData.data[0].username,
+      // password: resData.data[0].password,
+      // _token: resData.data[0].token
+    // }
+    // this.authenticationProcces();
+    // localStorage.setItem('userData',JSON.stringify(this.user));
+    // })
+    
+    this.authService.login(this.username,this.password);
+    console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
+    this.router.navigate(['products']);
+  } 
 
-  }
-  authenticationProcces(){
-    if (this.username ==this.user.username  && this.password == this.user.password){
-      this.userType = 'admin';
-      this.authService.setAuthentication(true);
-      this.authService.setAdmin(true)
-      localStorage.setItem("userType","Admin")
-      this.router.navigate(['products'], {queryParams: {data: this.userType === 'admin' ? true : false}});
-    }
-  }
+  
+
+  
+  // authenticationProcces(){
+  //   if (this.username ==this.user.username  && this.password == this.user.password){
+  //     this.userType = 'admin';
+  //     this.authService.setAuthentication(true);
+  //     this.authService.setAdmin(true)
+  //     localStorage.setItem("userType","Admin")
+  //     this.router.navigate(['products'], {queryParams: {data: this.userType === 'admin' ? true : false}});
+  //   }
+  // }
+  
   loginProcessforGuess(){
     this.authService.setAuthentication(true);
     localStorage.setItem("userType","Customer")

@@ -24,7 +24,8 @@ const routes:Routes = [
 
   {
     path:'',
-    component: AppComponent,
+    redirectTo : '/products',
+    pathMatch: 'full'
   },
   {
     path: 'log-in',
