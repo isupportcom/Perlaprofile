@@ -20,6 +20,8 @@ export class AppComponent {
 
   }
   ngOnInit(){
+    this.authService.autoLogin();
+    
     if(localStorage.getItem("userType") == "Admin"){
       this.authService.setAdmin(true);
     }
@@ -32,14 +34,11 @@ export class AppComponent {
       
     })
     
-    this.router.navigate(['log-in'])
+    // this.router.navigate(['log-in'])
   }
 
 
-  logoutHandle(){
-    localStorage.removeItem("username");
-    this.loggedIn = false;
-  }
+ 
 
 
 }
