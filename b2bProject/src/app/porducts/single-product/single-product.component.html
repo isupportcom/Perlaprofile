@@ -16,6 +16,6 @@
     </div>
     <div id="addToCart" (mouseover)="handleBtnHover()" (mouseleave)="handleBtnMouseLeave()" #addToCart>
       <p id="amount">- 1 +</p>
-      <button id="addToCartBtn" #addToCartBtn>Add to cart</button>
+      <button id="addToCartBtn" #addToCartBtn (click)="addToCartArray()">Add to cart</button>
     </div>
   </div>

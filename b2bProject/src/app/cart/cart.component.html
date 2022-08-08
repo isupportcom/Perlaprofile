@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <div class="container">
     <div class="left-side">
         <div>
@@ -10,21 +9,10 @@
             </div>
         </div>
         <hr class="first-hr">
-        <div class="product">
-            <img src="../../../assets/35S-35SD.jpg" alt="" style="width: 141px; height: 141px;">
-            <div class="description">
-                <div class="descLeft">
-                    <h4>Lorem</h4>
-                    <p>Lorem ipsum</p>
-                    <p>Quantity: 1</p>
-                    <img src="../../../assets/Vector.png" alt="">
-                </div>
-                <div class="descRight">
-                    <input type="number" class="form-control numberInput" value="1">
-                    <h3>$299</h3>
-                </div>
-            </div>
-        </div>
+
+        <app-cart-item></app-cart-item>
+
+
         <hr class="second-hr">
         <div class="continueShopping" (mouseover)="handleMouseOver()" (mouseleave)="handleMouseLeave()" (click)="handleClick()">
             <div>
@@ -44,7 +32,7 @@
             <hr>
             <h5>Grand Total :&emsp;$299</h5>
             <button class="cart-btn">Continue To Checkout</button>
-        </div>  
+        </div>
         <div class="paymentMethod">
             <h4>Payment Method</h4>
             <div class="cards">

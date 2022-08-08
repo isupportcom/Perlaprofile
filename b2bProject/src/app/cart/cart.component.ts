@@ -9,9 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CartComponent implements OnInit {
   @ViewChild('text') text: ElementRef | undefined;
 
-  constructor(private renderer: Renderer2, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private renderer       : Renderer2,
+    private router         : Router,
+    private route          : ActivatedRoute,
+
+
+  ) { }
 
   ngOnInit(): void {
+
   }
 
   handleMouseOver(){

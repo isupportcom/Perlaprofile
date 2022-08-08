@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {ProductsService} from "../products.service";
 import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
+import {CartServiceService} from "../../cart/cart-service.service";
 
 @Component({
   selector: 'app-product-page',
@@ -16,7 +17,8 @@ export class ProductPageComponent implements OnInit {
   constructor(
       private renderer: Renderer2,
       private el: ElementRef,
-      private productsService : ProductsService
+      private productsService : ProductsService,
+      private cartService: CartServiceService
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,11 @@ export class ProductPageComponent implements OnInit {
 
   }
 
+  addToCartArray(){
+    this.cartService.addToCart(this.product);
 
+
+  }
 
   plusSlides(n: number){
     this.SlideShow(this.slidePosition += n);

@@ -24,6 +24,10 @@ export class SingleProductComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.index)
   }
+  addToCartArray(){
+    this.productsService.setSingleProduct(this.index);
+
+  }
 
 
 

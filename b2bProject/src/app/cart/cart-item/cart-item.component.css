@@ -1,0 +1,168 @@
+.container{
+  margin-top: 8%;
+}
+
+.left-side{
+  width: 67%;
+  margin-right: 3%;
+  display: inline-block;
+}
+.first-hr{
+  height: 1px;
+  display: block;
+  border: 0;
+  border-top: 4px solid black;
+  opacity: 1;
+  margin: 1em 0;
+  border-radius: 1000px;
+  padding: 0;
+}
+
+.product img{
+  margin-top: 7%;
+  margin-bottom: 7%;
+  display: inline-block;
+}
+
+.description{
+  position: absolute;
+  margin-top: 3%;
+  display: inline-block;
+  margin-left: 2%;
+  width: 43.5%;
+}
+
+.myCart{
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+}
+
+.productAmount{
+  display: inline-block;
+  text-align: right;
+  width: 50%;
+}
+
+.productAmount h3{
+  font-weight: 300;
+  color: #43484D;
+}
+
+
+.right-side{
+  width: 15%;
+  margin-top: 60px;
+  display: inline-block;
+  position: absolute;
+}
+
+.continueToCheckout{
+  border-color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid;
+  height: 350px;
+  padding: 10%;
+}
+
+
+
+.numberInput{
+  width: 30%;
+  transform: scale(1.1);
+}
+
+
+.descLeft{
+  display: inline-block;
+}
+
+.descRight{
+  position: absolute;
+  margin-left: 63.5%;
+  display: inline-block;
+}
+
+.descRight h3{
+  margin-top: 10%;
+}
+
+.circle{
+  border: 1px solid;
+  width: 13%;
+  height: 30px;
+  border-radius: 16px;
+  text-align: center;
+  display: inline-block;
+}
+
+.coupon h5{
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.coupon{
+  margin-top: 20%;
+  margin-bottom: 15%;
+}
+
+.right-side hr{
+  height: 1px;
+  display: block;
+  border: 0;
+  border-top: 2px solid black;
+  opacity: 1;
+  border-radius: 1000px;
+  padding: 0;
+  margin-bottom: 10%;
+}
+
+.cart-btn {
+  display: inline-block;
+  background-color: #415e7a;
+  border-radius: 6px;
+  border: none;
+  margin-top: 5%;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: all .5s;
+}
+.cart-btn:hover {
+  background-color: #1c2732;
+  box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+  transform: scale(1.1);
+}
+
+.paymentMethod{
+  width: 400px;
+  margin-top: 30px;
+  padding: 2%;
+}
+
+.cards img{
+  margin-top: 5%;
+  margin-right: 5%;
+}
+
+.continueShopping{
+  cursor: pointer;
+}
+
+.continueShopping div{
+  display: inline-block;
+
+}
+
+.continueShopping h5{
+  display: inline-block;
+  margin-left: 1%;
+  position: absolute;
+  margin-top: 2px;
+  color: #d8d8d8;
+  font-weight: lighter;
+  transition: 0.4s all ease-in;
+}
