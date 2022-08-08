@@ -22,7 +22,7 @@ export class SingleProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.index)
+    // console.log(this.index)
   }
 
 

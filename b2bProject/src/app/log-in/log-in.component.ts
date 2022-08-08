@@ -52,15 +52,15 @@ export class LogInComponent implements OnInit, OnDestroy {
     // this.authenticationProcces();
     // localStorage.setItem('userData',JSON.stringify(this.user));
     // })
-    
-    this.authService.login(this.username,this.password);
-    console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
+
+    console.log(this.authService.login(this.username,this.password));
+    // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
     this.router.navigate(['products']);
-  } 
+  }
 
-  
 
-  
+
+
   // authenticationProcces(){
   //   if (this.username ==this.user.username  && this.password == this.user.password){
   //     this.userType = 'admin';
@@ -70,7 +70,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   //     this.router.navigate(['products'], {queryParams: {data: this.userType === 'admin' ? true : false}});
   //   }
   // }
-  
+
   loginProcessforGuess(){
     this.authService.setAuthentication(true);
     localStorage.setItem("userType","Customer")
@@ -80,6 +80,6 @@ export class LogInComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authService.sendLoggedIn(true)
-    
+
   }
 }

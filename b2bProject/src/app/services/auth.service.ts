@@ -54,20 +54,22 @@ getAuthentication():boolean
 
 login(username: string, password:string){
 
-  this.http.post<AuthResponseData>(
-    "https://testdatabaseconection.whouse.gr/?id=3&username="+username+"&password="+password,{
+  return this.http.post<AuthResponseData>(
+    "https://testdatabaseconection.whouse.gr/",{
+      id: 3,
       username: username,
       password: password,
       retrunSecureToken: true
     }
   ).pipe(catchError(this.handleError), tap(resData => {
+    console.log(resData)
     this.handleAuthentication(resData.username,resData.localId,resData.idToken,+resData.expiresIn)
   }))
 }
 
-private handleAuthentication(email: string, userId: string, token: string, expiresIn: number){
+private handleAuthentication(username: string, userId: string, token: string, expiresIn: number){
   const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-  const user = new User(email, userId, token , expirationDate);
+  const user = new User(username, userId, token , expirationDate);
   this.user.next(user);
   // this.autoLogout(expiresIn * 1000);
   localStorage.setItem('userData', JSON.stringify(user));
