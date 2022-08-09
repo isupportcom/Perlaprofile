@@ -8,7 +8,7 @@ export class CartServiceService {
 
   items :product[] =[];
   index :number = 0
-
+  len:number = this.items.length;
   constructor() { }
 
   addToCart(product:product){
@@ -21,14 +21,24 @@ export class CartServiceService {
     this.items = [];
     return this.items;
   }
-  removeItem(index:number){
-      delete this.items[index]
+  clearOne(index:number){
+    this.items[index] =  [];
+    return this.items[index];
   }
+  getLen(){
+    return this.len;
+  }
+  setLen(len:number){
+    this.len = len;
+  }
+
   setIndex(index:number){
     this.index = index;
   }
   getIndex(){
     return this.index;
   }
+
+
 
 }

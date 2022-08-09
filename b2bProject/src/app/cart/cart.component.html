@@ -5,12 +5,14 @@
                 <h2>My Cart</h2>
             </div>
             <div class="productAmount">
-                <h3>Products: 1</h3>
+                <h3>Products: {{i}}</h3>
+
             </div>
         </div>
         <hr class="first-hr">
 
-        <app-cart-item *ngFor="let single of products;let index = index" [item]="single" [index]="index" ></app-cart-item>
+        <app-cart-item *ngFor="let single of products;let index = index" [item]="single" [index]="index" [productsLen]="products.length" ></app-cart-item>
+      <button class="btn btn-primary" (click)="removeAll()">Clear All</button>
         <hr class="second-hr">
         <div class="continueShopping" (mouseover)="handleMouseOver()" (mouseleave)="handleMouseLeave()" (click)="handleClick()">
             <div>

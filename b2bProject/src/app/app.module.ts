@@ -19,6 +19,8 @@ import { CartComponent } from './cart/cart.component'
 import {ProductsService} from "./porducts/products.service";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import {MyOrdersComponent} from "./my-orders/my-orders.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 
 
@@ -44,6 +46,14 @@ const routes:Routes = [
   {
     path:'users',
     component:AdminareausersComponent
+  },
+  {
+    path:'profile',
+    component:ProfileComponent
+  },
+  {
+    path :'my-orders',
+    component:MyOrdersComponent
   },
   {
     path:'products',

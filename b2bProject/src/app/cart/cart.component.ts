@@ -11,7 +11,7 @@ import {CartServiceService} from "./cart-service.service";
 export class CartComponent implements OnInit {
   @ViewChild('text') text: ElementRef | undefined;
   products :product[] = []
-
+  public i :number=0;
   constructor(
     private renderer: Renderer2,
     private router: Router,
@@ -21,7 +21,18 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.products = this.cartService.getItems();
-    console.log(this.products)
+    this.i = this.cartService.getLen()
+  }
+     onChangeLen(){
+       this.i = this.cartService.getLen()
+  }
+
+  removeAll(){
+    for(let i=0; i<this.products.length;i++){
+      this.products = this.cartService.clearCart()
+    }
+    this.products = this.cartService.getItems()
+    this.i=this.products.length
   }
 
   handleMouseOver(){

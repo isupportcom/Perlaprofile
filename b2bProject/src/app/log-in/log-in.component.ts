@@ -58,7 +58,7 @@ export class LogInComponent implements OnInit, OnDestroy {
 
     authObs.subscribe(resData =>{
       if(resData.success == 1){
-        console.log(resData);
+        console.log(resData)
         this.router.navigate(['products']);
       }
 
