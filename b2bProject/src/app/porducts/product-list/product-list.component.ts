@@ -31,14 +31,13 @@ export class ProductListComponent implements OnInit {
         }
       }
       this.totalLength = this.product.length;
-      console.log(this.totalLength)
 
     })
   }
-    // this.productsService.cast.subscribe((res: any) => {
-    //   this.product = res;
+  // this.productsService.cast.subscribe((res: any) => {
+  //   this.product = res;
 
-    // console.log(this.product);
+  // console.log(this.product);
 
 
 }

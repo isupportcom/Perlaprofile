@@ -14,8 +14,9 @@ export interface user{
 
 export interface AuthResponseData{
   kind: string;
+  token: string;
   idToken: string;
-  email: string;
+  username: string;
   refreshToken: string;
   expiresIn: string;
   localId: string;
@@ -84,6 +85,6 @@ export class LogInComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authService.sendLoggedIn(true)
-    
+
   }
 }

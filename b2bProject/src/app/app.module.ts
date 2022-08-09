@@ -18,13 +18,17 @@ import { ProductListComponent } from './porducts/product-list/product-list.compo
 import { CartComponent } from './cart/cart.component'
 import {ProductsService} from "./porducts/products.service";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { AuthGuard } from './services/auth.guard';
+
 
 
 const routes:Routes = [
 
   {
     path:'',
-    component: AppComponent,
+    redirectTo : '/products',
+    pathMatch: 'full'
   },
   {
     path: 'log-in',
@@ -32,19 +36,23 @@ const routes:Routes = [
   },
   {
     path:'dashborard',
+    canActivate: [AuthGuard],
     component:AdminAreaComponent
   },
   {
     path:'edit-products',
+    canActivate: [AuthGuard],
     component:AdminareaproductsComponent
   },
   {
     path:'users',
+    canActivate: [AuthGuard],
     component:AdminareausersComponent
   },
   {
     path:'products',
     component:PorductsComponent,
+    canActivate: [AuthGuard],
     children: [
       {path: '', component: ProductListComponent, pathMatch: 'full'},
       {path: 'product-page', component: ProductPageComponent}
@@ -52,6 +60,7 @@ const routes:Routes = [
   },
   {
     path: 'cart',
+    canActivate: [AuthGuard],
     component: CartComponent
   }
 
@@ -73,6 +82,8 @@ const routes:Routes = [
     ProductPageComponent,
     ProductListComponent,
     CartComponent,
+    CartItemComponent,
+
 
   ],
   imports: [

@@ -26,12 +26,7 @@ export class AdminNavComponent implements OnInit {
     }
   }
   logout(){
-    this.authService.setAuthentication(false);
-    if(this.authService.getAdmin()){
-      this.authService.setAdmin(false);
-    }
-    localStorage.setItem("userType","notLoggin")
-    this.router.navigate([''])
+
   }
 
   navigateTo(destination:string){

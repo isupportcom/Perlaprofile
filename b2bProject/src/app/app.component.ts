@@ -11,7 +11,7 @@ export class AppComponent {
   age = '10';
   loggedIn: boolean = true;
 
-  
+
   constructor(
     private router:Router,
     private authService: AuthService,
@@ -20,26 +20,23 @@ export class AppComponent {
 
   }
   ngOnInit(){
+    this.authService.autoLogin();
     if(localStorage.getItem("userType") == "Admin"){
       this.authService.setAdmin(true);
     }
     this.route.data.subscribe((data: Data) => {
-      console.log(data);  
+      // console.log(data);
     })
     this.authService.loggedIn.subscribe(res => {
-      console.log(res);
       this.loggedIn = res;
-      
+
     })
-    
-    this.router.navigate(['log-in'])
+
+    // this.router.navigate(['log-in'])
   }
 
 
-  logoutHandle(){
-    localStorage.removeItem("username");
-    this.loggedIn = false;
-  }
+
 
 
 }

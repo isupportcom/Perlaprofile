@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import {AuthService} from "../services/auth.service";
 
 
@@ -12,21 +13,21 @@ export class NavbarComponent implements OnInit{
   isAdminArea = false;
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
-  
+
 
 
   @ViewChild('dropdown') dropdown!: ElementRef;
   isOpen = false;
   isToggelOpen = false;
   isAdmin : boolean = this.authService.getAdmin()
-  
+
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
   constructor(
     private authService: AuthService,
     private router :Router,
     private route: ActivatedRoute) { }
-   
+
 
     username = localStorage.getItem("username");
 
@@ -35,14 +36,13 @@ export class NavbarComponent implements OnInit{
     //   (username: string) => {
     //     this.username = username;
     //   }
-    // );    
+    // );
     this.route.queryParams.subscribe((params: any) => {
-      console.log(params.data);
       this.isAdmin = params.data;
     });
-    
-    
-    
+
+
+
   }
 
   handleLeaveAdminArea(){
@@ -50,11 +50,11 @@ export class NavbarComponent implements OnInit{
     console.log(this.isAdminArea);
     this.router.navigate(["products"]);
   }
-  
+
   handleDashboard(){
     this.isAdminArea = true;
     console.log(this.isAdminArea);
-    
+
     this.router.navigate(["dashboard"]);
   }
 
@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit{
       this.navToggle.nativeElement.classList.remove('show')
     }
 
-    
+
   }
 
 
@@ -85,18 +85,16 @@ export class NavbarComponent implements OnInit{
     }else{
       element.classList.remove('show');
     }
-    
-    
-    
+
+
+
   }
   logout(){
-    this.isAdmin = false;
-    this.authService.setAuthentication(false);
-    if(this.authService.getAdmin()){
-      this.authService.setAdmin(false);
-    }
-    localStorage.setItem("userType","notLoggin")
-    this.router.navigate([''])
+    
+    
+    console.log(this.authService.user.getValue()?.token);
+    this.authService.logout();
+    console.log(this.authService.user.getValue());
   }
   navigateTo(destination:string){
     this.router.navigate([destination]);

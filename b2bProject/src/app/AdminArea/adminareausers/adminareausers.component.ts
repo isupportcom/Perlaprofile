@@ -9,6 +9,7 @@ export class AdminareausersComponent implements OnInit {
   public users =[
       {
         name:'Kostakis',
+
         Role:'Fidi'
       },
     {
