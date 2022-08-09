@@ -20,7 +20,12 @@ export class AppComponent {
 
   }
   ngOnInit(){
+
     this.authService.autoLogin();
+
+    console.log(JSON.parse('userData'))
+
+
     if(localStorage.getItem("userType") == "Admin"){
       this.authService.setAdmin(true);
     }
