@@ -26,7 +26,7 @@ export class AdminNavComponent implements OnInit {
     }
   }
   logout(){
-    this.authService.logout();
+
   }
 
   navigateTo(destination:string){

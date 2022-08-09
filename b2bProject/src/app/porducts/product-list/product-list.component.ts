@@ -16,7 +16,7 @@ export class ProductListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    axios.get("https://testdatabaseconection.whouse.gr/?id=2").then(resData => {
+    axios.get("https://testdatabaseconection.whouse.gr/backup/index.php/?id=2").then(resData => {
       // console.log(resData.data)
       for (let i = 0; i < resData.data.length; i++) {
         // @ts-ignore
@@ -35,10 +35,10 @@ export class ProductListComponent implements OnInit {
 
     })
   }
-    // this.productsService.cast.subscribe((res: any) => {
-    //   this.product = res;
+  // this.productsService.cast.subscribe((res: any) => {
+  //   this.product = res;
 
-    // console.log(this.product);
+  // console.log(this.product);
 
 
 }
