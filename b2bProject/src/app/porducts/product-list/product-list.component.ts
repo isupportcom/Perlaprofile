@@ -31,7 +31,6 @@ export class ProductListComponent implements OnInit {
         }
       }
       this.totalLength = this.product.length;
-      console.log(this.totalLength)
 
     })
   }

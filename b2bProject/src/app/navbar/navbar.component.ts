@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import {AuthService} from "../services/auth.service";
 
 
@@ -37,7 +38,6 @@ export class NavbarComponent implements OnInit{
     //   }
     // );
     this.route.queryParams.subscribe((params: any) => {
-      console.log(params.data);
       this.isAdmin = params.data;
     });
 
@@ -90,9 +90,17 @@ export class NavbarComponent implements OnInit{
 
   }
   logout(){
+
+    
+    
+    console.log(this.authService.user.getValue()?.token);
+    this.authService.logout();
+    console.log(this.authService.user.getValue());
+
     localStorage.setItem("userType","notLoggin")
     this.router.navigate(['log-in'])
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
+
 
   }
   navigateTo(destination:string){
