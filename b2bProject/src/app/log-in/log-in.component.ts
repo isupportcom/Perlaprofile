@@ -4,11 +4,23 @@ import {AuthService} from "../services/auth.service";
 import {NgForm} from "@angular/forms";
 import data from "../../dummyData.json";
 import axios from 'axios';
+import { Observable } from 'rxjs';
 export interface user{
   name:string,
   surname:string,
   username:string,
   password:string
+}
+
+export interface AuthResponseData{
+  kind: string;
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+  success: number;
+  registered?: boolean;
 }
 @Component({
   selector: 'app-log-in',
@@ -20,6 +32,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   username:string = '';
   password:string = '';
   user : user | any;
+  private tokenExpirationTimer: any;
   constructor(private router:Router,
               private authService:AuthService,
               private route: ActivatedRoute) { }
@@ -38,24 +51,22 @@ export class LogInComponent implements OnInit, OnDestroy {
   loginProcess(f:NgForm){
       this.username = f.value.username;
       this.password = f.value.password;
-      axios.get("https://testdatabaseconection.whouse.gr/?id=3&username="+this.username+"&password="+this.password)
-        .then(resData=>{
-          console.log(resData.data);
-          this.user = {
-            name: resData.data[0].name,
-            sername: resData.data[0].sername,
-            username: resData.data[0].username,
-            password: resData.data[0].password
-          }
-          this.authenticationProcces();
-        })
-        
-        
-        
       
+      let authObs: Observable<AuthResponseData>;
 
+      authObs = this.authService.login(this.username,this.password);
+
+      authObs.subscribe(resData =>{
+        if(resData.success == 1){
+          console.log(resData);
+          this.router.navigate(['products']); 
+        }
+        
+      })
   }
-  authenticationProcces(){
+
+
+  authenticationProcces(name: string, surname: string, username: string, expiresIn: number ){
     if (this.username ==this.user.username  && this.password == this.user.password){
       this.userType = 'admin';
       this.authService.setAuthentication(true);
