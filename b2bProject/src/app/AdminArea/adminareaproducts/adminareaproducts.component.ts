@@ -9,6 +9,7 @@ export interface product {
     code:string
     retail:number,
     wholesale:number
+    show?: boolean;
   };
 }
 @Component({

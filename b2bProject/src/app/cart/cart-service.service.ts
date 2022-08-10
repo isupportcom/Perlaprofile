@@ -8,7 +8,7 @@ import {Subject} from "rxjs"
 })
 export class CartServiceService {
 
-  items :product[] =[];
+  items :product[] | any =[];
   index :number = 0
 
   constructor() { }
@@ -21,6 +21,10 @@ export class CartServiceService {
 
   }
 
+  removeItem(index: number){
+    this.items.splice(index,1);
+
+  }
 
   addToCart(product:product){
     this.items.push(product);

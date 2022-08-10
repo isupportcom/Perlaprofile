@@ -84,9 +84,9 @@
 }
 
 .descRight{
-    position: absolute;
-    margin-left: 63.5%;
-    display: inline-block;
+  position: absolute;
+  margin-left: 25%;
+  display: inline-block;
 }
 
 .descRight h3{
