@@ -18,8 +18,10 @@ import { ProductListComponent } from './porducts/product-list/product-list.compo
 import { CartComponent } from './cart/cart.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
+
 import { AuthGuard } from './services/auth.guard';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+
 
 
 

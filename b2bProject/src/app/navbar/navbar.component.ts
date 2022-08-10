@@ -90,11 +90,18 @@ export class NavbarComponent implements OnInit{
 
   }
   logout(){
+
     
     
     console.log(this.authService.user.getValue()?.token);
     this.authService.logout();
     console.log(this.authService.user.getValue());
+
+    localStorage.setItem("userType","notLoggin")
+    this.router.navigate(['log-in'])
+    console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
+
+
   }
   navigateTo(destination:string){
     this.router.navigate([destination]);

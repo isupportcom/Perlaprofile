@@ -20,8 +20,9 @@ export class AppComponent {
 
   }
   ngOnInit(){
+
     this.authService.autoLogin();
-    
+
       this.authService.setAdmin(true);
     
     this.route.data.subscribe((data: Data) => {
