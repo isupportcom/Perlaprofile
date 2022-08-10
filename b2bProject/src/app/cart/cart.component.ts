@@ -21,7 +21,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.products = this.cartService.getItems();
-    console.log(this.products)
+    console.log(this.products[0])
+  }
+
+  handleCheckout(){
+    this.router.navigate(['checkout']);
   }
 
   handleMouseOver(){
