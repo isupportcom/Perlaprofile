@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit{
   @ViewChild('dropdown') dropdown!: ElementRef;
   isOpen = false;
   isToggelOpen = false;
-  isAdmin : boolean = this.authService.getAdmin()
+  isAdmin = true;
 
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
@@ -37,9 +37,9 @@ export class NavbarComponent implements OnInit{
     //     this.username = username;
     //   }
     // );
-    this.route.queryParams.subscribe((params: any) => {
-      this.isAdmin = params.data;
-    });
+    // this.route.queryParams.subscribe((params: any) => {
+    //   this.isAdmin = params.data;
+    // });
 
 
 

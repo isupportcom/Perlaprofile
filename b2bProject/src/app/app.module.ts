@@ -15,12 +15,12 @@ import { PorductsComponent } from './porducts/porducts.component';
 import { SingleProductComponent } from './porducts/single-product/single-product.component';
 import { ProductPageComponent } from './porducts/product-page/product-page.component';
 import { ProductListComponent } from './porducts/product-list/product-list.component';
-import { CartComponent } from './cart/cart.component'
-import {ProductsService} from "./porducts/products.service";
+import { CartComponent } from './cart/cart.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 
 import { AuthGuard } from './services/auth.guard';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 
 
@@ -64,6 +64,11 @@ const routes:Routes = [
     path: 'cart',
     canActivate: [AuthGuard],
     component: CartComponent
+  },
+  {
+    path: 'checkout',
+    canActivate: [AuthGuard],
+    component: CheckoutPageComponent
   }
 
 ]
@@ -85,6 +90,7 @@ const routes:Routes = [
     ProductListComponent,
     CartComponent,
     CartItemComponent,
+    CheckoutPageComponent,
 
 
   ],
@@ -94,7 +100,7 @@ const routes:Routes = [
     FormsModule,
     CommonModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   exports: [
     RouterModule

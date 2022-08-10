@@ -58,6 +58,7 @@ export class AuthService {
         returnSecureToken: true
       }
     ).pipe(catchError(this.handleError), tap(resData => {
+        localStorage.setItem("username", username);
         this.handleAuthentication(resData.username,resData.localId,resData.token,600);
       })
     );
@@ -141,6 +142,7 @@ export class AuthService {
   }
 
   private handleAuthentication(username: string, userId: string, token: string, expiresIn: number){
+
 
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000 * 6);
     console.log(expirationDate);

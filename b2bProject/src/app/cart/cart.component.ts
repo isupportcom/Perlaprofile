@@ -26,6 +26,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     this.products = JSON.parse(<string>localStorage.getItem("products") )
     localStorage.setItem("products",JSON.stringify(this.products))
@@ -62,6 +63,14 @@ export class CartComponent implements OnInit {
     localStorage.setItem("products",JSON.stringify(this.products));
     this.GrandTotal = 0 ;
     this.length = 0;
+
+    this.products = this.cartService.getItems();
+    console.log(this.products[0])
+  }
+
+  handleCheckout(){
+    this.router.navigate(['checkout']);
+
   }
 
   handleMouseOver(){
