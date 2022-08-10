@@ -22,7 +22,9 @@ export class CartServiceService {
   }
 
   removeItem(index: number){
-    this.items.splice(index,1);
+    let temp  = JSON.parse(localStorage.getItem("products") || '{}')
+    temp.splice(index,1);
+    return temp
 
   }
 

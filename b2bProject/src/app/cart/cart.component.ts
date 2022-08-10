@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { ActivatedRoute, Router } from '@angular/router';
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
 import {CartServiceService} from "./cart-service.service";
-import {map} from "rxjs/operators";
+
 
 @Component({
   selector: 'app-cart',
@@ -27,10 +27,9 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
-    //  = JSON.parse(localStorage.getItem("products") || '{}')
-    this.products = JSON.parse(localStorage.getItem("products") || '{}')
+    this.products = JSON.parse(<string>localStorage.getItem("products") )
     localStorage.setItem("products",JSON.stringify(this.products))
-    this.products = JSON.parse(localStorage.getItem("products") || '{}');
+    this.products = JSON.parse(<string>localStorage.getItem("products"));
 
     this.length = this.products.length;
 
@@ -38,34 +37,22 @@ export class CartComponent implements OnInit {
       this.GrandTotal += +prod.wholesale;
     }
     console.log(this.GrandTotal)
-    // this.products = JSON.parse(localStorage.getItem("products") || '{}')
+
 
   }
 
 
   removeOne(item: any, index: number){
-    // this.products[index].show = false
-    // this.length -=1
-    // localStorage.setItem("len",this.length);
+
       this.GrandTotal -= this.products[index].wholesale
-      this.cartService.removeItem(index);
-      this.products = this.cartService.getItems();
+      this.products =this.cartService.removeItem(index);
+
       localStorage.setItem("products",JSON.stringify(this.products));
-      this.products = JSON.parse(localStorage.getItem("products") || '{}') ;
+      this.products = JSON.parse(<string>localStorage.getItem("products") ) ;
+      console.log(this.products)
       this.length = this.products.length;
 
-    // this.length -=1;
-    // this.GrandTotal-= this.products[index].wholesale
-    // this.products[index] = this.cartService.removeItem(index);
-    // localStorage.setItem("products",JSON.stringify(this.products));
-    // this.products = localStorage.getItem("products")
-    // localStorage.setItem("len",this.products.length);
-    // this.length-=1;
-    // this.GrandTotal-= this.products[index].wholesale
-    // this.products = this.cartService.removeItem(index)
-    // console.log(this.products);
-    // localStorage.setItem("len",this.length);
-    // localStorage.setItem("products", JSON.stringify(this.products));
+
   }
 
 
