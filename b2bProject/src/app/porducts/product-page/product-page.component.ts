@@ -33,7 +33,9 @@ export class ProductPageComponent implements OnInit {
 
   }
   addToCart(){
-    this.cartService.addToCart(this.product);
+
+     this.cartService.addToCart(this.product);
+      localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
   }
 
 

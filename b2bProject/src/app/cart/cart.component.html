@@ -5,12 +5,13 @@
                 <h2>My Cart</h2>
             </div>
             <div class="productAmount">
-                <h3>Products: 1</h3>
+                <h3>Products: {{products.length}}</h3>
             </div>
         </div>
         <hr class="first-hr">
 
-        <app-cart-item *ngFor="let single of products;let index = index" [item]="single" [index]="index" ></app-cart-item>
+        <app-cart-item class="cart-item" *ngFor="let single of products;let index = index" [item]="single" [index]="index" ></app-cart-item>
+      <button class="btn btn-primary" (click)="clearAll()">Clear All</button>
         <hr class="second-hr">
         <div class="continueShopping" (mouseover)="handleMouseOver()" (mouseleave)="handleMouseLeave()" (click)="handleClick()">
             <div>
@@ -28,7 +29,7 @@
                 <h5>Use Coupon</h5>
             </div>
             <hr>
-            <h5>Grand Total :&emsp;$299</h5>
+            <h5>Grand Total :&emsp;{{ GrandTotal }}</h5>
             <button class="cart-btn">Continue To Checkout</button>
         </div>
         <div class="paymentMethod">

@@ -14,14 +14,9 @@ export interface user{
 
 export interface AuthResponseData{
   kind: string;
-
   token: string;
   idToken: string;
   username: string;
-
-  idToken: string;
-  email: string;
-
   refreshToken: string;
   expiresIn: string;
   localId: string;
@@ -55,22 +50,6 @@ export class LogInComponent implements OnInit, OnDestroy {
   }
 
   loginProcess(f:NgForm){
-
-      this.username = f.value.username;
-      this.password = f.value.password;
-      
-      let authObs: Observable<AuthResponseData>;
-
-      authObs = this.authService.login(this.username,this.password);
-
-      authObs.subscribe(resData =>{
-        if(resData.success == 1){
-          console.log(resData);
-          this.router.navigate(['products']); 
-        }
-        
-      })
-
     this.username = f.value.username;
     this.password = f.value.password;
 
@@ -85,7 +64,6 @@ export class LogInComponent implements OnInit, OnDestroy {
       }
 
     })
-
   }
 
 

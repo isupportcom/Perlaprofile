@@ -10,8 +10,9 @@ import {CartServiceService} from "./cart-service.service";
 })
 export class CartComponent implements OnInit {
   @ViewChild('text') text: ElementRef | undefined;
-  products :product[] = []
-
+  products :product[] |any
+  GrandTotal:number=0;
+  wholesale:number=0;
   constructor(
     private renderer: Renderer2,
     private router: Router,
@@ -20,8 +21,24 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.products = this.cartService.getItems();
-    console.log(this.products)
+    this.fillProd()
+
+  }
+  fillProd(){
+    console.log(JSON.parse(localStorage.getItem("products") || '{}'))
+    this.products = JSON.parse(localStorage.getItem("products") || '{}')
+
+    for(let prod of this.products){
+      this.GrandTotal += +prod.wholesale;
+    }
+    console.log(this.GrandTotal)
+
+  }
+
+
+  clearAll(){
+    this.products =this.cartService.clearCart();
+    localStorage.setItem("products",JSON.stringify(this.products));
   }
 
   handleMouseOver(){

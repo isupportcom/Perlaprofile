@@ -22,6 +22,7 @@
   margin-top: 7%;
   margin-bottom: 7%;
   display: inline-block;
+
 }
 
 .description{
@@ -69,7 +70,7 @@
 
 
 .numberInput{
-  width: 30%;
+  width: 50%;
   transform: scale(1.1);
 }
 
@@ -80,7 +81,7 @@
 
 .descRight{
   position: absolute;
-  margin-left: 63.5%;
+  margin-left: 25%;
   display: inline-block;
 }
 

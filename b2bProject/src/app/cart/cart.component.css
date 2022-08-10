@@ -10,12 +10,17 @@
 .first-hr{
     height: 1px;
     display: block;
-    border: 0; 
+    border: 0;
     border-top: 4px solid black;
     opacity: 1;
     margin: 1em 0;
     border-radius: 1000px;
     padding: 0;
+}
+
+.cart-item
+{
+  width: 10%;
 }
 
 .product img{
@@ -41,7 +46,7 @@
 .productAmount{
     display: inline-block;
     text-align: right;
-    width: 50%;    
+    width: 50%;
 }
 
 .productAmount h3{
@@ -110,7 +115,7 @@
 .right-side hr{
     height: 1px;
     display: block;
-    border: 0; 
+    border: 0;
     border-top: 2px solid black;
     opacity: 1;
     border-radius: 1000px;
@@ -154,7 +159,7 @@
 
 .continueShopping div{
     display: inline-block;
-    
+
 }
 
 .continueShopping h5{

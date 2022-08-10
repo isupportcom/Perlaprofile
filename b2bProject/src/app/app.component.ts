@@ -16,16 +16,11 @@ export class AppComponent {
     private router:Router,
     private authService: AuthService,
     private route: ActivatedRoute
-              ){
+  ){
 
   }
   ngOnInit(){
-
     this.authService.autoLogin();
-
-    console.log(JSON.parse('userData'))
-
-
     if(localStorage.getItem("userType") == "Admin"){
       this.authService.setAdmin(true);
     }

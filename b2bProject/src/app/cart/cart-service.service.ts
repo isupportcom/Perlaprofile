@@ -21,14 +21,10 @@ export class CartServiceService {
     this.items = [];
     return this.items;
   }
-  removeItem(index:number){
-      delete this.items[index]
-  }
+
   setIndex(index:number){
     this.index = index;
   }
-  getIndex(){
-    return this.index;
-  }
+
 
 }
