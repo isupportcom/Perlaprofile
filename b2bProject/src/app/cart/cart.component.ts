@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
   products :product[] |any
   GrandTotal:number=0;
   wholesale:number=0;
+  length:number|any
   constructor(
     private renderer: Renderer2,
     private router: Router,
@@ -21,10 +22,6 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fillProd()
-
-  }
-  fillProd(){
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     this.products = JSON.parse(localStorage.getItem("products") || '{}')
 
@@ -32,13 +29,19 @@ export class CartComponent implements OnInit {
       this.GrandTotal += +prod.wholesale;
     }
     console.log(this.GrandTotal)
+    this.products = JSON.parse(localStorage.getItem("products") || '{}')
+
+
+
 
   }
+
 
 
   clearAll(){
     this.products =this.cartService.clearCart();
     localStorage.setItem("products",JSON.stringify(this.products));
+    this.GrandTotal = 0 ;
   }
 
   handleMouseOver(){

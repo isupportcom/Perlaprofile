@@ -10,17 +10,22 @@ import {CartServiceService} from "../cart-service.service";
 export class CartItemComponent implements OnInit {
 @Input() index:number |any;
 @Input() item : product |any
+products : product[] |any
+arrayLen: number | any;
+
 
   constructor(
     private cartService: CartServiceService
   ) { }
 
   ngOnInit(): void {
-  console.log(this.index);
+    this.cartService.len.subscribe(res => {
+      console.log(res);
+    })
   }
 
   removeItem(){
-    this.cartService.setIndex(this.index);
+
   }
 
 }
