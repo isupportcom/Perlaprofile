@@ -16,7 +16,7 @@ export class CartItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  console.log(this.index);
+    console.log(this.index);
   }
 
   removeItem(){

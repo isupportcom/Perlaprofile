@@ -23,12 +23,8 @@ export class AppComponent {
 
     this.authService.autoLogin();
 
-    console.log(JSON.parse('userData'))
-
-
-    if(localStorage.getItem("userType") == "Admin"){
       this.authService.setAdmin(true);
-    }
+    
     this.route.data.subscribe((data: Data) => {
       // console.log(data);
     })

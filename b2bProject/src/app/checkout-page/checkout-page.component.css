@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+*{
+    font-family: 'Montserrat';
+}
+
+.left-side{
+    margin-top: 60px;
+    width: 50%;
+    position: relative;
+    display: inline-block;
+    /* margin-right: 30px; */
+    padding-left: 15%;
+}
+
+.right-side{
+    display: inline-block;
+    width: 50%;
+    position: relative;
+    padding-right: 15%;
+    margin-top: 60px;
+}
+
+.description{
+    position: absolute;
+    margin-top: 3%;
+    display: inline-block;
+    margin-left: 2%;
+    width: 43.5%;
+}
+
+.products img{
+    margin-top: 7%;
+    margin-bottom: 7%;
+    display: inline-block;
+}
+
+.descRight{
+position: absolute;
+margin-left: 25%;
+display: inline-block;
+}
+
+.card{
+    margin-top: 60px;
+    width: 50%;
+    position: relative;
+    display: inline-block;
+    /* margin-right: 30px; */
+    /* padding-left: 15%; */
+    padding-top: 3%;
+    margin-left: 10%;
+    /* margin-top: 5%;
+    padding-top: 2%;
+    width: 80%; */
+    height: 750px;
+    /* border: solid; */
+    border-radius: 10%;
+    text-align: center;
+    display: inline-block;
+    box-shadow: rgba(100, 100, 111, 0.15) 0px 7px 29px 0px;
+}
+
+.products{
+    width: 35%;
+    margin-top: 80px;
+    display: inline-block;
+    margin-left: 5%;
+    position: absolute;
+}
+
+.fields *{
+    display: block;
+}
+
+.fields{
+    margin-top: 24px;
+    /* padding-left: 23%; */
+}
+
+.fields input{
+    width: 55%;
+    margin-left: 23%;
+}
+
+.fields label{
+    font-weight: bold;
+
+}
