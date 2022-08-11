@@ -20,9 +20,6 @@ arrayLen: number | any;
 
   ngOnInit(): void {
 
-    this.cartService.len.subscribe(res => {
-      console.log(res);
-    })
 
     console.log(this.index);
 

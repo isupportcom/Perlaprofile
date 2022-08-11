@@ -21,6 +21,7 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { ProductAddedToCartComponent } from './shared/product-added-to-cart/product-added-to-cart.component';
 
 
 
@@ -91,6 +92,7 @@ const routes:Routes = [
     CartComponent,
     CartItemComponent,
     CheckoutPageComponent,
+    ProductAddedToCartComponent,
 
 
   ],

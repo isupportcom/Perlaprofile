@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from "axios"
+import { CartServiceService } from 'src/app/cart/cart-service.service';
 import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
 import {ProductsService} from "../products.service";
 @Component({
@@ -18,7 +19,8 @@ export class SingleProductComponent implements OnInit {
       private renderer: Renderer2,
       private router: Router,
       private route: ActivatedRoute,
-      private productsService: ProductsService
+      private productsService: ProductsService,
+      private cartService: CartServiceService
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +62,15 @@ export class SingleProductComponent implements OnInit {
 
   handleClick(){
     this.productsService.setSingleProduct(this.index);
+    
     this.router.navigate(['product-page'], {relativeTo: this.route});
+  }
+
+
+  handleAddToCart(){
+    this.index.show = true;
+    this.cartService.addToCart(this.index);
+    localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
+    this.cartService.sendProductAdded(true);
   }
 }

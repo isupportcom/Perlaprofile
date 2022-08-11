@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {ProductsService} from "../products.service";
 import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
-import {CartServiceService} from "../../cart/cart-service.service";
+import {CartServiceService} from '../../cart/cart-service.service';
 
 @Component({
   selector: 'app-product-page',
@@ -36,6 +36,7 @@ export class ProductPageComponent implements OnInit {
       this.product.show = true;
      this.cartService.addToCart(this.product);
       localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
+      this.cartService.sendProductAdded(true);
   }
 
 

@@ -45,7 +45,12 @@ export class CartComponent implements OnInit {
 
   removeOne(item: any, index: number){
 
-      this.GrandTotal -= this.products[index].wholesale
+      if(this.length > 1){
+        this.GrandTotal -= this.products[index].wholesale;
+      }
+      else{
+        this.GrandTotal = 0;
+      }
       this.products =this.cartService.removeItem(index);
 
       localStorage.setItem("products",JSON.stringify(this.products));
