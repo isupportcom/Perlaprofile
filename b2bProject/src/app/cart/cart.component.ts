@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
 import {CartServiceService} from "./cart-service.service";
@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
   wholesale:number=0;
   length:number|any
   show: boolean = true;
+  @Input('quantityInput') quantityInput?: ElementRef;
 
   constructor(
     private renderer: Renderer2,
@@ -35,9 +36,23 @@ export class CartComponent implements OnInit {
     this.length = this.products.length;
 
     for(let prod of this.products){
-      this.GrandTotal += +prod.wholesale;
+      this.GrandTotal += +prod.wholesale *prod.qty;
     }
     console.log(this.GrandTotal)
+
+
+  }
+  currentQuantity(quantity:any,index:number,prevQuantity:number) {
+    // if (quantity > prevQuantity){
+    //   this.GrandTotal = (this.GrandTotal + (this.products[index].wholesale * quantity)) - this.products[index].wholesale * prevQuantity;
+    // }else{
+    //   this.GrandTotal = (this.GrandTotal - (this.products[index].wholesale * quantity)) + this.products[index].wholesale * prevQuantity;
+    // }
+    // console.log(quantity);
+    // console.log(prevQuantity);
+    this.products[index].qty = quantity;
+    localStorage.setItem("products",JSON.stringify(this.products));
+    window.location.reload();
 
 
   }
@@ -59,7 +74,7 @@ export class CartComponent implements OnInit {
 
 
   clearAll(){
-    this.products = [];
+    this.products = this.cartService.clearCart();
     localStorage.setItem("products",JSON.stringify(this.products));
     this.GrandTotal = 0 ;
     this.length = 0;

@@ -110,8 +110,14 @@
       <!-- Product Pricing -->
       <div class="product-price">
         <span>{{ product.wholesale }}$</span>
-        <a class="cart-btn" (click)="addToCart()">Add to cart</a>
-        <input type="number" class="form-control numberInput" value="1">
+        <form
+          (ngSubmit)="quantity(form)"
+          #form="ngForm"
+        >
+          <a class="cart-btn " (click)="addToCart()">Add to cart</a>
+          <input type="number" class="form-control numberInput" name="qty" id="qty" ngModel [(ngModel)]="product.qty" #qty>
+        </form>
+
       </div>
     </div>
 </div>

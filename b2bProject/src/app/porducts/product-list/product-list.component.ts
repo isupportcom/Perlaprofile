@@ -26,7 +26,8 @@ export class ProductListComponent implements OnInit {
           name1: resData.data[i].name1,
           code: resData.data[i].code,
           retail: resData.data[i].retailPrice,
-          wholesale: resData.data[i].wholesalePrice
+          wholesale: resData.data[i].wholesalePrice,
+          qty :1
 
         }
       }
