@@ -29,7 +29,7 @@ const routes:Routes = [
 
   {
     path:'',
-    redirectTo : '/products',
+    redirectTo : 'log-in',
     pathMatch: 'full'
   },
   {

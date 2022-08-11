@@ -22,11 +22,7 @@ export class AppComponent {
   ngOnInit(){
     this.authService.autoLogin();
 
-    if(localStorage.getItem("userType") == "Admin"){
-
-
-
-      this.authService.setAdmin(true);
+    this.authService.setAdmin(true);
 
     this.route.data.subscribe((data: Data) => {
       // console.log(data);
@@ -43,4 +39,4 @@ export class AppComponent {
 
 
 
-}}
+}
