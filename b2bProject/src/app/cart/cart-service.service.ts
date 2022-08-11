@@ -34,11 +34,10 @@ export class CartServiceService {
     localStorage.setItem('productAdded', 'true');
     this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
     this.items.push(product);
-    console.log(this.items);
-    // window.location.reload();
+
   }
   getItems(){
-    return this.items;
+    return this.items
   }
   clearCart(){
     this.items = [];

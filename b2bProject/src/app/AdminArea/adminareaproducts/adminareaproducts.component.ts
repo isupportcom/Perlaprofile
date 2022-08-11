@@ -8,8 +8,9 @@ export interface product {
     name1:string,
     code:string
     retail:number,
-    wholesale:number
-    show?: boolean;
+    wholesale:number,
+    qty:number
+    show?: boolean
   };
 }
 @Component({
