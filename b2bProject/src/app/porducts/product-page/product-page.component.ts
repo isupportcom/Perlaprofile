@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import {ProductsService} from "../products.service";
 import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
 import {CartServiceService} from "../../cart/cart-service.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-product-page',
@@ -25,7 +26,7 @@ export class ProductPageComponent implements OnInit {
     this.slidePosition = 1;
     this.SlideShow(this.slidePosition);
 
-    this.product= this.productsService.getSingelProduct();
+    this.product=JSON.parse(localStorage.getItem("single") || '{}');
     console.log(this.product)
 
 
@@ -34,8 +35,9 @@ export class ProductPageComponent implements OnInit {
   }
   addToCart(){
       this.product.show = true;
-     this.cartService.addToCart(this.product);
-      localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
+      this.cartService.addToCart(this.product);
+      localStorage.setItem("products",JSON.stringify(this.cartService.getItems()))
+
   }
 
 

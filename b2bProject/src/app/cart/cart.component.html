@@ -16,12 +16,12 @@
           <div class="descLeft">
             <h4>{{ item.name }}</h4>
             <p>{{ item.name1 }}</p>
-            <p>Quantity: 1</p>
+            <p>Quantity: {{ item.qty }}</p>
             <img src="../../../assets/Vector.png" alt="">
             <button class="btn btn-danger" (click)="removeOne(item, i)">X</button>
           </div>
           <div class="descRight">
-            <input type="number" class="form-control numberInput" value="1">
+            <input type="number" class="form-control numberInput" (input)="currentQuantity(item.qty,i,(item.qty-1))" [(ngModel)]="item.qty"  #quantityInput>
             <h3>${{ item.wholesale }}</h3>
           </div>
         </div>

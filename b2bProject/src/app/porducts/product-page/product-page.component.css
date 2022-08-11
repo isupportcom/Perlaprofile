@@ -35,7 +35,7 @@ html, body {
   width: 100%;
   /* position: absolute; */
   /* left: 0;
-  top: 0; 
+  top: 0;
   opacity: 1;
   transition: all 0.3s ease; */
 }
@@ -122,7 +122,7 @@ html, body {
 .color-choose input[type="radio"]#black + label span {
   background-color: #323232;
 } */
-/* 
+/*
 .color-choose input[type="radio"]:checked + label span {
   background-image: url(images/check-icn.svg);
   background-repeat: no-repeat;
@@ -356,6 +356,6 @@ html, body {
 }
 
 .numberInput{
-  width: 15%;
+  width: 50%;
   margin-left: 18px;
 }

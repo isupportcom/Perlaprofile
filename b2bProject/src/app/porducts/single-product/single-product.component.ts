@@ -60,6 +60,8 @@ export class SingleProductComponent implements OnInit {
 
   handleClick(){
     this.productsService.setSingleProduct(this.index);
+    console.log(this.index);
+    localStorage.setItem("single",JSON.stringify(this.index));
     this.router.navigate(['product-page'], {relativeTo: this.route});
   }
 }
