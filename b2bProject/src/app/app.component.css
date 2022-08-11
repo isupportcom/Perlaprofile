@@ -5,3 +5,11 @@
     display: flex;
     margin-bottom: 100px;
   }
+
+
+  app-product-added-to-cart{
+    position: absolute; 
+    z-index: 99;
+    margin-left: 50vw; 
+    margin-top: 0%;
+  }
