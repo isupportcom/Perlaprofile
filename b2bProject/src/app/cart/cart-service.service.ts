@@ -30,9 +30,10 @@ export class CartServiceService {
 
   addToCart(product:product){
     this.items.push(product);
+
   }
   getItems(){
-    return this.items;
+    return this.items
   }
   clearCart(){
     this.items = [];

@@ -35,13 +35,11 @@ export class ProductPageComponent implements OnInit {
   }
   addToCart(){
       this.product.show = true;
-     this.cartService.addToCart(this.product);
-      localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-  }
-  quantity(form:NgForm){
-
+      this.cartService.addToCart(this.product);
+      localStorage.setItem("products",JSON.stringify(this.cartService.getItems()))
 
   }
+
 
   plusSlides(n: number){
     this.SlideShow(this.slidePosition += n);

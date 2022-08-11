@@ -30,9 +30,6 @@ export class CartComponent implements OnInit {
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     this.products = JSON.parse(<string>localStorage.getItem("products") )
-    localStorage.setItem("products",JSON.stringify(this.products))
-    this.products = JSON.parse(<string>localStorage.getItem("products"));
-
     this.length = this.products.length;
 
     for(let prod of this.products){
