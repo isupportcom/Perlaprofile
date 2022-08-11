@@ -16,15 +16,14 @@ export class AppComponent {
     private router:Router,
     private authService: AuthService,
     private route: ActivatedRoute
-              ){
+  ){
 
   }
   ngOnInit(){
-
     this.authService.autoLogin();
 
-      this.authService.setAdmin(true);
-    
+    this.authService.setAdmin(true);
+
     this.route.data.subscribe((data: Data) => {
       // console.log(data);
     })

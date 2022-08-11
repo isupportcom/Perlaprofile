@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
 import {CartServiceService} from "./cart-service.service";
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,7 +11,11 @@ import {CartServiceService} from "./cart-service.service";
 })
 export class CartComponent implements OnInit {
   @ViewChild('text') text: ElementRef | undefined;
-  products :product[] = []
+  products :product[] |any
+  GrandTotal:number=0;
+  wholesale:number=0;
+  length:number|any
+  show: boolean = true;
 
   constructor(
     private renderer: Renderer2,
@@ -20,12 +25,52 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
+    console.log(JSON.parse(localStorage.getItem("products") || '{}'))
+    this.products = JSON.parse(<string>localStorage.getItem("products") )
+    localStorage.setItem("products",JSON.stringify(this.products))
+    this.products = JSON.parse(<string>localStorage.getItem("products"));
+
+    this.length = this.products.length;
+
+    for(let prod of this.products){
+      this.GrandTotal += +prod.wholesale;
+    }
+    console.log(this.GrandTotal)
+
+
+  }
+
+
+  removeOne(item: any, index: number){
+
+      this.GrandTotal -= this.products[index].wholesale
+      this.products =this.cartService.removeItem(index);
+
+      localStorage.setItem("products",JSON.stringify(this.products));
+      this.products = JSON.parse(<string>localStorage.getItem("products") ) ;
+      console.log(this.products)
+      this.length = this.products.length;
+
+
+  }
+
+
+
+  clearAll(){
+    this.products = [];
+    localStorage.setItem("products",JSON.stringify(this.products));
+    this.GrandTotal = 0 ;
+    this.length = 0;
+
     this.products = this.cartService.getItems();
     console.log(this.products[0])
   }
 
   handleCheckout(){
     this.router.navigate(['checkout']);
+
   }
 
   handleMouseOver(){

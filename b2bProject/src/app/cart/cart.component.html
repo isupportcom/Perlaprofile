@@ -5,12 +5,30 @@
                 <h2>My Cart</h2>
             </div>
             <div class="productAmount">
-                <h3>Products: 1</h3>
+                <h3>Products: {{length}}</h3>
             </div>
         </div>
         <hr class="first-hr">
+      <div class="product" *ngFor="let item of products;let i=index;">
+        <div *ngIf="item.show">
+        <img src="../../../assets/35S-35SD.jpg" alt="" style="width: 141px; height: 141px;">
+        <div class="description">
+          <div class="descLeft">
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.name1 }}</p>
+            <p>Quantity: 1</p>
+            <img src="../../../assets/Vector.png" alt="">
+            <button class="btn btn-danger" (click)="removeOne(item, i)">X</button>
+          </div>
+          <div class="descRight">
+            <input type="number" class="form-control numberInput" value="1">
+            <h3>${{ item.wholesale }}</h3>
+          </div>
+        </div>
+        </div>
+      </div>
 
-        <app-cart-item *ngFor="let single of products;let index = index" [item]="single" [index]="index" ></app-cart-item>
+      <button class="btn btn-primary" (click)="clearAll()">Clear All</button>
         <hr class="second-hr">
         <div class="continueShopping" (mouseover)="handleMouseOver()" (mouseleave)="handleMouseLeave()" (click)="handleClick()">
             <div>
@@ -21,15 +39,20 @@
     </div>
     <div class="right-side">
         <div class="continueToCheckout">
-            <h5>Total <cite>(with VAT)</cite>:&emsp;$299</h5>
+          <h5> Total :&emsp;{{ GrandTotal }}</h5>
             <h5>Shipping Costs:&emsp;$? </h5>
             <div class="coupon">
                 <div class="circle"><p>+</p></div>
                 <h5>Use Coupon</h5>
             </div>
             <hr>
-            <h5>Grand Total :&emsp;$299</h5>
+
+            <h5>Grand Total :&emsp;{{ GrandTotal }}</h5>
+
+
+
             <button class="cart-btn" (click)="handleCheckout()">Continue To Checkout</button>
+
         </div>
         <div class="paymentMethod">
             <h4>Payment Method</h4>
