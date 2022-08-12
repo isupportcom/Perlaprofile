@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
 
-import {Subject} from "rxjs"
+import {BehaviorSubject, Subject} from "rxjs"
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,13 +11,25 @@ export class CartServiceService {
   productAdded = new Subject<boolean>();
   cast = this.productAdded.asObservable();
 
-
   sendProductAdded(flag: boolean){
     this.productAdded.next(flag);
   }
 
+  atCheckout = new Subject<boolean>();
+  castAtCheckout = this.atCheckout.asObservable();
+  sendAtCheckout(flag: boolean){
+    this.atCheckout.next(flag);
+  }
+  flag: boolean = false;
+  shouldContinue = new BehaviorSubject<boolean>(this.flag);
+  // castShouldContinue = this.shouldContinue.asObservable();
+  // sendShouldContinue(flag: boolean){
+  //   this.shouldContinue.next(flag);
+  // }
+
   items :product[] | any =[];
   index :number = 0
+
 
   constructor(private router: Router) { }
 

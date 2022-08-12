@@ -357,6 +357,9 @@ html, body {
 
 .numberInput{
   width: 20%;
-  display:inline-block;
+
+
+  display: inline-block;
+
   margin-left: 18px;
 }
