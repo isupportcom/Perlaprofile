@@ -141,6 +141,24 @@
     box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
     transform: scale(1.1);
 }
+.disabled{
+    display: inline-block;
+    background-color: #5c6a78;
+    border-radius: 6px;
+    border: none;
+    margin-top: 5%;
+    font-size: 16px;
+    color: #a3a3a3;
+    text-decoration: none;
+    padding: 12px 30px;
+    cursor: pointer;
+    transition: all .5s;
+}
+.disabled:hover {
+    background-color: #1c2732;
+    box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+    transform: scale(1.1);
+}
 
 .paymentMethod{
     width: 400px;

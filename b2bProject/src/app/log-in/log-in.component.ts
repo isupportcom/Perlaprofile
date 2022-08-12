@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import data from "../../dummyData.json";
 import axios from 'axios';
 import { Observable } from 'rxjs';
+import { CartServiceService } from '../cart/cart-service.service';
 export interface user{
   name:string,
   surname:string,
@@ -33,12 +34,18 @@ export class LogInComponent implements OnInit, OnDestroy {
   username:string = '';
   password:string = '';
   user : user | any;
+  emptyArr = [];
   private tokenExpirationTimer: any;
   constructor(private router:Router,
               private authService:AuthService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private cartService: CartServiceService) { }
 
   ngOnInit(): void {
+    this.cartService.clearCart();
+    localStorage.setItem("products",JSON.stringify(this.emptyArr));
+    
+
     if(localStorage.getItem("userType") != "notLoggin" ){
       if(localStorage.getItem('userType') == "Admin"){
         this.authService.setAdmin(true)
