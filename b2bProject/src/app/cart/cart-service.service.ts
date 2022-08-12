@@ -10,10 +10,11 @@ import { Router } from '@angular/router';
 export class CartServiceService {
   productAdded = new Subject<boolean>();
   cast = this.productAdded.asObservable();
+
   sendProductAdded(flag: boolean){
     this.productAdded.next(flag);
   }
-  
+
   atCheckout = new Subject<boolean>();
   castAtCheckout = this.atCheckout.asObservable();
   sendAtCheckout(flag: boolean){
@@ -28,7 +29,7 @@ export class CartServiceService {
 
   items :product[] | any =[];
   index :number = 0
-  
+
 
   constructor(private router: Router) { }
 
@@ -40,7 +41,7 @@ export class CartServiceService {
   }
 
   addToCart(product:product){
-    
+    this.items = JSON.parse(localStorage.getItem("products") || '{}')
     let productAdded = true;
     localStorage.setItem('productAdded', 'true');
     this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
