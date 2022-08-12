@@ -22,6 +22,9 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { AuthGuard } from './services/auth.guard';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { ProductAddedToCartComponent } from './shared/product-added-to-cart/product-added-to-cart.component';
+import { CheckoutGuard } from './shared/product-added-to-cart/checkout.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 
@@ -68,9 +71,19 @@ const routes:Routes = [
   },
   {
     path: 'checkout',
-    canActivate: [AuthGuard],
+    canActivate: [CheckoutGuard],
     component: CheckoutPageComponent
-  }
+  },
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    component: ProfileComponent
+  },
+  {
+    path: 'my-orders',
+    canActivate: [AuthGuard],
+    component: MyOrdersComponent
+  },
 
 ]
 

@@ -1,6 +1,8 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map, take } from 'rxjs/operators';
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
+import { AuthService } from '../services/auth.service';
 import {CartServiceService} from "./cart-service.service";
 
 
@@ -9,13 +11,19 @@ import {CartServiceService} from "./cart-service.service";
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   @ViewChild('text') text: ElementRef | undefined;
   products :product[] |any
   GrandTotal:number=0;
   wholesale:number=0;
   length:number|any
   show: boolean = true;
+  shouldContinue?: boolean;
+  goToCheckout?: boolean;
+  flag?: boolean = this.cartService.flag;
+
+ 
+
   @Input('quantityInput') quantityInput?: ElementRef;
 
   constructor(
@@ -23,14 +31,20 @@ export class CartComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private cartService : CartServiceService
-  ) { }
+    ) { }
 
   ngOnInit(): void {
-
-
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     this.products = JSON.parse(<string>localStorage.getItem("products") )
     this.length = this.products.length;
+
+    if(this.length == 0){
+      this.shouldContinue = false;
+    }
+    else{
+      this.shouldContinue = true;
+    }
+    this.cartService.shouldContinue.next(this.shouldContinue);
 
     for(let prod of this.products){
       this.GrandTotal += +prod.wholesale *prod.qty;
@@ -69,7 +83,7 @@ export class CartComponent implements OnInit {
       this.products = JSON.parse(<string>localStorage.getItem("products") ) ;
       console.log(this.products)
       this.length = this.products.length;
-
+      window.location.reload();
 
   }
 
@@ -83,11 +97,12 @@ export class CartComponent implements OnInit {
 
     this.products = this.cartService.getItems();
     console.log(this.products[0])
+    window.location.reload();
   }
 
   handleCheckout(){
     this.router.navigate(['checkout']);
-
+    
   }
 
   handleMouseOver(){
@@ -100,6 +115,10 @@ export class CartComponent implements OnInit {
 
   handleClick(){
     this.router.navigate(['products']);
+  }
+
+
+  ngOnDestroy(): void {
   }
 
 }
