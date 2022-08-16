@@ -54,9 +54,6 @@ export class CartServiceService {
       let productAdded = true;
       localStorage.setItem('productAdded', 'true');
       this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
-
-
-
     let flag = false
     let index = 0;
     for(let i = 0 ; i <this.items.length;i++){
@@ -65,19 +62,34 @@ export class CartServiceService {
         index = i ;
       }
     }
-    if(flag){
-      this.items[index].qty++;
-      this.sendProductCount(this.items.length);
-    }else{
-      this.items.push(product);
-      this.sendProductCount(this.items.length);
+      if(flag){
+        console.log(this.items[index].qty);
+        console.log(this.items[index].stock);
+        
+        
+        if(this.items[index].qty < this.items[index].stock){
+          this.items[index].qty++;
+          this.sendProductCount(this.items.length);
+        }
+        else{
+          return;
+        }
+        
+      }else{
+        this.items.push(product);
+        this.sendProductCount(this.items.length);
+      }
+    
+      
     }
+  
+   
 
 
 
 
 
-  }
+  
   getItems(){
     return this.items
   }

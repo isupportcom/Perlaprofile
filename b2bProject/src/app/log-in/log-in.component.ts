@@ -5,7 +5,6 @@ import {NgForm} from "@angular/forms";
 import data from "../../dummyData.json";
 import axios from 'axios';
 import { Observable } from 'rxjs';
-import { CartServiceService } from '../cart/cart-service.service';
 export interface user{
   name:string,
   surname:string,
@@ -15,15 +14,18 @@ export interface user{
 
 export interface AuthResponseData{
   kind: string;
+
   token: string;
   idToken: string;
   username: string;
+
+  
+
   refreshToken: string;
   expiresIn: string;
   localId: string;
   success: number;
   registered?: boolean;
-  eponimia:string;
 }
 @Component({
   selector: 'app-log-in',
@@ -35,18 +37,12 @@ export class LogInComponent implements OnInit, OnDestroy {
   username:string = '';
   password:string = '';
   user : user | any;
-  emptyArr = [];
   private tokenExpirationTimer: any;
   constructor(private router:Router,
               private authService:AuthService,
-              private route: ActivatedRoute,
-              private cartService: CartServiceService) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.cartService.clearCart();
-    localStorage.setItem("products",JSON.stringify(this.emptyArr));
-
-
     if(localStorage.getItem("userType") != "notLoggin" ){
       if(localStorage.getItem('userType') == "Admin"){
         this.authService.setAdmin(true)
@@ -58,20 +54,37 @@ export class LogInComponent implements OnInit, OnDestroy {
   }
 
   loginProcess(f:NgForm){
+
+      this.username = f.value.username;
+      this.password = f.value.password;
+      
+      let authObs: Observable<AuthResponseData>;
+
+      authObs = this.authService.login(this.username,this.password);
+
+      authObs.subscribe(resData =>{
+        if(resData.success == 1){
+          console.log(resData);
+          this.router.navigate(['products']); 
+        }
+        
+      })
+
     this.username = f.value.username;
     this.password = f.value.password;
 
-    let authObs: Observable<AuthResponseData>;
+    
 
     authObs = this.authService.login(this.username,this.password);
 
     authObs.subscribe(resData =>{
       if(resData.success == 1){
-        console.log(resData.eponimia);
+        console.log(resData);
         this.router.navigate(['products']);
       }
 
     })
+
   }
 
 
