@@ -40,12 +40,25 @@ export class CartServiceService {
 
   }
 
-  addToCart(product:product){
+  addToCart(product:product|any){
     this.items = JSON.parse(localStorage.getItem("products") || '{}')
     let productAdded = true;
     localStorage.setItem('productAdded', 'true');
     this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
-    this.items.push(product);
+    let flag = false
+    let index = 0;
+    for(let i = 0 ; i <this.items.length;i++){
+      if(this.items[i].mtrl == product.mtrl){
+        flag = true;
+        index = i ;
+      }
+    }
+    if(flag){
+      this.items[index].qty++;
+    }else{
+      this.items.push(product);
+    }
+
 
   }
   getItems(){
