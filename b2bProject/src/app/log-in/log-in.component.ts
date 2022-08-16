@@ -23,6 +23,7 @@ export interface AuthResponseData{
   localId: string;
   success: number;
   registered?: boolean;
+  eponimia:string;
 }
 @Component({
   selector: 'app-log-in',
@@ -44,7 +45,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.cartService.clearCart();
     localStorage.setItem("products",JSON.stringify(this.emptyArr));
-    
+
 
     if(localStorage.getItem("userType") != "notLoggin" ){
       if(localStorage.getItem('userType') == "Admin"){
@@ -66,7 +67,7 @@ export class LogInComponent implements OnInit, OnDestroy {
 
     authObs.subscribe(resData =>{
       if(resData.success == 1){
-        console.log(resData);
+        console.log(resData.eponimia);
         this.router.navigate(['products']);
       }
 
