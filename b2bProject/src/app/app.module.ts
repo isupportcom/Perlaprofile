@@ -41,7 +41,7 @@ const routes:Routes = [
     component: LogInComponent
   },
   {
-    path:'dashborard',
+    path:'dashboard',
     canActivate: [AuthGuard],
     component:AdminAreaComponent
   },

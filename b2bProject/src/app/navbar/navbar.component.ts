@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { CartServiceService } from '../cart/cart-service.service';
 import {AuthService} from "../services/auth.service";
 
 
@@ -20,29 +21,37 @@ export class NavbarComponent implements OnInit{
   isOpen = false;
   isToggelOpen = false;
   isAdmin = true;
+  productAdded?: boolean;
+
 
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
+  productCount: number = <number>(<unknown>(localStorage.getItem('productCount')));
+  showProductCount: boolean = false;
+  
   constructor(
     private authService: AuthService,
     private router :Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private cartService: CartServiceService) { }
 
 
     username = localStorage.getItem("username");
 
   ngOnInit(): void {
-    // this.authService.usernameChanged.subscribe(git
-    //   (username: string) => {
-    //     this.username = username;
-    //   }
-    // );
-    // this.route.queryParams.subscribe((params: any) => {
-    //   this.isAdmin = params.data;
-    // });
+    this.cartService.productAdded.subscribe(res => {
+      this.productAdded = res;
+      console.log(this.productAdded); 
+    })
 
+    this.cartService.sendProductCount(0);
 
-
+    this.cartService.productCount.subscribe(res => {
+      localStorage.setItem('productCount', <string>(<unknown>res));
+      console.log(<number>(<unknown>(localStorage.getItem('productCount'))));
+      
+      this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
+    })
   }
 
   handleLeaveAdminArea(){

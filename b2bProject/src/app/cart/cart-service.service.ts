@@ -15,6 +15,13 @@ export class CartServiceService {
     this.productAdded.next(flag);
   }
 
+  productCount = new Subject<number>();
+  castProductCount = this.productCount.asObservable();
+
+  sendProductCount(amount: number){
+    this.productCount.next(amount);
+  }
+
   atCheckout = new Subject<boolean>();
   castAtCheckout = this.atCheckout.asObservable();
   sendAtCheckout(flag: boolean){
@@ -34,10 +41,11 @@ export class CartServiceService {
   constructor(private router: Router) { }
 
   removeItem(index: number){
+    
     let temp  = JSON.parse(localStorage.getItem("products") || '{}')
+    this.sendProductCount(temp.length);
     temp.splice(index,1);
     return temp
-
   }
 
   addToCart(product:product){
@@ -46,7 +54,7 @@ export class CartServiceService {
     localStorage.setItem('productAdded', 'true');
     this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
     this.items.push(product);
-
+    this.sendProductCount(this.items.length);
   }
   getItems(){
     return this.items
