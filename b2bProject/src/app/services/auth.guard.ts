@@ -18,6 +18,7 @@ export class AuthGuard implements CanActivate {
             const isAuth = !!user?.token;
             console.log(isAuth);
             
+            
             if(isAuth){
                 return true;
             }

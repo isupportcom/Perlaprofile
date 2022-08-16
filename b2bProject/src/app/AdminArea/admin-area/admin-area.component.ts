@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import { map, take, tap } from "rxjs/operators";
 
 @Component({
   selector: 'app-admin-area',
@@ -9,21 +10,8 @@ import {Router} from "@angular/router";
 })
 export class AdminAreaComponent implements OnInit {
 
-  constructor(
-    private authService:AuthService,
-    private router:Router
-              ) {
-    if(localStorage.getItem("userType") != "notLoggin" ){
-      if(localStorage.getItem('userType') == "Admin"){
-        this.authService.setAdmin(true)
-      }
-      this.router.navigate(['dashborard'])
-    }
-  }
+  constructor(private authService:AuthService, private router:Router) { }
 
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
 
 }

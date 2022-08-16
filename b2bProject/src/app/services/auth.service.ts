@@ -15,6 +15,13 @@ export interface AuthResponseData{
   expiresIn: string;
   localId: string;
   success: number;
+  address: string;
+  afm: string;
+  city: string;
+  doy: string;
+  eponimia: string;
+  phone1: string;
+  phone2: string;
   registered?: boolean;
 }
 
@@ -51,7 +58,7 @@ export class AuthService {
 
   login(username: string, password: string){
     return this.http.post<AuthResponseData>(
-      'https://testdatabaseconection.whouse.gr/php-auth-api/login.php',
+      'https://perlaprodileapi.isupport.com.gr/php-auth-api/login.php',
       {
         name: username,
         password: password,
@@ -59,7 +66,7 @@ export class AuthService {
       }
     ).pipe(catchError(this.handleError), tap(resData => {
         localStorage.setItem("username", username);
-        this.handleAuthentication(resData.username,resData.localId,resData.token,600);
+        this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.eponimia,resData.phone1,resData.phone2);
       })
     );
   }
@@ -84,7 +91,14 @@ export class AuthService {
       username: string,
       id: string,
       _token: string,
-      _tokenExpirationDate: string
+      _tokenExpirationDate: string,
+      address: string,
+      afm:string,
+      city:string,
+      doy:string,
+      eponimia:string,
+      phone1:string,
+      phone2:string
     } = JSON.parse(localStorage.getItem('userData') || '{}');
     if(!userData){
       return;
@@ -93,13 +107,13 @@ export class AuthService {
       const expirationDate = new Date(new Date().getTime() + expiresIn * 1000 * 6);
       console.log(expirationDate);
 
-      const user = new User(userData.username, userData.id, userData._token , expirationDate);
+      const user = new User(userData.username, userData.id, userData._token , expirationDate,userData.address,userData.afm,userData.city,userData.doy,userData.eponimia,userData.phone1,userData.phone2);
       this.user.next(user);
       // this.autoLogout(expiresIn * 1000);
       localStorage.setItem('userData', JSON.stringify(user));
     }
 
-    const loadedUser = new User(userData.username,userData.id,userData._token, new Date(userData._tokenExpirationDate));
+    const loadedUser = new User(userData.username,userData.id,userData._token, new Date(userData._tokenExpirationDate),userData.address,userData.afm,userData.city,userData.doy,userData.eponimia,userData.phone1,userData.phone2);
 
     console.log(new Date().getTime());
 
@@ -141,17 +155,19 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  private handleAuthentication(username: string, userId: string, token: string, expiresIn: number){
+  private handleAuthentication(username: string, userId: string, token: string, expiresIn: number,address: string,afm:string,city:string,doy:string,eponimia:string,phone1:string,phone2:string){
 
 
 
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000 * 6);
     console.log(expirationDate);
 
-    const user = new User(username, userId, token , expirationDate);
+    const user = new User(username, userId, token , expirationDate,address,afm,city,doy,eponimia,phone1,phone2);
     this.user.next(user);
     // this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
+    
+    
     this.autoLogin();
 
   }
