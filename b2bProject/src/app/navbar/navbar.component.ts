@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit{
   public isCollapsed = true;
   productCount: number = <number>(<unknown>(localStorage.getItem('productCount')));
   showProductCount: boolean = false;
-  
+
   constructor(
     private authService: AuthService,
     private router :Router,
@@ -36,12 +36,12 @@ export class NavbarComponent implements OnInit{
     private cartService: CartServiceService) { }
 
 
-    username = localStorage.getItem("username");
+  username = localStorage.getItem("username");
 
   ngOnInit(): void {
     this.cartService.productAdded.subscribe(res => {
       this.productAdded = res;
-      console.log(this.productAdded); 
+      console.log(this.productAdded);
     })
 
     this.cartService.sendProductCount(0);
@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit{
     this.cartService.productCount.subscribe(res => {
       localStorage.setItem('productCount', <string>(<unknown>res));
       console.log(<number>(<unknown>(localStorage.getItem('productCount'))));
-      
+
       this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
     })
   }
@@ -100,8 +100,8 @@ export class NavbarComponent implements OnInit{
   }
   logout(){
 
-    
-    
+
+
     console.log(this.authService.user.getValue()?.token);
     this.authService.logout();
     console.log(this.authService.user.getValue());

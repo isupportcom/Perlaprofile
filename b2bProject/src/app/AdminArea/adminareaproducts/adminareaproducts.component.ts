@@ -10,7 +10,8 @@ export interface product {
     retail:number,
     wholesale:number,
     qty:number
-    show?: boolean
+    show?: boolean,
+    stock:number
   };
 }
 @Component({

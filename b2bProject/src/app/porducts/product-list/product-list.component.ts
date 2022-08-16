@@ -17,8 +17,9 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
-    axios.get("https://perlaprodileapi.isupport.com.gr/index.php/?id=2").then(resData => {
+    axios.get("https://perlaprodileapi.isupport.com.gr/index.php?id=2").then(resData => {
       // console.log(resData.data)
+      console.log(resData.data)
       for (let i = 0; i < resData.data.length; i++) {
         // @ts-ignore
         this.product[i] = {
@@ -28,7 +29,8 @@ export class ProductListComponent implements OnInit {
           code: resData.data[i].code,
           retail: resData.data[i].retailPrice,
           wholesale: resData.data[i].wholesalePrice,
-          qty :1
+          qty :1,
+          stock :resData.data[i].stock
 
         }
       }

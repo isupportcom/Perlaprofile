@@ -49,10 +49,14 @@ export class CartServiceService {
   }
 
   addToCart(product:product|any){
-    this.items = JSON.parse(localStorage.getItem("products") || '{}')
-    let productAdded = true;
-    localStorage.setItem('productAdded', 'true');
-    this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
+
+      this.items = JSON.parse(localStorage.getItem("products") || '{}')
+      let productAdded = true;
+      localStorage.setItem('productAdded', 'true');
+      this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
+
+
+
     let flag = false
     let index = 0;
     for(let i = 0 ; i <this.items.length;i++){
@@ -63,8 +67,10 @@ export class CartServiceService {
     }
     if(flag){
       this.items[index].qty++;
+      this.sendProductCount(this.items.length);
     }else{
       this.items.push(product);
+      this.sendProductCount(this.items.length);
     }
 
 
@@ -77,11 +83,14 @@ export class CartServiceService {
   }
   clearCart(){
     this.items = [];
+    this.sendProductCount(0);
     return this.items;
+
   }
 
   setIndex(index:number){
     this.index = index;
+
   }
 
 

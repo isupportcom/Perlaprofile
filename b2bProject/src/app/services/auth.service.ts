@@ -65,7 +65,7 @@ export class AuthService {
         returnSecureToken: true
       }
     ).pipe(catchError(this.handleError), tap(resData => {
-        localStorage.setItem("username", username);
+        localStorage.setItem("username", resData.eponimia);
         this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.eponimia,resData.phone1,resData.phone2);
       })
     );
