@@ -41,20 +41,36 @@ export class CartServiceService {
   constructor(private router: Router) { }
 
   removeItem(index: number){
-    
+
     let temp  = JSON.parse(localStorage.getItem("products") || '{}')
     this.sendProductCount(temp.length);
     temp.splice(index,1);
     return temp
   }
 
-  addToCart(product:product){
+  addToCart(product:product|any){
     this.items = JSON.parse(localStorage.getItem("products") || '{}')
     let productAdded = true;
     localStorage.setItem('productAdded', 'true');
     this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
-    this.items.push(product);
-    this.sendProductCount(this.items.length);
+    let flag = false
+    let index = 0;
+    for(let i = 0 ; i <this.items.length;i++){
+      if(this.items[i].mtrl == product.mtrl){
+        flag = true;
+        index = i ;
+      }
+    }
+    if(flag){
+      this.items[index].qty++;
+    }else{
+      this.items.push(product);
+    }
+
+
+
+
+
   }
   getItems(){
     return this.items

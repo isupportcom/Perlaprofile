@@ -23,8 +23,6 @@ export interface AuthResponseData{
   phone1: string;
   phone2: string;
   registered?: boolean;
-  eponimia:string;
-
 }
 
 @Injectable({
@@ -67,12 +65,8 @@ export class AuthService {
         returnSecureToken: true
       }
     ).pipe(catchError(this.handleError), tap(resData => {
-
-        console.log(resData.eponimia);
-        localStorage.setItem("username", resData.eponimia);
-
-        this.handleAuthentication(resData.username,resData.localId,resData.token,600);
-
+        localStorage.setItem("username", username);
+        this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.eponimia,resData.phone1,resData.phone2);
       })
     );
   }
@@ -172,8 +166,8 @@ export class AuthService {
     this.user.next(user);
     // this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
-    
-    
+
+
     this.autoLogin();
 
   }
