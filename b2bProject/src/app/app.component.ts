@@ -11,7 +11,7 @@ export class AppComponent{
   title = 'b2bProject';
   age = '10';
   loggedIn: boolean = true;
-  productAdded?: boolean;
+  
 
   constructor(
     private router:Router,
@@ -24,17 +24,7 @@ export class AppComponent{
 
  
   ngOnInit(){
-    this.cartService.productAdded.subscribe(res => {
-      
-      this.productAdded = res;
-      console.log(this.productAdded);
-      setTimeout(() => {
-        this.productAdded = false;
-        console.log(this.productAdded);
-      },1000);
-      
-      
-    })
+  
     this.authService.autoLogin();
 
     this.authService.setAdmin(true);
