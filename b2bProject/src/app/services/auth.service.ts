@@ -16,6 +16,8 @@ export interface AuthResponseData{
   localId: string;
   success: number;
   registered?: boolean;
+  eponimia:string;
+
 }
 
 @Injectable({
@@ -51,14 +53,16 @@ export class AuthService {
 
   login(username: string, password: string){
     return this.http.post<AuthResponseData>(
-      'https://testdatabaseconection.whouse.gr/php-auth-api/login.php',
+      'https://perlaprodileapi.isupport.com.gr/php-auth-api/login.php',
       {
         name: username,
         password: password,
         returnSecureToken: true
       }
     ).pipe(catchError(this.handleError), tap(resData => {
-        localStorage.setItem("username", username);
+        console.log(resData.eponimia);
+        localStorage.setItem("username", resData.eponimia);
+
         this.handleAuthentication(resData.username,resData.localId,resData.token,600);
       })
     );
