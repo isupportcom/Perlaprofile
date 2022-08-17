@@ -21,20 +21,8 @@ export interface user {
 export class InsertUsersComponent implements OnInit {
   user :user |any =[];
   page:number = 1;
-  showModal: boolean = false;
-  registerForm: FormGroup |any ;
-  submitted = false;
   constructor(private formBuilder: FormBuilder) { }
-  show()
-  {
-    this.showModal = true; // Show-Hide Modal Check
 
-  }
-  //Bootstrap Modal Close event
-  hide()
-  {
-    this.showModal = false;
-  }
   ngOnInit() {
     axios.get("https://perlaprodileapi.isupport.com.gr/main2.php?id=3/")
       .then(resData=>{
@@ -52,25 +40,9 @@ export class InsertUsersComponent implements OnInit {
           }
         }
       })
-    this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
   }
 // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
-  onSubmit() {
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
-    }
-    if(this.submitted)
-    {
-      this.showModal = false;
-    }
 
-  }
 
 
 }
