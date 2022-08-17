@@ -1,0 +1,42 @@
+<div class="col-sm-8 text-left">
+  <h1>Insert Products</h1>
+  <p>Lorem ipsum dolor sit amet,
+    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <button class="btn btn-dark">Insert Products</button>
+  <hr>
+
+  <h3>Current Products</h3>
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">Mtrl</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Retail Price</th>
+      <th scope="col">Wholesale Price</th>
+      <th scope="col">Stock</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of products | paginate: {
+          itemsPerPage: 9,
+          currentPage: page ,
+          totalItems: products.length
+};">
+      <th scope="row">{{ item.mtrl }}</th>
+      <td>{{ item.code }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.retail }}</td>
+      <td>{{ item.wholesale }}</td>
+      <td>{{ item.stock }}</td>
+    </tr>
+
+    </tbody>
+  </table>
+  <pagination-controls class="text-center my-pagination" (pageChange)="page = $event"></pagination-controls>
+
+</div>
