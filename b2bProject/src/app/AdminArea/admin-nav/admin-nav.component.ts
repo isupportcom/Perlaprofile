@@ -10,21 +10,28 @@ import {Router} from "@angular/router";
 export class AdminNavComponent implements OnInit {
   @ViewChild('dropdown') dropdown!: ElementRef;
   isOpen = false;
+  component:number | any;
   constructor(
       private authService: AuthService,
       private router:Router
   ) { }
 
   ngOnInit(): void {
-  }
-  setDropdown(){
-    this.isOpen = !this.isOpen;
-    if(this.isOpen){
-      this.dropdown.nativeElement.classList.add('show');
-    }else{
-      this.dropdown.nativeElement.classList.remove('show');
+    if(localStorage.getItem("page")) {
+      this.component = localStorage.getItem("page");
     }
   }
+
+  setDropdown(element: HTMLElement) {
+    this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+      element.classList.add('show');
+    } else {
+      element.classList.remove('show');
+    }
+  }
+
+
   logout(){
 
   }
@@ -33,5 +40,12 @@ export class AdminNavComponent implements OnInit {
       this.router.navigate([destination])
 
   }
+  showContent(component:number){
+    this.component = component;
+    localStorage.setItem("page",JSON.stringify(this.component))
+  }
+
+
+
 
 }

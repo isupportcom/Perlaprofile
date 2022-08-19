@@ -8,10 +8,19 @@ import {Subject} from "rxjs";
 )
 export  class ProductsService {
    singleProduct : product | any
+  products: product [] = []
 
  setSingleProduct(prod:product){
      this.singleProduct = prod;
  }
+ setAll(item:product){
+     this.products.push(item);
+     localStorage.setItem("allproducts",JSON.stringify(this.products));
+ }
+ getAll(){
+     return JSON.parse(localStorage.getItem("allproducts") || '{}');
+ }
+
  getSingelProduct(){
      return this.singleProduct;
  }

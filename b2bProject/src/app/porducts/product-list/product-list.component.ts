@@ -17,11 +17,11 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
-    axios.get("https://perlaprodileapi.isupport.com.gr/index.php?id=2").then(resData => {
+    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php/?id=2&method=allProducts").then(resData => {
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < resData.data.length; i++) {
-        // @ts-ignore
+
         this.product[i] = {
           mtrl: resData.data[i].mtrl,
           name: resData.data[i].name,
@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit {
           stock :resData.data[i].stock
 
         }
+        this.productsService.setAll(this.product[i])
       }
       this.totalLength = this.product.length;
 

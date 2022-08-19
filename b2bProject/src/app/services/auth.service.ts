@@ -58,7 +58,7 @@ export class AuthService {
 
   login(username: string, password: string){
     return this.http.post<AuthResponseData>(
-      'https://perlaprodileapi.isupport.com.gr/php-auth-api/login.php',
+      'https://perlarest.vinoitalia.gr/php-auth-api/login.php',
       {
         name: username,
         password: password,

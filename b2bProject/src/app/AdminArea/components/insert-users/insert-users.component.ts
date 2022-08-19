@@ -24,7 +24,7 @@ export class InsertUsersComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    axios.get("https://perlaprodileapi.isupport.com.gr/main2.php?id=3/")
+    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllUsers.php/?id=3&method=allUsers")
       .then(resData=>{
 
         for (let i = 0; i < resData.data.length; i++){
