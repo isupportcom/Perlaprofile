@@ -16,7 +16,7 @@
     </div>
     <div id="addToCart" (mouseover)="handleBtnHover()" (mouseleave)="handleBtnMouseLeave()"  #addToCart>
       <input type="number" class="form-control" style="width: 20%; display: inline-block;" [disabled]="index.stock == 0" [value]="index.stock >= index.qty"  [(ngModel)]="index.qty" min="1" [max]="index.stock">
-      <button (click)="handleAddToCart()" id="addToCartBtn" #addToCartBtn [disabled]="index.stock == 0">Add to cart</button>
+      <button (click)="handleAddToCart()" id="addToCartBtn" #addToCartBtn [disabled]="index.stock == 0 || index.stock == index.qty">Add to cart</button>
       <span>({{index.stock}})</span>
     </div>
   </div>
