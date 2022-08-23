@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
 import { CartServiceService } from '../cart/cart-service.service';
 import {AuthService} from "../services/auth.service";
 
@@ -12,6 +13,8 @@ import {AuthService} from "../services/auth.service";
 })
 export class NavbarComponent implements OnInit{
   isAdminArea = false;
+  products :product[] |any;
+  
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
 
@@ -39,6 +42,7 @@ export class NavbarComponent implements OnInit{
   username = localStorage.getItem("username");
 
   ngOnInit(): void {
+    this.products = JSON.parse(<string>localStorage.getItem("products"));
     this.cartService.productAdded.subscribe(res => {
       this.productAdded = res;
       console.log(this.productAdded);

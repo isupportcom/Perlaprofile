@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import data from "../../dummyData.json";
 import axios from 'axios';
 import { Observable } from 'rxjs';
+import { CartServiceService } from '../cart/cart-service.service';
 export interface user{
   name:string,
   surname:string,
@@ -38,11 +39,14 @@ export class LogInComponent implements OnInit, OnDestroy {
   password:string = '';
   user : user | any;
   private tokenExpirationTimer: any;
+  products: any;
   constructor(private router:Router,
               private authService:AuthService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private cartService: CartServiceService) { }
 
   ngOnInit(): void {
+    this.clearAll();
     if(localStorage.getItem("userType") != "notLoggin" ){
       if(localStorage.getItem('userType') == "Admin"){
         this.authService.setAdmin(true)
@@ -51,6 +55,11 @@ export class LogInComponent implements OnInit, OnDestroy {
 
     this.authService.sendLoggedIn(false);
 
+  }
+
+  clearAll(){
+    this.products = this.cartService.clearCart();
+    localStorage.setItem("products",JSON.stringify(this.products));
   }
 
   loginProcess(f:NgForm){
@@ -69,21 +78,6 @@ export class LogInComponent implements OnInit, OnDestroy {
         }
         
       })
-
-    this.username = f.value.username;
-    this.password = f.value.password;
-
-    
-
-    authObs = this.authService.login(this.username,this.password);
-
-    authObs.subscribe(resData =>{
-      if(resData.success == 1){
-        console.log(resData);
-        this.router.navigate(['products']);
-      }
-
-    })
 
   }
 

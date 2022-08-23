@@ -10,7 +10,7 @@
   animation: lds-spinner 1.2s linear infinite;
 }
 .center{
-  margin-left: 35%;
+  /* margin-left: 35%; */
 }
 .lds-spinner div:after {
   content: " ";
@@ -21,7 +21,7 @@
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: #000000;
+  background: white;
 }
 .lds-spinner div:nth-child(1) {
   transform: rotate(0deg);

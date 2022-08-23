@@ -12,6 +12,8 @@ export  class ProductsService {
 
  setSingleProduct(prod:product){
      this.singleProduct = prod;
+     console.log(prod);
+     
  }
  setAll(item:product){
      this.products.push(item);

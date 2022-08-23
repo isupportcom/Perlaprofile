@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartServiceService } from '../cart/cart-service.service';
 import { AuthService } from '../services/auth.service';
@@ -18,16 +19,66 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   @ViewChild('cashOndelivery') cashOndelivery: ElementRef | any;
   @ViewChild('bankTransfer') bankTransfer: ElementRef | any;
 
+
   loadedUser: User = JSON.parse(localStorage.getItem('userData') || '{}');
+
+  showUserDetails?: boolean;
+  showPayment?: boolean;
+  totalPrice: number = 0;
 
   constructor(private cartService: CartServiceService, private authService: AuthService,private router: Router, private renderer: Renderer2) { }
   
   ngOnInit(): void {  
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
-    console.log(this.loadedUser.address);
+
+    for(let product of this.products){
+      this.totalPrice += (product.wholesale * product.qty);
+    }
+    console.log(this.totalPrice);
     
-    
+    if(!this.showUserDetails){
+      this.showUserDetails = true;
+    }
+
+    if(!this.showPayment){
+      this.showPayment = false;
+    }
+
+    if(localStorage.getItem('showUserDetails') && localStorage.getItem('showPayment')){
+      if(localStorage.getItem('showUserDetails') == 'true'){
+        this.showUserDetails = true;
+        this.showPayment = false;
+      }
+      else{
+        this.showUserDetails = false;
+        this.showPayment = true;
+      }
+    }
+
+    // this.showUserDetails = localStorage.getItem('showUserDetails') == 'true'? true : false;
+    // this.showPayment = localStorage.getItem('showPayment') == 'true'? true : false;
+  }
+
+  handleGoBackToCart(){
+    this.router.navigate(['cart']);
+  }
+
+  handleGoBackToUserDetails(){
+    this.showUserDetails = true;
+    this.showPayment = false;
+
+    localStorage.setItem('showUserDetails', 'true');
+    localStorage.setItem('showPayment', 'false');
+  }
+
+
+  handleUserDetails(f: NgForm){
+    this.showUserDetails = false;
+    this.showPayment = true;
+
+    localStorage.setItem('showUserDetails', 'false');
+    localStorage.setItem('showPayment', 'true');
   }
 
   handlePaymentMethod(el: HTMLAnchorElement){

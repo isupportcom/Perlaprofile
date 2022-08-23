@@ -13,7 +13,7 @@ import {CartServiceService} from "./cart-service.service";
 })
 export class CartComponent implements OnInit, OnDestroy {
   @ViewChild('text') text: ElementRef | undefined;
-  products :product[] |any
+  products :product[] |any;
   GrandTotal:number=0;
   wholesale:number=0;
   length:number|any
