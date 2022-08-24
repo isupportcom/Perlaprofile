@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" #navToggle id="navbarNavDropdown" *ngIf="!isAdminArea">
     <ul class="navbar-nav" style="margin-left: 30px">
       <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('products')">Products</a>
+        <a class="nav-link" (click)="navigateToProducts()">Products</a>
       </li>
 
       <li (click)="setDropdown(dropdownCat)" class="nav-item dropdown" #categories>
@@ -21,14 +21,15 @@
         </div>
       </li>
       <li class="nav-item">
-        <div class="input-group rounded" style="margin-left: 250px; width: 800px">
+        <div class="input-group rounded" style="margin-left: 150px; width: 800px">
           <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
         </div>
       </li>
     </ul>
     <ul class="navbar nav ms-auto" style="margin-right: 20px" >
       <li class="nav-item">
-        <a class="nav-link" (click)="handleCart()">Cart</a>
+        <div style="background-color: orange; border-radius: 16px; width: 5%; position: absolute; left: 40px; text-align: center;">{{ products.length }}</div>
+        <a class="nav-link" (click)="handleCart()"><img src="../../assets/shopping-cart.png" alt="mouni"></a>
       </li>
       <li class="nav-item me-auto" *ngIf="isAdmin" style="padding-right: 10px">
         <button class="btn btn-primary me-auto"  (click)=" handleDashboard()">DashBoard</button>
