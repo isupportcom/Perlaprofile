@@ -41,6 +41,12 @@ export  class ProductsService {
         'https://perlarest.vinoitalia.gr/php-auth-api/getAllCategories.php/?id=7&method=allCategories');
  }
 
+ getAllProducts(){
+    return this.http.get(
+        'https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php/?id=2&method=allProducts/'
+    );
+ }
+
  getMainCategories(){
     return this.http.get('https://perlarest.vinoitalia.gr/php-auth-api/getAllMainCat.php/?id=8&method=allMainCategories');
  }

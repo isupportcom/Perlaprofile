@@ -37,7 +37,7 @@ export class AdminNavComponent implements OnInit {
   }
 
   handleHomepage(){
-    this.router.navigate(['products']);
+    this.router.navigate(['home']);
     setTimeout(() => {
       window.location.reload();
     },50)

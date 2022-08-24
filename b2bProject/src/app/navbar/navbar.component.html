@@ -1,13 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0px 10px;padding-right: 64px;">
-  <a class="navbar-brand" >[Logo]</a>
+  <a class="navbar-brand" style="cursor: pointer" (click)="handleHomepage()">[Logo]</a>
   <button class="navbar-toggler" (click)="setToggle()" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon "></span>
   </button>
   <div class="collapse navbar-collapse" #navToggle id="navbarNavDropdown" *ngIf="!isAdminArea">
     <ul class="navbar-nav" style="margin-left: 30px">
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateToProducts()">Products</a>
-      </li>
+
 
       <li (click)="setDropdown(dropdownCat)" class="nav-item dropdown" #categories>
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

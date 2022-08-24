@@ -36,6 +36,7 @@ import { UpdateCategoriesComponent } from './AdminArea/components/update-categor
 import { InsertSubcategoryComponent } from './AdminArea/components/insert-subcategory/insert-subcategory.component';
 import { UpdateSubcategoryComponent } from './AdminArea/components/update-subcategory/update-subcategory.component';
 import { UploadImageComponent } from './AdminArea/components/upload-image/upload-image.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 
@@ -66,7 +67,7 @@ const routes:Routes = [
     component:PorductsComponent,
     canActivate: [AuthGuard],
     children: [
-      {path: ':cat_id/:subcat_id', component: ProductListComponent, pathMatch: 'full'},
+      {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
       {path: 'product-page', component: ProductPageComponent}
     ]
   },
@@ -114,7 +115,12 @@ const routes:Routes = [
     path: 'my-orders',
     canActivate: [AuthGuard],
     component: MyOrdersComponent
-  },
+  },  
+  {
+    path: 'home',
+    canActivate: [AuthGuard],
+    component: HomepageComponent
+  }
 
 ]
 
@@ -148,6 +154,7 @@ const routes:Routes = [
     InsertSubcategoryComponent,
     UpdateSubcategoryComponent,
     UploadImageComponent,
+    HomepageComponent
 
 
   ],
