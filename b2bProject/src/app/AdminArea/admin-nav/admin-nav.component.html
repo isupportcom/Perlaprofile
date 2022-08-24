@@ -40,10 +40,40 @@
           <a ><span class="fa fa-paper-plane mr-3 dropdown-item" ></span> Insert Products</a>
         </li>
 
+
+
     </div>
 
+    <li (click)="setDropdown(dropdownCat2)" class="nav-item dropdown" #categories>
+      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Categories
+      </a>
 
-    </ul>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat2>
+    <li (click)="showContent(5)">
+      <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Categories</a>
+    </li>
+    <li (click)="showContent(6)">
+      <a ><span class="fa fa-paper-plane mr-3 dropdown-item" ></span> Insert Categories</a>
+    </li>
+    </div>
+<li (click)="setDropdown(dropdownCat3)" class="nav-item dropdown" #categories>
+  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Subcategories
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat3>
+<li (click)="showContent(7)">
+  <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Subcategories</a>
+</li>
+<li (click)="showContent(8)">
+  <a ><span class="fa fa-paper-plane mr-3 dropdown-item" ></span> Insert Subcategories</a>
+</li>
+</div>
+<li (click)="showContent(9)">
+  <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span>Upload Image</a>
+</li>
+</ul>
 
   </nav>
 
@@ -53,6 +83,11 @@
     <app-insert-users *ngIf="component==2"></app-insert-users>
     <app-update-products *ngIf="component==3"></app-update-products>
     <app-insert-products *ngIf="component==4"></app-insert-products>
+    <app-update-categories *ngIf="component==5"></app-update-categories>
+    <app-insert-categories *ngIf="component==6"></app-insert-categories>
+    <app-update-subcategory *ngIf="component==7"></app-update-subcategory>
+    <app-insert-subcategory *ngIf="component==8"></app-insert-subcategory>
+    <app-upload-image *ngIf="component==9"></app-upload-image>
   </div>
 </div>
 

@@ -31,6 +31,11 @@ import { UpdateProductsComponent } from './AdminArea/components/update-products/
 import { InsertProductsComponent } from './AdminArea/components/insert-products/insert-products.component';
 import { PopUpLoginComponent } from './AdminArea/components/pop-up-login/pop-up-login.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { InsertCategoriesComponent } from './AdminArea/components/insert-categories/insert-categories.component';
+import { UpdateCategoriesComponent } from './AdminArea/components/update-categories/update-categories.component';
+import { InsertSubcategoryComponent } from './AdminArea/components/insert-subcategory/insert-subcategory.component';
+import { UpdateSubcategoryComponent } from './AdminArea/components/update-subcategory/update-subcategory.component';
+import { UploadImageComponent } from './AdminArea/components/upload-image/upload-image.component';
 
 
 
@@ -139,6 +144,11 @@ const routes:Routes = [
     InsertProductsComponent,
     PopUpLoginComponent,
     SpinnerComponent,
+    InsertCategoriesComponent,
+    UpdateCategoriesComponent,
+    InsertSubcategoryComponent,
+    UpdateSubcategoryComponent,
+    UploadImageComponent,
 
 
   ],
