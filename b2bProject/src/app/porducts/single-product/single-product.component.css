@@ -61,7 +61,7 @@ body {
   width: 50%;
 }
 #productPrice {
-  padding-top: 5%;
+  padding-top: 3%;
 }
 
 #addToCart #addToCartBtn {
@@ -81,5 +81,5 @@ body {
   display: inline;
 }
 #addToCart {
-  padding-top: 10%;
+  padding-top: 5%;
 }
