@@ -36,6 +36,7 @@ import { UpdateCategoriesComponent } from './AdminArea/components/update-categor
 import { InsertSubcategoryComponent } from './AdminArea/components/insert-subcategory/insert-subcategory.component';
 import { UpdateSubcategoryComponent } from './AdminArea/components/update-subcategory/update-subcategory.component';
 import { UploadImageComponent } from './AdminArea/components/upload-image/upload-image.component';
+import { AllimagesComponent } from './AdminArea/components/allimages/allimages.component';
 
 
 
@@ -148,6 +149,7 @@ const routes:Routes = [
     InsertSubcategoryComponent,
     UpdateSubcategoryComponent,
     UploadImageComponent,
+    AllimagesComponent,
 
 
   ],

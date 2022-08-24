@@ -1,20 +1,32 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {catchError} from "rxjs/operators";
+import {throwError} from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadImageService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private http : HttpClient
+  ) { }
 
-  postImage(fd : FormData): Observable<string>{
-    return this.httpClient.post<string>('http://localhost/phpapi/php-auth-api/image.php/', fd );
-  }
-
-  getImage(): Observable<Blob> {
-    return this.httpClient.get( 'http://localhost:4000/files/getImage.php', { responseType: 'blob' })
+  imageUpload(image:File,) : Observable<any>{
+    console.log(image)
+    var formData :any = new FormData();
+    formData.append("fileToUpload",image);
+    return this.http.post("http://localhost/phpapi/php-auth-api/image.php/",formData,{
+      reportProgress:true,
+      observe:'events'
+    }).pipe(
+      catchError((err:any)=>{
+        alert(err.message);
+        return throwError(err.message);
+      })
+    )
   }
 
 }

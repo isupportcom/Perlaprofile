@@ -13,7 +13,8 @@ export interface product {
     show?: boolean,
     stock:number,
     category: number,
-    subcatergory: number
+    subcatergory: number,
+    img:string
   };
 }
 @Component({
