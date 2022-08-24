@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" #navToggle id="navbarNavDropdown" *ngIf="!isAdminArea">
     <ul class="navbar-nav" style="margin-left: 30px">
       <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('products')">Products</a>
+        <a class="nav-link" (click)="navigateToProducts()">Products</a>
       </li>
 
       <li (click)="setDropdown(dropdownCat)" class="nav-item dropdown" #categories>

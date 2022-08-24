@@ -16,7 +16,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   showCashOnDelivery: boolean = false;
   showBankTransfer: boolean = false;
   @ViewChild('creditCard') creditCard: ElementRef | any;
-  @ViewChild('cashOndelivery') cashOndelivery: ElementRef | any;
   @ViewChild('bankTransfer') bankTransfer: ElementRef | any;
 
 
@@ -84,7 +83,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   handlePaymentMethod(el: HTMLAnchorElement){
     if(el.innerHTML == 'Credit Card'){
       this.showCreditCard = true;
-      this.showCashOnDelivery = false;
       this.showBankTransfer = false;
       
 
@@ -92,33 +90,14 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       el.style.textDecoration = 'underline';
       el.style.transition = 'all 0.3s ease';
 
-      this.renderer.setStyle(this.cashOndelivery.nativeElement, 'font-weight', 'normal');
-      this.renderer.setStyle(this.cashOndelivery.nativeElement, 'text-decoration', 'none');
-
       this.renderer.setStyle(this.bankTransfer.nativeElement, 'font-weight', 'normal');
       this.renderer.setStyle(this.bankTransfer.nativeElement, 'text-decoration', 'none');
     }
     
-    if(el.innerHTML == 'Cash On Delivery'){
-      this.showCreditCard = false;
-      this.showCashOnDelivery = true;
-      this.showBankTransfer = false;
-
-      el.style.fontWeight = 'bold';
-      el.style.textDecoration = 'underline';
-      el.style.transition = 'all 0.3s ease';
-
-      this.renderer.setStyle(this.creditCard.nativeElement, 'font-weight', 'normal');
-      this.renderer.setStyle(this.creditCard.nativeElement, 'text-decoration', 'none');
-
-      this.renderer.setStyle(this.bankTransfer.nativeElement, 'font-weight', 'normal');
-      this.renderer.setStyle(this.bankTransfer.nativeElement, 'text-decoration', 'none');
-
-    }
+    
     
     if(el.innerHTML == 'Bank Transfer'){
       this.showCreditCard = false;
-      this.showCashOnDelivery = false;
       this.showBankTransfer = true;
 
       el.style.fontWeight = 'bold';
@@ -128,8 +107,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.renderer.setStyle(this.creditCard.nativeElement, 'font-weight', 'normal');
       this.renderer.setStyle(this.creditCard.nativeElement, 'text-decoration', 'none');
 
-      this.renderer.setStyle(this.cashOndelivery.nativeElement, 'font-weight', 'normal');
-      this.renderer.setStyle(this.cashOndelivery.nativeElement, 'text-decoration', 'none');
 
     }
   }

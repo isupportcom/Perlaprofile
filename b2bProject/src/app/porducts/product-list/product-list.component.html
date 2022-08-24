@@ -1,6 +1,24 @@
 
+<div style="display: inline-block; margin-top: 11%;">
+<button *ngIf="filterOn" class="btn btn-danger" (click)="handleClearFilters()">Clear Filters</button>
+<div *ngFor="let mainCategory of mainCategories" style="margin-bottom: 25%;">
+    <hr>
+    <h4 style="margin-left: 40%;"> {{ mainCategory.name }} </h4>
+    <hr>
+    <div>
+        <ul style="list-style: none;">
+            <li *ngFor="let subcategory of getSubcategories(mainCategory)" style="margin-bottom: 3%;">
+                <a (click)="handleFilter(mainCategory,subcategory)" class="category" style="cursor: pointer;text-decoration: none;color: black;">{{ subcategory.sub_name }}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+<div style="display: inline-block; position: absolute;">
 <app-single-product
-*ngFor="let sProd of product |
+*ngFor="let sProd of shownProducts |
 paginate: {
     itemsPerPage: 9,
     currentPage: page ,
@@ -10,5 +28,6 @@ paginate: {
 
 
 ></app-single-product>
-
 <pagination-controls class="text-center my-pagination" (pageChange)="page = $event"></pagination-controls>
+</div>
+

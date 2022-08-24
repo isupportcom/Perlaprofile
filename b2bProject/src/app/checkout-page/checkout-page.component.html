@@ -2,21 +2,13 @@
     <form *ngIf="showUserDetails" (ngSubmit)="handleUserDetails(userDetailsForm)" #userDetailsForm="ngForm">
         <h3>User Details</h3>
         <div class="fields">
-            <label for="email" style="margin-top: 60px;">Email</label>
-            <input name="email" type="email" id="email" class="form form-control" ngModel required email>
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" class="form form-control" disabled="true" [value]="loadedUser.eponimia">
         </div>
         <div class="left-side">
             <div class="fields">
-                <label for="first">First Name</label>
-                <input name="firstName" type="text" id="firstName" class="form form-control" ngModel required>
-            </div>
-            <div class="fields">
-                <label for="lastName">Last Name</label>
-                <input name="lastName" type="text" id="lastName" class="form form-control" ngModel required>
-            </div>
-            <div class="fields">
-                <label for="companyName">Company Name</label>
-                <input type="text" id="companyName" class="form form-control" disabled="true" [value]="loadedUser.eponimia">
+                <label for="afm">ΑΦΜ</label>
+                <input type="text" id="afm" class="form form-control" disabled="true" [value]="loadedUser.afm">
             </div>
             <div class="fields">
                 <label for="city">City</label>
@@ -29,10 +21,6 @@
         </div>
 
         <div class="right-side">
-            <div class="fields">
-                <label for="afm">ΑΦΜ</label>
-                <input type="text" id="afm" class="form form-control" disabled="true" [value]="loadedUser.afm">
-            </div>
             <div class="fields">
                 <label for="doy">ΔΟΥ</label>
                 <input type="text" id="doy" class="form form-control" disabled="true" [value]="loadedUser.doy">
@@ -62,7 +50,6 @@
         <div style="margin-top: 60px;">
             <ul style="list-style: none;">
                 <li style="display: inline-block; margin-right: 5%;"><a [ngClass]="showCreditCard? 'selected' : ''" style="font-size: 18px; cursor: pointer;color: black;" (click)="handlePaymentMethod(creditCard)" #creditCard>Credit Card</a></li>
-                <li style="display: inline-block; margin-right: 5%;"><a style="font-size: 18px; cursor: pointer;" (click)="handlePaymentMethod(cashOndelivery)" #cashOndelivery>Cash On Delivery</a></li>
                 <li style="display: inline-block; margin-right: 5%;"><a style="font-size: 18px; cursor: pointer;" (click)="handlePaymentMethod(bankTransfer)" #bankTransfer>Bank Transfer</a></li>
             </ul>
         </div>

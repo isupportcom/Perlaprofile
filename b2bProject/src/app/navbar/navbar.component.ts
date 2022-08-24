@@ -102,6 +102,11 @@ export class NavbarComponent implements OnInit{
 
 
   }
+
+  navigateToProducts(){
+    this.router.navigate(['products',0,0])
+  }
+
   logout(){
 
 

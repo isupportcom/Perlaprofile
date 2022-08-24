@@ -114,7 +114,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   handleClick(){
-    this.router.navigate(['products']);
+    this.router.navigate(['products',0,0]);
   }
 
 
