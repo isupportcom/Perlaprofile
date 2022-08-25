@@ -114,7 +114,10 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   handleClick(){
-    this.router.navigate(['products']);
+    let currentCategory = JSON.parse(localStorage.getItem('currentCategory') || '{}')
+    console.log(currentCategory);
+    
+    this.router.navigate(['products',currentCategory.id,currentCategory.name]);
   }
 
 

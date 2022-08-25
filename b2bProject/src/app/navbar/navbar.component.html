@@ -13,9 +13,8 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat>
-          <a class="dropdown-item" >Action</a>
-          <a class="dropdown-item" >Another action</a>
-          <a class="dropdown-item" >Something else here</a>
+          <a *ngFor="let mainCategory of mainCategories" class="dropdown-item" style="cursor: pointer;" (click)="goToProducts(mainCategory)">{{ mainCategory.name }}</a>
+
         </div>
       </li>
       <li class="nav-item">

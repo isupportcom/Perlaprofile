@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.component';
 import {ProductsService} from "../products.service";
 import axios from "axios";
@@ -6,6 +6,7 @@ import { Category } from '../categories.model';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaginationControlsComponent } from 'ngx-pagination';
 
 interface mainCat{
   id: number,
@@ -22,7 +23,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
   constructor(private router: Router,private productsService: ProductsService,private route: ActivatedRoute) { }
 
 
-  product :product |any =[];
+  products :product |any =[];
   totalLength:number | undefined;
   page:number = 1;
   categories: any = [];
@@ -40,15 +41,18 @@ export class ProductListComponent implements OnInit , OnDestroy{
   listArray: any = [];
   checked?: boolean;
 
+  
+
   ngOnInit(): void {
-   
+    
+    
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     axios.get("https://perlarest.vinoitalia.gr/php-auth-api/test.php/?id=2&method=allProducts/").then(resData => {
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < 250; i++) {
 
-        this.product[i] = {
+        this.products[i] = {
           mtrl: resData.data[i].mtrl,
           name: resData.data[i].name,
           name1: resData.data[i].name1,
@@ -60,11 +64,11 @@ export class ProductListComponent implements OnInit , OnDestroy{
           category: resData.data[i].category,
           subcategory: resData.data[i].subcategory
         }
-        this.productsService.setAll(this.product[i])
+        this.productsService.setAll(this.products[i])
       }
       // console.log(this.product);
 
-      this.totalLength = this.product.length;
+      this.totalLength = this.products.length;
 
 
 
@@ -79,7 +83,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.mainCategory.id = +params['cat_id'];
       
       this.mainCategory.name = params['cat_name'];
-      
+      localStorage.setItem('currentCategory', JSON.stringify(this.mainCategory));
       
     })
     console.log(this.mainCategory);
@@ -151,6 +155,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
         }
       }
       this.updateProducts();
+      
     }
     this.checked = true;
     
@@ -161,12 +166,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
   }
 
   updateProducts(){
-    
+
     if(this.listArray.length == 0){
       this.noProducts = false
       this.filterOn = false;
       let temp = this.productsService.getAll();
-      if(this.shownProducts.length == 0){
+      
+      
         for(let product of temp){
           let flag = false;
           if(product.category == this.mainCategory.id){
@@ -182,37 +188,40 @@ export class ProductListComponent implements OnInit , OnDestroy{
             }
           }
         }
-      }
+      
 
       if(this.shownProducts.length == 0){
         this.noProducts = true;
       }
+      console.log(this.shownProducts);
       
     }
     else{
-      console.log('HEHE');
-
+      
       this.filterOn = true;
-      let temp = this.productsService.getAll();
-     
+      let temp =  this.products;
+      console.log(temp);
+      
+      
       this.shownProducts = [];
 
       let i = 0;
       
 
-        for(let subcat of this.listArray){
-          
-          console.log(subcat);
-          
-          for(let product of temp){  
+        for(let subcat of this.listArray){    
+          for(let product of temp){
             if(product.subcategory == subcat){
-              this.shownProducts[i++] = product;
+              this.shownProducts.push(product)
+              console.log('yoyo!!!');
+              
             }
           }
+
         }
       console.log(this.shownProducts);
       if(this.shownProducts.length > 0){
         this.noProducts = false;
+        this.page = 1;
       }
       else{
         this.noProducts = true;
@@ -247,7 +256,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   ngOnDestroy(): void {
     console.log("hello");
-    
+    this.listArray = [];
     this.shownProducts = [];
   }
 
