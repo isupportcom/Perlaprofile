@@ -15,7 +15,7 @@ export class UploadImageComponent implements OnInit{
   isCheckedName:string|any;
   products : product | any = [];
   page = 0;
-  mtrl : number |any;
+
   ngOnInit(): void {
     axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php/?id=2&method=allProducts").then(resData => {
       // console.log(resData.data)
@@ -47,26 +47,26 @@ export class UploadImageComponent implements OnInit{
   ) {
     this.form = this.fb.group({
       image:[null],
-      mtrls: this.mtrl
+
     })
   }
-  test(event:any,item:any){
-    this.isChecked = !this.isChecked;
-    this.isCheckedName = event.target.name;
-    if(event.target.checked){
-      this.mtrl=item;
-    }else{
-        this.mtrl="";
-        }
-    console.log(this.mtrl)
-      }
+  // test(event:any,item:any){
+  //   this.isChecked = !this.isChecked;
+  //   this.isCheckedName = event.target.name;
+  //   if(event.target.checked){
+  //     this.mtrl=item;
+  //   }else{
+  //       this.mtrl="";
+  //       }
+  //   console.log(this.mtrl)
+  //     }
 
 
 
   submitImage(){
     console.log(this.form.value.image)
-    console.log(this.form.value.mtrls)
-    if(this.form.value.mtrls && this.form.value.image ){
+
+    if( this.form.value.image ){
       this.uploadImageService.imageUpload(this.form.value.image).subscribe((event:HttpEvent<any>)=>{
         switch (event.type) {
 
@@ -95,16 +95,14 @@ export class UploadImageComponent implements OnInit{
   uploadFile(event:any){
     let file = event.target.files? event.target.files[0] : '';
     console.log(file);
-    if(this.mtrl != ""){
+
       this.form.patchValue({
-        image:file,
-        mtrl:this.mtrl
-      });
+        image: file,
+
+      })
       this.form.get('image')?.updateValueAndValidity()
     }
-    else{
-      this.msg="BALE PROION REEEEEEEEEEE";
-    }
+
 
   }
-}
+

@@ -41,7 +41,7 @@
           currentPage: page ,
           totalItems: products.length
 };">
-      <td><input type="checkbox" [name]="name" (change)="test($event,item.mtrl)" ></td>
+      <td><input type="checkbox" [name]="name"  ></td> <!--change)="test($event,item.mtrl)"-->
       <th scope="row">{{ item.mtrl }}</th>
       <td>{{ item.code }}</td>
       <td>{{ item.name }}</td>

@@ -14,16 +14,16 @@ export class UploadImageService {
     private http : HttpClient
   ) { }
 
-  imageUpload(image:File,) : Observable<any>{
+  imageUpload(image:File) : Observable<any>{
     console.log(image)
     var formData :any = new FormData();
     formData.append("fileToUpload",image);
-    return this.http.post("http://localhost/phpapi/php-auth-api/image.php/",formData,{
+    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/image.php/",formData,{
       reportProgress:true,
       observe:'events'
     }).pipe(
       catchError((err:any)=>{
-        alert(err.message);
+
         return throwError(err.message);
       })
     )
