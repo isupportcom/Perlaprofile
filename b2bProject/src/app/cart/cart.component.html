@@ -21,7 +21,9 @@
             <button class="btn btn-danger" (click)="removeOne(item, i)">X</button>
           </div>
           <div class="descRight">
+
             <input type="number" class="form-control numberInput" (input)="currentQuantity(item.qty,i,(item.qty-1))" [value]="item.stock >= item.qty" [(ngModel)]="item.qty" min="1" [max]="item.stock" #quantityInput>
+
             <h3>${{ item.wholesale }}</h3>
           </div>
         </div>

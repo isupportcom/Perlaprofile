@@ -41,13 +41,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
   checked?: boolean;
 
   ngOnInit(): void {
-   
+
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
-    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/test.php/?id=2&method=allProducts/").then(resData => {
+    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php/?id=2&method=allProducts").then(resData => {
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < 250; i++) {
-
+        console.log(resData.data[i].image)
         this.product[i] = {
           mtrl: resData.data[i].mtrl,
           name: resData.data[i].name,
@@ -58,7 +58,8 @@ export class ProductListComponent implements OnInit , OnDestroy{
           qty :1,
           stock :resData.data[i].stock,
           category: resData.data[i].category,
-          subcategory: resData.data[i].subcategory
+          subcategory: resData.data[i].subcategory,
+          img:"https://perlarest.vinoitalia.gr/php-auth-api/upload/"+resData.data[i].image
         }
         this.productsService.setAll(this.product[i])
       }
@@ -72,15 +73,15 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
     this.route.params.subscribe(params => {
       console.log(params);
-      
+
       console.log(+params['cat_id']);
       console.log(params['cat_name']);
-      
+
       this.mainCategory.id = +params['cat_id'];
-      
+
       this.mainCategory.name = params['cat_name'];
-      
-      
+
+
     })
     console.log(this.mainCategory);
 
@@ -98,7 +99,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
     // this.mainCategories = this.productsService.getMainCategoriesArray();
     // console.log(this.mainCategories);
 
-    
+
 
     // this.route.params.subscribe(params => {
     //   this.cat_id = +params['cat_id'];
@@ -137,7 +138,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
   // console.log(this.product);
 
   handleCheckboxes(e: any){
-    
+
     if(e.target.checked){
       this.listArray.push(e.target.value);
       this.updateProducts();
@@ -153,15 +154,15 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.updateProducts();
     }
     this.checked = true;
-    
-    
+
+
     console.log(this.listArray);
-    
+
 
   }
 
   updateProducts(){
-    
+
     if(this.listArray.length == 0){
       this.noProducts = false
       this.filterOn = false;
@@ -173,7 +174,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
             for(let el of this.shownProducts){
               if(product.mtrl == el.mtrl){
                 console.log("mpastardo");
-                
+
                 flag = true;
               }
             }
@@ -187,24 +188,24 @@ export class ProductListComponent implements OnInit , OnDestroy{
       if(this.shownProducts.length == 0){
         this.noProducts = true;
       }
-      
+
     }
     else{
       console.log('HEHE');
 
       this.filterOn = true;
       let temp = this.productsService.getAll();
-     
+
       this.shownProducts = [];
 
       let i = 0;
-      
+
 
         for(let subcat of this.listArray){
-          
+
           console.log(subcat);
-          
-          for(let product of temp){  
+
+          for(let product of temp){
             if(product.subcategory == subcat){
               this.shownProducts[i++] = product;
             }
@@ -247,7 +248,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   ngOnDestroy(): void {
     console.log("hello");
-    
+
     this.shownProducts = [];
   }
 

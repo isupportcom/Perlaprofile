@@ -14,7 +14,7 @@ export interface product {
     stock:number,
     category: number,
     subcatergory: number,
-    img:string
+    img:any
   };
 }
 @Component({

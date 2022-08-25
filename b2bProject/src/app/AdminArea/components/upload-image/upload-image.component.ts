@@ -15,13 +15,13 @@ export class UploadImageComponent implements OnInit{
   isCheckedName:string|any;
   products : product | any = [];
   page = 0;
-
+  mtrl : number |any;
   ngOnInit(): void {
     axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php/?id=2&method=allProducts").then(resData => {
-      // console.log(resData.data)
-      console.log(resData.data)
-      for (let i = 0; i < resData.data.length; i++) {
+       console.log(resData.data)
 
+      for (let i = 0; i < resData.data.length; i++) {
+        console.log(resData.data[i].image)
         this.products[i] = {
           mtrl: resData.data[i].mtrl,
           name: resData.data[i].name,
@@ -31,7 +31,7 @@ export class UploadImageComponent implements OnInit{
           wholesale: resData.data[i].wholesalePrice,
           qty: 1,
           stock: resData.data[i].stock,
-          img : "empry"
+          img : resData.data[i].image
         }
       }
     })
@@ -47,62 +47,61 @@ export class UploadImageComponent implements OnInit{
   ) {
     this.form = this.fb.group({
       image:[null],
-
+      mtrl: this.mtrl
     })
   }
-  // test(event:any,item:any){
-  //   this.isChecked = !this.isChecked;
-  //   this.isCheckedName = event.target.name;
-  //   if(event.target.checked){
-  //     this.mtrl=item;
-  //   }else{
-  //       this.mtrl="";
-  //       }
-  //   console.log(this.mtrl)
-  //     }
+  test(event:any,item:any){
+    this.isChecked = !this.isChecked;
+    this.isCheckedName = event.target.name;
+    if(event.target.checked){
+      this.mtrl=item;
+    }else{
+      this.mtrl="";
+    }
+    console.log(this.mtrl)
+  }
 
 
 
   submitImage(){
     console.log(this.form.value.image)
+    console.log(this.mtrl);
 
-    if( this.form.value.image ){
-      this.uploadImageService.imageUpload(this.form.value.image).subscribe((event:HttpEvent<any>)=>{
-        switch (event.type) {
+    this.uploadImageService.imageUpload(this.form.value.image,this.mtrl).subscribe((event:HttpEvent<any>)=>{
+      switch (event.type) {
 
-          case HttpEventType.UploadProgress: var eventTotal = event.total ?event.total :0;
-            if(event.total){
-              this.progress = Math.round((100/event.total)*event.loaded);
-              this.msg = `Uploaded! ${this.progress}%`
-            }
-            break;
-          case HttpEventType.Response :
-            if(event.body.succes != undefined){
-              this.msg = this.msg +" " + event.body.succes
-            }else{
-              this.msg = event.body.error;
-            }
+        case HttpEventType.UploadProgress: var eventTotal = event.total ?event.total :0;
+          if(event.total){
+            this.progress = Math.round((100/event.total)*event.loaded);
+            this.msg = `Uploaded! ${this.progress}%`
+          }
+          break;
+        case HttpEventType.Response :
+          if(event.body.succes != undefined){
+            this.msg = this.msg +" " + event.body.succes
+          }else{
+            this.msg = event.body.error;
+          }
 
-            break;
+          break;
 
-        }
-      })
-    }else{
-      this.msg = "DEN MPOREIS EIPAME TI EPIMENEIS"
-    }
+      }
+    })
+
+
 
   }
   uploadFile(event:any){
     let file = event.target.files? event.target.files[0] : '';
     console.log(file);
 
-      this.form.patchValue({
-        image: file,
-
-      })
-      this.form.get('image')?.updateValueAndValidity()
-    }
-
-
+    this.form.patchValue({
+      image:file,
+      mtrl:this.mtrl
+    });
+    this.form.get('image')?.updateValueAndValidity()
   }
 
+
+
+}
