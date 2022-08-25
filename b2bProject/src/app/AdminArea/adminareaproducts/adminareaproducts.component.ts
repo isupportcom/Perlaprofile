@@ -11,7 +11,10 @@ export interface product {
     wholesale:number,
     qty:number
     show?: boolean,
-    stock:number
+    stock:number,
+    category: number,
+    subcatergory: number,
+    img:string
   };
 }
 @Component({

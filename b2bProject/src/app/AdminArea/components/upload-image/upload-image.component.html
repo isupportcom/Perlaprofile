@@ -1,0 +1,58 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <h1>Image Upload</h1>
+  </div>
+  <div class="container">
+    <form [formGroup]="form" >
+
+      <div class="progress form-group" *ngIf="progress > 0 ">
+        <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" aria-valuemin="0" aria-valuemax="100" [style.width]="progress + '%'">
+
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="file" (change)="uploadFile($event)">
+      </div>
+      <div class="btn btn-success btn-block btn-lg btn-block" type="submit" (click)="submitImage()">Upload Image</div>
+
+  <h2>{{msg}}</h2>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h3>Current Products</h3>
+  <table class="table table-dark" style="margin-left:-10%;">
+    <thead>
+    <tr>
+      <th scope="col">Check</th>
+      <th scope="col">Mtrl</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Retail Price</th>
+      <th scope="col">Wholesale Price</th>
+      <th scope="col">Stock</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of products | paginate: {
+          itemsPerPage: 9,
+          currentPage: page ,
+          totalItems: products.length
+};">
+      <td><input type="checkbox" [name]="name" (change)="test($event,item.mtrl)" ></td>
+      <th scope="row">{{ item.mtrl }}</th>
+      <td>{{ item.code }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.retail }}</td>
+      <td>{{ item.wholesale }}</td>
+      <td>{{ item.stock }}</td>
+    </tr>
+
+    </tbody>
+  </table>
+  <pagination-controls class="text-center my-pagination" (pageChange)="page = $event" style="margin-left:30%;"></pagination-controls>
+    </form>
+  </div>
+</div>

@@ -18,13 +18,28 @@ import { ProductListComponent } from './porducts/product-list/product-list.compo
 import { CartComponent } from './cart/cart.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './services/auth.guard';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { ProductAddedToCartComponent } from './shared/product-added-to-cart/product-added-to-cart.component';
 import { CheckoutGuard } from './shared/product-added-to-cart/checkout.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { UpdateUsersComponent } from './AdminArea/components/update-users/update-users.component';
+import { InsertUsersComponent } from './AdminArea/components/insert-users/insert-users.component';
+import { UpdateProductsComponent } from './AdminArea/components/update-products/update-products.component';
+import { InsertProductsComponent } from './AdminArea/components/insert-products/insert-products.component';
+import { PopUpLoginComponent } from './AdminArea/components/pop-up-login/pop-up-login.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { InsertCategoriesComponent } from './AdminArea/components/insert-categories/insert-categories.component';
+import { UpdateCategoriesComponent } from './AdminArea/components/update-categories/update-categories.component';
+import { InsertSubcategoryComponent } from './AdminArea/components/insert-subcategory/insert-subcategory.component';
+import { UpdateSubcategoryComponent } from './AdminArea/components/update-subcategory/update-subcategory.component';
+import { UploadImageComponent } from './AdminArea/components/upload-image/upload-image.component';
+
+import { AllimagesComponent } from './AdminArea/components/allimages/allimages.component';
+
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 
@@ -40,11 +55,7 @@ const routes:Routes = [
     path: 'log-in',
     component: LogInComponent
   },
-  {
-    path:'dashboard',
-    canActivate: [AuthGuard],
-    component:AdminAreaComponent
-  },
+
   {
     path:'edit-products',
     canActivate: [AuthGuard],
@@ -60,10 +71,35 @@ const routes:Routes = [
     component:PorductsComponent,
     canActivate: [AuthGuard],
     children: [
-      {path: '', component: ProductListComponent, pathMatch: 'full'},
+      {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
       {path: 'product-page', component: ProductPageComponent}
     ]
   },
+  {
+    path:'dashboard',
+    canActivate: [AuthGuard],
+    component:AdminAreaComponent,
+    children:[
+      {
+        path:'update-users',
+        component: UpdateUsersComponent
+      },
+      {
+        path:'insert-users',
+        component: InsertUsersComponent
+      },
+      {
+        path:'update-products',
+        component: UpdateProductsComponent
+      },
+      {
+        path: 'insert-products',
+        component: InsertProductsComponent
+      }
+
+    ]
+  },
+
   {
     path: 'cart',
     canActivate: [AuthGuard],
@@ -84,6 +120,11 @@ const routes:Routes = [
     canActivate: [AuthGuard],
     component: MyOrdersComponent
   },
+  {
+    path: 'home',
+    canActivate: [AuthGuard],
+    component: HomepageComponent
+  }
 
 ]
 
@@ -106,6 +147,21 @@ const routes:Routes = [
     CartItemComponent,
     CheckoutPageComponent,
     ProductAddedToCartComponent,
+    UpdateUsersComponent,
+    InsertUsersComponent,
+    UpdateProductsComponent,
+    InsertProductsComponent,
+    PopUpLoginComponent,
+    SpinnerComponent,
+    InsertCategoriesComponent,
+    UpdateCategoriesComponent,
+    InsertSubcategoryComponent,
+    UpdateSubcategoryComponent,
+    UploadImageComponent,
+
+    AllimagesComponent,
+
+    HomepageComponent
 
 
   ],
@@ -116,6 +172,7 @@ const routes:Routes = [
     CommonModule,
     HttpClientModule,
     NgxPaginationModule,
+    ReactiveFormsModule
   ],
   exports: [
     RouterModule

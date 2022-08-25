@@ -115,7 +115,7 @@
 
         >
           <a class="cart-btn " (click)="addToCart()">Add to cart</a>
-          <input type="number" class="form-control numberInput" name="qty" id="qty" ngModel [(ngModel)]="product.qty" min="1" [max]="product.stock" #qty>
+          <input type="number" class="form-control numberInput" name="qty" id="qty" [value]="product.stock >= product.qty" ngModel [(ngModel)]="product.qty" min="1" [max]="product.stock" #qty>
           <span>({{ product.stock }})</span>
         </form>
 

@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CartServiceService } from '../cart/cart-service.service';
+import { Category } from './categories.model';
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: 'app-porducts',
@@ -6,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./porducts.component.css']
 })
 export class PorductsComponent implements OnInit {
-  constructor() { }
+  constructor(private cartService: CartServiceService) { }
+
+  
 
   ngOnInit(): void {
+
   }
+
 
 }

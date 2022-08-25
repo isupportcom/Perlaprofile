@@ -17,6 +17,14 @@ body {
   margin-bottom: 15%;
 }
 
+.noDisplay{
+  display: none;
+}
+
+.yesDisplay{
+  display: inline-block;
+}
+
 #productCard {
   cursor: pointer;
   margin-left: 10%;
@@ -28,7 +36,6 @@ body {
   /* border: solid; */
   border-radius: 5%;
   text-align: center;
-  display: inline-block;
 }
 
 #productTitle {
@@ -54,7 +61,7 @@ body {
   width: 50%;
 }
 #productPrice {
-  padding-top: 5%;
+  padding-top: 3%;
 }
 
 #addToCart #addToCartBtn {
@@ -74,5 +81,5 @@ body {
   display: inline;
 }
 #addToCart {
-  padding-top: 10%;
+  padding-top: 5%;
 }

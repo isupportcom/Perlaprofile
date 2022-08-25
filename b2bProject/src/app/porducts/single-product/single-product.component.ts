@@ -66,14 +66,16 @@ export class SingleProductComponent implements OnInit {
     console.log(this.index);
     localStorage.setItem("single",JSON.stringify(this.index));
 
-    this.router.navigate(['product-page'], {relativeTo: this.route});
+    this.router.navigate(['../../product-page'], {relativeTo: this.route});
   }
 
 
   handleAddToCart(){
+    this.productsService.setSingleProduct(this.index);
     this.index.show = true;
     this.cartService.addToCart(this.index);
     localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
     this.cartService.sendProductAdded(true);
+
   }
 }
