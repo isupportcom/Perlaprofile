@@ -66,8 +66,17 @@ export class AuthService {
         returnSecureToken: true
       }
     ).pipe(catchError(this.handleError), tap(resData => {
+      if(resData.eponimia !=undefined){
         localStorage.setItem("username", resData.eponimia);
-        this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.eponimia,resData.phone1,resData.phone2,resData.zip);
+        this.setAdmin(false);
+
+      }
+       else{
+         localStorage.setItem("username","Admin")
+        this.setAdmin(true);
+      }
+      this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.eponimia,resData.phone1,resData.phone2,resData.zip);
+
       })
     );
   }
@@ -79,7 +88,7 @@ export class AuthService {
     this.router.navigate(['log-in']);
 
     localStorage.removeItem('userData');
-    
+
     if(this.tokenExpirationTimer){
       clearTimeout(this.tokenExpirationTimer);
     }

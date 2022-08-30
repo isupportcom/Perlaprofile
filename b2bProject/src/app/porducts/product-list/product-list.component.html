@@ -30,6 +30,6 @@
         };let index;"
         [index]="sProd"></app-single-product>
     </div>
-    <pagination-controls *ngIf="!noProducts" class="text-center my-pagination" (pageChange)="page = $event"></pagination-controls>
+    <pagination-controls *ngIf="!noProducts" class="text-center my-pagination" (pageChange)="page = $event" #paginate></pagination-controls>
 </div>
 

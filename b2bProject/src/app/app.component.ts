@@ -32,32 +32,34 @@ export class AppComponent implements OnDestroy,OnInit{
 
   }
 
- 
+
   ngOnInit(){
     this.authService.autoLogin();
+    if(localStorage.getItem("username") == "Admin"){this.authService.setAdmin(true)}
 
-    this.authService.setAdmin(true);
+
+
 
     this.route.data.subscribe((data: Data) => {
       // console.log(data);
     })
     this.authService.loggedIn.subscribe(res => {
       this.loggedIn = res;
-      
+
     })
 
     this.cartService.productAdded.subscribe(res => {
       this.waiting = true;
       this.products = this.productService.getAll();
       this.singleProduct = this.productService.getSingelProduct()
- 
-      
+
+
 
       setTimeout(()=>{
         this.productAdded = true;
         this.waiting = false;
       },1000)
-      
+
     })
 
     // this.router.navigate(['log-in'])
@@ -66,25 +68,25 @@ export class AppComponent implements OnDestroy,OnInit{
 
   handleClose(){
     this.productAdded = false;
-    
+
     window.location.reload();
   }
 
   handleGoToCart(){
-    
+
     this.productAdded = false;
     this.router.navigate(['cart']);
     setTimeout(() => {
       window.location.reload();
     },100)
-    
-    
+
+
   }
 
 
 
   ngOnDestroy(){
-    
+
   }
 
 

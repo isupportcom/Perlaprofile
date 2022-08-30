@@ -11,11 +11,12 @@ export class AllimagesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllImages.php/?id=9&method=allImages")
+
+    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getImages.php/?id=9&method=allImages")
       .then(photoName=>{
         console.log(photoName)
         for(let i =0;i<photoName.data.length;i++){
-          this.images[i] ="https://perlarest.vinoitalia.gr/php-auth-api/upload/"+photoName.data[i].image;
+          this.images[i] =photoName.data[i].image;
         }
 
       })

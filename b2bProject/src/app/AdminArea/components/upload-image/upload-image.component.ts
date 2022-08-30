@@ -80,7 +80,7 @@ export class UploadImageComponent implements OnInit{
           if(event.body.succes != undefined){
             this.msg = this.msg +" " + event.body.succes
           }else{
-            this.msg = event.body.error;
+            this.msg = event.body.success || event.body.error;
           }
 
           break;

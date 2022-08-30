@@ -1,24 +1,31 @@
+<app-add-image-popup *ngIf="flag && window"></app-add-image-popup>
+
+
 <div class="col-sm-8 text-left">
-  <h1>Insert Products</h1>
+  <h1>{{ answer }}</h1>
+  <h1>Update Products</h1>
   <p>Lorem ipsum dolor sit amet,
     consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
     adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
     ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <app-pop-up-login [button]="'Insert Customers'" [id]="'4'"></app-pop-up-login>
+  <app-pop-up-login [button]="'Update Products'" [id]="'4'"></app-pop-up-login>
   <hr>
 
   <h3>Current Products</h3>
   <table class="table table-dark">
     <thead>
     <tr>
+
       <th scope="col">Mtrl</th>
       <th scope="col">Code</th>
       <th scope="col">Name</th>
       <th scope="col">Retail Price</th>
       <th scope="col">Wholesale Price</th>
       <th scope="col">Stock</th>
+      <th scope="col">Image</th>
+      <th scope="col">Change</th>
     </tr>
     </thead>
     <tbody>
@@ -33,10 +40,20 @@
       <td>{{ item.retail }}</td>
       <td>{{ item.wholesale }}</td>
       <td>{{ item.stock }}</td>
+      <td>
+      <p>{{item.img}}</p>
+        <button class="btn btn-success" *ngIf="!item.img" (click)="open(item.mtrl)">Add image</button>
+        <img *ngIf="item.img" style="width: 40%" [src]="item.img" />
+
+
+      </td>
+      <td>
+        <button class="btn btn-success" *ngIf="item.img" (click)="open(item.mtrl)">Change Photo</button>
+      </td>
     </tr>
 
     </tbody>
   </table>
-  <pagination-controls class="text-center my-pagination" (pageChange)="page = $event"></pagination-controls>
+  <pagination-controls class="text-center my-pagination" (pageChange)="changePage($event)"></pagination-controls>
 
 </div>

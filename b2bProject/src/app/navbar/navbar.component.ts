@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
 import { CartServiceService } from '../cart/cart-service.service';
+import { ProductsService } from '../porducts/products.service';
 import {AuthService} from "../services/auth.service";
 
 
@@ -14,7 +15,7 @@ import {AuthService} from "../services/auth.service";
 export class NavbarComponent implements OnInit{
   isAdminArea = false;
   products :product[] |any;
-  
+
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
 
@@ -23,7 +24,7 @@ export class NavbarComponent implements OnInit{
   @ViewChild('dropdown') dropdown!: ElementRef;
   isOpen = false;
   isToggelOpen = false;
-  isAdmin = true;
+  isAdmin = this.authService.getAdmin();
   productAdded?: boolean;
 
 
@@ -31,17 +32,26 @@ export class NavbarComponent implements OnInit{
   public isCollapsed = true;
   productCount: number = <number>(<unknown>(localStorage.getItem('productCount')));
   showProductCount: boolean = false;
+  mainCategories : any = [];
 
   constructor(
     private authService: AuthService,
     private router :Router,
     private route: ActivatedRoute,
-    private cartService: CartServiceService) { }
+    private cartService: CartServiceService,
+    private productsService: ProductsService) { }
 
 
   username = localStorage.getItem("username");
 
   ngOnInit(): void {
+    this.productsService.getMainCategories().subscribe(resData => {
+      this.mainCategories = resData;
+      console.log(this.mainCategories);
+
+    });
+
+
     this.products = JSON.parse(<string>localStorage.getItem("products"));
     this.cartService.productAdded.subscribe(res => {
       this.productAdded = res;
@@ -56,6 +66,14 @@ export class NavbarComponent implements OnInit{
 
       this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
     })
+  }
+
+  goToProducts(mainCategory: any){
+    console.log(mainCategory);
+    this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+    setTimeout(() => {
+      window.location.reload();
+    },50)
   }
 
   handleLeaveAdminArea(){
@@ -107,7 +125,7 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['home'])
   }
 
- 
+
 
   logout(){
 

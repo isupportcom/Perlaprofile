@@ -20,7 +20,7 @@ export interface AuthResponseData{
   idToken: string;
   username: string;
 
-  
+
 
   refreshToken: string;
   expiresIn: string;
@@ -48,9 +48,9 @@ export class LogInComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.clearAll();
     if(localStorage.getItem("userType") != "notLoggin" ){
-      if(localStorage.getItem('userType') == "Admin"){
-        this.authService.setAdmin(true)
-      }
+      // if(localStorage.getItem('userType') == "Admin"){
+      //   this.authService.setAdmin(true)
+      // }
     }
 
     this.authService.sendLoggedIn(false);
@@ -66,7 +66,7 @@ export class LogInComponent implements OnInit, OnDestroy {
 
       this.username = f.value.username;
       this.password = f.value.password;
-      
+
       let authObs: Observable<AuthResponseData>;
 
       authObs = this.authService.login(this.username,this.password);
@@ -74,9 +74,9 @@ export class LogInComponent implements OnInit, OnDestroy {
       authObs.subscribe(resData =>{
         if(resData.success == 1){
           console.log(resData);
-          this.router.navigate(['home']); 
+          this.router.navigate(['home']);
         }
-        
+
       })
 
   }

@@ -25,21 +25,22 @@ import { ProductAddedToCartComponent } from './shared/product-added-to-cart/prod
 import { CheckoutGuard } from './shared/product-added-to-cart/checkout.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { UpdateUsersComponent } from './AdminArea/components/update-users/update-users.component';
-import { InsertUsersComponent } from './AdminArea/components/insert-users/insert-users.component';
-import { UpdateProductsComponent } from './AdminArea/components/update-products/update-products.component';
+
+
 import { InsertProductsComponent } from './AdminArea/components/insert-products/insert-products.component';
 import { PopUpLoginComponent } from './AdminArea/components/pop-up-login/pop-up-login.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { InsertCategoriesComponent } from './AdminArea/components/insert-categories/insert-categories.component';
 import { UpdateCategoriesComponent } from './AdminArea/components/update-categories/update-categories.component';
-import { InsertSubcategoryComponent } from './AdminArea/components/insert-subcategory/insert-subcategory.component';
-import { UpdateSubcategoryComponent } from './AdminArea/components/update-subcategory/update-subcategory.component';
+
 import { UploadImageComponent } from './AdminArea/components/upload-image/upload-image.component';
 
 import { AllimagesComponent } from './AdminArea/components/allimages/allimages.component';
 
 import { HomepageComponent } from './homepage/homepage.component';
+import { AddImagePopupComponent } from './AdminArea/components/add-image-popup/add-image-popup.component';
+import {AdminGuard} from "./services/admin.guard";
+
 
 
 
@@ -77,21 +78,11 @@ const routes:Routes = [
   },
   {
     path:'dashboard',
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
     component:AdminAreaComponent,
     children:[
-      {
-        path:'update-users',
-        component: UpdateUsersComponent
-      },
-      {
-        path:'insert-users',
-        component: InsertUsersComponent
-      },
-      {
-        path:'update-products',
-        component: UpdateProductsComponent
-      },
+
+
       {
         path: 'insert-products',
         component: InsertProductsComponent
@@ -147,21 +138,21 @@ const routes:Routes = [
     CartItemComponent,
     CheckoutPageComponent,
     ProductAddedToCartComponent,
-    UpdateUsersComponent,
-    InsertUsersComponent,
-    UpdateProductsComponent,
+
+
     InsertProductsComponent,
     PopUpLoginComponent,
     SpinnerComponent,
     InsertCategoriesComponent,
     UpdateCategoriesComponent,
-    InsertSubcategoryComponent,
-    UpdateSubcategoryComponent,
+
     UploadImageComponent,
 
     AllimagesComponent,
 
-    HomepageComponent
+    HomepageComponent,
+      AddImagePopupComponent,
+
 
 
   ],

@@ -11,7 +11,7 @@
     <hr class="first-hr">
     <div class="product" *ngFor="let item of products;let i=index;">
       <div *ngIf="item.show">
-        <img src="../../../assets/35S-35SD.jpg" alt="" style="width: 141px; height: 141px;">
+        <img [src]="'https://perlarest.vinoitalia.gr/php-auth-api/upload/'+item.img" alt="" style="width: 141px; height: 141px;">
         <div class="description">
           <div class="descLeft">
             <h4>{{ item.name }}</h4>

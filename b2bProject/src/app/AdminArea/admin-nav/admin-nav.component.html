@@ -13,63 +13,17 @@
       <li class="active">
         <a style="cursor: pointer;" (click)="handleHomepage()"><span class="fa fa-home mr-3" ></span> Homepage</a>
       </li>
-      <li (click)="setDropdown(dropdownCat)" class="nav-item dropdown" #categories>
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Customers
-        </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat>
-      <li (click)="showContent(1)">
-        <a ><span class="fa fa-user mr-3 dropdown-item" ></span> Update Customers</a>
-      </li>
-      <li (click)="showContent(2)">
-        <a ><span class="fa fa-sticky-note mr-3 dropdown-item"  ></span> Insert Customers</a>
+
+      <li (click)="showContent(4)">
+        <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Products</a>
       </li>
 
-        </div>
-
-      <li (click)="setDropdown(dropdownCat1)" class="nav-item dropdown" #categories>
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Products
-        </a>
-
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat1>
-        <li (click)="showContent(3)">
-          <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Products</a>
-        </li>
-        <li (click)="showContent(4)">
-          <a ><span class="fa fa-paper-plane mr-3 dropdown-item" ></span> Insert Products</a>
-        </li>
 
 
+      <li (click)="showContent(5)">
+        <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Categories</a>
+      </li>
 
-    </div>
-
-    <li (click)="setDropdown(dropdownCat2)" class="nav-item dropdown" #categories>
-      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Categories
-      </a>
-
-      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat2>
-    <li (click)="showContent(5)">
-      <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Categories</a>
-    </li>
-    <li (click)="showContent(6)">
-      <a ><span class="fa fa-paper-plane mr-3 dropdown-item" ></span> Insert Categories</a>
-    </li>
-    </div>
-<li (click)="setDropdown(dropdownCat3)" class="nav-item dropdown" #categories>
-  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Subcategories
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat3>
-<li (click)="showContent(7)">
-  <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Subcategories</a>
-</li>
-<li (click)="showContent(8)">
-  <a ><span class="fa fa-paper-plane mr-3 dropdown-item" ></span> Insert Subcategories</a>
-</li>
-</div>
 <li (click)="setDropdown(dropdownCat4)" class="nav-item dropdown" #categories>
   <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Images
@@ -88,14 +42,12 @@
 
   <!-- Page Content  -->
   <div id="content" class="p-4 p-md-5 pt-5 center">
-    <app-update-users *ngIf="component==1"></app-update-users>
-    <app-insert-users *ngIf="component==2"></app-insert-users>
-    <app-update-products *ngIf="component==3"></app-update-products>
+
+
     <app-insert-products *ngIf="component==4"></app-insert-products>
     <app-update-categories *ngIf="component==5"></app-update-categories>
     <app-insert-categories *ngIf="component==6"></app-insert-categories>
-    <app-update-subcategory *ngIf="component==7"></app-update-subcategory>
-    <app-insert-subcategory *ngIf="component==8"></app-insert-subcategory>
+
     <app-upload-image *ngIf="component==9"></app-upload-image>
     <app-allimages *ngIf="component==10"></app-allimages>
   </div>
