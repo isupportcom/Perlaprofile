@@ -28,7 +28,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   showUserDetails?: boolean;
   showPayment?: boolean;
   totalPrice: number = 0;
-
+  answer:string ="";
   constructor(private cartService: CartServiceService, private authService: AuthService,private router: Router, private renderer: Renderer2) { }
 
   ngOnInit(): void {
@@ -134,7 +134,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     if(this.showPayment){
        payment = 2
     }
-    axios.post("http://localhost/phpapi/php-auth-api/placeOrder.php/",{
+    axios.post("https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/",{
         mtrl: this.mtrlArr.join(","),
         qty : this.qtyArr.join(","),
         trdr: this.loadedUser.trdr,
@@ -142,8 +142,17 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
 
     }).then(resData=>{
+      setTimeout(()=>{
+        this.answer = resData.data.message
+        setTimeout(()=>{
+         this.products= this.cartService.clearCart();
 
-      console.log(JSON.parse(resData.data))
+          localStorage.setItem("products",JSON.stringify(this.products));
+          this.router.navigate(['home'])
+
+        },3000)
+      },3000)
+
     })
 
   }
