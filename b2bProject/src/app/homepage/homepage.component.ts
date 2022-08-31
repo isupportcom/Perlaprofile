@@ -9,6 +9,10 @@ import { ProductsService } from '../porducts/products.service';
 })
 export class HomepageComponent implements OnInit {
   mainCategories : any = [];
+  showDescription1: boolean = false;
+  showDescription2: boolean = false;
+  showDescription3: boolean = false;
+  showDescription4: boolean = false;
 
   constructor(private productsService: ProductsService,private router: Router) { }
 
@@ -25,4 +29,36 @@ export class HomepageComponent implements OnInit {
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);
   }
+
+  showDesc(mainCategory: any){
+    if(mainCategory.id == 114){
+      this.showDescription1 = true;
+    }
+    if(mainCategory.id == 115){
+      this.showDescription2 = true;
+    }
+    if(mainCategory.id == 116){
+      this.showDescription3 = true;
+    }
+    if(mainCategory.id == 117){
+      this.showDescription4 = true;
+    }
+  }
+
+  hideDesc(mainCategory: any){
+    if(mainCategory.id == 114){
+      this.showDescription1 = false;
+    }
+    if(mainCategory.id == 115){
+      this.showDescription2 = false;
+    }
+    if(mainCategory.id == 116){
+      this.showDescription3 = false;
+    }
+    if(mainCategory.id == 117){
+      this.showDescription4 = false;
+    }
+    
+  }
+
 }

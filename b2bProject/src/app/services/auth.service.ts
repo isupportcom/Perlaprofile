@@ -19,11 +19,12 @@ export interface AuthResponseData{
   afm: string;
   city: string;
   doy: string;
-  eponimia: string;
+  name: string;
   phone1: string;
   phone2: string;
   zip: string;
   registered?: boolean;
+  isAdmin:number;
 }
 
 @Injectable({
@@ -66,8 +67,8 @@ export class AuthService {
         returnSecureToken: true
       }
     ).pipe(catchError(this.handleError), tap(resData => {
-      if(resData.eponimia !=undefined){
-        localStorage.setItem("username", resData.eponimia);
+      if(resData.isAdmin ==0){
+        localStorage.setItem("username", resData.name);
         this.setAdmin(false);
 
       }
@@ -75,7 +76,7 @@ export class AuthService {
          localStorage.setItem("username","Admin")
         this.setAdmin(true);
       }
-      this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.eponimia,resData.phone1,resData.phone2,resData.zip);
+      this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.name,resData.phone1,resData.phone2,resData.zip);
 
       })
     );
