@@ -17,7 +17,9 @@ export class AllimagesComponent implements OnInit {
         console.log(photoName)
         for(let i =0;i<photoName.data.length;i++){
           this.images[i] =photoName.data[i].image;
+
         }
+        console.log(this.images)
 
       })
   }

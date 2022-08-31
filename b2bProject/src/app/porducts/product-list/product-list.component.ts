@@ -46,12 +46,12 @@ export class ProductListComponent implements OnInit , OnDestroy{
   ngOnInit(): void {
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
-    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php?id=2&method=allProducts").then(resData => {
+    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php?id=2&method=allProducts").then((resData:any) => {
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < 250; i++) {
 
-        console.log(resData.data[i].image +" "+ resData.data[i].mtrl);
+
         this.products[i] = {
 
           mtrl: resData.data[i].mtrl,
@@ -67,6 +67,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
           img:resData.data[i].image
         }
         this.productsService.setAll(this.products[i])
+        console.log(this.products[i].mtrl);
       }
       // console.log(this.product);
 

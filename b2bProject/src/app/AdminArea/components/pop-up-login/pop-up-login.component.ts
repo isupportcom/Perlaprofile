@@ -55,7 +55,7 @@ export class PopUpLoginComponent implements OnInit {
         case 1 :
         case 2 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/users.php/?id=4&method=TRDR";break;
         case 3 :
-        case 4 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/products.php/?id=1&method=MTRLTEST";break;
+        case 4 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/updateProducts.php/?id=1&method=MTRLUPDATE";break;
         case 5 :
         case 6 :
         case 7 :

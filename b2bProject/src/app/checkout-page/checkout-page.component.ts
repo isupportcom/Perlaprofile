@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { CartServiceService } from '../cart/cart-service.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../services/user.model';
+import axios from "axios";
+import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
 
 @Component({
   selector: 'app-checkout-page',
@@ -11,8 +13,10 @@ import { User } from '../services/user.model';
   styleUrls: ['./checkout-page.component.css']
 })
 export class CheckoutPageComponent implements OnInit, OnDestroy {
-  products = JSON.parse(<string>localStorage.getItem("products"));
+  products :product |any= JSON.parse(<string>localStorage.getItem("products"))
   showCreditCard: boolean = true;
+  mtrlArr:any = [];
+  qtyArr:any =[];
   showCashOnDelivery: boolean = false;
   showBankTransfer: boolean = false;
   @ViewChild('creditCard') creditCard: ElementRef | any;
@@ -26,8 +30,9 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   totalPrice: number = 0;
 
   constructor(private cartService: CartServiceService, private authService: AuthService,private router: Router, private renderer: Renderer2) { }
-  
-  ngOnInit(): void {  
+
+  ngOnInit(): void {
+
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
@@ -35,7 +40,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.totalPrice += (product.wholesale * product.qty);
     }
     console.log(this.totalPrice);
-    
+
     if(!this.showUserDetails){
       this.showUserDetails = true;
     }
@@ -84,7 +89,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     if(el.innerHTML == 'Credit Card'){
       this.showCreditCard = true;
       this.showBankTransfer = false;
-      
+
 
       el.style.fontWeight = 'bold';
       el.style.textDecoration = 'underline';
@@ -93,9 +98,9 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.renderer.setStyle(this.bankTransfer.nativeElement, 'font-weight', 'normal');
       this.renderer.setStyle(this.bankTransfer.nativeElement, 'text-decoration', 'none');
     }
-    
-    
-    
+
+
+
     if(el.innerHTML == 'Bank Transfer'){
       this.showCreditCard = false;
       this.showBankTransfer = true;
@@ -112,8 +117,36 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    
+
   }
-  
+  placeOrder(){
+    console.log(this.products)
+   for(let i =0;i<this.products.length;i++){
+     this.mtrlArr[i] = this.products[i].mtrl;
+     this.qtyArr[i]  = this.products[i].qty
+   }
+    console.log(this.mtrlArr)
+    console.log(this.mtrlArr.join(","));
+    console.log(this.qtyArr);
+    console.log(this.qtyArr.join(","))
+    console.log(this.loadedUser.trdr)
+    let payment;
+    if(this.showPayment){
+       payment = 2
+    }
+    axios.post("http://localhost/phpapi/php-auth-api/placeOrder.php/",{
+        mtrl: this.mtrlArr.join(","),
+        qty : this.qtyArr.join(","),
+        trdr: this.loadedUser.trdr,
+        payment: payment
+
+
+    }).then(resData=>{
+
+      console.log(JSON.parse(resData.data))
+    })
+
+  }
+
 
 }

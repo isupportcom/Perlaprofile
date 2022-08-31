@@ -11,6 +11,7 @@ import {ModalService} from "../add-image-popup/modal-service.service";
   styleUrls: ['./insert-products.component.css']
 })
 export class InsertProductsComponent implements OnInit {
+
   products: product | any = [];
   page: number |any;
   window:boolean = true;
@@ -62,41 +63,27 @@ export class InsertProductsComponent implements OnInit {
     this.flag = true;
     this.window =true;
     console.log(item)
-    this.modalService.image.subscribe((res:any)=>{
-      this.image=res
+    this.modalService.image.subscribe((res:any)=> {
+      this.image = res
       console.log(this.image)
-      for(let product of this.products){
-        if(product.mtrl == item){
-          product.img = this.image
-          axios.get("https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl="+item+"&image="+this.image)
-            .then(res=>{
-              setTimeout(()=>{
-                this.ngOnInit();
-              },2000)
-            })
-
-        }
-      }
-      // for(let i=0;i<this.products.length;i++){
-      //   if(item == this.products[i].mtrl){
-      //     this.products[i].img = this.image;
-      //     console.log(i)
-      //     axios.get("https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl="+this.products[i].mtrl+"&image="+this.products[i].img)
-      //       .then(res=>{
-      //         console.log(res.data)
-      //         this.answer = res.data;
-      //       })
-      //
-      //     break;
-      //   }
-      // }
+        axios.get("https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl="+item+"&image="+this.image)
+          .then(res=> {
+            console.log(res.data)
 
 
-
-
+          } )
+      window.location.reload()
     })
+      }
+
+
+
+
+
+
+
 
 
   }
 
-}
+

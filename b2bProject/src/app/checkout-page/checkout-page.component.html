@@ -38,12 +38,12 @@
             <label for="comments" style="margin-top: 60px;">Comments</label>
             <textarea class="form form-control" name="comments" id="comments" cols="30" rows="3" ngModel></textarea>
         </div>
-        
+
         <button style="margin-top:60px;" class="btn btn-danger" (click)="handleGoBackToCart()">Back To Cart</button>
         <button style="margin-top:60px; margin-left: 23%;" class="btn btn-primary" type="submit" [disabled]="!userDetailsForm.valid">Continue to payment</button>
-        
+
     </form>
-    
+
 
     <form *ngIf="showPayment" #paymentForm="ngForm">
         <h3>Payment Info</h3>
@@ -76,13 +76,13 @@
                     </div>
                 </div>
             </div>
-            
+
             <p style="margin-top: 10%;" *ngIf="showCashOnDelivery">hello2</p>
             <p style="margin-top: 10%;" *ngIf="showBankTransfer">hello3</p>
         </div>
 
         <button style="margin-top:60px;" class="btn btn-danger" (click)="handleGoBackToUserDetails()">Back To User Details</button>
-        <button style="margin-top:60px;margin-left: 23%;cursor: not-allowed;" class="btn btn-primary" [disabled]="!paymentForm.valid">Place Order</button>
+        <button style="margin-top:60px;margin-left: 23%;cursor: not-allowed;" class="btn btn-primary" [disabled]="!paymentForm.valid" (click)="placeOrder()">Place Order</button>
     </form>
 </div>
 
@@ -92,7 +92,7 @@
     </div>
     <hr style="width: 20vw; margin-top: 5%;">
     <div *ngFor="let product of products">
-        <img src="../../assets/35S-35SD.jpg" alt="" style="width: 141px; height: 141px; display: inline-block;">
+        <img [src]="product.img" alt="" style="width: 141px; height: 141px; display: inline-block;">
         <div class="description">
             <div class="descLeft">
                 <h4>{{ product.name }}</h4>
