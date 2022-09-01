@@ -1,0 +1,1212 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner&family=Vollkorn&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Commissioner&family=Vollkorn&display=swap');
+
+/* DESKTOP */
+
+.heroImg{
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: -250px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5));
+}
+
+.category{
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    width: 265px;
+    height: 265px;
+    left: 20%;
+    top: 679px;
+    box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 11px;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+    background-size: 900px;
+    background-position: 50%;
+    transition: all 0.5s ease-in-out;
+}
+
+.category:hover{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+    background-size: 1050px;
+    background-position: 50%;
+}
+
+.categoryLogo{
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    left: 33px;
+    top: 17px;
+}
+
+
+.category2{
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    width: 265px;
+    height: 265px;
+    left: 35%;
+    top: 679px;
+    box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 11px;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/Tubular-Motor-back.jpg");
+    background-size: 900px;
+    background-position: 50%;
+    transition: all 0.5s ease-in-out;
+}
+
+.category2:hover{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/Tubular-Motor-back.jpg");
+    background-size: 1050px;
+    background-position: 50%;
+}
+
+.category3{
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    width: 265px;
+    height: 265px;
+    left: 50%;
+    top: 679px;
+    box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 11px;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/mosqui-back.jpg");
+    background-size: 900px;
+    background-position: 50%;
+    transition: all 0.5s ease-in-out;
+}
+
+.category3:hover{
+    
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/mosqui-back.jpg");
+    background-size: 1050px;
+    background-position: 50%;
+}
+
+.category4{
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    width: 265px;
+    height: 265px;
+    left: 65%;
+    top: 679px;
+    box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 11px;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/profile1.jpg");
+    background-size: 900px;
+    background-position: 50%;
+    transition: all 0.5s ease-in-out;
+}
+
+.category4:hover{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/profile1.jpg");
+    background-size: 1050px;
+    background-position: 50%;
+}
+
+.line{
+    position: absolute;
+    left: 20%;
+    top: 25%;
+
+}
+
+.title{
+    position: absolute;
+width: 450px;
+height: 132px;
+left: 20%;
+top: 30%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 36px;
+line-height: 44px;
+
+/* White */
+
+color: #FFFFFF;
+}
+
+.paragraph{
+    position: absolute;
+width: 398px;
+height: 38px;
+left: 20%;
+top: 42%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+
+/* White */
+
+color: #FFFFFF;
+
+}
+
+.myBtn{
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding-top: 12px;
+padding-bottom: 12px;
+padding-left:  24px;
+padding-right:  24px;
+gap: 10px;
+text-align: center;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+position: absolute;
+width: auto;
+height: auto;
+left: 20%;
+top: 50%;
+color: white;
+font-weight: 400;
+font-size: 18px;
+
+/* Green */
+
+background: #6DAE49;
+box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.15);
+border-radius: 28px;
+transition: all 0.5s ease-in-out;
+
+
+}
+
+.myBtn:hover{
+    background: #4b7a32;
+}
+
+.categoryDesc1{
+    position: absolute;
+width: 182px;
+height: 29px;
+left: 35px;
+top: 67px;
+
+/* H3 */
+text-align: center;
+font-family: 'Commissioner';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 29px;
+
+color: #FFFFFF;
+}
+
+.lineInside{
+    position: absolute;
+    left: 70px;
+    top: 133px;
+}
+
+.categoryDesc2{
+    position: absolute;
+width: 172px;
+height: 80px;
+left: 42px;
+top: 151px;
+
+font-family: 'Vollkorn';
+font-style: normal;
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+
+color: #FFFFFF;
+}
+
+.description1{
+    
+    position:absolute;
+    animation: desc;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+}
+
+.hideDescription1{
+    animation: desc;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    animation-direction: reverse;
+}
+
+.description2{
+    
+    position:absolute;
+    animation: desc;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+}
+
+.hideDescription2{
+    animation: desc;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    animation-direction: reverse;
+}
+
+.description3{
+    
+    position:absolute;
+    animation: desc;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+}
+
+.hideDescription3{
+    animation: desc;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    animation-direction: reverse;
+}
+
+.description4{
+    
+    position:absolute;
+    animation: desc;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+}
+
+.hideDescription4{
+    animation: desc;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    animation-direction: reverse;
+}
+
+.offersTitle{
+    position: absolute;
+    top: 1200px;
+    left: 45%;
+}
+
+.offersTitle img{
+    margin-left: 15%;
+}
+
+.offersTitle h1{
+    font-family: 'Commissioner';
+    font-style: normal;
+    color: #3E4148;
+}
+
+.offer1{
+    z-index: 1;
+    width: 100%;
+    height: 70%;
+    background: #3E4148;
+    position: absolute;
+    top: 1500px;
+}
+
+.upperLines{
+    position: absolute;
+    top: 1450px;
+    z-index: 2;
+}
+
+.downLines{
+    
+    position: absolute;
+    left: 86.3%;
+    top: 1950px;
+    z-index: 2;
+}
+
+.straightLines{
+    position: absolute;
+    left: 30%;
+}
+
+.offerPercentage{
+    position: absolute;
+    color: #FFFFFF;
+    border: #6DAE49 solid 3px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    left: 28.3%;
+    top: 37%;
+    border-radius: 16px;
+}
+
+.offerProduct1{
+    overflow: hidden;
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    left: 40%;
+    top: -50px;
+    box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 11px;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+    background-size: 1500px;
+    background-position: 50%;
+}
+
+.offerProductTitle1{
+    color: white;
+    position: absolute;
+    left: 40%;
+    top: 65%;
+}
+
+.offerBtn1{
+    background-color:rgba(0, 0, 0, 0);
+    position: absolute;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    border: #6DAE49 solid 3px;
+    border-radius: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 48px;
+    padding-right: 48px;
+    left: 54%;
+    top: 65%;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.offerBtn1:hover{
+    background-color: #6DAE49;
+}
+
+.offer2{
+    z-index: 1;
+    width: 100%;
+    height: 70%;
+    background: #3E4148;
+    position: absolute;
+    top: 2600px;
+}
+
+.straightLines2{
+    position: absolute;
+    left: 59%;
+}
+
+.offerPercentage2{
+    position: absolute;
+    color: #FFFFFF;
+    border: #6DAE49 solid 3px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    left: 57%;
+    top: 37%;
+    border-radius: 16px;
+}
+
+.offerProduct2{
+    overflow: hidden;
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    left: 30%;
+    top: -50px;
+    box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 11px;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+    background-size: 1500px;
+    background-position: 50%;
+}
+
+.offerProductTitle2{
+    color: white;
+    position: absolute;
+    left: 30%;
+    top: 65%;
+}
+
+.offerBtn2{
+    background-color:rgba(0, 0, 0, 0);
+    position: absolute;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    border: #6DAE49 solid 3px;
+    border-radius: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 48px;
+    padding-right: 48px;
+    left: 44%;
+    top: 65%;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.offerBtn2:hover{
+    background-color: #6DAE49;
+}
+
+.footer{
+    overflow: hidden;
+    padding-left: 160px;
+    padding-right: 160px;
+    z-index: 1;
+    width: 100%;
+    height: 70%;
+    background:#3E4148;
+    position: absolute;
+    top: 3300px;
+    color: white;
+}
+
+.footerLines{
+    position: absolute;
+    top: 60%;
+    left: 0%;
+}
+
+.company{
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.contact{
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.seeAlso{
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.socialMedia{
+    text-align: center;
+    width: 25%;
+    position: absolute;
+    top: 50%;
+}
+
+
+@keyframes desc{
+    from{
+        opacity: 0;
+        margin-top: 50%;
+    }
+    to{
+        opacity: 1;
+        margin-top: 0%;
+    }
+}
+
+
+
+
+
+/* LAPTOP/TABLET */
+
+@media screen and (max-width:1700px) {
+    /* HERO */
+
+    .line{
+        position: absolute;
+        left: 10%;
+        top: 25%;
+    
+    }
+    
+    .title{
+        position: absolute;
+    width: 450px;
+    height: 132px;
+    left: 10%;
+    top: 30%;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    
+    /* White */
+    
+    color: #FFFFFF;
+    }
+    
+    .paragraph{
+        position: absolute;
+    width: 398px;
+    height: 38px;
+    left: 10%;
+    top: 42%;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+    /* White */
+    
+    color: #FFFFFF;
+    
+    }
+    
+    .myBtn{
+        display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left:  24px;
+    padding-right:  24px;
+    gap: 10px;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    position: absolute;
+    width: auto;
+    height: auto;
+    left: 10%;
+    top: 50%;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    
+    /* Green */
+    
+    background: #6DAE49;
+    box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 28px;
+    transition: all 0.5s ease-in-out;
+    
+    
+    }
+    
+    .myBtn:hover{
+        background: #4b7a32;
+    }
+
+    .categoryDesc1{
+        position: absolute;
+    width: 182px;
+    height: 29px;
+    left: 22px;
+    top: 67px;
+    text-align: center;
+    /* H3 */
+    
+    font-family: 'Commissioner';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 29px;
+    
+    color: #FFFFFF;
+    }
+    
+    .lineInside{
+        position: absolute;
+        width: 100px;
+        left: 65px;
+        top: 133px;
+    }
+    
+    .categoryDesc2{
+        position: absolute;
+    width: 172px;
+    height: 80px;
+    left: 32px;
+    top: 141px;
+    
+    font-family: 'Vollkorn';
+    font-style: normal;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    
+    color: #FFFFFF;
+    }
+
+    .categoryLogo{
+        position: absolute;
+        width: 170px;
+        height: 50px;
+        left: 23px;
+        top: 17px;
+    }
+
+    .heroImg{
+        z-index: -1;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: -250px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.5));
+    }
+
+    .category{
+        overflow: hidden;
+        position: absolute;
+        cursor: pointer;
+        width: 222px;
+        height: 222px;
+        left: 10%;
+        top: 679px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+        background-size: 900px;
+        background-position: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .category:hover{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+        background-size: 1050px;
+        background-position: 50%;
+    }
+    
+
+    
+    .category2{
+        overflow: hidden;
+        position: absolute;
+        cursor: pointer;
+        width: 222px;
+        height: 222px;
+        left: 30%;
+        top: 679px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/Tubular-Motor-back.jpg");
+        background-size: 900px;
+        background-position: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .category2:hover{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/Tubular-Motor-back.jpg");
+        background-size: 1050px;
+        background-position: 50%;
+    }
+    
+    .category3{
+        overflow: hidden;
+        position: absolute;
+        cursor: pointer;
+        width: 222px;
+        height: 222px;
+        left: 50%;
+        top: 679px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/mosqui-back.jpg");
+        background-size: 900px;
+        background-position: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .category3:hover{
+        
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/mosqui-back.jpg");
+        background-size: 1050px;
+        background-position: 50%;
+    }
+    
+    .category4{
+        overflow: hidden;
+        position: absolute;
+        cursor: pointer;
+        width: 222px;
+        height: 222px;
+        left: 70%;
+        top: 679px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/profile1.jpg");
+        background-size: 900px;
+        background-position: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .category4:hover{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/profile1.jpg");
+        background-size: 1050px;
+        background-position: 50%;
+    }
+
+    /* OFFERS */
+
+    .offersTitle{
+        position: absolute;
+        top: 1200px;
+        left: 45%;
+    }
+    
+    .offersTitle img{
+        margin-left: 15%;
+    }
+    
+    .offersTitle h1{
+        font-family: 'Commissioner';
+        font-style: normal;
+        color: #3E4148;
+    }
+    
+    .offer1{
+        z-index: 1;
+        width: 100%;
+        height: 70%;
+        background: #3E4148;
+        position: absolute;
+        top: 1500px;
+    }
+    
+    .upperLines{
+        position: absolute;
+        top: 1450px;
+        z-index: 2;
+    }
+    
+    .downLines{
+        display: none;
+    }
+    
+    .straightLines{
+        position: absolute;
+        left: 30%;
+        top: -3%;
+    }
+    
+    .offerPercentage{
+        position: absolute;
+        color: #FFFFFF;
+        border: #6DAE49 solid 3px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 25px;
+        padding-right: 25px;
+        left: 28.3%;
+        top: 30%;
+        border-radius: 16px;
+    }
+    
+    .offerProduct1{
+        overflow: hidden;
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        left: 43%;
+        top: -50px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+        background-size: 1500px;
+        background-position: 50%;
+    }
+    
+    .offerProductTitle1{
+        color: white;
+        position: absolute;
+        
+        left: 43%;
+        top: 57%;
+    }
+    
+    .offerBtn1{
+        background-color:rgba(0, 0, 0, 0);
+        position: absolute;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        border: #6DAE49 solid 3px;
+        border-radius: 16px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 24px;
+        padding-right: 24px;
+        left: 62%;
+        top: 60%;
+    
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .offerBtn1:hover{
+        background-color: #6DAE49;
+    }
+
+}
+
+
+
+/* MOBILE */
+
+@media screen and (max-width:1100px) {
+
+    /* HERO */
+    
+    .line{
+        position: absolute;
+        left: 30%;
+        top: 25%;
+    
+    }
+    
+    .title{
+        position: absolute;
+    width: 450px;
+    height: 132px;
+    left: 30%;
+    top: 30%;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    
+    /* White */
+    
+    color: #FFFFFF;
+    }
+    
+    .paragraph{
+        position: absolute;
+    width: 398px;
+    height: 38px;
+    left: 30%;
+    top: 42%;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+    /* White */
+    
+    color: #FFFFFF;
+    
+    }
+    
+    .myBtn{
+        display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left:  24px;
+    padding-right:  24px;
+    gap: 10px;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    position: absolute;
+    width: auto;
+    height: auto;
+    left: 30%;
+    top: 50%;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    
+    /* Green */
+    
+    background: #6DAE49;
+    box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 28px;
+    transition: all 0.5s ease-in-out;
+    
+    
+    }
+    
+    .myBtn:hover{
+        background: #4b7a32;
+    }
+
+    .categoryDesc1{
+        position: absolute;
+    width: 182px;
+    height: 29px;
+    left: 12px;
+    top: 65px;
+    text-align: center;
+    /* H3 */
+    
+    font-family: 'Commissioner';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 29px;
+    
+    color: #FFFFFF;
+    }
+    
+    .lineInside{
+        display: none;
+    }
+    
+    .categoryDesc2{
+        position: absolute;
+    width: 172px;
+    height: 80px;
+    left: 15px;
+    top: 120px;
+    
+    font-family: 'Vollkorn';
+    font-style: normal;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    
+    color: #FFFFFF;
+    }
+
+    .heroImg{
+        z-index: -1;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: -250px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.5));
+    }
+
+    .category{
+        overflow: hidden;
+        position: absolute;
+        cursor: pointer;
+        width: 200px;
+        height: 200px;
+        left: 30%;
+        top: 679px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+        background-size: 900px;
+        background-position: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .category:hover{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+        background-size: 1050px;
+        background-position: 50%;
+    }
+    
+    .categoryLogo{
+        position: absolute;
+        width: 150px;
+        height: 50px;
+        left: 33px;
+        top: 17px;
+    }
+    
+    
+    .category2{
+        overflow: hidden;
+        position: absolute;
+        cursor: pointer;
+        width: 200px;
+        height: 200px;
+        left: 55%;
+        top: 679px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/Tubular-Motor-back.jpg");
+        background-size: 900px;
+        background-position: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .category2:hover{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/Tubular-Motor-back.jpg");
+        background-size: 1050px;
+        background-position: 50%;
+    }
+    
+    .category3{
+        overflow: hidden;
+        position: absolute;
+        cursor: pointer;
+        width: 200px;
+        height: 200px;
+        left: 30%;
+        top: 940px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/mosqui-back.jpg");
+        background-size: 900px;
+        background-position: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .category3:hover{
+        
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/mosqui-back.jpg");
+        background-size: 1050px;
+        background-position: 50%;
+    }
+    
+    .category4{
+        overflow: hidden;
+        position: absolute;
+        cursor: pointer;
+        width: 200px;
+        height: 200px;
+        left: 55%;
+        top: 940px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/profile1.jpg");
+        background-size: 900px;
+        background-position: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .category4:hover{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/profile1.jpg");
+        background-size: 1050px;
+        background-position: 50%;
+    }
+
+    /* OFFERS */
+
+    .offersTitle{
+        position: absolute;
+        top: 1200px;
+        left: 45%;
+    }
+    
+    .offersTitle img{
+        margin-left: 15%;
+    }
+    
+    .offersTitle h1{
+        font-family: 'Commissioner';
+        font-style: normal;
+        color: #3E4148;
+    }
+    
+    .offer1{
+        z-index: 1;
+        width: 100%;
+        height: 70%;
+        background: #3E4148;
+        position: absolute;
+        top: 1500px;
+    }
+    
+    .upperLines{
+        display: none;
+    }
+    
+    .downLines{
+        display: none;
+    }
+    
+    .straightLines{
+        position: absolute;
+        left: 29%;
+        top: -10%;
+    }
+    
+    .offerPercentage{
+        position: absolute;
+        color: #FFFFFF;
+        border: #6DAE49 solid 3px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        
+        left: 27%;
+        top: 27%;
+        border-radius: 16px;
+    }
+    
+    .offerProduct1{
+        overflow: hidden;
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        left: 43%;
+        top: -50px;
+        box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.5);
+        border-radius: 11px;
+        z-index: 2;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../assets/control-back.jpg");
+        background-size: 1500px;
+        background-position: 50%;
+    }
+    
+    .offerProductTitle1{
+        color: white;
+        position: absolute;
+        
+        left: 43%;
+        top: 53%;
+    }
+    
+    .offerBtn1{
+        background-color:rgba(0, 0, 0, 0);
+        position: absolute;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        border: #6DAE49 solid 3px;
+        border-radius: 16px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 24px;
+        padding-right: 24px;
+        left: 70%;
+        top: 56%;
+    
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .offerBtn1:hover{
+        background-color: #6DAE49;
+    }
+}

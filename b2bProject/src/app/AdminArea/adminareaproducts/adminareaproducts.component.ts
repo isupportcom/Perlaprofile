@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import axios from "axios"
 export interface product {
   [index: number]: {
-    mtrl:string,
+    mtrl:string|any,
     name:string,
     name1:string,
     code:string

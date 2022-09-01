@@ -63,6 +63,8 @@ export class PopUpLoginComponent implements OnInit {
 
       }
       this.spinnerVis = true;
+      console.log(this.f.username.value)
+      console.log(this.f.password.value)
       axios.post("https://perlarest.vinoitalia.gr/php-auth-api/login.php/",{
         name:this.f.username.value,
         password:this.f.password.value
@@ -71,12 +73,26 @@ export class PopUpLoginComponent implements OnInit {
           console.log(this.api)
           axios.get(this.api)
             .then(resData=>{
-              this.answer = resData.data;
-              console.log(this.answer)
-              this.spinnerVis = false;
-              setTimeout(()=>{
-                window.location.reload()
-              },1000);
+              if(this.id == 4){
+                axios.post("https://perlarest.vinoitalia.gr/php-auth-api/relatedProducts.php",{
+                  method:"RELATEDMTRL"
+                }).then(resData=>{
+                  this.answer = resData.data.message;
+                  console.log(this.answer)
+                  this.spinnerVis = false;
+                  setTimeout(()=>{
+                    window.location.reload()
+                  },1000);
+                })
+              }else{
+                this.answer = resData.data;
+                console.log(this.answer)
+                this.spinnerVis = false;
+                setTimeout(()=>{
+                  window.location.reload()
+                },1000);
+              }
+
             })
         }else{
           this.answer = "Invalid Cridentials";

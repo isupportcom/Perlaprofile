@@ -49,11 +49,10 @@ export class ProductListComponent implements OnInit , OnDestroy{
     axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php?id=2&method=allProducts").then((resData:any) => {
       // console.log(resData.data)
       console.log(resData.data)
-      for (let i = 0; i < 250; i++) {
+      for (let i = 0; i < resData.data.length; i++) {
 
 
         this.products[i] = {
-
           mtrl: resData.data[i].mtrl,
           name: resData.data[i].name,
           name1: resData.data[i].name1,
@@ -67,7 +66,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
           img:resData.data[i].image
         }
         this.productsService.setAll(this.products[i])
-        console.log(this.products[i].mtrl);
+        // console.log(this.products[i].mtrl);
       }
       // console.log(this.product);
 

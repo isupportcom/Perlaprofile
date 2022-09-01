@@ -25,7 +25,9 @@ export interface AuthResponseData{
   zip: string;
   registered?: boolean;
   isAdmin:number;
+
   trdr:number
+
 }
 
 @Injectable({
@@ -68,7 +70,11 @@ export class AuthService {
         returnSecureToken: true
       }
     ).pipe(catchError(this.handleError), tap(resData => {
-      if(resData.isAdmin == 0){
+
+
+
+      if(resData.isAdmin ==0){
+
         localStorage.setItem("username", resData.name);
         this.setAdmin(false);
         console.log(resData.trdr)
@@ -78,7 +84,9 @@ export class AuthService {
         this.setAdmin(true);
 
       }
+
       this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.name,resData.phone1,resData.phone2,resData.zip,resData.trdr);
+
 
       })
     );
