@@ -36,7 +36,7 @@
         <p class="categoryDesc2">Συστήματα Κουφωμάτων Αλουμινίου και PVC για ένα σύγχρονο σπίτι.</p>
     </div>
 </div>
-<img src="../../assets/pexels-expect-best-323772.jpg"  class="heroImg" alt="">
+<img [src]="source"  class="heroImg" alt="">
 
 <div class="offersTitle">
     <h1>Προσφορές</h1>
@@ -46,6 +46,7 @@
 <img src="../../assets/upper lines.svg" class="upperLines" alt="">
 <img src="../../assets/down lines.svg" class="downLines" alt="">
 <div class="offer1">
+    <div class="percentageAlt1"><p>20%</p></div>
     <img src="../../assets/straight lines.svg" class="straightLines" alt="">
     <div class="offerPercentage">
         <h1>20%</h1>
@@ -61,11 +62,13 @@
 </div>
 
 <div class="offer2">
+    <div class="percentageAlt1"><p>20%</p></div>
     <img src="../../assets/straight lines.svg" class="straightLines2" alt="">
     <div class="offerPercentage2">
         <h1>20%</h1>
         <h1>OFF</h1>
     </div>
+    
     <div class="offerProduct2"></div>
     <div class="offerProductTitle2">
         <img src="../../assets/Line 1.svg" alt="" srcset="">
@@ -74,20 +77,6 @@
     </div>
     <button class="offerBtn2">See Offer</button>
 </div>
-<div class="footer">
-    <img src="../../assets/footerLines.svg" class="footerLines" alt="" srcset="">
-    <div class="company">
-        <h1>Η Εταιρία</h1>
-    </div>
-    <div class="contact">
-        <h1>Επικοινωνία</h1>
-    </div>
-    <div class="seeAlso">
-        <h1>Δείτε Ακόμη</h1>
-        <div class="socialMedia">
-            <h1>Ακολουθήστε μας</h1>
-        </div>
-    </div>
+<app-footer></app-footer>
 
 
-</div>
