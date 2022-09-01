@@ -4,6 +4,7 @@ import { map, take } from 'rxjs/operators';
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
 import { AuthService } from '../services/auth.service';
 import {CartServiceService} from "./cart-service.service";
+import axios from "axios";
 
 
 @Component({
@@ -22,7 +23,7 @@ export class CartComponent implements OnInit, OnDestroy {
   goToCheckout?: boolean;
   flag?: boolean = this.cartService.flag;
 
- 
+
 
   @Input('quantityInput') quantityInput?: ElementRef;
 
@@ -101,8 +102,14 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   handleCheckout(){
-    this.router.navigate(['checkout']);
-    
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
+      method:"STOCKUPDATE"
+    }).then(resData=>{
+      console.log(resData.data);
+      this.router.navigate(['checkout']);
+    })
+
+
   }
 
   handleMouseOver(){
@@ -116,7 +123,7 @@ export class CartComponent implements OnInit, OnDestroy {
   handleClick(){
     let currentCategory = JSON.parse(localStorage.getItem('currentCategory') || '{}')
     console.log(currentCategory);
-    
+
     this.router.navigate(['products',currentCategory.id,currentCategory.name]);
   }
 

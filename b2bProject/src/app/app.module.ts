@@ -40,7 +40,11 @@ import { AllimagesComponent } from './AdminArea/components/allimages/allimages.c
 import { HomepageComponent } from './homepage/homepage.component';
 import { AddImagePopupComponent } from './AdminArea/components/add-image-popup/add-image-popup.component';
 import {AdminGuard} from "./services/admin.guard";
+
 import { TrackScrollDirective } from './services/track-scroll.directive';
+
+import { FooterComponent } from './footer/footer.component';
+
 
 
 
@@ -153,9 +157,10 @@ const routes:Routes = [
 
     HomepageComponent,
       AddImagePopupComponent,
+
       TrackScrollDirective,
 
-
+      FooterComponent,
 
   ],
   imports: [

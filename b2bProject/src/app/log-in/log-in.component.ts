@@ -74,7 +74,13 @@ export class LogInComponent implements OnInit, OnDestroy {
       authObs.subscribe(resData =>{
         if(resData.success == 1){
           console.log(resData);
-          this.router.navigate(['home']);
+          axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
+            method:"STOCKUPDATE"
+          }).then(resData=>{
+            console.log(resData.data)
+            this.router.navigate(['home']);
+          })
+
         }
 
       })

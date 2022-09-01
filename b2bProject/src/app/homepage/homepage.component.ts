@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '../porducts/products.service';
 
@@ -14,7 +14,36 @@ export class HomepageComponent implements OnInit {
   showDescription3: boolean = false;
   showDescription4: boolean = false;
 
+  source: string = '../../assets/pexels-expect-best-323772.jpg';
+  
+
   constructor(private productsService: ProductsService,private router: Router) { }
+
+  innerWidth:any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.innerWidth = window.innerWidth
+    console.log(this.innerWidth);
+
+    
+    if(this.innerWidth <= 770){
+      this.source = '../../assets/hero 770px width.png';
+    }
+    else if(this.innerWidth <= 985){
+      this.source = '../../assets/hero 985px width.png';
+    }
+    else if(this.innerWidth <= 1200){
+      this.source = '../../assets/hero 1200px width.png';
+    }
+    else if(this.innerWidth <= 9999){
+      this.source = '../../assets/pexels-expect-best-323772.jpg';
+      
+    }
+    else{
+      this.source = '../../assets/hero 770px width.png';
+    }
+    
+  }
 
   ngOnInit(): void {
     this.productsService.getMainCategories().subscribe(resData => {
