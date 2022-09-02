@@ -50,6 +50,7 @@ import { FooterComponent } from './footer/footer.component';
 
 
 
+
 const routes:Routes = [
 
   {
@@ -161,6 +162,7 @@ const routes:Routes = [
       TrackScrollDirective,
 
       FooterComponent,
+
 
   ],
   imports: [

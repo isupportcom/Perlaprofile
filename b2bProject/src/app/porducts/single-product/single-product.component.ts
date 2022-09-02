@@ -14,7 +14,7 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
   @Input() index:any;
-
+  productsToCart :product |any =[];
   constructor(
       private renderer: Renderer2,
       private router: Router,
@@ -73,6 +73,7 @@ export class SingleProductComponent implements OnInit {
   handleAddToCart(){
     this.productsService.setSingleProduct(this.index);
     this.index.show = true;
+
     this.cartService.addToCart(this.index);
     localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
     this.cartService.sendProductAdded(true);

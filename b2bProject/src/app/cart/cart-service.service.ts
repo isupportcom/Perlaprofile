@@ -50,10 +50,10 @@ export class CartServiceService {
 
   addToCart(product:product|any){
 
-      this.items = JSON.parse(localStorage.getItem("products") || '{}')
-      let productAdded = true;
-      localStorage.setItem('productAdded', 'true');
-      this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
+    this.items = JSON.parse(localStorage.getItem("products") || '{}')
+    let productAdded = true;
+    localStorage.setItem('productAdded', 'true');
+    this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
     let flag = false
     let index = 0;
     for(let i = 0 ; i <this.items.length;i++){
@@ -62,34 +62,34 @@ export class CartServiceService {
         index = i ;
       }
     }
-      if(flag){
-        console.log(this.items[index].qty);
-        console.log(this.items[index].stock);
-        
-        
-        if(this.items[index].qty < this.items[index].stock){
-          this.items[index].qty++;
-          this.sendProductCount(this.items.length);
-        }
-        else{
-          return;
-        }
-        
-      }else{
-        this.items.push(product);
+    if(flag){
+      console.log(this.items[index].qty);
+      console.log(this.items[index].stock);
+
+
+      if(this.items[index].qty < this.items[index].stock){
+        this.items[index].qty++;
         this.sendProductCount(this.items.length);
       }
-    
-      
+      else{
+        return;
+      }
+
+    }else{
+      this.items.push(product);
+      this.sendProductCount(this.items.length);
     }
-  
-   
+
+
+  }
 
 
 
 
 
-  
+
+
+
   getItems(){
     return this.items
   }
