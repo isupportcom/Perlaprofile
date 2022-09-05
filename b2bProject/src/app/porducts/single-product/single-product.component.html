@@ -1,26 +1,31 @@
 
 
-<div [ngClass]="index.stock == 0? 'noDisplay' : 'yesDisplay'" id="productCard" (mouseover)="handleHover()" (mouseleave)="handleMouseLeave()"  #productCard >
-    <div id="productImg" #productImg>
-      <img [src]="index.img" alt="" width="100%" height="100%" />
+<div class="productCard">
+    <div class="row" >
+      <img [src]="index.img" class="col-12 productImg" alt="mouni"  />
     </div>
-    <div id="productTitle" (click)="handleClick()" #productTitle><p style="height: 120px;">{{ index.name }}</p></div>
+    <div class="row productTitle" (click)="handleClick()" >
+      <p class="col-12">{{ index.name }}</p>
+    </div>
     <!-- <div id="productDescription" #productDescription>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
     </div> -->
-    <div id="productPrice" #productPrice>
-      <p>Price: {{ index.wholesale }}&#x20AC;</p>
+    <hr class="lines">
+    <div class="row stock">
+      <p>Stock: {{ index.stock }}</p>    
     </div>
-    <div id="productPrice" #productPrice>
-      <p>Stock: {{ index.stock }}</p>
+    <hr class="lines">
+
+    <div class="row price" >
+      <p>{{ index.wholesale }}&#x20AC;</p>
     </div>
-    <div id="addToCart" (mouseover)="handleBtnHover()" (mouseleave)="handleBtnMouseLeave()"  #addToCart>
 
-      <input type="number" class="form-control" style="width: 20%; display: inline-block;" [disabled]="index.stock == 0"  [value]="index.qty < index.stock" [(ngModel)]="index.qty" min="1" [max]="index.stock">
-
-      <button (click)="handleAddToCart()" id="addToCartBtn" #addToCartBtn [disabled]="index.stock == 0">Add to cart</button>
-
+     
+      <div class="row" style="padding-left: 24px;padding-right: 24px;">
+        <button class="myBtn" (click)="handleAddToCart()" [disabled]="index.stock == 0">Προσθήκη</button>
+      </div>
+      
     </div>
-  </div>
+  

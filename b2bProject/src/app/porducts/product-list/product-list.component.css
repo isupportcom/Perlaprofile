@@ -4,10 +4,137 @@
     margin-bottom: 5%;
 }
 
+.my-pagination::ng-deep .ngx-pagination{
+    font-size: 14px;
+    padding-left: 0%;
+    
+}
+
+.goLeft::ng-deep .ngx-pagination{
+    text-align: start;
+}
+
+.topPagination2::ng-deep .ngx-pagination{
+    display: none;
+}
+
+.goRight{
+    margin-left: 15%;
+    text-align: end;
+}
+
+.noDisplay{
+    display: none;
+}
+
+.goCenter{
+    text-align: center;
+}
 
 
+.wrapper {
+    position: relative;
+    display: flex;
+    min-width: 100px;
+    height:100%;
+  }
+  .search-icon {
+    position: absolute;
+    top: 8px;
+    left: 88%;
+    width: 14px;
+  }
+
+  .search {
+    border: 2px solid #61656F;
+    border-radius: 8px;
+    width: 100%;
+    padding: 2px 23px 2px 20px;
+    outline: 0;
+    background-color: white;
+  }
+
+  .search:hover, .search:focus {
+    border: 2px solid #6DAE49;
+    background-color: white;
+  }
 
 .category:hover{
     font-size: 17px;
     transition: all 0.5s ease;
 }
+
+
+.dropdown-menu{
+    left: 5%;
+    width: 90%;
+}
+
+.btn-secondary:focus{
+    background-color: #5d963e;
+    border-color: #5d963e;
+    box-shadow: none;
+}
+
+.btn-secondary{
+    background-color: #6DAE49;
+    border-color: #6DAE49;
+}
+
+
+label{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+input[type='checkbox']{
+    position: absolute;
+    transform: scale(0);
+}
+
+input[type='checkbox']:checked ~ .checkbox{
+    transform: rotate(45deg);
+    width: 6px;
+    margin-left: 6px;
+    border-color: #6DAE49;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-radius: 0;
+}
+
+.checkbox{
+    display: block;
+    width: inherit;
+    height: inherit;
+    border: 2px solid #61656F;
+    border-radius: 6px;
+    transition: all 0.375s;
+}
+
+
+.clearFilters{
+    margin-bottom: 5%;
+}
+
+.smallerFont{
+    font-size: 16px;
+}
+
+@media screen and (max-width: 1000px){
+
+
+    .smallerFont{
+        font-size: smaller;
+    }
+
+    .row>*{
+        padding: 0%;
+    }
+
+    .product{
+        margin-left: 12%;
+    }
+
+}
+
