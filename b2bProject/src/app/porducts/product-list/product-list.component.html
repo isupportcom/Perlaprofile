@@ -1,24 +1,79 @@
-<div class="row" style="margin-top: 150px;">
-    <div class="col-3">
-        <button *ngIf="filterOn" class="btn btn-danger" (click)="handleClearFilters()">Clear Filters</button>
-        <div style="margin-bottom: 25%;">
-            <div  style="background-color: #3E4148;text-align: center;padding-top: 8px;padding-bottom: 8px;margin-bottom: 6px;">
-                <img src="../../../assets/control-logo-white-with-green.svg">
+<div *ngIf="!fits" class="row" style="height: 95px;">
+    <div class="col-lg-3 col-md-4 col-sm-8 col-8" style="height: fit-content;margin-top: 4px;">
+        <div class="wrapper">
+            <input class="search" (click)="handleSearch()" placeholder="Search" type="text" >
+            <img class="search-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+        </div>  
+    </div>
+    <div class="col-lg-3 col-md-4" [ngClass]="innerWidth <= 992 ? 'noDisplay' : 'goCenter'">
+        <div class="dropdown" >
+            <button class="btn btn-secondary dropdown-toggle" #menu1 (click)="handleProductsPerPage()" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Προϊόντα ανά σελίδα
+            </button>
+            <ul [ngClass]="showProductsPerPage? 'dropdown-menu show' : 'dropdown-menu'" aria-labelledby="dropdownMenuButton1" >
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-4 col-4" style="height: fit-content;text-align: center;">
+        <div class="dropdown" >
+            <button class="btn btn-secondary dropdown-toggle" #menu2 (click)="handleSortOptions()" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Ταξινόμηση
+            </button>
+            <ul [ngClass]="showSortOptions? 'dropdown-menu show' : 'dropdown-menu'" aria-labelledby="dropdownMenuButton1" >
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+    </div>
+    <div class="col-lg-4 col-md-5">
+        <pagination-controls *ngIf="!noProducts" [ngClass]="innerWidth >= 768 ? 'text-center my-pagination goLeft' :'topPagination2'" (pageChange)="handlePageChange($event)" #paginate></pagination-controls>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-5 col-4" > 
+        <div>
+            <div  style="background-color: #3E4148;text-align: center;padding-top: 8px;padding-bottom: 8px;">
+                <img [src]="logoSource">
             </div>
-            <div style="text-align: center;">
+            <div style="padding-top: 5%;text-align: center;border-bottom: 2px solid #3E4148;">
                 <p><b>Σύνολο προϊόντων: {{ shownProducts.length}}</b></p>
+            
             </div>
-            <hr>
+            
             <div>
-                <ul style="list-style: none;">
-                    <li *ngFor="let subcategory of getSubcategories()" style="margin-bottom: 3%;">
-                        <label for="filterList"></label>
-                        <input class="checkbox" type="checkbox" id="filterList" name="category" style="margin-right: 5%;" [value]="subcategory.sub_id" (click)="handleCheckboxes($event)">{{ subcategory.sub_name }}
+                <ul style="margin-top: -17px;padding-top: 15%;list-style: none;">
+                    <li *ngFor="let subcategory of getSubcategories()" style="margin-bottom: 8%;">
+                        <!-- <label class="container" for="filterList">
+                            <input type="radio" id="filterList" name="category" style="margin-right: 5%;" [value]="subcategory.sub_id" (click)="handleCheckboxes($event)">{{ subcategory.sub_name }}
+                            <span class="checkmark"></span>
+                        
+                        </label> -->
+                        <div class="row">
+                            <div class="col-2 col-md-2 col-sm-2">
+                                <label>
+                                    <input type="checkbox" id="filterList" name="category" style="margin-right: 5%;" [value]="subcategory.sub_id" (click)="handleCheckboxes($event)">
+                                    <span class="checkbox"></span>
+                                </label> 
+                            </div>
+                            <div class="col-10 col-md-10 col-sm-3"  style="padding-left: 0;">
+                                <p  class="smallerFont" style="margin-bottom: 0;">{{ subcategory.sub_name }}</p>
+                            </div>
+                        
+                        </div>
+                        
                         <!-- <a (click)="handleFilter(mainCategory,subcategory)" class="category" style="cursor: pointer;text-decoration: none;color: black;">{{ subcategory.sub_name }}</a> -->
                     </li>
                 </ul>
+                <hr>
+                <button *ngIf="filterOn" class="btn btn-danger clearFilters" (click)="handleClearFilters()">Clear Filters</button>
             </div>
-            <hr>
+           
             
         </div>
     </div>
@@ -26,37 +81,65 @@
     
     
 
-    <div class="col-9">
-        <div class="row" style="height: 95px;">
-            <div class="col-3" style="height: fit-content;">
-                <input type="text" style="width:100%">
+    <div class="col-lg-9 col-md-9 col-sm-7 col-8">
+
+
+        <div *ngIf="fits" class="row" style="height: 95px;">
+            <div class="col-3 col-md-3 col-sm-3" style="height: fit-content;margin-top: 4px;">
+                <div class="wrapper">
+                    <input class="search" (click)="handleSearch()" placeholder="Search" type="text" >
+                    <img class="search-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+                </div>  
             </div>
-            <div class="col-3" style="height: fit-content;text-align: center;">
-                <input type="text">
+            <div class="col-3 col-md-3 col-sm-3" style="text-align: center;">
+                <div class="dropdown" >
+                    <button class="btn btn-secondary dropdown-toggle" #menu1 (click)="handleProductsPerPage()" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Προϊόντα ανά σελίδα
+                    </button>
+                    <ul [ngClass]="showProductsPerPage? 'dropdown-menu show' : 'dropdown-menu'" aria-labelledby="dropdownMenuButton1" >
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
             </div>
-            <div class="col-2" style="height: fit-content;">
-                <input type="text">
+            <div class="col-2 col-md-2" style="height: fit-content;text-align: center;">
+                <div class="dropdown" >
+                    <button class="btn btn-secondary dropdown-toggle" #menu2 (click)="handleSortOptions()" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ταξινόμηση
+                    </button>
+                    <ul [ngClass]="showSortOptions? 'dropdown-menu show' : 'dropdown-menu'" aria-labelledby="dropdownMenuButton1" >
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
             </div>
-            <div class="col-4">
-                <pagination-controls *ngIf="!noProducts" class="text-center my-pagination" (pageChange)="page = $event" #paginate></pagination-controls>
+            <div class="col-4 col-md-4">
+                <pagination-controls *ngIf="!noProducts" class="text-center my-pagination goLeft" (pageChange)="handlePageChange($event)" #paginate></pagination-controls>
             </div>
         </div>
         <div class="row">
                 <div>
-                    <h1 *ngIf="noProducts" style="margin-top: 29%;margin-left: 55%;">There no products in this category!</h1>
-                    <div>
+                    <h1 *ngIf="noProducts && !waiting" style="margin-left: 10%;">There no products in this category!</h1>
+                    <div *ngIf="waiting" style="margin-left: 50%;">
+                        <app-spinner></app-spinner>
+                    </div>
+                    <div *ngIf="!waiting" class="row">
                         <app-single-product
+                        class="col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-12 product" 
                         *ngFor="let sProd of shownProducts |
                         paginate: {
-                            itemsPerPage: 9,
+                            itemsPerPage: itemsPP,
                             currentPage: page ,
                             totalItems: shownProducts.length
                         };let index;"
                         [index]="sProd"></app-single-product>
                     </div>
                 </div>
-                <pagination-controls *ngIf="!noProducts" style="margin-top: 40px;" class="text-center my-pagination" (pageChange)="page = $event" #paginate></pagination-controls>
+                <pagination-controls *ngIf="!noProducts && !waiting" style="margin-top: 40px;" class="text-center my-pagination" (pageChange)="handlePageChange($event)" #paginate></pagination-controls>
             </div>
+            <!-- page = $event -->
         </div>
     </div>
 

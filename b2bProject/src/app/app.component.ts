@@ -49,17 +49,15 @@ export class AppComponent implements OnDestroy,OnInit{
     })
 
     this.cartService.productAdded.subscribe(res => {
-      this.waiting = true;
+      
       this.products = this.productService.getAll();
       this.singleProduct = this.productService.getSingelProduct()
 
 
 
-      setTimeout(()=>{
+      
         this.productAdded = true;
-        this.waiting = false;
-      },1000)
-
+      
     })
 
     // this.router.navigate(['log-in'])

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.component';
 import {ProductsService} from "../products.service";
 import axios from "axios";
@@ -20,7 +20,25 @@ interface mainCat{
 })
 export class ProductListComponent implements OnInit , OnDestroy{
 
-  constructor(private router: Router,private productsService: ProductsService,private route: ActivatedRoute) { }
+  @ViewChild('menu1') menu1!: ElementRef;
+  @ViewChild('menu2') menu2!: ElementRef;
+
+  constructor(private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) { 
+    this.renderer.listen('window', 'click',(e:Event)=>{
+      console.log(e.target);
+      console.log(this.menu2);
+      
+      if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement){
+        console.log("Hello");
+        
+        this.showProductsPerPage = false;
+        this.showSortOptions = false;
+      }
+
+      
+    })
+
+  }
 
 
   products :product |any =[];
@@ -41,9 +59,45 @@ export class ProductListComponent implements OnInit , OnDestroy{
   listArray: any = [];
   checked?: boolean;
 
+  showProductsPerPage:boolean = false;
+  showSortOptions: boolean = false;
+  logoSource?: string;
+  waiting: boolean = false;
+  fits: boolean = true;
+  itemsPP: number = 9;
 
+  innerWidth!: number;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.innerWidth = window.innerWidth
+    if(this.innerWidth <= 992){
+      this.itemsPP = 4;
+    }
+    else{
+      this.itemsPP = 9;
+    }
+
+    if(this.innerWidth <= 1200){
+      this.fits = false;
+    }else{
+      this.fits = true;
+    }
+  }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth <= 992){
+      this.itemsPP = 4;
+    }
+    else{
+      this.itemsPP = 9;
+    }
+
+    if(this.innerWidth <= 1200){
+      this.fits = false;
+    }else{
+      this.fits = true;
+    }
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php?id=2&method=allProducts").then((resData:any) => {
@@ -106,8 +160,17 @@ export class ProductListComponent implements OnInit , OnDestroy{
     // this.mainCategories = this.productsService.getMainCategoriesArray();
     // console.log(this.mainCategories);
 
-
-
+    if(this.mainCategory.id === 114){
+      this.logoSource = '../../../assets/control-logo-white-with-green.svg';
+    }
+    else if(this.mainCategory.id === 115){
+      this.logoSource = '../../../assets/motion-logo-white-with-green.svg';
+    }
+    else if(this.mainCategory.id === 116){
+      this.logoSource = '../../../assets/mosqui-logo-white-with-green.svg';
+    }    else if(this.mainCategory.id === 117){
+      this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
+    }
     // this.route.params.subscribe(params => {
     //   this.cat_id = +params['cat_id'];
     //   this.subcat_id = +params['subcat_id'];
@@ -145,10 +208,15 @@ export class ProductListComponent implements OnInit , OnDestroy{
   // console.log(this.product);
 
   handleCheckboxes(e: any){
-
+    
     if(e.target.checked){
       this.listArray.push(e.target.value);
-      this.updateProducts();
+      this.waiting = true;
+      setTimeout(() => {
+        this.updateProducts();  
+        this.waiting = false;
+      },100);
+      
     }
     else{
       // this.listArray = this.listArray.filter((e: any) => e !== this.value)
@@ -158,7 +226,11 @@ export class ProductListComponent implements OnInit , OnDestroy{
           this.listArray.splice(i,1);
         }
       }
-      this.updateProducts();
+      this.waiting = true;
+      setTimeout(() => {
+        this.updateProducts();  
+        this.waiting = false;
+      },100);
 
     }
     this.checked = true;
@@ -180,15 +252,24 @@ export class ProductListComponent implements OnInit , OnDestroy{
         for(let product of temp){
           let flag = false;
           if(product.category == this.mainCategory.id){
+            
+
+              
+              
+            
+            
             for(let el of this.shownProducts){
               if(product.mtrl == el.mtrl){
                 console.log("mpastardo");
-
                 flag = true;
               }
             }
+
             if(!flag){
-              this.shownProducts.push(product);
+              if(product.stock !== 0){
+                this.shownProducts.push(product);
+              }
+              
             }
           }
         }
@@ -265,6 +346,41 @@ export class ProductListComponent implements OnInit , OnDestroy{
     setTimeout(() => {
       window.location.reload();
     },50)
+  }
+
+  handleProductsPerPage(){
+    this.showSortOptions = false;
+    if(this.showProductsPerPage){
+      this.showProductsPerPage = false;
+    }
+    else{
+      this.showProductsPerPage = true;
+    }
+  }
+
+  handleSortOptions(){
+    this.showProductsPerPage = false;
+    if(this.showSortOptions){
+      this.showSortOptions = false;
+    }
+    else{
+      this.showSortOptions = true;
+    }
+  }
+
+  handleSearch(){
+    this.showProductsPerPage = false;
+    this.showSortOptions = false;
+  }
+
+  handlePageChange(event: any){
+    console.log("Hello");
+    
+    this.waiting = true;
+    setTimeout(() =>{
+      this.page = event;
+      this.waiting = false;
+    },200)
   }
 
   ngOnDestroy(): void {

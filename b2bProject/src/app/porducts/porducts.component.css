@@ -3,7 +3,13 @@
 }
 
 .heroImg{
-    width: 98.5%;
+    
     z-index: 0;
     margin-top: -6%;
 }
+
+.row{
+    --bs-gutter-x: 0rem;
+}
+
+
