@@ -22,8 +22,10 @@ export  class ProductsService {
  setSingleProduct(prod:product){
      this.singleProduct = prod;
      console.log(prod);
-     
+
  }
+
+
  setAll(item:product){
      this.products.push(item);
      localStorage.setItem("allproducts",JSON.stringify(this.products));
@@ -55,10 +57,10 @@ export  class ProductsService {
     for(let i=0;i<arr.length;i++){
         this.allCategories[i] = arr[i];
     }
-    
+
  }
 
- 
+
  setMainCategoriesArray(arr: any){
     for(let i=0;i<arr.length;i++){
         this.mainCategories[i] = arr[i];

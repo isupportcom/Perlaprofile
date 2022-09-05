@@ -14,6 +14,12 @@ export class CartServiceService {
   sendProductAdded(flag: boolean){
     this.productAdded.next(flag);
   }
+  searchResult = new Subject<product>();
+  searchCast  = this.searchResult.asObservable();
+
+  searchResults(products:any){
+    this.searchResult.next(products);
+  }
 
   productCount = new Subject<number>();
   castProductCount = this.productCount.asObservable();

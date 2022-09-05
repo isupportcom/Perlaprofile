@@ -3,6 +3,7 @@ import {ProductsService} from "../../../porducts/products.service";
 import {product} from "../../adminareaproducts/adminareaproducts.component";
 import axios from "axios";
 import {ModalService} from "../add-image-popup/modal-service.service";
+import {CartServiceService} from "../../../cart/cart-service.service";
 
 
 @Component({
@@ -18,15 +19,26 @@ export class InsertProductsComponent implements OnInit {
   flag: boolean = false;
   image:string =""
   answer:string = ""
+  searched:boolean=true;
   constructor(
     private productsService: ProductsService,
-    private modalService:ModalService
+    private modalService:ModalService,
+    private cartServiceService : CartServiceService
   ) {
   }
 
   ngOnInit() {
-    this.page = localStorage.getItem("pagination");
-    this.getProducts();
+    this.cartServiceService.searchResult.subscribe((res:any)=>{
+      console.log(res)
+      this.products = res
+      this.searched = false;
+    })
+    if(this.searched){
+      this.getProducts();
+      this.page = localStorage.getItem("pagination");
+    }
+
+
     this.modalService.isClicked.subscribe((res:any)=>{
       this.window = false;
     })

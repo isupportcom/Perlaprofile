@@ -44,6 +44,7 @@ import {AdminGuard} from "./services/admin.guard";
 import { TrackScrollDirective } from './services/track-scroll.directive';
 
 import { FooterComponent } from './footer/footer.component';
+import { SearchbarComponent } from './AdminArea/components/searchbar/searchbar.component';
 
 
 
@@ -145,7 +146,7 @@ const routes:Routes = [
     CheckoutPageComponent,
     ProductAddedToCartComponent,
 
-
+    MyOrdersComponent,
     InsertProductsComponent,
     PopUpLoginComponent,
     SpinnerComponent,
@@ -162,6 +163,7 @@ const routes:Routes = [
       TrackScrollDirective,
 
       FooterComponent,
+        SearchbarComponent,
 
 
   ],

@@ -14,11 +14,13 @@
   <hr>
 
   <h3>Current Products</h3>
+  <app-searchbar></app-searchbar>
+  <br>
   <table class="table table-dark">
     <thead>
     <tr>
 
-      <th scope="col">Mtrl</th>
+
       <th scope="col">Code</th>
       <th scope="col">Name</th>
       <th scope="col">Retail Price</th>
@@ -34,8 +36,8 @@
           currentPage: page ,
           totalItems: products.length
 };">
-      <th scope="row">{{ item.mtrl }}</th>
-      <td>{{ item.code }}</td>
+
+      <td >{{ item.code }}</td>
       <td>{{ item.name }}</td>
       <td>{{ item.retail }}</td>
       <td>{{ item.wholesale }}</td>
