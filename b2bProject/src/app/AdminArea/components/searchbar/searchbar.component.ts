@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from "axios";
+import {NgForm} from "@angular/forms";
 import {ProductsService} from "../../../porducts/products.service";
 import {CartServiceService} from "../../../cart/cart-service.service";
 

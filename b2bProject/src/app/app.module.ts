@@ -45,6 +45,7 @@ import { TrackScrollDirective } from './services/track-scroll.directive';
 
 import { FooterComponent } from './footer/footer.component';
 import { SearchbarComponent } from './AdminArea/components/searchbar/searchbar.component';
+import { OffersComponent } from './AdminArea/components/offers/offers.component';
 
 
 
@@ -164,6 +165,7 @@ const routes:Routes = [
 
       FooterComponent,
         SearchbarComponent,
+        OffersComponent,
 
 
   ],

@@ -3,6 +3,7 @@ import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.c
 import {ProductsService} from "../products.service";
 import axios from "axios";
 import { Category } from '../categories.model';
+import {NgForm} from "@angular/forms";
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,23 +20,24 @@ interface mainCat{
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit , OnDestroy{
-
+  search:string = "";
+  message:string ='';
   @ViewChild('menu1') menu1!: ElementRef;
   @ViewChild('menu2') menu2!: ElementRef;
 
-  constructor(private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) { 
+  constructor(private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) {
     this.renderer.listen('window', 'click',(e:Event)=>{
       console.log(e.target);
       console.log(this.menu2);
-      
+
       if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement){
         console.log("Hello");
-        
+
         this.showProductsPerPage = false;
         this.showSortOptions = false;
       }
 
-      
+
     })
 
   }
@@ -208,15 +210,15 @@ export class ProductListComponent implements OnInit , OnDestroy{
   // console.log(this.product);
 
   handleCheckboxes(e: any){
-    
+
     if(e.target.checked){
       this.listArray.push(e.target.value);
       this.waiting = true;
       setTimeout(() => {
-        this.updateProducts();  
+        this.updateProducts();
         this.waiting = false;
       },100);
-      
+
     }
     else{
       // this.listArray = this.listArray.filter((e: any) => e !== this.value)
@@ -228,7 +230,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
       }
       this.waiting = true;
       setTimeout(() => {
-        this.updateProducts();  
+        this.updateProducts();
         this.waiting = false;
       },100);
 
@@ -252,12 +254,12 @@ export class ProductListComponent implements OnInit , OnDestroy{
         for(let product of temp){
           let flag = false;
           if(product.category == this.mainCategory.id){
-            
 
-              
-              
-            
-            
+
+
+
+
+
             for(let el of this.shownProducts){
               if(product.mtrl == el.mtrl){
                 console.log("mpastardo");
@@ -269,7 +271,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
               if(product.stock !== 0){
                 this.shownProducts.push(product);
               }
-              
+
             }
           }
         }
@@ -375,14 +377,40 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   handlePageChange(event: any){
     console.log("Hello");
-    
+
     this.waiting = true;
     setTimeout(() =>{
       this.page = event;
       this.waiting = false;
     },200)
   }
+  findProducts(){
+    console.log("mpike gia res")
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/search.php",{
+      search:this.search,
+    }).then(resData=>{
+      this.waiting = true;
+      console.log(resData.data.products)
+      if(resData.data.products.length !=0){
+        setTimeout(()=>{
+          this.waiting = false;
+          this.shownProducts = resData.data.products
+          this.message = ""
+        },100)
 
+
+      }else{
+          setTimeout(()=>{
+
+            this.waiting =false
+            this.shownProducts=[];
+          },100)
+
+      }
+
+    })
+
+  }
   ngOnDestroy(): void {
     console.log("hello");
 
