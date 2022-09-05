@@ -25,7 +25,8 @@ body {
 
 
 .productCard {
-  border: 0.5px solid #C8C8C8;
+  background-color: rgb(240, 240, 240);
+  /* border: 0.5px solid #C8C8C8; */
   border-radius: 16px;
   margin-right: 15px;
   margin-top: 15px; 

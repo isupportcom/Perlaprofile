@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.component';
 import {ProductsService} from "../products.service";
 import axios from "axios";
@@ -22,6 +22,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   @ViewChild('menu1') menu1!: ElementRef;
   @ViewChild('menu2') menu2!: ElementRef;
+
 
   constructor(private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) { 
     this.renderer.listen('window', 'click',(e:Event)=>{
@@ -62,9 +63,11 @@ export class ProductListComponent implements OnInit , OnDestroy{
   showProductsPerPage:boolean = false;
   showSortOptions: boolean = false;
   logoSource?: string;
+  logoSource2?: string;
   waiting: boolean = false;
   fits: boolean = true;
   itemsPP: number = 9;
+  relatedProducts = [1,2,3,4];
 
   innerWidth!: number;
   @HostListener('window:resize', ['$event'])
@@ -82,9 +85,21 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }else{
       this.fits = true;
     }
+
+    if(this.innerWidth <1400){
+      this.relatedProducts = [1,2,3];
+    }
+    if(this.innerWidth < 992){
+      this.relatedProducts = [1,2];
+    }
+    if(this.innerWidth < 576){
+      this.relatedProducts = [1];
+    }
   }
 
   ngOnInit(): void {
+    
+
     this.innerWidth = window.innerWidth;
     if(this.innerWidth <= 992){
       this.itemsPP = 4;
@@ -97,6 +112,16 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.fits = false;
     }else{
       this.fits = true;
+    }
+
+    if(this.innerWidth <1400){
+      this.relatedProducts = [1,2,3];
+    }
+    if(this.innerWidth < 992){
+      this.relatedProducts = [1,2];
+    }
+    if(this.innerWidth < 576){
+      this.relatedProducts = [1];
     }
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
@@ -140,9 +165,10 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
       this.mainCategory.name = params['cat_name'];
 
+      this.productsService.setMainCategory(this.mainCategory);
 
       localStorage.setItem('currentCategory', JSON.stringify(this.mainCategory));
-
+      
     })
     console.log(this.mainCategory);
 
@@ -162,15 +188,22 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
     if(this.mainCategory.id === 114){
       this.logoSource = '../../../assets/control-logo-white-with-green.svg';
+      this.logoSource2 = '../../../assets/control-logo-dark3.svg';
     }
     else if(this.mainCategory.id === 115){
       this.logoSource = '../../../assets/motion-logo-white-with-green.svg';
+      this.logoSource2 = '../../../assets/motion-logo-dark2.svg';
     }
     else if(this.mainCategory.id === 116){
       this.logoSource = '../../../assets/mosqui-logo-white-with-green.svg';
-    }    else if(this.mainCategory.id === 117){
+      this.logoSource2 = '../../../assets/mosqui-logo-dark2.svg';
+    }    
+    else if(this.mainCategory.id === 117){
       this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
+      this.logoSource2 = '../../../assets/profile-logo-dark2.svg';
     }
+
+    
     // this.route.params.subscribe(params => {
     //   this.cat_id = +params['cat_id'];
     //   this.subcat_id = +params['subcat_id'];
@@ -206,6 +239,15 @@ export class ProductListComponent implements OnInit , OnDestroy{
   //   this.product = res;
 
   // console.log(this.product);
+
+  counter(index: number){
+    
+    for(let i=0;i<index;i++){
+      this.relatedProducts.push(this.shownProducts[i]);
+    }
+    
+    
+  }
 
   handleCheckboxes(e: any){
     
