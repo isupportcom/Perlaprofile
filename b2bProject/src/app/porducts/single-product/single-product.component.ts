@@ -71,12 +71,14 @@ export class SingleProductComponent implements OnInit {
 
 
   handleAddToCart(){
-    this.productsService.setSingleProduct(this.index);
+     this.productsService.setSingleProduct(this.index);
     this.index.show = true;
+    console.log(this.index);
 
-    this.cartService.addToCart(this.index);
-    localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-    this.cartService.sendProductAdded(true);
+
+     this.cartService.addToCart(this.index);
+    // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
+    // this.cartService.sendProductAdded(true);
 
   }
 }
