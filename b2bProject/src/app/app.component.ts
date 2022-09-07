@@ -174,7 +174,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
         this.productAdded = false;
-        // window.location.reload();
+         window.location.reload();
       }
     },500)
   }
