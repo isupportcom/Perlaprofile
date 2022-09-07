@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit{
 
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
-  productCount: number = <number>(<unknown>(localStorage.getItem('productCount')));
+  productCount: number|any;
   showProductCount: boolean = false;
   mainCategories : any = [];
 

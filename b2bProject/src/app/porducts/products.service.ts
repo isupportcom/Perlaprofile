@@ -16,6 +16,7 @@ export  class ProductsService {
   products: product [] = [];
   allCategories: any = [];
   mainCategories: any = [];
+  mainCategory: any;
 
   constructor(private http: HttpClient,) {}
 
@@ -76,6 +77,12 @@ export  class ProductsService {
     return this.allCategories;
  }
 
+ setMainCategory(mainCategory: any){
+    this.mainCategory = mainCategory
+ }
 
+ getMainCategory(){
+    return this.mainCategory; 
+ }
 
 }

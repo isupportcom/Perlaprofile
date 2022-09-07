@@ -41,7 +41,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AddImagePopupComponent } from './AdminArea/components/add-image-popup/add-image-popup.component';
 import {AdminGuard} from "./services/admin.guard";
 
-import { TrackScrollDirective } from './services/track-scroll.directive';
+
 
 import { FooterComponent } from './footer/footer.component';
 import { SearchbarComponent } from './AdminArea/components/searchbar/searchbar.component';
@@ -86,7 +86,7 @@ const routes:Routes = [
   },
   {
     path:'dashboard',
-    canActivate: [AdminGuard],
+
     component:AdminAreaComponent,
     children:[
 
@@ -132,7 +132,6 @@ const routes:Routes = [
   declarations: [
     AppComponent,
     LogInComponent,
-
     NavbarComponent,
     AdminAreaComponent,
     AdminNavComponent,
@@ -146,26 +145,20 @@ const routes:Routes = [
     CartItemComponent,
     CheckoutPageComponent,
     ProductAddedToCartComponent,
-
     MyOrdersComponent,
     InsertProductsComponent,
     PopUpLoginComponent,
     SpinnerComponent,
     InsertCategoriesComponent,
     UpdateCategoriesComponent,
-
     UploadImageComponent,
-
     AllimagesComponent,
-
     HomepageComponent,
-      AddImagePopupComponent,
-
-      TrackScrollDirective,
-
-      FooterComponent,
-        SearchbarComponent,
-        OffersComponent,
+    AddImagePopupComponent,
+    FooterComponent,
+    SearchbarComponent,
+    OffersComponent,
+    ProfileComponent
 
 
   ],

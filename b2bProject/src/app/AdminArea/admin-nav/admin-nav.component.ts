@@ -17,7 +17,11 @@ export class AdminNavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem("page")) {
+    localStorage.setItem("firsTime","1");
+    if(localStorage.getItem("firstTime")=="1"){
+      this.router.navigate(['home']);
+    }
+    if(localStorage.getItem("page") != "") {
       this.component = localStorage.getItem("page");
     }
   }
@@ -41,7 +45,7 @@ export class AdminNavComponent implements OnInit {
     setTimeout(() => {
       window.location.reload();
     },50)
-    
+
   }
 
   navigateTo(destination:string){

@@ -147,13 +147,77 @@
                         [index]="sProd"></app-single-product>
                     </div>
                 </div>
-                <pagination-controls *ngIf="!noProducts && !waiting" style="margin-top: 40px;" class="text-center my-pagination" (pageChange)="handlePageChange($event)" #paginate></pagination-controls>
+                <pagination-controls *ngIf="!noProducts && !waiting" style="margin-top: 40px;margin-bottom: 24px;" class="text-center my-pagination" (pageChange)="handlePageChange($event)" #paginate></pagination-controls>
             </div>
             <!-- page = $event -->
         </div>
     </div>
 
 
+    <!-- <div class="row">
+        <app-single-product
+        class="col-3"
+        *ngFor="let sProd of shownProducts;let index"
+        [index]="sProd"
+        ></app-single-product>
+    </div> -->
+    <hr>
+
+    <div style="padding-top: 80px;padding-bottom: 80px;">
+        <div class="row">
+            <img [src]="logoSource2" height="120px">
+        </div>
+        
+        <div class="row title">
+            <h1>Προσφορές</h1>
+            <img src="../../assets/Line 1.svg" style="height: 3px;" alt="">
+        </div>
+    
+        <div class="container" >
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <app-single-product
+                        class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12"
+                        *ngFor="let sProd of relatedProducts;let index"
+                        [index]="sProd"
+                        ></app-single-product> 
+                    </div>
+    
+                </div>
+                <div class="carousel-item">
+                    
+                    <div class="row">
+                        <app-single-product
+                        class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12"
+                        *ngFor="let sProd of relatedProducts;let index"
+                        [index]="sProd"
+                        ></app-single-product> 
+                    </div> 
+                    </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <app-single-product
+                        class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-12"
+                        *ngFor="let sProd of relatedProducts;let index"
+                        [index]="sProd"
+                        ></app-single-product> 
+                    </div>
+                </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
 
 
 
