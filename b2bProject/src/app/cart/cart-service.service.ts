@@ -76,6 +76,8 @@ export class CartServiceService {
         }
         
       }else{
+        console.log("Eimai gamatos2");
+        
         this.items.push(product);
         this.sendProductCount(this.items.length);
       }
