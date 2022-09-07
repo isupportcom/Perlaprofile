@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container">
   <div class="left-side">
     <div>
@@ -10,7 +11,7 @@
     </div>
     <hr class="first-hr">
     <div class="product" *ngFor="let item of products;let i=index;">
-      <div *ngIf="item.show">
+
         <img [src]="item.img" alt="" style="width: 141px; height: 141px;">
         <div class="description">
           <div class="descLeft">
@@ -18,7 +19,7 @@
             <p>{{ item.name1 }}</p>
             <p>Quantity: {{ item.qty }}</p>
             <img src="../../../assets/Vector.png" alt="">
-            <button class="btn btn-danger" (click)="removeOne(item, i)">X</button>
+            <button class="btn btn-danger" (click)="removeOne(item.mtrl,i)">X</button>
           </div>
           <div class="descRight">
 
@@ -27,10 +28,10 @@
             <h3>${{ item.wholesale }}</h3>
           </div>
         </div>
-      </div>
+
     </div>
 
-    <button class="btn btn-primary" (click)="clearAll()">Clear All</button>
+    <button class="btn btn-primary" (click)="clearAll('10')">Clear All</button>
     <hr class="second-hr">
     <div class="continueShopping" (mouseover)="handleMouseOver()" (mouseleave)="handleMouseLeave()" (click)="handleClick()">
       <div>

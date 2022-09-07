@@ -62,6 +62,8 @@ export class AuthService {
   }
 
   login(username: string, password: string){
+    console.log(username);
+    console.log(password)
     return this.http.post<AuthResponseData>(
       'https://perlarest.vinoitalia.gr/php-auth-api/login.php',
       {
@@ -71,7 +73,7 @@ export class AuthService {
       }
     ).pipe(catchError(this.handleError), tap(resData => {
 
-
+      console.log(resData)
 
       if(resData.isAdmin ==0){
 
@@ -99,6 +101,7 @@ export class AuthService {
     this.router.navigate(['log-in']);
 
     localStorage.removeItem('userData');
+    localStorage.removeItem('username');
 
     if(this.tokenExpirationTimer){
       clearTimeout(this.tokenExpirationTimer);

@@ -59,7 +59,12 @@
 
 
     </div>
-</div>
+    <div style="margin-top: 5%;">
+      <button class="btn btn-danger" (click)="handleClose()" style="margin-right: 2%;">Continue Shopping</button>
+      <button class="btn btn-primary" (click)="handleGoToCart()">Go To Cart</button>
+    </div>
 
-<app-navbar *ngIf="loggedIn"></app-navbar>
+  </div>
+
+
 <router-outlet ></router-outlet>

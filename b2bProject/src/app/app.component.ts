@@ -1,16 +1,28 @@
-import { Component, ElementRef, EventEmitter, HostListener, OnChanges, OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { product } from './AdminArea/adminareaproducts/adminareaproducts.component';
 import { CartServiceService } from './cart/cart-service.service';
 import { ProductsService } from './porducts/products.service';
-import {AuthService} from "./services/auth.service";
+import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnDestroy,OnInit{
+export class AppComponent implements OnDestroy, OnInit {
   title = 'b2bProject';
   age = '10';
   loggedIn: boolean = true;
@@ -26,31 +38,33 @@ export class AppComponent implements OnDestroy,OnInit{
   itemsToCart: product|any = [];
 
   constructor(
-    private router:Router,
+    private router: Router,
     private authService: AuthService,
     private route: ActivatedRoute,
     private cartService: CartServiceService,
     private renderer: Renderer2,
     private productService: ProductsService
-  ){
-
-  }
+  ) {}
 
 
-  ngOnInit(){
+  ngOnInit() {
     this.authService.autoLogin();
-    if(localStorage.getItem("username") == "Admin"){this.authService.setAdmin(true)}
-
-
-
+    if (localStorage.getItem('username') == 'Admin') {
+      this.authService.setAdmin(true);
+    }
 
     this.route.data.subscribe((data: Data) => {
-      // console.log(data);
-    })
-    this.authService.loggedIn.subscribe(res => {
-      this.loggedIn = res;
+      console.log(data);
+    });
+    this.authService.loggedIn.subscribe((res) => {
+      // if(localStorage.getItem("username") == "Admin"){this.authService.setAdmin(true)}
 
-    })
+      this.loggedIn = res;
+      console.log("ROUFAO KAVLIA"+ this.loggedIn);
+    });
+
+
+    
 
     this.cartService.productAdded.subscribe(res => {
       this.products = this.productService.getAll();
@@ -73,6 +87,7 @@ export class AppComponent implements OnDestroy,OnInit{
       this.productAdded = true;
 
     })
+
 
     // this.router.navigate(['log-in'])
   }
@@ -185,24 +200,13 @@ export class AppComponent implements OnDestroy,OnInit{
     window.location.reload();
   }
 
-  handleGoToCart(){
-
+  handleGoToCart() {
     this.productAdded = false;
     this.router.navigate(['cart']);
     setTimeout(() => {
       window.location.reload();
-    },100)
-
-
+    }, 100);
   }
 
-
-
-  ngOnDestroy(){
-
-  }
-
-
-
-
+  ngOnDestroy() {}
 }

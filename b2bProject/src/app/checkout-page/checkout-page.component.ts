@@ -13,7 +13,7 @@ import {product} from "../AdminArea/adminareaproducts/adminareaproducts.componen
   styleUrls: ['./checkout-page.component.css']
 })
 export class CheckoutPageComponent implements OnInit, OnDestroy {
-  products :product |any= JSON.parse(<string>localStorage.getItem("products"))
+  products :product |any;
   showCreditCard: boolean = true;
   mtrlArr:any = [];
   qtyArr:any =[];
@@ -31,7 +31,11 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   answer:string ="";
   constructor(private cartService: CartServiceService, private authService: AuthService,private router: Router, private renderer: Renderer2) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    let resData= await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{
+      trdr:this.loadedUser.trdr
+    })
+   this.products = resData.data.products
 
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
@@ -146,8 +150,14 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         this.answer = resData.data.message
         setTimeout(()=>{
          this.products= this.cartService.clearCart();
-
-          localStorage.setItem("products",JSON.stringify(this.products));
+         let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
+         axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
+         {
+           mtrl:"item",
+           trdr:loadedUser.trdr,
+           id:1
+         }
+         )
           this.router.navigate(['home'])
 
         },3000)

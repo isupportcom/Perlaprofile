@@ -18,7 +18,7 @@ export class SingleProductComponent implements OnInit {
 
   singleProduct: any;
   relatedProducts:product|any = [];
-
+  productsToCart :product |any =[];
   constructor(
       private renderer: Renderer2,
       private router: Router,
@@ -104,6 +104,7 @@ export class SingleProductComponent implements OnInit {
     
 
     
+
 
   }
 }

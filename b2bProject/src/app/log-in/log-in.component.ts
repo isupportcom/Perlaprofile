@@ -46,14 +46,15 @@ export class LogInComponent implements OnInit, OnDestroy {
               private cartService: CartServiceService) { }
 
   ngOnInit(): void {
-    this.clearAll();
-    if(localStorage.getItem("userType") != "notLoggin" ){
+    this.authService.sendLoggedIn(false);
+    // this.authService.setAdmin(false);
+
       // if(localStorage.getItem('userType') == "Admin"){
       //   this.authService.setAdmin(true)
       // }
-    }
 
-    this.authService.sendLoggedIn(false);
+
+
 
   }
 
@@ -63,10 +64,14 @@ export class LogInComponent implements OnInit, OnDestroy {
   }
 
   loginProcess(f:NgForm){
-
-      this.username = f.value.username;
-      this.password = f.value.password;
-
+    console.log(f);
+    console.log(f.value);
+      //  this.username = f.value.username;
+      //  this.password = f.value.password;
+    // console.log(f.value.username)
+    // console.log(f.value.password)
+    console.log(this.username);
+    console.log(this.password);
       let authObs: Observable<AuthResponseData>;
 
       authObs = this.authService.login(this.username,this.password);

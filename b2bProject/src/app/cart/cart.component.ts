@@ -35,25 +35,34 @@ export class CartComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    console.log(this.cartService.getItemsToCartArray());
-    
 
-    console.log(JSON.parse(localStorage.getItem("products") || '{}'))
-    this.products = JSON.parse(<string>localStorage.getItem("products") )
-    this.length = this.products.length;
+    // console.log(JSON.parse(localStorage.getItem("products") || '{}'))
+    console.log(this.cartService.getItems());
+    let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
+   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
+    .then(
+      (resData:any)=>{
+        console.log(resData);
+        this.products = resData.data.products
+        this.length = this.products.length;
 
-    if(this.length == 0){
-      this.shouldContinue = false;
-    }
-    else{
-      this.shouldContinue = true;
-    }
-    this.cartService.shouldContinue.next(this.shouldContinue);
+        if(this.length == 0){
+          this.shouldContinue = false;
+        }
+        else{
+          this.shouldContinue = true;
+        }
+        this.cartService.shouldContinue.next(this.shouldContinue);
 
-    for(let prod of this.products){
-      this.GrandTotal += +prod.wholesale *prod.qty;
-    }
-    console.log(this.GrandTotal)
+        for(let prod of this.products){
+          this.GrandTotal += +prod.wholesale *prod.qty;
+        }
+        console.log(this.GrandTotal)
+      }
+      );
+
+
+
 
 
   }
@@ -66,7 +75,7 @@ export class CartComponent implements OnInit, OnDestroy {
     // console.log(quantity);
     // console.log(prevQuantity);
     this.products[index].qty = quantity;
-    localStorage.setItem("products",JSON.stringify(this.products));
+
     window.location.reload();
 
 
@@ -81,27 +90,50 @@ export class CartComponent implements OnInit, OnDestroy {
       else{
         this.GrandTotal = 0;
       }
-      this.products =this.cartService.removeItem(index);
 
-      localStorage.setItem("products",JSON.stringify(this.products));
-      this.products = JSON.parse(<string>localStorage.getItem("products") ) ;
-      console.log(this.products)
-      this.length = this.products.length;
-      window.location.reload();
+        let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
+        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
+        {
+          mtrl:item,
+          trdr:loadedUser.trdr,
+          id:2
+        }
+        ).then(resData=>{console.log(resData);
+          console.log(this.products)
+          this.length = this.products.length;
+          window.location.reload();
+        })
+
+
+
 
   }
 
 
 
-  clearAll(){
-    this.products = this.cartService.clearCart();
-    localStorage.setItem("products",JSON.stringify(this.products));
-    this.GrandTotal = 0 ;
-    this.length = 0;
+  clearAll(item:any){
+    let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
+    {
+      mtrl:item,
+      trdr:loadedUser.trdr,
+      id:1
+    }
+    ).then(resData=>{console.log(resData);
 
-    this.products = this.cartService.getItems();
-    console.log(this.products[0])
-    window.location.reload();
+      this.GrandTotal = 0 ;
+      this.length = 0;
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
+    .then(
+      (resData:any)=>{
+        console.log(resData);
+        this.products = resData.data.products
+
+      })
+
+
+    })
+
   }
 
   handleCheckout(){

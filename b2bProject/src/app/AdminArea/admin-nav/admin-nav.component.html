@@ -36,7 +36,7 @@
     <a ><span class="fa fa-paper-plane mr-3 dropdown-item" ></span> Insert Image To Product</a>
   </li>
 </div>
-<li (click)="showContent(4)">
+<li (click)="showContent(7)">
   <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Offers</a>
 </li>
 </ul>
@@ -50,7 +50,7 @@
     <app-insert-products *ngIf="component==4"></app-insert-products>
     <app-update-categories *ngIf="component==5"></app-update-categories>
     <app-insert-categories *ngIf="component==6"></app-insert-categories>
-
+    <app-offers *ngIf="component==7"></app-offers>
     <app-upload-image *ngIf="component==9"></app-upload-image>
     <app-allimages *ngIf="component==10"></app-allimages>
   </div>
