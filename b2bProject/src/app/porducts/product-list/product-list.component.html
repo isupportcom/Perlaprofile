@@ -44,8 +44,12 @@
 <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-5 col-4" >
         <div>
-            <div  style="background-color: #3E4148;text-align: center;padding-top: 8px;padding-bottom: 8px;">
+            <div  style="background-color: #3E4148;text-align: center;padding-top: 8px;padding-bottom: 8px;transition: all 0.2s ease-in-out;" #background>
                 <img [src]="logoSource">
+                <button (click)="hanldeCategoriesList(background,arrow)" style="border:none;background:none;transform: none;"><img style="cursor: pointer;transform: rotate(0deg);transition: all 0.2s ease-in-out;"  src="../../../assets/chevron-right-white.svg" height="30px" #arrow></button>
+                <div *ngIf="showList" >
+                    <button *ngFor="let logo of logoList" style="border:none;background:none;margin-top: 10%;"><img  [src]="logo" alt="logo"></button>
+                </div>
             </div>
             <div style="padding-top: 5%;text-align: center;border-bottom: 2px solid #3E4148;">
                 <p><b>Σύνολο προϊόντων: {{ shownProducts.length}}</b></p>

@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from "axios"
+import { Observable, tap } from 'rxjs';
 import { CartServiceService } from 'src/app/cart/cart-service.service';
 import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
 import {ProductsService} from "../products.service";
@@ -14,7 +15,12 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
   @Input() index:any;
-  productsToCart :product |any =[];
+
+
+  singleProduct: any;
+  relatedProducts:product|any = [];
+
+
   constructor(
       private renderer: Renderer2,
       private router: Router,
@@ -71,14 +77,37 @@ export class SingleProductComponent implements OnInit {
 
 
   handleAddToCart(){
-     this.productsService.setSingleProduct(this.index);
-    this.index.show = true;
-    console.log(this.index);
 
 
-     this.cartService.addToCart(this.index);
-    // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-    // this.cartService.sendProductAdded(true);
+    let relatedProductsObs: Observable<any>;
+
+    relatedProductsObs = this.productsService.getRelatedProducts(this.index.mtrl);
+
+    relatedProductsObs.subscribe(resData => {
+      this.relatedProducts = resData.related;
+
+    })
+    setTimeout(() => {
+
+      if(this.relatedProducts.length <= 0){
+        console.log("HEllo");
+
+
+        this.productsService.setSingleProduct(this.index);
+        this.index.show = true;
+        this.cartService.addToCart(this.index);
+
+        this.cartService.sendProductAdded(true);
+      }
+      else{
+        this.productsService.setSingleProduct(this.index);
+        this.cartService.sendProductAdded(true);
+      }
+    },500);
+
+
+
+
 
   }
 }

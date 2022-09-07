@@ -60,9 +60,21 @@ export class CartServiceService {
 
   }
 
-  addToCart(product:product|any){
+  addToCart(product:any){
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
     console.log(loadedUser.trdr);
+    console.log(product.img);
+    console.log(product.image);
+    console.log(product)
+    let image;
+    let category="23";
+
+    if(product.img != undefined){
+      image= product.img
+    }else{
+      image = product.image
+    }
+
 
     this.items = JSON.parse(localStorage.getItem("products") || '{}')
     let productAdded = true;
@@ -74,8 +86,8 @@ export class CartServiceService {
       code:     product.code,
       name:     product.name,
       name1:    product.name1,
-      img:      product.img,
-      category: product.category,
+      img:      image,
+      category: category,
       qty:      product.qty,
       retail:   product.retail,
       wholesale:product.wholesale,
