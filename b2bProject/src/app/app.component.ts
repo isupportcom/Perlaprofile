@@ -113,6 +113,7 @@ export class AppComponent implements OnDestroy,OnInit{
             this.cartService.sendProductAdded(true);
             this.itemsToCart.push(prod);
           }
+          this.cartService.setItemsToCartArray(this.itemsToCart);
         }
         else{
           this.itemsToCart.push(this.singleProduct);
@@ -143,6 +144,7 @@ export class AppComponent implements OnDestroy,OnInit{
           localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(product);
+          this.cartService.setItemsToCartArray(this.itemsToCart);
         }
         else{
           this.itemsToCart.push(this.singleProduct);
@@ -160,18 +162,21 @@ export class AppComponent implements OnDestroy,OnInit{
   }
 
   addToCart(product: any){
-    this.productAdded = false;
+    
     this.itemsToCart.push(product);
-
+    this.cartService.setItemsToCartArray(this.itemsToCart);
+    
+    
     for(let prod of this.itemsToCart){
       prod.show = true;
       this.cartService.addToCart(prod);
       localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-      this.cartService.sendProductAdded(true);
+      // this.cartService.sendProductAdded(true);
     }
 
+    this.productAdded = false;
     this.showScope3 = false;
-    window.location.reload();
+    // window.location.reload();
   }
 
   handleClose(){

@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class CartServiceService {
+  itemsToCart: any = [];
+
   productAdded = new Subject<boolean>();
   cast = this.productAdded.asObservable();
 
@@ -46,6 +48,17 @@ export class CartServiceService {
     this.sendProductCount(temp.length);
     temp.splice(index,1);
     return temp
+  }
+
+  setItemsToCartArray(itemsToCart: any){
+    
+    
+    this.itemsToCart.push(itemsToCart)
+    console.log(this.getItemsToCartArray());
+  }
+
+  getItemsToCartArray(){
+    return this.itemsToCart;
   }
 
   addToCart(product:product|any){

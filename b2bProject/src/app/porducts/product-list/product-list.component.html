@@ -42,7 +42,7 @@
                 <img [src]="logoSource">
                 <button (click)="hanldeCategoriesList(background,arrow)" style="border:none;background:none;transform: none;"><img style="cursor: pointer;transform: rotate(0deg);transition: all 0.2s ease-in-out;"  src="../../../assets/chevron-right-white.svg" height="30px" #arrow></button>
                 <div *ngIf="showList" >
-                    <button *ngFor="let logo of logoList" style="border:none;background:none;margin-top: 10%;"><img  [src]="logo" alt="logo"></button>
+                    <button *ngFor="let logo of logoList" (click)="handleChangeCategory(logo.id,logo.name)" style="border:none;background:none;margin-top: 10%;"><img  [src]="logo.source" alt="logo"></button>
                 </div>
             </div>
             <div style="padding-top: 5%;text-align: center;border-bottom: 2px solid #3E4148;">
