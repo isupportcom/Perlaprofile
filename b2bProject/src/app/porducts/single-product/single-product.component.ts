@@ -19,7 +19,7 @@ export class SingleProductComponent implements OnInit {
 
   singleProduct: any;
   relatedProducts:product|any = [];
-
+  productsToCart :product |any =[];
 
   constructor(
       private renderer: Renderer2,
@@ -104,8 +104,6 @@ export class SingleProductComponent implements OnInit {
         this.cartService.sendProductAdded(true);
       }
     },500);
-
-
 
 
 

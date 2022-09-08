@@ -35,6 +35,7 @@ export class CartComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
+
     // console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     console.log(this.cartService.getItems());
     let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')

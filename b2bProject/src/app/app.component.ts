@@ -48,6 +48,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private productService: ProductsService
   ) {}
 
+
   ngOnInit() {
     this.authService.autoLogin();
     if (localStorage.getItem('username') == 'Admin') {
@@ -63,6 +64,7 @@ export class AppComponent implements OnDestroy, OnInit {
       this.loggedIn = res;
       console.log("ROUFAO KAVLIA"+ this.loggedIn);
     });
+
 
 
     this.cartService.productAdded.subscribe(res => {
@@ -90,8 +92,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
     // this.router.navigate(['log-in'])
   }
-
-
 
 
   handleGrouping(product: any){
@@ -132,6 +132,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.cartService.sendProductAdded(true);
             this.itemsToCart.push(prod);
           }
+          this.cartService.setItemsToCartArray(this.itemsToCart);
         }
         else{
           this.itemsToCart.push(this.singleProduct);
@@ -163,6 +164,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(product);
+          this.cartService.setItemsToCartArray(this.itemsToCart);
         }
         else{
           this.itemsToCart.push(this.singleProduct);
@@ -180,23 +182,28 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   addToCart(product: any){
-    this.productAdded = false;
+
     this.itemsToCart.push(product);
-    console.log(this.itemsToCart);
+
 
     for(let prod of this.itemsToCart){
       prod.show = true;
       this.cartService.addToCart(prod);
 
       this.cartService.sendProductAdded(true);
+
     }
 
+    this.productAdded = false;
     this.showScope3 = false;
+
     // setTimeout(()=>{
     //   window.location.reload();
     // },1000)
 
   }
+
+
 
   handleClose(){
 

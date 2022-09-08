@@ -9,6 +9,8 @@ import axios from 'axios';
   providedIn: 'root'
 })
 export class CartServiceService {
+  itemsToCart: any = [];
+
   productAdded = new Subject<boolean>();
   cast = this.productAdded.asObservable();
 
@@ -60,7 +62,20 @@ export class CartServiceService {
 
   }
 
-  addToCart(product:any){
+
+  setItemsToCartArray(itemsToCart: any){
+
+
+    this.itemsToCart.push(itemsToCart)
+    console.log(this.getItemsToCartArray());
+  }
+
+  getItemsToCartArray(){
+    return this.itemsToCart;
+  }
+
+  addToCart(product:product|any){
+
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
     console.log(loadedUser.trdr);
     console.log(product.img);
@@ -76,10 +91,15 @@ export class CartServiceService {
     }
 
 
+
     this.items = JSON.parse(localStorage.getItem("products") || '{}')
     let productAdded = true;
     localStorage.setItem('productAdded', 'true');
     this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
+
+
+
+
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php",{
       mtrl:     product.mtrl,
       trdr:     loadedUser.trdr,

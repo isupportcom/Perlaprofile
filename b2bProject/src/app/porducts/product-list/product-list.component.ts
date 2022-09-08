@@ -39,6 +39,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
 
+
         this.showProductsPerPage = false;
         this.showSortOptions = false;
       }
@@ -76,7 +77,11 @@ export class ProductListComponent implements OnInit , OnDestroy{
   itemsPP: number = 9;
   relatedProducts = [1,2,3,4];
   showList: boolean = false;
-  logoList: any = [];
+  logoList: {
+    source: string,
+    id: number,
+    name: string
+  } | any= [];
   categoryToGo: any;
 
   innerWidth!: number;
@@ -202,9 +207,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.logoSource = '../../../assets/control-logo-white-with-green.svg';
       this.logoSource2 = '../../../assets/control-logo-dark3.svg';
 
-      this.logoList.push('../../../assets/motion-logo-white-with-green.svg')
-      this.logoList.push('../../../assets/mosqui-logo-white-with-green.svg')
-      this.logoList.push('../../../assets/profile-logo-white-with-green.svg')
+      this.logoList.push({source: '../../../assets/motion-logo-white-with-green.svg',id:115,name:'Motion'})
+      this.logoList.push({source: '../../../assets/mosqui-logo-white-with-green.svg',id:116,name:'Mosqui'})
+      this.logoList.push({source: '../../../assets/profile-logo-white-with-green.svg',id:117,name:'Profile'})
     }
     else if(this.mainCategory.id === 115){
       this.logoList = [];
@@ -212,9 +217,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.logoSource = '../../../assets/motion-logo-white-with-green.svg';
       this.logoSource2 = '../../../assets/motion-logo-dark2.svg';
 
-      this.logoList.push('../../../assets/control-logo-white-with-green.svg')
-      this.logoList.push('../../../assets/mosqui-logo-white-with-green.svg')
-      this.logoList.push('../../../assets/profile-logo-white-with-green.svg')
+      this.logoList.push({source: '../../../assets/control-logo-white-with-green.svg',id:114,name:'Control'})
+      this.logoList.push({source: '../../../assets/mosqui-logo-white-with-green.svg',id:116,name:'Mosqui'})
+      this.logoList.push({source: '../../../assets/profile-logo-white-with-green.svg',id:117,name:'Profile'})
     }
     else if(this.mainCategory.id === 116){
       this.logoList = [];
@@ -224,9 +229,10 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
 
-      this.logoList.push('../../../assets/control-logo-white-with-green.svg')
-      this.logoList.push('../../../assets/motion-logo-white-with-green.svg')
-      this.logoList.push('../../../assets/profile-logo-white-with-green.svg')
+
+      this.logoList.push({source: '../../../assets/control-logo-white-with-green.svg',id:114,name:'Control'})
+      this.logoList.push({source: '../../../assets/motion-logo-white-with-green.svg',id:115,name:'Motion'})
+      this.logoList.push({source: '../../../assets/profile-logo-white-with-green.svg',id:117,name:'Profile'})
     }
 
     else if(this.mainCategory.id === 117){
@@ -235,9 +241,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
       this.logoSource2 = '../../../assets/profile-logo-dark2.svg';
 
-      this.logoList.push('../../../assets/control-logo-white-with-green.svg')
-      this.logoList.push('../../../assets/motion-logo-white-with-green.svg')
-      this.logoList.push('../../../assets/mosqui-logo-white-with-green.svg')
+      this.logoList.push({source: '../../../assets/control-logo-white-with-green.svg',id:114,name:'Control'})
+      this.logoList.push({source: '../../../assets/motion-logo-white-with-green.svg',id:115,name:'Motion'})
+      this.logoList.push({source: '../../../assets/mosqui-logo-white-with-green.svg',id:116,name:'Mosqui'})
     }
 
 
@@ -284,6 +290,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }
 
 
+  }
+
+  handleChangeCategory(id: any,name: any){
+    this.router.navigate(['products', id,name]);
+    setTimeout(()=> {
+      window.location.reload();
+    },50);
   }
 
   handleCheckboxes(e: any){
