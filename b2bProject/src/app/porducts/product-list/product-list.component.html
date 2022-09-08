@@ -1,5 +1,5 @@
 <div *ngIf="!fits" class="row" style="height: 95px;">
-    <div class="col-lg-3 col-md-4 col-sm-8 col-8" style="height: fit-content;margin-top: 4px;">
+    <div class="col-lg-3 col-md-4 col-sm-12 col-12" style="height: fit-content;margin-top: 4px;">
         <div class="wrapper">
           <form #form2 (ngForm)="findProducts()">
             <input type="search" (click)="handleSearch()" class="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="search" [(ngModel)]= "search" />
@@ -42,7 +42,7 @@
 
 <h2>{{message}}</h2>
 <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-5 col-4" >
+    <div *ngIf="showBigFilters" class="col-lg-3 col-md-3 col-sm-3" >
         <div>
             <div  style="background-color: #3E4148;text-align: center;padding-top: 8px;padding-bottom: 8px;transition: all 0.2s ease-in-out;" #background>
                 <img [src]="logoSource">
@@ -111,9 +111,9 @@
                         Προϊόντα ανά σελίδα
                     </button>
                     <ul [ngClass]="showProductsPerPage? 'dropdown-menu show' : 'dropdown-menu'" aria-labelledby="dropdownMenuButton1" >
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li><a class="dropdown-item">Action</a></li>
+                      <li><a class="dropdown-item">Another action</a></li>
+                      <li><a class="dropdown-item">Something else here</a></li>
                     </ul>
                   </div>
             </div>
@@ -123,9 +123,9 @@
                         Ταξινόμηση
                     </button>
                     <ul [ngClass]="showSortOptions? 'dropdown-menu show' : 'dropdown-menu'" aria-labelledby="dropdownMenuButton1" >
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li><a class="dropdown-item">Action</a></li>
+                      <li><a class="dropdown-item">Another action</a></li>
+                      <li><a class="dropdown-item">Something else here</a></li>
                     </ul>
                   </div>
             </div>
@@ -141,7 +141,7 @@
                     </div>
                     <div *ngIf="!waiting" class="row">
                         <app-single-product
-                        class="col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-12 product"
+                        class="col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 product"
                         *ngFor="let sProd of shownProducts |
                         paginate: {
                             itemsPerPage: itemsPP,
