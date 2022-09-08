@@ -109,25 +109,3 @@ body {
 
 }
 
-@media screen and (max-width:768px){
-  .productCard{
-    width: 230px;
-  }
-
-  .productTitle{
-    padding-top: 40px;
-    
-    
-    font-size: small;
-  }
-
-  .productImg{
-    height: 130px;
-  }
-
-  .myBtn{
-    font-size: 14px;
-    padding: 6px 6px;
-  }
-
-}

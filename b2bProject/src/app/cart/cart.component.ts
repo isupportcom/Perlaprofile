@@ -91,18 +91,20 @@ export class CartComponent implements OnInit, OnDestroy {
       else{
         this.GrandTotal = 0;
       }
-
+        console.log(item);
+        
         let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
         axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
         {
-          mtrl:item,
+          mtrl:item.mtrl,
           trdr:loadedUser.trdr,
-          id:2
+          id:2,
+          group_id: item.group_id
         }
         ).then(resData=>{console.log(resData);
           console.log(this.products)
           this.length = this.products.length;
-          window.location.reload();
+          // window.location.reload();
         })
 
 

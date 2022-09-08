@@ -135,6 +135,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.fits = true;
     }
 
+
     if(this.innerWidth<=768){
       this.showBigFilters = false;
     }

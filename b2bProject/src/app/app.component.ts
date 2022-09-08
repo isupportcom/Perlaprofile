@@ -187,19 +187,32 @@ export class AppComponent implements OnDestroy, OnInit {
     this.itemsToCart.push(product);
     this.cartService.setItemsToCartArray(this.itemsToCart);
     
+    let id = '';
     
     for(let prod of this.itemsToCart){
+      id = id + prod.mtrl;
+      // prod.show = true;
+      // this.cartService.addToCart(prod);
+      // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
+      // this.cartService.sendProductAdded(true);
+    }
+
+    this.cartService.setId(id);
+    
+    for(let prod of this.itemsToCart){
+      id = id + prod.mtrl;
       prod.show = true;
       this.cartService.addToCart(prod);
       localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
       // this.cartService.sendProductAdded(true);
     }
+    
 
     this.productAdded = false;
     this.showScope3 = false;
-    setTimeout(() => {
-      window.location.reload();
-    }, 50)
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 1000)
     
   }
 

@@ -91,7 +91,7 @@
 
 
 
-    <div class="col-lg-9 col-md-9 col-sm-7 col-8">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-12">
 
 
         <div *ngIf="fits" class="row" style="height: 95px;">
@@ -141,7 +141,7 @@
                     </div>
                     <div *ngIf="!waiting" class="row">
                         <app-single-product
-                        class="col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 product"
+                        class="col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-12 product"
                         *ngFor="let sProd of shownProducts |
                         paginate: {
                             itemsPerPage: itemsPP,
