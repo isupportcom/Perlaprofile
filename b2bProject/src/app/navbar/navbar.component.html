@@ -14,13 +14,15 @@
     </ul>
     <ul class="navbar nav ms-auto" style="margin-right: 25px" >
       <li class="nav-item">
-        <div style="background-color: #6DAE49; border-radius: 16px; width: 24px; position: absolute; left: 45px; text-align: center;">{{ products.length == null? 0 : products.length }}</div>
-        <a class="nav-link" (click)="handleCart()"><img src="../../assets/shopping-cart-white.png" alt="cart"></a>
+
+        <div style="background-color: #6DAE49; border-radius: 16px; width: 24px; position: absolute; left: 45px; text-align: center;">{{ temp.length }}</div>
+        <a class="nav-link" (click)="handleCart()"><img src="../../assets/shopping-cart-white.png" alt=""></a>
+
       </li>
 
       <li (click)="setDropdown(dropdownUser)" class="nav-item dropdown" #user>
         <a style="color: white;text-decoration: none;" class="dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Συνδεδεμένος ως <b style="color:#6DAE49;">{{ username== null ? "" : username  }}</b>
+        Συνδεδεμένος ως <b style="color:#6DAE49;">{{ username  }}</b>
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownUser>

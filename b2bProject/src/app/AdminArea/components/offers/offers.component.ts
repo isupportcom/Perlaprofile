@@ -12,6 +12,8 @@ export class OffersComponent implements OnInit {
   products:product|any=[];
   contactForm:FormGroup|any;
   name:string ="";
+  offer:any =[];
+  answer:string =""
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
@@ -30,13 +32,24 @@ export class OffersComponent implements OnInit {
         }
       }
     })
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllOffers.php",{
+      product:"product",
+      offer:"offer"
+    }).then(resData=>{
+
+      this.offer = resData.data.offers
+      console.log(this.offer)
+    })
   }
   uploadOffer(){
     console.log(this.contactForm.value)
     console.log("Submitted")
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/offers.php",this.contactForm.value)
       .then(resData=>{
-        console.log(resData.data);
+        this.answer = resData.data.message
+        setTimeout(()=>{
+          window.location.reload()
+        },50)
       })
   }
   setName(product:any){

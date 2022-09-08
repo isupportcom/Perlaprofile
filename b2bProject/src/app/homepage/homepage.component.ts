@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '../porducts/products.service';
+import axios from "axios";
 
 @Component({
   selector: 'app-homepage',
@@ -13,9 +14,11 @@ export class HomepageComponent implements OnInit {
   showDescription2: boolean = false;
   showDescription3: boolean = false;
   showDescription4: boolean = false;
+  offer1:any = [];
+  offer2:any=[];
 
   source: string = '../../assets/pexels-expect-best-323772.jpg';
-  
+
 
   constructor(private productsService: ProductsService,private router: Router) { }
 
@@ -25,7 +28,7 @@ export class HomepageComponent implements OnInit {
     this.innerWidth = window.innerWidth
     console.log(this.innerWidth);
 
-    
+
     if(this.innerWidth <= 770){
       this.source = '../../assets/hero 770px width.png';
     }
@@ -37,26 +40,42 @@ export class HomepageComponent implements OnInit {
     }
     else if(this.innerWidth <= 9999){
       this.source = '../../assets/pexels-expect-best-323772.jpg';
-      
+
     }
     else{
       this.source = '../../assets/hero 770px width.png';
     }
-    
+
   }
 
   ngOnInit(): void {
     this.productsService.getMainCategories().subscribe(resData => {
       this.mainCategories = resData;
       console.log(this.mainCategories);
-      
+
     });
+
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllOffers.php",{
+      product:"product",
+      offer:"2"
+    }).then(resData=>{
+      console.log(resData.data)
+      this.offer1 = resData.data.offers[0]
+      this.offer2 = resData.data.offers[1];
+      console.log(this.offer1)
+      console.log(this.offer2)
+    })
+
+
 
   }
 
   goToProducts(mainCategory: any){
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+    setTimeout(() => {
+      window.location.reload()
+    },50)
   }
 
   showDesc(mainCategory: any){
@@ -87,7 +106,7 @@ export class HomepageComponent implements OnInit {
     if(mainCategory.id == 117){
       this.showDescription4 = false;
     }
-    
+
   }
 
 }

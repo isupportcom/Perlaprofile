@@ -35,6 +35,7 @@ export class CartComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
+    console.log(this.cartService.getItemsToCartArray())
 
     // console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     console.log(this.cartService.getItems());
@@ -133,6 +134,9 @@ export class CartComponent implements OnInit, OnDestroy {
 
 
     })
+    setTimeout(() => {
+      window.location.reload();
+    }, 50)
 
   }
 

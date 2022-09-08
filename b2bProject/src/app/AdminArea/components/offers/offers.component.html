@@ -26,6 +26,7 @@
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Upload Offer</button>
+    <h3>{{answer}}</h3>
 
 
 </form>
@@ -42,6 +43,11 @@
     </tr>
     </thead>
     <tbody>
+    <tr *ngFor="let off of offer">
+      <td>{{ off.product_mtrl }}</td>
+      <td>{{off.name}}</td>
+      <td>{{off.offer}}</td>
+    </tr>
     </tbody>
   </table>
 </div>

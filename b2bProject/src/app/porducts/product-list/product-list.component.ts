@@ -426,6 +426,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
         this.noProducts = true;
       }
     }
+    
   }
 
   handleClearFilters(){

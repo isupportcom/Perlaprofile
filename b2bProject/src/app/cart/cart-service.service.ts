@@ -4,12 +4,16 @@ import {product} from "../AdminArea/adminareaproducts/adminareaproducts.componen
 import {BehaviorSubject, Subject} from "rxjs"
 import { Router } from '@angular/router';
 import axios from 'axios';
-
+import { group } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class CartServiceService {
   itemsToCart: any = [];
+  date = new Date();
+
+
 
   productAdded = new Subject<boolean>();
   cast = this.productAdded.asObservable();
@@ -47,15 +51,15 @@ export class CartServiceService {
   index :number = 0
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private http: HttpClient) { }
 
   removeItem(index: any){
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
     {
-      mtrl:index,
       trdr:loadedUser.trdr,
-      id:2
+      id:2,
+
     }
     ).then(resData=>{console.log(resData);
     })
@@ -98,8 +102,7 @@ export class CartServiceService {
     this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
 
 
-
-
+    console.log(product)
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php",{
       mtrl:     product.mtrl,
       trdr:     loadedUser.trdr,
@@ -111,7 +114,8 @@ export class CartServiceService {
       qty:      product.qty,
       retail:   product.retail,
       wholesale:product.wholesale,
-      stock:    product.stock
+      stock:    product.stock,
+      // id: this.date.getHours()+':'+this.date.getMinutes()
     }).then(resData=>console.log(resData.data))
     // let flag = false
     // let index = 0;
@@ -149,10 +153,14 @@ export class CartServiceService {
 
 
 
-  async getItems(){
+  getItems(){
    let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
-   let resData= await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
-    console.log(resData);
+
+    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",
+    {
+      trdr:loadedUser.trdr
+    })
+
 
   }
   clearCart(){
