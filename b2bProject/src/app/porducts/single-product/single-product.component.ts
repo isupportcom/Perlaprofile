@@ -93,6 +93,8 @@ export class SingleProductComponent implements OnInit {
         console.log("HEllo");
 
 
+        this.cartService.setId(this.index.mtrl)
+
         this.productsService.setSingleProduct(this.index);
         this.index.show = true;
         this.cartService.addToCart(this.index);

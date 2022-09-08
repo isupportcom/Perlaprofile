@@ -13,6 +13,7 @@ export class CartServiceService {
   itemsToCart: any = [];
   date = new Date();
 
+  id: any;
 
 
   productAdded = new Subject<boolean>();
@@ -78,10 +79,15 @@ export class CartServiceService {
     return this.itemsToCart;
   }
 
+  setId(id: any){
+    this.id = id;
+  }
+
   addToCart(product:product|any){
 
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
     console.log(loadedUser.trdr);
+
     console.log(product.img);
     console.log(product.image);
     console.log(product)
@@ -93,6 +99,8 @@ export class CartServiceService {
     }else{
       image = product.image
     }
+
+
 
 
 
@@ -115,7 +123,7 @@ export class CartServiceService {
       retail:   product.retail,
       wholesale:product.wholesale,
       stock:    product.stock,
-      // id: this.date.getHours()+':'+this.date.getMinutes()
+      group_id: this.id
     }).then(resData=>console.log(resData.data))
     // let flag = false
     // let index = 0;

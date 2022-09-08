@@ -177,6 +177,9 @@ input[type='checkbox']:checked ~ .checkbox{
 }
 
 @media screen and (max-width: 768px){
+    .row{
+        --bs-gutter-x: 0rem;
+    }
     .search{
         width: 210%;
     }
@@ -186,6 +189,13 @@ input[type='checkbox']:checked ~ .checkbox{
         left: 470px;
         width: 14px;
       }
+      .product:nth-child(even){
+        margin-left: 0px;
+      }
+
+      .product:nth-child(odd){
+        margin-left: 0%;
+    }
 
 
 }
@@ -200,13 +210,7 @@ input[type='checkbox']:checked ~ .checkbox{
         left: 320px;
         width: 14px;
       }
-      .product:nth-child(even){
-        margin-left: 0px;
-      }
 
-      .product:nth-child(odd){
-        margin-left: 0%;
-    }
 }
 
 
