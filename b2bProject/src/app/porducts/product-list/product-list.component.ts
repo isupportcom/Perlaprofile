@@ -81,6 +81,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
     name: string
   } | any= [];
   categoryToGo: any;
+  showBigFilters: boolean = true;
 
   innerWidth!: number;
   @HostListener('window:resize', ['$event'])
@@ -97,6 +98,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.fits = false;
     }else{
       this.fits = true;
+    }
+
+    if(this.innerWidth<=768){
+      this.showBigFilters = false;
+    }
+    else{
+      this.showBigFilters = true;
     }
 
     if(this.innerWidth <1400){
@@ -125,6 +133,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.fits = false;
     }else{
       this.fits = true;
+    }
+
+    if(this.innerWidth<=768){
+      this.showBigFilters = false;
+    }
+    else{
+      this.showBigFilters = true;
     }
 
     if(this.innerWidth <1400){
