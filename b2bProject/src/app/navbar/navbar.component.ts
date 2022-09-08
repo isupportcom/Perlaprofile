@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
 import { CartServiceService } from '../cart/cart-service.service';
@@ -14,7 +15,8 @@ import {AuthService} from "../services/auth.service";
 })
 export class NavbarComponent implements OnInit{
   isAdminArea = false;
-  products :product[] |any;
+  products :product |any = [];
+  temp: product | any = [];
 
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
@@ -51,21 +53,37 @@ export class NavbarComponent implements OnInit{
 
     });
 
+    let fetchProductsObs: Observable<any>;
 
-    this.products = JSON.parse(<string>localStorage.getItem("products"));
+    fetchProductsObs = this.cartService.getItems()
+
+    fetchProductsObs.subscribe(resData => {
+      this.temp = resData.products;
+      // console.log(this.temp.length);
+      
+      
+    })
+    setTimeout(() => {
+      // this.products = this.temp;
+      console.log(this.temp.length);
+      
+    },50)
+    
+    
+    
     this.cartService.productAdded.subscribe(res => {
       this.productAdded = res;
       console.log(this.productAdded);
     })
 
-    this.cartService.sendProductCount(0);
+    // this.cartService.sendProductCount(0);
 
-    this.cartService.productCount.subscribe(res => {
-      localStorage.setItem('productCount', <string>(<unknown>res));
-      console.log(<number>(<unknown>(localStorage.getItem('productCount'))));
+    // this.cartService.productCount.subscribe(res => {
+    //   localStorage.setItem('productCount', <string>(<unknown>res));
+    //   console.log(<number>(<unknown>(localStorage.getItem('productCount'))));
 
-      this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
-    })
+    //   this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
+    // })
   }
 
   goToProducts(mainCategory: any){

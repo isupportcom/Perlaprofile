@@ -36,7 +36,7 @@ export class AppComponent implements OnDestroy, OnInit {
   group: any;
   showScope3: boolean = false;
   itemsToCart: product|any = [];
-
+  date = new Date();
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -48,6 +48,10 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
   ngOnInit() {
+
+    
+    console.log(this.date.getHours()+':'+this.date.getMinutes());
+
     this.authService.autoLogin();
     if (localStorage.getItem('username') == 'Admin') {
       this.authService.setAdmin(true);
@@ -60,7 +64,7 @@ export class AppComponent implements OnDestroy, OnInit {
       // if(localStorage.getItem("username") == "Admin"){this.authService.setAdmin(true)}
 
       this.loggedIn = res;
-      console.log("ROUFAO KAVLIA"+ this.loggedIn);
+      // console.log("ROUFAO KAVLIA"+ this.loggedIn);
     });
 
 
@@ -129,6 +133,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.itemsToCart.push(prod);
           }
           this.cartService.setItemsToCartArray(this.itemsToCart);
+          
         }
         else{
           this.itemsToCart.push(this.singleProduct);
@@ -160,6 +165,7 @@ export class AppComponent implements OnDestroy, OnInit {
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(product);
           this.cartService.setItemsToCartArray(this.itemsToCart);
+          window.location.reload();
         }
         else{
           this.itemsToCart.push(this.singleProduct);
@@ -191,7 +197,10 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.productAdded = false;
     this.showScope3 = false;
-    // window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 50)
+    
   }
 
   handleClose(){

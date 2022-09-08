@@ -57,6 +57,9 @@ export class HomepageComponent implements OnInit {
   goToProducts(mainCategory: any){
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+    setTimeout(() => {
+      window.location.reload()
+    },50)
   }
 
   showDesc(mainCategory: any){
