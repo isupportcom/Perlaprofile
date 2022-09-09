@@ -46,6 +46,7 @@ import {AdminGuard} from "./services/admin.guard";
 import { FooterComponent } from './footer/footer.component';
 import { SearchbarComponent } from './AdminArea/components/searchbar/searchbar.component';
 import { OffersComponent } from './AdminArea/components/offers/offers.component';
+import { InsertImagesComponent } from './AdminArea/components/insert-images/insert-images.component';
 
 
 
@@ -158,7 +159,8 @@ const routes:Routes = [
     FooterComponent,
     SearchbarComponent,
     OffersComponent,
-    ProfileComponent
+    ProfileComponent,
+    InsertImagesComponent
 
 
   ],

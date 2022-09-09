@@ -122,7 +122,8 @@ export class CartComponent implements OnInit, OnDestroy {
     {
       mtrl:item,
       trdr:loadedUser.trdr,
-      id:1
+      id:1,
+      group_id:"test"
     }
     ).then(resData=>{console.log(resData);
 

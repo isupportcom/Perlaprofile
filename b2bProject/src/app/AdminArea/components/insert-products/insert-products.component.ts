@@ -50,6 +50,17 @@ export class InsertProductsComponent implements OnInit {
     this.page = e;
     localStorage.setItem("pagination",this.page);
   }
+  removePhoto(item:any){
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removePhoto.php",{
+      mtrl:item
+    }).then(resData=>{
+      console.log(resData.data)
+      setTimeout(()=>{
+        window.location.reload()
+      },500)
+    })
+  }
+
 
   getProducts(){
     axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php?id=2&method=allProducts").then(resData => {
@@ -84,7 +95,7 @@ export class InsertProductsComponent implements OnInit {
 
 
           } )
-      window.location.reload()
+       window.location.reload()
     })
       }
 

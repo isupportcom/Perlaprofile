@@ -28,11 +28,12 @@ export  class ProductsService {
 
 
  setAll(item:product){
+
      this.products.push(item);
-     localStorage.setItem("allproducts",JSON.stringify(this.products));
+
  }
  getAll(){
-     return JSON.parse(localStorage.getItem("allproducts") || '{}');
+     return this.products
  }
 
  getSingelProduct(){
@@ -97,7 +98,7 @@ export  class ProductsService {
  }
 
  getMainCategory(){
-    return this.mainCategory; 
+    return this.mainCategory;
  }
 
 }

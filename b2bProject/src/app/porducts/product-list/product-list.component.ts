@@ -156,29 +156,32 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
-    axios.get("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php?id=2&method=allProducts").then((resData:any) => {
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then((resData:any) => {
+      // console.log(resData.data)
       // console.log(resData.data)
       console.log(resData.data)
-      for (let i = 0; i < resData.data.length; i++) {
-
-
+      for (let i = 0; i < resData.data.products.length; i++) {
         this.products[i] = {
-          mtrl: resData.data[i].mtrl,
-          name: resData.data[i].name,
-          name1: resData.data[i].name1,
-          code: resData.data[i].code,
-          retail: resData.data[i].retailPrice,
-          wholesale: resData.data[i].wholesalePrice,
+          mtrl: resData.data.products[i].mtrl,
+          name: resData.data.products[i].name,
+          name1: resData.data.products[i].name1,
+          code: resData.data.products[i].code,
+          retail: resData.data.products[i].retailPrice,
+          wholesale: resData.data.products[i].wholesalePrice,
           qty :1,
-          stock :resData.data[i].stock,
-          category: resData.data[i].category,
-          subcategory: resData.data[i].subcategory,
-          img:resData.data[i].image
+          stock :resData.data.products[i].stock,
+          category: resData.data.products[i].category,
+          subcategory: resData.data.products[i].subcategory,
+          img:resData.data.products[i].image,
+          otherImages:resData.data.products[i].otherImages
         }
-        this.productsService.setAll(this.products[i])
-        // console.log(this.products[i].mtrl);
+         this.productsService.setAll(this.products[i])
+
+
       }
-      // console.log(this.product);
+      console.log(this.products);
+      this.updateProducts();
+
 
       this.totalLength = this.products.length;
 
@@ -290,7 +293,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
       // }
     // }
 
-    this.updateProducts();
+
 
 
   }
@@ -367,17 +370,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
     if(this.listArray.length == 0){
       this.noProducts = false
       this.filterOn = false;
-      let temp = this.productsService.getAll();
+      console.log(this.productsService.getAll())
+      let temp:any = this.productsService.getAll();
 
 
         for(let product of temp){
           let flag = false;
           if(product.category == this.mainCategory.id){
-
-
-
-
-
 
             for(let el of this.shownProducts){
               if(product.mtrl == el.mtrl){
@@ -442,7 +441,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
         this.noProducts = true;
       }
     }
-    
+
   }
 
   handleClearFilters(){

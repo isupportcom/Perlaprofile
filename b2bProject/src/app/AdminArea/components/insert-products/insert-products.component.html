@@ -28,6 +28,7 @@
       <th scope="col">Stock</th>
       <th scope="col">Image</th>
       <th scope="col">Change</th>
+
     </tr>
     </thead>
     <tbody>
@@ -38,20 +39,21 @@
 };">
 
       <td >{{ item.code }}</td>
-      <td>{{ item.name }}</td>
+      <td style="padding-right: 300px;"><p style="width: 350%;"> {{ item.name }}</p></td>
       <td>{{ item.retail }}</td>
       <td>{{ item.wholesale }}</td>
       <td>{{ item.stock }}</td>
       <td>
-      <p>{{item.img}}</p>
-        <button class="btn btn-success" *ngIf="!item.img" (click)="open(item.mtrl)">Add image</button>
-        <img *ngIf="item.img" style="width: 40%" [src]="item.img" />
+
+        <button class="btn btn-success" *ngIf="item.img=='EMPTY'" (click)="open(item.mtrl)">Add image</button>
+        <img *ngIf="item.img != 'EMPTY'" style="width: 100%;" [src]="item.img" />
 
 
       </td>
       <td>
-        <button class="btn btn-success" *ngIf="item.img" (click)="open(item.mtrl)">Change Photo</button>
+        <button class="btn btn-success" *ngIf="item.img !='EMPTY'" (click)="open(item.mtrl)">Change Photo</button>
       </td>
+
     </tr>
 
     </tbody>
