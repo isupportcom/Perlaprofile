@@ -9,11 +9,19 @@ export class ModalService {
   image = new Subject<string>();
   castImage = this.image.asObservable();
 
+  offer = new Subject<number>()
+  castOffer = this.image.asObservable();
+
+  sendOffer(offer:number){
+    this.offer.next(offer)
+  }
+
   openPopup(flag: boolean){
     this.isClicked.next(flag);
   }
   sendImage(image:string){
     this.image.next(image);
   }
+
 
 }

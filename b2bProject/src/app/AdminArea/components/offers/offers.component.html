@@ -21,6 +21,11 @@
           <option [ngValue]="product.mtrl"  *ngFor="let product of products" style="width:100%!important;">{{product.name}}</option>
 
         </select>
+        <label for="showInHome">
+          Show In Homepage
+          <input name="showInHome"  formControlName="show" type="checkbox">
+        </label>
+
       </div>
 
     </div>
@@ -40,6 +45,7 @@
       <th scope="col">Product Mtrl</th>
       <th scope="col">Product Name</th>
       <th scope="col">Offer</th>
+      <th scope="col">Show In Homepage</th>
     </tr>
     </thead>
     <tbody>
@@ -47,6 +53,7 @@
       <td>{{ off.product_mtrl }}</td>
       <td>{{off.name}}</td>
       <td>{{off.offer}}</td>
+      <td><input class="yoyo" type="checkbox" style="width:20%;" [id]="off.product_mtrl" (click)="test($event)"></td>
     </tr>
     </tbody>
   </table>
