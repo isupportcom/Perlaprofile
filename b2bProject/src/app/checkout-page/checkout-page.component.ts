@@ -1,67 +1,86 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartServiceService } from '../cart/cart-service.service';
-import { AuthService } from '../services/auth.service';
 import { User } from '../services/user.model';
-import axios from "axios";
-import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
-import RevolutCheckout from '@revolut/checkout'
+import axios from 'axios';
+import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
+import RevolutCheckout from '@revolut/checkout';
+
 
 @Component({
   selector: 'app-checkout-page',
   templateUrl: './checkout-page.component.html',
-  styleUrls: ['./checkout-page.component.css']
+  styleUrls: ['./checkout-page.component.css'],
 })
 export class CheckoutPageComponent implements OnInit, OnDestroy {
-  products :product |any;
+  products: product | any;
   showCreditCard: boolean = true;
-  mtrlArr:any = [];
-  qtyArr:any =[];
+  mtrlArr: any = [];
+  qtyArr: any = [];
+  answer:string = "";
+  canGoBackToHome:boolean = false;
   showCashOnDelivery: boolean = false;
   showBankTransfer: boolean = false;
   @ViewChild('creditCard') creditCard: ElementRef | any;
   @ViewChild('bankTransfer') bankTransfer: ElementRef | any;
 
-  discArr:any=[];
-  loadedUser: User |any;
+  discArr: any = [];
+  loadedUser: User | any;
 
   showUserDetails?: boolean;
   showPayment?: boolean;
   totalPrice: number = 0;
-  answer:string ="";
-  constructor(private cartService: CartServiceService, private authService: AuthService,private router: Router, private renderer: Renderer2) { }
+
+  constructor(
+    private cartService: CartServiceService,
+    private router: Router,
+    private renderer: Renderer2
+  ) {}
 
   async ngOnInit() {
-   this.loadedUser= JSON.parse(localStorage.getItem('userData') || '{}');
-    let resData= await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{
-      trdr:this.loadedUser.trdr
-    })
+    this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+    let resData = await axios.post(
+      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+      {
+        trdr: this.loadedUser.trdr,
+      }
+    );
 
-   this.products = resData.data.products
-    console.log(this.products)
+    this.products = resData.data.products;
+    console.log(this.products);
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
-    for(let product of this.products){
-      this.totalPrice += (product.wholesale * product.qty);
+    for (let product of this.products) {
+      this.totalPrice += product.wholesale * product.qty;
     }
     console.log(this.totalPrice);
 
-    if(!this.showUserDetails){
+    if (!this.showUserDetails) {
       this.showUserDetails = true;
     }
 
-    if(!this.showPayment){
+    if (!this.showPayment) {
       this.showPayment = false;
     }
 
-    if(localStorage.getItem('showUserDetails') && localStorage.getItem('showPayment')){
-      if(localStorage.getItem('showUserDetails') == 'true'){
+    if (
+      localStorage.getItem('showUserDetails') &&
+      localStorage.getItem('showPayment')
+    ) {
+      if (localStorage.getItem('showUserDetails') == 'true') {
         this.showUserDetails = true;
         this.showPayment = false;
-      }
-      else{
+      } else {
         this.showUserDetails = false;
         this.showPayment = true;
       }
@@ -71,11 +90,11 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     // this.showPayment = localStorage.getItem('showPayment') == 'true'? true : false;
   }
 
-  handleGoBackToCart(){
+  handleGoBackToCart() {
     this.router.navigate(['cart']);
   }
 
-  handleGoBackToUserDetails(){
+  handleGoBackToUserDetails() {
     this.showUserDetails = true;
     this.showPayment = false;
 
@@ -83,8 +102,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     localStorage.setItem('showPayment', 'false');
   }
 
-
-  handleUserDetails(f: NgForm){
+  handleUserDetails(f: NgForm) {
     this.showUserDetails = false;
     this.showPayment = true;
 
@@ -92,23 +110,28 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     localStorage.setItem('showPayment', 'true');
   }
 
-  handlePaymentMethod(el: HTMLAnchorElement){
-    if(el.innerHTML == 'Credit Card'){
+  handlePaymentMethod(el: HTMLAnchorElement) {
+    if (el.innerHTML == 'Credit Card') {
       this.showCreditCard = true;
       this.showBankTransfer = false;
-
 
       el.style.fontWeight = 'bold';
       el.style.textDecoration = 'underline';
       el.style.transition = 'all 0.3s ease';
 
-      this.renderer.setStyle(this.bankTransfer.nativeElement, 'font-weight', 'normal');
-      this.renderer.setStyle(this.bankTransfer.nativeElement, 'text-decoration', 'none');
+      this.renderer.setStyle(
+        this.bankTransfer.nativeElement,
+        'font-weight',
+        'normal'
+      );
+      this.renderer.setStyle(
+        this.bankTransfer.nativeElement,
+        'text-decoration',
+        'none'
+      );
     }
 
-
-
-    if(el.innerHTML == 'Bank Transfer'){
+    if (el.innerHTML == 'Bank Transfer') {
       this.showCreditCard = false;
       this.showBankTransfer = true;
 
@@ -116,112 +139,133 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       el.style.textDecoration = 'underline';
       el.style.transition = 'all 0.3s ease';
 
-      this.renderer.setStyle(this.creditCard.nativeElement, 'font-weight', 'normal');
-      this.renderer.setStyle(this.creditCard.nativeElement, 'text-decoration', 'none');
-
-
+      this.renderer.setStyle(
+        this.creditCard.nativeElement,
+        'font-weight',
+        'normal'
+      );
+      this.renderer.setStyle(
+        this.creditCard.nativeElement,
+        'text-decoration',
+        'none'
+      );
     }
   }
 
-  ngOnDestroy(): void {
-
-  }
-   float2int (value:number) {
+  ngOnDestroy(): void {}
+  goToOrder: boolean = false;
+  float2int(value: number) {
     return value | 0;
   }
-  async placeOrder(){
-    let gotToOreder = false;
-   let price = this.float2int(this.totalPrice*100)
-  await  axios.post("https://perlarest.vinoitalia.gr/php-auth-api/checkout.php",{
-        "amount": price,
-        "currency": "EUR",
-        "email": "johndoe001@gmail.com"
-      }
+  async placeOrder() {
+    setTimeout(()=>{
+      this.canGoBackToHome = true;
+    },1000)
 
-    ).then(resData=>{
-      console.log(resData.data.data.public_id);
+    var goToOrder: any;
+    let price = this.float2int(this.totalPrice * 100);
+    let req = await axios
+      .post('https://perlarest.vinoitalia.gr/php-auth-api/checkout.php', {
+        amount: 1,
+        currency: 'EUR',
+        email: 'johndoe001@gmail.com',
+      })
 
 
-    RevolutCheckout(resData.data.data.public_id).then(instance => {
-        var popup = instance.payWithPopup({
-          name: "John Smith",
-          email: "customer@example.com",
-          phone: "+447950630319",
-          locale: "en",
-          billingAddress: {
-            countryCode: "GB",
-            region: "Greater London",
-            city: "London",
-            streetLine1: "Revolut",
-            streetLine2: "1 Canada Square",
-            postcode: "EC2V 6DN"
-          },
-          shippingAddress: {
-            countryCode: "GB",
-            region: "Greater London",
-            city: "London",
-            streetLine1: "Revolut",
-            streetLine2: "1 Canada Square",
-            postcode: "EC2V 6DN"
-          },
-          onSuccess() {
-            gotToOreder = true
-          },
-          onError(message) {
-          gotToOreder = false
+        console.log(req.data.data.public_id);
+        let prod = this.products;
+        let answer = "";
+        let mtrlArr: any = [];
+        let qtyArr :any = [];
+        let discArr:any = [];
+        let route = this.router;
+        let loadedUser = this.loadedUser
+        let checkout = await RevolutCheckout(req.data.data.public_id)
+        checkout.payWithPopup({
+            name: 'John Smith',
+            email: 'customer@example.com',
+            phone: '+447950630319',
+            locale: 'en',
+            billingAddress: {
+              countryCode: 'GB',
+              region: 'Greater London',
+              city: 'London',
+              streetLine1: 'Revolut',
+              streetLine2: '1 Canada Square',
+              postcode: 'EC2V 6DN',
+            },
+            shippingAddress: {
+              countryCode: 'GB',
+              region: 'Greater London',
+              city: 'London',
+              streetLine1: 'Revolut',
+              streetLine2: '1 Canada Square',
+              postcode: 'EC2V 6DN',
+            },
+            onSuccess() {
+            for (let i = 0; i < prod.length; i++) {
+              mtrlArr[i] = prod[i].mtrl;
+              qtyArr[i] = prod[i].qty;
+              discArr[i] =prod[i].discount;
+            }
+            console.log(mtrlArr);
+            console.log(mtrlArr.join(','));
+            console.log(qtyArr);
+            console.log(qtyArr.join(','));
+
+            console.log(loadedUser.trdr);
+            let payment;
+
+              payment = 2;
+
+            axios
+              .post(
+                'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
+                {
+                  mtrl: mtrlArr.join(','),
+                  qty: qtyArr.join(','),
+                  trdr: loadedUser.trdr,
+                  discount: discArr.join(','),
+                  payment: payment,
+                }
+              )
+              .then((resData) => {
+                let h3 :any
+                   h3 = document.getElementById("orderComplete");
+                  h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
+                  setTimeout(()=>{
+                    route.navigate(['home'])
+                    setTimeout(()=>{
+                      window.location.reload();
+                    })
+                  },10000)
+
+
+              });
+            },
+
+             onCancel() {
+              let btn :any;
+              btn = document.getElementById("toHomepage")
+              btn.remove()
+              window.location.reload();
+            },
+
+             onError(message) {
+              window.alert("Something Went Wrong");
+            }
           }
-        });
-      })
-    console.log(this.products)
-    if(gotToOreder){
-      for(let i =0;i<this.products.length;i++){
-        this.mtrlArr[i] = this.products[i].mtrl;
-        this.qtyArr[i]  = this.products[i].qty
-        this.discArr[i] = this.products[i].discount
-      }
-      console.log(this.mtrlArr)
-      console.log(this.mtrlArr.join(","));
-      console.log(this.qtyArr);
-      console.log(this.qtyArr.join(","))
-      console.log(this.loadedUser.trdr)
-      let payment;
-      if(this.showPayment){
-        payment = 2
-      }
-      axios.post("https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/",{
-        mtrl: this.mtrlArr.join(","),
-        qty : this.qtyArr.join(","),
-        trdr: this.loadedUser.trdr,
-        discount : this.discArr.join(","),
-        payment: payment
+
+          );
 
 
-      }).then(resData=>{
-        setTimeout(()=>{
-          this.answer = resData.data.message
-          setTimeout(()=>{
-            this.products= this.cartService.clearCart();
-            let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
-            axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
-              {
-                mtrl:"item",
-                trdr:loadedUser.trdr,
-                id:1
-              }
-            )
-            this.router.navigate(['home'])
 
-          },3000)
-        },3000)
 
-      })
-    }
 
-     })
 
 
   }
-
-
-
+  handleMyHomePage(){
+    this.router.navigate(['home']);
+  }
 }

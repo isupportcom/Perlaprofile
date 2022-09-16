@@ -77,7 +77,8 @@
                         <input name="cvv" type="text" id="cvv" class="form form-control" ngModel required>
                     </div>
                 </div>
-              <h3>{{ answer }}</h3>
+              <h3 id="orderComplete"></h3>
+              <button class="btn btn-success" id="toHomepage" style="margin-left:10% ;" (click)="handleMyHomePage()" *ngIf="canGoBackToHome">Back To Homepage</button>
             </div>
 
             <p style="margin-top: 10%;" *ngIf="showCashOnDelivery">hello2</p>

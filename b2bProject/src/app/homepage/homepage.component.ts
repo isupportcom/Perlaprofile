@@ -48,7 +48,7 @@ export class HomepageComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+   ngOnInit() {
     this.productsService.getMainCategories().subscribe(resData => {
       this.mainCategories = resData;
       console.log(this.mainCategories);

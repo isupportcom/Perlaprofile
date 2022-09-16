@@ -108,7 +108,7 @@ const routes:Routes = [
   },
   {
     path: 'checkout',
-    canActivate: [CheckoutGuard],
+
     component: CheckoutPageComponent
   },
   {
@@ -135,6 +135,7 @@ const routes:Routes = [
 
 
 ]
+
 
 
 @NgModule({
@@ -171,10 +172,6 @@ const routes:Routes = [
     InsertImagesComponent,
     ContatcFormComponent,
     OfferPopupComponent,
-
-
-
-
   ],
   imports: [
     BrowserModule,
