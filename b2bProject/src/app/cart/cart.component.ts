@@ -146,13 +146,13 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   handleCheckout(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
-      method:"STOCKUPDATE"
-    }).then(resData=>{
-      console.log(resData.data);
-      this.router.navigate(['checkout']);
-    })
-
+    // axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
+    //   method:"STOCKUPDATE"
+    // }).then(resData=>{
+    //   console.log(resData.data);
+    //
+    // })
+    this.router.navigate(['checkout']);
 
   }
 

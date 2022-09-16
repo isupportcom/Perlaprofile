@@ -60,17 +60,17 @@ export class NavbarComponent implements OnInit{
     fetchProductsObs.subscribe(resData => {
       this.temp = resData.products;
       // console.log(this.temp.length);
-      
-      
+
+
     })
     setTimeout(() => {
       // this.products = this.temp;
       console.log(this.temp.length);
-      
+
     },50)
-    
-    
-    
+
+
+
     this.cartService.productAdded.subscribe(res => {
       this.productAdded = res;
       console.log(this.productAdded);
@@ -99,11 +99,13 @@ export class NavbarComponent implements OnInit{
     console.log(this.isAdminArea);
     this.router.navigate(["products"]);
   }
+  handleContact(){
+    this.router.navigate(['contact'])
+  }
 
   handleDashboard(){
     this.isAdminArea = true;
     console.log(this.isAdminArea);
-
     this.router.navigate(["dashboard"]);
   }
 

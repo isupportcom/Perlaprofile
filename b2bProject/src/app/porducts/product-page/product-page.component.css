@@ -40,7 +40,10 @@ html, body {
   transition: all 0.3s ease; */
 }
 
-
+.product-price span:nth-child(1){
+    color:red;
+    text-decoration:line-through;
+}
 
 
 /* Right Column */

@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { User } from '../services/user.model';
 import axios from "axios";
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
+import RevolutCheckout from '@revolut/checkout'
 
 @Component({
   selector: 'app-checkout-page',
@@ -22,8 +23,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   @ViewChild('creditCard') creditCard: ElementRef | any;
   @ViewChild('bankTransfer') bankTransfer: ElementRef | any;
 
-
-  loadedUser: User = JSON.parse(localStorage.getItem('userData') || '{}');
+  discArr:any=[];
+  loadedUser: User |any;
 
   showUserDetails?: boolean;
   showPayment?: boolean;
@@ -32,11 +33,13 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   constructor(private cartService: CartServiceService, private authService: AuthService,private router: Router, private renderer: Renderer2) { }
 
   async ngOnInit() {
+   this.loadedUser= JSON.parse(localStorage.getItem('userData') || '{}');
     let resData= await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{
       trdr:this.loadedUser.trdr
     })
-   this.products = resData.data.products
 
+   this.products = resData.data.products
+    console.log(this.products)
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
@@ -123,49 +126,102 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
 
   }
-  placeOrder(){
+   float2int (value:number) {
+    return value | 0;
+  }
+  async placeOrder(){
+    let gotToOreder = false;
+   let price = this.float2int(this.totalPrice*100)
+  await  axios.post("https://perlarest.vinoitalia.gr/php-auth-api/checkout.php",{
+        "amount": price,
+        "currency": "EUR",
+        "email": "johndoe001@gmail.com"
+      }
+
+    ).then(resData=>{
+      console.log(resData.data.data.public_id);
+
+
+    RevolutCheckout(resData.data.data.public_id).then(instance => {
+        var popup = instance.payWithPopup({
+          name: "John Smith",
+          email: "customer@example.com",
+          phone: "+447950630319",
+          locale: "en",
+          billingAddress: {
+            countryCode: "GB",
+            region: "Greater London",
+            city: "London",
+            streetLine1: "Revolut",
+            streetLine2: "1 Canada Square",
+            postcode: "EC2V 6DN"
+          },
+          shippingAddress: {
+            countryCode: "GB",
+            region: "Greater London",
+            city: "London",
+            streetLine1: "Revolut",
+            streetLine2: "1 Canada Square",
+            postcode: "EC2V 6DN"
+          },
+          onSuccess() {
+            gotToOreder = true
+          },
+          onError(message) {
+          gotToOreder = false
+          }
+        });
+      })
     console.log(this.products)
-   for(let i =0;i<this.products.length;i++){
-     this.mtrlArr[i] = this.products[i].mtrl;
-     this.qtyArr[i]  = this.products[i].qty
-   }
-    console.log(this.mtrlArr)
-    console.log(this.mtrlArr.join(","));
-    console.log(this.qtyArr);
-    console.log(this.qtyArr.join(","))
-    console.log(this.loadedUser.trdr)
-    let payment;
-    if(this.showPayment){
-       payment = 2
-    }
-    axios.post("https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/",{
+    if(gotToOreder){
+      for(let i =0;i<this.products.length;i++){
+        this.mtrlArr[i] = this.products[i].mtrl;
+        this.qtyArr[i]  = this.products[i].qty
+        this.discArr[i] = this.products[i].discount
+      }
+      console.log(this.mtrlArr)
+      console.log(this.mtrlArr.join(","));
+      console.log(this.qtyArr);
+      console.log(this.qtyArr.join(","))
+      console.log(this.loadedUser.trdr)
+      let payment;
+      if(this.showPayment){
+        payment = 2
+      }
+      axios.post("https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/",{
         mtrl: this.mtrlArr.join(","),
         qty : this.qtyArr.join(","),
         trdr: this.loadedUser.trdr,
+        discount : this.discArr.join(","),
         payment: payment
 
 
-    }).then(resData=>{
-      setTimeout(()=>{
-        this.answer = resData.data.message
+      }).then(resData=>{
         setTimeout(()=>{
-         this.products= this.cartService.clearCart();
-         let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
-         axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
-         {
-           mtrl:"item",
-           trdr:loadedUser.trdr,
-           id:1
-         }
-         )
-          this.router.navigate(['home'])
+          this.answer = resData.data.message
+          setTimeout(()=>{
+            this.products= this.cartService.clearCart();
+            let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
+            axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
+              {
+                mtrl:"item",
+                trdr:loadedUser.trdr,
+                id:1
+              }
+            )
+            this.router.navigate(['home'])
 
+          },3000)
         },3000)
-      },3000)
 
-    })
+      })
+    }
+
+     })
+
 
   }
+
 
 
 }

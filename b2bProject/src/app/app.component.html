@@ -10,7 +10,8 @@
             <div style="display: inline-block; text-align: start; margin-left: 3%;">
                 <h5>{{ singleProduct.name }}</h5>
                 <p>Quantity: {{ singleProduct.qty }}</p>
-                <p>Price: {{ singleProduct.wholesale * singleProduct.qty}}&#x20AC;</p>
+                <p *ngIf="!singleProduct.hasOffer">Price: {{ singleProduct.wholesale * singleProduct.qty}}&#x20AC;</p>
+              <p *ngIf="singleProduct.hasOffer">Price: {{ singleProduct.offer * singleProduct.qty}}&#x20AC;</p>
                 <div style="margin-top: 5%;">
                     <button class="btn btn-success" (click)="handleGoToCart()">Καλάθι</button>
                     <button class="btn btn-danger" (click)="handleClose()">Συνεχίστε τα ψώνια</button>
@@ -31,7 +32,8 @@
             <div style="display: inline-block; text-align: start; margin-left: 3%;">
                 <h5>{{ product.name }}</h5>
                 <p>Quantity: {{ product.qty }}</p>
-                <p>Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
+                <p *ngIf="!product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
+                  <p *ngIf="product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
                 <button class="btn btn-success" (click)="handleGrouping(product)">Προσθήκη</button>
             </div>
 

@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <div class="card">
+
     <form *ngIf="showUserDetails" (ngSubmit)="handleUserDetails(userDetailsForm)" #userDetailsForm="ngForm">
         <h3>User Details</h3>
         <div class="fields">

@@ -22,6 +22,7 @@ interface mainCat{
 export class ProductListComponent implements OnInit , OnDestroy{
   search:string = "";
   message:string ='';
+  loadedUser:any;
   @ViewChild('menu1') menu1!: ElementRef;
   @ViewChild('menu2') menu2!: ElementRef;
 
@@ -121,7 +122,8 @@ export class ProductListComponent implements OnInit , OnDestroy{
   }
 
   ngOnInit(): void {
-
+  this.loadedUser = JSON.parse(localStorage.getItem("userData")||'{}');
+    console.log(this.loadedUser);
 
     this.innerWidth = window.innerWidth;
     if(this.innerWidth <= 992){

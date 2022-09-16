@@ -59,6 +59,7 @@ export class HomepageComponent implements OnInit {
       product:"product",
       offer:"2"
     }).then(resData=>{
+
       console.log(resData.data)
       this.offer1 = resData.data.offers[0]
       this.offer2 = resData.data.offers[1];
@@ -69,7 +70,10 @@ export class HomepageComponent implements OnInit {
 
 
   }
-
+  handleProductPage(product:any){
+    this.productsService.setSingleProduct(product);
+    this.router.navigate(['../products/product-page']);
+  }
   goToProducts(mainCategory: any){
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);

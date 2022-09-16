@@ -221,9 +221,9 @@ export class AppComponent implements OnDestroy, OnInit {
     this.showScope3 = false;
 
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000)
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 1000)
 
 
 

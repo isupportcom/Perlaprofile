@@ -22,6 +22,7 @@ export  class ProductsService {
 
  setSingleProduct(prod:product){
      this.singleProduct = prod;
+     localStorage.setItem("single",JSON.stringify(this.singleProduct))
      console.log(prod);
 
  }
@@ -37,7 +38,7 @@ export  class ProductsService {
  }
 
  getSingelProduct(){
-     return this.singleProduct;
+     return JSON.parse(localStorage.getItem("single")||'{}');
  }
 
  getAllCategories(){
