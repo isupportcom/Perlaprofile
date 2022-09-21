@@ -395,6 +395,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }
 
   }
+  hundleMyWizzard(){
+    this.router.navigate(['../../mosqui-plus'],{relativeTo:this.route});
+  }
   shouldContinueColors:boolean|any;
   checkColor(){
     console.log(this.colors.value.color !=undefined);
@@ -577,7 +580,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   handleFilter(mainCategory: any,subcategory:any){
     this.filterOn = true;
-    this.router.navigate(['products',mainCategory.id,subcategory.sub_id]);
+
+
+    (['products',mainCategory.id,subcategory.sub_id]);
     setTimeout(() => {
       window.location.reload();
     },50)
