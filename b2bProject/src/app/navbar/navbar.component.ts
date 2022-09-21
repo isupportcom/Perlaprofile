@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit{
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
 
-  
+
 
   @ViewChild('dropdown') dropdown!: ElementRef;
   @ViewChild('options') options!: ElementRef;
@@ -66,7 +66,7 @@ export class NavbarComponent implements OnInit{
     onResize(event: any){
       this.innerWidth = window.innerWidth
       console.log(this.innerWidth);
-  
+
       if(this.innerWidth < 768 ){
         this.showSecondNav = false;
         this.makeSmallerDropDown = true;
@@ -75,7 +75,7 @@ export class NavbarComponent implements OnInit{
         this.showSecondNav = true;
         this.makeSmallerDropDown = false;
       }
-      
+
     }
 
 
@@ -95,11 +95,11 @@ export class NavbarComponent implements OnInit{
               }),650)
             },1500)
           },400)
-          
+
         }
       }
-      
-      
+
+
     });
 
 
@@ -112,13 +112,13 @@ export class NavbarComponent implements OnInit{
 
     this.cartService.productAdded.subscribe(resData => {
       console.log(resData);
-      
+
     });
-    
-    
+
+
     this.innerWidth = window.innerWidth;
     // console.log(this.innerWidth);
-    
+
     if(this.innerWidth < 768 ){
       this.showSecondNav = false;
       this.makeSmallerDropDown = true;
@@ -166,7 +166,7 @@ export class NavbarComponent implements OnInit{
     //   this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
     // })
   }
-  handleFavorite(){
+  hundleMyFavorites(){
     this.router.navigate(['favorites'])
   }
   goToProducts(mainCategory: any){
@@ -184,7 +184,7 @@ export class NavbarComponent implements OnInit{
     else{
       this.showUserOptions = false;
     }
-    
+
   }
 
   handleHover(){
@@ -234,7 +234,7 @@ export class NavbarComponent implements OnInit{
     setTimeout(() => {
       window.location.reload();
     },100)
-    
+
   }
 
   setDropdown(element: HTMLElement){
@@ -260,7 +260,7 @@ export class NavbarComponent implements OnInit{
     else{
       this.router.navigate(['home']);
     }
-    
+
   }
 
   logout(){
@@ -270,7 +270,7 @@ export class NavbarComponent implements OnInit{
     console.log(this.authService.user.getValue()?.token);
     this.authService.logout();
     console.log(this.authService.user.getValue());
-    
+
     localStorage.setItem("userType","notLoggin")
     window.location.reload();
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
