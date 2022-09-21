@@ -19,7 +19,8 @@ export class HomepageComponent implements OnInit {
   offer2:any=[];
 
   source: string = '../../assets/pexels-expect-best-323772.jpg';
-
+  showLoggedInContent: boolean = false;
+  username = localStorage.getItem('username');
 
   constructor(private productsService: ProductsService,private router: Router) { }
 
@@ -50,6 +51,15 @@ export class HomepageComponent implements OnInit {
   }
 
    ngOnInit() {
+    if(this.username){
+      this.showLoggedInContent = true;
+    }
+    else{
+      this.showLoggedInContent = false;
+    }
+    
+
+
     this.productsService.getMainCategories().subscribe(resData => {
       this.mainCategories = resData;
       console.log(this.mainCategories);

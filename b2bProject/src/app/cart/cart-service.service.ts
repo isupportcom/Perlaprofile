@@ -21,6 +21,15 @@ export class CartServiceService {
   sendProductAdded(flag: boolean) {
     this.productAdded.next(flag);
   }
+
+
+  productAddedToFav = new Subject<boolean>();
+  castProductAddedToFav = this.productAddedToFav.asObservable();
+
+  sendProductAddedToFav(flag: boolean) {
+    this.productAddedToFav.next(flag);
+  }
+
   searchResult = new Subject<product>();
   searchCast = this.searchResult.asObservable();
 

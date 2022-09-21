@@ -225,7 +225,6 @@
 }
 
 .my-active{
-
   background-color: #6DAE49;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
@@ -354,3 +353,18 @@
   margin-top: 12px;
 }
 
+.heartAnim{
+  animation: makeBigger 0.7s ease-in-out;
+}
+
+@keyframes makeBigger {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.3);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
