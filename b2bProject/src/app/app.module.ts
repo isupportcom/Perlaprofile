@@ -47,6 +47,7 @@ import { OffersComponent } from './AdminArea/components/offers/offers.component'
 import { InsertImagesComponent } from './AdminArea/components/insert-images/insert-images.component';
 import { ContatcFormComponent } from './shared/contatc-form/contatc-form.component';
 import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-popup.component';
+import { FavoriteComponent } from './cart/favorite/favorite.component';
 
 
 
@@ -105,6 +106,11 @@ const routes:Routes = [
     path: 'cart',
     canActivate: [AuthGuard],
     component: CartComponent
+  },
+  {
+    path:'favorites',
+    component:FavoriteComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'checkout',
@@ -172,6 +178,7 @@ const routes:Routes = [
     InsertImagesComponent,
     ContatcFormComponent,
     OfferPopupComponent,
+    FavoriteComponent,
   ],
   imports: [
     BrowserModule,

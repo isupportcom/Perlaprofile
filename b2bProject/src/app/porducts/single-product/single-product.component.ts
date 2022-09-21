@@ -72,7 +72,21 @@ export class SingleProductComponent implements OnInit {
     console.log(this.index);
     localStorage.setItem("single",JSON.stringify(this.index));
 
-    this.router.navigate(['../../product-page'], {relativeTo: this.route});
+    setTimeout(() => {
+      if(this.router.url === '/products/product-page'){
+        window.location.reload();
+      }
+      else{
+        this.router.navigate(['../../product-page'],{relativeTo:this.route});
+      }
+
+    },100)
+
+  }
+  handleAddToFavorite(product:any){
+    console.log(product);
+
+    this.cartService.addToFavorites(product);
   }
 
 

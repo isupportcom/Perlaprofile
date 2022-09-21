@@ -19,11 +19,10 @@
   <div class="row price">
     <p *ngIf="!index.hasOffer">{{ index.wholesale }}&#x20AC;</p>
     <div *ngIf="index.hasOffer">
-        <p style="
-         color:red;
-        text-decoration:line-through;
-        ">{{index.wholesale}}&euro;</p>
-        <p>{{ index.offer }}&euro;</p>
+      <p style="color: red; text-decoration: line-through">
+        {{ index.wholesale }}&euro;
+      </p>
+      <p>{{ index.offer }}&euro;</p>
     </div>
   </div>
 
@@ -34,6 +33,15 @@
       [disabled]="index.stock == 0"
     >
       Προσθήκη
+    </button>
+
+    <button
+      style="margin-top: 10px"
+      class="myBtn"
+      (click)="handleAddToFavorite(index)"
+      [disabled]="index.stock == 0"
+    >
+      Προσθήκη Στα Αγαπημένα
     </button>
   </div>
 </div>

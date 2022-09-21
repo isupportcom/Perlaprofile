@@ -41,8 +41,7 @@ html, body {
 }
 
 .product-price span:nth-child(1){
-    color:red;
-    text-decoration:line-through;
+
 }
 
 

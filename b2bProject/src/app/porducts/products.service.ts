@@ -41,9 +41,9 @@ export  class ProductsService {
      return JSON.parse(localStorage.getItem("single")||'{}');
  }
 
- getAllCategories(){
-    return  this.http.get(
-        'https://perlarest.vinoitalia.gr/php-auth-api/getAllCategories.php/?id=7&method=allCategories');
+ getAllCategories(id:any){
+    return  this.http.post(
+        'https://perlarest.vinoitalia.gr/php-auth-api/getAllCategories.php',{category:id});
  }
 
  getAllProducts(){

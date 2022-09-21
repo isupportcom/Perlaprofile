@@ -1,82 +1,119 @@
 <div class="container">
-
-    <!-- Left Column / Headphones Image -->
-    <div class="left-column">
-      <div class="slideshow-container">
-        <div class="Containers">
-          <img [src]="product.img" alt="image">
-        </div>
-        <div class="Containers" *ngFor="let prod of product.otherImages">
-          <img [src]="prod.img" alt="image">
-        </div>
-        <a class="Back" (click)="plusSlides(-1)">&#10094;</a>
-        <a class="forward" (click)="plusSlides(1)">&#10095;</a>
+  <!-- Left Column / Headphones Image -->
+  <div class="left-column">
+    <div class="slideshow-container">
+      <div class="Containers">
+        <img [src]="product.img" alt="image" />
       </div>
-      <div style="text-align:center">
-        <span class="dots" (click)="currentSlide(1)"></span>
-        <span class="dots" (click)="currentSlide(2)"></span>
+      <div class="Containers" *ngFor="let prod of product.otherImages">
+        <img [src]="prod.img" alt="image" />
       </div>
-
-      <hr>
-
-      <ul class="description">
-        <li><a [ngClass]="switchDesc ? '' : 'active'" (click)="showDescription1()" #description>Περιγραφή</a></li>
-        <li><a [ngClass]="switchDesc ? 'active' : ''" (click)="showDescription2()" #dataSheet>Data Sheet</a></li>
-      </ul>
-      <div style="margin-top: 50px;">
-        <div *ngIf="!switchDesc">
-          <p>- Ενσύρματο μοτέρ<br>
-            - 5 Καλώδια<br>
-            - Σύνδεσμος με εξωτερικό δέκτη<br>
-            - Μηχανικά όρια</p>
-        </div>
-        <div *ngIf="switchDesc" class="table">
-          <hr>
-          <span>Διάμετρος Σωλήνα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Ø35 mm</span>
-          <hr>
-          <span>Ονομαστική Ισχύς:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;121 W</span>
-          <hr>
-          <span>Ονομαστική Ροπή:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;13 Nm</span>
-          <hr>
-          <span>Ονομαστική Ταχύτητα (RPM):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;230 V DC</span>
-          <hr>
-          <span>Συχνότητα Λειτουργίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;50 Hz</span>
-          <hr>
-          <span>Ονομαστικό Ρεύμα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0,53 A</span>
-          <hr>
-          <span>Βαθμός Προστασίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;IP44</span>
-          <hr>
-          <span>Αριθμός Στροφών (max):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;36</span>
-          <hr>
-        </div>
-      </div>
+      <a class="Back" (click)="plusSlides(-1)">&#10094;</a>
+      <a class="forward" (click)="plusSlides(1)">&#10095;</a>
+    </div>
+    <div style="text-align: center">
+      <span class="dots" (click)="currentSlide(1)"></span>
+      <span class="dots" (click)="currentSlide(2)"></span>
     </div>
 
+    <hr />
 
-    <!-- Right Column -->
-    <div class="right-column">
-
-      <!-- Product Description -->
-      <div class="product-description">
-        <span>{{ product.name1 }}</span>
-        <h1>{{ product.name }}</h1>
-        <h3>Σωληνωτό Μοτέρ 13Nm 14Rpm</h3>
-
-
+    <ul class="description">
+      <li>
+        <a
+          [ngClass]="switchDesc ? '' : 'active'"
+          (click)="showDescription1()"
+          #description
+          >Περιγραφή</a
+        >
+      </li>
+      <li>
+        <a
+          [ngClass]="switchDesc ? 'active' : ''"
+          (click)="showDescription2()"
+          #dataSheet
+          >Data Sheet</a
+        >
+      </li>
+    </ul>
+    <div style="margin-top: 50px">
+      <div *ngIf="!switchDesc">
+        <p>
+          - Ενσύρματο μοτέρ<br />
+          - 5 Καλώδια<br />
+          - Σύνδεσμος με εξωτερικό δέκτη<br />
+          - Μηχανικά όρια
+        </p>
       </div>
+      <div *ngIf="switchDesc" class="table">
+        <hr />
+        <span
+          >Διάμετρος
+          Σωλήνα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Ø35
+          mm</span
+        >
+        <hr />
+        <span
+          >Ονομαστική
+          Ισχύς:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;121
+          W</span
+        >
+        <hr />
+        <span
+          >Ονομαστική
+          Ροπή:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;13
+          Nm</span
+        >
+        <hr />
+        <span
+          >Ονομαστική Ταχύτητα
+          (RPM):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;230
+          V DC</span
+        >
+        <hr />
+        <span
+          >Συχνότητα
+          Λειτουργίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;50
+          Hz</span
+        >
+        <hr />
+        <span
+          >Ονομαστικό
+          Ρεύμα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0,53
+          A</span
+        >
+        <hr />
+        <span
+          >Βαθμός
+          Προστασίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;IP44</span
+        >
+        <hr />
+        <span
+          >Αριθμός Στροφών
+          (max):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;36</span
+        >
+        <hr />
+      </div>
+    </div>
+    <div *ngIf="hasSuggested">
+      <app-single-product *ngFor="let index of suggestedProducts" [index]="index"></app-single-product>
+    </div>
+  </div>
 
-      <!-- Product Configuration -->
-      <div class="product-configuration">
+  <!-- Right Column -->
+  <div class="right-column">
+    <!-- Product Description -->
+    <div class="product-description">
+      <span>{{ product.name1 }}</span>
+      <h1>{{ product.name }}</h1>
+      <h3>Σωληνωτό Μοτέρ 13Nm 14Rpm</h3>
+    </div>
 
-        <!-- Product Color -->
-        <div class="product-color">
-
-
-
-
-
-
-          <!-- <div class="color-choose">
+    <!-- Product Configuration -->
+    <div class="product-configuration">
+      <!-- Product Color -->
+      <div class="product-color">
+        <!-- <div class="color-choose">
             <div>
               <input data-image="red" type="radio" id="red" name="color" value="red" checked>
               <label for="red"><span></span></label>
@@ -90,14 +127,13 @@
               <label for="black"><span></span></label>
             </div>
           </div> -->
+      </div>
 
-        </div>
-
-        <!-- Cable Configuration -->
-        <!-- <div class="cable-config">
+      <!-- Cable Configuration -->
+      <!-- <div class="cable-config">
           <span>Cable configuration</span> -->
 
-          <!-- <div class="cable-choose">
+      <!-- <div class="cable-choose">
             <button>Straight</button>
             <button>Coiled</button>
             <button>Long-coiled</button>
@@ -110,29 +146,44 @@
       <!-- Product Pricing -->
       <div class="product-price" *ngIf="!product.hasOffer">
         <span>{{ product.wholesale }}$</span>
-        <form
-
-
-        >
-          <a class="cart-btn " (click)="addToCart()">Add to cart</a>
-          <input type="number" class="form-control numberInput" name="qty" id="qty" [value]="product.stock >= product.qty" ngModel [(ngModel)]="product.qty" min="1" [max]="product.stock" #qty>
+        <form>
+          <a class="cart-btn" (click)="addToCart()">Add to cart</a>
+          <input
+            type="number"
+            class="form-control numberInput"
+            name="qty"
+            id="qty"
+            [value]="product.stock >= product.qty"
+            ngModel
+            [(ngModel)]="product.qty"
+            min="1"
+            [max]="product.stock"
+            #qty
+          />
           <span>({{ product.stock }})</span>
         </form>
-
       </div>
-        <div class="product-price" *ngIf="product.hasOffer">
-          <span>{{ product.wholesale }}$</span>
-          <span>{{ product.offer }}$</span>
-          <form
-
-
-          >
-            <a class="cart-btn " (click)="addToCart()">Add to cart</a>
-            <input type="number" class="form-control numberInput" name="qty" id="qty" [value]="product.stock >= product.qty" ngModel [(ngModel)]="product.qty" min="1" [max]="product.stock" #qty>
-            <span>({{ product.stock }})</span>
-
-          </form>
-
-        </div>
+      <div class="product-price" *ngIf="product.hasOffer">
+        <span style=" color:red;
+        text-decoration:line-through;">{{ product.wholesale }}$</span>
+        <span>{{ product.offer }}$</span>
+        <form>
+          <a class="cart-btn" (click)="addToCart()">Add to cart</a>
+          <input
+            type="number"
+            class="form-control numberInput"
+            name="qty"
+            id="qty"
+            [value]="product.stock >= product.qty"
+            ngModel
+            [(ngModel)]="product.qty"
+            min="1"
+            [max]="product.stock"
+            #qty
+          />
+          <span>({{ product.stock }})</span>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

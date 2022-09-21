@@ -4,6 +4,7 @@ import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.compo
 import { Observable, tap } from 'rxjs';
 import {CartServiceService} from "../../cart/cart-service.service";
 import {NgForm} from "@angular/forms";
+import axios from 'axios';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class ProductPageComponent implements OnInit {
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
   relatedProducts:product|any = [];
    product :product|any;
+   suggestedProducts:product|any;
+   hasSuggested:boolean =false;
   constructor(
       private renderer: Renderer2,
       private el: ElementRef,
@@ -25,12 +28,21 @@ export class ProductPageComponent implements OnInit {
       private cartService : CartServiceService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.slidePosition = 1;
     this.SlideShow(this.slidePosition);
+    console.log();
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
+
+    let request = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllproductsRelated.php",{mtrl:this.product.mtrl})
+    console.log(request.data)
+    this.suggestedProducts = request.data.products;
+    if(this.suggestedProducts.length !=0){
+      this.hasSuggested = true;
+    }
+
 
 
 

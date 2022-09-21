@@ -9,7 +9,15 @@
 .my-pagination::ng-deep .ngx-pagination{
     font-size: 14px;
     padding-left: 0%;
-    
+
+}
+.next-btn{
+  margin-left: 85%;
+}
+@media screen and (max-width: 1000px){
+  .next-btn{
+    margin-left: 35% ;
+  }
 }
 
 .goLeft::ng-deep .ngx-pagination{
@@ -151,7 +159,7 @@ input[type='checkbox']:checked ~ .checkbox{
 
 
 .carousel-control-prev-icon,.carousel-control-next-icon {
-    
+
     border-radius: 800px;
     z-index: 100;
     height: 24px;

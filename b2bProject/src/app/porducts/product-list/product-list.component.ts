@@ -4,6 +4,7 @@ import {ProductsService} from "../products.service";
 import axios from "axios";
 import { Category } from '../categories.model';
 import {NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,14 +24,47 @@ export class ProductListComponent implements OnInit , OnDestroy{
   search:string = "";
   message:string ='';
   loadedUser:any;
-  @ViewChild('menu1') menu1!: ElementRef;
-  @ViewChild('menu2') menu2!: ElementRef;
+  showProduct:boolean|any;
+  dummyColors:any =[
+    {
+      colorName:"Απαλο",
+      id:1
+    },
+    {
+      colorName:"Σκληρο",
+      id:2
+    },
+    {
+      colorName:"Ευκαμπτο",
+      id:3
+    },
+    {
+      colorName:"Μεταξι",
+      id:4
+    }
+  ];
+  colorsToChoose:any=[
+    {
+      name:"blue"
+    },
+    {
+      name:"red"
+    },
+    {
+      name:"green"
+    },
+    {
+      name:"black"
+    }
+  ]
+  @ViewChild('menu1') menu1: ElementRef|any;
+  @ViewChild('menu2') menu2: ElementRef|any;
 
 
 
 
 
-  constructor(private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) {
+  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) {
 
     this.renderer.listen('window', 'click',(e:Event)=>{
 
@@ -68,7 +102,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
   checkboxes: any = document.querySelectorAll('.checkbox');
   listArray: any = [];
   checked?: boolean;
-
+  contactForm:FormGroup|any;
+  fabric:FormGroup|any;
+  colors:FormGroup|any;
   showProductsPerPage:boolean = false;
   showSortOptions: boolean = false;
   logoSource?: string;
@@ -121,7 +157,24 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }
   }
 
+
   ngOnInit(): void {
+
+    this.contactForm = this.fb.group({
+      width:[null],
+      height:[null]
+    })
+    this.fabric = this.fb.group({
+      fabricname:[null],
+
+    })
+    this.colors = this.fb.group({
+      color:[null]
+    })
+    console.log();
+
+
+
   this.loadedUser = JSON.parse(localStorage.getItem("userData")||'{}');
     console.log(this.loadedUser);
 
@@ -201,6 +254,14 @@ export class ProductListComponent implements OnInit , OnDestroy{
       console.log(params['cat_name']);
 
       this.mainCategory.id = +params['cat_id'];
+      this.productsService.getAllCategories(this.mainCategory.id).subscribe((resData:any)=>{
+        console.log(resData);
+        this.productsService.setAllCategoriesArray(resData.Categories[0].subcategoris)
+        this.categories = this.productsService.getCategoriesArray();
+        console.log(this.categories);
+
+      })
+
 
       this.mainCategory.name = params['cat_name'];
 
@@ -209,13 +270,15 @@ export class ProductListComponent implements OnInit , OnDestroy{
       localStorage.setItem('currentCategory', JSON.stringify(this.mainCategory));
 
     })
-    console.log(this.mainCategory);
 
-    this.productsService.getAllCategories().subscribe(resData => {
-      this.productsService.setAllCategoriesArray(resData);
-    })
 
-    this.categories = this.productsService.getCategoriesArray();
+    // this.productsService.getAllCategories().subscribe(resData => {
+    //   console.log(resData);
+
+      //  this.productsService.setAllCategoriesArray(resData);
+    // })
+
+
     console.log(this.categories);
 
 
@@ -306,7 +369,53 @@ export class ProductListComponent implements OnInit , OnDestroy{
   //   this.product = res;
 
   // console.log(this.product);
+  selectedCategory:boolean|any;
+  selectedHeight:boolean|any;
+  selectedWidth:boolean|any;
+  shouldContinue:boolean|any;
+  check(){
+    if(this.listArray.length==0){
+      this.selectedCategory = false;
+    }else{
+      this.selectedCategory=true;
+    }
+    if(this.contactForm.value.height == null){
+      this.selectedHeight = false;
+    }else{
+      this.selectedHeight=true;
+    }
+    if(this.contactForm.value.width == null){
+      this.selectedWidth=false;
+    }else{
+      this.selectedWidth=true;
+    }
 
+    if(this.selectedCategory==true && this.selectedHeight == true && this.selectedWidth ==true){
+        this.shouldContinue = true;
+    }
+
+  }
+  shouldContinueColors:boolean|any;
+  checkColor(){
+    console.log(this.colors.value.color !=undefined);
+    this.showProduct =true;
+      if(this.colors.value.color !=undefined){
+        this.showProduct =true;
+        this.waiting = false;
+      }else{
+        this.showProduct=false;
+      }
+      console.log(this.showProduct);
+
+  }
+  checkFabric(){
+
+    if(this.fabric.value.fabricname !=undefined){
+     this.shouldContinueColors = true
+    }else{
+      this.shouldContinueColors=false;
+    }
+  }
   counter(index: number){
 
     for(let i=0;i<index;i++){

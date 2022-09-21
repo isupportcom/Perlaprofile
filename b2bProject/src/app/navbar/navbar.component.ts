@@ -85,7 +85,9 @@ export class NavbarComponent implements OnInit{
     //   this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
     // })
   }
-
+  handleFavorite(){
+    this.router.navigate(['favorites'])
+  }
   goToProducts(mainCategory: any){
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);

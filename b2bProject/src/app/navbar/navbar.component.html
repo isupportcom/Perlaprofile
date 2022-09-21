@@ -1,68 +1,135 @@
-<nav class="navbar navbar-expand-lg navbar-light myNav" style="padding: 0px 20%;z-index: 99;">
-  <a class="navbar-brand" style="cursor: pointer" (click)="handleHomepage()"><img src="../../assets/Logo.png" alt=""></a>
-  <button class="navbar-toggler" (click)="setToggle()" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon "></span>
+<nav
+  class="navbar navbar-expand-lg navbar-light myNav"
+  style="padding: 0px 20%; z-index: 99"
+>
+  <a class="navbar-brand" style="cursor: pointer" (click)="handleHomepage()"
+    ><img src="../../assets/Logo.png" alt=""
+  /></a>
+  <button
+    class="navbar-toggler"
+    (click)="setToggle()"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" #navToggle id="navbarNavDropdown" *ngIf="!isAdminArea">
+  <div
+    class="collapse navbar-collapse"
+    #navToggle
+    id="navbarNavDropdown"
+    *ngIf="!isAdminArea"
+  >
     <ul class="navbar-nav" style="margin-left: 30px">
-
       <!-- <li class="nav-item">
         <div class="input-group rounded" style="margin-left: 150px; width: 800px">
           <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
         </div>
       </li> -->
     </ul>
-    <ul class="navbar nav ms-auto" style="margin-right: 25px" >
+    <ul class="navbar nav ms-auto" style="margin-right: 25px">
       <li class="nav-item">
-
-        <div style="background-color: #6DAE49; border-radius: 16px; width: 24px; position: absolute; left: 45px; text-align: center;">{{ temp.length }}</div>
-        <a class="nav-link" (click)="handleCart()"><img src="../../assets/shopping-cart-white.png" alt=""></a>
-
+        <div
+          style="
+            background-color: #6dae49;
+            border-radius: 16px;
+            width: 24px;
+            position: absolute;
+            left: 45px;
+            text-align: center;
+          "
+        >
+          {{ temp.length }}
+        </div>
+        <a class="nav-link" (click)="handleCart()"
+          ><img src="../../assets/shopping-cart-white.png" alt=""
+        /></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fav" (click)="handleFavorite()" style="color: white"
+          >Αγαπημένα</a
+        >
       </li>
 
       <li (click)="setDropdown(dropdownUser)" class="nav-item dropdown" #user>
-        <a style="color: white;text-decoration: none;" class="dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Συνδεδεμένος ως <b style="color:#6DAE49;">{{ username  }}</b>
+        <a
+          style="color: white; text-decoration: none"
+          class="dropdown-toggle"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Συνδεδεμένος ως <b style="color: #6dae49">{{ username }}</b>
         </a>
 
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownUser>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="logout()">Log Out</a>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="handleDashboard()">DashBoard</a>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="handleMyOrders()">My Orders</a>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="handleProfile()">Profile</a>
-          <a class="dropdown-item" style="curson:pointer;" (click)="handleContact()">Contact Us</a>
+        <div
+          class="dropdown-menu"
+          aria-labelledby="navbarDropdownMenuLink"
+          #dropdownUser
+        >
+          <a class="dropdown-item" style="cursor: pointer" (click)="logout()"
+            >Log Out</a
+          >
+          <a
+            class="dropdown-item"
+            style="cursor: pointer"
+            (click)="handleDashboard()"
+            >DashBoard</a
+          >
+          <a
+            class="dropdown-item"
+            style="cursor: pointer"
+            (click)="handleMyOrders()"
+            >My Orders</a
+          >
+          <a
+            class="dropdown-item"
+            style="cursor: pointer"
+            (click)="handleProfile()"
+            >Profile</a
+          >
+          <a
+            class="dropdown-item"
+            style="curson: pointer"
+            (click)="handleContact()"
+            >Contact Us</a
+          >
         </div>
       </li>
     </ul>
   </div>
 
-<!--  <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="isAdminArea">-->
-<!--    <ul class="navbar-nav">-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" (click)="navigateTo('edit-products')">Products</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item ">-->
-<!--        <a class="nav-link" (click)="navigateTo('users')">Users</a>-->
-<!--      </li>-->
+  <!--  <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="isAdminArea">-->
+  <!--    <ul class="navbar-nav">-->
+  <!--      <li class="nav-item">-->
+  <!--        <a class="nav-link" (click)="navigateTo('edit-products')">Products</a>-->
+  <!--      </li>-->
+  <!--      <li class="nav-item ">-->
+  <!--        <a class="nav-link" (click)="navigateTo('users')">Users</a>-->
+  <!--      </li>-->
 
-<!--      <li  class="nav-item ">-->
-<!--        <a (click)="handleLeaveAdminArea()" class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="navigateTo('products')">-->
-<!--          View Site-->
-<!--        </a>-->
+  <!--      <li  class="nav-item ">-->
+  <!--        <a (click)="handleLeaveAdminArea()" class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="navigateTo('products')">-->
+  <!--          View Site-->
+  <!--        </a>-->
 
+  <!--      </li>-->
 
-<!--      </li>-->
+  <!--    </ul>-->
+  <!--    <ul class="navbar nav ms-auto" >-->
+  <!--      <li class="nav-item me-auto">-->
 
-<!--    </ul>-->
-<!--    <ul class="navbar nav ms-auto" >-->
-<!--      <li class="nav-item me-auto">-->
+  <!--        <button class="btn btn-primary me-auto" (click)="logout()" >Log Out</button>-->
+  <!--      </li>-->
+  <!--    </ul>-->
+  <!--  </div>-->
 
-<!--        <button class="btn btn-primary me-auto" (click)="logout()" >Log Out</button>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
+  <!--</nav>-->
 
-<!--</nav>-->
-
-
-<!-- (click)="logOut()" -->
+  <!-- (click)="logOut()" -->
+</nav>
