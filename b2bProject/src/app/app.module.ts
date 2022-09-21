@@ -60,8 +60,12 @@ const routes:Routes = [
 
   {
     path:'',
-    redirectTo : 'log-in',
+    redirectTo : 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomepageComponent
   },
   {
     path: 'log-in',
@@ -127,11 +131,7 @@ const routes:Routes = [
     canActivate: [AuthGuard],
     component: MyOrdersComponent
   },
-  {
-    path: 'home',
-    canActivate: [AuthGuard],
-    component: HomepageComponent
-  },
+
 
   {
     path:'contact',

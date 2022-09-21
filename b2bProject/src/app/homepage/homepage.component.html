@@ -1,68 +1,89 @@
+<div style="position: absolute;z-index: -1000;top: 0%;"><img src="../../assets/shutterstock_1681915153%201.png" style="width: 100%;" height="100%"></div>
 <app-navbar></app-navbar>
-<div class="heroText">
-    <img src="../../assets/Line 1.svg" class="line" alt="" srcset="">
-    <h1 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
-    <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-    <button class="btn myBtn">Learn More</button>
-</div>
-<div class="category" (click)="goToProducts(mainCategories[0])" (mouseover)="showDesc(mainCategories[0])" (mouseleave)="hideDesc(mainCategories[0])">
-    <img class="categoryLogo" [src]="showDescription1? '../../assets/control-logo-white-with-green.svg' : '../../assets/control-logo-white.svg'" alt="">
-    <div *ngIf="showDescription1" [ngClass]="showDescription1?  'description1' : 'hideDescription1'">
-        <h3 class="categoryDesc1">Control your life!</h3>
-        <img src="../../assets/Line 2.png" class="lineInside" alt="">
-        <p class="categoryDesc2">Ασύρματα Τηλεκοντρόλ και Δέκτες για Τέντες, Ρολά Αλουμινίου, Γκαραζόπορτες, Κουρτίνες.</p>
-    </div>
-</div>
-<div class="category2" (click)="goToProducts(mainCategories[1])" (mouseover)="showDesc(mainCategories[1])" (mouseleave)="hideDesc(mainCategories[1])">
-    <img class="categoryLogo" [src]="showDescription2? '../../assets/motion-logo-white-with-green.svg' : '../../assets/motion-logo-white.svg'" alt="">
-    <div *ngIf="showDescription2" [ngClass]="showDescription2?  'description2' : 'hideDescription2'">
-        <h3 class="categoryDesc1">Move everything with ease!</h3>
-        <img src="../../assets/Line 2.png" class="lineInside" alt="">
-        <p class="categoryDesc2">Σωληνωτά μοτέρ για Τέντες, Μοτέρ για Ρολά, Μοτέρ Αυλόπορτας, Μοτέρ Κουρτίνας.</p>
-    </div>
-</div>
-<div class="category3" (click)="goToProducts(mainCategories[2])" (mouseover)="showDesc(mainCategories[2])" (mouseleave)="hideDesc(mainCategories[2])">
-    <img class="categoryLogo" [src]="showDescription3? '../../assets/mosqui-logo-white-with-green.svg' : '../../assets/mosqui-logo-white.svg'" alt="">
-    <div *ngIf="showDescription3" [ngClass]="showDescription3?  'description3' : 'hideDescription3'">
-        <h3 class="categoryDesc1">Protect your precious!</h3>
-        <img src="../../assets/Line 2.png" class="lineInside" alt="">
-        <p class="categoryDesc2">Συστήματα Σίτας για προστασία από τα έντομα.</p>
-    </div>
-</div>
-<div class="category4" (click)="goToProducts(mainCategories[3])" (mouseover)="showDesc(mainCategories[3])" (mouseleave)="hideDesc(mainCategories[3])">
-    <img class="categoryLogo" [src]="showDescription4? '../../assets/profile-logo-white-with-green.svg' : '../../assets/profile-logo-white.svg'" alt="">
-    <div *ngIf="showDescription4" [ngClass]="showDescription4?  'description4' : 'hideDescription4'">
-        <h3 class="categoryDesc1">Confort is everything!</h3>
-        <img src="../../assets/Line 2.png" class="lineInside" alt="">
-        <p class="categoryDesc2">Συστήματα Κουφωμάτων Αλουμινίου και PVC για ένα σύγχρονο σπίτι.</p>
-    </div>
-</div>
-<img [src]="source"  class="heroImg" alt="">
 
-<div class="offersTitle">
-    <h1>Προσφορές</h1>
-    <img src="../../assets/Line 1.svg" alt="" srcset="">
+
+<div class="hero">
+    <div class="container heroText">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col col-12 topText" style="text-align: center;color: white;">
+                        <!-- <img class="index" src="../../assets/Frame 102.svg"> -->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing <br>elit<br></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="text-align: center;color: white;">
+            <div class="col col-12">
+                <h1>Lorem ipsum dolor sit amet, consectetur <br>adipiscing elit<br><br></h1>
+            </div>
+        </div>
+        <div class="row" style="text-align: center;">
+            <div class="col col-12"><a class="btn ms-md-2 myBtn" role="button" href="#">Learn More</a></div>
+        </div>
+    </div>
+    <div class="scroll-downs">
+        <div class="mousey">
+            <div class="scroller"></div>
+        </div>
+    </div>
 </div>
-
-<img src="../../assets/upper lines.svg" class="upperLines" alt="">
-<img src="../../assets/down lines.svg" class="downLines" alt="">
-
-<div class="offer1">
-    <div class="percentageAlt1"><p>{{offer1.offer}}</p></div>
-    <img src="../../assets/straight lines.svg" class="straightLines" alt="">
-    <div class="offerPercentage">
-        <h1>{{offer1.discount}}%</h1>
-        <h1>OFF</h1>
+<div class="container cardHolder">
+    <div class="row">
+        <div class="col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 myCards">
+            <div class="card" style="border: none;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);border-radius: 9px;">
+                <div class="card-header" style="padding: 0;"><img class="headerImg" src="../../assets/Frame 106.png" style="border-top-right-radius: 9px;border-top-left-radius: 9px;"></div>
+                <div class="card-body"><img class="card-title" src="../../assets/control-logo-dark3 1.svg">
+                    <hr>
+                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <div class="row">
+                        <div class="col col-6"><a class="categoriesLink" href="#" style="color: #6dae49;text-decoration: none;">Δες Περισσότερα</a></div>
+                        <div class="col col-6" style="padding: 0;vertical-align: center;"><img class="arrow" src="../../assets/Arrow 1.svg" width="18" height="18"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 myCards">
+            <div class="card" style="border: none;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);border-radius: 9px;">
+                <div class="card-header" style="padding: 0;"><img class="headerImg" src="../../assets/Frame 106 (1).png" style="border-top-right-radius: 9px;border-top-left-radius: 9px;"></div>
+                <div class="card-body"><img class="card-title" src="../../assets/motion-logo-dark2%201.svg">
+                    <hr>
+                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <div class="row">
+                        <div class="col col-6"><a class="categoriesLink" href="#" style="color: #6dae49;text-decoration: none;">Δες Περισσότερα</a></div>
+                        <div class="col col-6" style="padding: 0;vertical-align: center;"><img class="arrow" src="../../assets/Arrow%201.svg" width="18" height="18"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 myCards">
+            <div class="card" style="border: none;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);border-radius: 9px;">
+                <div class="card-header" style="padding: 0;"><img class="headerImg" src="../../assets/Frame%20106%20(2).png" style="border-top-right-radius: 9px;border-top-left-radius: 9px;"></div>
+                <div class="card-body"><img class="card-title" src="../../assets/mosqui-logo-dark2%201.svg">
+                    <hr>
+                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <div class="row">
+                        <div class="col col-6"><a class="categoriesLink" href="#" style="color: #6dae49;text-decoration: none;">Δες Περισσότερα</a></div>
+                        <div class="col col-6" style="padding: 0;vertical-align: center;"><img class="arrow" src="../../assets/Arrow%201.svg" width="18" height="18"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 myCards">
+            <div class="card" style="border: none;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);border-radius: 9px;">
+                <div class="card-header" style="padding: 0;"><img class="headerImg" src="../../assets/Frame%20106%20(3).png" style="border-top-right-radius: 9px;border-top-left-radius: 9px;"></div>
+                <div class="card-body"><img class="card-title" src="../../assets/profile-logo-dark2%201.svg">
+                    <hr>
+                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <div class="row">
+                        <div class="col col-6"><a class="categoriesLink" href="#" style="color: #6dae49;text-decoration: none;">Δες Περισσότερα</a></div>
+                        <div class="col col-6" style="padding: 0;vertical-align: center;"><img class="arrow" src="../../assets/Arrow%201.svg" width="18" height="18"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="offerProduct1"><img width="100%" [src]="offer1.img"></div>
-    <div class="offerProductTitle1">
-        <img src="../../assets/Line 1.svg" alt="" srcset="">
-        <h2>{{offer1.name}}</h2>
-        <p>Product Description</p>
-
-    </div>
-
-    <button class="offerBtn1" (click)="handleProductPage(offer1)">See Offer</button>
 </div>
 
 

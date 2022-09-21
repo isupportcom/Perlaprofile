@@ -193,6 +193,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
               streetLine1: 'Revolut',
               streetLine2: '1 Canada Square',
               postcode: 'EC2V 6DN',
+              
             },
             shippingAddress: {
               countryCode: 'GB',

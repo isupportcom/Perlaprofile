@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -21,19 +21,25 @@ export class NavbarComponent implements OnInit{
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
 
-
+  
 
   @ViewChild('dropdown') dropdown!: ElementRef;
+  @ViewChild('options') options!: ElementRef;
+  @ViewChild('optionsToggler') optionsToggler!: ElementRef;
   isOpen = false;
   isToggelOpen = false;
   isAdmin = this.authService.getAdmin();
-  productAdded?: boolean;
-
+  productAdded: boolean = false;
+  productAdded2: boolean = false;
+  showLoggedinNav: boolean = false;
+  hoverProducts: boolean = false;
+  makeSmallerDropDown?: boolean;
 
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
   productCount: number|any;
   showProductCount: boolean = false;
+  showUserOptions: boolean = false;
   mainCategories : any = [];
 
   constructor(
@@ -41,12 +47,87 @@ export class NavbarComponent implements OnInit{
     private router :Router,
     private route: ActivatedRoute,
     private cartService: CartServiceService,
-    private productsService: ProductsService) { }
+    private productsService: ProductsService,
+    private renderer: Renderer2) {
+
+
+      this.renderer.listen('window', 'click',(e:Event)=>{
+
+        if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
+          this.showUserOptions = false;
+        }
+      })
+
+     }
+
+    showSecondNav: boolean = true;
+    innerWidth:any;
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any){
+      this.innerWidth = window.innerWidth
+      console.log(this.innerWidth);
+  
+      if(this.innerWidth < 768 ){
+        this.showSecondNav = false;
+        this.makeSmallerDropDown = true;
+      }
+      else{
+        this.showSecondNav = true;
+        this.makeSmallerDropDown = false;
+      }
+      
+    }
 
 
   username = localStorage.getItem("username");
 
   ngOnInit(): void {
+    this.cartService.productAdded.subscribe(resData => {
+      if(window.scrollX === 0){
+        if(!this.productAdded){
+          setTimeout(() => {
+            this.productAdded = true;
+            this.productAdded2 = true;
+            setTimeout(() => {
+              this.productAdded = false;
+              setTimeout((() => {
+                this.productAdded2 = false;
+              }),650)
+            },1500)
+          },400)
+          
+        }
+      }
+      
+      
+    });
+
+
+    if(!this.username){
+      this.showLoggedinNav = false;
+    }
+    else{
+      this.showLoggedinNav = true;
+    }
+
+    this.cartService.productAdded.subscribe(resData => {
+      console.log(resData);
+      
+    });
+    
+    
+    this.innerWidth = window.innerWidth;
+    // console.log(this.innerWidth);
+    
+    if(this.innerWidth < 768 ){
+      this.showSecondNav = false;
+      this.makeSmallerDropDown = true;
+    }
+    else{
+      this.makeSmallerDropDown = false;
+      this.showSecondNav = true;
+    }
+
     this.productsService.getMainCategories().subscribe(resData => {
       this.mainCategories = resData;
       console.log(this.mainCategories);
@@ -96,6 +177,24 @@ export class NavbarComponent implements OnInit{
     },50)
   }
 
+  userOptions(){
+    if(!this.showUserOptions){
+      this.showUserOptions = true;
+    }
+    else{
+      this.showUserOptions = false;
+    }
+    
+  }
+
+  handleHover(){
+    this.hoverProducts = true;
+  }
+
+  handleMouseleave(){
+    this.hoverProducts = false;
+  }
+
   handleLeaveAdminArea(){
     this.isAdminArea = false;
     console.log(this.isAdminArea);
@@ -131,6 +230,13 @@ export class NavbarComponent implements OnInit{
   }
 
 
+  handleCategoryClick(){
+    setTimeout(() => {
+      window.location.reload();
+    },100)
+    
+  }
+
   setDropdown(element: HTMLElement){
     this.isOpen = !this.isOpen;
     if(this.isOpen){
@@ -147,7 +253,15 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['home'])
   }
 
-
+  handleProducts(){
+    if(this.router.url !== '/home'){
+      window.location.reload();
+    }
+    else{
+      this.router.navigate(['home']);
+    }
+    
+  }
 
   logout(){
 
@@ -156,9 +270,9 @@ export class NavbarComponent implements OnInit{
     console.log(this.authService.user.getValue()?.token);
     this.authService.logout();
     console.log(this.authService.user.getValue());
-
+    
     localStorage.setItem("userType","notLoggin")
-    this.router.navigate(['log-in'])
+    window.location.reload();
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
 
@@ -169,6 +283,10 @@ export class NavbarComponent implements OnInit{
 
   handleCart(){
     this.navigateTo('cart');
+  }
+
+  login(){
+    this.router.navigate(['log-in']);
   }
 }
 

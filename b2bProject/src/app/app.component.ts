@@ -171,6 +171,8 @@ export class AppComponent implements OnDestroy, OnInit {
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(product);
           this.cartService.setItemsToCartArray(this.itemsToCart);
+
+
           window.location.reload();
         }
         else{
@@ -220,7 +222,14 @@ export class AppComponent implements OnDestroy, OnInit {
     this.productAdded = false;
     this.showScope3 = false;
 
+    console.log('OPA');
+          
 
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     // setTimeout(() => {
     //   window.location.reload();
     // }, 1000)

@@ -98,7 +98,7 @@ export class AuthService {
     this.user.next(null);
     // console.log("hello");
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
-    this.router.navigate(['log-in']);
+    
 
     localStorage.removeItem('userData');
     localStorage.removeItem('username');

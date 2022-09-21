@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from "axios"
 import { Observable, tap } from 'rxjs';
@@ -20,6 +20,7 @@ export class SingleProductComponent implements OnInit {
   singleProduct: any;
   relatedProducts:product|any = [];
   productsToCart :product |any =[];
+  altCartAnimation: boolean = false;
 
   constructor(
       private renderer: Renderer2,
@@ -29,8 +30,28 @@ export class SingleProductComponent implements OnInit {
       private cartService: CartServiceService
   ) { }
 
+  innerWidth:any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.innerWidth = window.innerWidth;
+
+    if(this.innerWidth < 768 ){
+      this.altCartAnimation = true;
+    }
+    else{
+      this.altCartAnimation = false;
+    }
+  }
+
   ngOnInit(): void {
     // console.log(this.index)
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth < 768 ){
+      this.altCartAnimation = true;
+    }
+    else{
+      this.altCartAnimation = false;
+    }
   }
 
 
@@ -72,6 +93,7 @@ export class SingleProductComponent implements OnInit {
     console.log(this.index);
     localStorage.setItem("single",JSON.stringify(this.index));
 
+
     setTimeout(() => {
       if(this.router.url === '/products/product-page'){
         window.location.reload();
@@ -87,6 +109,7 @@ export class SingleProductComponent implements OnInit {
     console.log(product);
 
     this.cartService.addToFavorites(product);
+
   }
 
 
@@ -104,7 +127,17 @@ export class SingleProductComponent implements OnInit {
     setTimeout(() => {
 
       if(this.relatedProducts.length <= 0){
-        console.log("HEllo");
+        if(!this.altCartAnimation){
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          });
+        }
+
+
+
+
 
 
         this.cartService.setId(this.index.mtrl)
