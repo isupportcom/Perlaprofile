@@ -1,65 +1,99 @@
-<nav class="navbar navbar-expand-lg navbar-light myNav" style="padding: 0px 20%;z-index: 99;">
-  <a class="navbar-brand" style="cursor: pointer" (click)="handleHomepage()"><img src="../../assets/Logo.png" alt=""></a>
-  <button class="navbar-toggler" (click)="setToggle()" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon "></span>
-  </button>
-  <div class="collapse navbar-collapse" #navToggle id="navbarNavDropdown" *ngIf="!isAdminArea">
-    <ul class="navbar-nav" style="margin-left: 30px">
+<div *ngIf="showLoggedinNav" class="logged-in-nav">
+ <nav class="navbar navbar1 navbar-light navbar-expand-md py-3 ">
+    <div class="container">
+      <a routerLink="/home" class="navbar-brand d-flex align-items-center" href="#">
+        <img class="navLogo" src="../../assets/PerlaProfilLogo-dark 1.svg">
+      </a>
+      <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2" style="padding: 0px;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon burgerMenu"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-2">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item my-nav-item2"><a class="btn ms-md-2 myBtn" role="button"><img src="../../assets/heart-alt.svg" width="18px"/></a></li>
+                <li class="nav-item my-nav-item2"><a [ngClass]="productAdded? 'btn ms-md-2 myBtn enlarge' : 'btn ms-md-2 myBtn reduce'" role="button" routerLink="/cart" #cartBtn><img style="display: inline-block;" src="../../assets/shopping-cart.svg" width="18px"/><p *ngIf="productAdded2" style="display: inline-block;margin-bottom: 0px;">&emsp;Έχετε Προϊόντα στο Καλάθι σας x1</p></a></li>
+                <li class="nav-item my-nav-item2">
+                  <div class="dropdown">
+                      <a #optionsToggler (click)="userOptions()" class="btn ms-md-2 myBtn dropdown-toggle" role="button"><img src="../../assets/user.svg" width="16px">&emsp;{{ username }}&emsp;</a>
+                      <ul #options [ngClass]="showUserOptions? (makeSmallerDropDown? 'dropdown-menu my-dropdown-sm show' : 'dropdown-menu my-dropdown show') : 'dropdown-menu'">
+                        <li><a class="dropdown-item my-dropdown-item">Profile</a></li>
+                        <li><a class="dropdown-item my-dropdown-item">My Orders</a></li>
+                        <li><a (click)="logout()" class="dropdown-item my-dropdown-item">Logout</a></li>
+                      </ul>
 
-      <!-- <li class="nav-item">
-        <div class="input-group rounded" style="margin-left: 150px; width: 800px">
-          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                  </div>
+                </li>  
+            </ul>
+            <hr style="border-color: #6DAE49;">
+            <div *ngIf="!showSecondNav" class="wrapper">
+              <div class="bottom_nav" style="border-bottom: 2px solid #6DAE49;;background-color: white !important;height: 100%;">
+                <div class="container">
+              <ul class="myMenu2">
+                <li style="margin-bottom: 8px;"><a class="dropdown-item" routerLink="/home" style="padding-left: 0px !important;">Αρχική</a></li>
+                <li style="margin-bottom: 8px;">
+                  <div class="dropdown">
+                    <a routerLink="/products" (click)="handleProducts()" (mouseleave)="handleMouseleave()" (mouseenter)="handleHover()" class="dropdown-toggle">
+                        Προϊόντα
+                    </a>
+                    <ul (mouseenter)="handleHover()" (mouseleave)="handleMouseleave()" [ngClass]="hoverProducts? 'dropdown-menu myMenu2' : 'dropdown-menu myMenu'">
+                        <li [routerLink]="'/products/'+mainCategory.id+'/'+mainCategory.name" (click)="handleCategoryClick()" style="margin-right: 0px;" *ngFor="let mainCategory of mainCategories"><a class="dropdown-item">{{ mainCategory.name }}</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li style="margin-bottom: 8px;"><a>Η Εταρία</a></li>
+                <li style="margin-bottom: 8px;"><a>Η Ομάδα της Perla</a></li>
+                <li style="margin-bottom: 8px;"><a>Επικοινωνία</a></li>
+      
+              </ul>
+          </div>
         </div>
-      </li> -->
-    </ul>
-    <ul class="navbar nav ms-auto" style="margin-right: 25px" >
-      <li class="nav-item">
-        <div style="background-color: #6DAE49; border-radius: 16px; width: 24px; position: absolute; left: 45px; text-align: center;">{{ temp.length }}</div>
-        <a class="nav-link" (click)="handleCart()"><img src="../../assets/shopping-cart-white.png" alt=""></a>
-      </li>
-
-      <li (click)="setDropdown(dropdownUser)" class="nav-item dropdown" #user>
-        <a style="color: white;text-decoration: none;" class="dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Συνδεδεμένος ως <b style="color:#6DAE49;">{{ username  }}</b>
-        </a>
-
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownUser>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="logout()">Log Out</a>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="handleDashboard()">DashBoard</a>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="handleMyOrders()">My Orders</a>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="handleProfile()">Profile</a>
         </div>
-      </li>
-    </ul>
+        </div>
+    </div>
+  </nav>
+  <div *ngIf="showSecondNav" class="wrapper">
+    <div class="bottom_nav">
+      <div class="container">
+        <ul>
+          <li><a routerLink="/home" routerLinkActive="my-active">Αρχική</a></li>
+          <li>
+            <div class="dropdown">
+              <a routerLink="/products" (click)="handleProducts()"routerLinkActive="my-active" (mouseleave)="handleMouseleave()" (mouseenter)="handleHover()" class="dropdown-toggle">
+                  Προϊόντα
+              </a>
+              <ul (mouseenter)="handleHover()" (mouseleave)="handleMouseleave()" [ngClass]="hoverProducts? 'dropdown-menu myMenu2' : 'dropdown-menu myMenu'">
+                  <li [routerLink]="'/products/'+mainCategory.id+'/'+mainCategory.name" (click)="handleCategoryClick()" style="margin-right: 0px;" *ngFor="let mainCategory of mainCategories"><a class="dropdown-item">{{ mainCategory.name }}</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a routerLinkActive="my-active">Η Εταρία</a></li>
+          <li><a routerLinkActive="my-active">Η Ομάδα της Perla</a></li>
+          <li><a routerLinkActive="my-active">Επικοινωνία</a></li>
+
+        </ul>
+    </div>
   </div>
 
-<!--  <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="isAdminArea">-->
-<!--    <ul class="navbar-nav">-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" (click)="navigateTo('edit-products')">Products</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item ">-->
-<!--        <a class="nav-link" (click)="navigateTo('users')">Users</a>-->
-<!--      </li>-->
 
-<!--      <li  class="nav-item ">-->
-<!--        <a (click)="handleLeaveAdminArea()" class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="navigateTo('products')">-->
-<!--          View Site-->
-<!--        </a>-->
+  </div>
+</div>
+  
 
 
-<!--      </li>-->
-
-<!--    </ul>-->
-<!--    <ul class="navbar nav ms-auto" >-->
-<!--      <li class="nav-item me-auto">-->
-
-<!--        <button class="btn btn-primary me-auto" (click)="logout()" >Log Out</button>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
-
-<!--</nav>-->
 
 
-<!-- (click)="logOut()" -->
+
+<nav *ngIf="!showLoggedinNav" class="navbar navbar-light navbar-expand-md py-3 ">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img class="navLogo" src="../../assets/PerlaProfilLogo-dark 1.svg">
+    </a>
+    <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2" style="padding: 0px;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon burgerMenu"></span></button>
+      <div class="collapse navbar-collapse" id="navcol-2">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#">Η Εταρία</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Η Ομάδα της Perla</a></li>
+              <li class="nav-item"><a class="nav-link active" href="#">Επικοινωνία</a></li>
+              <li class="nav-item">
+              <a class="btn ms-md-2 myBtn" role="button" (click)="login()">Συνδέσου</a></li>
+          </ul>
+      </div>
+  </div>
+</nav>

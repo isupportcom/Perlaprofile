@@ -32,19 +32,14 @@ export class AppComponent implements OnDestroy, OnInit {
   LeftScroll: any;
   products: product[] = [];
   singleProduct: any;
+
   relatedProducts:product|any = [];
   group: any;
   showScope3: boolean = false;
   itemsToCart: product|any = [];
+
   date = new Date();
-  mainProdSelected: boolean = false;
-  
-  scope1: any= [];
-  scope2: any = [];
-  scope3: any = [];
-  productsToCart: any = [];
-  firstStep: boolean = true;
-  done: boolean = false;
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -58,6 +53,8 @@ export class AppComponent implements OnDestroy, OnInit {
   ngOnInit() {
 
 
+    console.log(this.date.getHours()+':'+this.date.getMinutes());
+
     this.authService.autoLogin();
     if (localStorage.getItem('username') == 'Admin') {
       this.authService.setAdmin(true);
@@ -67,12 +64,13 @@ export class AppComponent implements OnDestroy, OnInit {
       console.log(data);
     });
     this.authService.loggedIn.subscribe((res) => {
+      // if(localStorage.getItem("username") == "Admin"){this.authService.setAdmin(true)}
 
       this.loggedIn = res;
+      // console.log("ROUFAO KAVLIA"+ this.loggedIn);
     });
 
 
-    
 
     this.cartService.productAdded.subscribe(res => {
       this.products = this.productService.getAll();
@@ -83,128 +81,167 @@ export class AppComponent implements OnDestroy, OnInit {
       relatedProductsObs = this.productService.getRelatedProducts(this.singleProduct.mtrl);
 
       relatedProductsObs.subscribe(resData => {
-        console.log(resData);
-        
         this.relatedProducts = resData.related;
+
       })
       setTimeout(() => {
-        this.waiting = true;
-        for(let product of this.relatedProducts){
-          this.scope1.push(product)
-          
-          let groupingObs: Observable<any>;
+        console.log(this.relatedProducts);
 
-          groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
-      
-          groupingObs.subscribe(resData => {
-            
-            
-            
-            this.group = resData;
-            this.scope2.push(this.group.Scope2[0]);
-
-          });
-
-        }
-        setTimeout(() => {
-          for(let prod of this.group.Scope3){
-            this.scope3.push(prod);
-          }
-          setTimeout(() => {
-            console.log("Main Product");
-            console.log(this.singleProduct);
-
-            console.log("Scope 1");
-            console.log(this.scope1);
-
-            console.log("Scope 2");
-            console.log(this.scope2);
-
-            console.log("Scope 3");
-            console.log(this.scope3);
-            
-            this.waiting = false;
-            
-          },1000)
-        },100)
-
-        
-        
       },500);
-      
 
-      
-      
+
       this.productAdded = true;
 
     })
+
+
+    // this.router.navigate(['log-in'])
   }
 
-  handleAllSelected(product:any){
-    console.log(product);
-    
-    for(let prod of this.group.Scope3){
-      if(prod.mtrl == product){
-        this.scope3 = prod
-      }
-    }
-    console.log(this.scope3);
-    this.productsToCart.push(this.scope3)
 
-    console.log(this.productsToCart);
-    
-    for(let prod of this.productsToCart){
-      // this.addToCart(prod);
-    }
+  handleGrouping(product: any){
+    let groupingObs: Observable<any>;
 
-  }
+    groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
 
-  handleGrouping(scope1: any, scope2: any){
-    this.productsToCart.push(this.singleProduct);
-    this.productsToCart.push(scope1);
-    this.productsToCart.push(scope2);
-    
-    
-    this.firstStep = false
-    
-  }
+    groupingObs.subscribe(resData => {
+      console.log(resData);
 
-  handleSecondGrouping(scope3: any){
-    this.productsToCart.push(scope3)
-    console.log(this.productsToCart);
-    this.waiting = true;
-    this.addToCart();
+      this.group = resData;
+
+    });
     setTimeout(() => {
-      this.waiting = false;
-      this.productAdded = false;
-    },500);
+      console.log(this.group);
+
+
+
+      if(this.group.Scope2.length > 0){
+        if(this.group.Scope3.length <= 0){
+          this.singleProduct.show = true;
+          this.cartService.addToCart(this.singleProduct);
+
+          this.cartService.sendProductAdded(true);
+          this.itemsToCart.push(this.singleProduct);
+
+          product.show = true;
+
+
+          this.cartService.addToCart(product);
+
+          this.cartService.sendProductAdded(true);
+          this.itemsToCart.push(product);
+          for(let prod of this.group.Scope2){
+            prod.show = true;
+            this.cartService.addToCart(prod);
+
+            this.cartService.sendProductAdded(true);
+            this.itemsToCart.push(prod);
+          }
+          this.cartService.setItemsToCartArray(this.itemsToCart);
+
+        }
+        else{
+          this.itemsToCart.push(this.singleProduct);
+          this.itemsToCart.push(product);
+          console.log(product);
+          for(let prod of this.group.Scope2){
+            this.itemsToCart.push(prod);
+          }
+          console.log(this.itemsToCart);
+
+          this.showScope3 = true;
+        }
+
+
+
+        this.productAdded = false;
+        // window.location.reload();
+      }
+      else{
+        if(this.group.Scope3.length <= 0){
+          this.singleProduct.show = true;
+          this.cartService.addToCart(this.singleProduct);
+
+          this.cartService.sendProductAdded(true);
+          this.itemsToCart.push(this.singleProduct);
+
+          product.show = true;
+          this.cartService.addToCart(product);
+
+          this.cartService.sendProductAdded(true);
+          this.itemsToCart.push(product);
+          this.cartService.setItemsToCartArray(this.itemsToCart);
+
+
+          window.location.reload();
+        }
+        else{
+          this.itemsToCart.push(this.singleProduct);
+          this.itemsToCart.push(product);
+          console.log(this.itemsToCart);
+          this.showScope3 = true;
+        }
+
+
+
+        this.productAdded = false;
+         window.location.reload();
+      }
+    },500)
   }
 
-  addToCart(){
-    
-    
-    this.cartService.setItemsToCartArray(this.productsToCart);
-    
+  addToCart(product: any){
+
+    this.itemsToCart.push(product);
+
+    this.cartService.setItemsToCartArray(this.itemsToCart);
+
     let id = '';
-    
-    for(let prod of this.productsToCart){
+
+
+    for(let prod of this.itemsToCart){
       id = id + prod.mtrl;
+      // prod.show = true;
+      // this.cartService.addToCart(prod);
+      // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
+      // this.cartService.sendProductAdded(true);
     }
 
     this.cartService.setId(id);
-    
-    for(let prod of this.productsToCart){
+
+    for(let prod of this.itemsToCart){
       id = id + prod.mtrl;
       prod.show = true;
       this.cartService.addToCart(prod);
-    }
-    
 
-  
-    
+      this.cartService.sendProductAdded(true);
+
+    }
+
+
+    this.productAdded = false;
+    this.showScope3 = false;
+
+    console.log('OPA');
+          
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 1000)
+
+
+
   }
 
+
+
   handleClose(){
+
     this.productAdded = false;
 
     window.location.reload();

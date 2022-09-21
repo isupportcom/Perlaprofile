@@ -1,31 +1,39 @@
-
-
 <div class="productCard">
-    <div class="row" >
-      <img [src]="index.img" class="col-12 productImg" alt="productImg"  />
-    </div>
-    <div class="row productTitle" (click)="handleClick()" >
-      <p class="col-12">{{ index.name }}</p>
-    </div>
-    <!-- <div id="productDescription" #productDescription>
+  <div class="row">
+    <img [src]="index.img" class="col-12 productImg" alt="productImg" />
+  </div>
+  <div class="row productTitle" (click)="handleClick()">
+    <p class="col-12">{{ index.name }}</p>
+  </div>
+  <!-- <div id="productDescription" #productDescription>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
     </div> -->
-    <hr class="lines">
-    <div class="row stock">
-      <p>Stock: {{ index.stock }}</p>    
-    </div>
-    <hr class="lines">
+  <hr class="lines" />
+  <div class="row stock">
+    <p>Stock: {{ index.stock }}</p>
+  </div>
+  <hr class="lines" />
 
-    <div class="row price" >
-      <p>{{ index.wholesale }}&#x20AC;</p>
+  <div class="row price">
+    <p *ngIf="!index.hasOffer">{{ index.wholesale }}&#x20AC;</p>
+    <div *ngIf="index.hasOffer">
+        <p style="
+         color:red;
+        text-decoration:line-through;
+        ">{{index.wholesale}}&euro;</p>
+        <p>{{ index.offer }}&euro;</p>
     </div>
+  </div>
 
-     
-      <div class="row" style="padding-left: 24px;padding-right: 24px;">
-        <button class="myBtn" (click)="handleAddToCart()" [disabled]="index.stock == 0">Προσθήκη</button>
-      </div>
-      
-    </div>
-  
+  <div class="row" style="padding-left: 24px; padding-right: 24px">
+    <button
+      class="myBtn"
+      (click)="handleAddToCart()"
+      [disabled]="index.stock == 0"
+    >
+      Προσθήκη
+    </button>
+  </div>
+</div>

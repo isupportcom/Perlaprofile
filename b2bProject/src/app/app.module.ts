@@ -26,7 +26,6 @@ import { CheckoutGuard } from './shared/product-added-to-cart/checkout.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 
-
 import { InsertProductsComponent } from './AdminArea/components/insert-products/insert-products.component';
 import { PopUpLoginComponent } from './AdminArea/components/pop-up-login/pop-up-login.component';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -42,10 +41,13 @@ import { AddImagePopupComponent } from './AdminArea/components/add-image-popup/a
 import {AdminGuard} from "./services/admin.guard";
 
 
-
 import { FooterComponent } from './footer/footer.component';
 import { SearchbarComponent } from './AdminArea/components/searchbar/searchbar.component';
 import { OffersComponent } from './AdminArea/components/offers/offers.component';
+import { InsertImagesComponent } from './AdminArea/components/insert-images/insert-images.component';
+import { ContatcFormComponent } from './shared/contatc-form/contatc-form.component';
+import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-popup.component';
+
 
 
 
@@ -57,8 +59,12 @@ const routes:Routes = [
 
   {
     path:'',
-    redirectTo : 'log-in',
+    redirectTo : 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomepageComponent
   },
   {
     path: 'log-in',
@@ -86,7 +92,7 @@ const routes:Routes = [
   },
   {
     path:'dashboard',
-
+    canActivate:[AdminGuard],
     component:AdminAreaComponent,
     children:[
 
@@ -106,7 +112,7 @@ const routes:Routes = [
   },
   {
     path: 'checkout',
-    canActivate: [CheckoutGuard],
+
     component: CheckoutPageComponent
   },
   {
@@ -119,13 +125,17 @@ const routes:Routes = [
     canActivate: [AuthGuard],
     component: MyOrdersComponent
   },
+
+
   {
-    path: 'home',
-    canActivate: [AuthGuard],
-    component: HomepageComponent
-  }
+    path:'contact',
+    component:ContatcFormComponent
+  },
+
+
 
 ]
+
 
 
 @NgModule({
@@ -158,9 +168,10 @@ const routes:Routes = [
     FooterComponent,
     SearchbarComponent,
     OffersComponent,
-    ProfileComponent
-
-
+    ProfileComponent,
+    InsertImagesComponent,
+    ContatcFormComponent,
+    OfferPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -169,7 +180,8 @@ const routes:Routes = [
     CommonModule,
     HttpClientModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   exports: [
     RouterModule

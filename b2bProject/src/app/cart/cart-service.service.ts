@@ -12,8 +12,9 @@ import { HttpClient } from '@angular/common/http';
 export class CartServiceService {
   itemsToCart: any = [];
   date = new Date();
+
   id: any;
-  
+
 
   productAdded = new Subject<boolean>();
   cast = this.productAdded.asObservable();
@@ -59,16 +60,17 @@ export class CartServiceService {
     {
       trdr:loadedUser.trdr,
       id:2,
-      
+
     }
     ).then(resData=>{console.log(resData);
     })
 
   }
 
+
   setItemsToCartArray(itemsToCart: any){
-    
-    
+
+
     this.itemsToCart.push(itemsToCart)
     console.log(this.getItemsToCartArray());
   }
@@ -82,40 +84,53 @@ export class CartServiceService {
   }
 
   addToCart(product:product|any){
+
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
     console.log(loadedUser.trdr);
-    console.log(this.id);
-    
 
-    
+    console.log(product.img);
+    console.log(product.image);
+    console.log(product)
+    let image;
+    let category="23";
+
+    if(product.img != undefined){
+      image= product.img
+    }else{
+      image = product.image
+    }
+
+
+    let price;
+    if(product.hasOffer){
+      price = product.offer
+    }else{
+      price = product.wholesale
+    }
+    console.log(price)
+    console.log(product)
 
     this.items = JSON.parse(localStorage.getItem("products") || '{}')
     let productAdded = true;
     localStorage.setItem('productAdded', 'true');
     this.sendProductAdded(localStorage.getItem('productAdded') == 'true'? true : false);
-
-    let category = 'sta arxidia moy se grafw'; 
-    let img;
-    if(product.img != undefined){
-      img = product.img;
-    }
-    else{
-      img = product.image
-    }
-
+    console.log(product.discount)
+    console.log(this.id)
+    console.log(loadedUser.trdr)
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php",{
       mtrl:     product.mtrl,
       trdr:     loadedUser.trdr,
       code:     product.code,
       name:     product.name,
       name1:    product.name1,
-      img:      img,
+      img:      image,
       category: category,
       qty:      product.qty,
       retail:   product.retail,
-      wholesale:product.wholesale,
+      wholesale:price,
       stock:    product.stock,
-      group_id: this.id
+      group_id: this.id,
+      discound: product.discount
     }).then(resData=>console.log(resData.data))
     // let flag = false
     // let index = 0;
@@ -142,7 +157,7 @@ export class CartServiceService {
     //   this.items.push(product);
     //   this.sendProductCount(this.items.length);
     // }
-    
+
 
   }
 
@@ -160,7 +175,7 @@ export class CartServiceService {
     {
       trdr:loadedUser.trdr
     })
-    
+
 
   }
   clearCart(){

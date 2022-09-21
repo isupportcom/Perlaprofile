@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {ProductsService} from "../products.service";
 import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
-
+import { Observable, tap } from 'rxjs';
 import {CartServiceService} from "../../cart/cart-service.service";
 import {NgForm} from "@angular/forms";
 
@@ -16,6 +16,7 @@ export class ProductPageComponent implements OnInit {
   switchDesc = false;
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
+  relatedProducts:product|any = [];
    product :product|any;
   constructor(
       private renderer: Renderer2,
@@ -28,7 +29,7 @@ export class ProductPageComponent implements OnInit {
     this.slidePosition = 1;
     this.SlideShow(this.slidePosition);
 
-    this.product=JSON.parse(localStorage.getItem("single") || '{}');
+    this.product=this.productsService.getSingelProduct()
     console.log(this.product)
 
 
@@ -38,9 +39,36 @@ export class ProductPageComponent implements OnInit {
   addToCart(){
       this.product.show = true;
 
-     this.cartService.addToCart(this.product);
-      localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-      this.cartService.sendProductAdded(true);
+    let relatedProductsObs: Observable<any>;
+
+    relatedProductsObs = this.productsService.getRelatedProducts(this.product.mtrl);
+
+    relatedProductsObs.subscribe(resData => {
+      this.relatedProducts = resData.related;
+
+    })
+    setTimeout(() => {
+
+      if(this.relatedProducts.length <= 0){
+        console.log("HEllo");
+
+
+        this.cartService.setId(this.product.mtrl)
+
+        this.productsService.setSingleProduct(this.product);
+        this.product.show = true;
+        this.cartService.addToCart(this.product);
+
+        this.cartService.sendProductAdded(true);
+      }
+      else{
+        this.productsService.setSingleProduct(this.product);
+        this.cartService.sendProductAdded(true);
+      }
+    },500);
+
+
+
 
   }
 

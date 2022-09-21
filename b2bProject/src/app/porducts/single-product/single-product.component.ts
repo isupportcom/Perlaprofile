@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from "axios"
 import { Observable, tap } from 'rxjs';
@@ -16,9 +16,12 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
   @Input() index:any;
 
+
   singleProduct: any;
   relatedProducts:product|any = [];
   productsToCart :product |any =[];
+  altCartAnimation: boolean = false;
+
   constructor(
       private renderer: Renderer2,
       private router: Router,
@@ -27,8 +30,28 @@ export class SingleProductComponent implements OnInit {
       private cartService: CartServiceService
   ) { }
 
+  innerWidth:any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.innerWidth = window.innerWidth;
+   
+    if(this.innerWidth < 768 ){
+      this.altCartAnimation = true;
+    }
+    else{
+      this.altCartAnimation = false;
+    }
+  }
+
   ngOnInit(): void {
     // console.log(this.index)
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth < 768 ){
+      this.altCartAnimation = true;
+    }
+    else{
+      this.altCartAnimation = false;
+    }
   }
 
 
@@ -70,11 +93,13 @@ export class SingleProductComponent implements OnInit {
     console.log(this.index);
     localStorage.setItem("single",JSON.stringify(this.index));
 
+    
     this.router.navigate(['../../product-page'], {relativeTo: this.route});
   }
 
 
   handleAddToCart(){
+
 
     let relatedProductsObs: Observable<any>;
 
@@ -82,18 +107,30 @@ export class SingleProductComponent implements OnInit {
 
     relatedProductsObs.subscribe(resData => {
       this.relatedProducts = resData.related;
-      
+
     })
     setTimeout(() => {
-     
+
       if(this.relatedProducts.length <= 0){
-        console.log("HEllo");
+        if(!this.altCartAnimation){
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          });
+        }
         
+          
+
+        
+
+
         this.cartService.setId(this.index.mtrl)
+
         this.productsService.setSingleProduct(this.index);
         this.index.show = true;
         this.cartService.addToCart(this.index);
-        localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
+
         this.cartService.sendProductAdded(true);
       }
       else{
@@ -101,9 +138,7 @@ export class SingleProductComponent implements OnInit {
         this.cartService.sendProductAdded(true);
       }
     },500);
-    
 
-    
 
 
   }

@@ -1,8 +1,11 @@
-<div class="input-group">
+
   <form (ngSubmit)="findAndDisplay($event)" #form>
-    <input type="search" class="form-control rounded" placeholder="Search Code" aria-label="Search" aria-describedby="search-addon"name= "search" [(ngModel)]= "code" />
-    <input type="search" class="form-control rounded search2" placeholder="Search Name" aria-label="Search" aria-describedby="search-addon"name= "search" [(ngModel)]= "name" />
+    <div class="row">
+      <div class="col-md-6" >
+    <input style="width: 150px;" type="search" class="form-control rounded" placeholder="Search Code" aria-label="Search" aria-describedby="search-addon"name= "search" [(ngModel)]= "code" />
+    <input style="width: 150px;" type="search" class="form-control rounded " placeholder="Search Name" aria-label="Search" aria-describedby="search-addon"name= "search" [(ngModel)]= "name" />
     <button type="submit" class="btn btn-outline-primary">search</button>
+      </div>
+    </div>
   </form>
 
-</div>

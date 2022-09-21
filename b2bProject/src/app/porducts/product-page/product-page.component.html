@@ -6,8 +6,8 @@
         <div class="Containers">
           <img [src]="product.img" alt="image">
         </div>
-        <div class="Containers">
-          <img src="../../../assets/PM35S.jpg" alt="image">
+        <div class="Containers" *ngFor="let prod of product.otherImages">
+          <img [src]="prod.img" alt="image">
         </div>
         <a class="Back" (click)="plusSlides(-1)">&#10094;</a>
         <a class="forward" (click)="plusSlides(1)">&#10095;</a>
@@ -108,7 +108,7 @@
       <!-- </div> -->
 
       <!-- Product Pricing -->
-      <div class="product-price">
+      <div class="product-price" *ngIf="!product.hasOffer">
         <span>{{ product.wholesale }}$</span>
         <form
 
@@ -120,5 +120,19 @@
         </form>
 
       </div>
+        <div class="product-price" *ngIf="product.hasOffer">
+          <span>{{ product.wholesale }}$</span>
+          <span>{{ product.offer }}$</span>
+          <form
+
+
+          >
+            <a class="cart-btn " (click)="addToCart()">Add to cart</a>
+            <input type="number" class="form-control numberInput" name="qty" id="qty" [value]="product.stock >= product.qty" ngModel [(ngModel)]="product.qty" min="1" [max]="product.stock" #qty>
+            <span>({{ product.stock }})</span>
+
+          </form>
+
+        </div>
     </div>
 </div>

@@ -1,83 +1,53 @@
-<div *ngIf="productAdded && relatedProducts.length > 0 && !done"  style="overflow-y: scroll;position: fixed; z-index: 2000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;">
-    <div class="container" style="background-color: white;border-radius: 16px;padding-top: 2%;margin-bottom: 0px !important;">
-        <div class="row">
-            <div class="col-12" style="text-align: center;">
-                <h2 >Συσχετιζόμενα Προϊόντα</h2>
-                <hr class="col-12" style="width: 50%; margin-left: 25%;margin-top: 5%;">
-            </div>
+<!-- <app-log-in (logOutEvent)="logoutHandle()" *ngIf="!loggedIn"></app-log-in>
+<app-homepage *ngIf="loggedIn"></app-homepage> -->
+<!-- <app-product-added-to-cart *ngIf="productAdded"></app-product-added-to-cart> -->
 
-            <div *ngIf="waiting" class="col-12" style="text-align: center;">
-                <app-spinner></app-spinner>
-            </div>
-            
 
-            <div *ngIf="!waiting && firstStep">
-                <div *ngFor="let product of scope1" class="row" style="margin-bottom: 2%;">
-                    
-                        <div class="col-5">
-                            <div class="row">
-                                <img class="col-6" [src]="product.img" alt="" style="width: 100px !important;" height="100px">
-                                <div class="col-6">
-                                    <p>{{ product.name }}</p>
-                                    <p>{{ product.wholesale }}&#x20AC;</p>
-                                </div>  
-                            </div> 
-                        </div>
 
-                        <div class="col-2" >
-                            <h1>+</h1>
-                        </div>
-
-                        <div class="col-5">
-                            <div class="row">
-                                <img class="col-6" [src]="scope2[product.grouping-1]" alt="" style="width: 100px !important;" height="100px">
-                                <div class="col-6">
-                                    <p>{{ scope2 != undefined?scope2[product.grouping-1].name : '' }}  </p>
-                                    <p>{{ scope2 != undefined?scope2[product.grouping-1].wholesale  : ''}}&#x20AC;</p>
-                                </div>  
-                            </div> 
-                        </div>
-                        <button class="btn btn-success col-2" (click)="handleGrouping(product,scope2[product.grouping-1])">Select</button>
-                </div>
-
-                
-            </div>  
-            <div *ngIf="!waiting && !firstStep">
-                <div *ngFor="let product of scope3" class="row" style="margin-bottom: 2%;">
-                    <img class="col-6" [src]="product.img" alt="" style="width: 100px !important;" height="100px">
-                    <div class="col-6">
-                        <p>{{ product.name }}</p>
-                        <p>{{ product.wholesale }}&#x20AC;</p>
-                    </div>  
-                    <button class="btn btn-success col-2" (click)="handleSecondGrouping(product)">Select</button>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-<div *ngIf="productAdded && relatedProducts.length == 0" style="position: fixed; z-index: 100; background: rgba(0, 0, 0, 0.5);width: 100vw;height: 300%; text-align: center;padding-top: 15%; padding-left: 30%;">
+<div *ngIf="productAdded && relatedProducts.length > 0" style="position: absolute; z-index: 100; background: rgba(0, 0, 0, 0.5);width: 100vw;height: 300%; text-align: center;padding-top: 15%; padding-left: 30%;">
     <div style="background-color: white; width: 50%;height: auto; border-radius: 16px;padding-top: 2%;">
-        <h2>Το προϊόν προστέθηκε στο καλάθι</h2>
+        <h2>Scope 1</h2>
         <hr style="width: 50%; margin-left: 25%;margin-top: 5%;">
-        <div style="margin-top: 5%">
-            <img [src]="singleProduct.img" height="120px" width="120px" alt="" style="display: inline-block;margin-bottom: 10%;">
+        <div *ngFor="let product of relatedProducts" style="margin-top: 5%">
+            <img [src]="product.image" height="120px" width="120px" alt="" style="display: inline-block;margin-bottom: 10%;">
             <div style="display: inline-block; text-align: start; margin-left: 3%;">
-                <h5>{{ singleProduct.name }}</h5>
-                <p>Quantity: {{ singleProduct.qty }}</p>
-                <p>Price: {{ singleProduct.wholesale * singleProduct.qty}}&#x20AC;</p>
-                <div style="margin-top: 5%;">
-                    <button class="btn btn-success" (click)="handleGoToCart()">Καλάθι</button>
-                    <button class="btn btn-danger" (click)="handleClose()">Συνεχίστε τα ψώνια</button>
-                </div>
+                <h5>{{ product.name }}</h5>
+                <p>Quantity: {{ product.qty }}</p>
+                <p *ngIf="!product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
+                  <p *ngIf="product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
+                <button class="btn btn-success" (click)="handleGrouping(product)">Προσθήκη</button>
             </div>
 
         </div>
+
+
+
     </div>
 </div>
 
+<div *ngIf="showScope3" style="position: absolute; z-index: 100; background: rgba(0, 0, 0, 0.5);width: 100vw;height: 300%; text-align: center;padding-top: 15%; padding-left: 30%;">
+    <div style="background-color: white; width: 50%;height: auto; border-radius: 16px;padding-top: 2%;">
+        <h2>Scope 3</h2>
+        <hr style="width: 50%; margin-left: 25%;margin-top: 5%;">
+        <div *ngFor="let product of group.Scope3" style="margin-top: 5%">
+            <img [src]="product.img" height="120px" width="120px" alt="" style="display: inline-block;margin-bottom: 10%;">
+            <div style="display: inline-block; text-align: start; margin-left: 3%;">
+                <h5>{{ product.name }}</h5>
+                <p>Quantity: {{ product.qty }}</p>
+                <p>Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
+                <button class="btn btn-success" (click)="addToCart(product)">Προσθήκη</button>
+            </div>
 
+        </div>
+
+
+    </div>
+    <!-- <div style="margin-top: 5%;">
+      <button class="btn btn-danger" (click)="handleClose()" style="margin-right: 2%;">Continue Shopping</button>
+      <button class="btn btn-primary" (click)="handleGoToCart()">Go To Cart</button>
+    </div> -->
+
+  </div>
 
 
 <router-outlet ></router-outlet>
