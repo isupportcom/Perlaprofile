@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="margin-top:200px;">
   <div class="col-lg-4 col-md-3 col-sm-10 col-12" style="margin-left: 25%">
     <h1>{{ subCategoryName }}</h1>
     <br />
@@ -108,7 +108,7 @@
           style="width: 29%"
           required
         >
-          <option class="form-control" [ngValue]="null" [disabled]="true">
+          <option class="form-control" [ngValue]="null"  [disabled]="true">
             Eπιλεξτε Προφιλ
           </option>
           <option [ngValue]="extra.id" *ngFor="let extra of extraInputArray">
@@ -123,6 +123,7 @@
         Καθαρισμος Φορμας
       </button>
     </form>
+    <button class="btn btn-success" (click)="addToCart()">Add To cart</button>
     <p *ngIf="flag">${{ product[0].wholesale }}</p>
     <div
       class="col-lg-4 col-md-3 col-sm-10 col-12"

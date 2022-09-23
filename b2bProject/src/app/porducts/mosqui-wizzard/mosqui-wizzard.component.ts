@@ -34,7 +34,8 @@ export class MosquiWizzardComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private productService: ProductsService,
-    private cartService : CartServiceService
+    private cartService : CartServiceService,
+    private productsService: ProductsService
   ) {}
   dimentions: FormGroup | any;
   clear(){
@@ -115,7 +116,10 @@ export class MosquiWizzardComponent implements OnInit {
   hasProfile: boolean | any;
   hasExtra: boolean | any;
   addToCart(){
-      this.cartService.addToCart(this.product);
+      console.log(this.product);
+      this.productsService.setSingleProduct(this.product[0]);
+      this.cartService.setId(this.product[0].mtrl)
+      this.cartService.addToCart(this.product[0]);
   }
   extraInput: boolean = false;
   extraInputArray: any;
