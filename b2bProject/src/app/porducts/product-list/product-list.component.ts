@@ -72,7 +72,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
       if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement){
 
-
+        
 
 
         this.showProductsPerPage = false;
@@ -111,7 +111,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
   logoSource2?: string;
   waiting: boolean = false;
   fits: boolean = true;
-  itemsPP: number = 9;
+  itemsPP: number = 10;
   relatedProducts = [1,2,3,4];
   showList: boolean = false;
   logoList: {
@@ -130,7 +130,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.itemsPP = 4;
     }
     else{
-      this.itemsPP = 9;
+      this.itemsPP = 10;
     }
 
     if(this.innerWidth <= 1200){
@@ -183,7 +183,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.itemsPP = 4;
     }
     else{
-      this.itemsPP = 9;
+      this.itemsPP = 10;
     }
 
     if(this.innerWidth <= 1200){
@@ -500,7 +500,10 @@ export class ProductListComponent implements OnInit , OnDestroy{
             }
 
             if(!flag){
+              
+              
               if(product.stock !== 0){
+                console.log(product.stock);
                 this.shownProducts.push(product);
               }
 

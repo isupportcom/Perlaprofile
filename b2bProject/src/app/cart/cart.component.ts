@@ -46,6 +46,8 @@ export class CartComponent implements OnInit, OnDestroy {
         console.log(resData);
         this.products = resData.data.products
         this.length = this.products.length;
+        
+        
 
         if(this.length == 0){
           this.shouldContinue = false;
