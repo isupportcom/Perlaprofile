@@ -15,7 +15,7 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
   @Input() index:any;
-
+  loggedIn: boolean = localStorage.getItem('username')? true : false;
 
   singleProduct: any;
   relatedProducts:product|any = [];

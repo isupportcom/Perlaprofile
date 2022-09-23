@@ -6,7 +6,23 @@
               <p class="itemTitle"><strong>{{ index.name }}</strong><br></p>
               <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p><img class="itemHr" style="width: 100%;" src="../../../assets/Line%208.svg">
               <p class="details"><strong>Order number</strong>: XXXXXXXXX<br></p>
-              <p class="details"><strong>Stock</strong>: XXXXXXXXX<br></p><button class="btn btn-primary seeMoreBtn" type="button">Δες Περισσότερα</button>
+              <p class="details"><strong>Stock</strong>: XXXXXXXXX<br></p>
+              <button *ngIf="!loggedIn" class="btn btn-primary seeMoreBtn" type="button">Δες Περισσότερα</button>
+              <div *ngIf="loggedIn" class="row logged-in-btns" style="margin-left: 0px">
+                <button
+                  
+                  class="myBtn col-8"
+                  (click)="handleAddToCart()"
+                  [disabled]="index.stock == 0"
+                  >
+                    Προσθήκη
+                </button>
+                <button (click)="handleAddToFavorite(index)" style="border: none;background-color: rgba(0,0,0,0);" class="col-4">
+                  <img class="heart"  src="../../../assets/heart-alt-green.svg" alt="">
+                </button>
+                
+              </div>
+              
           </div>
       </div>
   
