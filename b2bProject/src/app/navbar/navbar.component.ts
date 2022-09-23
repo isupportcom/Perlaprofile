@@ -34,6 +34,8 @@ export class NavbarComponent implements OnInit{
   showLoggedinNav: boolean = false;
   hoverProducts: boolean = false;
   makeSmallerDropDown?: boolean;
+  productAddedToFav: boolean = false;
+  source: string = '../../assets/heart-alt.svg';
 
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
@@ -101,6 +103,24 @@ export class NavbarComponent implements OnInit{
 
 
     });
+
+    this.cartService.productAddedToFav.subscribe(resData => {
+      if(window.scrollX === 0){
+        setTimeout(() => {
+          this.productAddedToFav = resData;
+          setTimeout(() => {
+            this.source = '../../assets/heart-alt-filled.svg'
+          },330);
+          setTimeout(() => {
+            this.productAddedToFav = false;
+            this.source = '../../assets/heart-alt.svg'
+          }, 1000);
+        }, 700);
+        
+      }
+    })
+
+    
 
 
     if(!this.username){

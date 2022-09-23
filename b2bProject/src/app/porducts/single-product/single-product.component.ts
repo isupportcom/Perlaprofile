@@ -94,6 +94,7 @@ export class SingleProductComponent implements OnInit {
     localStorage.setItem("single",JSON.stringify(this.index));
 
 
+
     setTimeout(() => {
       if(this.router.url === '/products/product-page'){
         window.location.reload();

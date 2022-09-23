@@ -25,38 +25,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
   message:string ='';
   loadedUser:any;
   showProduct:boolean|any;
-  dummyColors:any =[
-    {
-      colorName:"Απαλο",
-      id:1
-    },
-    {
-      colorName:"Σκληρο",
-      id:2
-    },
-    {
-      colorName:"Ευκαμπτο",
-      id:3
-    },
-    {
-      colorName:"Μεταξι",
-      id:4
-    }
-  ];
-  colorsToChoose:any=[
-    {
-      name:"blue"
-    },
-    {
-      name:"red"
-    },
-    {
-      name:"green"
-    },
-    {
-      name:"black"
-    }
-  ]
+
   @ViewChild('menu1') menu1: ElementRef|any;
   @ViewChild('menu2') menu2: ElementRef|any;
 
@@ -373,52 +342,17 @@ export class ProductListComponent implements OnInit , OnDestroy{
   selectedHeight:boolean|any;
   selectedWidth:boolean|any;
   shouldContinue:boolean|any;
-  check(){
-    if(this.listArray.length==0){
-      this.selectedCategory = false;
-    }else{
-      this.selectedCategory=true;
-    }
-    if(this.contactForm.value.height == null){
-      this.selectedHeight = false;
-    }else{
-      this.selectedHeight=true;
-    }
-    if(this.contactForm.value.width == null){
-      this.selectedWidth=false;
-    }else{
-      this.selectedWidth=true;
-    }
 
-    if(this.selectedCategory==true && this.selectedHeight == true && this.selectedWidth ==true){
-        this.shouldContinue = true;
-    }
 
-  }
-  hundleMyWizzard(){
-    this.router.navigate(['../../mosqui-plus'],{relativeTo:this.route});
+  hundleWizzard(name:string,id:number){
+
+
+    this.router.navigate(['products/mosqui',id,name]);
+
+
   }
   shouldContinueColors:boolean|any;
-  checkColor(){
-    console.log(this.colors.value.color !=undefined);
-    this.showProduct =true;
-      if(this.colors.value.color !=undefined){
-        this.showProduct =true;
-        this.waiting = false;
-      }else{
-        this.showProduct=false;
-      }
-      console.log(this.showProduct);
 
-  }
-  checkFabric(){
-
-    if(this.fabric.value.fabricname !=undefined){
-     this.shouldContinueColors = true
-    }else{
-      this.shouldContinueColors=false;
-    }
-  }
   counter(index: number){
 
     for(let i=0;i<index;i++){

@@ -23,6 +23,9 @@
       <li (click)="showContent(5)">
         <a > Update Categories</a>
       </li>
+      <li (click)="showContent(12)">
+        <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Ral Colors</a>
+      </li>
 
 <li (click)="setDropdown(dropdownCat4)" class="nav-item dropdown" #categories>
   <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,6 +54,7 @@
     <app-update-categories *ngIf="component==5"></app-update-categories>
     <app-insert-categories *ngIf="component==6"></app-insert-categories>
     <app-offers *ngIf="component==7"></app-offers>
+    <app-update-colors *ngIf="component==12"></app-update-colors>
     <app-upload-image *ngIf="component==9"></app-upload-image>
     <app-insert-images *ngIf="component==10"></app-insert-images>
   </div>

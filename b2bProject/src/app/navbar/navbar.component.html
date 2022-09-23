@@ -8,7 +8,9 @@
       <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2" style="padding: 0px;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon burgerMenu"></span></button>
         <div class="collapse navbar-collapse" id="navcol-2">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item my-nav-item2"><a class="btn ms-md-2 myBtn" role="button" (click)="hundleMyFavorites()"><img src="../../assets/heart-alt.svg" width="18px"/></a></li>
+
+                <li class="nav-item my-nav-item2"><a routerLink="/favorites" class="btn ms-md-2 myBtn" role="button"><img  [ngClass]="productAddedToFav? 'heartAnim' : ''" [src]="source" width="18px"/></a></li>
+
                 <li class="nav-item my-nav-item2"><a [ngClass]="productAdded? 'btn ms-md-2 myBtn enlarge' : 'btn ms-md-2 myBtn reduce'" role="button" routerLink="/cart" #cartBtn><img style="display: inline-block;" src="../../assets/shopping-cart.svg" width="18px"/><p *ngIf="productAdded2" style="display: inline-block;margin-bottom: 0px;">&emsp;Έχετε Προϊόντα στο Καλάθι σας x1</p></a></li>
                 <li class="nav-item my-nav-item2">
                   <div class="dropdown">
@@ -91,9 +93,12 @@
     <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2" style="padding: 0px;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon burgerMenu"></span></button>
       <div class="collapse navbar-collapse" id="navcol-2">
           <ul class="navbar-nav ms-auto">
-              <li class="nav-item"><a class="nav-link" >Η Εταρία</a></li>
-              <li class="nav-item"><a class="nav-link" >Η Ομάδα της Perla</a></li>
-              <li class="nav-item"><a class="nav-link active" >Επικοινωνία</a></li>
+
+              <li class="nav-item"><a routerLink="/home" routerLinkActive="active" class="nav-link">Αρχική</a></li>
+              <li class="nav-item"><a routerLink="/company" routerLinkActive="active" class="nav-link">Η Εταρία</a></li>
+              <li class="nav-item"><a routerLink="/team" routerLinkActive="active" class="nav-link">Η Ομάδα της Perla</a></li>
+              <li class="nav-item"><a routerLink="/contact" routerLinkActive="active" class="nav-link">Επικοινωνία</a></li>
+
               <li class="nav-item">
               <a class="btn ms-md-2 myBtn" role="button" (click)="login()">Συνδέσου</a></li>
           </ul>

@@ -57,9 +57,9 @@ export class PopUpLoginComponent implements OnInit {
         case 3 :
         case 4 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/updateProducts.php/?id=1&method=MTRLUPDATE";break;
         case 5 :
-        case 6 :
+        case 6 :this.api = "https://perlarest.vinoitalia.gr/php-auth-api/subcategories.php/?id=6&method=SUBCATEGORIES&method1=CATEGORIES";break;
         case 7 :
-        case 8 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/subcategories.php/?id=6&method=SUBCATEGORIES&method1=CATEGORIES";break;
+        case 12 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/fabric.php";break;
 
       }
       this.spinnerVis = true;
@@ -71,20 +71,49 @@ export class PopUpLoginComponent implements OnInit {
       }).then(resData=>{
         if(resData.data.success == 1 ){
           console.log(this.api)
+          if(this.id==12){
+              axios.post(this.api,{method:"XROMAYFASMATOS"})
+              .then(resData=>{
+                axios.post("https://perlarest.vinoitalia.gr/php-auth-api/polydrox_color.php",{method:"XROMATAPOLYDROX"})
+                .then(resData=>{
+                  axios.post("https://perlarest.vinoitalia.gr/php-auth-api/profile_colors.php",{method:"XROMAPROFIL"})
+                  .then(resData=>{
+                    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/ral_color.php",{method:"XROMATARAL"})
+                    .then(resData=>{
+                      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/wooden_colors.php",{method:"XROMAKSULO"})
+                      .then(resData=>{
+                        this.answer = "Mosqui Colors Updated";
+                        console.log(resData.data);
+                        this.spinnerVis = false;
+                      setTimeout(()=>{
+                      window.location.reload()
+                    },1000);
+                      })
+                    })
+                  })
+                })
+              })
+          }else{
           axios.get(this.api)
             .then(resData=>{
               if(this.id == 4){
-                axios.post("https://perlarest.vinoitalia.gr/php-auth-api/relatedProducts.php",{
-                  method:"RELATEDMTRL"
-                }).then(resData=>{
-                  this.answer = resData.data.message;
-                  console.log(this.answer)
-                  this.spinnerVis = false;
-                  setTimeout(()=>{
-                    window.location.reload()
-                  },1000);
+                axios.post("https://perlarest.vinoitalia.gr/php-auth-api/mosquiProducts.php",{method:"MTRUPDATEMOSQUI"})
+                .then(resData=>{
+                  console.log(resData);
+                  axios.post("https://perlarest.vinoitalia.gr/php-auth-api/relatedProducts.php",{
+                    method:"RELATEDMTRL"
+                  }).then(resData=>{
+                    this.answer = resData.data.message;
+                    console.log(this.answer)
+                    this.spinnerVis = false;
+                    setTimeout(()=>{
+                      window.location.reload()
+                    },1000);
+                  })
                 })
-              }else{
+
+              }
+              else{
                 this.answer = resData.data;
                 console.log(this.answer)
                 this.spinnerVis = false;
@@ -94,14 +123,18 @@ export class PopUpLoginComponent implements OnInit {
               }
 
             })
+          }
         }else{
           this.answer = "Invalid Cridentials";
           this.isError = true;
           this.spinnerVis = false;
-        }
+
+      }
       })
+
 
 
       }
     }
+
 }

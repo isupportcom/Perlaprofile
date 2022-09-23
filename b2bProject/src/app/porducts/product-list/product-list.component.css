@@ -239,7 +239,23 @@
       margin-top: 200px;
     }
   }
-
+  .myBtn{
+    background-color: #6DAE49;
+    border-radius: 24px;
+    border: none;
+    padding: 8px 8px;
+    color: white;
+    font-family: 'Commissioner';
+    transition: all 0.3s ease-in-out;
+  }
+  .myBtn:hover{
+    background-color: #5d963e;
+    box-shadow: rgba(100, 100, 111, .3) 0px 7px 29px 0px;
+  }
+  .myBtn{
+    font-size: 14px;
+    padding: 6px 6px;
+  }
   @media (max-width: 1200px) {
     .hero {
       height: 550px;
