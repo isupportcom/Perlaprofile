@@ -37,6 +37,7 @@ export class FavoriteComponent implements OnInit {
   }
   removeOne(product:any){
     console.log(product);
+    
 
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
     {
@@ -47,8 +48,10 @@ export class FavoriteComponent implements OnInit {
     .then(resData=>{
       console.log(resData.data);
       this.getProducts()
+      window.location.reload();
     })
 
+    
   }
   removeAll(){
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
@@ -60,8 +63,10 @@ export class FavoriteComponent implements OnInit {
     .then(resData=>{
       console.log(resData.data);
       this.getProducts()
-
+      window.location.reload();
     })
+
+    
   }
   addToCart(product:any){
       console.log(product);

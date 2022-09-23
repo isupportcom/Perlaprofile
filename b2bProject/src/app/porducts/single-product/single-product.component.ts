@@ -15,13 +15,15 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
   @Input() index:any;
-
+  loggedIn: boolean = localStorage.getItem('username')? true : false;
 
   singleProduct: any;
   relatedProducts:product|any = [];
   productsToCart :product |any =[];
   altCartAnimation: boolean = false;
-
+  loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
+  productCount: any;
+  products: any;
   constructor(
       private renderer: Renderer2,
       private router: Router,
@@ -115,6 +117,19 @@ export class SingleProductComponent implements OnInit {
 
 
   handleAddToCart(){
+
+    axios.post(
+      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+      {
+        trdr: this.loadedUser.trdr,
+      }
+    ).then(resData => {
+      
+      this.products = resData.data.products;
+      this.cartService.sendProductCount(this.products.length);
+
+    });
+
 
 
     let relatedProductsObs: Observable<any>;

@@ -102,6 +102,10 @@
   width: 70%;
 }
 
+.categoriesLink {
+   cursor: pointer;
+  }
+
 @media (max-width: 767px) {
   .categoriesLink {
     font-size: 12px;

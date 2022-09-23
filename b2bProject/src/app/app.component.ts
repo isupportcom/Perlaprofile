@@ -51,6 +51,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
   ngOnInit() {
+    
 
 
     console.log(this.date.getHours()+':'+this.date.getMinutes());

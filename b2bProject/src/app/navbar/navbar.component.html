@@ -9,15 +9,16 @@
         <div class="collapse navbar-collapse" id="navcol-2">
             <ul class="navbar-nav ms-auto">
 
-                <li class="nav-item my-nav-item2"><a routerLink="/favorites" class="btn ms-md-2 myBtn" role="button"><img  [ngClass]="productAddedToFav? 'heartAnim' : ''" [src]="source" width="18px"/></a></li>
+                <li class="nav-item my-nav-item2"><a (click)="handleFavorites()" class="btn ms-md-2 myBtn" role="button"><img  [ngClass]="productAddedToFav? 'heartAnim' : ''" [src]="source" width="18px"/></a></li>
+                <li class="nav-item my-nav-item2"><a [ngClass]="productAdded? 'btn ms-md-2 myBtn enlarge' : 'btn ms-md-2 myBtn reduce'" role="button" routerLink="/cart" #cartBtn><img style="display: inline-block;" src="../../assets/shopping-cart.svg" width="18px"/><p *ngIf="productAdded2" style="display: inline-block;margin-bottom: 0px;">&emsp;Έχετε Προϊόντα στο Καλάθι σας x{{ productCount }}</p></a></li>
 
-                <li class="nav-item my-nav-item2"><a [ngClass]="productAdded? 'btn ms-md-2 myBtn enlarge' : 'btn ms-md-2 myBtn reduce'" role="button" routerLink="/cart" #cartBtn><img style="display: inline-block;" src="../../assets/shopping-cart.svg" width="18px"/><p *ngIf="productAdded2" style="display: inline-block;margin-bottom: 0px;">&emsp;Έχετε Προϊόντα στο Καλάθι σας x1</p></a></li>
                 <li class="nav-item my-nav-item2">
                   <div class="dropdown">
                       <a #optionsToggler (click)="userOptions()" class="btn ms-md-2 myBtn dropdown-toggle" role="button"><img src="../../assets/user.svg" width="16px">&emsp;{{ username }}&emsp;</a>
                       <ul #options [ngClass]="showUserOptions? (makeSmallerDropDown? 'dropdown-menu my-dropdown-sm show' : 'dropdown-menu my-dropdown show') : 'dropdown-menu'">
                         <li><a class="dropdown-item my-dropdown-item">Profile</a></li>
                         <li><a class="dropdown-item my-dropdown-item">My Orders</a></li>
+                        <li><a *ngIf="isAdmin" class="dropdown-item my-dropdown-item">Dashboard</a></li>
                         <li><a (click)="logout()" class="dropdown-item my-dropdown-item">Logout</a></li>
                       </ul>
 
@@ -40,7 +41,7 @@
                     </ul>
                   </div>
                 </li>
-                <li style="margin-bottom: 8px;"><a>Η Εταρία</a></li>
+                <li style="margin-bottom: 8px;"><a>Η Εταιρία</a></li>
                 <li style="margin-bottom: 8px;"><a>Η Ομάδα της Perla</a></li>
                 <li style="margin-bottom: 8px;"><a>Επικοινωνία</a></li>
 
@@ -62,11 +63,11 @@
                   Προϊόντα
               </a>
               <ul (mouseenter)="handleHover()" (mouseleave)="handleMouseleave()" [ngClass]="hoverProducts? 'dropdown-menu myMenu2' : 'dropdown-menu myMenu'">
-                  <li [routerLink]="'/products/'+mainCategory.id+'/'+mainCategory.name" (click)="handleCategoryClick()" style="margin-right: 0px;" *ngFor="let mainCategory of mainCategories"><a class="dropdown-item">{{ mainCategory.name }}</a></li>
+                  <li [routerLink]="'/products/'+mainCategory.id+'/'+mainCategory.name" (click)="handleCategoryClick()" style="margin-right: 0px;" *ngFor="let mainCategory of mainCategories"><a class="dropdown-item" style="color: black;">{{ mainCategory.name }}</a></li>
               </ul>
             </div>
           </li>
-          <li><a routerLinkActive="my-active">Η Εταρία</a></li>
+          <li><a routerLinkActive="my-active">Η Εταιρία</a></li>
           <li><a routerLinkActive="my-active">Η Ομάδα της Perla</a></li>
           <li><a routerLinkActive="my-active">Επικοινωνία</a></li>
 

@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import axios from 'axios';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
@@ -35,7 +37,9 @@ export class NavbarComponent implements OnInit{
   hoverProducts: boolean = false;
   makeSmallerDropDown?: boolean;
   productAddedToFav: boolean = false;
-  source: string = '../../assets/heart-alt.svg';
+  source?: string;
+  sourceCart?: string;
+  
 
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
@@ -43,6 +47,7 @@ export class NavbarComponent implements OnInit{
   showProductCount: boolean = false;
   showUserOptions: boolean = false;
   mainCategories : any = [];
+  loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
 
   constructor(
     private authService: AuthService,
@@ -50,7 +55,8 @@ export class NavbarComponent implements OnInit{
     private route: ActivatedRoute,
     private cartService: CartServiceService,
     private productsService: ProductsService,
-    private renderer: Renderer2) {
+    private renderer: Renderer2,
+    private http: HttpClient) {
 
 
       this.renderer.listen('window', 'click',(e:Event)=>{
@@ -83,7 +89,39 @@ export class NavbarComponent implements OnInit{
 
   username = localStorage.getItem("username");
 
-  ngOnInit(): void {
+  async ngOnInit(){
+
+    this.cartService.productCount.subscribe(resData => {
+      console.log(resData);
+      this.productCount = resData+1;
+
+      // if(resData == 0){
+      //   this.productCount = resData+1;
+      // }
+      // else{
+      //   this.productCount = resData;
+      // }
+      
+    
+      
+    })
+
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+        trdr: this.loadedUser.trdr,
+        mtrl:"dontNeedIt",
+        mode:"fetch"
+      })
+      .then(resData=>{
+        console.log(resData.data);
+
+        this.products = resData.data.products
+        if(resData.data.products.length !=0){
+          this.source = '../../assets/heart-alt-filled.svg'  
+        }else{
+          this.source = '../../assets/heart-alt.svg'
+        }
+      })
+
     this.cartService.productAdded.subscribe(resData => {
       if(window.scrollX === 0){
         if(!this.productAdded){
@@ -105,19 +143,34 @@ export class NavbarComponent implements OnInit{
     });
 
     this.cartService.productAddedToFav.subscribe(resData => {
-      if(window.scrollX === 0){
-        setTimeout(() => {
-          this.productAddedToFav = resData;
+      if(resData){
           setTimeout(() => {
-            this.source = '../../assets/heart-alt-filled.svg'
-          },330);
-          setTimeout(() => {
-            this.productAddedToFav = false;
-            this.source = '../../assets/heart-alt.svg'
-          }, 1000);
-        }, 700);
+            this.productAddedToFav = resData;
+            this.source = '../../assets/heart-alt-filled.svg';
+            setTimeout(() => {
+              this.productAddedToFav = false;
+            },1000)
+          },600)
+          
+
+        
+        
+        
+          // this.productAddedToFav = resData;
+          // // this.source = '../../assets/heart-alt.svg';
+          // setTimeout(() => {
+          //   this.source = '../../assets/heart-alt-filled.svg'
+          // },330);
+          // setTimeout(() => {
+          //   this.productAddedToFav = false;
+          // },1000)
         
       }
+      else{
+        this.productAddedToFav = false;
+        this.source = '../../assets/heart-alt.svg';
+      }
+      
     })
 
     
@@ -209,6 +262,10 @@ export class NavbarComponent implements OnInit{
 
   handleHover(){
     this.hoverProducts = true;
+  }
+
+  handleFavorites(){
+    this.router.navigate(['favorites']);
   }
 
   handleMouseleave(){

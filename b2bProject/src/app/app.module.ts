@@ -87,7 +87,6 @@ const routes:Routes = [
   {
     path:'products',
     component:PorductsComponent,
-    canActivate: [AuthGuard],
     children: [
       {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
       {path: 'product-page', component: ProductPageComponent},
