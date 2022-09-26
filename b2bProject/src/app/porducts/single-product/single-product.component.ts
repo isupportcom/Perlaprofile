@@ -112,15 +112,15 @@ export class SingleProductComponent implements OnInit {
 
     this.cartService.addToFavorites(product);
 
-    if(this.relatedProducts.length <= 0){
-      if(!this.altCartAnimation){
-        window.scroll({
-          top: 0,
-          left: 0,
-          behavior: 'smooth'
-        });
-      }
-    }
+    // if(this.relatedProducts.length <= 0){
+    //   if(!this.altCartAnimation){
+    //     window.scroll({
+    //       top: 0,
+    //       left: 0,
+    //       behavior: 'smooth'
+    //     });
+    //   }
+    // }
     this.cartService.sendProductAddedToFav(true);
   }
 

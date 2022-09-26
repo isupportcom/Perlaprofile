@@ -59,6 +59,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
   ]
   @ViewChild('menu1') menu1: ElementRef|any;
   @ViewChild('menu2') menu2: ElementRef|any;
+  @ViewChild('menu3') menu3: ElementRef|any;
 
 
 
@@ -70,7 +71,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
 
-      if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement){
+      if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement && e.target !== this.menu3.nativeElement){
 
         
 
@@ -121,6 +122,8 @@ export class ProductListComponent implements OnInit , OnDestroy{
   } | any= [];
   categoryToGo: any;
   showBigFilters: boolean = true;
+  showFilters:boolean = false;
+  extend:boolean = false;
 
   innerWidth!: number;
   @HostListener('window:resize', ['$event'])
@@ -559,6 +562,20 @@ export class ProductListComponent implements OnInit , OnDestroy{
       }
     }
 
+  }
+
+  handleShowFilters(){
+    if(this.showFilters){
+      this.showFilters = false;
+      this.extend = false;
+    }
+    else{
+      this.showFilters = true;
+      this.extend = false; 
+      setTimeout(() => {
+        this.extend = true;
+      })
+    }
   }
 
   handleClearFilters(){
