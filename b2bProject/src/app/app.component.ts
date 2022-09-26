@@ -11,6 +11,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { product } from './AdminArea/adminareaproducts/adminareaproducts.component';
@@ -51,7 +52,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
   ngOnInit() {
-    
+
 
 
     console.log(this.date.getHours()+':'+this.date.getMinutes());
@@ -224,7 +225,7 @@ export class AppComponent implements OnDestroy, OnInit {
     this.showScope3 = false;
 
     console.log('OPA');
-          
+
 
     window.scroll({
       top: 0,

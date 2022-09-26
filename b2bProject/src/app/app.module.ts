@@ -50,7 +50,8 @@ import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-po
 import { FavoriteComponent } from './cart/favorite/favorite.component';
 import { MosquiWizzardComponent } from './porducts/mosqui-wizzard/mosqui-wizzard.component';
 import { UpdateColorsComponent } from './AdminArea/components/update-colors/update-colors.component';
-
+import {CarouselModule} from 'primeng/carousel';
+import { ProductsCarouselComponent } from './porducts/products-carousel/products-carousel.component';
 
 
 
@@ -184,6 +185,7 @@ const routes:Routes = [
     FavoriteComponent,
     MosquiWizzardComponent,
     UpdateColorsComponent,
+    ProductsCarouselComponent
   ],
   imports: [
     BrowserModule,

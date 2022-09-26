@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationControlsComponent } from 'ngx-pagination';
 
+
 interface mainCat{
   id: number,
   name: string
