@@ -103,6 +103,10 @@ export class HomepageComponent implements OnInit {
    console.log(this.seeEarlier);
 
   }
+  goToProductPage( product:any){
+    this.productsService.setSingleProduct(product);
+    this.router.navigate(['../products/product-page']);
+  }
   hundleOffer(product:any){
     this.productsService.setSingleProduct(product);
     this.router.navigate(['../products/product-page']);

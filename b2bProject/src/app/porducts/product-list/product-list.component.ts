@@ -711,6 +711,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
     })
 
   }
+  hundleWizzard(name:string,id:number){
+
+
+    this.router.navigate(['products/mosqui',id,name]);
+
+
+  }
   ngOnDestroy(): void {
     console.log("hello");
 
