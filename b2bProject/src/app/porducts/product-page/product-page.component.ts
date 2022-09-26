@@ -15,6 +15,8 @@ import axios from 'axios';
 export class ProductPageComponent implements OnInit {
   slidePosition!: number;
   switchDesc = false;
+  suggested:any;
+  hasRelated:any=false;
   altCartAnimation:boolean=false
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
@@ -44,6 +46,8 @@ export class ProductPageComponent implements OnInit {
   async ngOnInit() {
 
 
+
+
     this.innerWidth = window.innerWidth;
     if(this.innerWidth < 768 ){
       this.altCartAnimation = true;
@@ -66,7 +70,17 @@ export class ProductPageComponent implements OnInit {
       this.hasSuggested = true;
     }
 
-
+    let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
+    {
+      mtrl:this.product.mtrl
+    })
+    console.log(sugg.data.products);
+    this.suggested = sugg.data.products;
+    if(this.suggested.length ==0){
+        this.hasRelated=false;
+    }else{
+      this.hasRelated = true;
+    }
 
 
 

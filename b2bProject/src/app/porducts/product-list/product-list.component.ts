@@ -249,7 +249,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then((resData:any) => {
-      // console.log(resData.data)
+       console.log(resData.data)
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < resData.data.products.length; i++) {
@@ -268,7 +268,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
           category: resData.data.products[i].category,
           subcategory: resData.data.products[i].subcategory,
           img:resData.data.products[i].image,
-          otherImages:resData.data.products[i].otherImages
+          otherImages:resData.data.products[i].otherImages,
+          description:resData.data.products[i].description,
+          description1:resData.data.products[i].description1,
+          data_sheet:resData.data.products[i].data_sheet,
+          data_sheet1:resData.data.products[i].data_sheet1,
+          texnika_xaraktiristika:resData.data.products[i].texnika_xaraktiristika,
+          texnika_xaraktiristika1:resData.data.products[i].texnika_xaraktiristika1
         }
          this.productsService.setAll(this.products[i])
 

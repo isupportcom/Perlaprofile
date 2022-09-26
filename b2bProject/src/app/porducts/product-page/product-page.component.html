@@ -39,60 +39,15 @@
     <div style="margin-top: 50px">
       <div *ngIf="!switchDesc">
         <p>
-          - Ενσύρματο μοτέρ<br />
-          - 5 Καλώδια<br />
-          - Σύνδεσμος με εξωτερικό δέκτη<br />
-          - Μηχανικά όρια
+          {{product.description}}
         </p>
       </div>
       <div *ngIf="switchDesc" class="table">
         <hr />
-        <span
-          >Διάμετρος
-          Σωλήνα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Ø35
-          mm</span
-        >
-        <hr />
-        <span
-          >Ονομαστική
-          Ισχύς:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;121
-          W</span
-        >
-        <hr />
-        <span
-          >Ονομαστική
-          Ροπή:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;13
-          Nm</span
-        >
-        <hr />
-        <span
-          >Ονομαστική Ταχύτητα
-          (RPM):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;230
-          V DC</span
-        >
-        <hr />
-        <span
-          >Συχνότητα
-          Λειτουργίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;50
-          Hz</span
-        >
-        <hr />
-        <span
-          >Ονομαστικό
-          Ρεύμα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0,53
-          A</span
-        >
-        <hr />
-        <span
-          >Βαθμός
-          Προστασίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;IP44</span
-        >
-        <hr />
-        <span
-          >Αριθμός Στροφών
-          (max):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;36</span
-        >
-        <hr />
+        {{product.data_sheet}}
+        {{product.data_sheet1}}
+        {{product.texnika_xaraktiristika}}
+        {{product.texnika_xaraktiristika1}}
       </div>
     </div>
     <div *ngIf="hasSuggested">
@@ -185,5 +140,8 @@
         </form>
       </div>
     </div>
+
   </div>
+
 </div>
+
