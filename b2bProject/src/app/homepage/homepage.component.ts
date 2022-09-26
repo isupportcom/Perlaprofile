@@ -7,14 +7,17 @@ import axios from "axios";
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
-  
+
 })
 export class HomepageComponent implements OnInit {
   mainCategories : any = [];
+  loadedUser:any
   showDescription1: boolean = false;
   showDescription2: boolean = false;
   showDescription3: boolean = false;
   showDescription4: boolean = false;
+  seeEarlier:any;
+  isEmpry:boolean=false;
   offer1:any = [];
   offer2:any=[];
 
@@ -51,13 +54,18 @@ export class HomepageComponent implements OnInit {
   }
 
    ngOnInit() {
+    this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    this.getSeeEarlier();
+
+
     if(this.username){
       this.showLoggedInContent = true;
     }
     else{
       this.showLoggedInContent = false;
     }
-    
+
 
 
     this.productsService.getMainCategories().subscribe(resData => {
@@ -81,7 +89,21 @@ export class HomepageComponent implements OnInit {
 
 
   }
-  handleProductPage(product:any){
+ async getSeeEarlier(){
+   let req =await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php",{
+      trdr: this.loadedUser.trdr
+    })
+    this.seeEarlier = req.data.products;
+    if(this.seeEarlier.length == 0){
+      this.isEmpry = true;
+    }else{
+      this.isEmpry = false;
+    }
+
+   console.log(this.seeEarlier);
+
+  }
+  hundleOffer(product:any){
     this.productsService.setSingleProduct(product);
     this.router.navigate(['../products/product-page']);
   }

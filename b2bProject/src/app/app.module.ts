@@ -48,6 +48,8 @@ import { InsertImagesComponent } from './AdminArea/components/insert-images/inse
 import { ContatcFormComponent } from './shared/contatc-form/contatc-form.component';
 import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-popup.component';
 import { FavoriteComponent } from './cart/favorite/favorite.component';
+import { MosquiWizzardComponent } from './porducts/mosqui-wizzard/mosqui-wizzard.component';
+import { UpdateColorsComponent } from './AdminArea/components/update-colors/update-colors.component';
 
 
 
@@ -87,7 +89,8 @@ const routes:Routes = [
     component:PorductsComponent,
     children: [
       {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
-      {path: 'product-page', component: ProductPageComponent}
+      {path: 'product-page', component: ProductPageComponent},
+      {path: 'mosqui/:sub_id/:sub_name',component:MosquiWizzardComponent}
     ]
   },
   {
@@ -115,6 +118,7 @@ const routes:Routes = [
     component:FavoriteComponent,
     canActivate:[AuthGuard]
   },
+
   {
     path: 'checkout',
 
@@ -178,6 +182,8 @@ const routes:Routes = [
     ContatcFormComponent,
     OfferPopupComponent,
     FavoriteComponent,
+    MosquiWizzardComponent,
+    UpdateColorsComponent,
   ],
   imports: [
     BrowserModule,

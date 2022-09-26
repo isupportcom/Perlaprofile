@@ -3,6 +3,7 @@ import {product} from "../AdminArea/adminareaproducts/adminareaproducts.componen
 import {Subject} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Category } from "./categories.model";
+import { ActivatedRoute, Router } from "@angular/router";
 
 
 
@@ -19,7 +20,7 @@ export  class ProductsService {
   mainCategory: any;
   filters: any;
 
-  constructor(private http: HttpClient,) {}
+  constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
 
 
@@ -30,6 +31,7 @@ export  class ProductsService {
      console.log(prod);
 
  }
+
 
 
  setAll(item:product){

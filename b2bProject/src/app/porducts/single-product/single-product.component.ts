@@ -96,6 +96,7 @@ export class SingleProductComponent implements OnInit {
     localStorage.setItem("single",JSON.stringify(this.index));
 
 
+
     setTimeout(() => {
       if(this.router.url === '/products/product-page'){
         window.location.reload();
@@ -112,6 +113,7 @@ export class SingleProductComponent implements OnInit {
 
     this.cartService.addToFavorites(product);
 
+
     // if(this.relatedProducts.length <= 0){
     //   if(!this.altCartAnimation){
     //     window.scroll({
@@ -122,6 +124,7 @@ export class SingleProductComponent implements OnInit {
     //   }
     // }
     this.cartService.sendProductAddedToFav(true);
+
   }
 
 
@@ -133,7 +136,7 @@ export class SingleProductComponent implements OnInit {
         trdr: this.loadedUser.trdr,
       }
     ).then(resData => {
-      
+
       this.products = resData.data.products;
       this.cartService.sendProductCount(this.products.length);
 

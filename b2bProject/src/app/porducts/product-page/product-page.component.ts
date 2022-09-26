@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {ProductsService} from "../products.service";
 import {product} from "../../AdminArea/adminareaproducts/adminareaproducts.component";
 import { Observable, tap } from 'rxjs';
@@ -15,12 +15,25 @@ import axios from 'axios';
 export class ProductPageComponent implements OnInit {
   slidePosition!: number;
   switchDesc = false;
+  altCartAnimation:boolean=false
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
   relatedProducts:product|any = [];
    product :product|any;
    suggestedProducts:product|any;
    hasSuggested:boolean =false;
+   innerWidth:any;
+   @HostListener('window:resize', ['$event'])
+   onResize(event: any){
+     this.innerWidth = window.innerWidth;
+
+     if(this.innerWidth < 768 ){
+       this.altCartAnimation = true;
+     }
+     else{
+       this.altCartAnimation = false;
+     }
+   }
   constructor(
       private renderer: Renderer2,
       private el: ElementRef,
@@ -29,6 +42,16 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+
+
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth < 768 ){
+      this.altCartAnimation = true;
+    }
+    else{
+      this.altCartAnimation = false;
+    }
+
     this.slidePosition = 1;
     this.SlideShow(this.slidePosition);
     console.log();
@@ -63,7 +86,13 @@ export class ProductPageComponent implements OnInit {
 
       if(this.relatedProducts.length <= 0){
         console.log("HEllo");
-
+        if(!this.altCartAnimation){
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          });
+        }
 
         this.cartService.setId(this.product.mtrl)
 

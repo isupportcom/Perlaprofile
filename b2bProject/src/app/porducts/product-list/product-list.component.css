@@ -164,6 +164,429 @@
     padding-left: 0%;
 
 }
+.headerImg {
+  width: 100%;
+}
+
+.myCards {
+  margin-bottom: 12px;
+
+}
+
+
+@media (max-width: 279px) {
+    .cardHolder {
+
+      padding: 0px 60px;
+    }
+}
+
+@media (min-width: 279px) {
+    .cardHolder {
+
+      padding: 0px 60px;
+    }
+}
+
+@media (min-width: 360px) {
+  .cardHolder {
+
+    padding: 0px 60px;
+  }
+}
+
+@media (min-width: 576px) {
+  .cardHolder {
+    padding: 0px 10px;
+
+  }
+}
+
+
+
+@media (min-width: 992px) {
+  .cardHolder {
+    padding: 0px 160px;
+
+  }
+}
+
+@media (min-width: 1200px) {
+  .cardHolder {
+    padding: 0px 240px;
+
+}
+
+
+}
+
+@media (min-width: 1400px) {
+
+
+.cardHolder {
+    padding: 0px 0px;
+
+  }
+}
+
+
+@media (max-width: 576px) {
+  .myCards .card-body p {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .myCards .card-body h4 {
+    font-size: 16px;
+  }
+}
+
+.headerImg {
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+  .myCards {
+    width: 50%;
+    margin-left: 25%;
+  }
+}
+
+@media (max-width: 575px) {
+  .myCards {
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+
+.myCards .card-body hr {
+  border-color: #6dae49;
+}
+
+.card-title {
+  width: 70%;
+}
+
+@media (max-width: 767px) {
+  .categoriesLink {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .myCol {
+    width: 40%;
+  }
+}
+
+@media (max-width: 575px) {
+  .categoriesLink {
+    font-size: 8px;
+  }
+}
+
+
+.myBtn {
+    background: #6DAE49;
+    box-shadow: 0px 0px 10px rgba(109, 174, 73, 0.6);
+    border-radius: 5px;
+    color: white;
+  }
+
+@media (max-width: 992px) {
+    .myBtn {
+      font-size: 12px;
+    }
+  }
+
+@media (max-width: 576px) {
+    .myBtn {
+      font-size: 8px;
+    }
+  }
+
+  .scroll-downs {
+    /*position: absolute;*/
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 34px;
+    height: 55px;
+    margin-top: 150px;
+  }
+
+  .mousey {
+    width: 3px;
+    padding: 10px 15px;
+    height: 35px;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    opacity: 0.75;
+    box-sizing: content-box;
+  }
+
+  @media (max-width: 1200px) {
+    .mousey {
+      width: 3px;
+      padding: 10px 10px;
+      height: 25px;
+      border: 2px solid #fff;
+      border-radius: 25px;
+      opacity: 0.75;
+      box-sizing: content-box;
+    }
+  }
+
+  .scroller {
+    width: 3px;
+    height: 10px;
+    border-radius: 25%;
+    background-color: #6DAE49;
+    animation-name: scroll;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(.15,.41,.69,.94);
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(15px);
+      opacity: 0;
+    }
+  }
+
+  .hero {
+    margin-top: 300px;
+    position: relative;
+    height: 800px;
+    z-index: -1;
+  }
+
+  @media (max-width: 1700px) {
+    .hero {
+      height: 750px;
+      margin-top: 200px;
+    }
+  }
+
+  @media (max-width: 1500px) {
+    .hero {
+      height: 700px;
+      margin-top: 200px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .hero {
+      height: 600px;
+      margin-top: 200px;
+    }
+  }
+  .myBtn{
+    background-color: #6DAE49;
+    border-radius: 24px;
+    border: none;
+    padding: 8px 8px;
+    color: white;
+    font-family: 'Commissioner';
+    transition: all 0.3s ease-in-out;
+  }
+  .myBtn:hover{
+    background-color: #5d963e;
+    box-shadow: rgba(100, 100, 111, .3) 0px 7px 29px 0px;
+  }
+  .myBtn{
+    font-size: 14px;
+    padding: 6px 6px;
+  }
+  @media (max-width: 1200px) {
+    .hero {
+      height: 550px;
+      margin-top: 150px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .hero {
+      height: 450px;
+      margin-top: 120px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+        margin-top: 120px;
+      height: 330px;
+    }
+  }
+
+
+
+  @media (max-width: 576px) {
+    .hero {
+        margin-top: 80px;
+      height: 270px;
+    }
+  }
+
+  @media (max-width: 440px) {
+    .hero {
+
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero {
+        margin-top: 50px;
+      height: 170px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    .hero {
+
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .scroll-downs {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 28px;
+      height: 55px;
+      margin-top: 120px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .scroll-downs {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 28px;
+      height: 55px;
+      margin-top: 150px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .scroll-downs {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 28px;
+      height: 55px;
+      margin-top: 50px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-downs {
+      display: none;
+    }
+  }
+
+  .heroText {
+    margin-top: 200px;
+  }
+
+  @media (max-width: 1400px) {
+    .heroText {
+      margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .heroText {
+      margin-top: 50px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .heroText {
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .heroText {
+      margin-top: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .heroText p {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .heroText p {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .heroText p {
+      font-size: 8px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .heroText p {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 280px) {
+    .heroText p {
+      font-size: 6px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .heroText h1 {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .heroText h1 {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .heroText h1 {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    .heroText h1 {
+      font-size: 8px;
+      margin-bottom: 0px;
+    }
+  }
 .next-btn{
   margin-left: 85%;
 }
