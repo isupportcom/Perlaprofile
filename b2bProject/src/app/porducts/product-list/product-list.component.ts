@@ -65,23 +65,23 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
 
-  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) {
+  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2,private elem: ElementRef) {
 
-    this.renderer.listen('window', 'click',(e:Event)=>{
-
-
-
-      if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement && e.target !== this.menu3.nativeElement){
-
-        
+    // this.renderer.listen('window', 'click',(e:Event)=>{
 
 
-        this.showProductsPerPage = false;
-        this.showSortOptions = false;
-      }
+
+    //   if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement && e.target !== this.menu3.nativeElement){
 
 
-    })
+
+
+    //     this.showProductsPerPage = false;
+    //     this.showSortOptions = false;
+    //   }
+
+
+    // })
 
   }
 
@@ -100,7 +100,6 @@ export class ProductListComponent implements OnInit , OnDestroy{
   shownProducts :product |any =[];
   filterOn?: boolean;
   noProducts?: boolean;
-  checkboxes: any = document.querySelectorAll('.checkbox');
   listArray: any = [];
   checked?: boolean;
   contactForm:FormGroup|any;
@@ -124,15 +123,33 @@ export class ProductListComponent implements OnInit , OnDestroy{
   showBigFilters: boolean = true;
   showFilters:boolean = false;
   extend:boolean = false;
+  filters: any = document.getElementsByClassName(
+    'boxes',
+  ) as HTMLCollectionOf<HTMLElement>;
+  showExtraFilters: boolean = false;
+  fit: boolean = true;
 
   innerWidth!: number;
   @HostListener('window:resize', ['$event'])
   onResize(event: any){
     this.innerWidth = window.innerWidth
+    if(this.innerWidth >= 768 && this.innerWidth <= 992){
+      this.showExtraFilters = false;
+    }else{
+      this.showExtraFilters = true;
+    }
+
+    if(this.innerWidth <= 445){
+      this.fit = false;
+    }else{
+      this.fit = true;
+    }
+
     if(this.innerWidth <= 992){
       this.itemsPP = 4;
     }
     else{
+      this.showFilters = false;
       this.itemsPP = 10;
     }
 
@@ -162,6 +179,11 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
   ngOnInit(): void {
+
+
+
+
+
 
     this.contactForm = this.fb.group({
       width:[null],
@@ -193,6 +215,18 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.fits = false;
     }else{
       this.fits = true;
+    }
+
+    if(this.innerWidth <= 445){
+      this.fit = false;
+    }else{
+      this.fit = true;
+    }
+
+    if(this.innerWidth >= 768 && this.innerWidth <= 992){
+      this.showExtraFilters = false;
+    }else{
+      this.showExtraFilters = true;
     }
 
 
@@ -463,7 +497,6 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }
     this.checked = true;
 
-
     console.log(this.listArray);
 
 
@@ -503,8 +536,8 @@ export class ProductListComponent implements OnInit , OnDestroy{
             }
 
             if(!flag){
-              
-              
+
+
               if(product.stock !== 0){
                 console.log(product.stock);
                 this.shownProducts.push(product);
@@ -565,17 +598,30 @@ export class ProductListComponent implements OnInit , OnDestroy{
   }
 
   handleShowFilters(){
+
+
+
     if(this.showFilters){
       this.showFilters = false;
       this.extend = false;
     }
     else{
       this.showFilters = true;
-      this.extend = false; 
+      this.extend = false;
       setTimeout(() => {
         this.extend = true;
       })
     }
+    setTimeout(() => {
+      for(let filter of this.listArray){
+        for(let i=0;i<this.filters.length;i++){
+          if(filter == this.filters[i].value){
+            this.filters[i].checked = true;
+          }
+        }
+      }
+    },10)
+
   }
 
   handleClearFilters(){

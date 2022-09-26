@@ -17,8 +17,12 @@ export  class ProductsService {
   allCategories: any = [];
   mainCategories: any = [];
   mainCategory: any;
+  filters: any;
 
   constructor(private http: HttpClient,) {}
+
+
+
 
  setSingleProduct(prod:product){
      this.singleProduct = prod;
