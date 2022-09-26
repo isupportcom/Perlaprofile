@@ -10,6 +10,7 @@
   .image{
     width: 240px;
     height: 240px;
+
   }
 }
 
@@ -83,7 +84,7 @@
   .itemTitle {
     margin-bottom: 3px;
     font-size: 18px;
-    
+
   }
 }
 
@@ -140,14 +141,14 @@
 
 @media (max-width: 768px) {
   .itemDescription {
-    
+
     font-size: 14px;
   }
 }
 
 @media (max-width: 576px) {
   .itemDescription {
-    
+
     font-size: 14px;
   }
 }
@@ -156,28 +157,28 @@
 
 @media (max-width: 527px) {
   .itemDescription {
-    
+
     font-size: 10px;
   }
 }
 
 @media (max-width: 360px) {
   .itemDescription {
-    
+
     font-size: 10px;
   }
 }
 
 @media (min-width: 769px) {
   .itemDescription {
-    
+
     font-size: 10px;
   }
 }
 
 @media (min-width: 993px) {
   .itemDescription {
-    
+
     font-size: 12px;
   }
 }
@@ -191,7 +192,7 @@
 
 @media (min-width: 1201px) {
   .details {
-    
+
     font-size: 12px;
   }
 }
@@ -466,7 +467,7 @@
 @media (max-width: 332px) {
   .logged-in-btns{
     margin-top: 0px;
-    
+
   }
   .logged-in-btns p{
     margin-top: 4px;

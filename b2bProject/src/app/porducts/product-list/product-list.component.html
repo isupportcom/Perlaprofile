@@ -75,7 +75,7 @@
                       #arrow
                     />
                   </button>
-                  <div *ngIf="showList">
+                  <div *ngIf="showList && mainCategory.id !=116">
                     <button
                       *ngFor="let logo of logoList"
                       (click)="handleChangeCategory(logo.id, logo.name)"
@@ -85,7 +85,7 @@
                     </button>
                   </div>
                 </div>
-                <div
+                <div *ngIf="mainCategory.id !=116"
                   style="
                     padding-top: 5%;
                     text-align: center;
@@ -102,7 +102,7 @@
                 </div>
 
                 <div>
-                  <ul style="margin-top: -17px; padding-top: 15%; list-style: none">
+                  <ul style="margin-top: -17px; padding-top: 15%; list-style: none" *ngIf="mainCategory.id !=116">
                     <li *ngFor="let subcategory of categories" style="margin-bottom: 8%">
 
                       <div class="row">
@@ -140,7 +140,7 @@
             </div>
 
 
-        <div class="col col-lg-9 col-md-12 col-sm-12">
+        <div class="col col-lg-9 col-md-12 col-sm-12" *ngIf="mainCategory.id!=116">
             <div [ngClass]="showFilters? 'row straighten' : 'row circly'" style="background-color: white;border-radius: 8px;padding: 10px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);margin-left: 4px;transition: all 0.1s ease-in-out;">
                 <div
                 class="col-lg-3 col-md-4 col-sm-8 col-6"
@@ -352,9 +352,59 @@
                 #paginate
                 ></pagination-controls>
             </div>
+
         </div>
     </div>
 </div>
+<div class="container cardHolder" *ngIf="mainCategory.id == 116">
+  <div class="row" >
+    <div
+      *ngFor="let sub of categories"
+      class="col col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 myCards"
+    >
+      <div
+
+        class="card"
+        style="
+              border: none;
+              box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);
+              border-radius: 9px;
+            "
+      >
+        <div class="card-header" style="padding: 0">
+          <img
+            class="headerImg"
+            src="../../assets/Frame%20106%20(2).png"
+            style="
+                  border-top-right-radius: 9px;
+                  border-top-left-radius: 9px;
+                "
+          />
+        </div>
+        <div class="card-body">
+          <h5>{{sub.name}}</h5>
+          <hr />
+          <p class="card-text">
+            Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+            justo odio, dapibus ac facilisis in, egestas eget quam.
+            Donec id elit non mi porta gravida at eget metus.
+          </p>
+          <div class="row">
+            <div class="col col-6" style="width:100%">
+              <button
+                class="myBtn"
+                (click)="hundleWizzard(sub.name,sub.sub_id)"
+
+              >
+                Δείτε Περισσότερα
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
