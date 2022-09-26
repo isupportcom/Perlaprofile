@@ -12,4 +12,9 @@ export class ProductsCarouselComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleNext(){
+
+
+  }
+
 }

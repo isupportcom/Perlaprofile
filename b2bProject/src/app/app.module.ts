@@ -52,6 +52,8 @@ import { MosquiWizzardComponent } from './porducts/mosqui-wizzard/mosqui-wizzard
 import { UpdateColorsComponent } from './AdminArea/components/update-colors/update-colors.component';
 import {CarouselModule} from 'primeng/carousel';
 import { ProductsCarouselComponent } from './porducts/products-carousel/products-carousel.component';
+import { NextDirective } from './next.directive';
+import { PrevDirective } from './prev.directive';
 
 
 
@@ -185,7 +187,9 @@ const routes:Routes = [
     FavoriteComponent,
     MosquiWizzardComponent,
     UpdateColorsComponent,
-    ProductsCarouselComponent
+    ProductsCarouselComponent,
+    NextDirective,
+    PrevDirective
   ],
   imports: [
     BrowserModule,

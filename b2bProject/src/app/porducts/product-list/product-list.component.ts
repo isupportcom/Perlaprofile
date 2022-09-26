@@ -86,7 +86,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   }
 
-
+  loggedIn: boolean = localStorage.getItem('username')? true : false;
   products :product |any =[];
   totalLength:number | undefined;
   page:number = 1;
