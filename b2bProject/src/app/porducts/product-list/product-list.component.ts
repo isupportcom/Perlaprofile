@@ -25,31 +25,63 @@ export class ProductListComponent implements OnInit , OnDestroy{
   message:string ='';
   loadedUser:any;
   showProduct:boolean|any;
-
+  dummyColors:any =[
+    {
+      colorName:"Απαλο",
+      id:1
+    },
+    {
+      colorName:"Σκληρο",
+      id:2
+    },
+    {
+      colorName:"Ευκαμπτο",
+      id:3
+    },
+    {
+      colorName:"Μεταξι",
+      id:4
+    }
+  ];
+  colorsToChoose:any=[
+    {
+      name:"blue"
+    },
+    {
+      name:"red"
+    },
+    {
+      name:"green"
+    },
+    {
+      name:"black"
+    }
+  ]
   @ViewChild('menu1') menu1: ElementRef|any;
   @ViewChild('menu2') menu2: ElementRef|any;
+  @ViewChild('menu3') menu3: ElementRef|any;
 
 
 
 
 
-  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) {
+  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2,private elem: ElementRef) {
 
-    this.renderer.listen('window', 'click',(e:Event)=>{
-
-
-
-      if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement){
-
-        
+    // this.renderer.listen('window', 'click',(e:Event)=>{
 
 
-        this.showProductsPerPage = false;
-        this.showSortOptions = false;
-      }
+
+    //   if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement && e.target !== this.menu3.nativeElement){
 
 
-    })
+
+
+    //     this.showProductsPerPage = false;
+    //     this.showSortOptions = false;
+    //   }
+
+
+    // })
 
   }
 
@@ -68,7 +100,6 @@ export class ProductListComponent implements OnInit , OnDestroy{
   shownProducts :product |any =[];
   filterOn?: boolean;
   noProducts?: boolean;
-  checkboxes: any = document.querySelectorAll('.checkbox');
   listArray: any = [];
   checked?: boolean;
   contactForm:FormGroup|any;
@@ -90,15 +121,35 @@ export class ProductListComponent implements OnInit , OnDestroy{
   } | any= [];
   categoryToGo: any;
   showBigFilters: boolean = true;
+  showFilters:boolean = false;
+  extend:boolean = false;
+  filters: any = document.getElementsByClassName(
+    'boxes',
+  ) as HTMLCollectionOf<HTMLElement>;
+  showExtraFilters: boolean = false;
+  fit: boolean = true;
 
   innerWidth!: number;
   @HostListener('window:resize', ['$event'])
   onResize(event: any){
     this.innerWidth = window.innerWidth
+    if(this.innerWidth >= 768 && this.innerWidth <= 992){
+      this.showExtraFilters = false;
+    }else{
+      this.showExtraFilters = true;
+    }
+
+    if(this.innerWidth <= 445){
+      this.fit = false;
+    }else{
+      this.fit = true;
+    }
+
     if(this.innerWidth <= 992){
       this.itemsPP = 4;
     }
     else{
+      this.showFilters = false;
       this.itemsPP = 10;
     }
 
@@ -128,6 +179,11 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
   ngOnInit(): void {
+
+
+
+
+
 
     this.contactForm = this.fb.group({
       width:[null],
@@ -159,6 +215,18 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.fits = false;
     }else{
       this.fits = true;
+    }
+
+    if(this.innerWidth <= 445){
+      this.fit = false;
+    }else{
+      this.fit = true;
+    }
+
+    if(this.innerWidth >= 768 && this.innerWidth <= 992){
+      this.showExtraFilters = false;
+    }else{
+      this.showExtraFilters = true;
     }
 
 
@@ -342,17 +410,49 @@ export class ProductListComponent implements OnInit , OnDestroy{
   selectedHeight:boolean|any;
   selectedWidth:boolean|any;
   shouldContinue:boolean|any;
+  check(){
+    if(this.listArray.length==0){
+      this.selectedCategory = false;
+    }else{
+      this.selectedCategory=true;
+    }
+    if(this.contactForm.value.height == null){
+      this.selectedHeight = false;
+    }else{
+      this.selectedHeight=true;
+    }
+    if(this.contactForm.value.width == null){
+      this.selectedWidth=false;
+    }else{
+      this.selectedWidth=true;
+    }
 
-
-  hundleWizzard(name:string,id:number){
-
-
-    this.router.navigate(['products/mosqui',id,name]);
-
+    if(this.selectedCategory==true && this.selectedHeight == true && this.selectedWidth ==true){
+        this.shouldContinue = true;
+    }
 
   }
   shouldContinueColors:boolean|any;
+  checkColor(){
+    console.log(this.colors.value.color !=undefined);
+    this.showProduct =true;
+      if(this.colors.value.color !=undefined){
+        this.showProduct =true;
+        this.waiting = false;
+      }else{
+        this.showProduct=false;
+      }
+      console.log(this.showProduct);
 
+  }
+  checkFabric(){
+
+    if(this.fabric.value.fabricname !=undefined){
+     this.shouldContinueColors = true
+    }else{
+      this.shouldContinueColors=false;
+    }
+  }
   counter(index: number){
 
     for(let i=0;i<index;i++){
@@ -397,7 +497,6 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }
     this.checked = true;
 
-
     console.log(this.listArray);
 
 
@@ -437,8 +536,8 @@ export class ProductListComponent implements OnInit , OnDestroy{
             }
 
             if(!flag){
-              
-              
+
+
               if(product.stock !== 0){
                 console.log(product.stock);
                 this.shownProducts.push(product);
@@ -498,6 +597,33 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   }
 
+  handleShowFilters(){
+
+
+
+    if(this.showFilters){
+      this.showFilters = false;
+      this.extend = false;
+    }
+    else{
+      this.showFilters = true;
+      this.extend = false;
+      setTimeout(() => {
+        this.extend = true;
+      })
+    }
+    setTimeout(() => {
+      for(let filter of this.listArray){
+        for(let i=0;i<this.filters.length;i++){
+          if(filter == this.filters[i].value){
+            this.filters[i].checked = true;
+          }
+        }
+      }
+    },10)
+
+  }
+
   handleClearFilters(){
     this.filterOn = false;
     this.listArray = [];
@@ -517,9 +643,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   handleFilter(mainCategory: any,subcategory:any){
     this.filterOn = true;
-
-
-    (['products',mainCategory.id,subcategory.sub_id]);
+    this.router.navigate(['products',mainCategory.id,subcategory.sub_id]);
     setTimeout(() => {
       window.location.reload();
     },50)

@@ -4,11 +4,13 @@
           <div class="col col-6" style="padding: 0px;"><img class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" [src]="index.img"></div>
           <div class="col col-6" style="padding: 8px;">
               <p class="itemTitle"><strong>{{ index.name }}</strong><br></p>
-              <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p><img class="itemHr" style="width: 100%;" src="../../../assets/Line%208.svg">
+              <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
+              <img [ngClass]="!loggedIn? 'itemHr' : 'itemHr2'" style="width: 100%;" src="../../../assets/Line%208.svg">
               <p class="details"><strong>Order number</strong>: XXXXXXXXX<br></p>
               <p class="details"><strong>Stock</strong>: XXXXXXXXX<br></p>
               <button *ngIf="!loggedIn" class="btn btn-primary seeMoreBtn" type="button">Δες Περισσότερα</button>
-              <div *ngIf="loggedIn" class="row logged-in-btns" style="margin-left: 0px">
+              <div *ngIf="loggedIn"  class="row logged-in-btns" style="margin-left: 0px">
+                <p style="margin-bottom: 4px;padding-left: 0px;">Τιμή: {{index.wholesale}}&euro;</p>
                 <button
                   
                   class="myBtn col-8"
