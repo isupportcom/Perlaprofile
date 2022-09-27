@@ -5,6 +5,9 @@ import { Observable, tap } from 'rxjs';
 import {CartServiceService} from "../../cart/cart-service.service";
 import {NgForm} from "@angular/forms";
 import axios from 'axios';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import { AuthService } from 'src/app/services/auth.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -16,7 +19,10 @@ export class ProductPageComponent implements OnInit {
   slidePosition!: number;
   switchDesc = false;
   suggested:any;
+  isAdmin = this.authService.getAdmin();
   hasRelated:any=false;
+  onEditDesc:boolean = false;
+  onEditData:boolean =false;
   altCartAnimation:boolean=false
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
@@ -25,6 +31,9 @@ export class ProductPageComponent implements OnInit {
    suggestedProducts:product|any;
    hasSuggested:boolean =false;
    innerWidth:any;
+   mode:string ="Περιγραφής"
+   desciptionForm:FormGroup|any;
+   dataSheetForm:FormGroup|any;
    @HostListener('window:resize', ['$event'])
    onResize(event: any){
      this.innerWidth = window.innerWidth;
@@ -37,6 +46,9 @@ export class ProductPageComponent implements OnInit {
      }
    }
   constructor(
+      private fb :FormBuilder,
+      private sanitizer:DomSanitizer,
+      private authService :AuthService,
       private renderer: Renderer2,
       private el: ElementRef,
       private productsService : ProductsService,
@@ -44,8 +56,12 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-
-
+    this.dataSheetForm = this.fb.group({
+      datas:[null]
+    })
+    this.desciptionForm = this.fb.group({
+      description:[null]
+    })
 
 
     this.innerWidth = window.innerWidth;
@@ -62,6 +78,8 @@ export class ProductPageComponent implements OnInit {
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
+    console.log(typeof(this.product.description));
+
 
     let request = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllproductsRelated.php",{mtrl:this.product.mtrl})
     console.log(request.data)
@@ -84,6 +102,50 @@ export class ProductPageComponent implements OnInit {
 
 
 
+  }
+  editData(){
+    console.log("DATA");
+
+    this.onEditData = true
+  }
+  uploadDescription(){
+
+      console.log(this.desciptionForm.value.description);
+      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php",{
+        mtrl:this.product.mtrl,
+        desc:this.desciptionForm.value.description
+      }).then(resData=>{
+        console.log(resData.data);
+
+        setTimeout(()=>{
+          this.product.description=resData.data.description
+          this.productsService.setSingleProduct(this.product);
+          // window.location.reload();
+        },50)
+      })
+
+  }
+  updateDataSheet(){
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php",{
+      mtrl:this.product.mtrl,
+      data:this.dataSheetForm.value.datas
+    }).then(resData=>{
+      setTimeout(()=>{
+        console.log(resData.data);
+
+        this.product.data_sheet = resData.data.data_sheet
+        console.log(this.product);
+
+        this.productsService.setSingleProduct(this.product);
+         window.location.reload();
+      },50)
+    })
+  }
+  closeForm(){
+   window.location.reload();
+  }
+  editDescription(){
+    this.onEditDesc = true;
   }
   addToCart(){
       this.product.show = true;
@@ -165,12 +227,18 @@ export class ProductPageComponent implements OnInit {
 
   showDescription1(){
     if(this.switchDesc){
+      this.mode="Περιγραφης"
       this.switchDesc = false;
+      this.onEditData=false;
+      this.onEditDesc=false;
     }
   }
   showDescription2(){
     if(!this.switchDesc){
+      this.mode="Data Sheet"
       this.switchDesc = true;
+      this.onEditData=false;
+      this.onEditDesc=false;
     }
   }
 }

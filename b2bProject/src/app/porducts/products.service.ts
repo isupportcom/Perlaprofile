@@ -4,6 +4,7 @@ import {Subject} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Category } from "./categories.model";
 import { ActivatedRoute, Router } from "@angular/router";
+import axios from "axios";
 
 
 
@@ -21,7 +22,8 @@ export  class ProductsService {
 
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
- setSingleProduct(prod:product){
+ setSingleProduct(prod:any){
+
      this.singleProduct = prod;
      localStorage.setItem("single",JSON.stringify(this.singleProduct))
      console.log(prod);

@@ -194,6 +194,7 @@ const routes:Routes = [
     NgxPaginationModule,
     ReactiveFormsModule,
 
+
   ],
   exports: [
     RouterModule

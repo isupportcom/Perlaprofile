@@ -19,6 +19,9 @@
     <hr />
 
     <ul class="description">
+      <button *ngIf="isAdmin && !switchDesc" (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία {{mode}}</button>
+
+      <button *ngIf="isAdmin && switchDesc" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία {{mode}}</button>
       <li>
         <a
           [ngClass]="switchDesc ? '' : 'active'"
@@ -37,18 +40,26 @@
       </li>
     </ul>
     <div style="margin-top: 50px">
-      <div *ngIf="!switchDesc">
-        <p>
-          {{product.description}}
-        </p>
+      <div *ngIf="!switchDesc" [innerHTML]="product.description" >
+
+
+
       </div>
+        <form class="form control" *ngIf="onEditDesc" [formGroup]="desciptionForm" (ngSubmit)="uploadDescription()" >
+          <textarea formControlName="description" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;"  ></textarea>
+          <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
+          <button (click)="closeForm()" style="margin-bottom:10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+        </form>
+
       <div *ngIf="switchDesc" class="table">
         <hr />
-        {{product.data_sheet}}
-        {{product.data_sheet1}}
-        {{product.texnika_xaraktiristika}}
-        {{product.texnika_xaraktiristika1}}
+        <p [innerHTML]="product.data_sheet"></p>
       </div>
+      <form class="form control" *ngIf="onEditData" [formGroup]="dataSheetForm" (ngSubmit)="updateDataSheet()" >
+        <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;"  ></textarea>
+        <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
+        <button (click)="closeForm()" style="margin-bottom:10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+      </form>
     </div>
     <div *ngIf="hasSuggested">
       <app-single-product *ngFor="let index of suggestedProducts" [index]="index"></app-single-product>
