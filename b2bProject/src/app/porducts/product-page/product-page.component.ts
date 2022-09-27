@@ -6,6 +6,30 @@ import {CartServiceService} from "../../cart/cart-service.service";
 import {NgForm} from "@angular/forms";
 import axios from 'axios';
 
+import { SwiperComponent } from 'swiper/angular';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller
+}  from 'swiper';
+
+SwiperCore.use([
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller
+])
 
 @Component({
   selector: 'app-product-page',
@@ -13,16 +37,22 @@ import axios from 'axios';
   styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit {
+
+
   slidePosition!: number;
   switchDesc = false;
   altCartAnimation:boolean=false
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
+  @ViewChild('swiperRef', { static : false}) swiperRef?: SwiperComponent;
   relatedProducts:product|any = [];
    product :product|any;
    suggestedProducts:product|any;
    hasSuggested:boolean =false;
    innerWidth:any;
+   slides = [1,2,3,4];
+   show!: boolean;
+   thumb: any;
    @HostListener('window:resize', ['$event'])
    onResize(event: any){
      this.innerWidth = window.innerWidth;
@@ -34,6 +64,18 @@ export class ProductPageComponent implements OnInit {
        this.altCartAnimation = false;
      }
    }
+   onSwiper(e: Event) {
+    console.log(e);
+  }
+  onSlideChange(swiper: SwiperComponent) {
+    console.log(swiper);
+  }
+
+  thumbsSwiper: any;
+  setThumbsSwiper(swiper: any){
+    this.thumbsSwiper = swiper;
+  }
+
   constructor(
       private renderer: Renderer2,
       private el: ElementRef,
@@ -44,6 +86,7 @@ export class ProductPageComponent implements OnInit {
   async ngOnInit() {
 
 
+
     this.innerWidth = window.innerWidth;
     if(this.innerWidth < 768 ){
       this.altCartAnimation = true;
@@ -51,10 +94,6 @@ export class ProductPageComponent implements OnInit {
     else{
       this.altCartAnimation = false;
     }
-
-    this.slidePosition = 1;
-    this.SlideShow(this.slidePosition);
-    console.log();
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
@@ -114,40 +153,6 @@ export class ProductPageComponent implements OnInit {
   }
 
 
-  plusSlides(n: number){
-    this.SlideShow(this.slidePosition += n);
-  }
-
-  currentSlide(n: number){
-    this.SlideShow(this.slidePosition = n);
-  }
-
-  SlideShow(n: number){
-    console.log(n);
-
-    var i;
-    var slides = this.el.nativeElement.querySelectorAll('.Containers');
-    console.log(slides);
-
-    var circles = this.el.nativeElement.querySelectorAll('.dots');
-
-    if(n > slides.length){
-      this.slidePosition = 1;
-    }
-    if(n < 1){
-      this.slidePosition = slides.length;
-    }
-    for(let slide of slides){
-      slide.style.display = "none";
-    }
-
-    for(let circle of circles){
-      circle.className = circle.className.replace(" enalbe", "");
-      // circles[i].className = circles[i].className.replace(" enable", "");
-    }
-    slides[this.slidePosition-1].style.display = "block";
-    circles[this.slidePosition-1].className += " enable"
-  }
 
   showDescription1(){
     if(this.switchDesc){

@@ -12,14 +12,6 @@ export class PrevDirective {
     var element = this.elem.nativeElement.parentElement.parentElement.children[1].children[0];
     var items = element.getElementsByClassName('item');
     element.prepend(items[items.length - 1]);
-    for(let item of items){
-      item.classList.add('prevAnim');
-    }
-    setTimeout(() => {
-      for(let item of items){
-        item.classList.remove('prevAnim');
-      }
-    },700);
 
 
 

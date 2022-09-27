@@ -1,5 +1,6 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
+
 @Directive({
   selector: '[appNext]'
 })
@@ -17,15 +18,6 @@ export class NextDirective {
 
 
     element.append(items[0]);
-    for(let item of items){
-        item.classList.add('nextAnim');
-    }
-
-    setTimeout(() => {
-      for(let item of items){
-        item.classList.remove('nextAnim');
-      }
-    },700);
 
 
 

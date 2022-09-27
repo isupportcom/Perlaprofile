@@ -50,11 +50,16 @@ import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-po
 import { FavoriteComponent } from './cart/favorite/favorite.component';
 import { MosquiWizzardComponent } from './porducts/mosqui-wizzard/mosqui-wizzard.component';
 import { UpdateColorsComponent } from './AdminArea/components/update-colors/update-colors.component';
-import {CarouselModule} from 'primeng/carousel';
+
 import { ProductsCarouselComponent } from './porducts/products-carousel/products-carousel.component';
 import { NextDirective } from './next.directive';
 import { PrevDirective } from './prev.directive';
-
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SwiperModule } from 'swiper/angular';
 
 
 
@@ -199,7 +204,10 @@ const routes:Routes = [
     HttpClientModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-
+    BrowserAnimationsModule,
+    CarouselModule,
+    FontAwesomeModule,
+    SwiperModule
   ],
   exports: [
     RouterModule

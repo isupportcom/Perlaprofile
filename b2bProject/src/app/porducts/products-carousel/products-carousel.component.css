@@ -1,4 +1,4 @@
-.product{
+/* .product{
   padding: 32px;
   background-color: white;
   border-radius: 16px;
@@ -22,7 +22,7 @@
 }
 
 .item{
-  /* position: absolute; */
+  position: absolute;
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   display: inline-block;
@@ -31,33 +31,9 @@
   background-color: white;
   position: relative;
   margin: 0 12px;
-  left: 0px;
+
 }
 
-.nextAnim{
-  animation: nextAnimation 0.5s ease-in-out;
-}
-
-@keyframes nextAnimation {
-  0%{
-    left: -260px;
-  }
-  100%{
-    left: 0px;
-  }
-}
-
-.prevAnim{
-  animation: prevAnimation 0.5s ease-in-out;
-}
-@keyframes prevAnimation {
-  0%{
-    left: 0px;
-  }
-  100%{
-    left: -270px;
-  }
-}
 
 .text{
 
@@ -85,7 +61,7 @@
 .button-area{
   margin-left: 93%;
   margin-bottom: 8px;
-}
+} */
 
 /* .prev{
   position: absolute;
@@ -102,9 +78,5 @@
   top: 175px;
   transform: translate(-50%,-50%);
 } */
-
-
-
-
 
 
