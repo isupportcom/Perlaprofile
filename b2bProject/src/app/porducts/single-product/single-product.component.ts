@@ -24,6 +24,8 @@ export class SingleProductComponent implements OnInit {
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
   productCount: any;
   products: any;
+  productAddedToFav: boolean = false;
+  source?: string;
   constructor(
       private renderer: Renderer2,
       private router: Router,
@@ -54,6 +56,8 @@ export class SingleProductComponent implements OnInit {
     else{
       this.altCartAnimation = false;
     }
+
+
   }
 
 
@@ -124,7 +128,6 @@ export class SingleProductComponent implements OnInit {
     //   }
     // }
     this.cartService.sendProductAddedToFav(true);
-
   }
 
 
@@ -165,12 +168,6 @@ export class SingleProductComponent implements OnInit {
             behavior: 'smooth'
           });
         }
-
-
-
-
-
-
         this.cartService.setId(this.index.mtrl)
 
         this.productsService.setSingleProduct(this.index);

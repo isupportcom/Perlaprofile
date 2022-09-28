@@ -19,10 +19,15 @@ export  class ProductsService {
   allCategories: any = [];
   mainCategories: any = [];
   mainCategory: any;
+  filters: any;
 
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
- setSingleProduct(prod:any){
+
+
+
+
+ setSingleProduct(prod:product){
 
      this.singleProduct = prod;
      localStorage.setItem("single",JSON.stringify(this.singleProduct))

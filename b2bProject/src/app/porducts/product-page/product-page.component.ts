@@ -9,6 +9,31 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import { AuthService } from 'src/app/services/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { SwiperComponent } from 'swiper/angular';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller
+}  from 'swiper';
+import { HttpClient } from '@angular/common/http';
+
+SwiperCore.use([
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller
+])
 
 @Component({
   selector: 'app-product-page',
@@ -16,6 +41,9 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit {
+  showDesc = [true,false,false,false];
+  seeEarlier: any;
+  isEmpty: boolean | any;
   slidePosition!: number;
   switchDesc = false;
   suggested:any;
@@ -26,14 +54,23 @@ export class ProductPageComponent implements OnInit {
   altCartAnimation:boolean=false
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
+  @ViewChild('swiperRef', { static : false}) swiperRef?: SwiperComponent;
   relatedProducts:product|any = [];
    product :product|any;
    suggestedProducts:product|any;
    hasSuggested:boolean =false;
    innerWidth:any;
+
    mode:string ="Περιγραφής"
    desciptionForm:FormGroup|any;
    dataSheetForm:FormGroup|any;
+
+   slides = [1,2,3,4];
+   loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+   username = localStorage.getItem('username');
+   show!: boolean;
+   thumb: any;
+
    @HostListener('window:resize', ['$event'])
    onResize(event: any){
      this.innerWidth = window.innerWidth;
@@ -45,8 +82,21 @@ export class ProductPageComponent implements OnInit {
        this.altCartAnimation = false;
      }
    }
+   onSwiper(e: Event) {
+
+  }
+  onSlideChange(swiper: SwiperComponent) {
+
+  }
+
+  thumbsSwiper: any;
+  setThumbsSwiper(swiper: any){
+    this.thumbsSwiper = swiper;
+  }
+
   constructor(
       private fb :FormBuilder,
+      private httpClient: HttpClient,
       private sanitizer:DomSanitizer,
       private authService :AuthService,
       private renderer: Renderer2,
@@ -64,6 +114,7 @@ export class ProductPageComponent implements OnInit {
     })
 
 
+
     this.innerWidth = window.innerWidth;
     if(this.innerWidth < 768 ){
       this.altCartAnimation = true;
@@ -71,10 +122,6 @@ export class ProductPageComponent implements OnInit {
     else{
       this.altCartAnimation = false;
     }
-
-    this.slidePosition = 1;
-    this.SlideShow(this.slidePosition);
-    console.log();
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
@@ -100,7 +147,7 @@ export class ProductPageComponent implements OnInit {
       this.hasRelated = true;
     }
 
-
+    this.getSeeEarlier();
 
   }
   editData(){
@@ -147,6 +194,22 @@ export class ProductPageComponent implements OnInit {
   editDescription(){
     this.onEditDesc = true;
   }
+
+  async getSeeEarlier(){
+    let req =await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php",{
+       trdr: this.loadedUser.trdr
+     })
+     this.seeEarlier = req.data.products;
+     if(this.seeEarlier.length == 0){
+       this.isEmpty = true;
+     }else{
+       this.isEmpty = false;
+     }
+
+    console.log(this.seeEarlier);
+
+   }
+
   addToCart(){
       this.product.show = true;
 
@@ -190,57 +253,59 @@ export class ProductPageComponent implements OnInit {
   }
 
 
-  plusSlides(n: number){
-    this.SlideShow(this.slidePosition += n);
+  stepper(myInput:any,btn: any){
+      let id = btn.id;
+      let min = myInput.getAttribute("min");
+      let max = myInput.getAttribute("max");
+      let step = myInput.getAttribute("step");
+      let val = myInput.getAttribute("value");
+      let calcStep = (id == "increment") ? (step*1) : (step * -1);
+      let newValue = parseInt(val) + calcStep;
+
+      if(newValue >= min && newValue <= max){
+        myInput.setAttribute("value", newValue);
+      }
   }
 
-  currentSlide(n: number){
-    this.SlideShow(this.slidePosition = n);
-  }
+  ul(index: any) {
+    for(let i=0;i<this.showDesc.length;i++){
+      if(i=== index){
+        this.showDesc[i] = true;
+      }
+      else{
+        this.showDesc[i] = false;
+      }
 
-  SlideShow(n: number){
-    console.log(n);
 
-    var i;
-    var slides = this.el.nativeElement.querySelectorAll('.Containers');
-    console.log(slides);
-
-    var circles = this.el.nativeElement.querySelectorAll('.dots');
-
-    if(n > slides.length){
-      this.slidePosition = 1;
     }
-    if(n < 1){
-      this.slidePosition = slides.length;
-    }
-    for(let slide of slides){
-      slide.style.display = "none";
-    }
-
-    for(let circle of circles){
-      circle.className = circle.className.replace(" enalbe", "");
-      // circles[i].className = circles[i].className.replace(" enable", "");
-    }
-    slides[this.slidePosition-1].style.display = "block";
-    circles[this.slidePosition-1].className += " enable"
-  }
-
-  showDescription1(){
-    if(this.switchDesc){
-      this.mode="Περιγραφης"
+    if(index == 0){
       this.switchDesc = false;
       this.onEditData=false;
       this.onEditDesc=false;
-    }
-  }
-  showDescription2(){
-    if(!this.switchDesc){
+    }else if( index == 1){
       this.mode="Data Sheet"
       this.switchDesc = true;
       this.onEditData=false;
       this.onEditDesc=false;
+
+    }else{
+
+    }
+
+    var underlines: any = document.querySelectorAll(".underline");
+    for (var i = 0; i < underlines.length; i++) {
+      underlines[i].setAttribute('style', 'transform: translate3d(' + index * 100 + '%,0,0);');
+
     }
   }
+  downloadMyFile(pdf:any){
+    const link = document.createElement('a');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+pdf);
+    link.setAttribute('download',pdf );
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
 }
 
-
+}

@@ -53,7 +53,15 @@ import { UpdateColorsComponent } from './AdminArea/components/update-colors/upda
 import { UploadPdfComponent } from './AdminArea/components/upload-pdf/upload-pdf.component';
 import { InsertPdfComponent } from './AdminArea/components/insert-pdf/insert-pdf.component';
 
-
+import { ProductsCarouselComponent } from './porducts/products-carousel/products-carousel.component';
+import { NextDirective } from './next.directive';
+import { PrevDirective } from './prev.directive';
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SwiperModule } from 'swiper/angular';
 
 
 
@@ -186,8 +194,14 @@ const routes:Routes = [
     FavoriteComponent,
     MosquiWizzardComponent,
     UpdateColorsComponent,
+
     UploadPdfComponent,
     InsertPdfComponent,
+
+    ProductsCarouselComponent,
+    NextDirective,
+    PrevDirective
+
   ],
   imports: [
     BrowserModule,
@@ -199,6 +213,10 @@ const routes:Routes = [
     ReactiveFormsModule,
 
 
+    BrowserAnimationsModule,
+    CarouselModule,
+    FontAwesomeModule,
+    SwiperModule
   ],
   exports: [
     RouterModule

@@ -1,1 +1,105 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~swiper/swiper-bundle';
+
+.owl-next, .owl-prev
+{
+  background: #6dae49 !important;
+  font-size: 18px;
+  transition: all 0.2s ease-in-out;
+}
+
+.owl-next{
+  position: absolute;
+  top: 50%;
+  right: -15px;
+}
+
+.owl-prev{
+  position: absolute;
+  top: 50%;
+  left: -15px;
+}
+
+.owl-next:hover, .owl-prev:hover
+{
+  background: #477230 !important;
+}
+
+.owl-theme .owl-nav [class*=owl-]
+{
+  padding: 8px 14px;
+  border-radius: 24px;
+}
+
+.second-swiper{
+  margin-right: 0px !important;
+}
+
+
+.second-swiper .swiper-slide{
+  margin-top: 20px !important;
+  height: 100px !important;
+}
+
+.second-swiper{
+  height: 400px;
+  overflow: hidden;
+}
+
+.swiper-pagination-bullet-active{
+  background: #6dae49 !important;
+}
+
+.swiper-button-prev , .swiper-button-next{
+  color: #6dae49;
+}
+
+.second-swiper .swiper-button-prev {
+  left: 30%;
+  top: 2%;
+  transform: rotate(90deg);
+  right: auto;
+}
+
+.second-swiper .swiper-button-next {
+  left: 30%;
+  top: 98%;
+  transform: rotate(90deg);
+  right: auto;
+}
+
+
+.second-swiper .swiper-button-prev::after, .second-swiper .swiper-button-next::after{
+  font-size: 26px !important;
+}
+
+/*
+ .swiper{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+} */
+/*
+.swiper-container{
+  width: auto;
+  height: auto;
+  margin: 10px auto;
+}
+
+.swiper-slide{
+  text-align: center;
+  line-height: 300px;
+
+}
+.swiper--main-pic{
+  width: 500px !important;
+  height: 500px !important;
+}
+
+.swiper--lower-third-pic{
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.swiper-slide-lineheight{
+  line-height: 5vh !important;
+} */
