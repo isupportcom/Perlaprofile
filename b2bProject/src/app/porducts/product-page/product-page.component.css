@@ -156,3 +156,22 @@ nav.black .underline {
     height: 80px !important;
   }
 }
+
+@media (max-width: 768px){
+  .second-swiper-holder{
+    justify-content: center !important;
+  }
+
+  .big img{
+    width: 350px !important;
+    height: 350px !important;
+  }
+}
+
+
+@media (max-width: 576px){
+  .big img{
+    width: 250px !important;
+    height: 250px !important;
+  }
+}

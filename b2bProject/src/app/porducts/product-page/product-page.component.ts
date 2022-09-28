@@ -52,6 +52,7 @@ export class ProductPageComponent implements OnInit {
    hasSuggested:boolean =false;
    innerWidth:any;
    slides = [1,2,3,4];
+   slidesShown = 3;
    loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
    username = localStorage.getItem('username');
    show!: boolean;
@@ -65,6 +66,13 @@ export class ProductPageComponent implements OnInit {
      }
      else{
        this.altCartAnimation = false;
+     }
+
+     if(this.innerWidth <= 576){
+      this.slidesShown = 2;
+     }
+     else{
+      this.slidesShown = 3;
      }
    }
    onSwiper(e: Event) {
@@ -97,6 +105,13 @@ export class ProductPageComponent implements OnInit {
     else{
       this.altCartAnimation = false;
     }
+
+    if(this.innerWidth <= 576){
+      this.slidesShown = 2;
+     }
+     else{
+      this.slidesShown = 3;
+     }
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
