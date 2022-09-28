@@ -64,6 +64,7 @@ export class ProductPageComponent implements OnInit {
    mode:string ="Περιγραφής"
    desciptionForm:FormGroup|any;
    dataSheetForm:FormGroup|any;
+   urlVideoForm:FormGroup|any;
 
    slides = [1,2,3,4];
    loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
@@ -108,6 +109,9 @@ export class ProductPageComponent implements OnInit {
   async ngOnInit() {
     this.dataSheetForm = this.fb.group({
       datas:[null]
+    })
+    this.urlVideoForm = this.fb.group({
+      video:[null]
     })
     this.desciptionForm = this.fb.group({
       description:[null]
@@ -307,5 +311,17 @@ export class ProductPageComponent implements OnInit {
     link.click();
     link.remove();
 }
-
+urlOpen:boolean=false;
+openURL(){
+  this.urlOpen =true;
+}
+async uploadUrl(){
+  this.urlVideoForm.value.video = JSON.stringify(this.urlVideoForm.value.video)
+  let req = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php",{
+    mtrl:this.product.mtrl,
+    url:this.urlVideoForm.value.video
+  })
+  console.log(req.data);
+  this.product.video = this.urlVideoForm.value.video
+}
 }

@@ -101,7 +101,8 @@
       <button *ngIf="isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button>
       <p *ngIf="showDesc[1]" [innerHTML]="product.data_sheet"></p>
       <p *ngIf="showDesc[2]"><button (click)="downloadMyFile(product.pdf)">Open PDF</button></p>
-      <p *ngIf="showDesc[3]">Hello4</p>
+      <button *ngIf="showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button>
+      <p *ngIf="showDesc[3]"><video > <source [src]="product.video" type="video/mp4"></video></p>
     </div>
 
   </div>
@@ -115,6 +116,11 @@
     <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες..." ></textarea>
     <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
     <button (click)="closeForm()" style="margin-bottom:10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+  </form>
+  <form (ngSubmit)="uploadUrl()" [formGroup]="urlVideoForm" class="form control" *ngIf="urlOpen">
+    <input class="form-control" formControlName="video" placeholder="https://example.com">
+    <br>
+    <button class="btn btn-success" type="submit">Αποθήκευση Αλλαγών</button>
   </form>
 </div>
 
