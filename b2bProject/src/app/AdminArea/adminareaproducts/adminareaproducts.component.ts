@@ -16,7 +16,8 @@ export interface product {
     subcatergory: number,
     img:any,
     otherImages:any,
-    offer:number
+    offer:number,
+    description:any
   };
 }
 @Component({

@@ -50,6 +50,8 @@ import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-po
 import { FavoriteComponent } from './cart/favorite/favorite.component';
 import { MosquiWizzardComponent } from './porducts/mosqui-wizzard/mosqui-wizzard.component';
 import { UpdateColorsComponent } from './AdminArea/components/update-colors/update-colors.component';
+import { UploadPdfComponent } from './AdminArea/components/upload-pdf/upload-pdf.component';
+import { InsertPdfComponent } from './AdminArea/components/insert-pdf/insert-pdf.component';
 
 
 
@@ -184,6 +186,8 @@ const routes:Routes = [
     FavoriteComponent,
     MosquiWizzardComponent,
     UpdateColorsComponent,
+    UploadPdfComponent,
+    InsertPdfComponent,
   ],
   imports: [
     BrowserModule,

@@ -149,10 +149,13 @@ export class SingleProductComponent implements OnInit {
     relatedProductsObs = this.productsService.getRelatedProducts(this.index.mtrl);
 
     relatedProductsObs.subscribe(resData => {
+      console.log(resData);
+
       this.relatedProducts = resData.related;
 
     })
     setTimeout(() => {
+        console.log(this.relatedProducts);
 
       if(this.relatedProducts.length <= 0){
         if(!this.altCartAnimation){

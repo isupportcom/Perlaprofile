@@ -61,6 +61,8 @@ export  class ProductsService {
  }
 
  getRelatedProducts(mtrl: any){
+  console.log(mtrl);
+
     return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/findRelatedProduct.php',
     {
         product_mtrl: mtrl

@@ -270,7 +270,8 @@ export class ProductListComponent implements OnInit , OnDestroy{
           img:resData.data.products[i].image,
           otherImages:resData.data.products[i].otherImages,
           description:resData.data.products[i].description,
-          data_sheet:resData.data.products[i].data_sheet
+          data_sheet:resData.data.products[i].data_sheet,
+          pdf:resData.data.products[i].pdf
           }
          this.productsService.setAll(this.products[i])
 
