@@ -37,8 +37,9 @@ SwiperCore.use([
   styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit {
-
-
+  showDesc = [true,false,false,false];
+  seeEarlier: any;
+  isEmpty: boolean | any;
   slidePosition!: number;
   switchDesc = false;
   altCartAnimation:boolean=false
@@ -51,6 +52,8 @@ export class ProductPageComponent implements OnInit {
    hasSuggested:boolean =false;
    innerWidth:any;
    slides = [1,2,3,4];
+   loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+   username = localStorage.getItem('username');
    show!: boolean;
    thumb: any;
    @HostListener('window:resize', ['$event'])
@@ -65,10 +68,10 @@ export class ProductPageComponent implements OnInit {
      }
    }
    onSwiper(e: Event) {
-    console.log(e);
+
   }
   onSlideChange(swiper: SwiperComponent) {
-    console.log(swiper);
+
   }
 
   thumbsSwiper: any;
@@ -106,10 +109,26 @@ export class ProductPageComponent implements OnInit {
     }
 
 
-
+    this.getSeeEarlier();
 
 
   }
+
+  async getSeeEarlier(){
+    let req =await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php",{
+       trdr: this.loadedUser.trdr
+     })
+     this.seeEarlier = req.data.products;
+     if(this.seeEarlier.length == 0){
+       this.isEmpty = true;
+     }else{
+       this.isEmpty = false;
+     }
+
+    console.log(this.seeEarlier);
+
+   }
+
   addToCart(){
       this.product.show = true;
 
@@ -153,17 +172,39 @@ export class ProductPageComponent implements OnInit {
   }
 
 
+  stepper(myInput:any,btn: any){
+      let id = btn.id;
+      let min = myInput.getAttribute("min");
+      let max = myInput.getAttribute("max");
+      let step = myInput.getAttribute("step");
+      let val = myInput.getAttribute("value");
+      let calcStep = (id == "increment") ? (step*1) : (step * -1);
+      let newValue = parseInt(val) + calcStep;
 
-  showDescription1(){
-    if(this.switchDesc){
-      this.switchDesc = false;
+      if(newValue >= min && newValue <= max){
+        myInput.setAttribute("value", newValue);
+      }
+  }
+
+  ul(index: any) {
+    for(let i=0;i<this.showDesc.length;i++){
+      if(i=== index){
+        this.showDesc[i] = true;
+      }
+      else{
+        this.showDesc[i] = false;
+      }
+    }
+
+    var underlines: any = document.querySelectorAll(".underline");
+
+
+    for (var i = 0; i < underlines.length; i++) {
+      underlines[i].setAttribute('style', 'transform: translate3d(' + index * 100 + '%,0,0);');
     }
   }
-  showDescription2(){
-    if(!this.switchDesc){
-      this.switchDesc = true;
-    }
-  }
+
+
 }
 
 

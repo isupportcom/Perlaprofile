@@ -37,12 +37,12 @@
 
 
 .second-swiper .swiper-slide{
-
+  margin-top: 20px !important;
   height: 100px !important;
 }
 
 .second-swiper{
-  height: 440px;
+  height: 400px;
   overflow: hidden;
 }
 
@@ -56,18 +56,22 @@
 
 .second-swiper .swiper-button-prev {
   left: 30%;
-  top: 5%;
+  top: 2%;
   transform: rotate(90deg);
   right: auto;
 }
 
 .second-swiper .swiper-button-next {
   left: 30%;
-  top: 93%;
+  top: 98%;
   transform: rotate(90deg);
   right: auto;
 }
 
+
+.second-swiper .swiper-button-prev::after, .second-swiper .swiper-button-next::after{
+  font-size: 26px !important;
+}
 
 /*
  .swiper{

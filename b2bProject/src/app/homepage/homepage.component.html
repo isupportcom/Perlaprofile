@@ -99,8 +99,7 @@
               <img
                 class="card-img w-100  d-block"
                 [src]="offer1.img"
-                height="300"
-                width="300"
+
                 alt=""
                 srcset=""
               />
@@ -123,26 +122,9 @@
         </div>
       </div>
     </div>
-    <div class="container" style="text-align: center;" *ngIf="isEmpry == false">
-      <h1>Ειδατε Προσφατα</h1>
-      <hr>
-    </div>
 
-    <div class="col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 myCards" *ngFor="let prod of seeEarlier">
 
-      <div class="card" style="border: none;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);border-radius: 9px;">
 
-        <div class="card-header" style="padding: 0;"><img class="headerImg" [src]="prod.img" style="border-top-right-radius: 9px;border-top-left-radius: 9px;"></div>
-        <div class="card-body">{{prod.name}}
-          <hr>
-          <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-          <div class="row">
-            <div class="col col-6"><a class="categoriesLink" (click)="goToProductPage(prod)" style="color: #6dae49;text-decoration: none;">Δες Περισσότερα</a></div>
-            <div class="col col-6" style="padding: 0;vertical-align: center;"><img class="arrow" src="../../assets/Arrow%201.svg" width="18" height="18"></div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   </div>
 

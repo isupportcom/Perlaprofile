@@ -4,15 +4,15 @@
 
 
 
-<div class="container" style="margin-top: 150px !important;display: block">
-  <div class="row" style="padding-left: 20%;">
-      <h2 >{{product.name}}</h2>
+<div class="container" style="margin-top: 180px !important;display: block">
+  <div class="row" style="padding-left: 17%;">
+
   </div>
   <div class="row">
-    <div class="col-2" style="display: flex;justify-content:right;align-items: center;">
+    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2" style="display: flex;justify-content:right;align-items: center;">
       <swiper
       class="second-swiper"
-      [slidesPerView]="4"
+      [slidesPerView]="3"
       [spaceBetween]="10"
       (slideChange)="onSlideChange(secondSwiper)"
       [navigation]="true"
@@ -22,35 +22,108 @@
       direction="vertical"
       #secondSwiper
     >
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;"  width="100px" height="100px" src="../../../assets/mosqui-back.jpg" alt=""></ng-template>
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;"  width="100px" height="100px" src="../../../assets/control-back.jpg" alt=""></ng-template>
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;"  width="100px" height="100px" src="../../../assets/Frame 106.png" alt=""></ng-template>
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;"  width="100px" height="100px" src="../../../assets/background.png" alt=""></ng-template>
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;"  width="100px" height="100px" src="../../../assets/AdobeStock_314894229 1.png" alt=""></ng-template>
+      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="product.img" alt=""></ng-template>
+      <ng-template *ngFor="let img of product.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
     </swiper>
     </div>
-    <div class="col-6">
-      <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50" [navigation]="true" [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
-        <ng-template swiperSlide><img width="500px" height="500px" src="../../../assets/mosqui-back.jpg" alt=""></ng-template>
-        <ng-template swiperSlide><img width="500px" height="500px" src="../../../assets/control-back.jpg" alt=""></ng-template>
-        <ng-template swiperSlide><img width="500px" height="500px" src="../../../assets/Frame 106.png" alt=""></ng-template>
-        <ng-template swiperSlide><img width="500px" height="500px" src="../../../assets/background.png" alt=""></ng-template>
-        <ng-template swiperSlide><img width="500px" height="500px" src="../../../assets/AdobeStock_314894229 1.png" alt=""></ng-template>
+    <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-8">
+      <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50"  [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
+        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;" [src]="product.img" alt=""></ng-template>
+        <ng-template *ngFor="let img of product.otherImages" swiperSlide><img width="500px" height="500px" style="border-radius: 8px;" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
-    <div class="col-4">
-      <h1>Hello</h1>
+
+      <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6 right-section" >
+
+        <div class="row first-row">
+          <h2>{{product.name}}</h2>
+        </div>
+        <div class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
+          <p style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+          <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
+          <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
+            <div class="col-4" style="display: flex;align-items:center;">
+              <p style="font-size: 20px;margin: 0px;">Ποσότητα:</p>
+            </div>
+            <div  class="col-8" style="display: flex;justify-content:center;align-items: center;">
+              <div class="numberInput">
+                <button id="decrement" (click)="stepper(input,decrement)" #decrement> - </button>
+                <input type="number" min="0" [max]="product.stock" step="1" value="1" id="my-input" readonly #input>
+                <button id="increment" (click)="stepper(input,increment)" #increment> + </button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <button class="btn btn-success" (click)="addToCart()" style="width: 100%;box-shadow: 0 20px 30px rgba(0,0,0,0.05);">Προσθήκη</button>
+            </div>
+            <div class="col-4">
+              <img src="../../../assets/heart-alt-green.svg" width="44px" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
+          <div style="margin-top: 18px;">
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: ΧΧΧΧΧΧΧΧΧ</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: ΧΧΧΧΧΧΧΧΧ</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: ΧΧΧΧΧΧΧΧΧ</p>
+          </div>
+        </div>
+
+      </div>
+
+  </div>
+
+  <div class="row" style="background-color: white;border-radius: 16px;margin-top: 120px;padding: 53px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
+    <div class="row" >
+      <nav class="black navigation" style="display: flex;justify-content:center;align-items: center;">
+        <div class="underline col-3"></div>
+        <div class="underline col-3"></div>
+        <div class="underline col-3"></div>
+        <a class="col-3" (click)="ul(0)">Περιγραφή</a>
+        <a class="col-3" (click)="ul(1)">Πρόσθετες Λεπτομέριες</a>
+        <a class="col-3" (click)="ul(2)">Λήψεις</a>
+        <a class="col-3" (click)="ul(3)">Λύσεις</a>
+      </nav>
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <div class="row">
+      <p *ngIf="showDesc[0]">Hello1</p>
+      <p *ngIf="showDesc[1]">Hello2</p>
+      <p *ngIf="showDesc[2]">Hello3</p>
+      <p *ngIf="showDesc[3]">Hello4</p>
+    </div>
+
+  </div>
+</div>
+
+  <div  class="container"  style="margin-top: 120px;">
+    <div class="row">
+      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1>Σχετικά Προϊόντα</h1></div>
+      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 30%;" src="../../../assets/Line%208.svg"></div>
+    </div>
+    <app-products-carousel></app-products-carousel>
+  </div>
+
+<div  class="container"  style="margin-top: 120px;">
+  <div class="row">
+      <div class="col-12" style="display: flex;justify-content: left;align-items: center;"><h3 style="margin: 0;">Είδατε Πρόσφατα</h3></div>
+      <div class="col-12"><hr style="border: 1px solid #6dae49;margin-top: 4px;"></div>
+  </div>
+  <div class="row">
+    <div class="col-2" *ngFor="let prod of seeEarlier">
+      <div class="row">
+        <img [src]="prod.img" width="180px" height="180px"  alt="">
+      </div>
+      <div class="row">
+        <p>{{ prod.name }}</p>
+      </div>
     </div>
   </div>
 </div>
 
 
-<!-- <swiper>
-  <ng-template swiperSlide>
-    <div>Slide</div>
-  </ng-template>
 
-  <ng-template swiperSlide *ngFor="let slide of slides">
-    <div><img src="../../../assets/Frame 106.png" alt=""></div>
-  </ng-template>
-</swiper> -->

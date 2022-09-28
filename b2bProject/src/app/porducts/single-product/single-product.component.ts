@@ -165,12 +165,6 @@ export class SingleProductComponent implements OnInit {
             behavior: 'smooth'
           });
         }
-
-
-
-
-
-
         this.cartService.setId(this.index.mtrl)
 
         this.productsService.setSingleProduct(this.index);
