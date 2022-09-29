@@ -43,6 +43,8 @@ SwiperCore.use([
 export class ProductPageComponent implements OnInit {
   showDesc = [true,false,false,false];
   seeEarlier: any;
+  howManySeen: any;
+  seeLess: any = [];
   isEmpty: boolean | any;
   slidePosition!: number;
   switchDesc = false;
@@ -67,10 +69,13 @@ export class ProductPageComponent implements OnInit {
    urlVideoForm:FormGroup|any;
 
    slides = [1,2,3,4];
+   slidesShown?: boolean;
    loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
    username = localStorage.getItem('username');
    show!: boolean;
    thumb: any;
+
+   smallerLine?: boolean;
 
    @HostListener('window:resize', ['$event'])
    onResize(event: any){
@@ -81,6 +86,27 @@ export class ProductPageComponent implements OnInit {
      }
      else{
        this.altCartAnimation = false;
+     }
+
+     if(this.innerWidth <= 1200){
+      this.smallerLine = true;
+     }
+     else{
+      this.smallerLine = false;
+     }
+
+     if(this.innerWidth <=992){
+      this.howManySeen = true;
+     }
+     else{
+      this.howManySeen = false;
+     }
+
+     if(this.innerWidth <= 576){
+      this.slidesShown = true;
+     }
+     else{
+      this.slidesShown = false;
      }
    }
    onSwiper(e: Event) {
@@ -126,6 +152,27 @@ export class ProductPageComponent implements OnInit {
     else{
       this.altCartAnimation = false;
     }
+
+    if(this.innerWidth <= 576){
+      this.slidesShown = true;
+     }
+     else{
+      this.slidesShown = false;
+     }
+
+     if(this.innerWidth <= 1200){
+      this.smallerLine = true;
+     }
+     else{
+      this.smallerLine = false;
+     }
+
+     if(this.innerWidth <=992){
+      this.howManySeen = true;
+     }
+     else{
+      this.howManySeen = false;
+     }
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
@@ -198,6 +245,7 @@ export class ProductPageComponent implements OnInit {
   editDescription(){
     this.onEditDesc = true;
 
+
   }
 
   async getSeeEarlier(){
@@ -212,7 +260,10 @@ export class ProductPageComponent implements OnInit {
      }
 
     console.log(this.seeEarlier);
-
+    for(let i=0;i<4;i++){
+      this.seeLess.push(this.seeEarlier[i]);
+    }
+    console.log(this.seeLess);
    }
 
   addToCart(){
@@ -308,8 +359,18 @@ export class ProductPageComponent implements OnInit {
     }
 
     var underlines: any = document.querySelectorAll(".underline");
+
+    let goLeft;
+
+    if(this.smallerLine){
+      goLeft = 165;
+    }
+    else{
+      goLeft = 100;
+    }
+
     for (var i = 0; i < underlines.length; i++) {
-      underlines[i].setAttribute('style', 'transform: translate3d(' + index * 100 + '%,0,0);');
+      underlines[i].setAttribute('style', 'transform: translate3d(' + index * goLeft + '%,0,0);');
 
     }
   }

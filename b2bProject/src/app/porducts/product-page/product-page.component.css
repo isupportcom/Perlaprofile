@@ -804,7 +804,6 @@ button{
 
 .navigation {
 	position: relative;
-	white-space: nowrap;
 	background: white;
 	padding: var(--underline-height) 0;
 	margin: 2em 0;
@@ -826,7 +825,7 @@ button{
 }
 
 .navigation a {
-	display: inline-block;
+	/* display: inline-block; */
 	/* z-index: 10; */
 	/* width: 12%; */
 	padding: 1em 0;
@@ -843,6 +842,14 @@ button{
   transform: scale(1.1);
 }
 
+.imageRow{
+  --bs-gutter-x: 0.2rem !important;
+}
+
+.imageRow2{
+  --bs-gutter-x: 0.5rem !important;
+}
+
 nav.black .underline {
   background: #6dae49;
   border-radius: 0.25em;
@@ -850,23 +857,86 @@ nav.black .underline {
   mix-blend-mode: initial;
 }
 
+.smallImages{
+  width: 150px !important;
+  height: 150px;
+}
+
 @media (max-width: 1200px){
   .right-section{
-    margin-left: 22.5%;
+    margin-left: 0%;
+  }
+  .line{
+    display: block !important;
   }
 
   .first-row{
     margin-top: 16px !important;
   }
+  .underline{
+    width: 15% !important;
+    left: 5% !important;
+  }
 }
 
 @media (max-width: 992px){
   .right-section{
-    margin-left: 17.5%;
+    margin-left: 0%;
+  }
+
+  .navigation a{
+    font-size: 14px !important;
+  }
+
+  .underline{
+    height: 0.2rem !important;
   }
 
   .second-swiper img{
     width: 80px !important;
     height: 80px !important;
+  }
+}
+
+@media (max-width: 768px){
+  .right-section{
+    margin-left: 0%;
+  }
+  .second-swiper-holder{
+    justify-content: center !important;
+  }
+
+  .navigation a{
+    font-size: 12px !important;
+  }
+
+  .big img{
+    width: 350px !important;
+    height: 350px !important;
+  }
+
+  .smallImages{
+    width: 120px !important;
+    height: 120px;
+  }
+}
+
+
+@media (max-width: 576px){
+  .big img{
+    width: 250px !important;
+    height: 250px !important;
+  }
+  .smallImages{
+    width: 100px !important;
+    height: 100px;
+  }
+
+}
+
+@media (max-width: 420px){
+  .smallImages{
+    width: 80px !important;
+    height: 80px;
   }
 }
