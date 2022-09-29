@@ -2,26 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Commissioner&family=Vollkorn&display=swap');
 
 
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px;
-    display: flex;
-    margin-bottom: 100px;
-    
-  }
-
-
   app-product-added-to-cart{
-    position: absolute; 
+    position: absolute;
     z-index: 99;
-    margin-left: 45vw; 
+    margin-left: 45vw;
     margin-top: 3%;
   }
 
 .modal{
-  position: absolute; 
+  position: absolute;
   z-index: 100;
   background: rgba(0, 0, 0, 0.25);
   width: 100%;
@@ -30,3 +19,11 @@
 }
 
 
+div.scroll {
+  margin: 4px, 4px;
+  padding: 4px;
+  background-color: #08c708;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}

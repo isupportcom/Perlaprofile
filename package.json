@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@revolut/checkout": "^1.1.2"
+    "@revolut/checkout": "^1.1.2",
+    "@syncfusion/ej2-angular-richtexteditor": "^20.2.50"
   }
 }

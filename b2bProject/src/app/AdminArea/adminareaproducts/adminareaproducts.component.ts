@@ -17,7 +17,8 @@ export interface product {
     img:any,
     otherImages:any,
     offer:number,
-    addedToFav: boolean;
+    addedToFav: boolean,
+    description:any
   };
 }
 export interface singleProduct {

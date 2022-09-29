@@ -50,6 +50,8 @@ import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-po
 import { FavoriteComponent } from './cart/favorite/favorite.component';
 import { MosquiWizzardComponent } from './porducts/mosqui-wizzard/mosqui-wizzard.component';
 import { UpdateColorsComponent } from './AdminArea/components/update-colors/update-colors.component';
+import { UploadPdfComponent } from './AdminArea/components/upload-pdf/upload-pdf.component';
+import { InsertPdfComponent } from './AdminArea/components/insert-pdf/insert-pdf.component';
 
 import { ProductsCarouselComponent } from './porducts/products-carousel/products-carousel.component';
 import { NextDirective } from './next.directive';
@@ -60,6 +62,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
+import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
 
 
 
@@ -192,9 +195,15 @@ const routes:Routes = [
     FavoriteComponent,
     MosquiWizzardComponent,
     UpdateColorsComponent,
+
+    UploadPdfComponent,
+    InsertPdfComponent,
+
     ProductsCarouselComponent,
     NextDirective,
-    PrevDirective
+    PrevDirective,
+    SafePipePipe
+
   ],
   imports: [
     BrowserModule,
@@ -204,6 +213,8 @@ const routes:Routes = [
     HttpClientModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+
+
     BrowserAnimationsModule,
     CarouselModule,
     FontAwesomeModule,

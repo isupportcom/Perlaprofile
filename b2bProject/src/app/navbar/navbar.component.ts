@@ -282,7 +282,7 @@ export class NavbarComponent implements OnInit{
   }
 
   handleDashboard(){
-    this.isAdminArea = true;
+    // this.isAdminArea = true;
     console.log(this.isAdminArea);
     this.router.navigate(["dashboard"]);
   }

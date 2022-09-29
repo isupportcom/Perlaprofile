@@ -1,0 +1,34 @@
+<!-- <app-add-image-popup *ngIf="flag && window"></app-add-image-popup> -->
+<div class="row">
+  <app-searchbar></app-searchbar>
+  <div class="col-md-8" >
+    <div *ngFor="let product of products">
+      <h3 >{{product.name}}</h3>
+      <br>
+      <div></div>
+      <h4>Product Photo</h4>
+      <img [src]="product.image" style="width: 30%; height: 30%!important;">
+      <hr>
+      <h5> PDF  | <button class="btn btn-primary" (click)="openDropDown(product.mtrl)">Add PDF</button></h5>
+      <div class="row" >
+        <form *ngIf="selected && product.mtrl == selectedMtrl"  [formGroup]="pdfForm" (ngSubmit)="uploadPdf()">
+          <select formControlName="pdf" class="form-control">
+            <option [ngValue]="p.pdf"  *ngFor="let p of pdf" style="width:100%!important;">{{p.pdf}}</option>
+
+          </select>
+          <button class="btn btn-success  form-control">Αποθηκευση Αλλαγών</button>
+        </form>
+        <h4>Current PDF</h4>
+        <label><b>Name</b>: {{product.pdf}}</label>
+        <label><b>View:</b><a [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+product.pdf" target="_blank"> Go To Pdf</a></label>
+        </div>
+      <br>
+      <hr>
+    </div>
+
+
+  </div>
+</div>
+
+
+

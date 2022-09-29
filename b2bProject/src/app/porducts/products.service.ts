@@ -4,6 +4,7 @@ import {Subject} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Category } from "./categories.model";
 import { ActivatedRoute, Router } from "@angular/router";
+import axios from "axios";
 
 
 
@@ -25,7 +26,9 @@ export  class ProductsService {
 
 
 
+
  setSingleProduct(prod:product){
+
      this.singleProduct = prod;
      localStorage.setItem("single",JSON.stringify(this.singleProduct))
      console.log(prod);
@@ -63,6 +66,8 @@ export  class ProductsService {
  }
 
  getRelatedProducts(mtrl: any){
+  console.log(mtrl);
+
     return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/findRelatedProduct.php',
     {
         product_mtrl: mtrl

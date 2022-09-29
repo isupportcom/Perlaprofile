@@ -22,7 +22,12 @@ export class CartServiceService {
     this.productAdded.next(flag);
   }
 
+  startScope = new Subject<boolean>();
+  castSendStartScope = this.startScope.asObservable();
 
+  sendStartScope(flag: boolean) {
+    this.startScope.next(flag);
+  }
 
   productAddedToFav = new Subject<boolean>();
   castProductAddedToFav = this.productAddedToFav.asObservable();

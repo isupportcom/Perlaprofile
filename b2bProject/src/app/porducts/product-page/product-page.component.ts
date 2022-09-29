@@ -5,6 +5,9 @@ import { Observable, tap } from 'rxjs';
 import {CartServiceService} from "../../cart/cart-service.service";
 import {NgForm} from "@angular/forms";
 import axios from 'axios';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import { AuthService } from 'src/app/services/auth.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, {
@@ -18,6 +21,7 @@ import SwiperCore, {
   Thumbs,
   Controller
 }  from 'swiper';
+import { HttpClient } from '@angular/common/http';
 
 SwiperCore.use([
   Navigation,
@@ -44,6 +48,11 @@ export class ProductPageComponent implements OnInit {
   isEmpty: boolean | any;
   slidePosition!: number;
   switchDesc = false;
+  suggested:any;
+  isAdmin = this.authService.getAdmin();
+  hasRelated:any=false;
+  onEditDesc:boolean = false;
+  onEditData:boolean =false;
   altCartAnimation:boolean=false
   @ViewChild('description') desc: ElementRef | undefined;
   @ViewChild('dataSheet') dataSheet: ElementRef | undefined;
@@ -53,6 +62,12 @@ export class ProductPageComponent implements OnInit {
    suggestedProducts:product|any;
    hasSuggested:boolean =false;
    innerWidth:any;
+
+   mode:string ="Περιγραφής"
+   desciptionForm:FormGroup|any;
+   dataSheetForm:FormGroup|any;
+   urlVideoForm:FormGroup|any;
+
    slides = [1,2,3,4];
    slidesShown?: boolean;
    loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
@@ -60,7 +75,9 @@ export class ProductPageComponent implements OnInit {
    loggedIn = this.username? true : false;
    show!: boolean;
    thumb: any;
+
    smallerLine?: boolean;
+
    @HostListener('window:resize', ['$event'])
    onResize(event: any){
      this.innerWidth = window.innerWidth;
@@ -106,6 +123,10 @@ export class ProductPageComponent implements OnInit {
   }
 
   constructor(
+      private fb :FormBuilder,
+      private httpClient: HttpClient,
+      private sanitizer:DomSanitizer,
+      private authService :AuthService,
       private renderer: Renderer2,
       private el: ElementRef,
       private productsService : ProductsService,
@@ -113,6 +134,15 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.dataSheetForm = this.fb.group({
+      datas:[null]
+    })
+    this.urlVideoForm = this.fb.group({
+      video:[null]
+    })
+    this.desciptionForm = this.fb.group({
+      description:[null]
+    })
 
     console.log(this.loggedIn);
 
@@ -148,6 +178,8 @@ export class ProductPageComponent implements OnInit {
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
+    console.log(typeof(this.product.description));
+
 
     let request = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllproductsRelated.php",{mtrl:this.product.mtrl})
     console.log(request.data)
@@ -156,9 +188,64 @@ export class ProductPageComponent implements OnInit {
       this.hasSuggested = true;
     }
 
+    let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
+    {
+      mtrl:this.product.mtrl
+    })
+    console.log(sugg.data.products);
+    this.suggested = sugg.data.products;
+    if(this.suggested.length ==0){
+        this.hasRelated=false;
+    }else{
+      this.hasRelated = true;
+    }
 
     this.getSeeEarlier();
 
+  }
+  editData(){
+    console.log("DATA");
+
+    this.onEditData = true
+  }
+  uploadDescription(){
+
+      console.log(this.desciptionForm.value.description);
+      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php",{
+        mtrl:this.product.mtrl,
+        desc:this.desciptionForm.value.description
+      }).then(resData=>{
+        console.log(resData.data);
+
+        setTimeout(()=>{
+          this.product.description=resData.data.description
+          this.productsService.setSingleProduct(this.product);
+          // window.location.reload();
+        },50)
+      })
+
+  }
+  updateDataSheet(){
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php",{
+      mtrl:this.product.mtrl,
+      data:this.dataSheetForm.value.datas
+    }).then(resData=>{
+      setTimeout(()=>{
+        console.log(resData.data);
+
+        this.product.data_sheet = resData.data.data_sheet
+        console.log(this.product);
+
+        this.productsService.setSingleProduct(this.product);
+        //  window.location.reload();
+      },50)
+    })
+  }
+  closeForm(){
+   window.location.reload();
+  }
+  editDescription(){
+    this.onEditDesc = true;
 
 
   }
@@ -246,9 +333,35 @@ export class ProductPageComponent implements OnInit {
       else{
         this.showDesc[i] = false;
       }
+
+
+    }
+    if(index == 0){
+      this.switchDesc = false;
+      this.onEditData=false;
+      this.onEditDesc=false;
+      this.urlOpen=false;
+    }else if( index == 1){
+      this.mode="Data Sheet"
+      this.switchDesc = true;
+      this.onEditData=false;
+      this.onEditDesc=false;
+      this.urlOpen=false;
+
+    }else if(index == 3){
+      this.switchDesc = false;
+      this.onEditData=false;
+      this.onEditDesc=false;
+      this.urlOpen=true;
+    }else{
+      this.switchDesc = false;
+      this.onEditData=false;
+      this.onEditDesc=false;
+      this.urlOpen=false;
     }
 
     var underlines: any = document.querySelectorAll(".underline");
+
     let goLeft;
 
     if(this.smallerLine){
@@ -260,10 +373,35 @@ export class ProductPageComponent implements OnInit {
 
     for (var i = 0; i < underlines.length; i++) {
       underlines[i].setAttribute('style', 'transform: translate3d(' + index * goLeft + '%,0,0);');
+
     }
   }
-
-
+  downloadMyFile(pdf:any){
+    const link = document.createElement('a');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+pdf);
+    link.setAttribute('download',pdf );
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+}
+urlOpen:boolean=false;
+openURL(){
+  this.urlOpen =true;
 }
 
 
+
+async uploadUrl(){
+
+
+
+  let req = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php",{
+    mtrl:this.product.mtrl,
+    url:this.urlVideoForm.value.video
+  })
+  console.log(req.data);
+  this.product.video = req.data.video
+  this.productsService.setSingleProduct(this.product);
+}
+}

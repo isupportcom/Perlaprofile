@@ -54,10 +54,13 @@
       <div class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section" >
 
         <div class="row first-row">
-          <h2>{{product.name}}</h2>
+          <h2>{{product.product_name}}</h2>
         </div>
         <div class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
-          <p style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+          <p *ngIf="!product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.offer }}&euro;</b></p>
+
           <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
           <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
             <div class="col-4" style="display: flex;align-items:center;">
@@ -83,13 +86,17 @@
         <div class="row">
           <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
           <div style="margin-top: 18px;">
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: ΧΧΧΧΧΧΧΧΧ</p>
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: ΧΧΧΧΧΧΧΧΧ</p>
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: ΧΧΧΧΧΧΧΧΧ</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: {{product.code}}</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{product.texnikos_kodikos}}</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{product.kodikos_kataskeuasti}}</p>
           </div>
         </div>
 
+
+
+
       </div>
+
 
   </div>
 
@@ -99,6 +106,7 @@
         <div class="underline col-3"></div>
         <div class="underline col-3"></div>
         <div class="underline col-3"></div>
+
         <a class="col-3" (click)="ul(0)">Περιγραφή</a>
         <a class="col-3" (click)="ul(1)">Πρόσθετες Λεπτομέριες</a>
         <a class="col-3" (click)="ul(2)">Λήψεις</a>
@@ -109,13 +117,34 @@
       <hr>
     </div>
     <div class="row">
-      <p *ngIf="showDesc[0]">Hello1</p>
-      <p *ngIf="showDesc[1]">Hello2</p>
-      <p *ngIf="showDesc[2]">Hello3</p>
-      <p *ngIf="showDesc[3]">Hello4</p>
+      <button *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0] " (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Περιγραφής </button>
+      <p *ngIf="showDesc[0]" [innerHTML]="product.description"></p>
+      <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button>
+      <p *ngIf="showDesc[1]" [innerHTML]="product.data_sheet"></p>
+      <p *ngIf="showDesc[2]"><button (click)="downloadMyFile(product.pdf)">Open PDF</button></p>
+      <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button>
+      <p *ngIf="showDesc[3]"><iframe width="850" height="315"
+        [src]="product.video | safePipe">
+        </iframe></p>
     </div>
 
   </div>
+  <br>
+  <form class="form control" *ngIf="onEditDesc" [formGroup]="desciptionForm" (ngSubmit)="uploadDescription()" >
+    <textarea formControlName="description" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή..." ></textarea>
+    <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
+    <button (click)="closeForm()" style="margin-bottom:10px; margin-right: 10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+  </form>
+  <form class="form control" *ngIf="onEditData" [formGroup]="dataSheetForm" (ngSubmit)="updateDataSheet()" >
+    <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες..." ></textarea>
+    <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
+    <button (click)="closeForm()" style="margin-bottom:10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+  </form>
+  <form (ngSubmit)="uploadUrl()" [formGroup]="urlVideoForm" class="form control" *ngIf="urlOpen">
+    <input class="form-control" formControlName="video" placeholder="https://example.com">
+    <br>
+    <button class="btn btn-success" type="submit">Αποθήκευση Αλλαγών</button>
+  </form>
 </div>
 
   <div  class="container"  style="margin-top: 120px;">
@@ -140,7 +169,9 @@
         <p>{{ prod.name }}</p>
       </div>
     </div>
+
   </div>
+
     <div *ngIf="howManySeen" class="row imageRow">
     <div  class="col-3" *ngFor="let prod of seeLess">
       <div class="row imageRow" style="display: flex;justify-content: center;align-items: center;">
@@ -152,7 +183,6 @@
     </div>
   </div>
 </div>
-
 
 
 

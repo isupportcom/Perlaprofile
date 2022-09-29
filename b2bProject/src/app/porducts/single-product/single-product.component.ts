@@ -114,8 +114,16 @@ export class SingleProductComponent implements OnInit {
   }
 
   handleClick(){
-    this.productsService.setSingleProduct(this.index);
+    let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
+    this.productsService.setSingleProduct(this.index);
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
+      mtrl:this.index.mtrl,
+      trdr:loadedUser.trdr
+    }).then(resData=>{
+      console.log(resData.data);
+
+    })
     console.log(this.index);
     localStorage.setItem("single",JSON.stringify(this.index));
 
@@ -179,10 +187,13 @@ export class SingleProductComponent implements OnInit {
     relatedProductsObs = this.productsService.getRelatedProducts(this.index.mtrl);
 
     relatedProductsObs.subscribe(resData => {
+      console.log(resData);
+
       this.relatedProducts = resData.related;
 
     })
     setTimeout(() => {
+        console.log(this.relatedProducts);
 
       if(this.relatedProducts.length <= 0){
         if(!this.altCartAnimation){
@@ -201,8 +212,13 @@ export class SingleProductComponent implements OnInit {
         this.cartService.sendProductAdded(true);
       }
       else{
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
         this.productsService.setSingleProduct(this.index);
-        this.cartService.sendProductAdded(true);
+        this.cartService.sendStartScope(true);
       }
     },500);
 

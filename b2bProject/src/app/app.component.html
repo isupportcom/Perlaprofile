@@ -4,22 +4,27 @@
 
 
 
-<div *ngIf="productAdded && relatedProducts.length > 0" style="position: absolute; z-index: 100; background: rgba(0, 0, 0, 0.5);width: 100vw;height: 300%; text-align: center;padding-top: 15%; padding-left: 30%;">
-    <div style="background-color: white; width: 50%;height: auto; border-radius: 16px;padding-top: 2%;">
-        <h2>Scope 1</h2>
-        <hr style="width: 50%; margin-left: 25%;margin-top: 5%;">
-        <div *ngFor="let product of relatedProducts" style="margin-top: 5%">
-            <img [src]="product.image" height="120px" width="120px" alt="" style="display: inline-block;margin-bottom: 10%;">
-            <div style="display: inline-block; text-align: start; margin-left: 3%;">
-                <h5>{{ product.name }}</h5>
-                <p>Quantity: {{ product.qty }}</p>
-                <p *ngIf="!product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
-                  <p *ngIf="product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
-                <button class="btn btn-success" (click)="handleGrouping(product)">Προσθήκη</button>
-            </div>
-
+<div *ngIf="productAdded && relatedProducts.length > 0" style="display: flex;justify-content: center;align-items: center;position: absolute; z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
+    <div class="container scroll" style="background-color: white;padding-top: 2%; height: 800px;">
+        <div class="row">
+          <h2>Scope 1 + Scope2</h2>
         </div>
+        <div class="row">
+          <hr>
+        </div>
+        <div class="row">
+          <div *ngFor="let product of relatedProducts">
+              <img [src]="product.image" height="120px" width="120px" alt="">
+              <div>
+                  <h5>{{ product.name }}</h5>
+                  <p>Quantity: {{ product.qty }}</p>
+                  <p *ngIf="!product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
+                    <p *ngIf="product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
+                  <button class="btn btn-success" (click)="handleGrouping(product)">Προσθήκη</button>
+              </div>
 
+          </div>
+      </div>
 
 
     </div>
@@ -49,5 +54,6 @@
 
   </div>
 
-
-<router-outlet ></router-outlet>
+<div>
+  <router-outlet></router-outlet>
+</div>

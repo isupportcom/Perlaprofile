@@ -18,7 +18,7 @@
                       <ul #options [ngClass]="showUserOptions? (makeSmallerDropDown? 'dropdown-menu my-dropdown-sm show' : 'dropdown-menu my-dropdown show') : 'dropdown-menu'">
                         <li><a class="dropdown-item my-dropdown-item">Profile</a></li>
                         <li><a class="dropdown-item my-dropdown-item">My Orders</a></li>
-                        <li><a *ngIf="isAdmin" class="dropdown-item my-dropdown-item">Dashboard</a></li>
+                        <li (click)="handleDashboard()" ><a *ngIf="isAdmin" class="dropdown-item my-dropdown-item">Dashboard</a></li>
                         <li><a (click)="logout()" class="dropdown-item my-dropdown-item">Logout</a></li>
                       </ul>
 

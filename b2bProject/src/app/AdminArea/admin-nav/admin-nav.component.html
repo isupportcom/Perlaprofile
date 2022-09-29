@@ -15,7 +15,7 @@
       </li>
 
       <li (click)="showContent(4)">
-        <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Products</a>
+        <a > Update Products</a>
       </li>
 
 
@@ -24,8 +24,20 @@
         <a > Update Categories</a>
       </li>
       <li (click)="showContent(12)">
-        <a ><span class="fa fa-sticky-note mr-3 dropdown-item" ></span> Update Ral Colors</a>
+        <a > Update Ral Colors</a>
       </li>
+      <li (click)="setDropdown(dropdownCat5)" class="nav-item dropdown" #categories>
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          PDF
+        </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat5>
+        <li (click)="showContent(13)">
+          <a > Upload PDF</a>
+        </li>
+        <li (click)="showContent(14)">
+          <a >Insert PDF To Product</a>
+        </li>
+      </div>
 
 <li (click)="setDropdown(dropdownCat4)" class="nav-item dropdown" #categories>
   <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,6 +69,8 @@
     <app-update-colors *ngIf="component==12"></app-update-colors>
     <app-upload-image *ngIf="component==9"></app-upload-image>
     <app-insert-images *ngIf="component==10"></app-insert-images>
+    <app-upload-pdf *ngIf="component==13"></app-upload-pdf>
+    <app-insert-pdf *ngIf="component==14"></app-insert-pdf>
   </div>
 </div>
 

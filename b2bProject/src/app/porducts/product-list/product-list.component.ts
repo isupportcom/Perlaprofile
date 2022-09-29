@@ -255,7 +255,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then((resData:any) => {
-      // console.log(resData.data)
+       console.log(resData.data)
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < resData.data.products.length; i++) {
@@ -274,8 +274,17 @@ export class ProductListComponent implements OnInit , OnDestroy{
           category: resData.data.products[i].category,
           subcategory: resData.data.products[i].subcategory,
           img:resData.data.products[i].image,
-          otherImages:resData.data.products[i].otherImages
-        }
+          otherImages:resData.data.products[i].otherImages,
+          description:resData.data.products[i].description,
+          data_sheet:resData.data.products[i].data_sheet,
+          pdf:resData.data.products[i].pdf,
+          video:resData.data.products[i].video,
+          product_name:resData.data.products[i].onoma,
+          product_name_eng:resData.data.products[i].onoma_eng,
+          kodikos_kataskeuasti:resData.data.products[i].kodikos_kataskeuasti,
+          texnikos_kodikos:resData.data.products[i].texnikos_kodikos
+
+          }
          this.productsService.setAll(this.products[i])
 
 
@@ -735,6 +744,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
       console.log(resData.data.products)
       if(resData.data.products.length !=0){
         setTimeout(()=>{
+          for(let favorite of this.favorites){
+            for(let prod of resData.data.products){
+              if(favorite.mtrl === prod.mtrl){
+                prod.addedToFav = true;
+              }
+            }
+          }
           this.waiting = false;
           this.shownProducts = resData.data.products
           this.message = ""

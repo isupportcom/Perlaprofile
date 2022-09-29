@@ -74,7 +74,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
 
-    this.cartService.productAdded.subscribe(res => {
+    this.cartService.startScope.subscribe(res => {
       this.products = this.productService.getAll();
       this.singleProduct = this.productService.getSingelProduct();
 
@@ -102,6 +102,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
   handleGrouping(product: any){
+
     let groupingObs: Observable<any>;
 
     groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
