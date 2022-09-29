@@ -94,8 +94,16 @@ export class SingleProductComponent implements OnInit {
   }
 
   handleClick(){
-    this.productsService.setSingleProduct(this.index);
+    let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
+    this.productsService.setSingleProduct(this.index);
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
+      mtrl:this.index.mtrl,
+      trdr:loadedUser.trdr
+    }).then(resData=>{
+      console.log(resData.data);
+
+    })
     console.log(this.index);
     localStorage.setItem("single",JSON.stringify(this.index));
 
