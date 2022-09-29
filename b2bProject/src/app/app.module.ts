@@ -62,6 +62,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
+import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
 
 
 
@@ -200,7 +201,8 @@ const routes:Routes = [
 
     ProductsCarouselComponent,
     NextDirective,
-    PrevDirective
+    PrevDirective,
+    SafePipePipe
 
   ],
   imports: [

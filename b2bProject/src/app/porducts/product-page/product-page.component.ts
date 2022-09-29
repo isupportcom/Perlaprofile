@@ -188,7 +188,7 @@ export class ProductPageComponent implements OnInit {
         console.log(this.product);
 
         this.productsService.setSingleProduct(this.product);
-         window.location.reload();
+        //  window.location.reload();
       },50)
     })
   }
@@ -197,6 +197,7 @@ export class ProductPageComponent implements OnInit {
   }
   editDescription(){
     this.onEditDesc = true;
+
   }
 
   async getSeeEarlier(){
@@ -286,14 +287,24 @@ export class ProductPageComponent implements OnInit {
       this.switchDesc = false;
       this.onEditData=false;
       this.onEditDesc=false;
+      this.urlOpen=false;
     }else if( index == 1){
       this.mode="Data Sheet"
       this.switchDesc = true;
       this.onEditData=false;
       this.onEditDesc=false;
+      this.urlOpen=false;
 
+    }else if(index == 3){
+      this.switchDesc = false;
+      this.onEditData=false;
+      this.onEditDesc=false;
+      this.urlOpen=true;
     }else{
-
+      this.switchDesc = false;
+      this.onEditData=false;
+      this.onEditDesc=false;
+      this.urlOpen=false;
     }
 
     var underlines: any = document.querySelectorAll(".underline");
@@ -315,13 +326,19 @@ urlOpen:boolean=false;
 openURL(){
   this.urlOpen =true;
 }
+
+
+
 async uploadUrl(){
-  this.urlVideoForm.value.video = JSON.stringify(this.urlVideoForm.value.video)
+
+
+
   let req = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php",{
     mtrl:this.product.mtrl,
     url:this.urlVideoForm.value.video
   })
   console.log(req.data);
-  this.product.video = this.urlVideoForm.value.video
+  this.product.video = req.data.video
+  this.productsService.setSingleProduct(this.product);
 }
 }

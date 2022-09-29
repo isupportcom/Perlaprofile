@@ -96,13 +96,15 @@
       <hr>
     </div>
     <div class="row">
-      <button *ngIf="isAdmin && !switchDesc && showDesc[0]" (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία {{mode}}</button>
+      <button *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0] " (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία {{mode}}</button>
       <p *ngIf="showDesc[0]" [innerHTML]="product.description"></p>
-      <button *ngIf="isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button>
+      <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button>
       <p *ngIf="showDesc[1]" [innerHTML]="product.data_sheet"></p>
       <p *ngIf="showDesc[2]"><button (click)="downloadMyFile(product.pdf)">Open PDF</button></p>
-      <button *ngIf="showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button>
-      <p *ngIf="showDesc[3]"><video > <source [src]="product.video" type="video/mp4"></video></p>
+      <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button>
+      <p *ngIf="showDesc[3]"><iframe width="850" height="315"
+        [src]="product.video | safePipe">
+        </iframe></p>
     </div>
 
   </div>
