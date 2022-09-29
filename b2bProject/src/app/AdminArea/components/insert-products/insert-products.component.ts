@@ -155,10 +155,12 @@ export class InsertProductsComponent implements OnInit {
   }
    openOffer(item:any){
   this.offer = true;
-     console.log(typeof(item))
+  console.log(item);
+
+     console.log(typeof(item.wholesalePrice))
     this.modalService.offer.subscribe((res:number)=> {
      localStorage.setItem("discound",JSON.stringify(res));
-      this.offerprice = item.wholesale - ((item.wholesale * +res) / 100)
+      this.offerprice = +item.wholesale - ((+item.wholesale * +res) / 100)
       console.log(this.offerprice)
       console.log(typeof(item.mtrl))
       let data ={

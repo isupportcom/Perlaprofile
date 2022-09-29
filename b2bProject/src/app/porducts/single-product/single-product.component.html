@@ -10,7 +10,10 @@
               <p class="details"><strong>Stock</strong>: {{index.stock}}<br></p>
               <button *ngIf="!loggedIn" class="btn btn-primary seeMoreBtn" type="button" (click)="handleClick()">Δες Περισσότερα</button>
               <div *ngIf="loggedIn"  class="row logged-in-btns" style="margin-left: 0px">
-                <p style="margin-bottom: 4px;padding-left: 0px;">Τιμή: {{index.wholesale}}&euro;</p>
+                <p *ngIf="!index.hasOffer" style="margin-bottom: 4px;padding-left: 0px;">Τιμή: {{index.wholesale}}&euro;</p>
+                <p *ngIf="index.hasOffer" style="margin-bottom: 4px;padding-left: 0px; text-decoration:line-through ;color:red;">Τιμή: {{index.wholesale}}&euro;</p>
+                <p *ngIf="index.hasOffer" style="margin-bottom: 4px;padding-left: 0px;">Τιμή: {{index.offer}}&euro;</p>
+
                 <button
 
                   class="myBtn col-8"
