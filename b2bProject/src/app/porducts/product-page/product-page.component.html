@@ -126,7 +126,7 @@
     <app-products-carousel></app-products-carousel>
   </div>
 
-<div  class="container" *ngif="username" style="margin-top: 120px;">
+<div  class="container" *ngIf="loggedIn" style="margin-top: 120px;">
   <div class="row">
       <div class="col-12" style="display: flex;justify-content: left;align-items: center;"><h3 style="margin: 0;">Είδατε Πρόσφατα</h3></div>
       <div class="col-12"><hr style="border: 1px solid #6dae49;margin-top: 4px;opacity: 1;"></div>
@@ -151,6 +151,7 @@
       </div>
     </div>
   </div>
+</div>
 
 
 

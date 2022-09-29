@@ -1,4 +1,5 @@
 import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from "axios"
 import { Observable, tap } from 'rxjs';
@@ -31,7 +32,8 @@ export class SingleProductComponent implements OnInit {
       private router: Router,
       private route: ActivatedRoute,
       private productsService: ProductsService,
-      private cartService: CartServiceService
+      private cartService: CartServiceService,
+      private http: HttpClient
   ) { }
 
   innerWidth:any;
@@ -57,10 +59,21 @@ export class SingleProductComponent implements OnInit {
       this.altCartAnimation = false;
     }
 
+    console.log("POUTSa");
+
+    this.getFavourites();
 
   }
 
-
+  getFavourites(){
+    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+      trdr: this.loadedUser.trdr,
+      mtrl:"dontNeedIt",
+      mode:"fetch"
+    }).pipe(tap(resData => {
+      console.log(resData);
+    }))
+  }
 
   handleHover(){
     this.renderer.setStyle(this.productCard?.nativeElement, 'box-shadow', 'rgba(100, 100, 111, 0.4) 0px 7px 29px 0px');

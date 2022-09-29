@@ -57,6 +57,7 @@ export class ProductPageComponent implements OnInit {
    slidesShown?: boolean;
    loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
    username = localStorage.getItem('username');
+   loggedIn = this.username? true : false;
    show!: boolean;
    thumb: any;
    smallerLine?: boolean;
@@ -113,6 +114,7 @@ export class ProductPageComponent implements OnInit {
 
   async ngOnInit() {
 
+    console.log(this.loggedIn);
 
 
     this.innerWidth = window.innerWidth;
