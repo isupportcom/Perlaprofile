@@ -273,7 +273,12 @@ export class ProductListComponent implements OnInit , OnDestroy{
           description:resData.data.products[i].description,
           data_sheet:resData.data.products[i].data_sheet,
           pdf:resData.data.products[i].pdf,
-          video:resData.data.products[i].video
+          video:resData.data.products[i].video,
+          product_name:resData.data.products[i].onoma,
+          product_name_eng:resData.data.products[i].onoma_eng,
+          kodikos_kataskeuasti:resData.data.products[i].kodikos_kataskeuasti,
+          texnikos_kodikos:resData.data.products[i].texnikos_kodikos
+
           }
          this.productsService.setAll(this.products[i])
 

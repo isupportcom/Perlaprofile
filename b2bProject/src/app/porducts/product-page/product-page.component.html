@@ -36,7 +36,7 @@
       <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6 right-section" >
 
         <div class="row first-row">
-          <h2>{{product.name}}</h2>
+          <h2>{{product.product_name}}</h2>
         </div>
         <div class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
           <p style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
@@ -65,9 +65,9 @@
         <div class="row">
           <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
           <div style="margin-top: 18px;">
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: ΧΧΧΧΧΧΧΧΧ</p>
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: ΧΧΧΧΧΧΧΧΧ</p>
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: ΧΧΧΧΧΧΧΧΧ</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: {{product.code}}</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{product.texnikos_kodikos}}</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{product.kodikos_kataskeuasti}}</p>
           </div>
         </div>
 
@@ -96,7 +96,7 @@
       <hr>
     </div>
     <div class="row">
-      <button *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0] " (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία {{mode}}</button>
+      <button *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0] " (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Περιγραφής </button>
       <p *ngIf="showDesc[0]" [innerHTML]="product.description"></p>
       <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button>
       <p *ngIf="showDesc[1]" [innerHTML]="product.data_sheet"></p>
