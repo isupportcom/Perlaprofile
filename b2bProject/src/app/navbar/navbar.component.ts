@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit{
   productAddedToFav: boolean = false;
   source?: string;
   sourceCart?: string;
-  
+
 
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
@@ -101,9 +101,9 @@ export class NavbarComponent implements OnInit{
       // else{
       //   this.productCount = resData;
       // }
-      
-    
-      
+
+
+
     })
 
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
@@ -116,7 +116,7 @@ export class NavbarComponent implements OnInit{
 
         this.products = resData.data.products
         if(resData.data.products.length !=0){
-          this.source = '../../assets/heart-alt-filled.svg'  
+          this.source = '../../assets/heart-alt-filled.svg'
         }else{
           this.source = '../../assets/heart-alt.svg'
         }
@@ -151,11 +151,11 @@ export class NavbarComponent implements OnInit{
               this.productAddedToFav = false;
             },1000)
           },600)
-          
 
-        
-        
-        
+
+
+
+
           // this.productAddedToFav = resData;
           // // this.source = '../../assets/heart-alt.svg';
           // setTimeout(() => {
@@ -164,16 +164,16 @@ export class NavbarComponent implements OnInit{
           // setTimeout(() => {
           //   this.productAddedToFav = false;
           // },1000)
-        
+
       }
       else{
         this.productAddedToFav = false;
         this.source = '../../assets/heart-alt.svg';
       }
-      
+
     })
 
-    
+
 
 
     if(!this.username){

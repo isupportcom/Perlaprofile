@@ -16,9 +16,27 @@ export interface product {
     subcatergory: number,
     img:any,
     otherImages:any,
-    offer:number
+    offer:number,
+    addedToFav: boolean;
   };
 }
+export interface singleProduct {
+    mtrl:string|any,
+    name:string,
+    name1:string,
+    code:string
+    retail:number,
+    wholesale:number,
+    qty:number
+    show?: boolean,
+    stock:number,
+    category: number,
+    subcatergory: number,
+    img:any,
+    otherImages:any,
+    offer:number,
+    addedToFav: boolean;
+};
 @Component({
   selector: 'app-adminareaproducts',
   templateUrl: './adminareaproducts.component.html',

@@ -1,3 +1,4 @@
+import { singleProduct } from './../../AdminArea/adminareaproducts/adminareaproducts.component';
 import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,9 +16,9 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('productCard') productCard: ElementRef | undefined;
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
-  @Input() index:any;
+  @Input() index:any | singleProduct;
   loggedIn: boolean = localStorage.getItem('username')? true : false;
-
+  added?: boolean;
   singleProduct: any;
   relatedProducts:product|any = [];
   productsToCart :product |any =[];
@@ -27,6 +28,7 @@ export class SingleProductComponent implements OnInit {
   products: any;
   productAddedToFav: boolean = false;
   source?: string;
+  clickedAdd: boolean = false;
   constructor(
       private renderer: Renderer2,
       private router: Router,
@@ -59,21 +61,26 @@ export class SingleProductComponent implements OnInit {
       this.altCartAnimation = false;
     }
 
-    console.log("POUTSa");
 
-    this.getFavourites();
+
+
+    setTimeout(() => {
+      if(this.index.addedToFav){
+        this.added = true;
+      }
+      else{
+        this.added = false;
+      }
+    },200)
+
+
+
+
+
+
 
   }
 
-  getFavourites(){
-    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
-      trdr: this.loadedUser.trdr,
-      mtrl:"dontNeedIt",
-      mode:"fetch"
-    }).pipe(tap(resData => {
-      console.log(resData);
-    }))
-  }
 
   handleHover(){
     this.renderer.setStyle(this.productCard?.nativeElement, 'box-shadow', 'rgba(100, 100, 111, 0.4) 0px 7px 29px 0px');
@@ -130,6 +137,13 @@ export class SingleProductComponent implements OnInit {
 
     this.cartService.addToFavorites(product);
 
+    this.productAddedToFav = true;
+    setTimeout(() => {
+      this.added = true;
+    }, 350);
+    setTimeout(() => {
+      this.productAddedToFav = false;
+    },1000)
 
     // if(this.relatedProducts.length <= 0){
     //   if(!this.altCartAnimation){

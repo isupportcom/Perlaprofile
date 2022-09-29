@@ -20,7 +20,7 @@
                     Προσθήκη
                 </button>
                 <button (click)="handleAddToFavorite(index)" style="border: none;background-color: rgba(0,0,0,0);" class="col-4">
-                  <img class="heart"  src="../../../assets/heart-alt-green.svg" alt="">
+                  <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
                 </button>
 
               </div>

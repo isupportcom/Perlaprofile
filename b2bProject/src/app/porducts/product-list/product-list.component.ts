@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.component';
+
 import {ProductsService} from "../products.service";
 import axios from "axios";
 import { Category } from '../categories.model';
@@ -9,6 +10,7 @@ import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationControlsComponent } from 'ngx-pagination';
+import { Observable } from 'rxjs';
 
 
 interface mainCat{
@@ -66,7 +68,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
 
-  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2,private elem: ElementRef) {
+  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2,private elem: ElementRef,private http: HttpClient) {
 
     // this.renderer.listen('window', 'click',(e:Event)=>{
 
@@ -121,6 +123,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
     name: string
   } | any= [];
   categoryToGo: any;
+  favoriteTemp: any = [];
   showBigFilters: boolean = true;
   showFilters:boolean = false;
   extend:boolean = false;
@@ -129,7 +132,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
   ) as HTMLCollectionOf<HTMLElement>;
   showExtraFilters: boolean = false;
   fit: boolean = true;
-
+  favorites: any;
   innerWidth!: number;
   @HostListener('window:resize', ['$event'])
   onResize(event: any){
@@ -180,6 +183,8 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
   ngOnInit(): void {
+
+
 
 
 
@@ -275,11 +280,40 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
       }
-      console.log(this.products);
+
+
       this.updateProducts();
+
+      let favouritesObs: Observable<any>;
+
+      favouritesObs = this.getFavourites();
+
+      favouritesObs.subscribe((resData => {
+        this.favorites = resData.products;
+
+
+      }))
+
+      setTimeout(() => {
+        console.log(this.favorites);
+        for(let favorite of this.favorites){
+          for(let prod of this.products){
+              if(prod.mtrl === favorite.mtrl){
+                prod.addedToFav = true;
+
+              }
+            }
+          for(let prod of this.products){
+            if(!prod.addedToFav){
+              prod.addedToFav = false;
+            }
+          }
+          }
+      },200)
 
 
       this.totalLength = this.products.length;
+      console.log(this.products);
 
 
 
@@ -433,6 +467,14 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }
 
   }
+  getFavourites(){
+    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+      trdr: this.loadedUser.trdr,
+      mtrl:"dontNeedIt",
+      mode:"fetch"
+    })
+  }
+
   shouldContinueColors:boolean|any;
   checkColor(){
     console.log(this.colors.value.color !=undefined);
