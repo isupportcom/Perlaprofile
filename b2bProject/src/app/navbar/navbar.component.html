@@ -24,6 +24,14 @@
 
                   </div>
                 </li>
+                <li class="nav-item my-nav-item2">
+                  <div class="dropdown">
+                    <a #langTogler (click)="langOptions()" class="btn ms-md-2 myBtn dropdown-toggle" role="button">&emsp;{{ lang }}&emsp;</a>
+                    <ul #optionslang [ngClass]="showLang? (makeSmallerDropDown? 'dropdown-menu my-dropdown-sm show' : 'dropdown-menu my-dropdown show') : 'dropdown-menu'" *ngFor="let lang of languages">
+                      <li><a class="dropdown-item my-dropdown-item" (click)="switchLang()"> {{lang.name}}</a></li>
+                    </ul>
+                  </div>
+                </li>
             </ul>
             <hr style="border-color: #6DAE49;">
             <div *ngIf="!showSecondNav" class="wrapper">

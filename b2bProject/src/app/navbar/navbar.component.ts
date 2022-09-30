@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit{
   isAdminArea = false;
   products :product |any = [];
   temp: product | any = [];
-
+  lang:string = "Ελληνικά" || "English";
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
 
@@ -28,6 +28,8 @@ export class NavbarComponent implements OnInit{
   @ViewChild('dropdown') dropdown!: ElementRef;
   @ViewChild('options') options!: ElementRef;
   @ViewChild('optionsToggler') optionsToggler!: ElementRef;
+  @ViewChild('langTogler')langTogler!:ElementRef;
+  @ViewChild('optionslang')optionslang!:ElementRef;
   isOpen = false;
   isToggelOpen = false;
   isAdmin = this.authService.getAdmin();
@@ -46,9 +48,17 @@ export class NavbarComponent implements OnInit{
   productCount: number|any;
   showProductCount: boolean = false;
   showUserOptions: boolean = false;
+  showLang :boolean = false;
   mainCategories : any = [];
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
-
+  languages:any = [
+    {
+      name:'Ελληνικά'
+    }
+    ,
+    {
+      name:'English'
+    }];
   constructor(
     private authService: AuthService,
     private router :Router,
@@ -63,6 +73,9 @@ export class NavbarComponent implements OnInit{
 
         if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
           this.showUserOptions = false;
+        }
+        if(e.target !== this.optionslang.nativeElement && e.target !== this.langTogler.nativeElement){
+          this.showLang = false;
         }
       })
 
@@ -89,6 +102,7 @@ export class NavbarComponent implements OnInit{
   username = localStorage.getItem("username");
 
   async ngOnInit(){
+    console.log(this.lang);
 
     this.cartService.productCount.subscribe(resData => {
       console.log(resData);
@@ -238,6 +252,9 @@ export class NavbarComponent implements OnInit{
     //   this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
     // })
   }
+  switchLang(){
+    this.lang = "English"
+  }
   hundleMyFavorites(){
     this.router.navigate(['favorites'])
   }
@@ -248,7 +265,14 @@ export class NavbarComponent implements OnInit{
       window.location.reload();
     },50)
   }
-
+  langOptions(){
+    if(!this.showLang){
+      this.showLang = true;
+    }
+    else{
+      this.showLang = false;
+    }
+  }
   userOptions(){
     if(!this.showUserOptions){
       this.showUserOptions = true;
@@ -258,6 +282,8 @@ export class NavbarComponent implements OnInit{
     }
 
   }
+
+
 
   handleHover(){
     this.hoverProducts = true;
