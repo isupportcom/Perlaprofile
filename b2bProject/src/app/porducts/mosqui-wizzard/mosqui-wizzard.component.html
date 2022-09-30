@@ -1,133 +1,151 @@
-<div class="row">
-  <div class="col-lg-4 col-md-3 col-sm-10 col-12" style="margin-left: 25%">
-    <h1>{{ subCategoryName }}</h1>
-    <br />
 
-    <form
-      [formGroup]="dimentions"
-      class="form-control"
-      style="width: 180%"
-      (ngSubmit)="addToCart()"
-      #form
-    >
-      <label> Πλατους σε mm </label>
-      <input
-        style="margin-left: 18.5%"
-        type="number"
-        formControlName="width"
-        class="forn-control"
-        placeholder="Εισαγωγη Πλατους"
-        (click)="checkValid()"
-        required
-      />
 
-      <b *ngIf="hasWidth == false" style="color: red">
-        <br />Δεν Μπορειται να προχωρησετε χωρις πλάτος</b
-      >
-      <hr />
-
-      <label> Υψος σε mm </label>
-      <input
-        type="number"
-        style="margin-left: 22%"
-        formControlName="height"
-        class="forn-control"
-        placeholder="Εισαγωγη Υψους"
-        (click)="checkValid()"
-        required
-      />
-      <b *ngIf="hasHeigh == false" style="color: red">
-        <br />Δεν Μπορειται να προχωρησετε χωρις υψος</b
-      >
-
-      <hr />
-      <div style="display: flex; justify-content: left; align-items: center">
-        <label style="margin-right: 14%">Επιλογη Υφασματος</label>
-
-        <select
-          class="form-control"
-          formControlName="fabric"
-          style="width: 29%"
-          (click)="checkValid()"
-          required
-        >
-          <option
-            class="form-control"
-            (click)="checkValid()"
-            [ngValue]="null"
-            [disabled]="true"
-          >
-            Eπιλεξτε Υφασμα
-          </option>
-          <option [ngValue]="fab.id" *ngFor="let fab of fabric">
-            {{ fab.name }}
-          </option>
-        </select>
+    <div class="row" style="padding: 12px;">
+      <div class="row">
+        <h1>{{ subCategoryName }}</h1>
       </div>
-      <b *ngIf="hasHeigh == false" style="color: red">
-        <br />Δεν Μπορειται να προχωρησετε Υφασμα</b
-      >
-      <hr />
-      <div style="display: flex; justify-content: left; align-items: center">
-        <label style="margin-right: 18%">Επιλογη Προφιλ</label>
-
-        <select
-          class="form-control"
-          formControlName="profile"
-          (click)="checkValid()"
-          required
-          (change)="needsExtra()"
-          style="width: 29%"
+        <form
+          [formGroup]="dimentions"
+          class="form-control row"
+          (ngSubmit)="addToCart()"
+          #form
         >
-          <option
-            class="form-control"
-            (click)="checkValid()"
-            [ngValue]="null"
-            [disabled]="true"
-          >
-            Eπιλεξτε Προφιλ
-          </option>
-          <option [ngValue]="prof.id" *ngFor="let prof of profile">
-            {{ prof.name }}
-          </option>
-        </select>
-      </div>
-      <b *ngIf="hasProfile == false" style="color: red">
-        <br />Δεν Μπορειται να προχωρησετε Προφιλ</b
-      >
-      <hr />
-      <div
-        style="display: flex; justify-content: left; align-items: center"
-        *ngIf="extraInput"
-      >
-        <label style="margin-right: 18%">Επιλογη Χρωματος</label>
+          <div class="row">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label> Πλατους σε mm </label>
+            </div>
+            <div class="col-6">
+              <input
+              type="number"
+              formControlName="width"
+              class="form-control"
+              placeholder="Εισαγωγη Πλατους"
+              (click)="checkValid()"
+              required
+              />
+            </div>
+          </div>
 
-        <select
-          class="form-control"
-          formControlName="extra"
-          style="width: 29%"
-          required
-        >
-          <option class="form-control" [ngValue]="null" [disabled]="true">
-            Eπιλεξτε Προφιλ
-          </option>
-          <option [ngValue]="extra.id" *ngFor="let extra of extraInputArray">
-            {{ extra.name }}
-          </option>
-        </select>
-      </div>
-      <b *ngIf="hasExtra == false && extraInput == true" style="color: red">
-        <br />Δεν Μπορειται να προχωρησετε χωρις χρωμα</b
-      >
-      <button type="button" (click)="clear()" class="btn btn-success form-control">
-        Καθαρισμος Φορμας
-      </button>
-    </form>
-    <p *ngIf="flag">${{ product[0].wholesale }}</p>
-    <div
-      class="col-lg-4 col-md-3 col-sm-10 col-12"
-      *ngIf="shouldContinue == true"
-      style="margin-top: 10%"
-    ></div>
-  </div>
-</div>
+          <div class="row">
+            <hr>
+          </div>
+
+          <div class="row">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label> Υψος σε mm </label>
+            </div>
+            <div class="col-6">
+              <input
+              type="number"
+              formControlName="height"
+              class="form-control"
+              placeholder="Εισαγωγη Υψους"
+              (click)="checkValid()"
+              required
+            />
+            </div>
+          </div>
+
+          <div class="row">
+            <hr>
+          </div>
+
+          <div class="row">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label >Επιλογη Υφασματος</label>
+            </div>
+            <div class="col-6">
+              <select
+                class=""
+                style="width: 100%;padding: 6px 12px;border-radius: 0.25rem;border: 1px solid #ced4da;color: #212529a3;"
+                formControlName="fabric"
+                (click)="checkValid()"
+                required
+              >
+                <option
+                  (click)="checkValid()"
+                  [ngValue]="null"
+                  [disabled]="true"
+                >
+                  Eπιλεξτε Υφασμα
+                </option>
+                <option [ngValue]="fab.id" *ngFor="let fab of fabric">
+                  {{ fab.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <hr>
+          </div>
+
+
+          <div class="row">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label >Επιλογη Προφιλ</label>
+            </div>
+            <div class="col-6">
+              <select
+              style="width: 100%;padding: 6px 12px;border-radius: 0.25rem;border: 1px solid #ced4da;color: #212529a3;"
+              formControlName="profile"
+              (click)="checkValid()"
+              required
+              (change)="needsExtra()"
+            >
+              <option
+                (click)="checkValid()"
+                [ngValue]="null"
+                [disabled]="true"
+              >
+                Eπιλεξτε Προφιλ
+              </option>
+              <option [ngValue]="prof.id" *ngFor="let prof of profile">
+                {{ prof.name }}
+              </option>
+            </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <hr>
+          </div>
+
+
+          <div class="row" style="margin-bottom: 12px" *ngIf="extraInput">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label>Επιλογη Χρωματος</label>
+            </div>
+            <div class="col-6">
+              <select
+              style="width: 100%;padding: 6px 12px;border-radius: 0.25rem;border: 1px solid #ced4da;color: #212529a3;"
+              formControlName="extra"
+              required
+            >
+              <option [ngValue]="null" [disabled]="true">
+                Eπιλεξτε Προφιλ
+              </option>
+              <option [ngValue]="extra.id" *ngFor="let extra of extraInputArray">
+                {{ extra.name }}
+              </option>
+            </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <button type="button" [disabled]="!dimentions.valid" (click)="clear()" class="btn btn-success">
+              Εμφάνιση Προϊόντος
+            </button>
+          </div>
+        </form>
+
+        <p *ngIf="flag">${{ product[0].wholesale }}</p>
+        <div
+          class="col-lg-4 col-md-3 col-sm-10 col-12"
+          *ngIf="shouldContinue == true"
+          style="margin-top: 10%"
+        ></div>
+
+    </div>
+
+

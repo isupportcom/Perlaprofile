@@ -14,7 +14,7 @@ import axios from "axios";
     }
 )
 export  class ProductsService {
-  singleProduct : product | any
+  singleProduct : product | any;
   products: product [] = [];
   allCategories: any = [];
   mainCategories: any = [];
@@ -27,7 +27,7 @@ export  class ProductsService {
 
 
 
- setSingleProduct(prod:product){
+ setSingleProduct(prod:product | any){
 
      this.singleProduct = prod;
      localStorage.setItem("single",JSON.stringify(this.singleProduct))

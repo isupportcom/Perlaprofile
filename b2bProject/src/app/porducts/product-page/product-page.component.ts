@@ -178,6 +178,7 @@ export class ProductPageComponent implements OnInit {
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
+    console.log(this.product.category);
     console.log(typeof(this.product.description));
 
 
@@ -201,6 +202,8 @@ export class ProductPageComponent implements OnInit {
     }
 
     this.getSeeEarlier();
+
+
 
   }
   editData(){

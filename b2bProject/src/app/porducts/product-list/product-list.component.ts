@@ -769,10 +769,12 @@ export class ProductListComponent implements OnInit , OnDestroy{
     })
 
   }
-  hundleWizzard(name:string,id:number){
+  handleWizzard(name:string,id:number){
 
+    this.productsService.setSingleProduct({name: name, id: id, category: 116});
+    this.router.navigate(['/products/product-page']);
 
-    this.router.navigate(['products/mosqui',id,name]);
+    // this.router.navigate(['products/mosqui',id,name]);
 
 
   }
