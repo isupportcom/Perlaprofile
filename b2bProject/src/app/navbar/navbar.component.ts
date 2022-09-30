@@ -73,7 +73,6 @@ export class NavbarComponent implements OnInit{
     @HostListener('window:resize', ['$event'])
     onResize(event: any){
       this.innerWidth = window.innerWidth
-      console.log(this.innerWidth);
 
       if(this.innerWidth < 768 ){
         this.showSecondNav = false;

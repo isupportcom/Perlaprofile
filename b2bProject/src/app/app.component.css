@@ -18,6 +18,17 @@
   text-align: center;
 }
 
+.products h6, .products p{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+div.scroll1 {
+  background-color: #08c708;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
 
 div.scroll {
   margin: 4px, 4px;
@@ -26,4 +37,40 @@ div.scroll {
   overflow-x: hidden;
   overflow-y: auto;
   white-space: nowrap;
+}
+
+.scroll h6{
+  white-space: normal !important;
+}
+
+
+.prodImg{
+  width: 120px !important;
+  height: 120px !important;
+}
+
+
+@media (max-width: 1200px){
+  .prodImg{
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
+
+@media (max-width: 992px){
+  .products *{
+    font-size: 12px;
+  }
+
+  .products .btn{
+    width: 50% !important;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 576px){
+  .products *{
+    font-size: 10px;
+  }
 }

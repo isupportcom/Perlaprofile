@@ -14,7 +14,7 @@ import {
 
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { product } from './AdminArea/adminareaproducts/adminareaproducts.component';
+import { grouping, product } from './AdminArea/adminareaproducts/adminareaproducts.component';
 import { CartServiceService } from './cart/cart-service.service';
 import { ProductsService } from './porducts/products.service';
 import { AuthService } from './services/auth.service';
@@ -38,9 +38,10 @@ export class AppComponent implements OnDestroy, OnInit {
   group: any;
   showScope3: boolean = false;
   itemsToCart: product|any = [];
-
+  tempGroup: grouping[] | any = [];
   date = new Date();
 
+  changeBtn?: boolean;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -49,11 +50,28 @@ export class AppComponent implements OnDestroy, OnInit {
     private renderer: Renderer2,
     private productService: ProductsService
   ) {}
+  innerWidth:any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth <= 768){
+      this.changeBtn = true;
+    }
+    else{
+      this.changeBtn = false;
+    }
+  }
 
 
   ngOnInit() {
 
-
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth <= 768){
+      this.changeBtn = true;
+    }
+    else{
+      this.changeBtn = false;
+    }
 
     console.log(this.date.getHours()+':'+this.date.getMinutes());
 
@@ -66,10 +84,10 @@ export class AppComponent implements OnDestroy, OnInit {
       console.log(data);
     });
     this.authService.loggedIn.subscribe((res) => {
-      // if(localStorage.getItem("username") == "Admin"){this.authService.setAdmin(true)}
+
 
       this.loggedIn = res;
-      // console.log("ROUFAO KAVLIA"+ this.loggedIn);
+
     });
 
 
@@ -84,11 +102,23 @@ export class AppComponent implements OnDestroy, OnInit {
 
       relatedProductsObs.subscribe(resData => {
         this.relatedProducts = resData.related;
-
       })
       setTimeout(() => {
         console.log(this.relatedProducts);
+        for(let relatedProd of this.relatedProducts){
+          let groupingObs: Observable<any>;
+          let temp;
+          groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,relatedProd.grouping);
 
+          groupingObs.subscribe(resData => {
+            temp = {
+              scope1: relatedProd,
+              scope2: resData.Scope2[0]
+            };
+            this.tempGroup.push(temp);
+
+          });
+        }
       },500);
 
 
@@ -102,7 +132,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
   handleGrouping(product: any){
-
     let groupingObs: Observable<any>;
 
     groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);

@@ -21,6 +21,12 @@ export interface product {
     description:any
   };
 }
+export interface grouping {
+  [index: number]: {
+    scope1: any;
+    scope2: any;
+  }
+}
 export interface singleProduct {
     mtrl:string|any,
     name:string,
