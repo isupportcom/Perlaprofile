@@ -24,15 +24,18 @@ export  class ProductsService {
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
 
+  wizzardDone = new Subject<boolean>();
+  castWizzardDone = this.wizzardDone.asObservable();
 
+  sendWizzardDone(flag: boolean) {
+    this.wizzardDone.next(flag);
+  }
 
 
  setSingleProduct(prod:product | any){
-
-     this.singleProduct = prod;
-     localStorage.setItem("single",JSON.stringify(this.singleProduct))
-     console.log(prod);
-
+    this.singleProduct = prod;
+    localStorage.setItem("single",JSON.stringify(this.singleProduct))
+    console.log(prod);
  }
 
 

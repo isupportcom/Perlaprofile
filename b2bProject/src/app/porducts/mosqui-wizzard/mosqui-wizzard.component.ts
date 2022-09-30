@@ -21,14 +21,10 @@ export class MosquiWizzardComponent implements OnInit {
   wooden: any = [];
   product:any=[];
   flag: boolean = false;
+  color: any;
 
-
-  formValid = new Subject<boolean>();
-  castFormValid = this.formValid.asObservable();
-
-  sendFormValid(flag: boolean) {
-    this.formValid.next(flag);
-  }
+  @Input() name: any;
+  @Input() sub_id: any;
 
   constructor(
     private fb: FormBuilder,
@@ -41,37 +37,13 @@ export class MosquiWizzardComponent implements OnInit {
     this.dimentions.reset();
   }
   checkValid(){
-    let color: any;
     if (this.hasExtra) {
-      color = this.dimentions.value.extra;
+      this.color = this.dimentions.value.extra;
+
+
     } else {
-      color = 'None';
+      this.color = 'None';
     }
-    if(this.dimentions.valid){
-      axios
-      .post(
-        'https://perlarest.vinoitalia.gr/php-auth-api/findMosquiProduct.php',
-        {
-          subcategory: this.subCategoryId,
-          fabric: this.dimentions.value.fabric,
-          profile: this.dimentions.value.profile,
-          width: this.dimentions.value.width,
-          height: this.dimentions.value.height,
-          color: color,
-        }
-      )
-      .then((resData) => {
-        console.log(resData.data);
-        this.product = resData.data.products
-        console.log(this.product);
-
-      });
-      this.sendFormValid(false);
-      setTimeout(() => {
-        this.sendFormValid(true);
-      },100)
-    }
-
 
   }
 
@@ -90,9 +62,6 @@ export class MosquiWizzardComponent implements OnInit {
         this.wooden = resData.data.colors.wooden;
       });
 
-      this.formValid.subscribe(resData => {
-        this.flag = resData;
-      });
 
     this.dimentions = this.fb.group({
       width: [null],
@@ -108,6 +77,32 @@ export class MosquiWizzardComponent implements OnInit {
       this.subCategoryId = res.sub_id;
     });
   }
+
+  findProduct(){
+    console.log(this.dimentions.value);
+
+    if(this.dimentions.valid){
+      axios
+      .post(
+        'https://perlarest.vinoitalia.gr/php-auth-api/findMosquiProduct.php',
+        {
+          subcategory: this.sub_id,
+          fabric: this.dimentions.value.fabric,
+          profile: this.dimentions.value.profile,
+          width: this.dimentions.value.width,
+          height: this.dimentions.value.height,
+          color: this.dimentions.value.extra
+        }
+      )
+      .then((resData) => {
+        console.log(resData.data);
+        this.product = resData.data.products
+        console.log(this.product);
+        this.flag = true;
+      });
+    }
+  }
+
   hasHeigh: boolean | any;
   hasWidth: boolean | any;
   shouldContinue: boolean = false;
