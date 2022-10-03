@@ -78,6 +78,7 @@ export class MosquiWizzardComponent implements OnInit {
     });
   }
 
+
   findProduct(){
     console.log(this.dimentions.value);
 
@@ -91,7 +92,7 @@ export class MosquiWizzardComponent implements OnInit {
           profile: this.dimentions.value.profile,
           width: this.dimentions.value.width,
           height: this.dimentions.value.height,
-          color: this.dimentions.value.extra
+          color: this.dimentions.value.extra? this.dimentions.value.extra : 'none' 
         }
       )
       .then((resData) => {
@@ -99,7 +100,12 @@ export class MosquiWizzardComponent implements OnInit {
         this.product = resData.data.products
         console.log(this.product);
         this.flag = true;
+        this.productService.sendMosquiProductFound(resData.data.products);
       });
+      
+      // setTimeout(() => {
+        
+      // },100)
     }
   }
 

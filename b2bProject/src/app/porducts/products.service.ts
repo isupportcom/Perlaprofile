@@ -24,13 +24,12 @@ export  class ProductsService {
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
 
-  wizzardDone = new Subject<boolean>();
-  castWizzardDone = this.wizzardDone.asObservable();
+  mosquiProductFound = new Subject<any>();
+  castMosquiProductFound = this.mosquiProductFound.asObservable();
 
-  sendWizzardDone(flag: boolean) {
-    this.wizzardDone.next(flag);
+  sendMosquiProductFound(product: any){
+    this.mosquiProductFound.next(product);
   }
-
 
  setSingleProduct(prod:product | any){
     this.singleProduct = prod;

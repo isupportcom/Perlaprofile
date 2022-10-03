@@ -76,6 +76,10 @@ export class ProductPageComponent implements OnInit {
    show!: boolean;
    thumb: any;
 
+   mosquiProduct: any;
+   showForm: boolean = true;
+   waitingProduct: boolean = false;
+
    smallerLine?: boolean;
 
    @HostListener('window:resize', ['$event'])
@@ -134,6 +138,18 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+
+    this.productsService.mosquiProductFound.subscribe(resData => {
+      this.waitingProduct = true;
+      this.showForm = false;
+      setTimeout(() => {
+        this.mosquiProduct = resData[0];
+        console.log(this.mosquiProduct);
+        
+        this.waitingProduct = false;
+      },200) 
+    });
+
     this.dataSheetForm = this.fb.group({
       datas:[null]
     })
@@ -203,9 +219,34 @@ export class ProductPageComponent implements OnInit {
 
     this.getSeeEarlier();
 
-
+    
 
   }
+
+  handleFindNew(){
+    this.waitingProduct = true;
+    this.showForm = true;
+    setTimeout(() => {
+      this.waitingProduct = false;
+    },200) 
+  }
+
+  addToCartMosqui(){
+    axios.post(
+      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+      {
+        trdr: this.loadedUser.trdr,
+      }
+    ).then(resData => {
+      this.cartService.sendProductCount(resData.data.products.length);
+    });
+
+    this.mosquiProduct.show = true;
+    this.cartService.addToCart(this.mosquiProduct);
+
+    this.cartService.sendProductAdded(true);
+  }
+
   editData(){
     console.log("DATA");
 
@@ -272,7 +313,16 @@ export class ProductPageComponent implements OnInit {
    }
 
   addToCart(){
-      this.product.show = true;
+    axios.post(
+      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+      {
+        trdr: this.loadedUser.trdr,
+      }
+    ).then(resData => {
+      this.cartService.sendProductCount(resData.data.products.length);
+    });
+
+    this.product.show = true;
 
     let relatedProductsObs: Observable<any>;
 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -60,9 +60,10 @@ import { PrevDirective } from './prev.directive';
 // @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
 import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
+import { TheCompanyComponent } from './the-company/the-company.component';
+import { TeamComponent } from './team/team.component';
 
 
 
@@ -151,6 +152,14 @@ const routes:Routes = [
     path:'contact',
     component:ContatcFormComponent
   },
+  {
+    path: 'company',
+    component: TheCompanyComponent
+  },
+  {
+    path: 'the-team',
+    component: TeamComponent
+  }
 
 
 
@@ -202,7 +211,9 @@ const routes:Routes = [
     ProductsCarouselComponent,
     NextDirective,
     PrevDirective,
-    SafePipePipe
+    SafePipePipe,
+    TheCompanyComponent,
+    TeamComponent
 
   ],
   imports: [
@@ -213,11 +224,8 @@ const routes:Routes = [
     HttpClientModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-
-
     BrowserAnimationsModule,
     CarouselModule,
-    FontAwesomeModule,
     SwiperModule
   ],
   exports: [
