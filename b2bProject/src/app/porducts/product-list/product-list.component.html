@@ -425,7 +425,7 @@
       </div>
 
       <div>
-        <ul style="margin-top: -17px; padding-top: 15%; list-style: none" *ngIf="mainCategory.id!=116">
+        <!-- <ul style="margin-top: -17px; padding-top: 15%; list-style: none" *ngIf="mainCategory.id!=116">
           <li *ngFor="let subcategory of categories" style="margin-bottom: 8%">
 
 
@@ -451,8 +451,8 @@
               </div>
             </div>
           </li>
-        </ul>
-        <hr />
+        </ul> -->
+        <!-- <hr />
         <button
           *ngIf="filterOn"
           class="btn btn-danger clearFilters"
@@ -461,9 +461,9 @@
           Clear Filters
         </button>
       </div>
+ -->
 
-
-  <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+  <!-- <div class="col-lg-9 col-md-9 col-sm-12 col-12">
     <div
       *ngIf="fits && mainCategory.id != 116"
       class="row"
@@ -497,7 +497,7 @@
             ></button>
           </form>
         </div>
-      </div>
+      </div> -->
       <!-- <div class="col-3 col-md-3 col-sm-3" style="text-align: center">
         <div class="dropdown">
           <button
@@ -528,7 +528,7 @@
         style="height: fit-content; text-align: center"
       >
         <div class="dropdown">
-          <button
+          <!-- <button
             class="btn btn-secondary dropdown-toggle"
             #menu2
             (click)="handleSortOptions()"
@@ -538,7 +538,7 @@
             aria-expanded="false"
           >
             Ταξινόμηση
-          </button>
+          </button> -->
           <ul
             [ngClass]="showSortOptions ? 'dropdown-menu show' : 'dropdown-menu'"
             aria-labelledby="dropdownMenuButton1"
@@ -549,15 +549,15 @@
           </ul>
         </div>
       </div>
-      <div class="col-4 col-md-4">
+      <!-- <div class="col-4 col-md-4">
         <pagination-controls
           *ngIf="!noProducts"
           class="text-center my-pagination goLeft"
           (pageChange)="handlePageChange($event)"
           #paginate
-        ></pagination-controls>
+        ></pagination-controls> -->
       </div>
-    </div>
+    <!-- </div> -->
     <div class="row">
       <div>
         <h1
@@ -622,7 +622,7 @@
              <!-- <div *ngIf="mainCategory.id != 116"> -->
             </div>
           </div>
-          <div class="row" *ngIf="mainCategory.id !=116">
+          <!-- <div class="row" *ngIf="mainCategory.id !=116">
               <app-single-product
               class="col-xxl-4 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-12 product"
               *ngFor="
@@ -644,12 +644,12 @@
                 (pageChange)="handlePageChange($event)"
                 #paginate
               ></pagination-controls>
-             <!-- </div> -->
-            </div>
+       </div> -->
+            <!-- </div> -->
 
       </div>
     </div>
-  </div>
+
 
 
 
@@ -720,4 +720,4 @@
       </button>
     </div>
   </div>
-</div> -->
+</div>
