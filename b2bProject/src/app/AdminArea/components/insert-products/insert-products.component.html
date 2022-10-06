@@ -15,7 +15,7 @@
   <h3>Current Products</h3>
   <app-searchbar></app-searchbar>
   <br>
-  <table class="table table-dark">
+  <table class="table table-dark" >
     <thead>
     <tr>
 
@@ -24,11 +24,16 @@
       <th scope="col">Name</th>
       <th scope="col">Retail Price</th>
       <th scope="col">Wholesale Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Edit Description</th>
+      <th scope="col">Data Sheet</th>
+      <th scope="col">Edit Data Sheet</th>
       <th scope="col">Offer</th>
       <th scope="col">Stock</th>
       <th scope="col">Image</th>
       <th scope="col">Change</th>
       <th scope="col">Show In Homepage</th>
+
 
 
     </tr>
@@ -44,6 +49,17 @@
       <td style="padding-right: 300px;"><p style="width: 350%;"> {{ item.name }}</p></td>
       <td>{{ item.retail }}</td>
       <td>{{ item.wholesale }}</td>
+      <td [innerHTML]="item.description"></td>
+      <td *ngIf="item.description == 'Empty'">
+            <button (click)="openForm(item.mtrl)" class="btn btn-success">Edit Description</button>
+      </td>
+      <td *ngIf="item.description != 'Empty'">
+        <button (click)="openForm(item.mtrl)" class="btn btn-success">Edit Description</button>
+  </td>
+       <td [innerHTML]="item.data_sheet"></td>
+       <td>
+        <button class="btn btn-success" (click)="scrollToForm(item.mtrl)">Edit Data Sheet</button>
+       </td>
       <td>
         <button  *ngIf="!item.hasOffer" class="btn btn-success" (click)="openOffer(item)">Add offer</button>
         <p *ngIf="item.hasOffer">{{item.offer}}</p>
@@ -74,5 +90,14 @@
     </tbody>
   </table>
   <pagination-controls class="text-center my-pagination" (pageChange)="changePage($event)"></pagination-controls>
-
+  <form (ngSubmit)="udpateDesc()" class="form-control" [formGroup]="desciption" *ngIf="openFormDesc">
+    <label>Επεξεργασία Περιγραφής</label>
+    <textarea class="form-control" formControlName="desc"></textarea>
+    <button type="submit" class="btn btn-success">Αποθήκευση Αλλαγών</button>
+  </form>
+  <form (ngSubmit)="updateSheet()" class="form-control" [formGroup]="dataSheet" *ngIf="openFormSheet">
+    <label>Επεξεργασία Data Sheet</label>
+    <textarea class="form-control" formControlName="sheet"></textarea>
+    <button type="submit" class="btn btn-success">Αποθήκευση Αλλαγών</button>
+  </form>
 </div>

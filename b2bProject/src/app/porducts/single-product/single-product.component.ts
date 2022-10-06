@@ -1,4 +1,6 @@
+import { singleProduct } from './../../AdminArea/adminareaproducts/adminareaproducts.component';
 import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from "axios"
 import { Observable, tap } from 'rxjs';
@@ -14,9 +16,9 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('productCard') productCard: ElementRef | undefined;
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
-  @Input() index:any;
+  @Input() index:any | singleProduct;
   loggedIn: boolean = localStorage.getItem('username')? true : false;
-
+  added?: boolean;
   singleProduct: any;
   relatedProducts:product|any = [];
   productsToCart :product |any =[];
@@ -24,12 +26,16 @@ export class SingleProductComponent implements OnInit {
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
   productCount: any;
   products: any;
+  productAddedToFav: boolean = false;
+  source?: string;
+  clickedAdd: boolean = false;
   constructor(
       private renderer: Renderer2,
       private router: Router,
       private route: ActivatedRoute,
       private productsService: ProductsService,
-      private cartService: CartServiceService
+      private cartService: CartServiceService,
+      private http: HttpClient
   ) { }
 
   innerWidth:any;
@@ -54,8 +60,26 @@ export class SingleProductComponent implements OnInit {
     else{
       this.altCartAnimation = false;
     }
-  }
 
+
+
+
+    setTimeout(() => {
+      if(this.index.addedToFav){
+        this.added = true;
+      }
+      else{
+        this.added = false;
+      }
+    },200)
+
+
+
+
+
+
+
+  }
 
 
   handleHover(){
@@ -90,8 +114,16 @@ export class SingleProductComponent implements OnInit {
   }
 
   handleClick(){
-    this.productsService.setSingleProduct(this.index);
+    let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
+    this.productsService.setSingleProduct(this.index);
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
+      mtrl:this.index.mtrl,
+      trdr:loadedUser.trdr
+    }).then(resData=>{
+      console.log(resData.data);
+
+    })
     console.log(this.index);
     localStorage.setItem("single",JSON.stringify(this.index));
 
@@ -113,6 +145,24 @@ export class SingleProductComponent implements OnInit {
 
     this.cartService.addToFavorites(product);
 
+    this.productAddedToFav = true;
+    setTimeout(() => {
+      this.added = true;
+    }, 350);
+    setTimeout(() => {
+      this.productAddedToFav = false;
+    },1000)
+
+    // if(this.relatedProducts.length <= 0){
+    //   if(!this.altCartAnimation){
+    //     window.scroll({
+    //       top: 0,
+    //       left: 0,
+    //       behavior: 'smooth'
+    //     });
+    //   }
+    // }
+    this.cartService.sendProductAddedToFav(true);
   }
 
 
@@ -124,7 +174,7 @@ export class SingleProductComponent implements OnInit {
         trdr: this.loadedUser.trdr,
       }
     ).then(resData => {
-      
+
       this.products = resData.data.products;
       this.cartService.sendProductCount(this.products.length);
 
@@ -137,10 +187,13 @@ export class SingleProductComponent implements OnInit {
     relatedProductsObs = this.productsService.getRelatedProducts(this.index.mtrl);
 
     relatedProductsObs.subscribe(resData => {
+      console.log(resData);
+
       this.relatedProducts = resData.related;
 
     })
     setTimeout(() => {
+        console.log(this.relatedProducts);
 
       if(this.relatedProducts.length <= 0){
         if(!this.altCartAnimation){
@@ -150,12 +203,6 @@ export class SingleProductComponent implements OnInit {
             behavior: 'smooth'
           });
         }
-
-
-
-
-
-
         this.cartService.setId(this.index.mtrl)
 
         this.productsService.setSingleProduct(this.index);
@@ -165,8 +212,13 @@ export class SingleProductComponent implements OnInit {
         this.cartService.sendProductAdded(true);
       }
       else{
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
         this.productsService.setSingleProduct(this.index);
-        this.cartService.sendProductAdded(true);
+        this.cartService.sendStartScope(true);
       }
     },500);
 

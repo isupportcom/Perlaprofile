@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './log-in/log-in.component';
-import { RouterModule, Routes } from '@angular/router';
+import {  RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +25,6 @@ import { ProductAddedToCartComponent } from './shared/product-added-to-cart/prod
 import { CheckoutGuard } from './shared/product-added-to-cart/checkout.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-
 import { InsertProductsComponent } from './AdminArea/components/insert-products/insert-products.component';
 import { PopUpLoginComponent } from './AdminArea/components/pop-up-login/pop-up-login.component';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -50,6 +49,20 @@ import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-po
 import { FavoriteComponent } from './cart/favorite/favorite.component';
 import { MosquiWizzardComponent } from './porducts/mosqui-wizzard/mosqui-wizzard.component';
 import { UpdateColorsComponent } from './AdminArea/components/update-colors/update-colors.component';
+import { UploadPdfComponent } from './AdminArea/components/upload-pdf/upload-pdf.component';
+import { InsertPdfComponent } from './AdminArea/components/insert-pdf/insert-pdf.component';
+
+
+import { ProductsCarouselComponent } from './porducts/products-carousel/products-carousel.component';
+import { NextDirective } from './next.directive';
+import { PrevDirective } from './prev.directive';
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
+import { SwiperModule } from 'swiper/angular';
+import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
 
 
 
@@ -57,9 +70,7 @@ import { UpdateColorsComponent } from './AdminArea/components/update-colors/upda
 
 
 
-
-const routes:Routes = [
-
+ const routes:Routes = [
   {
     path:'',
     redirectTo : 'home',
@@ -136,12 +147,97 @@ const routes:Routes = [
   },
 
 
-  {
-    path:'contact',
-    component:ContatcFormComponent
-  },
+//   {
+//     path:'contact',
+//     component:ContatcFormComponent
+//   }
+// { path: '', redirectTo: 'en', pathMatch: 'full' },
+
+//   {
+//     path: ':lang', component: HomepageComponent,
 
 
+//     children: [
+
+//       {path}
+
+//   {
+//         path: 'home',
+//         component: HomepageComponent
+//       },
+//       {
+//         path: 'log-in',
+//         component: LogInComponent
+//       },
+
+//       {
+//         path:'edit-products',
+//         canActivate: [AuthGuard],
+//         component:AdminareaproductsComponent
+//       },
+//       {
+//         path:'users',
+//         canActivate: [AuthGuard],
+//         component:AdminareausersComponent
+//       },
+//       {
+//         path:'products',
+//         component:PorductsComponent,
+//         children: [
+//           {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
+//           {path: 'product-page', component: ProductPageComponent},
+//           {path: 'mosqui/:sub_id/:sub_name',component:MosquiWizzardComponent}
+//         ]
+//       },
+//       {
+//         path:':lang/dashboard',
+//         canActivate:[AdminGuard],
+//         component:AdminAreaComponent,
+//         children:[
+
+
+//           {
+//             path: 'insert-products',
+//             component: InsertProductsComponent
+//           }
+
+//         ]
+//       },
+
+//       {
+//         path: 'cart',
+//         canActivate: [AuthGuard],
+//         component: CartComponent
+//       },
+//       {
+//         path:'favorites',
+//         component:FavoriteComponent,
+//         canActivate:[AuthGuard]
+//       },
+
+//       {
+//         path: 'checkout',
+
+//         component: CheckoutPageComponent
+//       },
+//       {
+//         path: 'profile',
+//         canActivate: [AuthGuard],
+//         component: ProfileComponent
+//       },
+//       {
+//         path: 'my-orders',
+//         canActivate: [AuthGuard],
+//         component: MyOrdersComponent
+//       },
+
+
+//       {
+//         path:'contact',
+//         component:ContatcFormComponent
+//       },
+
+//     ]}
 
 ]
 
@@ -184,6 +280,16 @@ const routes:Routes = [
     FavoriteComponent,
     MosquiWizzardComponent,
     UpdateColorsComponent,
+
+    UploadPdfComponent,
+    InsertPdfComponent,
+
+    ProductsCarouselComponent,
+    NextDirective,
+    PrevDirective,
+    SafePipePipe,
+
+
   ],
   imports: [
     BrowserModule,
@@ -193,6 +299,13 @@ const routes:Routes = [
     HttpClientModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    CarouselModule,
+    SwiperModule,
+
+
+
+
 
   ],
   exports: [
@@ -203,3 +316,4 @@ const routes:Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

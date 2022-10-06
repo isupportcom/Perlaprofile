@@ -1,3 +1,19 @@
+.heartAnim{
+  animation: makeBigger 0.7s ease-in-out;
+}
+
+@keyframes makeBigger {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.3);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
 
 @media (min-width: 1201px){
   .image{
@@ -10,6 +26,7 @@
   .image{
     width: 240px;
     height: 240px;
+
   }
 }
 
@@ -38,12 +55,12 @@
 
 @media (max-width: 546px){
   .image{
-    width: 220px;
-    height: 220px;
+    width: 240px;
+    height: 240px;
   }
 }
 
-@media (max-width: 490px){
+@media (max-width: 527px){
   .image{
     width: 180px;
     height: 180px;
@@ -52,22 +69,22 @@
 
 @media (max-width: 402px){
   .image{
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 170px;
   }
 }
 
-@media (max-width: 360px){
+@media (max-width: 385px){
   .image{
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
   }
 }
 
 @media (max-width: 340px){
   .image{
-    width: 140px;
-    height: 140px;
+    width: 145px;
+    height: 145px;
   }
 }
 
@@ -78,11 +95,12 @@
   }
 } */
 
+
 @media (max-width: 768px) {
   .itemTitle {
     margin-bottom: 3px;
     font-size: 18px;
-    
+
   }
 }
 
@@ -132,58 +150,65 @@
   }
 }
 
+.itemDescription{
+  margin-bottom: 0px;
+}
+
+
 @media (max-width: 768px) {
   .itemDescription {
-    margin-bottom: 0px;
+
     font-size: 14px;
   }
 }
 
 @media (max-width: 576px) {
   .itemDescription {
-    margin-bottom: 0px;
+
     font-size: 14px;
   }
 }
 
 
 
-@media (max-width: 490px) {
+@media (max-width: 527px) {
   .itemDescription {
-    margin-bottom: 0px;
+
     font-size: 10px;
   }
 }
 
 @media (max-width: 360px) {
   .itemDescription {
-    margin-bottom: 0px;
+
     font-size: 10px;
   }
 }
 
 @media (min-width: 769px) {
   .itemDescription {
-    margin-bottom: 0px;
+
     font-size: 10px;
   }
 }
 
 @media (min-width: 993px) {
   .itemDescription {
-    margin-bottom: 8px;
-    font-size: 14px;
+
+    font-size: 12px;
   }
 }
 
 
 .details{
   margin-bottom: 0px;
+  margin-top: 0px;
   color: #878787;
 }
 
 @media (min-width: 1201px) {
   .details {
+
     font-size: 12px;
   }
 }
@@ -201,13 +226,29 @@
   }
 }
 
-@media (max-width: 490px) {
+@media (max-width: 527px) {
   .details {
     display: none;
   }
 }
 
+@media (max-width: 992px){
+  .itemHr2{
+    display: none;
+  }
+}
 
+@media (max-width: 768px){
+  .itemHr2{
+    display: initial;
+  }
+}
+
+@media (max-width: 527px){
+  .itemHr2{
+    display: none;
+  }
+}
 
 
 @media (max-width: 1200px) {
@@ -222,7 +263,7 @@
   }
 }
 
-@media (max-width: 490px) {
+@media (max-width: 527px) {
   .itemHr {
     display: none;
   }
@@ -237,7 +278,7 @@
 
 @media (min-width: 1201px) {
   .logged-in-btns{
-    margin-top: 11px;
+    margin-top: 0px;
     font-size: 14px;
   }
 
@@ -256,7 +297,7 @@
 
 @media (min-width: 1400px) {
   .logged-in-btns{
-    margin-top: 32px;
+    margin-top: 12px;
   }
 
   .heart{
@@ -273,7 +314,7 @@
 
 @media (max-width: 1200px) {
   .logged-in-btns{
-    margin-top: 12px;
+    margin-top: 0px;
     font-size: 12px;
   }
   .myBtn{
@@ -293,14 +334,18 @@
 
 @media (max-width: 992px) {
   .logged-in-btns{
-    margin-top: 8px;
+    margin-top: 0px;
     font-size: 10px;
+  }
+  .logged-in-btns p{
+    margin-top: 0px;
+    font-size: 12px;
   }
   .myBtn{
     padding: 0px;
   }
   .heart{
-    height: 26px;
+    height: 24px;
   }
 
 
@@ -316,8 +361,11 @@
 @media (max-width: 768px) {
 
   .logged-in-btns{
-    margin-top: 42px;
+    margin-top: 22px;
     font-size: 12px;
+  }
+  .logged-in-btns p{
+    font-size: 14px;
   }
   .myBtn{
     padding: 0px;
@@ -356,9 +404,9 @@
   }
 }
 
-@media (max-width: 490px) {
+@media (max-width: 527px) {
   .logged-in-btns{
-    margin-top: 40px;
+    margin-top: 10px;
     font-size: 10px;
   }
   .myBtn{
@@ -378,13 +426,7 @@
 }
 
 @media (max-width: 450px) {
-  .logged-in-btns{
-    margin-top: 40px;
-    font-size: 10px;
-  }
-  .myBtn{
-    padding: 0px;
-  }
+
   .heart{
     height: 22px;
   }
@@ -400,7 +442,7 @@
 
 @media (max-width: 402px) {
   .logged-in-btns{
-    margin-top: 16px;
+    margin-top: 0px;
     font-size: 10px;
   }
   .myBtn{
@@ -418,7 +460,7 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 385px) {
   .logged-in-btns{
     margin-top: 4px;
     font-size: 10px;
@@ -439,6 +481,15 @@
 }
 
 @media (max-width: 332px) {
+  .logged-in-btns{
+    margin-top: 0px;
+
+  }
+  .logged-in-btns p{
+    margin-top: 4px;
+    font-size: 10px;
+  }
+
   .seeMoreBtn {
     margin-top: 4px;
     background-color: white;

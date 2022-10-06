@@ -1,189 +1,198 @@
-<div class="container">
-  <!-- Left Column / Headphones Image -->
-  <div class="left-column">
-    <div class="slideshow-container">
-      <div class="Containers">
-        <img [src]="product.img" alt="image" />
-      </div>
-      <div class="Containers" *ngFor="let prod of product.otherImages">
-        <img [src]="prod.img" alt="image" />
-      </div>
-      <a class="Back" (click)="plusSlides(-1)">&#10094;</a>
-      <a class="forward" (click)="plusSlides(1)">&#10095;</a>
-    </div>
-    <div style="text-align: center">
-      <span class="dots" (click)="currentSlide(1)"></span>
-      <span class="dots" (click)="currentSlide(2)"></span>
+
+
+
+
+
+
+<div class="container" style="margin-top: 180px !important;display: block">
+  <div class="row" style="padding-left: 17%;">
+
+  </div>
+  <div class="row">
+    <div *ngIf="!slidesShown" class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 second-swiper-holder" style="display: flex;justify-content:right;align-items: center;">
+      <swiper
+      class="second-swiper"
+      [slidesPerView]="3"
+      [spaceBetween]="10"
+      (slideChange)="onSlideChange(secondSwiper)"
+      [navigation]="true"
+      [draggable]="true"
+      (swiper)="setThumbsSwiper($event)"
+      style="width: 100px;"
+      direction="vertical"
+      #secondSwiper
+    >
+      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="product.img" alt=""></ng-template>
+      <ng-template *ngFor="let img of product.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+    </swiper>
     </div>
 
-    <hr />
+    <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
+      <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50"  [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
+        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;" [src]="product.img" alt=""></ng-template>
+        <ng-template *ngFor="let img of product.otherImages" swiperSlide><img width="500px" height="500px" style="border-radius: 8px;" [src]="img.img" alt=""></ng-template>
+      </swiper>
+    </div>
+    <div *ngIf="slidesShown" class="col-sm-12 col-12" style="display: flex;justify-content:right;align-items: center;">
+      <swiper
+      class="third-swiper"
+      [slidesPerView]="3"
+      [spaceBetween]="0"
+      (slideChange)="onSlideChange(secondSwiper)"
+      [navigation]="true"
+      [draggable]="true"
+      (swiper)="setThumbsSwiper($event)"
 
-    <ul class="description">
-      <li>
-        <a
-          [ngClass]="switchDesc ? '' : 'active'"
-          (click)="showDescription1()"
-          #description
-          >Περιγραφή</a
-        >
-      </li>
-      <li>
-        <a
-          [ngClass]="switchDesc ? 'active' : ''"
-          (click)="showDescription2()"
-          #dataSheet
-          >Data Sheet</a
-        >
-      </li>
-    </ul>
-    <div style="margin-top: 50px">
-      <div *ngIf="!switchDesc">
-        <p>
-          - Ενσύρματο μοτέρ<br />
-          - 5 Καλώδια<br />
-          - Σύνδεσμος με εξωτερικό δέκτη<br />
-          - Μηχανικά όρια
-        </p>
-      </div>
-      <div *ngIf="switchDesc" class="table">
-        <hr />
-        <span
-          >Διάμετρος
-          Σωλήνα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Ø35
-          mm</span
-        >
-        <hr />
-        <span
-          >Ονομαστική
-          Ισχύς:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;121
-          W</span
-        >
-        <hr />
-        <span
-          >Ονομαστική
-          Ροπή:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;13
-          Nm</span
-        >
-        <hr />
-        <span
-          >Ονομαστική Ταχύτητα
-          (RPM):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;230
-          V DC</span
-        >
-        <hr />
-        <span
-          >Συχνότητα
-          Λειτουργίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;50
-          Hz</span
-        >
-        <hr />
-        <span
-          >Ονομαστικό
-          Ρεύμα:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0,53
-          A</span
-        >
-        <hr />
-        <span
-          >Βαθμός
-          Προστασίας:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;IP44</span
-        >
-        <hr />
-        <span
-          >Αριθμός Στροφών
-          (max):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;36</span
-        >
-        <hr />
-      </div>
+      direction="horizontal"
+      #secondSwiper
+    >
+      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="product.img" alt=""></ng-template>
+      <ng-template *ngFor="let img of product.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+    </swiper>
     </div>
-    <div *ngIf="hasSuggested">
-      <app-single-product *ngFor="let index of suggestedProducts" [index]="index"></app-single-product>
-    </div>
+    <hr class="line" style="margin-top: 50px;display: none">
+      <div *ngIf="product.category !== 116" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section" >
+
+        <div class="row first-row">
+          <h2>{{product.product_name}}</h2>
+        </div>
+        <div class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
+          <p *ngIf="!product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.offer }}&euro;</b></p>
+
+          <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
+          <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
+            <div class="col-4" style="display: flex;align-items:center;">
+              <p style="font-size: 20px;margin: 0px;">Ποσότητα:</p>
+            </div>
+            <div  class="col-8" style="display: flex;justify-content:center;align-items: center;">
+              <div class="numberInput">
+                <button id="decrement" (click)="stepper(input,decrement)" #decrement> - </button>
+                <input type="number" min="0" [max]="product.stock" step="1" value="1" id="my-input" readonly #input>
+                <button id="increment" (click)="stepper(input,increment)" #increment> + </button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <button class="btn btn-success" (click)="addToCart()" style="width: 100%;box-shadow: 0 20px 30px rgba(0,0,0,0.05);">Προσθήκη</button>
+            </div>
+            <div class="col-4">
+              <img src="../../../assets/heart-alt-green.svg" width="44px" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
+          <div style="margin-top: 18px;">
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: {{product.code}}</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{product.texnikos_kodikos}}</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{product.kodikos_kataskeuasti}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="product.category === 116" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section">
+        <div class="row">
+          <h2>{{ product.name }}</h2>
+        </div>
+        <div class="row">
+          <img src="../../../assets/Line 8.svg" width="100%" style="margin-top: 24px;margin-bottom: 12px" alt="" srcset="">
+        </div>
+        <div class="row">
+          <app-mosqui-wizzard></app-mosqui-wizzard>
+        </div>
+      </div>
+
+
   </div>
 
-  <!-- Right Column -->
-  <div class="right-column">
-    <!-- Product Description -->
-    <div class="product-description">
-      <span>{{ product.name1 }}</span>
-      <h1>{{ product.name }}</h1>
-      <h3>Σωληνωτό Μοτέρ 13Nm 14Rpm</h3>
+  <div class="row" style="background-color: white;border-radius: 16px;margin-top: 120px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
+    <div class="row" style="padding: 0px;">
+      <nav class="black navigation" style="display: flex;justify-content:center;align-items: center;">
+        <div class="underline col-3"></div>
+        <div class="underline col-3"></div>
+        <div class="underline col-3"></div>
+
+        <a class="col-3" (click)="ul(0)">Περιγραφή</a>
+        <a class="col-3" (click)="ul(1)">Πρόσθετες Λεπτομέριες</a>
+        <a class="col-3" (click)="ul(2)">Λήψεις</a>
+        <a class="col-3" (click)="ul(3)">Λύσεις</a>
+      </nav>
+    </div>
+    <div class="row">
+      <hr>
+    </div>
+    <div class="row">
+      <button *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0] " (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Περιγραφής </button>
+      <p *ngIf="showDesc[0]" [innerHTML]="product.description"></p>
+      <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button>
+      <p *ngIf="showDesc[1]" [innerHTML]="product.data_sheet"></p>
+      <p *ngIf="showDesc[2]"><button (click)="downloadMyFile(product.pdf)">Open PDF</button></p>
+      <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button>
+      <p *ngIf="showDesc[3]"><iframe width="850" height="315"
+        [src]="product.video | safePipe">
+        </iframe></p>
     </div>
 
-    <!-- Product Configuration -->
-    <div class="product-configuration">
-      <!-- Product Color -->
-      <div class="product-color">
-        <!-- <div class="color-choose">
-            <div>
-              <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-              <label for="red"><span></span></label>
-            </div>
-            <div>
-              <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-              <label for="blue"><span></span></label>
-            </div>
-            <div>
-              <input data-image="black" type="radio" id="black" name="color" value="black">
-              <label for="black"><span></span></label>
-            </div>
-          </div> -->
+  </div>
+  <br>
+  <form class="form-control" *ngIf="onEditDesc" [formGroup]="desciptionForm" (ngSubmit)="uploadDescription()" >
+    <textarea formControlName="description" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή..." ></textarea>
+    <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
+    <button (click)="closeForm()" style="margin-bottom:10px; margin-right: 10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+  </form>
+  <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetForm" (ngSubmit)="updateDataSheet()" >
+    <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες..." ></textarea>
+    <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
+    <button (click)="closeForm()" style="margin-bottom:10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+  </form>
+  <form (ngSubmit)="uploadUrl()" [formGroup]="urlVideoForm" class="form control" *ngIf="urlOpen">
+    <input class="form-control" formControlName="video" placeholder="https://example.com">
+    <br>
+    <button class="btn btn-success" type="submit">Αποθήκευση Αλλαγών</button>
+  </form>
+</div>
+
+  <div  class="container"  style="margin-top: 120px;">
+    <div class="row">
+      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1>Σχετικά Προϊόντα</h1></div>
+      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 30%;" src="../../../assets/Line%208.svg"></div>
+    </div>
+    <app-products-carousel></app-products-carousel>
+  </div>
+
+<div  class="container" *ngIf="loggedIn" style="margin-top: 120px;">
+  <div class="row">
+      <div class="col-12" style="display: flex;justify-content: left;align-items: center;"><h3 style="margin: 0;">Είδατε Πρόσφατα</h3></div>
+      <div class="col-12"><hr style="border: 1px solid #6dae49;margin-top: 4px;opacity: 1;"></div>
+  </div>
+  <div *ngIf="!howManySeen" class="row imageRow2">
+    <div  class="col-2" *ngFor="let prod of seeEarlier">
+      <div class="row imageRow2">
+        <img [src]="prod.img" width="150px" height="150px"  alt="">
       </div>
-
-      <!-- Cable Configuration -->
-      <!-- <div class="cable-config">
-          <span>Cable configuration</span> -->
-
-      <!-- <div class="cable-choose">
-            <button>Straight</button>
-            <button>Coiled</button>
-            <button>Long-coiled</button>
-          </div>
-
-          <a href="#">How to configurate your headphones</a>
-        </div> -->
-      <!-- </div> -->
-
-      <!-- Product Pricing -->
-      <div class="product-price" *ngIf="!product.hasOffer">
-        <span>{{ product.wholesale }}$</span>
-        <form>
-          <a class="cart-btn" (click)="addToCart()">Add to cart</a>
-          <input
-            type="number"
-            class="form-control numberInput"
-            name="qty"
-            id="qty"
-            [value]="product.stock >= product.qty"
-            ngModel
-            [(ngModel)]="product.qty"
-            min="1"
-            [max]="product.stock"
-            #qty
-          />
-          <span>({{ product.stock }})</span>
-        </form>
+      <div class="row text-center">
+        <p>{{ prod.name }}</p>
       </div>
-      <div class="product-price" *ngIf="product.hasOffer">
-        <span style=" color:red;
-        text-decoration:line-through;">{{ product.wholesale }}$</span>
-        <span>{{ product.offer }}$</span>
-        <form>
-          <a class="cart-btn" (click)="addToCart()">Add to cart</a>
-          <input
-            type="number"
-            class="form-control numberInput"
-            name="qty"
-            id="qty"
-            [value]="product.stock >= product.qty"
-            ngModel
-            [(ngModel)]="product.qty"
-            min="1"
-            [max]="product.stock"
-            #qty
-          />
-          <span>({{ product.stock }})</span>
-        </form>
+    </div>
+
+  </div>
+
+    <div *ngIf="howManySeen" class="row imageRow">
+    <div  class="col-3" *ngFor="let prod of seeLess">
+      <div class="row imageRow" style="display: flex;justify-content: center;align-items: center;">
+        <img [src]="prod.img" class="smallImages"  alt="">
+      </div>
+      <div class="row text-center">
+        <p style="font-size: 10px;">{{ prod.name }}</p>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+

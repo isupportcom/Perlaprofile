@@ -1,3 +1,18 @@
+.filter-dropdown{
+  border: none !important;
+  background-color: #6DAE49;
+  padding: 8px;
+  color: white;
+}
+
+
+.filter-dropdown option{
+  background-color: white;
+  color: black;
+}
+
+
+
 
 @media (max-width: 360px) {
     .categoryDesc {
@@ -7,7 +22,7 @@
       box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);
     }
   }
-  
+
   @media (max-width: 360px) {
     .categoryDesc {
       background-color: white;
@@ -16,7 +31,7 @@
       box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);
     }
   }
-  
+
   @media (min-width: 361px) {
     .categoryDesc {
       background-color: white;
@@ -25,7 +40,7 @@
       box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);
     }
   }
-  
+
   @media (min-width: 993px) {
     .categoryDesc {
       background-color: white;
@@ -50,7 +65,7 @@
     min-width: 200px;
     text-indent: 40px;
   }
-  
+
   @media (max-width: 992px) {
     .custom-search-input {
       border: none;
@@ -63,12 +78,24 @@
       text-indent: 40px;
     }
   }
-  
 
+.straighten{
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.circly{
+    border-radius: 8px;
+}
+
+.extend{
+
+    height: auto !important;
+}
 
   @media (max-width: 1200px) {
     .filters {
-      display: none;
+      display: none !important;
     }
   }
 
@@ -86,11 +113,18 @@
 
 @media (max-width: 768px){
     .filters2{
-        display: none;
+        display: none !important;
     }
 }
-  
-  
+
+
+@media (min-width: 993px){
+    .filters3{
+        display: none !important;
+    }
+
+
+}
 
 .topPagination2 ul{
     margin-bottom: 0px;
@@ -611,6 +645,7 @@
     background-color: white;
   }
 
+
 .category:hover{
     font-size: 17px;
     transition: all 0.5s ease;
@@ -631,6 +666,13 @@
 .btn-secondary{
     background-color: #6DAE49;
     border-color: #6DAE49;
+}
+
+.btn-filters{
+  border: none;
+  background-color: #6DAE49;
+  padding: 6px;
+  color: white;
 }
 
 
@@ -731,7 +773,7 @@ input[type='checkbox']:checked ~ .checkbox{
         --bs-gutter-x: 0rem;
     }
     .search{
-        
+
     }
     .search-icon {
         position: absolute;

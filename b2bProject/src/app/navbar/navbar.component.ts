@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Title} from '@angular/platform-browser'
 import axios from 'axios';
+
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+
 import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
 import { CartServiceService } from '../cart/cart-service.service';
 import { ProductsService } from '../porducts/products.service';
@@ -19,7 +21,7 @@ export class NavbarComponent implements OnInit{
   isAdminArea = false;
   products :product |any = [];
   temp: product | any = [];
-
+  title = 'Nav'
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
 
@@ -28,6 +30,8 @@ export class NavbarComponent implements OnInit{
   @ViewChild('dropdown') dropdown!: ElementRef;
   @ViewChild('options') options!: ElementRef;
   @ViewChild('optionsToggler') optionsToggler!: ElementRef;
+  @ViewChild('langTogler')langTogler!:ElementRef;
+  @ViewChild('optionslang')optionslang!:ElementRef;
   isOpen = false;
   isToggelOpen = false;
   isAdmin = this.authService.getAdmin();
@@ -39,14 +43,16 @@ export class NavbarComponent implements OnInit{
   productAddedToFav: boolean = false;
   source?: string;
   sourceCart?: string;
-  
+
 
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
   productCount: number|any;
   showProductCount: boolean = false;
   showUserOptions: boolean = false;
+  showLang :boolean = false;
   mainCategories : any = [];
+
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
 
   constructor(
@@ -56,13 +62,19 @@ export class NavbarComponent implements OnInit{
     private cartService: CartServiceService,
     private productsService: ProductsService,
     private renderer: Renderer2,
+    private titleService:Title,
     private http: HttpClient) {
+
+      this.titleService.setTitle($localize `${this.title}`);
 
 
       this.renderer.listen('window', 'click',(e:Event)=>{
 
         if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
           this.showUserOptions = false;
+        }
+        if(e.target !== this.optionslang.nativeElement && e.target !== this.langTogler.nativeElement){
+          this.showLang = false;
         }
       })
 
@@ -73,7 +85,6 @@ export class NavbarComponent implements OnInit{
     @HostListener('window:resize', ['$event'])
     onResize(event: any){
       this.innerWidth = window.innerWidth
-      console.log(this.innerWidth);
 
       if(this.innerWidth < 768 ){
         this.showSecondNav = false;
@@ -91,6 +102,8 @@ export class NavbarComponent implements OnInit{
 
   async ngOnInit(){
 
+
+
     this.cartService.productCount.subscribe(resData => {
       console.log(resData);
       this.productCount = resData+1;
@@ -101,9 +114,9 @@ export class NavbarComponent implements OnInit{
       // else{
       //   this.productCount = resData;
       // }
-      
-    
-      
+
+
+
     })
 
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
@@ -116,9 +129,9 @@ export class NavbarComponent implements OnInit{
 
         this.products = resData.data.products
         if(resData.data.products.length !=0){
-          this.source = '../../assets/heart-alt-filled.svg'  
+          this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt-filled.svg'
         }else{
-          this.source = '../../assets/heart-alt.svg'
+          this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt.svg'
         }
       })
 
@@ -151,11 +164,11 @@ export class NavbarComponent implements OnInit{
               this.productAddedToFav = false;
             },1000)
           },600)
-          
 
-        
-        
-        
+
+
+
+
           // this.productAddedToFav = resData;
           // // this.source = '../../assets/heart-alt.svg';
           // setTimeout(() => {
@@ -164,16 +177,16 @@ export class NavbarComponent implements OnInit{
           // setTimeout(() => {
           //   this.productAddedToFav = false;
           // },1000)
-        
+
       }
       else{
         this.productAddedToFav = false;
         this.source = '../../assets/heart-alt.svg';
       }
-      
+
     })
 
-    
+
 
 
     if(!this.username){
@@ -239,6 +252,21 @@ export class NavbarComponent implements OnInit{
     //   this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
     // })
   }
+  id:number |any;
+  choocenLang:boolean = false;
+  switchLang(){
+    this.choocenLang = !this.choocenLang;
+    console.log(this.choocenLang);
+    if(this.choocenLang){
+      this.id = 0
+    }else{
+      this.id=1;
+    }
+    console.log(this.id);
+
+
+
+  }
   hundleMyFavorites(){
     this.router.navigate(['favorites'])
   }
@@ -249,7 +277,14 @@ export class NavbarComponent implements OnInit{
       window.location.reload();
     },50)
   }
-
+  langOptions(){
+    if(!this.showLang){
+      this.showLang = true;
+    }
+    else{
+      this.showLang = false;
+    }
+  }
   userOptions(){
     if(!this.showUserOptions){
       this.showUserOptions = true;
@@ -259,6 +294,8 @@ export class NavbarComponent implements OnInit{
     }
 
   }
+
+
 
   handleHover(){
     this.hoverProducts = true;
@@ -282,7 +319,7 @@ export class NavbarComponent implements OnInit{
   }
 
   handleDashboard(){
-    this.isAdminArea = true;
+    // this.isAdminArea = true;
     console.log(this.isAdminArea);
     this.router.navigate(["dashboard"]);
   }

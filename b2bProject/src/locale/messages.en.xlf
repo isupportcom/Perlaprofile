@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="el" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5349215755133527957" datatype="html">
+        <source>Φωτογραφια Εταιριας</source>
+        <target>Company's Logo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">278,279</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8842022521993116792" datatype="html">
+        <source>Tηλέφωνο</source>
+        <target>Phone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6232059049695053154" datatype="html">
+        <source>Νουμερα Τηλεφώνων</source>
+        <target>Phone Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2540114982726349050" datatype="html">
+        <source>Διευθυνση Ηλεκτρονικου Ταχυδρομειου</source>
+        <target>Email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">194</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">452</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7822730955861952392" datatype="html">
+        <source> Διευθυνση Ηλεκτρονικου Ταχυδρομειου<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+          <target>Email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4996997105086293081" datatype="html">
+        <source>Διευθυνση Γραφειου</source>
+        <target>Office Address</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">411</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5096463324228081956" datatype="html">
+        <source>Διευθυνση Γραφειου<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <target>Office Address</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6194714923364898211" datatype="html">
+        <source> 3ο Χλμ Γιαννιτσών - Θεσσαλονίκης, 58100, Γιαννιστσά<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <target>3rd khm Giannitsson - Thessaloniki, 58100, Giannitsa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">86,87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5588019272745556123" datatype="html">
+        <source>Οριζοντια Γραμμη</source>
+        <target>Horizontal Line</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">215</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">228</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">240</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">252</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">264</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">282</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">508</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">520</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">532</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">544</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1101799503171924890" datatype="html">
+        <source>Η Εταιρία</source>
+        <target>Company</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">223</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">503</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">203,204</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">260,261</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8858301426119529983" datatype="html">
+        <source> Η Perla Profil sa σχεδιάζει και παράγει προφίλ αλουμινίου σύμφωνα με τις ανάγκες και τα σχέδια των πελατών της ενώ παράγει μια πλήρη σειρά αυτοματισμών για εσωτερική και εξωτερική σκίαση παρέχοντας επίσης και τα εξαρτήματα τους. Διαθέτη κάθετη παραγωγή αντικουνουπικών συστημάτων και ρολών αλουμινίου όπως επίσης σχεδιάζει και παράγει ανοδιωμένα κάγκελα σε όλους τους τύπους για όλες τις αρχιτεκτονικές ανάγκες.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <target>Perla Profil sa designs and produces aluminum profiles according to the needs and designs of its customers while producing a complete line of automation for internal and external shading and also providing their accessories. Owns vertical production of anti-mosquito systems and aluminum rolls as well as designs and produces anodized railings of all types for all architectural needs.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></target>
+
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">124,131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8824845544763636720" datatype="html">
+        <source>Επικοινωνία</source>
+        <target>Contact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">208,209</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">263,264</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2442844417322769768" datatype="html">
+        <source> 3ο Χλμ Γιαννιτσών – Θεσσαλονίκης,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>58100 Γιαννιτσά<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <target>3rd Khm Giannitsson - Thessalonikis,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>58100 Giannitsa<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">161,162</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">416,418</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5152576399046152086" datatype="html">
+        <source>Νουμερα Τηλεφωνων</source>
+        <target>Phone Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">170</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">426</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6776230785164877665" datatype="html">
+        <source>Φαξ</source>
+        <target>Fax</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">182</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">440</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1674017506366875706" datatype="html">
+        <source>Δείτε Ακόμη</source>
+        <target>See Also</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4428506789328900737" datatype="html">
+        <source>Η Ομάδα της Perla<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <target>Perla's Team<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">235</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">515</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4207095290905172403" datatype="html">
+        <source>Νέα<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <target>News<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">247</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">527</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5718401034933397893" datatype="html">
+        <source>Επικοινωνία<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <target>Contact<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">259</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">539</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3399919354780124211" datatype="html">
+        <source>Ακολουθήστε Μας</source>
+        <target>Follow Us</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">275</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1763211955619399035" datatype="html">
+        <source>facebook</source>
+        <target>facebook</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">292</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">588</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8337982773199880125" datatype="html">
+        <source>instagram</source>
+        <target>instagram</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">299</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">598</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16131749694889037" datatype="html">
+        <source>youtube</source>
+        <target>youtube</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">306</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">608</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="432554876494853475" datatype="html">
+        <source><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>Η Perla Profil sa σχεδιάζει και παράγει προφίλ αλουμινίου σύμφωνα με τις ανάγκες και τα σχέδια των πελατών της ενώ παράγει μια πλήρη σειρά αυτοματισμών για εσωτερική και εξωτερική σκίαση παρέχοντας επίσης και τα εξαρτήματα τους. Διαθέτη κάθετη παραγωγή αντικουνουπικών συστημάτων και ρολών αλουμινίου όπως επίσης σχεδιάζει και παράγει ανοδιωμένα κάγκελα σε όλους τους τύπους για όλες τις αρχιτεκτονικές ανάγκες.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">360,367</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4379692547066187666" datatype="html">
+        <source> Επικοινωνία </source>
+        <target>Contact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">390,392</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7475976933309694123" datatype="html">
+        <source> Δείτε Ακόμη </source>
+        <target>See Also</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">484,486</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5268055326491514201" datatype="html">
+        <source> Τι ειναι το Λορεμ </source>
+        <target>What is Lorem</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">564,566</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7452736339759911541" datatype="html">
+        <source> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s. </source>
+        <target>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/footer/footer.component.html</context>
+          <context context-type="linenumber">573,577</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7638080699728808048" datatype="html">
+        <source>Φωτογραφια αρχικης σελιδας</source>
+        <target>Homepage Logo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5531425002456876946" datatype="html">
+        <source> ΛΟΡΕΜ ΙΠΣΟΥΜ ΝΤΟΛΟΡ ΣΙΤ ΑΜΕΤ, ΚΟΝΣΕΚΤΕΤΟΥΡ ΑΝΤΙΠΙΣΚΙΝΓ <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>ΕΛΙΤ<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></source>
+        <target>Lorem ipsum dolor sit amet, consectetur adipiscing<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>elit<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">24,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2630616310967492978" datatype="html">
+        <source> ΛΟΡΕΜ ΙΠΣΟΥΜ ΝΤΟΛΟΡ ΣΙΤ ΑΜΕΤ, ΚΟΝΣΕΚΤΕΤΟΥΡ <x id="LINE_BREAK" ctype="lb"/> ΑΝΤΙΠΙΣΚΙΝ ΕΛΙΤ<x id="LINE_BREAK" ctype="lb"/><x id="LINE_BREAK" ctype="lb"/></source>
+        <target>Lorem ipsum dolor sit amet, consectetur adipiscing<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>elit<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">34,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4578471759944956738" datatype="html">
+        <source>Μαθε Περισσότερα</source>
+        <target>Learn More</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="776270379423558896" datatype="html">
+        <source>Φωτογραφια Κατηγοριας</source>
+        <target>Category's Photo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">127,128</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">183,184</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">240,241</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3327923131402709038" datatype="html">
+        <source>Ονομα Κατηγοριας</source>
+        <target>Category's Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">79,80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">135,136</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">192,193</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">248,249</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="667295144332616379" datatype="html">
+        <source> ΝΟΥΛΑΜ ΙΝΤ ΝΤΟΛΟΡ ΙΝΤ ΝΙΒ ΟΥΛΤΡΙΚΙΣ ΒΕΧΙΚΟΥΛΑ ΟΥΤ ΙΝΤ ΕΛΙΤ. ΚΡΑΣ ΤΖΟΥΣΤΟ ΟΝΤΙΟ,ΝΤΑΠΙΜΠΑΣ ΑΚ ΦΑΣΙΛΙΤΙΣ ΙΝ, ΕΓΚΕΣΤΑΣ ΕΓΚΕΤ ΚΟΑΜ. ΝΤΟΝΕΚ ΙΝΤ ΕΛΙΤ ΝΟΝ ΜΙ ΠΟΡΤΑ ΓΚΡΑΒΙΝΤΑ ΑΤ ΕΓΚΕΤ ΜΕΤΟΥΣ. </source>
+         <target>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">84,86</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">141,143</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">198,200</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">255,257</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2165398232233453108" datatype="html">
+        <source>Δες Περισσότερα</source>
+        <target>See More</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">152,153</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">209,210</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">266,267</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6713587100701061644" datatype="html">
+        <source>Δες Περισσοτερα</source>
+        <target>See More</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">103,104</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">215,216</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">272,273</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7152805162074165197" datatype="html">
+        <source>Δες περισσοτερα</source>
+        <target>See More</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">158,159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3656672017398666080" datatype="html">
+        <source>Πρόλαβε έκπτωση <x id="INTERPOLATION" equiv-text="{{ offer1.discount }}"/>%</source>
+         <target>Best Offer <x id="INTERPOLATION" equiv-text="{{ offer1.discount }}"/>%</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">289,290</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4121233054598108315" datatype="html">
+        <source>Φωτογραφια Προϊοντος</source>
+        <target>Product's Photo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">310,311</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="508309995637924102" datatype="html">
+        <source>Μαθε Περισσοτερα</source>
+        <target>Learn More</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/homepage/homepage.component.html</context>
+          <context context-type="linenumber">328,329</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4985937491192993361" datatype="html">
+        <source>Ενα Προιον Προσθεθηκε Στο καλαθι</source>
+        <target>A Product Has Been Added To The Cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8065623563227162110" datatype="html">
+        <source>Καλαθι Προϊοντων</source>
+        <target>Product's Cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7586799359843883220" datatype="html">
+        <source>  Έχετε Προϊόντα στο Καλάθι σας x<x id="INTERPOLATION" equiv-text="{{ productCount }}"/> </source>
+        <target>You Have Products in Your Cart x<x id="INTERPOLATION" equiv-text="{{ productCount }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2392599336509432980" datatype="html">
+        <source>Χρηστης</source>
+        <target>User</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7584442236883127182" datatype="html">
+        <source>Προφιλ</source>
+        <target>Profil</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">92,93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6029034378167374578" datatype="html">
+        <source>Οι Παραγγελειες μου</source>
+        <target>My Orders</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">96,97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8716334009078972551" datatype="html">
+        <source>Πινακας Ελεγχου</source>
+        <target>Dashboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">101,102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7774888053938728891" datatype="html">
+        <source>Αποσύνδεση</source>
+        <target>Logout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">109,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4901574967849813435" datatype="html">
+        <source>Αρχική</source>
+        <target>Homepage</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">163,164</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">221,222</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7449005559347505382" datatype="html">
+        <source> Προϊόντα </source>
+        <target>Products</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">176</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">234</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3365913319220838981" datatype="html">
+        <source>Η Ομάδα της Perla</source>
+        <target>Perla's Team</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">206,207</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.html</context>
+          <context context-type="linenumber">262,263</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1737753151350322492" datatype="html">
+        <source><x id="PH" equiv-text="this.title"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navbar/navbar.component.ts</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

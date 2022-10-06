@@ -1,0 +1,17 @@
+<h1>Upload PDF</h1>
+<p>Lorem ipsum dolor sit amet,
+  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+  ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <div class="progress form-group" *ngIf="progress > 0 ">
+    <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" aria-valuemin="0" aria-valuemax="100" [style.width]="progress + '%'">
+    </div>
+  </div>
+  <h3>{{msg}}</h3>
+<form class="form-group" [formGroup]="pdfForm" (ngSubmit)="uploadPDF()">
+
+  <input type="file"  (change)="uploadFile($event)" class="form-control" style="width:400px;">
+  <button class="form-control btn btn-success" style="width:400px;margin-top:10px;" type="submit">Upload PDF</button>
+</form>

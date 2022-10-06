@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "b2bProject": {
+      "i18n": {
+        "sourceLocale":"el",
+        "locales": {
+          "en":"src/locale/messages.en.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +19,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/b2b-project",
+
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,13 +31,31 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "node_modules/animate.css/animate.min.css",
               "src/styles.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
+
           "configurations": {
+            "development-en": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": false,
+              "extractLicenses": false,
+              "sourceMap": true
+
+            },
+            "en":{
+              "localize":["en"]
+            },
+            "el":{
+              "localize":["el"]
+            },
             "production": {
               "budgets": [
                 {
@@ -71,6 +96,12 @@
             "production": {
               "browserTarget": "b2bProject:build:production"
             },
+            "en":{
+              "browserTarget":"b2bProject:build:en"
+            },
+            "el":{
+              "browserTarget":"b2bProject:build:el"
+            },
             "development": {
               "browserTarget": "b2bProject:build:development"
             }
@@ -78,7 +109,7 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n:el",
           "options": {
             "browserTarget": "b2bProject:build"
           }

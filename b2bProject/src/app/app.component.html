@@ -4,50 +4,91 @@
 
 
 
-<div *ngIf="productAdded && relatedProducts.length > 0" style="position: absolute; z-index: 100; background: rgba(0, 0, 0, 0.5);width: 100vw;height: 300%; text-align: center;padding-top: 15%; padding-left: 30%;">
-    <div style="background-color: white; width: 50%;height: auto; border-radius: 16px;padding-top: 2%;">
-        <h2>Scope 1</h2>
-        <hr style="width: 50%; margin-left: 25%;margin-top: 5%;">
-        <div *ngFor="let product of relatedProducts" style="margin-top: 5%">
-            <img [src]="product.image" height="120px" width="120px" alt="" style="display: inline-block;margin-bottom: 10%;">
-            <div style="display: inline-block; text-align: start; margin-left: 3%;">
-                <h5>{{ product.name }}</h5>
-                <p>Quantity: {{ product.qty }}</p>
-                <p *ngIf="!product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
-                  <p *ngIf="product.hasOffer">Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
-                <button class="btn btn-success" (click)="handleGrouping(product)">Προσθήκη</button>
-            </div>
+<div *ngIf="productAdded && relatedProducts.length > 0" class="scroll1" style="position: fixed; z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
+    <div class="container scroll" style="background-color: white;padding-top: 2%; height: fit-content;">
+        <div class="row">
+          <div class="col-5" style="display: flex;justify-content: center;align-items: center;">
+            <h2>Scope 1</h2>
+          </div>
+          <div class="col-2" style="display: flex;justify-content: center;align-items: center;">
+            <h2>+</h2>
+          </div>
+          <div class="col-5" style="display: flex;justify-content: center;align-items: center;">
+            <h2>Scope 2</h2>
+          </div>
 
         </div>
+        <div class="row">
+          <hr>
+        </div>
+            <div class="row products" *ngFor="let product of tempGroup" style="list-style: none; margin-bottom: 24px;" >
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-7" style="display: flex;justify-content: center;align-items: center;">
+                  <div class="row" style="display: flex;justify-content: center;align-items: center;">
+                      <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4" style="display: flex;justify-content: right;align-items: center;">
+                        <img [src]="product.scope1.image" class="prodImg"  alt="">
+                      </div>
+                      <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-6 col-6">
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><h6>{{ product.scope1.name }}</h6></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Quantity: {{ product.scope1.qty }}</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="!product.scope1.hasOffer">Price: {{ product.scope1.wholesale * product.scope1.qty}}&#x20AC;</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="product.scope1.hasOffer">Price: {{ product.scope1.wholesale * product.scope1.qty}}&#x20AC;</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;padding-left: 12px;"><button class="btn btn-success" (click)="handleGrouping(product.scope1)">
+                           <p *ngIf="!changeBtn">Προσθήκη</p>
+                           <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
+                        </button></div>
+                      </div>
 
+                  </div>
+                </div>
 
-
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-5" style="display: flex;justify-content: center;align-items: center;">
+                  <div class="row" style="display: flex;justify-content: center;align-items: center;">
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4" style="display: flex;justify-content: right;align-items: center;">
+                      <img [src]="product.scope2.image" class="prodImg"  alt="">
+                    </div>
+                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-6 col-6">
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><h6>{{ product.scope2.name }}</h6></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Quantity: {{ product.scope2.qty }}</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="!product.scope2.hasOffer">Price: {{ product.scope2.wholesale * product.scope2.qty}}&#x20AC;</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="product.scope2.hasOffer">Price: {{ product.scope2.wholesale * product.scope2.qty}}&#x20AC;</p></div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<div *ngIf="showScope3" style="position: absolute; z-index: 100; background: rgba(0, 0, 0, 0.5);width: 100vw;height: 300%; text-align: center;padding-top: 15%; padding-left: 30%;">
-    <div style="background-color: white; width: 50%;height: auto; border-radius: 16px;padding-top: 2%;">
+
+<div *ngIf="showScope3" class="scroll1" style="position: fixed; z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
+    <div class="container scroll" style="background-color: white;padding: 2%; height: fit-content; width: fit-content;">
+      <div class="row">
         <h2>Scope 3</h2>
-        <hr style="width: 50%; margin-left: 25%;margin-top: 5%;">
-        <div *ngFor="let product of group.Scope3" style="margin-top: 5%">
-            <img [src]="product.img" height="120px" width="120px" alt="" style="display: inline-block;margin-bottom: 10%;">
-            <div style="display: inline-block; text-align: start; margin-left: 3%;">
-                <h5>{{ product.name }}</h5>
-                <p>Quantity: {{ product.qty }}</p>
-                <p>Price: {{ product.wholesale * product.qty}}&#x20AC;</p>
-                <button class="btn btn-success" (click)="addToCart(product)">Προσθήκη</button>
-            </div>
-
+      </div>
+      <div class="row">
+        <hr>
+      </div>
+        <div class="row products" *ngFor="let product of group.Scope3">
+          <div class="col-4">
+            <img class="prodImg" [src]="product.img" alt="" style="display: inline-block;margin-bottom: 10%;">
+          </div>
+          <div class="col-8">
+            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><h6>{{ product.name }}</h6></div>
+            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Quantity: {{ product.qty }}</p></div>
+            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Price: {{ product.wholesale * product.qty}}&#x20AC;</p></div>
+            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><button class="btn btn-success" (click)="addToCart(product)">
+              <p *ngIf="!changeBtn">Προσθήκη</p>
+              <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
+           </button></div>
+          </div>
         </div>
-
-
     </div>
     <!-- <div style="margin-top: 5%;">
       <button class="btn btn-danger" (click)="handleClose()" style="margin-right: 2%;">Continue Shopping</button>
       <button class="btn btn-primary" (click)="handleGoToCart()">Go To Cart</button>
     </div> -->
 
-  </div>
+</div>
 
-
-<router-outlet ></router-outlet>
+<div>
+  <router-outlet></router-outlet>
+</div>

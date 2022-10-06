@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.component';
+
 import {ProductsService} from "../products.service";
 import axios from "axios";
 import { Category } from '../categories.model';
@@ -9,6 +10,8 @@ import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationControlsComponent } from 'ngx-pagination';
+import { Observable } from 'rxjs';
+
 
 interface mainCat{
   id: number,
@@ -25,35 +28,67 @@ export class ProductListComponent implements OnInit , OnDestroy{
   message:string ='';
   loadedUser:any;
   showProduct:boolean|any;
-
+  dummyColors:any =[
+    {
+      colorName:"Απαλο",
+      id:1
+    },
+    {
+      colorName:"Σκληρο",
+      id:2
+    },
+    {
+      colorName:"Ευκαμπτο",
+      id:3
+    },
+    {
+      colorName:"Μεταξι",
+      id:4
+    }
+  ];
+  colorsToChoose:any=[
+    {
+      name:"blue"
+    },
+    {
+      name:"red"
+    },
+    {
+      name:"green"
+    },
+    {
+      name:"black"
+    }
+  ]
   @ViewChild('menu1') menu1: ElementRef|any;
   @ViewChild('menu2') menu2: ElementRef|any;
+  @ViewChild('menu3') menu3: ElementRef|any;
 
 
 
 
 
-  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2) {
+  constructor(public fb:FormBuilder,private router: Router,private productsService: ProductsService,private route: ActivatedRoute,private renderer: Renderer2,private elem: ElementRef,private http: HttpClient) {
 
-    this.renderer.listen('window', 'click',(e:Event)=>{
-
-
-
-      if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement){
-
-        
+    // this.renderer.listen('window', 'click',(e:Event)=>{
 
 
-        this.showProductsPerPage = false;
-        this.showSortOptions = false;
-      }
+
+    //   if(e.target !== this.menu1.nativeElement && e.target !== this.menu2.nativeElement && e.target !== this.menu3.nativeElement){
 
 
-    })
+
+
+    //     this.showProductsPerPage = false;
+    //     this.showSortOptions = false;
+    //   }
+
+
+    // })
 
   }
 
-
+  loggedIn: boolean = localStorage.getItem('username')? true : false;
   products :product |any =[];
   totalLength:number | undefined;
   page:number = 1;
@@ -68,7 +103,6 @@ export class ProductListComponent implements OnInit , OnDestroy{
   shownProducts :product |any =[];
   filterOn?: boolean;
   noProducts?: boolean;
-  checkboxes: any = document.querySelectorAll('.checkbox');
   listArray: any = [];
   checked?: boolean;
   contactForm:FormGroup|any;
@@ -89,16 +123,37 @@ export class ProductListComponent implements OnInit , OnDestroy{
     name: string
   } | any= [];
   categoryToGo: any;
+  favoriteTemp: any = [];
   showBigFilters: boolean = true;
-
+  showFilters:boolean = false;
+  extend:boolean = false;
+  filters: any = document.getElementsByClassName(
+    'boxes',
+  ) as HTMLCollectionOf<HTMLElement>;
+  showExtraFilters: boolean = false;
+  fit: boolean = true;
+  favorites: any;
   innerWidth!: number;
   @HostListener('window:resize', ['$event'])
   onResize(event: any){
     this.innerWidth = window.innerWidth
+    if(this.innerWidth >= 768 && this.innerWidth <= 992){
+      this.showExtraFilters = false;
+    }else{
+      this.showExtraFilters = true;
+    }
+
+    if(this.innerWidth <= 445){
+      this.fit = false;
+    }else{
+      this.fit = true;
+    }
+
     if(this.innerWidth <= 992){
       this.itemsPP = 4;
     }
     else{
+      this.showFilters = false;
       this.itemsPP = 10;
     }
 
@@ -128,6 +183,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
   ngOnInit(): void {
+
+
+
+
+
+
+
 
     this.contactForm = this.fb.group({
       width:[null],
@@ -161,6 +223,18 @@ export class ProductListComponent implements OnInit , OnDestroy{
       this.fits = true;
     }
 
+    if(this.innerWidth <= 445){
+      this.fit = false;
+    }else{
+      this.fit = true;
+    }
+
+    if(this.innerWidth >= 768 && this.innerWidth <= 992){
+      this.showExtraFilters = false;
+    }else{
+      this.showExtraFilters = true;
+    }
+
 
     if(this.innerWidth<=768){
       this.showBigFilters = false;
@@ -181,7 +255,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
     console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then((resData:any) => {
-      // console.log(resData.data)
+       console.log(resData.data)
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < resData.data.products.length; i++) {
@@ -200,17 +274,55 @@ export class ProductListComponent implements OnInit , OnDestroy{
           category: resData.data.products[i].category,
           subcategory: resData.data.products[i].subcategory,
           img:resData.data.products[i].image,
-          otherImages:resData.data.products[i].otherImages
-        }
+          otherImages:resData.data.products[i].otherImages,
+          description:resData.data.products[i].description,
+          data_sheet:resData.data.products[i].data_sheet,
+          pdf:resData.data.products[i].pdf,
+          video:resData.data.products[i].video,
+          product_name:resData.data.products[i].onoma,
+          product_name_eng:resData.data.products[i].onoma_eng,
+          kodikos_kataskeuasti:resData.data.products[i].kodikos_kataskeuasti,
+          texnikos_kodikos:resData.data.products[i].texnikos_kodikos
+
+          }
          this.productsService.setAll(this.products[i])
 
 
       }
-      console.log(this.products);
+
+
       this.updateProducts();
+
+      let favouritesObs: Observable<any>;
+
+      favouritesObs = this.getFavourites();
+
+      favouritesObs.subscribe((resData => {
+        this.favorites = resData.products;
+
+
+      }))
+
+      setTimeout(() => {
+        console.log(this.favorites);
+        for(let favorite of this.favorites){
+          for(let prod of this.products){
+              if(prod.mtrl === favorite.mtrl){
+                prod.addedToFav = true;
+
+              }
+            }
+          for(let prod of this.products){
+            if(!prod.addedToFav){
+              prod.addedToFav = false;
+            }
+          }
+          }
+      },200)
 
 
       this.totalLength = this.products.length;
+      console.log(this.products);
 
 
 
@@ -342,17 +454,57 @@ export class ProductListComponent implements OnInit , OnDestroy{
   selectedHeight:boolean|any;
   selectedWidth:boolean|any;
   shouldContinue:boolean|any;
+  check(){
+    if(this.listArray.length==0){
+      this.selectedCategory = false;
+    }else{
+      this.selectedCategory=true;
+    }
+    if(this.contactForm.value.height == null){
+      this.selectedHeight = false;
+    }else{
+      this.selectedHeight=true;
+    }
+    if(this.contactForm.value.width == null){
+      this.selectedWidth=false;
+    }else{
+      this.selectedWidth=true;
+    }
 
-
-  hundleWizzard(name:string,id:number){
-
-
-    this.router.navigate(['products/mosqui',id,name]);
-
+    if(this.selectedCategory==true && this.selectedHeight == true && this.selectedWidth ==true){
+        this.shouldContinue = true;
+    }
 
   }
-  shouldContinueColors:boolean|any;
+  getFavourites(){
+    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+      trdr: this.loadedUser.trdr,
+      mtrl:"dontNeedIt",
+      mode:"fetch"
+    })
+  }
 
+  shouldContinueColors:boolean|any;
+  checkColor(){
+    console.log(this.colors.value.color !=undefined);
+    this.showProduct =true;
+      if(this.colors.value.color !=undefined){
+        this.showProduct =true;
+        this.waiting = false;
+      }else{
+        this.showProduct=false;
+      }
+      console.log(this.showProduct);
+
+  }
+  checkFabric(){
+
+    if(this.fabric.value.fabricname !=undefined){
+     this.shouldContinueColors = true
+    }else{
+      this.shouldContinueColors=false;
+    }
+  }
   counter(index: number){
 
     for(let i=0;i<index;i++){
@@ -397,7 +549,6 @@ export class ProductListComponent implements OnInit , OnDestroy{
     }
     this.checked = true;
 
-
     console.log(this.listArray);
 
 
@@ -437,8 +588,8 @@ export class ProductListComponent implements OnInit , OnDestroy{
             }
 
             if(!flag){
-              
-              
+
+
               if(product.stock !== 0){
                 console.log(product.stock);
                 this.shownProducts.push(product);
@@ -498,6 +649,33 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   }
 
+  handleShowFilters(){
+
+
+
+    if(this.showFilters){
+      this.showFilters = false;
+      this.extend = false;
+    }
+    else{
+      this.showFilters = true;
+      this.extend = false;
+      setTimeout(() => {
+        this.extend = true;
+      })
+    }
+    setTimeout(() => {
+      for(let filter of this.listArray){
+        for(let i=0;i<this.filters.length;i++){
+          if(filter == this.filters[i].value){
+            this.filters[i].checked = true;
+          }
+        }
+      }
+    },10)
+
+  }
+
   handleClearFilters(){
     this.filterOn = false;
     this.listArray = [];
@@ -517,9 +695,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
   handleFilter(mainCategory: any,subcategory:any){
     this.filterOn = true;
-
-
-    (['products',mainCategory.id,subcategory.sub_id]);
+    this.router.navigate(['products',mainCategory.id,subcategory.sub_id]);
     setTimeout(() => {
       window.location.reload();
     },50)
@@ -568,6 +744,13 @@ export class ProductListComponent implements OnInit , OnDestroy{
       console.log(resData.data.products)
       if(resData.data.products.length !=0){
         setTimeout(()=>{
+          for(let favorite of this.favorites){
+            for(let prod of resData.data.products){
+              if(favorite.mtrl === prod.mtrl){
+                prod.addedToFav = true;
+              }
+            }
+          }
           this.waiting = false;
           this.shownProducts = resData.data.products
           this.message = ""
@@ -584,6 +767,15 @@ export class ProductListComponent implements OnInit , OnDestroy{
       }
 
     })
+
+  }
+  handleWizzard(name:string,id:number){
+
+    this.productsService.setSingleProduct({name: name, id: id, category: 116});
+    this.router.navigate(['/products/product-page']);
+
+    // this.router.navigate(['products/mosqui',id,name]);
+
 
   }
   ngOnDestroy(): void {

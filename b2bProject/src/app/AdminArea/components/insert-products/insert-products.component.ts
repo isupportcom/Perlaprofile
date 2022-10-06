@@ -4,6 +4,7 @@ import {product} from "../../adminareaproducts/adminareaproducts.component";
 import axios from "axios";
 import {ModalService} from "../add-image-popup/modal-service.service";
 import {CartServiceService} from "../../../cart/cart-service.service";
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -23,8 +24,11 @@ export class InsertProductsComponent implements OnInit {
   checked:boolean|any;
   offerprice:number|any;
   discount:number|any;
+  desciption:FormGroup|any
+  dataSheet:FormGroup|any
   checkBoxes: any = document.getElementsByClassName("yoyo");
   constructor(
+    private fb : FormBuilder,
     private productsService: ProductsService,
     private modalService:ModalService,
     private cartServiceService : CartServiceService
@@ -44,6 +48,13 @@ export class InsertProductsComponent implements OnInit {
       this.getProducts()
     }
 
+    this.dataSheet = this.fb.group({
+      sheet:[null]
+    })
+
+    this.desciption = this.fb.group({
+      desc:[null]
+    })
 
     this.modalService.isClicked.subscribe((res:any)=>{
       this.window = false;
@@ -83,6 +94,8 @@ export class InsertProductsComponent implements OnInit {
           retail: resData.data.products[i].retailPrice,
           wholesale: resData.data.products[i].wholesalePrice,
           qty: 1,
+           description :resData.data.products[i].description,
+           data_sheet:resData.data.products[i].data_sheet,
           stock: resData.data.products[i].stock,
           img : resData.data.products[i].image,
           offer: resData.data.products[i].offer,
@@ -91,12 +104,63 @@ export class InsertProductsComponent implements OnInit {
       }
     })
   }
+  openFormSheet:boolean=false;
+  sheetMtrl:any;
+  scrollToForm(mtrl:any){
+    this.sheetMtrl = mtrl;
+    this.openFormSheet=true;
+    if(this.openFormDesc){
+      this.openFormDesc=false;
+    }
+    window.scroll({
+      top:9000,
+      left:0,
+      behavior:'smooth'
+    })
+  }
+  openFormDesc:boolean=false;
+  descMtrl:any;
+  openForm(mtrl:any){
+    this.openFormDesc=true;
+    this.descMtrl = mtrl;
+    if(this.openFormSheet){
+      this.openFormSheet=false;
+    }
+    window.scroll({
+      top:9000,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+  updateSheet(){
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php",{
+      mtrl:this.sheetMtrl,
+      data:this.dataSheet.value.sheet
+    }).then(resData=>{
+      setTimeout(()=>{
+        window.location.reload();
+      },50)
+    })
+  }
+  udpateDesc(){
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php",{
+      mtrl:this.descMtrl,
+      desc:this.desciption.value.desc
+    }).then(resData=>{
+      setTimeout(()=>{
+        window.location.reload();
+      },50)
+
+    })
+  }
    openOffer(item:any){
   this.offer = true;
-     console.log(typeof(item))
+  console.log(item);
+
+     console.log(typeof(item.wholesalePrice))
     this.modalService.offer.subscribe((res:number)=> {
      localStorage.setItem("discound",JSON.stringify(res));
-      this.offerprice = item.wholesale - ((item.wholesale * +res) / 100)
+      this.offerprice = +item.wholesale - ((+item.wholesale * +res) / 100)
       console.log(this.offerprice)
       console.log(typeof(item.mtrl))
       let data ={
