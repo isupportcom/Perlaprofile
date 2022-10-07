@@ -89,12 +89,22 @@ export class TeamComponent implements OnInit {
       if(this.innerWidth <= 768){
         this.flag = true;
       }
+      else{
+        this.flag = false;
+      }
     
     }
 
   constructor() { }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth <= 768){
+      this.flag = true;
+    }
+    else{
+      this.flag = false;
+    }
   }
 
 }

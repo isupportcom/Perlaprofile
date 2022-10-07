@@ -190,7 +190,6 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
 
-
     this.contactForm = this.fb.group({
       width:[null],
       height:[null]
@@ -291,17 +290,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
       }
 
 
+
       this.updateProducts();
 
-      let favouritesObs: Observable<any>;
-
-      favouritesObs = this.getFavourites();
-
-      favouritesObs.subscribe((resData => {
-        this.favorites = resData.products;
-
-
-      }))
 
       setTimeout(() => {
         console.log(this.favorites);
@@ -521,37 +512,82 @@ export class ProductListComponent implements OnInit , OnDestroy{
     },50);
   }
 
-  handleCheckboxes(e: any){
+  handleCheckboxes2(e: any){
+    console.log(e.target.parentElement.parentElement.children[0].children[0].children[0]);
+    
+    e = e.target.parentElement.parentElement.children[0].children[0].children[0];
 
-    if(e.target.checked){
-      this.listArray.push(e.target.value);
-      this.waiting = true;
-      setTimeout(() => {
-        this.updateProducts();
-        this.waiting = false;
-      },100);
+    this.handleCheckboxes(e,true)
+    
+  }
 
+  handleCheckboxes(e: any, clickeP?:boolean){
+
+    if(clickeP){
+      if(!e.checked){
+        e.checked = true;
+      }
+      else{
+        e.checked = false;
+      }
+      if(e.checked){
+        this.listArray.push(e.value);
+        this.waiting = true;
+        setTimeout(() => {
+          this.updateProducts();
+          this.waiting = false;
+        },100);
+  
+      }
+      else{
+        // this.listArray = this.listArray.filter((e: any) => e !== this.value)
+        // console.log('hello');
+        for(let i=0;i<this.listArray.length;i++){
+          if(e.value == this.listArray[i]){
+            this.listArray.splice(i,1);
+          }
+        }
+        this.waiting = true;
+        setTimeout(() => {
+          this.updateProducts();
+          this.waiting = false;
+        },100);
+  
+      }
+      this.checked = true;
+  
+      console.log(this.listArray);
     }
     else{
-      // this.listArray = this.listArray.filter((e: any) => e !== this.value)
-      // console.log('hello');
-      for(let i=0;i<this.listArray.length;i++){
-        if(e.target.value == this.listArray[i]){
-          this.listArray.splice(i,1);
-        }
+      
+      if(e.target.checked){
+        this.listArray.push(e.target.value);
+        this.waiting = true;
+        setTimeout(() => {
+          this.updateProducts();
+          this.waiting = false;
+        },100);
+  
       }
-      this.waiting = true;
-      setTimeout(() => {
-        this.updateProducts();
-        this.waiting = false;
-      },100);
-
+      else{
+        // this.listArray = this.listArray.filter((e: any) => e !== this.value)
+        // console.log('hello');
+        for(let i=0;i<this.listArray.length;i++){
+          if(e.target.value == this.listArray[i]){
+            this.listArray.splice(i,1);
+          }
+        }
+        this.waiting = true;
+        setTimeout(() => {
+          this.updateProducts();
+          this.waiting = false;
+        },100);
+  
+      }
+      this.checked = true;
+  
+      console.log(this.listArray);
     }
-    this.checked = true;
-
-    console.log(this.listArray);
-
-
   }
 
   hanldeCategoriesList(background: any,arrow:any){
@@ -568,7 +604,15 @@ export class ProductListComponent implements OnInit , OnDestroy{
   }
 
   updateProducts(){
+    let favouritesObs: Observable<any>;
 
+    favouritesObs = this.getFavourites();
+
+    favouritesObs.subscribe((resData => {
+      this.favorites = resData.products;
+    }))
+    
+    setTimeout(() => {
     if(this.listArray.length == 0){
       this.noProducts = false
       this.filterOn = false;
@@ -577,6 +621,19 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
 
         for(let product of temp){
+          let flag2 = true;
+          for(let favProd of this.favorites){
+            if(product.mtrl == favProd.mtrl){
+              console.log("Mphka");
+              
+              product.addedToFav = true;
+              flag2 = false;
+            }
+          }
+          if(flag2){
+            product.addedToFav = false;
+          }
+
           let flag = false;
           if(product.category == this.mainCategory.id){
 
@@ -588,8 +645,6 @@ export class ProductListComponent implements OnInit , OnDestroy{
             }
 
             if(!flag){
-
-
               if(product.stock !== 0){
                 console.log(product.stock);
                 this.shownProducts.push(product);
@@ -646,7 +701,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
         this.noProducts = true;
       }
     }
-
+  },500)
   }
 
   handleShowFilters(){

@@ -116,9 +116,14 @@
   background-size: 50%;
 }
 
+.myMenu2 .dropdown-item{
+  color: black !important;
+}
 
-
-
+.myMenu2 .dropdown-item.active{
+  background-color: white !important;
+  color: #6DAE49 !important;
+}
 
 .wrapper .multi_color_border{
   width: 100%;

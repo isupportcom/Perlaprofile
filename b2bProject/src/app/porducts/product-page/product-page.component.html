@@ -56,7 +56,7 @@
         <div class="row first-row">
           <h2>{{product.product_name}}</h2>
         </div>
-        <div class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
+        <div *ngIf="username" class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
           <p *ngIf="!product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
           <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
           <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.offer }}&euro;</b></p>
@@ -75,12 +75,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-8">
-              <button class="btn btn-success" (click)="addToCart()" style="width: 100%;box-shadow: 0 20px 30px rgba(0,0,0,0.05);">Προσθήκη</button>
-            </div>
-            <div class="col-4">
-              <img src="../../../assets/heart-alt-green.svg" width="44px" alt="">
-            </div>
+            
+
+              <button class="btn btn-success col-6" (click)="addToCart()">Προσθήκη</button>
+              <button  class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;cursor: auto;">
+                <img (click)="handleAddToFavorite()" [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'" style="cursor: pointer;"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="" width="44px" alt="">
+              </button>
+            
+            
           </div>
         </div>
         <div class="row">
@@ -102,7 +104,7 @@
         <div class="row">
           <img src="../../../assets/Line 8.svg" width="100%" style="margin-top: 24px;margin-bottom: 12px" alt="" srcset="">
         </div>
-        <div *ngIf="product.category === 116 && showForm && !waitingProduct" class="row">
+        <div *ngIf="product.category === 116 && showForm && !waitingProduct && username" class="row">
           <app-mosqui-wizzard [name]="product.name" [sub_id]="product.id"></app-mosqui-wizzard>
         </div>
         <div *ngIf="waitingProduct" class="row" >
@@ -125,19 +127,21 @@
                 </div>
                 <div  class="col-8" style="display: flex;justify-content:center;align-items: center;">
                   <div class="numberInput">
-                    <button id="decrement" (click)="stepper(input,decrement)" #decrement> - </button>
-                    <input type="number" min="0" [max]="mosquiProduct.stock" step="1" value="1" id="my-input" readonly #input>
-                    <button id="increment" (click)="stepper(input,increment)" #increment> + </button>
+                    <button id="decrement" (click)="stepper(input2,decrement)" #decrement> - </button>
+                    <input type="number" min="0" [max]="mosquiProduct.stock" step="1" value="1" id="my-input" readonly #input2>
+                    <button id="increment" (click)="stepper(input2,increment)" #increment> + </button>
                 </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-8">
-                  <button class="btn btn-success" (click)="addToCartMosqui()" style="width: 100%;box-shadow: 0 20px 30px rgba(0,0,0,0.05);">Προσθήκη</button>
-                </div>
-                <div class="col-4">
-                  <img src="../../../assets/heart-alt-green.svg" width="44px" alt="">
-                </div>
+                
+                  <button class="btn btn-success col-6" (click)="addToCartMosqui()">Προσθήκη</button>
+                
+                
+                  <button (click)="handleAddToFavorite(mosquiProduct)" class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
+                    <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
+                  </button>
+                
               </div>
             </div>
             <div class="row">
@@ -147,7 +151,7 @@
                 <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{mosquiProduct.texnikos_kodikos}}</p>
                 <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{mosquiProduct.kodikos_kataskeuasti}}</p>
               </div>
-              <button class="btn btn-success" (click)="handleFindNew()">Βρες καινούριο προϊόν</button>
+              <button class="btn btn-success" (click)="handleFindNew()" style="margin-top: 24px;">Βρες καινούριο προϊόν</button>
             </div>   
         </div>
       </div>
@@ -208,7 +212,7 @@
       <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1>Σχετικά Προϊόντα</h1></div>
       <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 30%;" src="../../../assets/Line%208.svg"></div>
     </div>
-    <app-products-carousel></app-products-carousel>
+    <app-products-carousel [mode]="'offers'" [mtrl]="product.mtrl"></app-products-carousel>
   </div>
 
 <div  class="container" *ngIf="loggedIn" style="margin-top: 120px;">

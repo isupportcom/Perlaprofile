@@ -30,10 +30,10 @@
               <div class="bottom_nav" style="border-bottom: 2px solid #6DAE49;;background-color: white !important;height: 100%;">
                 <div class="container">
               <ul class="myMenu2">
-                <li style="margin-bottom: 8px;"><a class="dropdown-item" routerLink="/home" style="padding-left: 0px !important;">Αρχική</a></li>
+                <li style="margin-bottom: 8px;"><a class="dropdown-item" routerLink="/home" routerLinkActive="active" style="padding-left: 0px !important;">Αρχική</a></li>
                 <li style="margin-bottom: 8px;">
                   <div class="dropdown">
-                    <a routerLink="/products" (click)="handleProducts()" (mouseleave)="handleMouseleave()" (mouseenter)="handleHover()" class="dropdown-toggle">
+                    <a routerLink="/products" routerLinkActive="active" (click)="handleProducts()" (mouseleave)="handleMouseleave()" (mouseenter)="handleHover()" class="dropdown-toggle dropdown-item" style="padding-left: 0px !important;">
                         Προϊόντα
                     </a>
                     <ul (mouseenter)="handleHover()" (mouseleave)="handleMouseleave()" [ngClass]="hoverProducts? 'dropdown-menu myMenu2' : 'dropdown-menu myMenu'">
@@ -41,9 +41,9 @@
                     </ul>
                   </div>
                 </li>
-                <li style="margin-bottom: 8px;"><a routerLink="/company">Η Εταιρία</a></li>
-                <li style="margin-bottom: 8px;"><a routerLink="/the-team">Η Ομάδα της Perla</a></li>
-                <li style="margin-bottom: 8px;"><a>Επικοινωνία</a></li>
+                <li style="margin-bottom: 8px;"><a routerLink="/company" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">Η Εταιρία</a></li>
+                <li style="margin-bottom: 8px;"><a routerLink="/the-team" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">Η Ομάδα της Perla</a></li>
+                <li style="margin-bottom: 8px;"><a routerLink="/contact" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">Επικοινωνία</a></li>
 
               </ul>
           </div>
@@ -69,7 +69,7 @@
           </li>
           <li><a routerLink="/company" routerLinkActive="my-active">Η Εταιρία</a></li>
           <li><a routerLink="/the-team" routerLinkActive="my-active">Η Ομάδα της Perla</a></li>
-          <li><a routerLinkActive="my-active">Επικοινωνία</a></li>
+          <li><a routerLink="/contact" routerLinkActive="my-active">Επικοινωνία</a></li>
 
         </ul>
     </div>
@@ -96,7 +96,7 @@
           <ul class="navbar-nav ms-auto">
 
               <li class="nav-item"><a routerLink="/home" routerLinkActive="active" class="nav-link">Αρχική</a></li>
-              <li class="nav-item"><a routerLink="/company" routerLinkActive="active" class="nav-link">Η Εταρία</a></li>
+              <li class="nav-item"><a routerLink="/company" routerLinkActive="active" class="nav-link">Η Εταιρία</a></li>
               <li class="nav-item"><a routerLink="/the-team" routerLinkActive="active" class="nav-link">Η Ομάδα της Perla</a></li>
               <li class="nav-item"><a routerLink="/contact" routerLinkActive="active" class="nav-link">Επικοινωνία</a></li>
 

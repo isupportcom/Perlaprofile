@@ -95,6 +95,7 @@ export class AuthService {
   }
 
   logout(){
+    
     this.user.next(null);
     // console.log("hello");
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
@@ -107,6 +108,8 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
+
+    
   }
 
   autoLogin(){

@@ -1,5 +1,5 @@
 import { singleProduct } from './../../AdminArea/adminareaproducts/adminareaproducts.component';
-import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, Input, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from "axios"
@@ -51,7 +51,10 @@ export class SingleProductComponent implements OnInit {
     }
   }
 
+
   ngOnInit(): void {
+    console.log("HELLO");
+    
     // console.log(this.index)
     this.innerWidth = window.innerWidth;
     if(this.innerWidth < 768 ){
@@ -63,23 +66,22 @@ export class SingleProductComponent implements OnInit {
 
 
 
-
-    setTimeout(() => {
+      console.log(this.index);
+      
       if(this.index.addedToFav){
         this.added = true;
       }
       else{
         this.added = false;
       }
-    },200)
+    
+    
 
-
-
-
-
-
+    
 
   }
+
+
 
 
   handleHover(){
@@ -125,6 +127,9 @@ export class SingleProductComponent implements OnInit {
 
     })
     console.log(this.index);
+    
+    this.index.addedToFav = this.added
+    
     localStorage.setItem("single",JSON.stringify(this.index));
 
 
@@ -141,28 +146,35 @@ export class SingleProductComponent implements OnInit {
 
   }
   handleAddToFavorite(product:any){
-    console.log(product);
+    if(this.added){
 
-    this.cartService.addToFavorites(product);
+      this.index.addedToFav = false;
+      
+      this.productAddedToFav = true;
+      setTimeout(() => {
+        this.added = false;
+      }, 350);
+      setTimeout(() => {
+        this.productAddedToFav = false;
+      },1000)
+      this.cartService.removeOneFav(product);
+    }
+    else{
+      console.log(product);
 
-    this.productAddedToFav = true;
-    setTimeout(() => {
-      this.added = true;
-    }, 350);
-    setTimeout(() => {
-      this.productAddedToFav = false;
-    },1000)
+      
+      this.productAddedToFav = true;
+      setTimeout(() => {
+        this.added = true;
+      }, 350);
+      setTimeout(() => {
+        this.productAddedToFav = false;
+      },1000)
+      this.cartService.sendProductAddedToFav(true);
+      this.cartService.addToFavorites(product);
+    }     
+    
 
-    // if(this.relatedProducts.length <= 0){
-    //   if(!this.altCartAnimation){
-    //     window.scroll({
-    //       top: 0,
-    //       left: 0,
-    //       behavior: 'smooth'
-    //     });
-    //   }
-    // }
-    this.cartService.sendProductAddedToFav(true);
   }
 
 

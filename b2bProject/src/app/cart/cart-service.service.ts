@@ -15,7 +15,7 @@ export class CartServiceService {
 
   id: any;
 
-
+  loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
 
   productAdded = new Subject<boolean>();
   cast = this.productAdded.asObservable();
@@ -92,6 +92,22 @@ export class CartServiceService {
 
   setId(id: any) {
     this.id = id;
+  }
+
+  removeOneFav(product:any){
+    console.log(product);
+    
+
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
+    {
+      mtrl:product.mtrl,
+      trdr:this.loadedUser.trdr,
+      mode:"deleteOne"
+    })
+    .then(resData=>{
+    })
+
+    
   }
 
   addToFavorites(product:product|any){

@@ -41,6 +41,7 @@ SwiperCore.use([
   styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit {
+  favorites: any;
   showDesc = [true,false,false,false];
   seeEarlier: any;
   howManySeen: any;
@@ -62,6 +63,7 @@ export class ProductPageComponent implements OnInit {
    suggestedProducts:product|any;
    hasSuggested:boolean =false;
    innerWidth:any;
+   qty: any;
 
    mode:string ="Περιγραφής"
    desciptionForm:FormGroup|any;
@@ -81,6 +83,8 @@ export class ProductPageComponent implements OnInit {
    waitingProduct: boolean = false;
 
    smallerLine?: boolean;
+   productAddedToFav: boolean = false;
+   added?: boolean;
 
    @HostListener('window:resize', ['$event'])
    onResize(event: any){
@@ -128,16 +132,17 @@ export class ProductPageComponent implements OnInit {
 
   constructor(
       private fb :FormBuilder,
-      private httpClient: HttpClient,
       private sanitizer:DomSanitizer,
       private authService :AuthService,
       private renderer: Renderer2,
       private el: ElementRef,
       private productsService : ProductsService,
-      private cartService : CartServiceService
+      private cartService : CartServiceService,
+      private http: HttpClient
   ) { }
 
   async ngOnInit() {
+
 
     this.productsService.mosquiProductFound.subscribe(resData => {
       this.waitingProduct = true;
@@ -146,6 +151,29 @@ export class ProductPageComponent implements OnInit {
         this.mosquiProduct = resData[0];
         console.log(this.mosquiProduct);
         
+        let favouritesObs: Observable<any>;
+
+        favouritesObs = this.getFavourites();
+    
+        favouritesObs.subscribe((resData => {
+          this.favorites = resData.products;
+        }))
+        setTimeout(() => {
+
+          for(let favorite of this.favorites){      
+            if(this.mosquiProduct.mtrl === favorite.mtrl){
+              console.log('HeHe');
+              this.added = true;
+              this.mosquiProduct.addedToFav = true;
+    
+            }
+          }
+            
+          if(!this.mosquiProduct.addedToFav){
+            this.added = false;
+            this.mosquiProduct.addedToFav = false;
+          }
+        },500)
         this.waitingProduct = false;
       },200) 
     });
@@ -198,29 +226,50 @@ export class ProductPageComponent implements OnInit {
     console.log(typeof(this.product.description));
 
 
-    let request = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllproductsRelated.php",{mtrl:this.product.mtrl})
-    console.log(request.data)
-    this.suggestedProducts = request.data.products;
-    if(this.suggestedProducts.length !=0){
-      this.hasSuggested = true;
-    }
 
-    let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
-    {
-      mtrl:this.product.mtrl
-    })
-    console.log(sugg.data.products);
-    this.suggested = sugg.data.products;
-    if(this.suggested.length ==0){
-        this.hasRelated=false;
-    }else{
-      this.hasRelated = true;
-    }
+    let favouritesObs: Observable<any>;
+
+    favouritesObs = this.getFavourites();
+
+    favouritesObs.subscribe((resData => {
+      this.favorites = resData.products;
+    }))
+
+    setTimeout(() => {
+      console.log(this.favorites);
+      if(this.product.category != 116){        
+        for(let favorite of this.favorites){      
+          if(this.product.mtrl === favorite.mtrl){
+            console.log('HeHe');
+            this.added = true;
+            this.product.addedToFav = true;
+  
+          }
+        }
+          
+        if(!this.product.addedToFav){
+          this.added = false;
+          this.product.addedToFav = false;
+        }
+      
+      } 
+    },200)
+
+    
+   
 
     this.getSeeEarlier();
 
     
 
+  }
+
+  getFavourites(){
+    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+      trdr: this.loadedUser.trdr,
+      mtrl:"dontNeedIt",
+      mode:"fetch"
+    })
   }
 
   handleFindNew(){
@@ -333,7 +382,9 @@ export class ProductPageComponent implements OnInit {
 
     })
     setTimeout(() => {
-
+      this.product.qty = this.qty;
+      console.log(this.product.qty);
+      
       if(this.relatedProducts.length <= 0){
         console.log("HEllo");
         if(!this.altCartAnimation){
@@ -363,8 +414,69 @@ export class ProductPageComponent implements OnInit {
 
   }
 
+  handleAddToFavorite(prod?: any){
+    if(prod){
+      if(this.added){
+
+        this.product.addedToFav = false;     
+        this.productAddedToFav = true;
+        setTimeout(() => {
+          this.added = false;
+        }, 350);
+        setTimeout(() => {
+          this.productAddedToFav = false;
+        },1000)
+        this.cartService.removeOneFav(this.mosquiProduct);
+      }
+      else{
+
+        
+        this.productAddedToFav = true;
+        setTimeout(() => {
+          this.added = true;
+        }, 350);
+        setTimeout(() => {
+          this.productAddedToFav = false;
+        },1000)
+        this.cartService.sendProductAddedToFav(true);
+        this.cartService.addToFavorites(this.mosquiProduct);
+      }
+    }
+    else{
+      if(this.added){
+
+        this.product.addedToFav = false;     
+        this.productAddedToFav = true;
+        setTimeout(() => {
+          this.added = false;
+        }, 350);
+        setTimeout(() => {
+          this.productAddedToFav = false;
+        },1000)
+        this.cartService.removeOneFav(this.product);
+      }
+      else{
+        console.log(this.product);
+
+        
+        this.productAddedToFav = true;
+        setTimeout(() => {
+          this.added = true;
+        }, 350);
+        setTimeout(() => {
+          this.productAddedToFav = false;
+        },1000)
+        this.cartService.sendProductAddedToFav(true);
+        this.cartService.addToFavorites(this.product);
+      }     
+    }
+
+  }
+
 
   stepper(myInput:any,btn: any){
+    
+    
       let id = btn.id;
       let min = myInput.getAttribute("min");
       let max = myInput.getAttribute("max");
@@ -372,7 +484,8 @@ export class ProductPageComponent implements OnInit {
       let val = myInput.getAttribute("value");
       let calcStep = (id == "increment") ? (step*1) : (step * -1);
       let newValue = parseInt(val) + calcStep;
-
+      this.qty = newValue;
+      
       if(newValue >= min && newValue <= max){
         myInput.setAttribute("value", newValue);
       }

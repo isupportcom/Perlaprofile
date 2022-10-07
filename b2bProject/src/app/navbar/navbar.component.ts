@@ -348,9 +348,9 @@ export class NavbarComponent implements OnInit{
     console.log(this.authService.user.getValue());
 
     localStorage.setItem("userType","notLoggin")
-    window.location.reload();
+    
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
-
+    this.router.navigate(['home']);
 
   }
   navigateTo(destination:string){
