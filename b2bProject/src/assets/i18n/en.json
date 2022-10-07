@@ -1,11 +1,44 @@
 {
-  "Sitetitle": "Angular Multi Language Site",
-  "Name": "Name",
-  "NameError": "I am sure you must have a name!",
-  "Email": "Email address",
-  "PhoneNo": "Phone No",
-  "Password": "Password",
-  "Bio": "Enter bio",
-  "TermsConditions": "I agree to terms and conditions.",
-  "Submit": "Submit"
+  "home": {
+    "first_P_before_br": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+    "second_p_after_br": "elit",
+    "title_before_br": "Lorem ipsum dolor sit amet, consectetur",
+    "title_after_br": "adipiscing elit",
+    "welcome": "Καλως Ηρθατε",
+    "learn_more_button": "Learn More",
+    "see_more_button": "See More",
+    "control_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
+    "motion_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
+    "mosqui_plus_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
+    "profile_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
+    "offer": "Best Offer"
+  },
+  "navbar": {
+    "homepage": "Homepage",
+    "products": "Products",
+    "company": "Our Company",
+    "team": "Perla's Team",
+    "contanct": "Contact Us",
+    "profile": "Profile",
+    "orders": "My Orders",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "login": "Login",
+    "add_to_cart_mess": "You Have Been Added  x"
+  },
+  "footer": {
+    "phone_numbers": "Phone Numbers",
+    "email": "Email",
+    "address": "Office Address",
+    "office": "3rd khm Giannitson - Thessalonikis",
+    "office_br": "58100,Giannitsa",
+    "company": "The Company",
+    "company_text": "Perla Profil sa designs and produces aluminum profiles according to the needs and designs of its customers while producing a complete line of automation for internal and external shading and also providing their accessories. Owns vertical production of anti-mosquito systems and aluminum rolls as well as designs and produces anodized railings of all types for all architectural needs.",
+    "contact": "Contact",
+    "see_also": "See Also",
+    "news": "News",
+    "follow_us": "Follow Us",
+    "lorem":"What Is Lorem",
+    "lorem_text":" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  }
 }

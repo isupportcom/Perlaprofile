@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Title} from '@angular/platform-browser'
+import { TranslateConfigService } from '../services/translate-config.service';
 import axios from 'axios';
 
 import { Observable } from 'rxjs';
@@ -63,6 +64,7 @@ export class NavbarComponent implements OnInit{
     private productsService: ProductsService,
     private renderer: Renderer2,
     private titleService:Title,
+    public translate:TranslateConfigService,
     private http: HttpClient) {
 
       this.titleService.setTitle($localize `${this.title}`);
@@ -77,6 +79,7 @@ export class NavbarComponent implements OnInit{
           this.showLang = false;
         }
       })
+
 
      }
 
@@ -259,8 +262,10 @@ export class NavbarComponent implements OnInit{
     console.log(this.choocenLang);
     if(this.choocenLang){
       this.id = 0
+      this.translate.changeLanguage('el')
     }else{
       this.id=1;
+      this.translate.changeLanguage('en')
     }
     console.log(this.id);
 
@@ -288,9 +293,12 @@ export class NavbarComponent implements OnInit{
   userOptions(){
     if(!this.showUserOptions){
       this.showUserOptions = true;
+      // this.translate.changeLanguage('el')
+
     }
     else{
       this.showUserOptions = false;
+      // this.translate.changeLanguage('en')
     }
 
   }

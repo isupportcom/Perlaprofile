@@ -57,9 +57,9 @@
               <p
                 *ngIf="productAdded2"
                 style="display: inline-block; margin-bottom: 0px"
-                i18n
+                translate
               >
-                &emsp;Έχετε Προϊόντα στο Καλάθι σας x{{ productCount }}
+             <i> &emsp;</i> navbar.add_to_cart_mess <i> {{ productCount }}</i>
               </p></a
             >
           </li>
@@ -89,24 +89,24 @@
                 "
               >
                 <li>
-                  <a class="dropdown-item my-dropdown-item" i18n>Προφιλ</a>
+                  <a class="dropdown-item my-dropdown-item" translate>navbar.profile</a>
                 </li>
                 <li>
-                  <a class="dropdown-item my-dropdown-item" i18n
-                    >Οι Παραγγελειες μου</a
+                  <a class="dropdown-item my-dropdown-item" translate
+                    >navbar.orders</a
                   >
                 </li>
                 <li (click)="handleDashboard()">
-                  <a *ngIf="isAdmin" class="dropdown-item my-dropdown-item" i18n
-                    >Πινακας Ελεγχου</a
+                  <a *ngIf="isAdmin" class="dropdown-item my-dropdown-item" translate
+                    >navbar.dashboard</a
                   >
                 </li>
                 <li>
                   <a
                     (click)="logout()"
                     class="dropdown-item my-dropdown-item"
-                    i18n
-                    >Αποσύνδεση</a
+                    translate
+                    >navbar.logout</a
                   >
                 </li>
               </ul>
@@ -159,8 +159,8 @@
                     class="dropdown-item"
                     routerLink="/home"
                     style="padding-left: 0px !important"
-                    i18n
-                    >Αρχική</a
+                    translate
+                    >navbar.homepage</a
                   >
                 </li>
                 <li style="margin-bottom: 8px">
@@ -171,9 +171,9 @@
                       (mouseleave)="handleMouseleave()"
                       (mouseenter)="handleHover()"
                       class="dropdown-toggle"
-                      i18n
+                      translate
                     >
-                      Προϊόντα
+                      navbar.products
                     </a>
                     <ul
                       (mouseenter)="handleHover()"
@@ -200,12 +200,12 @@
                     </ul>
                   </div>
                 </li>
-                <li style="margin-bottom: 8px"><a i18n>Η Εταιρία</a></li>
+                <li style="margin-bottom: 8px"><a translate>navbar.company</a></li>
 
                 <li style="margin-bottom: 8px">
-                  <a i18n>Η Ομάδα της Perla</a>
+                  <a translate>navbar.team</a>
                 </li>
-                <li style="margin-bottom: 8px"><a i18n>Επικοινωνία</a></li>
+                <li style="margin-bottom: 8px"><a translate>navbar.contanct</a></li>
               </ul>
             </div>
           </div>
@@ -218,12 +218,12 @@
       <div class="container">
         <ul>
           <li>
-            <a routerLink="/home" routerLinkActive="my-active" i18n>Αρχική</a>
+            <a routerLink="/home" routerLinkActive="my-active" translate>navbar.homepage</a>
           </li>
           <li>
             <div class="dropdown">
               <a
-                i18n
+                translate
                 routerLink="/products"
                 (click)="handleProducts()"
                 routerLinkActive="my-active"
@@ -231,7 +231,7 @@
                 (mouseenter)="handleHover()"
                 class="dropdown-toggle"
               >
-                Προϊόντα
+                navbar.products
               </a>
               <ul
                 (mouseenter)="handleHover()"
@@ -257,10 +257,10 @@
               </ul>
             </div>
           </li>
-          <li><a routerLinkActive="my-active" i18n>Η Εταιρία</a></li>
+          <li><a routerLinkActive="my-active" translate>navbar.company</a></li>
 
-          <li><a routerLinkActive="my-active" i18n>Η Ομάδα της Perla</a></li>
-          <li><a routerLinkActive="my-active" i18n>Επικοινωνία</a></li>
+          <li><a routerLinkActive="my-active" translate>navbar.team</a></li>
+          <li><a routerLinkActive="my-active" translate>navbar.contanct</a></li>
         </ul>
       </div>
     </div>
@@ -292,28 +292,28 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a routerLink="/home" routerLinkActive="active" class="nav-link"
-            >Αρχική</a
+            translate>navbar.homepage</a
           >
         </li>
         <li class="nav-item">
           <a routerLink="/company" routerLinkActive="active" class="nav-link"
-            >Η Εταρία</a
+            translate>navbar.company</a
           >
         </li>
         <li class="nav-item">
           <a routerLink="/team" routerLinkActive="active" class="nav-link"
-            >Η Ομάδα της Perla</a
+            translate>navbar.team</a
           >
         </li>
         <li class="nav-item">
           <a routerLink="/contact" routerLinkActive="active" class="nav-link"
-            >Επικοινωνία</a
+            translate>navbar.contanct</a
           >
         </li>
 
         <li class="nav-item">
           <a class="btn ms-md-2 myBtn" role="button" (click)="login()"
-            >Συνδέσου</a
+            translate>navbar.login</a
           >
         </li>
       </ul>

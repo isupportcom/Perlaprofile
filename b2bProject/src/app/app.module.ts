@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './log-in/log-in.component';
 import {  RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { AdminAreaComponent } from './AdminArea/admin-area/admin-area.component';
@@ -63,6 +63,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { SwiperModule } from 'swiper/angular';
 import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
+import { AppRoutingModule } from './app-routing.module';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -80,168 +83,15 @@ import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
     path: 'home',
     component: HomepageComponent
   },
-  {
-    path: 'log-in',
-    component: LogInComponent
-  },
 
-  {
-    path:'edit-products',
-    canActivate: [AuthGuard],
-    component:AdminareaproductsComponent
-  },
-  {
-    path:'users',
-    canActivate: [AuthGuard],
-    component:AdminareausersComponent
-  },
-  {
-    path:'products',
-    component:PorductsComponent,
-    children: [
-      {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
-      {path: 'product-page', component: ProductPageComponent},
-      {path: 'mosqui/:sub_id/:sub_name',component:MosquiWizzardComponent}
-    ]
-  },
-  {
-    path:'dashboard',
-    canActivate:[AdminGuard],
-    component:AdminAreaComponent,
-    children:[
-
-
-      {
-        path: 'insert-products',
-        component: InsertProductsComponent
-      }
-
-    ]
-  },
-
-  {
-    path: 'cart',
-    canActivate: [AuthGuard],
-    component: CartComponent
-  },
-  {
-    path:'favorites',
-    component:FavoriteComponent,
-    canActivate:[AuthGuard]
-  },
-
-  {
-    path: 'checkout',
-
-    component: CheckoutPageComponent
-  },
-  {
-    path: 'profile',
-    canActivate: [AuthGuard],
-    component: ProfileComponent
-  },
-  {
-    path: 'my-orders',
-    canActivate: [AuthGuard],
-    component: MyOrdersComponent
-  },
-
-
-//   {
-//     path:'contact',
-//     component:ContatcFormComponent
-//   }
-// { path: '', redirectTo: 'en', pathMatch: 'full' },
-
-//   {
-//     path: ':lang', component: HomepageComponent,
-
-
-//     children: [
-
-//       {path}
-
-//   {
-//         path: 'home',
-//         component: HomepageComponent
-//       },
-//       {
-//         path: 'log-in',
-//         component: LogInComponent
-//       },
-
-//       {
-//         path:'edit-products',
-//         canActivate: [AuthGuard],
-//         component:AdminareaproductsComponent
-//       },
-//       {
-//         path:'users',
-//         canActivate: [AuthGuard],
-//         component:AdminareausersComponent
-//       },
-//       {
-//         path:'products',
-//         component:PorductsComponent,
-//         children: [
-//           {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
-//           {path: 'product-page', component: ProductPageComponent},
-//           {path: 'mosqui/:sub_id/:sub_name',component:MosquiWizzardComponent}
-//         ]
-//       },
-//       {
-//         path:':lang/dashboard',
-//         canActivate:[AdminGuard],
-//         component:AdminAreaComponent,
-//         children:[
-
-
-//           {
-//             path: 'insert-products',
-//             component: InsertProductsComponent
-//           }
-
-//         ]
-//       },
-
-//       {
-//         path: 'cart',
-//         canActivate: [AuthGuard],
-//         component: CartComponent
-//       },
-//       {
-//         path:'favorites',
-//         component:FavoriteComponent,
-//         canActivate:[AuthGuard]
-//       },
-
-//       {
-//         path: 'checkout',
-
-//         component: CheckoutPageComponent
-//       },
-//       {
-//         path: 'profile',
-//         canActivate: [AuthGuard],
-//         component: ProfileComponent
-//       },
-//       {
-//         path: 'my-orders',
-//         canActivate: [AuthGuard],
-//         component: MyOrdersComponent
-//       },
-
-
-//       {
-//         path:'contact',
-//         component:ContatcFormComponent
-//       },
-
-//     ]}
 
 ]
 
+export function rootLoaderactory(http:any){
+  console.log(new TranslateHttpLoader(http,'assets/i18n.','.json'));
 
+  return new TranslateHttpLoader(http,'assets/i18n/','.json')
+}
 
 @NgModule({
   declarations: [
@@ -270,7 +120,7 @@ import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
     AllimagesComponent,
     HomepageComponent,
     AddImagePopupComponent,
-    FooterComponent,
+     FooterComponent,
     SearchbarComponent,
     OffersComponent,
     ProfileComponent,
@@ -293,7 +143,7 @@ import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+     RouterModule,
     FormsModule,
     CommonModule,
     HttpClientModule,
@@ -302,6 +152,14 @@ import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
     BrowserAnimationsModule,
     CarouselModule,
     SwiperModule,
+    AppRoutingModule,
+    TranslateModule.forRoot({
+      loader:{
+        provide:TranslateLoader,
+        useFactory:rootLoaderactory,
+        deps:[HttpClient]
+      }
+    })
 
 
 
