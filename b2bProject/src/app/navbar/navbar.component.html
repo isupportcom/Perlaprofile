@@ -59,7 +59,8 @@
                 style="display: inline-block; margin-bottom: 0px"
                 translate
               >
-             <i> &emsp;</i> navbar.add_to_cart_mess <i> {{ productCount }}</i>
+                <i> &emsp;</i> navbar.add_to_cart_mess
+                <i> {{ productCount }}</i>
               </p></a
             >
           </li>
@@ -89,7 +90,9 @@
                 "
               >
                 <li>
-                  <a class="dropdown-item my-dropdown-item" translate>navbar.profile</a>
+                  <a class="dropdown-item my-dropdown-item" translate
+                    >navbar.profile</a
+                  >
                 </li>
                 <li>
                   <a class="dropdown-item my-dropdown-item" translate
@@ -97,7 +100,10 @@
                   >
                 </li>
                 <li (click)="handleDashboard()">
-                  <a *ngIf="isAdmin" class="dropdown-item my-dropdown-item" translate
+                  <a
+                    *ngIf="isAdmin"
+                    class="dropdown-item my-dropdown-item"
+                    translate
                     >navbar.dashboard</a
                   >
                 </li>
@@ -143,7 +149,7 @@
           </li>
         </ul>
         <hr style="border-color: #6dae49" />
-        <div *ngIf="!showSecondNav" class="wrapper">
+        <!-- <div *ngIf="!showSecondNav" class="wrapper">
           <div
             class="bottom_nav"
             style="
@@ -154,6 +160,7 @@
           >
             <div class="container">
               <ul class="myMenu2">
+
                 <li style="margin-bottom: 8px">
                   <a
                     class="dropdown-item"
@@ -171,6 +178,86 @@
                       (mouseleave)="handleMouseleave()"
                       (mouseenter)="handleHover()"
                       class="dropdown-toggle"
+                      translate
+                    >
+                      navbar.products
+                 </a>
+                <li style="margin-bottom: 8px;"><a class="dropdown-item" routerLink="/home" routerLinkActive="active" style="padding-left: 0px !important;">navbar.homepage</a></li>
+                <li style="margin-bottom: 8px;">
+                  <div class="dropdown">
+                    <a routerLink="/products" routerLinkActive="active" (click)="handleProducts()" (mouseleave)="handleMouseleave()" (mouseenter)="handleHover()" class="dropdown-toggle dropdown-item" style="padding-left: 0px !important;">
+                      navbar.products
+
+                    </a>
+                    <ul
+                      (mouseenter)="handleHover()"
+                      (mouseleave)="handleMouseleave()"
+                      [ngClass]="
+                        hoverProducts
+                          ? 'dropdown-menu myMenu2'
+                          : 'dropdown-menu myMenu'
+                      "
+                    >
+                      <li
+                        [routerLink]="
+                          '/products/' +
+                          mainCategory.id +
+                          '/' +
+                          mainCategory.name
+                        "
+                        (click)="handleCategoryClick()"
+                        style="margin-right: 0px"
+                        *ngFor="let mainCategory of mainCategories"
+                      >
+                        <a class="dropdown-item">{{ mainCategory.name }}</a>
+                      </li>
+                                        </ul>
+                  </div>
+                </li>
+
+                <li style="margin-bottom: 8px;"><a routerLink="/company" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">navbar.company</a></li>
+                <li style="margin-bottom: 8px;"><a routerLink="/the-team" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">navbar.team</a></li>
+                <li style="margin-bottom: 8px;"><a routerLink="/contact" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">navbar.contanct</a></li>
+
+
+                <li style="margin-bottom: 8px">
+                  <a translate>navbar.team</a>
+                </li>
+                <li style="margin-bottom: 8px"><a translate>navbar.contanct</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        <div *ngIf="!showSecondNav" class="wrapper">
+          <div
+            class="bottom_nav"
+            style="
+              border-bottom: 2px solid #6dae49;
+              background-color: white !important;
+              height: 100%;
+            "
+          >
+            <div class="container">
+              <ul class="myMenu2">
+                <li style="margin-bottom: 8px">
+                  <a
+                    class="dropdown-item"
+                    routerLink="/home"
+                    routerLinkActive="active"
+                    style="padding-left: 0px !important" translate
+                    >navbar.homepage</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
+                  <div class="dropdown">
+                    <a
+                      routerLink="/products"
+                      routerLinkActive="active"
+                      (click)="handleProducts()"
+                      (mouseleave)="handleMouseleave()"
+                      (mouseenter)="handleHover()"
+                      class="dropdown-toggle dropdown-item"
+                      style="padding-left: 0px !important"
                       translate
                     >
                       navbar.products
@@ -200,12 +287,33 @@
                     </ul>
                   </div>
                 </li>
-                <li style="margin-bottom: 8px"><a translate>navbar.company</a></li>
-
                 <li style="margin-bottom: 8px">
-                  <a translate>navbar.team</a>
+                  <a
+                    routerLink="/company"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.company</a
+                  >
                 </li>
-                <li style="margin-bottom: 8px"><a translate>navbar.contanct</a></li>
+                <li style="margin-bottom: 8px">
+                  <a
+                    routerLink="/the-team"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.team</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
+                  <a
+                    routerLink="/contact"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.contanct</a
+                  >
+                </li>
               </ul>
             </div>
           </div>
@@ -218,7 +326,9 @@
       <div class="container">
         <ul>
           <li>
-            <a routerLink="/home" routerLinkActive="my-active" translate>navbar.homepage</a>
+            <a routerLink="/home" routerLinkActive="my-active" translate
+              >navbar.homepage</a
+            >
           </li>
           <li>
             <div class="dropdown">
@@ -230,6 +340,7 @@
                 (mouseleave)="handleMouseleave()"
                 (mouseenter)="handleHover()"
                 class="dropdown-toggle"
+                translate
               >
                 navbar.products
               </a>
@@ -257,10 +368,22 @@
               </ul>
             </div>
           </li>
-          <li><a routerLinkActive="my-active" translate>navbar.company</a></li>
 
-          <li><a routerLinkActive="my-active" translate>navbar.team</a></li>
-          <li><a routerLinkActive="my-active" translate>navbar.contanct</a></li>
+          <li>
+            <a routerLink="/company" routerLinkActive="my-active" translate
+              >navbar.company</a
+            >
+          </li>
+          <li>
+            <a routerLink="/the-team" routerLinkActive="my-active" translate
+              >navbar.team</a
+            >
+          </li>
+          <li>
+            <a routerLink="/contact" routerLinkActive="my-active" translate
+              >navbar.contanct</a
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -279,6 +402,7 @@
         src="https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/PerlaProfilLogo-dark 1.svg"
       />
     </a>
+
     <button
       data-bs-toggle="collapse"
       class="navbar-toggler"
@@ -291,29 +415,29 @@
     <div class="collapse navbar-collapse" id="navcol-2">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a routerLink="/home" routerLinkActive="active" class="nav-link"
-            translate>navbar.homepage</a
+          <a routerLink="/home" routerLinkActive="active" class="nav-link" translate
+            >navbar.homepage</a
           >
         </li>
         <li class="nav-item">
-          <a routerLink="/company" routerLinkActive="active" class="nav-link"
-            translate>navbar.company</a
+          <a routerLink="/company" routerLinkActive="active" class="nav-link" translate
+            >navbar.company</a
           >
         </li>
         <li class="nav-item">
-          <a routerLink="/team" routerLinkActive="active" class="nav-link"
-            translate>navbar.team</a
+          <a routerLink="/the-team" routerLinkActive="active" class="nav-link" translate
+            >navbar.team</a
           >
         </li>
         <li class="nav-item">
-          <a routerLink="/contact" routerLinkActive="active" class="nav-link"
-            translate>navbar.contanct</a
+          <a routerLink="/contact" routerLinkActive="active" class="nav-link" translate
+            >navbar.contanct</a
           >
         </li>
 
         <li class="nav-item">
-          <a class="btn ms-md-2 myBtn" role="button" (click)="login()"
-            translate>navbar.login</a
+          <a class="btn ms-md-2 myBtn" role="button" (click)="login()" translate
+            >navbar.login</a
           >
         </li>
       </ul>

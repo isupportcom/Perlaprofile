@@ -262,11 +262,13 @@ export class NavbarComponent implements OnInit{
     console.log(this.choocenLang);
     if(this.choocenLang){
       this.id = 0
+
       this.translate.changeLanguage('el')
     }else{
       this.id=1;
       this.translate.changeLanguage('en')
     }
+
     console.log(this.id);
 
 
@@ -394,9 +396,9 @@ export class NavbarComponent implements OnInit{
     console.log(this.authService.user.getValue());
 
     localStorage.setItem("userType","notLoggin")
-    window.location.reload();
-    console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
+    console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
+    this.router.navigate(['home']);
 
   }
   navigateTo(destination:string){

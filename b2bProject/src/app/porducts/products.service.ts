@@ -24,15 +24,17 @@ export  class ProductsService {
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
 
+  mosquiProductFound = new Subject<any>();
+  castMosquiProductFound = this.mosquiProductFound.asObservable();
 
-
+  sendMosquiProductFound(product: any){
+    this.mosquiProductFound.next(product);
+  }
 
  setSingleProduct(prod:product | any){
-
-     this.singleProduct = prod;
-     localStorage.setItem("single",JSON.stringify(this.singleProduct))
-     console.log(prod);
-
+    this.singleProduct = prod;
+    localStorage.setItem("single",JSON.stringify(this.singleProduct))
+    console.log(prod);
  }
 
 

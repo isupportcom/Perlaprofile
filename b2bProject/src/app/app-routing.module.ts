@@ -18,6 +18,8 @@ import { ProfileComponent } from "./profile/profile.component";
 import { AdminGuard } from "./services/admin.guard";
 import { AuthGuard } from "./services/auth.guard";
 import { ContatcFormComponent } from "./shared/contatc-form/contatc-form.component";
+import { TeamComponent } from "./team/team.component";
+import { TheCompanyComponent } from "./the-company/the-company.component";
 
 const routes :Routes =[
   {
@@ -97,7 +99,20 @@ const routes :Routes =[
   {
     path:'contact',
     component:ContatcFormComponent
+  },
+  {
+    path:'contact',
+    component:ContatcFormComponent
+  },
+  {
+    path: 'company',
+    component: TheCompanyComponent
+  },
+  {
+    path: 'the-team',
+    component: TeamComponent
   }
+
 ];
 @NgModule({
   imports:[RouterModule.forRoot(routes)],

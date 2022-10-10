@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -61,11 +61,19 @@ import { PrevDirective } from './prev.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
-import { SwiperModule } from 'swiper/angular';
-import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
+
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TheCompanyComponent } from './the-company/the-company.component';
+import { TeamComponent } from './team/team.component';
+
+import { SwiperModule } from 'swiper/angular';
+import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
+
+
 
 
 
@@ -83,6 +91,88 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
     path: 'home',
     component: HomepageComponent
   },
+
+  {
+    path: 'log-in',
+    component: LogInComponent
+  },
+
+  {
+    path:'edit-products',
+    canActivate: [AuthGuard],
+    component:AdminareaproductsComponent
+  },
+  {
+    path:'users',
+    canActivate: [AuthGuard],
+    component:AdminareausersComponent
+  },
+  {
+    path:'products',
+    component:PorductsComponent,
+    children: [
+      {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
+      {path: 'product-page', component: ProductPageComponent},
+      {path: 'mosqui/:sub_id/:sub_name',component:MosquiWizzardComponent}
+    ]
+  },
+  {
+    path:'dashboard',
+    canActivate:[AdminGuard],
+    component:AdminAreaComponent,
+    children:[
+
+
+      {
+        path: 'insert-products',
+        component: InsertProductsComponent
+      }
+
+    ]
+  },
+
+  {
+    path: 'cart',
+    canActivate: [AuthGuard],
+    component: CartComponent
+  },
+  {
+    path:'favorites',
+    component:FavoriteComponent,
+    canActivate:[AuthGuard]
+  },
+
+  {
+    path: 'checkout',
+
+    component: CheckoutPageComponent
+  },
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    component: ProfileComponent
+  },
+  {
+    path: 'my-orders',
+    canActivate: [AuthGuard],
+    component: MyOrdersComponent
+  },
+
+
+  {
+    path:'contact',
+    component:ContatcFormComponent
+  },
+  {
+    path: 'company',
+    component: TheCompanyComponent
+  },
+  {
+    path: 'the-team',
+    component: TeamComponent
+  }
+
+
 
 
 ]
@@ -139,6 +229,9 @@ export function rootLoaderactory(http:any){
     PrevDirective,
     SafePipePipe,
 
+    TheCompanyComponent,
+    TeamComponent
+
 
   ],
   imports: [
@@ -151,6 +244,7 @@ export function rootLoaderactory(http:any){
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CarouselModule,
+
     SwiperModule,
     AppRoutingModule,
     TranslateModule.forRoot({
@@ -159,11 +253,14 @@ export function rootLoaderactory(http:any){
         useFactory:rootLoaderactory,
         deps:[HttpClient]
       }
-    })
+    }),
 
 
 
 
+
+
+    SwiperModule
 
   ],
   exports: [

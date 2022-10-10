@@ -125,7 +125,7 @@
               required
             >
               <option [ngValue]="null" [disabled]="true">
-                Eπιλεξτε Προφιλ
+                Eπιλεξτε Χρώμα
               </option>
               <option [ngValue]="extra.id" *ngFor="let extra of extraInputArray">
                 {{ extra.name }}
@@ -135,18 +135,11 @@
           </div>
 
           <div class="row">
-            <button type="button" [disabled]="!dimentions.valid" (click)="clear()" class="btn btn-success">
+            <button type="button" [disabled]="!dimentions.valid" (click)="findProduct()" class="btn btn-success">
               Εμφάνιση Προϊόντος
             </button>
           </div>
         </form>
-
-        <p *ngIf="flag">${{ product[0].wholesale }}</p>
-        <div
-          class="col-lg-4 col-md-3 col-sm-10 col-12"
-          *ngIf="shouldContinue == true"
-          style="margin-top: 10%"
-        ></div>
 
     </div>
 

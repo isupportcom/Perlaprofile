@@ -10,22 +10,22 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <p><br><span style="background-color: rgba(255, 255, 255, 0.8);">Στην Perla Profil σχεδιάζουμε και παράγουμε σύγχρονα συστήματα ασύρματου ελέγχου συσκευών για:</span><br></p>
+                    <p><br><span style="background-color: rgba(255, 255, 255, 0.8);"translate>products.quote</span><br></p>
                     <ul>
-                        <li>Σωληνωτά μοτέρ<br></li>
-                        <li>Προβαλόμενα μοτέρ<br></li>
-                        <li>Μοτέρ πέργκολας<br></li>
-                        <li>Μοτέρ αυλόπορτας.<br></li>
+                        <li translate>products.solinota<br></li>
+                        <li translate>products.probalmena<br></li>
+                        <li translate>products.pergkolas<br></li>
+                        <li translate>products.auloportas.<br></li>
                     </ul>
-                    <p><span style="background-color: rgba(255, 255, 255, 0.8);">Παρουσιάζουμε διάφορες σειρές ασύρματων πομπών δίνοντας την δυνατότητα να καλύψουμε κάθε ανάγκη του τελικού καταναλωτή.&nbsp;Τα ασύρματα τηλεκοντρόλ χωρίζονται σε:</span><br></p>
+                    <p><span style="background-color: rgba(255, 255, 255, 0.8);" translate>products.quote2<i>&nbsp;</i>products.quote2_1</span><br></p>
                     <ul>
-                        <li>Μονοκάναλα τηλεκοντρόλ<br></li>
-                        <li>Πολυκάναλα τηλεκοντρόλ<br></li>
-                        <li>Επιτοίχια τηλεκοντρόλ<br></li>
-                        <li>Ασύρματα τηλεκοντρόλ<br></li>
-                        <li>Τηλεκοντρόλ χειρός.<br></li>
+                        <li translate>products.monokanala<br></li>
+                        <li translate>products.polykanala<br></li>
+                        <li translate>products.epitoixia<br></li>
+                        <li translate>products.asurmata<br></li>
+                        <li translate>products.xeiros<br></li>
                     </ul>
-                    <p><span style="background-color: rgba(255, 255, 255, 0.8);">Επίσης δημιουργήσαμε τηλεκοντρόλ με χρονοδιακόπτη για εύκολη και γρήγορη προσαρμογή κλεισίματος και ανοίγματος της συσκευής μας προγραμματισμένα.</span><br></p>
+                    <p><span style="background-color: rgba(255, 255, 255, 0.8);" translate>products.quote3</span><br></p>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
             </ul>
         </div> -->
 
-        <div class="row" *ngIf="mainCategory.id !=116">
+        <div class="row">
             <div *ngIf="showBigFilters" class="col col-3 categories">
               <div>
                 <div
@@ -75,7 +75,7 @@
                       #arrow
                     />
                   </button>
-                  <div *ngIf="showList && mainCategory.id !=116">
+                  <div *ngIf="showList">
                     <button
                       *ngFor="let logo of logoList"
                       (click)="handleChangeCategory(logo.id, logo.name)"
@@ -85,7 +85,8 @@
                     </button>
                   </div>
                 </div>
-                <div *ngIf="mainCategory.id !=116"
+                <div
+                  *ngIf="mainCategory.id !=116"
                   style="
                     padding-top: 5%;
                     text-align: center;
@@ -102,7 +103,9 @@
                 </div>
 
                 <div>
-                  <ul style="margin-top: -17px; padding-top: 15%; list-style: none" *ngIf="mainCategory.id!=116">
+
+                  <ul *ngIf="mainCategory.id != 116" style="margin-top: -17px; padding-top: 15%; list-style: none">
+
                     <li *ngFor="let subcategory of categories" style="margin-bottom: 8%">
 
                       <div class="row">
@@ -120,14 +123,14 @@
                           </label>
                         </div>
                         <div class="col-10 col-md-10 col-sm-3" style="padding-left: 0">
-                          <p class="smallerFont" style="margin-bottom: 0">
+                          <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;">
                             {{ subcategory.name }}
                           </p>
                         </div>
                       </div>
                     </li>
                   </ul>
-                  <hr />
+                  <hr *ngIf="mainCategory.id != 116" />
                   <button
                     *ngIf="filterOn"
                     class="btn btn-danger clearFilters"
@@ -140,7 +143,7 @@
             </div>
 
 
-        <div class="col col-lg-9 col-md-12 col-sm-12" *ngIf="mainCategory.id!=116">
+        <div class="col col-lg-9 col-md-12 col-sm-12">
             <div [ngClass]="showFilters? 'row straighten' : 'row circly'" style="background-color: white;border-radius: 8px;padding: 10px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);margin-left: 4px;transition: all 0.1s ease-in-out;">
                 <div
                 class="col-lg-3 col-md-4 col-sm-8 col-6"
@@ -287,7 +290,7 @@
               </div>
 
               <img style="width: 100%;margin-bottom: 12px;" src="../../../assets/Line%208.svg">
-              <ul style="list-style: none;padding-left: 0px;">
+              <ul *ngIf="mainCategory.id != 116" style="list-style: none;padding-left: 0px;">
                 <li *ngFor="let subcategory of categories">
                   <div class="row">
                     <div class="col-1 col-md-1 col-sm-1" style="display: flex;justify-content: center;align-items: center;vertical-align: middle;">
@@ -303,7 +306,7 @@
                       </label>
                     </div>
                     <div class="col-10 col-md-10 col-sm-10" style="padding-left: 0">
-                      <p class="smallerFont" style="margin-bottom: 0">
+                      <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;">
                         {{ subcategory.name }}
                       </p>
                     </div>
@@ -324,8 +327,7 @@
                 <app-spinner></app-spinner>
             </div>
 
-            <div class="row" style="display: flex;justify-content: center;align-items: center;" *ngIf="!waiting && mainCategory.id!=116">
-
+            <div class="row" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id != 116">
 
                 <app-single-product
                 class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products"
@@ -345,71 +347,43 @@
                   <h1 *ngIf="shownProducts.length === 0">No Products Available!</h1>
                 </div>
             </div>
-            <div>
-                <pagination-controls
-                *ngIf="!noProducts"
-                style="display: flex;justify-content: center;align-items: center;"
-                class="text-center my-pagination goLeft"
-                (pageChange)="handlePageChange($event)"
-                #paginate
-                ></pagination-controls>
+            <div class="row" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id == 116">
+              <div
+              style="padding: 16px;padding-top: 0px;padding-bottom: 8px;"
+              *ngFor="let sub of categories
+              | paginate
+              : {
+                  itemsPerPage: itemsPP,
+                  currentPage: page,
+                  totalItems: shownProducts.length
+                  };"
+              class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products"
+            >
+            <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
+              <div class="col col-6" style="padding: 0px;cursor: pointer;"><img (click)="handleWizzard(sub.name,sub.sub_id)" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
+              <div class="col col-6" style="padding: 12px;">
+                  <p class="itemTitle" style="cursor: pointer;" (click)="handleWizzard(sub.name,sub.sub_id)"><strong>{{ sub.name }}</strong><br></p>
+                  <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
+
+                  <button (click)="handleWizzard(sub.name,sub.sub_id)" class="btn btn-primary seeMoreBtn" type="button">Δες Περισσότερα</button>
             </div>
-
-        </div>
-    </div>
-</div>
-<div class="container cardHolder" *ngIf="mainCategory.id == 116">
-  <div class="row" >
-    <div
-      *ngFor="let sub of categories"
-      class="col col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 myCards"
-      style="padding: 12px;"
-    >
-      <div
-
-        class="card"
-        style="
-              border: none;
-              box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);
-              border-radius: 9px;
-            "
-      >
-        <div class="card-header" style="padding: 0">
-          <img
-            class="headerImg"
-            src="../../assets/Frame%20106%20(2).png"
-            style="
-                  border-top-right-radius: 9px;
-                  border-top-left-radius: 9px;
-                "
-          />
-        </div>
-        <div class="card-body">
-          <h5>{{sub.name}}</h5>
-          <hr />
-          <p class="card-text">
-            Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-            justo odio, dapibus ac facilisis in, egestas eget quam.
-            Donec id elit non mi porta gravida at eget metus.
-          </p>
-          <div class="row">
-            <div class="col col-6" style="width:100%">
-              <button
-                class="myBtn"
-                (click)="handleWizzard(sub.name,sub.sub_id)"
-
-              >
-                Δείτε Περισσότερα
-              </button>
-
-            </div>
+          </div>
+          </div>
+          <div>
 
           </div>
         </div>
-      </div>
+        <pagination-controls
+        *ngIf="!noProducts"
+        style="display: flex;justify-content: center;align-items: center;margin-top: 8px;"
+        class="text-center my-pagination goLeft"
+        (pageChange)="handlePageChange($event)"
+        #paginate
+        ></pagination-controls>
     </div>
-    </div>
-    </div>
+</div>
+
+
 
 
     <div  class="container"  style="margin-top: 120px;">
@@ -418,12 +392,56 @@
         <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 20%;" src="../../../assets/Line%208.svg"></div>
       </div>
 
-    <app-products-carousel  *ngIf="loggedIn"></app-products-carousel>
+    <app-products-carousel  *ngIf="loggedIn" [mode]="'suggested'"></app-products-carousel>
 
 
 
 
 
+
+
+    <!-- <div
+
+    class="card"
+    style="
+          border: none;
+          box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);
+          border-radius: 9px;
+        "
+  >
+    <div class="card-header" style="padding: 0">
+      <img
+        class="headerImg"
+        src="../../assets/Frame%20106%20(2).png"
+        style="
+              border-top-right-radius: 9px;
+              border-top-left-radius: 9px;
+            "
+      />
+    </div>
+    <div class="card-body">
+      <h5>{{sub.name}}</h5>
+      <hr />
+      <p class="card-text">
+        Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+        justo odio, dapibus ac facilisis in, egestas eget quam.
+        Donec id elit non mi porta gravida at eget metus.
+      </p>
+      <div class="row">
+        <div class="col col-6" style="width:100%">
+          <button
+            class="myBtn"
+            (click)="handleWizzard(sub.name,sub.sub_id)"
+
+          >
+            Δείτε Περισσότερα
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </div> -->
 
 
 
@@ -581,10 +599,10 @@
 
       <div>
 <<<<<<< HEAD
-        <!-- <ul style="margin-top: -17px; padding-top: 15%; list-style: none" *ngIf="mainCategory.id!=116">
+        <ul style="margin-top: -17px; padding-top: 15%; list-style: none" *ngIf="mainCategory.id!=116">
 =======
         <ul style="margin-top: -17px; padding-top: 15%; list-style: none">
->>>>>>> 1c1bdf067d40d3678e1233916ae570a0f3fe70b3
+
           <li *ngFor="let subcategory of categories" style="margin-bottom: 8%">
 
             <div class="row">
@@ -627,7 +645,7 @@
   </div>
 
   <div class="col-lg-9 col-md-9 col-sm-12 col-12">
->>>>>>> 1c1bdf067d40d3678e1233916ae570a0f3fe70b3
+
     <div
       *ngIf="fits && mainCategory.id != 116"
       class="row"

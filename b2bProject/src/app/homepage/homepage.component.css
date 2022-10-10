@@ -7,6 +7,22 @@
   
 }
 
+.card{
+  margin-bottom: 24px;
+}
+
+.cardCol{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 576px){
+  .card{
+    width: 200px;
+  }
+}
+
 
 @media (max-width: 279px) {
     .cardHolder {
@@ -52,6 +68,28 @@
 }
 
   
+}
+
+.card-text{
+  height: 70px;
+}
+
+@media (max-width: 768px){
+  .card-text{
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px){
+  .card-text{
+    height: 110px;
+  }
+}
+
+@media (max-width: 576px){
+  .card-text{
+    height: 110px;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -120,7 +158,7 @@
 
 @media (max-width: 575px) {
   .categoriesLink {
-    font-size: 8px;
+    /* font-size: 10px; */
   }
 }
 

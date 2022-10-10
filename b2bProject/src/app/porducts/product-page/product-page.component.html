@@ -56,7 +56,7 @@
         <div class="row first-row">
           <h2>{{product.product_name}}</h2>
         </div>
-        <div class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
+        <div *ngIf="username" class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
           <p *ngIf="!product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
           <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
           <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.offer }}&euro;</b></p>
@@ -75,12 +75,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-8">
-              <button class="btn btn-success" (click)="addToCart()" style="width: 100%;box-shadow: 0 20px 30px rgba(0,0,0,0.05);">Προσθήκη</button>
-            </div>
-            <div class="col-4">
-              <img src="../../../assets/heart-alt-green.svg" width="44px" alt="">
-            </div>
+            
+
+              <button class="btn btn-success col-6" (click)="addToCart()">Προσθήκη</button>
+              <button  class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;cursor: auto;">
+                <img (click)="handleAddToFavorite()" [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'" style="cursor: pointer;"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="" width="44px" alt="">
+              </button>
+            
+            
           </div>
         </div>
         <div class="row">
@@ -93,6 +95,8 @@
         </div>
       </div>
 
+      
+
       <div *ngIf="product.category === 116" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section">
         <div class="row">
           <h2>{{ product.name }}</h2>
@@ -100,13 +104,61 @@
         <div class="row">
           <img src="../../../assets/Line 8.svg" width="100%" style="margin-top: 24px;margin-bottom: 12px" alt="" srcset="">
         </div>
-        <div class="row">
-          <app-mosqui-wizzard></app-mosqui-wizzard>
+        <div *ngIf="product.category === 116 && showForm && !waitingProduct && username" class="row">
+          <app-mosqui-wizzard [name]="product.name" [sub_id]="product.id"></app-mosqui-wizzard>
+        </div>
+        <div *ngIf="waitingProduct" class="row" >
+          <app-spinner style="display: flex;justify-content:center;align-items: center;"></app-spinner>
+        </div>
+        <div *ngIf="product.category === 116 && !showForm && !waitingProduct && mosquiProduct === undefined" class="row" style="display: flex;justify-content:center;align-items: center;text-align: center;">
+          <h2>Δεν βρέθηκε κάποιο προϊόν</h2>
+          <button class="btn btn-success" (click)="handleFindNew()">Βρες καινούριο προϊόν</button>
+        </div>
+        <div *ngIf="product.category === 116 && !showForm && !waitingProduct && mosquiProduct != undefined" class="row">
+            <div class="row first-row" style="margin-top: 32px;margin-bottom: 24px;">
+              <p *ngIf="!mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ mosquiProduct.wholesale }}&euro;</b></p>
+              <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+              <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ mosquiProduct.offer }}&euro;</b></p>
+        
+              <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
+              <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
+                <div class="col-4" style="display: flex;align-items:center;">
+                  <p style="font-size: 20px;margin: 0px;">Ποσότητα:</p>
+                </div>
+                <div  class="col-8" style="display: flex;justify-content:center;align-items: center;">
+                  <div class="numberInput">
+                    <button id="decrement" (click)="stepper(input2,decrement)" #decrement> - </button>
+                    <input type="number" min="0" [max]="mosquiProduct.stock" step="1" value="1" id="my-input" readonly #input2>
+                    <button id="increment" (click)="stepper(input2,increment)" #increment> + </button>
+                </div>
+                </div>
+              </div>
+              <div class="row">
+                
+                  <button class="btn btn-success col-6" (click)="addToCartMosqui()">Προσθήκη</button>
+                
+                
+                  <button (click)="handleAddToFavorite(mosquiProduct)" class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
+                    <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
+                  </button>
+                
+              </div>
+            </div>
+            <div class="row">
+              <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
+              <div style="margin-top: 18px;">
+                <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: {{mosquiProduct.code}}</p>
+                <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{mosquiProduct.texnikos_kodikos}}</p>
+                <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{mosquiProduct.kodikos_kataskeuasti}}</p>
+              </div>
+              <button class="btn btn-success" (click)="handleFindNew()" style="margin-top: 24px;">Βρες καινούριο προϊόν</button>
+            </div>   
         </div>
       </div>
-
-
   </div>
+
+
+
 
   <div class="row" style="background-color: white;border-radius: 16px;margin-top: 120px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
     <div class="row" style="padding: 0px;">
@@ -160,7 +212,7 @@
       <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1>Σχετικά Προϊόντα</h1></div>
       <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 30%;" src="../../../assets/Line%208.svg"></div>
     </div>
-    <app-products-carousel></app-products-carousel>
+    <app-products-carousel [mode]="'offers'" [mtrl]="product.mtrl"></app-products-carousel>
   </div>
 
 <div  class="container" *ngIf="loggedIn" style="margin-top: 120px;">

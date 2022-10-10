@@ -6,9 +6,15 @@ import {TranslateService} from '@ngx-translate/core'
 export class TranslateConfigService{
   constructor(private translateService: TranslateService){
     this.translateService.use('en')
+
   }
   changeLanguage(type:string){
     this.translateService.use(type);
+
+  }
+ async getPage(){
+   let team =  this.translateService.get('team')
+    return team
 
   }
 }
