@@ -44,7 +44,7 @@ export class InsertImagesComponent implements OnInit {
       console.log(this.image)
       // console.log(res)
       axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
-        mtrl:item,
+        mtrl:item.mtrl,
         img:this.image,
         mode:"insert"
       }).then(res=>{

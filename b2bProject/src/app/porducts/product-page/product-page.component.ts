@@ -63,7 +63,7 @@ export class ProductPageComponent implements OnInit {
    suggestedProducts:product|any;
    hasSuggested:boolean =false;
    innerWidth:any;
-   qty: any;
+   qty: any = 1;
 
    mode:string ="Περιγραφής"
    desciptionForm:FormGroup|any;

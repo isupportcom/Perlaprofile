@@ -7,7 +7,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartServiceService } from '../cart/cart-service.service';
 import { User } from '../services/user.model';
@@ -32,10 +32,12 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   showBankTransfer: boolean = false;
   @ViewChild('creditCard') creditCard: ElementRef | any;
   @ViewChild('bankTransfer') bankTransfer: ElementRef | any;
-
+  GrandTotal:number=0;
   discArr: any = [];
   loadedUser: User | any;
 
+  trigwnikh: boolean = true;
+  FormData: FormGroup |any;
   showUserDetails?: boolean;
   showPayment?: boolean;
   totalPrice: number = 0;
@@ -43,11 +45,22 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   constructor(
     private cartService: CartServiceService,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private builder: FormBuilder
   ) {}
 
   async ngOnInit() {
+    
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+    
+    this.FormData = this.builder.group({
+      address: [{value: this.loadedUser.address, disabled: true}],
+      zipCode: [{value: this.loadedUser.zip, disabled: true}],
+      area: [{value: this.loadedUser.area, disabled: true}],
+      city: [{value: this.loadedUser.city, disabled: true}],
+    })
+    
+
     let resData = await axios.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
       {
@@ -57,6 +70,9 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
     this.products = resData.data.products;
     console.log(this.products);
+    for(let prod of this.products){
+      this.GrandTotal += +prod.wholesale *prod.qty;
+    }
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
@@ -90,6 +106,30 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     // this.showPayment = localStorage.getItem('showPayment') == 'true'? true : false;
   }
 
+
+  onSubmit(FormData:any) {
+    console.log(FormData)
+    this.placeOrder();
+  }
+
+
+  handleTrigwnikh(event: any){
+    if(this.trigwnikh){
+      this.FormData.controls['address'].enable();
+      this.FormData.controls['zipCode'].enable();
+      this.FormData.controls['area'].enable();
+      this.FormData.controls['city'].enable();
+      this.trigwnikh = false;
+    } 
+    else{
+      this.FormData.controls['address'].disable();
+      this.FormData.controls['zipCode'].disable();
+      this.FormData.controls['area'].disable();
+      this.FormData.controls['city'].disable();
+      this.trigwnikh = true;
+    }
+  }
+
   handleGoBackToCart() {
     this.router.navigate(['cart']);
   }
@@ -103,8 +143,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   }
 
   handleUserDetails(f: NgForm) {
-    this.showUserDetails = false;
-    this.showPayment = true;
+    console.log(f.value);
+    
 
     localStorage.setItem('showUserDetails', 'false');
     localStorage.setItem('showPayment', 'true');
@@ -180,84 +220,94 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         let discArr:any = [];
         let route = this.router;
         let loadedUser = this.loadedUser
-        let checkout = await RevolutCheckout(req.data.data.public_id)
-        checkout.payWithPopup({
-            name: 'John Smith',
-            email: 'customer@example.com',
-            phone: '+447950630319',
-            locale: 'en',
-            billingAddress: {
-              countryCode: 'GB',
-              region: 'Greater London',
-              city: 'London',
-              streetLine1: 'Revolut',
-              streetLine2: '1 Canada Square',
-              postcode: 'EC2V 6DN',
+        // let cardElementRef = useRef(null);
+        // await RevolutCheckout(req.data.data.public_id).then(RC => {
+        //   console.log(RC);
+        //   RC.createCardField({
+        //     target: cardElementRef
+        //   })
+        // })
+
+
+        // let checkout = await RevolutCheckout(req.data.data.public_id)
+
+        // checkout.payWithPopup({
+        //     name: 'John Smith',
+        //     email: 'customer@example.com',
+        //     phone: '+447950630319',
+        //     locale: 'en',
+        //     billingAddress: {
+        //       countryCode: 'GB',
+        //       region: 'Greater London',
+        //       city: 'London',
+        //       streetLine1: 'Revolut',
+        //       streetLine2: '1 Canada Square',
+        //       postcode: 'EC2V 6DN',
               
-            },
-            shippingAddress: {
-              countryCode: 'GB',
-              region: 'Greater London',
-              city: 'London',
-              streetLine1: 'Revolut',
-              streetLine2: '1 Canada Square',
-              postcode: 'EC2V 6DN',
-            },
-            onSuccess() {
-            for (let i = 0; i < prod.length; i++) {
-              mtrlArr[i] = prod[i].mtrl;
-              qtyArr[i] = prod[i].qty;
-              discArr[i] =prod[i].discount;
-            }
-            console.log(mtrlArr);
-            console.log(mtrlArr.join(','));
-            console.log(qtyArr);
-            console.log(qtyArr.join(','));
+        //     },
+        //     shippingAddress: {
+        //       countryCode: 'GB',
+        //       region: 'Greater London',
+        //       city: 'London',
+        //       streetLine1: 'Revolut',
+        //       streetLine2: '1 Canada Square',
+        //       postcode: 'EC2V 6DN',
+        //     },
+        //     onSuccess() {
+        //     for (let i = 0; i < prod.length; i++) {
+        //       mtrlArr[i] = prod[i].mtrl;
+        //       qtyArr[i] = prod[i].qty;
+        //       discArr[i] =prod[i].discount;
+        //     }
+        //     console.log(mtrlArr);
+        //     console.log(mtrlArr.join(','));
+        //     console.log(qtyArr);
+        //     console.log(qtyArr.join(','));
 
-            console.log(loadedUser.trdr);
-            let payment;
+        //     console.log(loadedUser.trdr);
+        //     let payment;
 
-              payment = 2;
+        //       payment = 2;
 
-            axios
-              .post(
-                'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
-                {
-                  mtrl: mtrlArr.join(','),
-                  qty: qtyArr.join(','),
-                  trdr: loadedUser.trdr,
-                  discount: discArr.join(','),
-                  payment: payment,
-                }
-              )
-              .then((resData) => {
-                let h3 :any
-                   h3 = document.getElementById("orderComplete");
-                  h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
-                  setTimeout(()=>{
-                    route.navigate(['home'])
-                    setTimeout(()=>{
-                      window.location.reload();
-                    })
-                  },10000)
+        //     axios
+        //       .post(
+        //         'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
+        //         {
+        //           mtrl: mtrlArr.join(','),
+        //           qty: qtyArr.join(','),
+        //           trdr: loadedUser.trdr,
+        //           discount: discArr.join(','),
+        //           payment: payment,
+        //         }
+        //       )
+        //       .then((resData) => {
+        //         let h3 :any
+        //            h3 = document.getElementById("orderComplete");
+        //           h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
+        //           setTimeout(()=>{
+        //             route.navigate(['home'])
+        //             setTimeout(()=>{
+        //               window.location.reload();
+        //             })
+        //           },10000)
 
 
-              });
-            },
+        //       });
+        //     },
 
-             onCancel() {
-              let btn :any;
-              btn = document.getElementById("toHomepage")
-              btn.remove()
-              window.location.reload();
-            },
+        //      onCancel() {
+        //       let btn :any;
+        //       btn = document.getElementById("toHomepage")
+        //       btn.remove()
+        //       window.location.reload();
+        //     },
 
-             onError(message) {
-              window.alert("Something Went Wrong");
-            }
-          }
+        //      onError(message) {
+        //       window.alert("Something Went Wrong");
+        //     }
+        //   }
 
-          );
+        //   );
 
 
 

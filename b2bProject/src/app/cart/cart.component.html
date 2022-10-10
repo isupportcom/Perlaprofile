@@ -1,4 +1,174 @@
 <app-navbar></app-navbar>
+
+<div class="container content">
+  <div class="row">
+    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" style="padding-right: 24px;">
+      <div class="row" style="align-items: end;height: 50px">
+        <h2>Παραγγελία</h2>
+      </div>
+      <div *ngFor="let items of cartItems;let i=index;" class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;">
+        
+        <div class="row" *ngIf="items.length <= 1">
+          <div class="row" *ngFor="let item of items">
+            <div class="col-6">
+              <div class="row" style="display: flex;justify-content: center;align-items:center;">
+                <div class="col-4">
+                  <img [src]="item.img" alt="productImage" class="productImg">
+                </div>
+                <div class="col-6">
+                  <div class="row">
+                    <p class="productName">{{ item.name }}</p>
+                  </div>
+                  <div class="row" style="align-items: end;">
+                    <button (click)="removeOne(item,i,true)" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
+                      <img src="../../assets/trash-alt.svg" alt="" srcset="" style="width: 20px;height: 20px;">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row" style="align-items: center;height: 100%;">
+                <div class="col-8">
+                  <div class="row" style="justify-content: right;">
+                    <div class="numberInput">
+                      <button id="decrement" (click)="stepper(input2,decrement,item)" #decrement> - </button>
+                      <input type="number" min="0" [max]="item.stock" step="1" [value]="item.qty" id="my-input" readonly #input2>
+                      <button id="increment" (click)="stepper(input2,increment,item)" #increment> + </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <h4 style="margin: 0;">{{ item.wholesale }}<span style="color: #6dae49">&euro;</span></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="items.length > 1">
+          <div class="row" *ngFor="let item of items" style="margin-bottom: 12px;">
+            <div class="col-6">
+              <div class="row" style="display: flex;justify-content: center;align-items:center;">
+                <div class="col-4">
+                  <img [src]="item.img" alt="productImage" class="productImg">
+                </div>
+                <div class="col-6">
+                  <div class="row">
+                    <p class="productName">{{ item.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row" style="align-items: center;height: 100%;">
+                <div class="col-8">
+                  <div class="row" style="justify-content: right;">
+                    <div class="numberInput">
+                      <button id="decrement" (click)="stepper(input2,decrement,item)" #decrement> - </button>
+                      <input type="number" min="0" [max]="products[i].stock" step="1" [value]="products[i].qty" id="my-input" readonly #input2>
+                      <button id="increment" (click)="stepper(input2,increment,item)" #increment> + </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <h4 style="margin: 0;">{{ item.wholesale }}<span style="color: #6dae49">&euro;</span></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row bin" style="align-items: end;">
+            <button (click)="removeOne(items[0],i,true)" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
+              <img src="../../assets/trash-alt.svg" alt="" srcset="" style="width: 20px;height: 20px;">
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-12" style="margin-top: 12px;padding: 0;">
+          <a class="goBackBtn" (click)="handleContinueShopping()">
+            <img style="transform: rotate(180deg);" src="../../assets/chevron-right-white.svg" width="18px" alt="">
+            Συνέχισε να ψωνίζεις
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 orderReview">
+      <div class="row" style="align-items: end;height: 50px">
+        <h5>Σύνοψη Παραγγελίας</h5>
+      </div>
+      <div class="row" style="background-color: white;border-radius: 16px;padding: 50px 12px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
+        <div class="row productValue" style="margin-bottom: 4px;">
+          <div class="col-6">
+            <div class="row">
+              <p style="margin: 0;">Αξία Προϊόντων:</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row" style="text-align: right">
+              <p style="margin: 0;">{{ GrandTotal }}<span style="color: #6dae49">&euro;</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row shippingValue" style="margin-bottom: 4px;">
+          <div class="col-6">
+            <div class="row">
+              <p style="margin: 0;">Μεταφορικά:</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row" style="text-align: right">
+              <p style="margin: 0;">?<span style="color: #6dae49">&euro;</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 12px;">
+          <hr style="border: 1px solid #6dae49;opacity: 1;">
+        </div>
+        
+
+        <div class="row totalValue" style="font-weight: 600;font-size: 18px;">
+          <div class="col-6">
+            <div class="row">
+              <p style="margin: 0;">Συνολική Αξία:</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row" style="text-align: right">
+              <p style="margin: 0;">{{ GrandTotal }}<span style="color: #6dae49">&euro;</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="shouldContinue">
+          <a class="cart-btn" (click)="handleCheckout()">
+            Προχωρήστε σε αγορά
+            <img src="../../assets/credit-card.svg" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container footer">
+  <div class="row" style="text-align:center">
+    <p style="color: black;">Web site created by <span style="color: #6DAE49;font-weight: bold;">ISG Informatics</span> ⓒ All rights reserved</p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 
 <div class="container">
   <div class="left-side">
     <div>
@@ -71,4 +241,4 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. <cite style="font-weight: bold;">Learn More</cite></p>
     </div>
   </div>
-</div>
+</div> -->
