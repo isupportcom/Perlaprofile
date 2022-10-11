@@ -556,11 +556,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
       if (e.checked) {
         this.listArray.push(e.value);
         this.waiting = true;
+        this.updateProducts();
         setTimeout(() => {
-          this.updateProducts();
           this.waiting = false;
-        }, 100);
-      } else {
+
+        },600);
+
+      }
+      else{
+
         // this.listArray = this.listArray.filter((e: any) => e !== this.value)
         // console.log('hello');
         for (let i = 0; i < this.listArray.length; i++) {
@@ -569,10 +573,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
           }
         }
         this.waiting = true;
+        this.updateProducts();
         setTimeout(() => {
-          this.updateProducts();
           this.waiting = false;
-        }, 100);
+
+        },600);
+
+
       }
       this.checked = true;
 
@@ -581,11 +588,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
       if (e.target.checked) {
         this.listArray.push(e.target.value);
         this.waiting = true;
+        this.updateProducts();
         setTimeout(() => {
-          this.updateProducts();
           this.waiting = false;
-        }, 100);
-      } else {
+
+        },600);
+
+      }
+      else{
+
         // this.listArray = this.listArray.filter((e: any) => e !== this.value)
         // console.log('hello');
         for (let i = 0; i < this.listArray.length; i++) {
@@ -594,10 +605,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
           }
         }
         this.waiting = true;
+        this.updateProducts();
         setTimeout(() => {
-          this.updateProducts();
           this.waiting = false;
-        }, 100);
+
+        },600);
+
       }
       this.checked = true;
 

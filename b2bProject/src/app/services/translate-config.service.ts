@@ -6,12 +6,12 @@ import { Subject } from "rxjs";
 })
 export class TranslateConfigService{
 
+
   constructor(public translateService: TranslateService){
 
     this.translateService.setDefaultLang(localStorage.getItem('lang') ||'en');
 
     console.log(this.translateService.currentLang);
-
   }
   changeLanguage(type:string){
     this.translateService.use(type);

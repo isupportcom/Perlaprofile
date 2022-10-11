@@ -263,11 +263,13 @@ export class NavbarComponent implements OnInit{
     this.choocenLang = !this.choocenLang;
     console.log(this.choocenLang);
     if(this.choocenLang){
+
       localStorage.setItem('langNav',"true")
       this.translate.changeLanguage('el')
     }else{
       localStorage.setItem('langNav',"false")
       this.translate.changeLanguage('en')
+
     }
     setTimeout(()=>{
       window.location.reload();
