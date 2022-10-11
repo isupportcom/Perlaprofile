@@ -13,14 +13,14 @@
                     <p><br><span style="background-color: rgba(255, 255, 255, 0.8);"translate>products.quote</span><br></p>
                     <ul>
                         <li translate>products.solinota<br></li>
-                        <li translate>products.probalmena<br></li>
+                        <li translate>products.probalomena<br></li>
                         <li translate>products.pergkolas<br></li>
-                        <li translate>products.auloportas.<br></li>
+                        <li translate>products.auloportas<br></li>
                     </ul>
                     <p><span style="background-color: rgba(255, 255, 255, 0.8);" translate>products.quote2<i>&nbsp;</i>products.quote2_1</span><br></p>
                     <ul>
                         <li translate>products.monokanala<br></li>
-                        <li translate>products.polykanala<br></li>
+                        <li translate>products.polukanala<br></li>
                         <li translate>products.epitoixia<br></li>
                         <li translate>products.asurmata<br></li>
                         <li translate>products.xeiros<br></li>
@@ -123,8 +123,11 @@
                           </label>
                         </div>
                         <div class="col-10 col-md-10 col-sm-3" style="padding-left: 0">
-                          <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;">
-                            {{ subcategory.name }}
+                          <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;" *ngIf="currentLang == 'el'">
+                            {{ subcategory.name |translate}}
+                          </p>
+                          <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;" *ngIf="currentLang == 'en'">
+                            {{ subcategory.name_en |translate}}
                           </p>
                         </div>
                       </div>
@@ -362,7 +365,7 @@
             <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
               <div class="col col-6" style="padding: 0px;cursor: pointer;"><img (click)="handleWizzard(sub.name,sub.sub_id)" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
               <div class="col col-6" style="padding: 12px;">
-                  <p class="itemTitle" style="cursor: pointer;" (click)="handleWizzard(sub.name,sub.sub_id)"><strong>{{ sub.name }}</strong><br></p>
+                  <p class="itemTitle" style="cursor: pointer;" (click)="handleWizzard(sub.name,sub.sub_id)"><strong *ngIf="currentLang == 'el'">{{ sub.name }}</strong><strong *ngIf="currentLang == 'en'">{{ sub.name_en }}</strong><br></p>
                   <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
 
                   <button (click)="handleWizzard(sub.name,sub.sub_id)" class="btn btn-primary seeMoreBtn" type="button">Δες Περισσότερα</button>

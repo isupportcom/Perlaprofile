@@ -255,21 +255,25 @@ export class NavbarComponent implements OnInit{
     //   this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
     // })
   }
-  id:number |any;
-  choocenLang:boolean = false;
+  currentLang :string = localStorage.getItem('langNav') || 'false';
+  choocenLang:boolean = (this.currentLang === "true");
+
   switchLang(){
+
     this.choocenLang = !this.choocenLang;
     console.log(this.choocenLang);
     if(this.choocenLang){
-      this.id = 0
-
+      localStorage.setItem('langNav',"true")
       this.translate.changeLanguage('el')
     }else{
-      this.id=1;
+      localStorage.setItem('langNav',"false")
       this.translate.changeLanguage('en')
     }
+    setTimeout(()=>{
+      window.location.reload();
 
-    console.log(this.id);
+    },50)
+
 
 
 
