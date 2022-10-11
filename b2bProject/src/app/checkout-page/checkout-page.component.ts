@@ -203,10 +203,10 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     },1000)
 
     var goToOrder: any;
-    let price = this.float2int(this.totalPrice * 100);
+    let price = this.float2int(this.GrandTotal * 100);
     let req = await axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/checkout.php', {
-        amount: 1,
+        amount: price,
         currency: 'EUR',
         email: 'johndoe001@gmail.com',
       })
@@ -229,85 +229,85 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         // })
 
 
-        // let checkout = await RevolutCheckout(req.data.data.public_id)
+        let checkout = await RevolutCheckout(req.data.data.public_id)
 
-        // checkout.payWithPopup({
-        //     name: 'John Smith',
-        //     email: 'customer@example.com',
-        //     phone: '+447950630319',
-        //     locale: 'en',
-        //     billingAddress: {
-        //       countryCode: 'GB',
-        //       region: 'Greater London',
-        //       city: 'London',
-        //       streetLine1: 'Revolut',
-        //       streetLine2: '1 Canada Square',
-        //       postcode: 'EC2V 6DN',
+        checkout.payWithPopup({
+            name: 'John Smith',
+            email: 'customer@example.com',
+            phone: '+447950630319',
+            locale: 'en',
+            billingAddress: {
+              countryCode: 'GB',
+              region: 'Greater London',
+              city: 'London',
+              streetLine1: 'Revolut',
+              streetLine2: '1 Canada Square',
+              postcode: 'EC2V 6DN',
               
-        //     },
-        //     shippingAddress: {
-        //       countryCode: 'GB',
-        //       region: 'Greater London',
-        //       city: 'London',
-        //       streetLine1: 'Revolut',
-        //       streetLine2: '1 Canada Square',
-        //       postcode: 'EC2V 6DN',
-        //     },
-        //     onSuccess() {
-        //     for (let i = 0; i < prod.length; i++) {
-        //       mtrlArr[i] = prod[i].mtrl;
-        //       qtyArr[i] = prod[i].qty;
-        //       discArr[i] =prod[i].discount;
-        //     }
-        //     console.log(mtrlArr);
-        //     console.log(mtrlArr.join(','));
-        //     console.log(qtyArr);
-        //     console.log(qtyArr.join(','));
+            },
+            shippingAddress: {
+              countryCode: 'GB',
+              region: 'Greater London',
+              city: 'London',
+              streetLine1: 'Revolut',
+              streetLine2: '1 Canada Square',
+              postcode: 'EC2V 6DN',
+            },
+            onSuccess() {
+            for (let i = 0; i < prod.length; i++) {
+              mtrlArr[i] = prod[i].mtrl;
+              qtyArr[i] = prod[i].qty;
+              discArr[i] =prod[i].discount;
+            }
+            console.log(mtrlArr);
+            console.log(mtrlArr.join(','));
+            console.log(qtyArr);
+            console.log(qtyArr.join(','));
 
-        //     console.log(loadedUser.trdr);
-        //     let payment;
+            console.log(loadedUser.trdr);
+            let payment;
 
-        //       payment = 2;
+              payment = 2;
 
-        //     axios
-        //       .post(
-        //         'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
-        //         {
-        //           mtrl: mtrlArr.join(','),
-        //           qty: qtyArr.join(','),
-        //           trdr: loadedUser.trdr,
-        //           discount: discArr.join(','),
-        //           payment: payment,
-        //         }
-        //       )
-        //       .then((resData) => {
-        //         let h3 :any
-        //            h3 = document.getElementById("orderComplete");
-        //           h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
-        //           setTimeout(()=>{
-        //             route.navigate(['home'])
-        //             setTimeout(()=>{
-        //               window.location.reload();
-        //             })
-        //           },10000)
+            axios
+              .post(
+                'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
+                {
+                  mtrl: mtrlArr.join(','),
+                  qty: qtyArr.join(','),
+                  trdr: loadedUser.trdr,
+                  discount: discArr.join(','),
+                  payment: payment,
+                }
+              )
+              .then((resData) => {
+                let h3 :any
+                   h3 = document.getElementById("orderComplete");
+                  h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
+                  setTimeout(()=>{
+                    route.navigate(['home'])
+                    setTimeout(()=>{
+                      window.location.reload();
+                    })
+                  },10000)
 
 
-        //       });
-        //     },
+              });
+            },
 
-        //      onCancel() {
-        //       let btn :any;
-        //       btn = document.getElementById("toHomepage")
-        //       btn.remove()
-        //       window.location.reload();
-        //     },
+             onCancel() {
+              let btn :any;
+              btn = document.getElementById("toHomepage")
+              btn.remove()
+              window.location.reload();
+            },
 
-        //      onError(message) {
-        //       window.alert("Something Went Wrong");
-        //     }
-        //   }
+             onError(message) {
+              window.alert("Something Went Wrong");
+            }
+          }
 
-        //   );
+          );
 
 
 
