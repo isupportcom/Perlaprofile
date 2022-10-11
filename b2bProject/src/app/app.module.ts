@@ -42,7 +42,7 @@ import {AdminGuard} from "./services/admin.guard";
 
 import { FooterComponent } from './footer/footer.component';
 import { SearchbarComponent } from './AdminArea/components/searchbar/searchbar.component';
-import { OffersComponent } from './AdminArea/components/offers/offers.component';
+
 import { InsertImagesComponent } from './AdminArea/components/insert-images/insert-images.component';
 import { ContatcFormComponent } from './shared/contatc-form/contatc-form.component';
 import { OfferPopupComponent } from './AdminArea/components/offer-popup/offer-popup.component';
@@ -117,7 +117,7 @@ export function rootLoaderactory(http:any){
     AddImagePopupComponent,
      FooterComponent,
     SearchbarComponent,
-    OffersComponent,
+
     ProfileComponent,
     InsertImagesComponent,
     ContatcFormComponent,

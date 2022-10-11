@@ -14,7 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class InsertProductsComponent implements OnInit {
   offer:boolean = false;
-  products: product | any = [];
+  products:  any = [];
   page: number |any;
   window:boolean = true;
   flag: boolean = false;
@@ -99,60 +99,15 @@ export class InsertProductsComponent implements OnInit {
           stock: resData.data.products[i].stock,
           img : resData.data.products[i].image,
           offer: resData.data.products[i].offer,
-          hasOffer:resData.data.products[i].hasOffer
+          hasOffer:resData.data.products[i].hasOffer,
+          discount:resData.data.products[i].discount
         }
       }
     })
   }
-  openFormSheet:boolean=false;
-  sheetMtrl:any;
-  scrollToForm(mtrl:any){
-    this.sheetMtrl = mtrl;
-    this.openFormSheet=true;
-    if(this.openFormDesc){
-      this.openFormDesc=false;
-    }
-    window.scroll({
-      top:9000,
-      left:0,
-      behavior:'smooth'
-    })
-  }
-  openFormDesc:boolean=false;
-  descMtrl:any;
-  openForm(mtrl:any){
-    this.openFormDesc=true;
-    this.descMtrl = mtrl;
-    if(this.openFormSheet){
-      this.openFormSheet=false;
-    }
-    window.scroll({
-      top:9000,
-      left: 0,
-      behavior: 'smooth'
-    });
-  }
-  updateSheet(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php",{
-      mtrl:this.sheetMtrl,
-      data:this.dataSheet.value.sheet
-    }).then(resData=>{
-      setTimeout(()=>{
-        window.location.reload();
-      },50)
-    })
-  }
-  udpateDesc(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php",{
-      mtrl:this.descMtrl,
-      desc:this.desciption.value.desc
-    }).then(resData=>{
-      setTimeout(()=>{
-        window.location.reload();
-      },50)
 
-    })
-  }
+
+
    openOffer(item:any){
   this.offer = true;
   console.log(item);
@@ -173,9 +128,9 @@ export class InsertProductsComponent implements OnInit {
       axios.post("https://perlarest.vinoitalia.gr/php-auth-api/offers.php", data
       ).then(resData=>{
         console.log(resData.data)
-        // setTimeout(()=>{
-        //   window.location.reload()
-        // },500)
+        setTimeout(()=>{
+          window.location.reload()
+        },100)
       })
     })
 
@@ -202,11 +157,12 @@ export class InsertProductsComponent implements OnInit {
     }
   }
   addToHomePage(item:any){
+    console.log(item);
 
-    console.log(this.discount);
+
    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/homepageoffer.php",{
      mtrl:item.mtrl,
-     discount: localStorage.getItem("discound")
+     discount: item.discount
    }).then(resData=>{
      console.log(resData.data)
    })
