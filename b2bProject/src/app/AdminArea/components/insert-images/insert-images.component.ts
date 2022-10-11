@@ -42,16 +42,18 @@ export class InsertImagesComponent implements OnInit {
     this.modalService.image.subscribe((res:any)=> {
       this.image = res
       console.log(this.image)
-      // console.log(res)
+      console.log(res)
+      console.log(item);
+
       axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
         mtrl:item.mtrl,
         img:this.image,
         mode:"insert"
       }).then(res=>{
         console.log(res)
-        setTimeout(()=>{
-           window.location.reload()
-        },1000)
+        // setTimeout(()=>{
+        //    window.location.reload()
+        // },1000)
 
       })
     })

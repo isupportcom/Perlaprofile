@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 
 <div class="container content">
-    <div class="row">     
-        <h2 style="font-weight: 300;">Η Ομάδα της Perla</h2>
+    <div class="row">
+        <h2 style="font-weight: 300;"translate>team.title</h2>
         <hr style="border: 1px solid #6DAE49;opacity: 1;">
     </div>
     <div class="row">
@@ -11,7 +11,7 @@
 
 
     <div *ngIf="!flag">
-        <div *ngFor="let person of team; let index=index"> 
+        <div *ngFor="let person of team; let index=index; ">
             <div *ngIf="index%2 != 0" class="row" style="background-color: white;border-radius: 16px;margin-top: 44px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
                 <div class="col-5" style="padding: 0px;">
                     <img [src]="person.img" style="border-top-left-radius: 16px;border-bottom-left-radius: 16px;" width="100%" alt="">
@@ -19,24 +19,24 @@
                 <div class="col-7" style="padding: 0px 24px;">
                     <div class="row">
                         <div class="text">
-                            <p style="font-size: 28px;font-weight:600;">{{ person.name }}</p>
-                            <p>{{ person.role }}</p>
-                            <p style="color: #95a5a6">{{ person.description}}</p>
+                            <p style="font-size: 28px;font-weight:600;" >{{teamNames[index].name}} </p>
+                            <p>{{teamNames[index].role}}</p>
+                            <p style="color: #95a5a6">{{teamNames[index].description}}</p>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
 
             <div *ngIf="index%2 == 0" class="row" style="background-color: white;border-radius: 16px;margin-top: 44px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
                 <div class="col-7" style="padding: 0px 24px;">
                     <div class="row" style="text-align: right;">
                         <div class="text">
-                            <p style="font-size: 28px;font-weight:600;">{{ person.name }}</p>
-                            <p>{{ person.role }}</p>
-                            <p style="color: #95a5a6">{{ person.description }}</p>
+                            <p style="font-size: 28px;font-weight:600;">{{teamNames[index].name}}</p>
+                            <p>{{teamNames[index].role}}</p>
+                            <p style="color: #95a5a6">{{teamNames[index].description}}</p>
                         </div>
                     </div>
-                </div>    
+                </div>
                 <div class="col-5" style="padding: 0px;">
                     <img [src]="person.img"  style="border-top-right-radius: 16px;border-bottom-right-radius: 16px;" width="100%" alt="">
                 </div>
@@ -46,7 +46,7 @@
 
 
     <div *ngIf="flag">
-        <div *ngFor="let person of team; let index=index"> 
+        <div *ngFor="let person of team; let index=index">
             <div class="row" style="background-color: white;border-radius: 16px;margin-top: 44px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
                 <div class="col-sm-12 col-12" style="padding: 0px;">
                     <img [src]="person.img" style="border-top-left-radius: 16px;border-top-right-radius: 16px;" width="100%" alt="">
@@ -54,12 +54,12 @@
                 <div class="col-12" style="padding: 0px 24px;">
                     <div class="row">
                         <div class="text">
-                            <p style="font-size: 28px;font-weight:600;">{{ person.name }}</p>
+                            <p style="font-size: 28px;font-weight:600;"translate>{{ person.name }}</p>
                             <p>{{ person.role }}</p>
                             <p style="color: #95a5a6">{{ person.description}}</p>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>

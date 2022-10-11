@@ -1,109 +1,446 @@
-
 <div *ngIf="showLoggedinNav" class="logged-in-nav">
- <nav class="navbar navbar1 navbar-light navbar-expand-md py-3 ">
+  <nav class="navbar navbar1 navbar-light navbar-expand-md py-3">
     <div class="container">
-      <a routerLink="/home" class="navbar-brand d-flex align-items-center" href="#">
-        <img class="navLogo" src="../../assets/PerlaProfilLogo-dark 1.svg">
+      <a
+        routerLink="/home"
+        class="navbar-brand d-flex align-items-center"
+        href="#"
+      >
+        <img
+          i18n-alt
+          alt="Φωτογραφια Εταιριας"
+          class="navLogo"
+          src="https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/PerlaProfilLogo-dark 1.svg"
+        />
       </a>
-      <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2" style="padding: 0px;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon burgerMenu"></span></button>
-        <div class="collapse navbar-collapse" id="navcol-2">
-            <ul class="navbar-nav ms-auto">
+      <button
+        data-bs-toggle="collapse"
+        class="navbar-toggler"
+        data-bs-target="#navcol-2"
+        style="padding: 0px"
+      >
+        <span class="visually-hidden">Toggle navigation</span
+        ><span class="navbar-toggler-icon burgerMenu"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navcol-2">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item my-nav-item2">
+            <a
+              (click)="handleFavorites()"
+              class="btn ms-md-2 myBtn"
+              role="button"
+              ><img
+                i18n-alt
+                alt="Ενα Προιον Προσθεθηκε Στο καλαθι"
+                [ngClass]="productAddedToFav ? 'heartAnim' : ''"
+                [src]="source"
+                width="18px"
+            /></a>
+          </li>
+          <li class="nav-item my-nav-item2">
+            <a
+              [ngClass]="
+                productAdded
+                  ? 'btn ms-md-2 myBtn enlarge'
+                  : 'btn ms-md-2 myBtn reduce'
+              "
+              role="button"
+              routerLink="/cart"
+              #cartBtn
+              ><img
+                style="display: inline-block"
+                i18n-alt
+                alt="Καλαθι Προϊοντων"
+                src="https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/shopping-cart.svg"
+                width="18px"
+              />
+              <p
+                *ngIf="productAdded2"
+                style="display: inline-block; margin-bottom: 0px"
+                translate
+              >
+                <i> &emsp;</i> navbar.add_to_cart_mess
+                <i> {{ productCount }}</i>
+              </p></a
+            >
+          </li>
 
-                <li class="nav-item my-nav-item2"><a (click)="handleFavorites()" class="btn ms-md-2 myBtn" role="button"><img  [ngClass]="productAddedToFav? 'heartAnim' : ''" [src]="source" width="18px"/></a></li>
-                <li class="nav-item my-nav-item2"><a [ngClass]="productAdded? 'btn ms-md-2 myBtn enlarge' : 'btn ms-md-2 myBtn reduce'" role="button" routerLink="/cart" #cartBtn><img style="display: inline-block;" src="../../assets/shopping-cart.svg" width="18px"/><p *ngIf="productAdded2" style="display: inline-block;margin-bottom: 0px;">&emsp;Έχετε Προϊόντα στο Καλάθι σας x{{ productCount }}</p></a></li>
-
-                <li class="nav-item my-nav-item2">
-                  <div class="dropdown">
-                      <a #optionsToggler (click)="userOptions()" class="btn ms-md-2 myBtn dropdown-toggle" role="button"><img src="../../assets/user.svg" width="16px">&emsp;{{ username }}&emsp;</a>
-                      <ul #options [ngClass]="showUserOptions? (makeSmallerDropDown? 'dropdown-menu my-dropdown-sm show' : 'dropdown-menu my-dropdown show') : 'dropdown-menu'">
-                        <li><a class="dropdown-item my-dropdown-item">Profile</a></li>
-                        <li><a class="dropdown-item my-dropdown-item">My Orders</a></li>
-                        <li (click)="handleDashboard()" ><a *ngIf="isAdmin" class="dropdown-item my-dropdown-item">Dashboard</a></li>
-                        <li><a (click)="logout()" class="dropdown-item my-dropdown-item">Logout</a></li>
-                      </ul>
-
-                  </div>
+          <li class="nav-item my-nav-item2">
+            <div class="dropdown">
+              <a
+                #optionsToggler
+                (click)="userOptions()"
+                class="btn ms-md-2 myBtn dropdown-toggle"
+                role="button"
+                ><img
+                  i18n-alt
+                  alt="Χρηστης"
+                  src="https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/user.svg"
+                  width="16px"
+                />&emsp;{{ username }}&emsp;</a
+              >
+              <ul
+                #options
+                [ngClass]="
+                  showUserOptions
+                    ? makeSmallerDropDown
+                      ? 'dropdown-menu my-dropdown-sm show'
+                      : 'dropdown-menu my-dropdown show'
+                    : 'dropdown-menu'
+                "
+              >
+                <li>
+                  <a class="dropdown-item my-dropdown-item" translate
+                    >navbar.profile</a
+                  >
                 </li>
-            </ul>
-            <hr style="border-color: #6DAE49;">
-            <div *ngIf="!showSecondNav" class="wrapper">
-              <div class="bottom_nav" style="border-bottom: 2px solid #6DAE49;;background-color: white !important;height: 100%;">
-                <div class="container">
+                <li>
+                  <a class="dropdown-item my-dropdown-item" translate
+                    >navbar.orders</a
+                  >
+                </li>
+                <li (click)="handleDashboard()">
+                  <a
+                    *ngIf="isAdmin"
+                    class="dropdown-item my-dropdown-item"
+                    translate
+                    >navbar.dashboard</a
+                  >
+                </li>
+                <li>
+                  <a
+                    (click)="logout()"
+                    class="dropdown-item my-dropdown-item"
+                    translate
+                    >navbar.logout</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item my-nav-item2">
+            <div class="dropdown">
+              <a
+                #langTogler
+                (click)="langOptions()"
+                class="btn ms-md-2 myBtn dropdown-toggle"
+                role="button"
+                >&emsp;{{ choocenLang ? "Ελληνικά" : "English" }}&emsp;</a
+              >
+              <ul
+                #optionslang
+                [ngClass]="
+                  showLang
+                    ? makeSmallerDropDown
+                      ? 'dropdown-menu my-dropdown-sm show'
+                      : 'dropdown-menu my-dropdown show'
+                    : 'dropdown-menu'
+                "
+              >
+                <li>
+                  <a
+                    class="dropdown-item my-dropdown-item"
+                    (click)="switchLang()"
+                    >{{ choocenLang ? "English" : "Ελληνικά" }}</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <hr style="border-color: #6dae49" />
+        <!-- <div *ngIf="!showSecondNav" class="wrapper">
+          <div
+            class="bottom_nav"
+            style="
+              border-bottom: 2px solid #6dae49;
+              background-color: white !important;
+              height: 100%;
+            "
+          >
+            <div class="container">
               <ul class="myMenu2">
-                <li style="margin-bottom: 8px;"><a class="dropdown-item" routerLink="/home" routerLinkActive="active" style="padding-left: 0px !important;">Αρχική</a></li>
+
+                <li style="margin-bottom: 8px">
+                  <a
+                    class="dropdown-item"
+                    routerLink="/home"
+                    style="padding-left: 0px !important"
+                    translate
+                    >navbar.homepage</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
+                  <div class="dropdown">
+                    <a
+                      routerLink="/products"
+                      (click)="handleProducts()"
+                      (mouseleave)="handleMouseleave()"
+                      (mouseenter)="handleHover()"
+                      class="dropdown-toggle"
+                      translate
+                    >
+                      navbar.products
+                 </a>
+                <li style="margin-bottom: 8px;"><a class="dropdown-item" routerLink="/home" routerLinkActive="active" style="padding-left: 0px !important;">navbar.homepage</a></li>
                 <li style="margin-bottom: 8px;">
                   <div class="dropdown">
                     <a routerLink="/products" routerLinkActive="active" (click)="handleProducts()" (mouseleave)="handleMouseleave()" (mouseenter)="handleHover()" class="dropdown-toggle dropdown-item" style="padding-left: 0px !important;">
-                        Προϊόντα
+                      navbar.products
+
                     </a>
-                    <ul (mouseenter)="handleHover()" (mouseleave)="handleMouseleave()" [ngClass]="hoverProducts? 'dropdown-menu myMenu2' : 'dropdown-menu myMenu'">
-                        <li [routerLink]="'/products/'+mainCategory.id+'/'+mainCategory.name" (click)="handleCategoryClick()" style="margin-right: 0px;" *ngFor="let mainCategory of mainCategories"><a class="dropdown-item">{{ mainCategory.name }}</a></li>
+                    <ul
+                      (mouseenter)="handleHover()"
+                      (mouseleave)="handleMouseleave()"
+                      [ngClass]="
+                        hoverProducts
+                          ? 'dropdown-menu myMenu2'
+                          : 'dropdown-menu myMenu'
+                      "
+                    >
+                      <li
+                        [routerLink]="
+                          '/products/' +
+                          mainCategory.id +
+                          '/' +
+                          mainCategory.name
+                        "
+                        (click)="handleCategoryClick()"
+                        style="margin-right: 0px"
+                        *ngFor="let mainCategory of mainCategories"
+                      >
+                        <a class="dropdown-item">{{ mainCategory.name }}</a>
+                      </li>
+                                        </ul>
+                  </div>
+                </li>
+
+                <li style="margin-bottom: 8px;"><a routerLink="/company" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">navbar.company</a></li>
+                <li style="margin-bottom: 8px;"><a routerLink="/the-team" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">navbar.team</a></li>
+                <li style="margin-bottom: 8px;"><a routerLink="/contact" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">navbar.contanct</a></li>
+
+
+                <li style="margin-bottom: 8px">
+                  <a translate>navbar.team</a>
+                </li>
+                <li style="margin-bottom: 8px"><a translate>navbar.contanct</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        <div *ngIf="!showSecondNav" class="wrapper">
+          <div
+            class="bottom_nav"
+            style="
+              border-bottom: 2px solid #6dae49;
+              background-color: white !important;
+              height: 100%;
+            "
+          >
+            <div class="container">
+              <ul class="myMenu2">
+                <li style="margin-bottom: 8px">
+                  <a
+                    class="dropdown-item"
+                    routerLink="/home"
+                    routerLinkActive="active"
+                    style="padding-left: 0px !important" translate
+                    >navbar.homepage</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
+                  <div class="dropdown">
+                    <a
+                      routerLink="/products"
+                      routerLinkActive="active"
+                      (click)="handleProducts()"
+                      (mouseleave)="handleMouseleave()"
+                      (mouseenter)="handleHover()"
+                      class="dropdown-toggle dropdown-item"
+                      style="padding-left: 0px !important"
+                      translate
+                    >
+                      navbar.products
+                    </a>
+                    <ul
+                      (mouseenter)="handleHover()"
+                      (mouseleave)="handleMouseleave()"
+                      [ngClass]="
+                        hoverProducts
+                          ? 'dropdown-menu myMenu2'
+                          : 'dropdown-menu myMenu'
+                      "
+                    >
+                      <li
+                        [routerLink]="
+                          '/products/' +
+                          mainCategory.id +
+                          '/' +
+                          mainCategory.name
+                        "
+                        (click)="handleCategoryClick()"
+                        style="margin-right: 0px"
+                        *ngFor="let mainCategory of mainCategories"
+                      >
+                        <a class="dropdown-item">{{ mainCategory.name }}</a>
+                      </li>
                     </ul>
                   </div>
                 </li>
-                <li style="margin-bottom: 8px;"><a routerLink="/company" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">Η Εταιρία</a></li>
-                <li style="margin-bottom: 8px;"><a routerLink="/the-team" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">Η Ομάδα της Perla</a></li>
-                <li style="margin-bottom: 8px;"><a routerLink="/contact" routerLinkActive="active" class="dropdown-item" style="padding-left: 0px !important;">Επικοινωνία</a></li>
-
+                <li style="margin-bottom: 8px">
+                  <a
+                    routerLink="/company"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.company</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
+                  <a
+                    routerLink="/the-team"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.team</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
+                  <a
+                    routerLink="/contact"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.contanct</a
+                  >
+                </li>
               </ul>
+            </div>
           </div>
         </div>
-        </div>
-        </div>
+      </div>
     </div>
   </nav>
   <div *ngIf="showSecondNav" class="wrapper">
     <div class="bottom_nav">
       <div class="container">
         <ul>
-          <li><a routerLink="/home" routerLinkActive="my-active">Αρχική</a></li>
+          <li>
+            <a routerLink="/home" routerLinkActive="my-active" translate
+              >navbar.homepage</a
+            >
+          </li>
           <li>
             <div class="dropdown">
-              <a routerLink="/products" (click)="handleProducts()"routerLinkActive="my-active" (mouseleave)="handleMouseleave()" (mouseenter)="handleHover()" class="dropdown-toggle">
-                  Προϊόντα
+              <a
+                translate
+                routerLink="/products"
+                (click)="handleProducts()"
+                routerLinkActive="my-active"
+                (mouseleave)="handleMouseleave()"
+                (mouseenter)="handleHover()"
+                class="dropdown-toggle"
+                translate
+              >
+                navbar.products
               </a>
-              <ul (mouseenter)="handleHover()" (mouseleave)="handleMouseleave()" [ngClass]="hoverProducts? 'dropdown-menu myMenu2' : 'dropdown-menu myMenu'">
-                  <li [routerLink]="'/products/'+mainCategory.id+'/'+mainCategory.name" (click)="handleCategoryClick()" style="margin-right: 0px;" *ngFor="let mainCategory of mainCategories"><a class="dropdown-item" style="color: black;">{{ mainCategory.name }}</a></li>
+              <ul
+                (mouseenter)="handleHover()"
+                (mouseleave)="handleMouseleave()"
+                [ngClass]="
+                  hoverProducts
+                    ? 'dropdown-menu myMenu2'
+                    : 'dropdown-menu myMenu'
+                "
+              >
+                <li
+                  [routerLink]="
+                    '/products/' + mainCategory.id + '/' + mainCategory.name
+                  "
+                  (click)="handleCategoryClick()"
+                  style="margin-right: 0px"
+                  *ngFor="let mainCategory of mainCategories"
+                >
+                  <a class="dropdown-item" style="color: black">{{
+                    mainCategory.name
+                  }}</a>
+                </li>
               </ul>
             </div>
           </li>
-          <li><a routerLink="/company" routerLinkActive="my-active">Η Εταιρία</a></li>
-          <li><a routerLink="/the-team" routerLinkActive="my-active">Η Ομάδα της Perla</a></li>
-          <li><a routerLink="/contact" routerLinkActive="my-active">Επικοινωνία</a></li>
 
+          <li>
+            <a routerLink="/company" routerLinkActive="my-active" translate
+              >navbar.company</a
+            >
+          </li>
+          <li>
+            <a routerLink="/the-team" routerLinkActive="my-active" translate
+              >navbar.team</a
+            >
+          </li>
+          <li>
+            <a routerLink="/contact" routerLinkActive="my-active" translate
+              >navbar.contanct</a
+            >
+          </li>
         </ul>
+      </div>
     </div>
-  </div>
-
-
   </div>
 </div>
 
+<!--</nav>-->
 
-
-
-
-
-  <!--</nav>-->
-
-<nav *ngIf="!showLoggedinNav" class="navbar navbar-light navbar-expand-md py-3 ">
+<nav *ngIf="!showLoggedinNav" class="navbar navbar-light navbar-expand-md py-3">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="#">
-      <img class="navLogo" src="../../assets/PerlaProfilLogo-dark 1.svg">
+      <img
+        class="navLogo"
+        i18n-alt
+        alt="Φωτογραφια Εταιριας"
+        src="https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/PerlaProfilLogo-dark 1.svg"
+      />
     </a>
-    <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2" style="padding: 0px;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon burgerMenu"></span></button>
-      <div class="collapse navbar-collapse" id="navcol-2">
-          <ul class="navbar-nav ms-auto">
 
-              <li class="nav-item"><a routerLink="/home" routerLinkActive="active" class="nav-link">Αρχική</a></li>
-              <li class="nav-item"><a routerLink="/company" routerLinkActive="active" class="nav-link">Η Εταιρία</a></li>
-              <li class="nav-item"><a routerLink="/the-team" routerLinkActive="active" class="nav-link">Η Ομάδα της Perla</a></li>
-              <li class="nav-item"><a routerLink="/contact" routerLinkActive="active" class="nav-link">Επικοινωνία</a></li>
+    <button
+      data-bs-toggle="collapse"
+      class="navbar-toggler"
+      data-bs-target="#navcol-2"
+      style="padding: 0px"
+    >
+      <span class="visually-hidden">Toggle navigation</span
+      ><span class="navbar-toggler-icon burgerMenu"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navcol-2">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" class="nav-link" translate
+            >navbar.homepage</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/company" routerLinkActive="active" class="nav-link" translate
+            >navbar.company</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/the-team" routerLinkActive="active" class="nav-link" translate
+            >navbar.team</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contact" routerLinkActive="active" class="nav-link" translate
+            >navbar.contanct</a
+          >
+        </li>
 
-              <li class="nav-item">
-              <a class="btn ms-md-2 myBtn" role="button" (click)="login()">Συνδέσου</a></li>
-          </ul>
-      </div>
+        <li class="nav-item">
+          <a class="btn ms-md-2 myBtn" role="button" (click)="login()" translate
+            >navbar.login</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
-

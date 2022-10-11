@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Title} from '@angular/platform-browser'
+import { TranslateConfigService } from '../services/translate-config.service';
 import axios from 'axios';
+
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+
 import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
 import { CartServiceService } from '../cart/cart-service.service';
 import { ProductsService } from '../porducts/products.service';
@@ -19,7 +22,7 @@ export class NavbarComponent implements OnInit{
   isAdminArea = false;
   products :product |any = [];
   temp: product | any = [];
-
+  title = 'Nav'
   // @Input() isAdmin: any;
   @ViewChild('navToggle') navToggle!:ElementRef;
 
@@ -28,6 +31,8 @@ export class NavbarComponent implements OnInit{
   @ViewChild('dropdown') dropdown!: ElementRef;
   @ViewChild('options') options!: ElementRef;
   @ViewChild('optionsToggler') optionsToggler!: ElementRef;
+  @ViewChild('langTogler')langTogler!:ElementRef;
+  @ViewChild('optionslang')optionslang!:ElementRef;
   isOpen = false;
   isToggelOpen = false;
   isAdmin = this.authService.getAdmin();
@@ -46,7 +51,9 @@ export class NavbarComponent implements OnInit{
   productCount: number|any;
   showProductCount: boolean = false;
   showUserOptions: boolean = false;
+  showLang :boolean = false;
   mainCategories : any = [];
+
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
 
   constructor(
@@ -56,7 +63,11 @@ export class NavbarComponent implements OnInit{
     private cartService: CartServiceService,
     private productsService: ProductsService,
     private renderer: Renderer2,
+    private titleService:Title,
+    public translate:TranslateConfigService,
     private http: HttpClient) {
+
+      this.titleService.setTitle($localize `${this.title}`);
 
 
       this.renderer.listen('window', 'click',(e:Event)=>{
@@ -64,7 +75,11 @@ export class NavbarComponent implements OnInit{
         if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
           this.showUserOptions = false;
         }
+        if(e.target !== this.optionslang.nativeElement && e.target !== this.langTogler.nativeElement){
+          this.showLang = false;
+        }
       })
+
 
      }
 
@@ -89,6 +104,8 @@ export class NavbarComponent implements OnInit{
   username = localStorage.getItem("username");
 
   async ngOnInit(){
+
+
 
     this.cartService.productCount.subscribe(resData => {
       console.log(resData);
@@ -115,9 +132,9 @@ export class NavbarComponent implements OnInit{
 
         this.products = resData.data.products
         if(resData.data.products.length !=0){
-          this.source = '../../assets/heart-alt-filled.svg'
+          this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt-filled.svg'
         }else{
-          this.source = '../../assets/heart-alt.svg'
+          this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt.svg'
         }
       })
 
@@ -238,6 +255,25 @@ export class NavbarComponent implements OnInit{
     //   this.productCount = <number>(<unknown>(localStorage.getItem('productCount')));
     // })
   }
+  id:number |any;
+  choocenLang:boolean = false;
+  switchLang(){
+    this.choocenLang = !this.choocenLang;
+    console.log(this.choocenLang);
+    if(this.choocenLang){
+      this.id = 0
+
+      this.translate.changeLanguage('el')
+    }else{
+      this.id=1;
+      this.translate.changeLanguage('en')
+    }
+
+    console.log(this.id);
+
+
+
+  }
   hundleMyFavorites(){
     this.router.navigate(['favorites'])
   }
@@ -248,16 +284,28 @@ export class NavbarComponent implements OnInit{
       window.location.reload();
     },50)
   }
-
+  langOptions(){
+    if(!this.showLang){
+      this.showLang = true;
+    }
+    else{
+      this.showLang = false;
+    }
+  }
   userOptions(){
     if(!this.showUserOptions){
       this.showUserOptions = true;
+      // this.translate.changeLanguage('el')
+
     }
     else{
       this.showUserOptions = false;
+      // this.translate.changeLanguage('en')
     }
 
   }
+
+
 
   handleHover(){
     this.hoverProducts = true;
@@ -348,7 +396,7 @@ export class NavbarComponent implements OnInit{
     console.log(this.authService.user.getValue());
 
     localStorage.setItem("userType","notLoggin")
-    
+
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
     this.router.navigate(['home']);
 

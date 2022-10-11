@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { TranslateConfigService } from '../services/translate-config.service';
 
 @Component({
   selector: 'app-team',
@@ -6,7 +7,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-  flag: boolean = false; 
+  flag: boolean = false;
   team = [
     {
       img: '../../assets/team1.jpg',
@@ -92,12 +93,12 @@ export class TeamComponent implements OnInit {
       else{
         this.flag = false;
       }
-    
+
     }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private translate:TranslateConfigService) { }
+teamNames:any;
+  async ngOnInit() {
     this.innerWidth = window.innerWidth;
     if(this.innerWidth <= 768){
       this.flag = true;
@@ -105,6 +106,15 @@ export class TeamComponent implements OnInit {
     else{
       this.flag = false;
     }
+    let teamObs = (await this.translate.getPage())
+    teamObs.subscribe(res=>{
+      console.log(res);
+      this.teamNames = res.person
+      console.log(this.teamNames);
+
+    })
+
   }
+
 
 }

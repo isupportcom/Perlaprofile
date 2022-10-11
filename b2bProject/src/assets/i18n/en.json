@@ -1,0 +1,180 @@
+{
+  "home": {
+    "first_P_before_br": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+    "second_p_after_br": "elit",
+    "title_before_br": "Lorem ipsum dolor sit amet, consectetur",
+    "title_after_br": "adipiscing elit",
+    "welcome": "Καλως Ηρθατε",
+    "learn_more_button": "Learn More",
+    "see_more_button": "See More",
+    "control_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
+    "motion_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
+    "mosqui_plus_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
+    "profile_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
+    "offer": "Best Offer"
+  },
+  "navbar": {
+    "homepage": "Homepage",
+    "products": "Products",
+    "company": "Our Company",
+    "team": "Perla's Team",
+    "contanct": "Contact Us",
+    "profile": "Profile",
+    "orders": "My Orders",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "login": "Login",
+    "add_to_cart_mess": "You Have Been Added  x"
+  },
+  "footer": {
+    "phone_numbers": "Phone Numbers",
+    "email": "Email",
+    "address": "Office Address",
+    "office": "3rd khm Giannitson - Thessalonikis",
+    "office_br": "58100,Giannitsa",
+    "company": "The Company",
+    "company_text": "Perla Profil sa designs and produces aluminum profiles according to the needs and designs of its customers while producing a complete line of automation for internal and external shading and also providing their accessories. Owns vertical production of anti-mosquito systems and aluminum rolls as well as designs and produces anodized railings of all types for all architectural needs.",
+    "contact": "Contact",
+    "see_also": "See Also",
+    "news": "News",
+    "follow_us": "Follow Us",
+    "lorem": "What Is Lorem",
+    "lorem_text": " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  },
+  "company": {
+    "title": "The company",
+    "option1": "Company's Profile",
+    "option2": "History",
+    "option1_text_p1_before_b": "Η",
+    "option1_text_p1_in_b": "PERLA PROFIL s.a.",
+    "option1_text_p1_after_b": "was created in 1976 in the area of ​​Giannitsa, Prefecture of Pella. The main activity of the company is the wholesale trade, the creation and design of innovative structural and technological products.",
+    "option1_text_p2": "The company provides materials for the manufacture of aluminum frames, synthetic PVC frames, parts and mechanisms of frames, materials for the manufacture of aluminum rolls, production of anti-mosquito systems and shading systems.",
+    "option1_text_p3": "Since 2008, the company has been designing and producing aluminum profiles, special components, automation for indoor and outdoor shading, as well as creating autonomous smart home management applications with the ability to connect devices remotely.",
+    "option1_text_p4": "The company's commercial activity develops in Greece and in 15 foreign countries including the European and South American markets.",
+    "option1_text_p5": "The company's dynamic staff is trained and specialized daily in new products and new technologies for immediate and proper customer service, to advise technically and provide solutions to any project.",
+    "option1_text_p6": "The goal of our company is to provide quality and modern products and services adapted to the modern needs of professionals and consumers, creating healthy and long-term commercial relationships.",
+    "option2_text_before_i": "The company was founded in 1976 by Christos Aggelakaris under the name",
+    "option2_text_after_i": "“Aluminium Trading” and headquartered in the city of Giannitsa, having as its main activity the trading of A/T series aluminum",
+    "option2_text_after_i_2_before_br": "of accessories for doors and windows.",
+    "option2_text_after_br": "In 1988, having already had a successful course of 12 years, the company is dynamically active in aluminum sales, taking over the exclusive distribution of the ALPIN series for the wider area of ​​the prefecture of Pella.",
+    "option2_text_after_br2": "In 1993 the company shows a significant rise in the aluminum sector and is transferred to new privately owned facilities, at the 3rd km of Giannitsa - Thessaloniki.",
+    "option2_text_after_br3": "In 1994, the company's first manufacturing department was created, with the aim of producing and selling new products, such as security shutters, anti-mosquito systems and garage doors.",
+    "option2_text_after_br4_before_i": "In 1995, the commercial department of the company was modernized with the addition of the new aluminum profile series ALPIN and ALBIO. The company is expanding its inventory of accessories and auxiliary materials, thanks to its successful collaboration with leading houses in Greece and abroad. Participates for the first time in international and industry exhibitions",
+    "option2_text_after_br4_after_i": "and changes its name to <<Perla Profil – Christos Aggelakaris aeve>>",
+    "option2_text_after_br5_before_i": "In 1997, the company designs and develops new systems of roller blinds and anti-mosquito systems.",
+    "option2_text_after_br5_after_i": "It establishes new standards in the manufacture of security rolls and very quickly, it is considered one of the leading companies in the Greek market, thanks to the innovations and innovative design of the new products.",
+    "option2_text_after_br6": "In 2001, the company proceeds with a new investment that concerns all of its activities, expanding and modernizing its building facilities at the same time. The second manufacturing department for the sale of aluminum components is created, with its transfer to a new location and the addition of new products.",
+    "option2_after_br7": "In 2003, the company holds the ISO 9001 quality certificate, which is provided with the guarantee of the British accreditation system UKAS.",
+    "option2_after_br8_before_i": " In 2006, the company cooperates with a new Italian company that produces fire safety and warehouse doors and proceeds to market these new products having",
+    "option2_after_br8_after_i": "on deposit basic dimensions for the immediate service of its customers.",
+    "option2_text_after_br9_before_i": "In 2007, we proceed to optimize the mosquito repellent system kit 39, with the installation of vertical automated production, which makes the product more competitive and replaces kit 40. The product is produced",
+    "option2_text_after_br9_after_i1": "based on European standards",
+    "option2_text_afterbr9_before_i2": "CE making it recognizable by European markets.",
+    "option2_text_after_br10_before_i": "In 2008, it is introduced",
+    "option2_text_after_br10_in_i": "at the market",
+    "option2_text_after_br10_after_i": "a separate screen model, the Plisse screen with an accordion type crawler. This",
+    "option2_text_after_br10_after_i2": "sieve model is one",
+    "option2_text_after_br10_after_i3": "new revolutionary product that offers exceptional quality .",
+    "option2_text_after_br10_after_i4": " The company starts with the marketing of wheat and in the following years we are also led",
+    "option2_text_after_br10_after_i5": "in its production.",
+    "option2_after_br11_before_i": "In 2010, the commercial department of the company is modernized with the addition of new PVC window profiles. Perla Profil is now the exclusive distributor of Roplasto products, having in stock the 7001 open system and 4003 sliding system series in",
+    "option2_text_after_br11_after_i": "variety",
+    "option2_text_after_br11_after_i2": "colors .",
+    "option2_text_after_br12_before_i": "In 2011, the company designs and develops new roller systems",
+    "option2_text_after_br12_after_i": "thermal break",
+    "option2_text_after_br12_after_i2": "and sets new standards in roll manufacturing .",
+    "option2_text_after_br13_before_i": "From the day of its establishment, the company Perla Profil has had an upward trajectory in the Greek market and today",
+    "option2_text_after_br13_after_i": "is one of the",
+    "option2_after_br13_after_i2": "leading Greek companies in the aluminum sector. It has experienced administrative and technical staff, as well as a wide range of high-quality products, which cover every need of the modern concept of residential design."
+  },
+  "team": {
+    "title": "Perla's Team",
+    "person":[ {
+      "name": "Konstantinos Aggelakaris",
+      "role": "CEO",
+      "description": "Our goal is to create and offer innovative products that cover all modern market needs"
+    },
+     {
+      "name": "Stella Aggelakari",
+      "role": "Logistics supervisor",
+      "description": "Customer Credit Check, balance check and update and supplier payments are our core competence in our department."
+    },
+     {
+      "name": "Aggeliki Tziana",
+      "role": "Order Department Manager",
+      "description": "Prompt service and getting orders right is our daily goal."
+    },
+     {
+      "name": "Anthi Lelekidou",
+      "role": "Export Manager",
+      "description": "Receiving orders, preparing offers, checking loads and sending all supporting documents and necessary documents is our daily mission."
+    },
+     {
+      "name": "Konstantinos Gourgoulas",
+      "role": "Profile Commercial Department Manager",
+      "description": "The thorough knowledge of the codes and technical characteristics of the profiles is the basic element for the immediate service of our customers."
+    },
+     {
+      "name": "Efraim Topsinoglou",
+      "role": "Loading - Transportation Manager",
+      "description": "The correct and safe transport of the goods with the appropriate packaging is the main goal."
+    },
+     {
+      "name": "Stelios Fougias",
+      "role":"Production Manager of Ready Rolls - Sitas",
+      "description":"Producing correct and functional products is our daily goal."
+    },
+    {
+      "name":"Iordanis Dometeiou",
+      "role":"Garage Door Production Manager - Fissounas",
+      "description":"Each of our orders is studied and manufactured with absolute care and quality control."
+    },
+    {
+      "name":"Giorgos Xatzi",
+      "role":"Production Manager Sita Baras",
+      "description":"The control over the details in each production process ensures the quality of the product"
+    },
+    {
+      "name":"Flamour Shehi",
+      "role":"Pleated Silk Production Manager",
+      "description":"With absolute care we check all raw materials before the production of anti-mosquito systems to manufacture quality products."
+    },
+    {
+      "name":"Jhony",
+      "role":"Parts Production Manager",
+      "description":"We produce and meticulously inspect consumable parts for rolls and screens."
+    },
+    {
+      "name":"Christoforos Sikobaris",
+      "role":"Parts - Consumables Manager",
+      "description":"Εξυπηρετούμε καθημερινά κάθε ανάγκη των επαγγελματιών προσφέροντας κορυφαία προϊόντα σε μεγάλη γκάμα άμεσα διαθέσιμη."
+    }]
+  },
+  "contact": {
+    "title":"Contact",
+    "message":"You can send us your message by filling out the form below and we will contact you as soon as we receive your request.",
+    "name": "Full Name",
+    "afm":"VAT number",
+    "email":"Διευθυνση Ηλεκτρονικου Ταχυδρομειου",
+    "doy":"IRS data",
+    "job":"Job Type",
+    "subject":"Subject",
+    "comment":"Comment",
+    "button":"Submit"
+  },
+  "products":{
+    "quote":"At Perla Profil we design and produce modern wireless device control systems for:",
+      "solinota":"Tubular motors",
+      "probalomena":"Projected motors",
+      "pergkolas":"Pergola motor",
+      "auloportas":"Gate motor"
+    ,"quote2":"We present various series of wireless transmitters, enabling us to cover every need of the end consumer. The wireless remote controls are divided into:"
+  ,"quote2_1":"Wireless remote controls are divided into:",
+  "monokanala":"Single channel remote control",
+   "polukanala":"Multi-channel remote control",
+    "epitoixia":"Wall remote control",
+   "asurmata":"Wireless remote controls",
+  "xeiros":"Hand remote control.",
+  "quote3":"We also created a remote control with a timer for easy and quick adjustment of closing and opening our device programmed."
+}
+}

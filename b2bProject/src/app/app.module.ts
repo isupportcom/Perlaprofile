@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './log-in/log-in.component';
-import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from "@angular/common/http";
+import {  RouterModule, Routes } from '@angular/router';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { AdminAreaComponent } from './AdminArea/admin-area/admin-area.component';
@@ -25,7 +25,6 @@ import { ProductAddedToCartComponent } from './shared/product-added-to-cart/prod
 import { CheckoutGuard } from './shared/product-added-to-cart/checkout.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-
 import { InsertProductsComponent } from './AdminArea/components/insert-products/insert-products.component';
 import { PopUpLoginComponent } from './AdminArea/components/pop-up-login/pop-up-login.component';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -53,6 +52,7 @@ import { UpdateColorsComponent } from './AdminArea/components/update-colors/upda
 import { UploadPdfComponent } from './AdminArea/components/upload-pdf/upload-pdf.component';
 import { InsertPdfComponent } from './AdminArea/components/insert-pdf/insert-pdf.component';
 
+
 import { ProductsCarouselComponent } from './porducts/products-carousel/products-carousel.component';
 import { NextDirective } from './next.directive';
 import { PrevDirective } from './prev.directive';
@@ -60,18 +60,28 @@ import { PrevDirective } from './prev.directive';
 // @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { SwiperModule } from 'swiper/angular';
-import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
+
+
+
+
+import { AppRoutingModule } from './app-routing.module';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TheCompanyComponent } from './the-company/the-company.component';
 import { TeamComponent } from './team/team.component';
 
+import { SwiperModule } from 'swiper/angular';
+import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
 
 
 
 
 
-const routes:Routes = [
 
+
+
+
+ const routes:Routes = [
   {
     path:'',
     redirectTo : 'home',
@@ -81,6 +91,7 @@ const routes:Routes = [
     path: 'home',
     component: HomepageComponent
   },
+
   {
     path: 'log-in',
     component: LogInComponent
@@ -163,9 +174,14 @@ const routes:Routes = [
 
 
 
+
 ]
 
+export function rootLoaderactory(http:any){
+  console.log(new TranslateHttpLoader(http,'assets/i18n.','.json'));
 
+  return new TranslateHttpLoader(http,'assets/i18n/','.json')
+}
 
 @NgModule({
   declarations: [
@@ -194,7 +210,7 @@ const routes:Routes = [
     AllimagesComponent,
     HomepageComponent,
     AddImagePopupComponent,
-    FooterComponent,
+     FooterComponent,
     SearchbarComponent,
     OffersComponent,
     ProfileComponent,
@@ -212,13 +228,15 @@ const routes:Routes = [
     NextDirective,
     PrevDirective,
     SafePipePipe,
+
     TheCompanyComponent,
     TeamComponent
+
 
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+     RouterModule,
     FormsModule,
     CommonModule,
     HttpClientModule,
@@ -226,7 +244,24 @@ const routes:Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CarouselModule,
+
+    SwiperModule,
+    AppRoutingModule,
+    TranslateModule.forRoot({
+      loader:{
+        provide:TranslateLoader,
+        useFactory:rootLoaderactory,
+        deps:[HttpClient]
+      }
+    }),
+
+
+
+
+
+
     SwiperModule
+
   ],
   exports: [
     RouterModule
@@ -236,3 +271,4 @@ const routes:Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

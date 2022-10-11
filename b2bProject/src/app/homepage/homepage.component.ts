@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '../porducts/products.service';
 import axios from "axios";
+import { TranslateConfigService } from '../services/translate-config.service';
 
 @Component({
   selector: 'app-homepage',
@@ -25,7 +26,7 @@ export class HomepageComponent implements OnInit {
   showLoggedInContent: boolean = false;
   username = localStorage.getItem('username');
 
-  constructor(private productsService: ProductsService,private router: Router) { }
+  constructor(private productsService: ProductsService,private router: Router,private translate:TranslateConfigService) { }
 
   innerWidth:any;
   @HostListener('window:resize', ['$event'])
