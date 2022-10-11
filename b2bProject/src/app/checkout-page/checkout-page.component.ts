@@ -7,7 +7,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartServiceService } from '../cart/cart-service.service';
 import { User } from '../services/user.model';
@@ -32,10 +32,12 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   showBankTransfer: boolean = false;
   @ViewChild('creditCard') creditCard: ElementRef | any;
   @ViewChild('bankTransfer') bankTransfer: ElementRef | any;
-
+  GrandTotal:number=0;
   discArr: any = [];
   loadedUser: User | any;
 
+  trigwnikh: boolean = true;
+  FormData: FormGroup |any;
   showUserDetails?: boolean;
   showPayment?: boolean;
   totalPrice: number = 0;
@@ -43,11 +45,22 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   constructor(
     private cartService: CartServiceService,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private builder: FormBuilder
   ) {}
 
   async ngOnInit() {
+    
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+    
+    this.FormData = this.builder.group({
+      address: [{value: this.loadedUser.address, disabled: true}],
+      zipCode: [{value: this.loadedUser.zip, disabled: true}],
+      area: [{value: this.loadedUser.area, disabled: true}],
+      city: [{value: this.loadedUser.city, disabled: true}],
+    })
+    
+
     let resData = await axios.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
       {
@@ -57,6 +70,9 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
     this.products = resData.data.products;
     console.log(this.products);
+    for(let prod of this.products){
+      this.GrandTotal += +prod.wholesale *prod.qty;
+    }
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
@@ -90,6 +106,30 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     // this.showPayment = localStorage.getItem('showPayment') == 'true'? true : false;
   }
 
+
+  onSubmit(FormData:any) {
+    console.log(FormData)
+    this.placeOrder();
+  }
+
+
+  handleTrigwnikh(event: any){
+    if(this.trigwnikh){
+      this.FormData.controls['address'].enable();
+      this.FormData.controls['zipCode'].enable();
+      this.FormData.controls['area'].enable();
+      this.FormData.controls['city'].enable();
+      this.trigwnikh = false;
+    } 
+    else{
+      this.FormData.controls['address'].disable();
+      this.FormData.controls['zipCode'].disable();
+      this.FormData.controls['area'].disable();
+      this.FormData.controls['city'].disable();
+      this.trigwnikh = true;
+    }
+  }
+
   handleGoBackToCart() {
     this.router.navigate(['cart']);
   }
@@ -103,8 +143,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   }
 
   handleUserDetails(f: NgForm) {
-    this.showUserDetails = false;
-    this.showPayment = true;
+    console.log(f.value);
+    
 
     localStorage.setItem('showUserDetails', 'false');
     localStorage.setItem('showPayment', 'true');
@@ -163,10 +203,10 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     },1000)
 
     var goToOrder: any;
-    let price = this.float2int(this.totalPrice * 100);
+    let price = this.float2int(this.GrandTotal * 100);
     let req = await axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/checkout.php', {
-        amount: 1,
+        amount: price,
         currency: 'EUR',
         email: 'johndoe001@gmail.com',
       })
@@ -180,7 +220,17 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         let discArr:any = [];
         let route = this.router;
         let loadedUser = this.loadedUser
+        // let cardElementRef = useRef(null);
+        // await RevolutCheckout(req.data.data.public_id).then(RC => {
+        //   console.log(RC);
+        //   RC.createCardField({
+        //     target: cardElementRef
+        //   })
+        // })
+
+
         let checkout = await RevolutCheckout(req.data.data.public_id)
+
         checkout.payWithPopup({
             name: 'John Smith',
             email: 'customer@example.com',

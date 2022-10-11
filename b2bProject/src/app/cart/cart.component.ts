@@ -22,7 +22,9 @@ export class CartComponent implements OnInit, OnDestroy {
   shouldContinue?: boolean;
   goToCheckout?: boolean;
   flag?: boolean = this.cartService.flag;
-
+  waiting: boolean = false;
+  temp: any;
+  cartItems: Array<Array<any>> = [];
 
 
   @Input('quantityInput') quantityInput?: ElementRef;
@@ -45,6 +47,7 @@ export class CartComponent implements OnInit, OnDestroy {
       (resData:any)=>{
         console.log(resData);
         this.products = resData.data.products
+        this.temp = this.products
         this.length = this.products.length;
         
         
@@ -64,11 +67,85 @@ export class CartComponent implements OnInit, OnDestroy {
       }
       );
 
+      
+
+      setTimeout(() => {
+        let counter = 0;
+        let temp: any;
+        for(let i=0;i<this.products.length;i++){
+          if(i === 0){
+            this.cartItems.push([]);
+            // this.cartItems[i].push([]);
+            this.cartItems[counter].push(this.products[i]);
+            temp = this.products[i];
+          }
+          else{
+            if(temp?.group_id != this.products[i].group_id){
+              console.log("Hey");
+              this.cartItems.push([]);
+              // this.cartItems[i].push([]);
+              counter++;
+              this.cartItems[counter].push(this.products[i]);
+            
+            }
+            else{
+              if(this.products[i].group_id.length < 10){
+                this.cartItems[counter][0].qty += this.products[i].qty;
+              }
+              else{
+                this.cartItems[counter].push(this.products[i]);
+              }
+            }
+            console.log(temp.group_id + ' ' + this.products[i].group_id);
+            temp = this.products[i];
+          }
+        }
+        console.log(this.cartItems);
+      },200)
+      
 
 
 
 
   }
+
+  stepper(myInput:any,btn: any,item: any){
+
+      let index: any;
+  
+      for(let i=0; i< this.products.length;i++){
+        if(item.mtrl == this.products[i].mtrl){
+          index = i;
+        }
+      }
+  
+      let id = btn.id;
+      let min = myInput.getAttribute("min");
+      let max = myInput.getAttribute("max");
+      let step = myInput.getAttribute("step");
+      let val = this.products[index].qty;
+      let calcStep = (id == "increment") ? (step*1) : (step * -1);
+      let newValue = +val + calcStep;
+      this.products[index].qty = newValue;
+      
+      
+      if(newValue >= min && newValue <= max){
+        myInput.setAttribute("value", this.products[index].qty);
+      }
+  
+      console.log(this.products[index]);
+      
+      this.cartService.addToCart(this.products[index],false)
+      this.GrandTotal = 0;
+      for(let prod of this.products){
+        this.GrandTotal += +prod.wholesale *prod.qty;
+      }     
+      
+      console.log(this.GrandTotal)
+
+    
+}
+
   currentQuantity(quantity:any,index:number,prevQuantity:number) {
     // if (quantity > prevQuantity){
     //   this.GrandTotal = (this.GrandTotal + (this.products[index].wholesale * quantity)) - this.products[index].wholesale * prevQuantity;
@@ -79,13 +156,13 @@ export class CartComponent implements OnInit, OnDestroy {
     // console.log(prevQuantity);
     this.products[index].qty = quantity;
 
-    window.location.reload();
+    // window.location.reload();
 
 
   }
 
 
-  removeOne(item: any, index: number){
+  removeOne(item: any, index: number,reload: boolean){
 
       if(this.length > 1){
         this.GrandTotal -= this.products[index].wholesale;
@@ -106,29 +183,28 @@ export class CartComponent implements OnInit, OnDestroy {
         ).then(resData=>{console.log(resData);
           console.log(this.products)
           this.length = this.products.length;
+
+        })
+
+        if(reload){
           setTimeout(() => {
             window.location.reload();
           }, 500)
-        })
+        }
 
-
-
-        setTimeout(() => {
-          window.location.reload();
-        }, 500)
 
 
   }
 
 
 
-  clearAll(item:any){
+  clearAll(reload: boolean){
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
-    console.log(item);
+    
     
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
     {
-      mtrl:item,
+      mtrl:10,
       trdr:loadedUser.trdr,
       id:1,
       group_id: 'test'
@@ -150,9 +226,11 @@ export class CartComponent implements OnInit, OnDestroy {
 
     })
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 500)
+    if(reload){
+      setTimeout(() => {
+        window.location.reload();
+      }, 500)
+    }
 
 
   }
@@ -176,7 +254,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.renderer.setStyle(this.text?.nativeElement, 'font-weight', 'lighter');
   }
 
-  handleClick(){
+  handleContinueShopping(){
     let currentCategory = JSON.parse(localStorage.getItem('currentCategory') || '{}')
     console.log(currentCategory);
 

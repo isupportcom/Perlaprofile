@@ -128,7 +128,7 @@ export class CartServiceService {
 
   }
 
-  addToCart(product: product | any) {
+  addToCart(product: product | any,animate?: boolean) {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     console.log(loadedUser.trdr);
     console.log(product);
@@ -157,9 +157,14 @@ export class CartServiceService {
     // this.items = JSON.parse(localStorage.getItem('products') || '{}');
     let productAdded = true;
     localStorage.setItem('productAdded', 'true');
-    this.sendProductAdded(
-      localStorage.getItem('productAdded') == 'true' ? true : false
-    );
+    if(animate){
+      this.sendProductAdded(
+        localStorage.getItem('productAdded') == 'true' ? true : false
+      );
+    }
+
+    
+
     let discount:any;
     if(product.discound == 0){
         discount = -1;
