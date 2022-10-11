@@ -125,7 +125,7 @@
                 (click)="langOptions()"
                 class="btn ms-md-2 myBtn dropdown-toggle"
                 role="button"
-                >&emsp;{{ choocenLang ? "Ελληνικά" : "English" }}&emsp;</a
+                >&emsp;{{ choocenLang ? "English" : "Ελληνικά" }}&emsp;</a
               >
               <ul
                 #optionslang
@@ -141,7 +141,7 @@
                   <a
                     class="dropdown-item my-dropdown-item"
                     (click)="switchLang()"
-                    >{{ choocenLang ? "English" : "Ελληνικά" }}</a
+                    >{{ choocenLang ? "Ελληνικά" : "English" }}</a
                   >
                 </li>
               </ul>
@@ -331,14 +331,13 @@
             >
           </li>
           <li>
-            <div class="dropdown">
+            <div  (mouseenter)="handleHover()" class="dropdown">
               <a
                 translate
                 routerLink="/products"
                 (click)="handleProducts()"
                 routerLinkActive="my-active"
-                (mouseleave)="handleMouseleave()"
-                (mouseenter)="handleHover()"
+
                 class="dropdown-toggle"
                 translate
               >
@@ -352,7 +351,9 @@
                     ? 'dropdown-menu myMenu2'
                     : 'dropdown-menu myMenu'
                 "
+                style="background-color: rgba(0,0,0,0.7);"
               >
+              
                 <li
                   [routerLink]="
                     '/products/' + mainCategory.id + '/' + mainCategory.name
@@ -361,7 +362,7 @@
                   style="margin-right: 0px"
                   *ngFor="let mainCategory of mainCategories"
                 >
-                  <a class="dropdown-item" style="color: black">{{
+                  <a class="dropdown-item my-dropdown-item2" style="color: white !important">{{
                     mainCategory.name
                   }}</a>
                 </li>

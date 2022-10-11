@@ -533,10 +533,10 @@ export class ProductListComponent implements OnInit , OnDestroy{
       if(e.checked){
         this.listArray.push(e.value);
         this.waiting = true;
+        this.updateProducts();
         setTimeout(() => {
-          this.updateProducts();
           this.waiting = false;
-        },100);
+        },600);
   
       }
       else{
@@ -548,10 +548,10 @@ export class ProductListComponent implements OnInit , OnDestroy{
           }
         }
         this.waiting = true;
+        this.updateProducts();
         setTimeout(() => {
-          this.updateProducts();
           this.waiting = false;
-        },100);
+        },600);
   
       }
       this.checked = true;
@@ -563,10 +563,10 @@ export class ProductListComponent implements OnInit , OnDestroy{
       if(e.target.checked){
         this.listArray.push(e.target.value);
         this.waiting = true;
+        this.updateProducts();
         setTimeout(() => {
-          this.updateProducts();
           this.waiting = false;
-        },100);
+        },600);
   
       }
       else{
@@ -578,10 +578,10 @@ export class ProductListComponent implements OnInit , OnDestroy{
           }
         }
         this.waiting = true;
+        this.updateProducts();
         setTimeout(() => {
-          this.updateProducts();
           this.waiting = false;
-        },100);
+        },600);
   
       }
       this.checked = true;

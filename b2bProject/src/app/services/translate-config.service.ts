@@ -5,7 +5,7 @@ import {TranslateService} from '@ngx-translate/core'
 })
 export class TranslateConfigService{
   constructor(private translateService: TranslateService){
-    this.translateService.use('en')
+    this.translateService.use('el')
 
   }
   changeLanguage(type:string){

@@ -1,46 +1,73 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <div class="left-side">
-    <div>
-      <div class="myCart">
-        <h2>Τα Αγαπημένα Mου</h2>
-      </div>
-    </div>
-    <hr class="first-hr" />
-    <div class="product" *ngIf="hasProducts">
-      <div class="product" *ngFor="let fav of products">
-        <img [src]="fav.img" alt="" style="width: 141px; height: 141px" />
-        <div class="description">
-          <div class="descLeft">
-            <h4>{{ fav.name }}</h4>
-            <p>{{ fav.name1 }}</p>
-            <button class="btn btn-danger" (click)="removeOne(fav.mtrl)">
-              X
-            </button>
-            <button class="btn btn-primary" style="margin-left: 10px" (click)="addToCart(fav)">
-              Add To Cart
-            </button>
-          </div>
-          <div class="descRight">
-            <h3 *ngIf="fav.hasOffer!= true">${{ fav.wholesale }}</h3>
-            <div *ngIf="fav.hasOffer == true">
-              <h3 style="color:red;text-decoration: line-through;">{{fav.wholesale}}</h3>
-              <h3>{{fav.offer}}</h3>
-            </div>
-          </div>
+<!-- <div class="container content">
+  <div class="row">
+    <h2>Τα Αγαπημένα Mου</h2>
+    <hr style="opacity: 1;border: 1px solid #6dae49;">
+  </div>
+  <div class="row" style="background-color: white;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.01); border-radius: 16px;padding: 32px">
+    <div class="col-3" style="padding: 24px;" *ngFor="let fav of products">
+      <div class="row" style="box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);">
+        <div class="row" style="justify-content: center;align-items: center">
+          <img [src]="fav.img" alt="" style="width: 200px;height: 200px;" />
         </div>
-        <hr />
+        <div class="row text-center">
+          <h5>{{ fav.name }}</h5>
+        </div>
+        <div class="row" style="justify-content: center;align-items: center">
+          <hr style="opacity: 1;border: 1px solid #6dae49;width: 90%;">
+        </div>
+        <div class="row">
+          <p>{{ fav.wholesale }}</p>
+        </div>
       </div>
-      <button
-        class="btn btn-danger"
-        style="margin-bottom: 20px ;"
-        (click)="removeAll()"
-      >
-        Clear All
-      </button>
-    </div>
-    <div *ngIf="!hasProducts">
-      <h3>Δεν Υπάρχουν Προϊόντα</h3>
     </div>
   </div>
+</div> -->
+
+<div class="container" style="margin-top: 200px">
+<div class="left-side">
+  <div>
+    <div class="myCart">
+      <h2>Τα Αγαπημένα Mου</h2>
+    </div>
+  </div>
+  <hr class="first-hr" />
+  <div class="product" *ngIf="hasProducts">
+    <div class="product" *ngFor="let fav of products">
+      <img [src]="fav.img" alt="" style="width: 141px; height: 141px" />
+      <div class="description">
+        <div class="descLeft">
+          <h4>{{ fav.name }}</h4>
+          <p>{{ fav.name1 }}</p>
+          <button class="btn btn-danger" (click)="removeOne(fav.mtrl)">
+            X
+          </button>
+          <button class="btn btn-primary" style="margin-left: 10px" (click)="addToCart(fav)">
+            Add To Cart
+          </button>
+        </div>
+        <div class="descRight">
+          <h3 *ngIf="fav.hasOffer!= true">${{ fav.wholesale }}</h3>
+          <div *ngIf="fav.hasOffer == true">
+            <h3 style="color:red;text-decoration: line-through;">{{fav.wholesale}}</h3>
+            <h3>{{fav.offer}}</h3>
+          </div>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <button
+      class="btn btn-danger"
+      style="margin-bottom: 20px ;"
+      (click)="removeAll()"
+    >
+      Clear All
+    </button>
+  </div>
+  <div *ngIf="!hasProducts">
+    <h3>Δεν Υπάρχουν Προϊόντα</h3>
+  </div>
 </div>
+</div>
+
+<app-footer></app-footer>

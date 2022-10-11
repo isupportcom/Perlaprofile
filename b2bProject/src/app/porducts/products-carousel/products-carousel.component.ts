@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import axios from 'axios';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.component';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-products-carousel',
@@ -11,10 +13,12 @@ import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.c
 export class ProductsCarouselComponent implements OnInit {
   @Input() mode: any;
   @Input() mtrl: any;
+  @Input() category?: any;
   suggestedProducts:product|any;
   hasSuggested:boolean =false;
   suggested:any;
-
+  shownProducts:product|any;
+  loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -42,19 +46,16 @@ export class ProductsCarouselComponent implements OnInit {
 
   numbers = [1,2,3,4,5,6,7,8];
 
-  constructor() { }
+  constructor(private productsService: ProductsService,
+    private router: Router,) { }
 
   async ngOnInit() {
     
-    console.log(this.mode);
+    console.log(this.category);
     
     
     if(this.mode == 'suggested'){
       
-    }
-    
-    
-    if(this.mode == 'offers'){
       let request = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllproductsRelated.php",{mtrl: +this.mtrl})
       console.log(request.data)
       this.suggestedProducts = request.data.products;
@@ -74,6 +75,32 @@ export class ProductsCarouselComponent implements OnInit {
         this.hasSuggested = true;
       }
     }
+    
+    
+    if(this.mode == 'offers'){
+      axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
+        category_id: this.category.id
+      }).then(resData => {
+        this.shownProducts = resData.data.products;
+        
+      })
+    }
+  }
+
+  seeProduct(product: any){
+    console.log(product);
+    this.productsService.setSingleProduct(product)
+
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
+      mtrl: product.mtrl,
+      trdr: this.loadedUser.trdr
+    }).then(resData=>{
+      console.log(resData.data);
+    })
+    
+    setTimeout(() => {
+      this.router.navigate(['/products/product-page']);
+    },100)
     
   }
 

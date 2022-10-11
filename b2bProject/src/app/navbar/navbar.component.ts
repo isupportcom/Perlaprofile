@@ -263,10 +263,10 @@ export class NavbarComponent implements OnInit{
     if(this.choocenLang){
       this.id = 0
 
-      this.translate.changeLanguage('el')
+      this.translate.changeLanguage('en')
     }else{
       this.id=1;
-      this.translate.changeLanguage('en')
+      this.translate.changeLanguage('el')
     }
 
     console.log(this.id);
