@@ -142,6 +142,11 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
 
 
     this.productsService.mosquiProductFound.subscribe(resData => {

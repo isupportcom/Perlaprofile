@@ -70,10 +70,13 @@ export class CartComponent implements OnInit, OnDestroy {
       
 
       setTimeout(() => {
+        console.log(this.products);
+        
         let counter = 0;
         let temp: any;
         for(let i=0;i<this.products.length;i++){
           if(i === 0){
+            
             this.cartItems.push([]);
             // this.cartItems[i].push([]);
             this.cartItems[counter].push(this.products[i]);
@@ -101,7 +104,7 @@ export class CartComponent implements OnInit, OnDestroy {
           }
         }
         console.log(this.cartItems);
-      },200)
+      },400)
       
 
 

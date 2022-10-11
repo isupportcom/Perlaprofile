@@ -113,84 +113,59 @@
     </div>
 
 
-    <div
-      *ngIf="showLoggedInContent"
-      style="/*background-color: white;*/ padding: 72px; margin-top: 24px"
-    >
-      <div class="container" style="text-align: center">
-        <h1 translate>home.offer</h1><h1> {{ offer1.discount }}%</h1>
-        <hr style="width: 40%; border-color: #6dae49; margin-left: 30%" />
-      </div>
-      <div
-        class="container d-flex flex-column align-items-center py-4 py-xl-5"
-        style="
-          background-color: white;
-          border-radius: 30px;
-          box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);
-          margin-top: 24px;
-        "
-      >
 
-
-    <!-- ΠΡΟΣΦΟΡΑ -->
-    <!-- <div class="container" *ngIf="showLoggedInContent" style="/*background-color: white;*/padding: 72px;margin-top: 24px;">
-
-        <div class="row" style="justify-content: center;">
-          <h1 style="width: fit-content;">Πρόλαβε έκπτωση {{offer1.discount}}%</h1>
-        </div>
-        <div class="row" style="justify-content: center;margin-top: 8px;">
-          <hr style="width: 40%;border: 1px solid #6dae49;opacity: 1;">
-        </div>
-      </div>
-
-      <div class="row" style="background-color: white;border-radius: 30px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.20);margin-top: 24px;">
-        <div class="col-6">
-          <img [src]="offer1.img" alt="" srcset=""/>
-        </div>
-      </div> -->
-
-
-      <!-- <div class="container d-flex flex-column align-items-center py-4 py-xl-5" style="background-color: white;border-radius: 30px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.20);margin-top: 24px;"> -->
-
-        <div
-          class="row gy-4 row-cols-1 row-cols-md-2 w-100"
-          style="max-width: 800px"
-        >
-          <div class="col order-md-first">
-            <div class="card">
-              <img
-                class="card-img w-100 d-block"
-                [src]="offer1.img"
-                alt="Φωτογραφια Προϊοντος"
-                 i18n-alt
-                srcset=""
-              />
-            </div>
-          </div>
-          <div
-            class="col d-md-flex order-first justify-content-md-start align-items-md-end order-md-1"
-            style="align-items: flex-start !important; order: 1 !important"
-          >
-            <div style="width: 80%">
-              <h2 class="productName" >{{ offer1.name }}</h2>
-              <p class="w-lg-50 productDesc">{{ offer1.name1 }}</p>
-              <div class="col col-12">
-                <a
-                  class="btn ms-md-2 myBtn"
-                  role="button"
-                  (click)="hundleOffer(offer1)"
-                  translate>home.learn_more_button</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
 </div>
 
+<div
+*ngIf="showLoggedInContent"
+style="margin-top: 72px;"
+>
+<div class="container" style="text-align: center">
+  <div class="row">
+
+    <h1>Προσφορά</h1>
+  </div>
+  <div class="row" style="justify-content: center;">
+    <hr style="width: 40%; border: 1px solid #6dae49;opacity: 1;" />
+  </div>
+</div>
+<div style="background-color: red;">
+  <div class="container" style="
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);
+  margin-top: 24px;
+  padding: 80px;
+  ">
+  <div class="row">
+    <div class="col-6">
+      <div class="box" style="cursor: pointer;" #offerImg>
+        <div class="text">
+          <i class="fas fa-quote-right fa1">-{{ offer1.discount }}%</i>
+          <img [src]="offer1.img" width="100%" height="100%" alt="" srcset="">
+          <div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <h2>{{ offer1.name }}</h2>
+      </div>
+      <div class="row">
+        <p>{{ offer1.name1 }}</p>
+      </div>
+      <div class="row" style="height: 60%;justify-content: start;align-items: end;">
+        <button class="btn btn-success" (mouseover)="handleOfferHover(offerImg)" (mouseleave)="handleOfferHoverLeave(offerImg)" style="height: fit-content;width: fit-content;">Μάθε Περισσότερα</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
 
 
 

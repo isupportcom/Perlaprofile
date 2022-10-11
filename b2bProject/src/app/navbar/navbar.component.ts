@@ -199,10 +199,6 @@ export class NavbarComponent implements OnInit{
       this.showLoggedinNav = true;
     }
 
-    this.cartService.productAdded.subscribe(resData => {
-      console.log(resData);
-
-    });
 
 
     this.innerWidth = window.innerWidth;
