@@ -20,6 +20,7 @@ export class CartComponent implements OnInit, OnDestroy {
   length:number|any
   show: boolean = true;
   shouldContinue?: boolean;
+  currentLang:any;
   goToCheckout?: boolean;
   flag?: boolean = this.cartService.flag;
   waiting: boolean = false;
@@ -38,7 +39,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log(this.cartService.getItemsToCartArray())
-
+    this.currentLang = localStorage.getItem('lang') || 'el';
     // console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     console.log(this.cartService.getItems());
     let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
@@ -49,8 +50,8 @@ export class CartComponent implements OnInit, OnDestroy {
         this.products = resData.data.products
         this.temp = this.products
         this.length = this.products.length;
-        
-        
+
+
 
         if(this.length == 0){
           this.shouldContinue = false;
@@ -67,7 +68,7 @@ export class CartComponent implements OnInit, OnDestroy {
       }
       );
 
-      
+
 
       setTimeout(() => {
         let counter = 0;
@@ -86,7 +87,7 @@ export class CartComponent implements OnInit, OnDestroy {
               // this.cartItems[i].push([]);
               counter++;
               this.cartItems[counter].push(this.products[i]);
-            
+
             }
             else{
               if(this.products[i].group_id.length < 10){
@@ -102,7 +103,7 @@ export class CartComponent implements OnInit, OnDestroy {
         }
         console.log(this.cartItems);
       },200)
-      
+
 
 
 
@@ -112,13 +113,13 @@ export class CartComponent implements OnInit, OnDestroy {
   stepper(myInput:any,btn: any,item: any){
 
       let index: any;
-  
+
       for(let i=0; i< this.products.length;i++){
         if(item.mtrl == this.products[i].mtrl){
           index = i;
         }
       }
-  
+
       let id = btn.id;
       let min = myInput.getAttribute("min");
       let max = myInput.getAttribute("max");
@@ -127,23 +128,23 @@ export class CartComponent implements OnInit, OnDestroy {
       let calcStep = (id == "increment") ? (step*1) : (step * -1);
       let newValue = +val + calcStep;
       this.products[index].qty = newValue;
-      
-      
+
+
       if(newValue >= min && newValue <= max){
         myInput.setAttribute("value", this.products[index].qty);
       }
-  
+
       console.log(this.products[index]);
-      
+
       this.cartService.addToCart(this.products[index],false)
       this.GrandTotal = 0;
       for(let prod of this.products){
         this.GrandTotal += +prod.wholesale *prod.qty;
-      }     
-      
+      }
+
       console.log(this.GrandTotal)
 
-    
+
 }
 
   currentQuantity(quantity:any,index:number,prevQuantity:number) {
@@ -200,8 +201,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
   clearAll(reload: boolean){
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
-    
-    
+
+
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
     {
       mtrl:10,

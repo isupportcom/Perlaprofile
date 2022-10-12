@@ -89,92 +89,130 @@
   },
   "team": {
     "title": "Perla's Team",
-    "person":[ {
-      "name": "Konstantinos Aggelakaris",
-      "role": "CEO",
-      "description": "Our goal is to create and offer innovative products that cover all modern market needs"
-    },
-     {
-      "name": "Stella Aggelakari",
-      "role": "Logistics supervisor",
-      "description": "Customer Credit Check, balance check and update and supplier payments are our core competence in our department."
-    },
-     {
-      "name": "Aggeliki Tziana",
-      "role": "Order Department Manager",
-      "description": "Prompt service and getting orders right is our daily goal."
-    },
-     {
-      "name": "Anthi Lelekidou",
-      "role": "Export Manager",
-      "description": "Receiving orders, preparing offers, checking loads and sending all supporting documents and necessary documents is our daily mission."
-    },
-     {
-      "name": "Konstantinos Gourgoulas",
-      "role": "Profile Commercial Department Manager",
-      "description": "The thorough knowledge of the codes and technical characteristics of the profiles is the basic element for the immediate service of our customers."
-    },
-     {
-      "name": "Efraim Topsinoglou",
-      "role": "Loading - Transportation Manager",
-      "description": "The correct and safe transport of the goods with the appropriate packaging is the main goal."
-    },
-     {
-      "name": "Stelios Fougias",
-      "role":"Production Manager of Ready Rolls - Sitas",
-      "description":"Producing correct and functional products is our daily goal."
-    },
-    {
-      "name":"Iordanis Dometeiou",
-      "role":"Garage Door Production Manager - Fissounas",
-      "description":"Each of our orders is studied and manufactured with absolute care and quality control."
-    },
-    {
-      "name":"Giorgos Xatzi",
-      "role":"Production Manager Sita Baras",
-      "description":"The control over the details in each production process ensures the quality of the product"
-    },
-    {
-      "name":"Flamour Shehi",
-      "role":"Pleated Silk Production Manager",
-      "description":"With absolute care we check all raw materials before the production of anti-mosquito systems to manufacture quality products."
-    },
-    {
-      "name":"Jhony",
-      "role":"Parts Production Manager",
-      "description":"We produce and meticulously inspect consumable parts for rolls and screens."
-    },
-    {
-      "name":"Christoforos Sikobaris",
-      "role":"Parts - Consumables Manager",
-      "description":"Εξυπηρετούμε καθημερινά κάθε ανάγκη των επαγγελματιών προσφέροντας κορυφαία προϊόντα σε μεγάλη γκάμα άμεσα διαθέσιμη."
-    }]
+    "person": [
+      {
+        "name": "Konstantinos Aggelakaris",
+        "role": "CEO",
+        "description": "Our goal is to create and offer innovative products that cover all modern market needs"
+      },
+      {
+        "name": "Stella Aggelakari",
+        "role": "Logistics supervisor",
+        "description": "Customer Credit Check, balance check and update and supplier payments are our core competence in our department."
+      },
+      {
+        "name": "Aggeliki Tziana",
+        "role": "Order Department Manager",
+        "description": "Prompt service and getting orders right is our daily goal."
+      },
+      {
+        "name": "Anthi Lelekidou",
+        "role": "Export Manager",
+        "description": "Receiving orders, preparing offers, checking loads and sending all supporting documents and necessary documents is our daily mission."
+      },
+      {
+        "name": "Konstantinos Gourgoulas",
+        "role": "Profile Commercial Department Manager",
+        "description": "The thorough knowledge of the codes and technical characteristics of the profiles is the basic element for the immediate service of our customers."
+      },
+      {
+        "name": "Efraim Topsinoglou",
+        "role": "Loading - Transportation Manager",
+        "description": "The correct and safe transport of the goods with the appropriate packaging is the main goal."
+      },
+      {
+        "name": "Stelios Fougias",
+        "role": "Production Manager of Ready Rolls - Sitas",
+        "description": "Producing correct and functional products is our daily goal."
+      },
+      {
+        "name": "Iordanis Dometeiou",
+        "role": "Garage Door Production Manager - Fissounas",
+        "description": "Each of our orders is studied and manufactured with absolute care and quality control."
+      },
+      {
+        "name": "Giorgos Xatzi",
+        "role": "Production Manager Sita Baras",
+        "description": "The control over the details in each production process ensures the quality of the product"
+      },
+      {
+        "name": "Flamour Shehi",
+        "role": "Pleated Silk Production Manager",
+        "description": "With absolute care we check all raw materials before the production of anti-mosquito systems to manufacture quality products."
+      },
+      {
+        "name": "Jhony",
+        "role": "Parts Production Manager",
+        "description": "We produce and meticulously inspect consumable parts for rolls and screens."
+      },
+      {
+        "name": "Christoforos Sikobaris",
+        "role": "Parts - Consumables Manager",
+        "description": "Εξυπηρετούμε καθημερινά κάθε ανάγκη των επαγγελματιών προσφέροντας κορυφαία προϊόντα σε μεγάλη γκάμα άμεσα διαθέσιμη."
+      }
+    ]
   },
   "contact": {
-    "title":"Contact",
-    "message":"You can send us your message by filling out the form below and we will contact you as soon as we receive your request.",
+    "title": "Contact",
+    "message": "You can send us your message by filling out the form below and we will contact you as soon as we receive your request.",
     "name": "Full Name",
-    "afm":"VAT number",
-    "email":"Διευθυνση Ηλεκτρονικου Ταχυδρομειου",
-    "doy":"IRS data",
-    "job":"Job Type",
-    "subject":"Subject",
-    "comment":"Comment",
-    "button":"Submit"
+    "afm": "VAT number",
+    "email": "Διευθυνση Ηλεκτρονικου Ταχυδρομειου",
+    "doy": "IRS data",
+    "job": "Job Type",
+    "subject": "Subject",
+    "comment": "Comment",
+    "button": "Submit"
   },
-  "products":{
-    "quote":"At Perla Profil we design and produce modern wireless device control systems for:",
-      "solinota":"Tubular motors",
-      "probalomena":"Projected motors",
-      "pergkolas":"Pergola motor",
-      "auloportas":"Gate motor"
-    ,"quote2":"We present various series of wireless transmitters, enabling us to cover every need of the end consumer. The wireless remote controls are divided into:"
-  ,"quote2_1":"Wireless remote controls are divided into:",
-  "monokanala":"Single channel remote control",
-   "polukanala":"Multi-channel remote control",
-    "epitoixia":"Wall remote control",
-   "asurmata":"Wireless remote controls",
-  "xeiros":"Hand remote control.",
-  "quote3":"We also created a remote control with a timer for easy and quick adjustment of closing and opening our device programmed."
-}
+  "products": {
+    "quote": "At Perla Profil we design and produce modern wireless device control systems for:",
+    "solinota": "Tubular motors",
+    "probalomena": "Projected motors",
+    "pergkolas": "Pergola motor",
+    "auloportas": "Gate motor",
+    "quote2": "We present various series of wireless transmitters, enabling us to cover every need of the end consumer. The wireless remote controls are divided into:",
+    "quote2_1": "Wireless remote controls are divided into:",
+    "monokanala": "Single channel remote control",
+    "polukanala": "Multi-channel remote control",
+    "epitoixia": "Wall remote control",
+    "asurmata": "Wireless remote controls",
+    "xeiros": "Hand remote control.",
+    "quote3": "We also created a remote control with a timer for easy and quick adjustment of closing and opening our device programmed."
+  },
+  "product_page": {
+    "price": "Price",
+    "fpa": "(*The prices do not include VAT)",
+    "qty": "Quantity:",
+    "add": "Add To Cart",
+    "apothiki": "Warehouse Code",
+    "tech_code": "Technical Code",
+    "man_code": "Manufacturer Code",
+    "newProd": "Find New Product",
+    "desc": "Description",
+    "data_sheet": "Additional Data",
+    "down": "Downloads",
+    "sol": "Solutions",
+    "suggested": "Suggested Products",
+    "see_earlier": "Seen Recently",
+    "not_fount": "No Products Found"
+  },
+  "cart":{
+    "order":"Order",
+    "continue":"Continue Shopping",
+    "sum":"Order Summary",
+    "value":"Product Value:",
+    "trans":"Transportation:",
+    "total":"Total value:",
+    "procceed":"Proceed to purchase"
+  },
+  "check":{
+      "details":"Details of your business",
+      "add":"Address",
+      "tk":"ZIP",
+      "area":"Area",
+      "city":"City",
+      "tring":"Triangular",
+      "back":"Back To Cart"
+
+  }
 }

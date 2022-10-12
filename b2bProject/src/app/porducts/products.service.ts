@@ -14,7 +14,7 @@ import axios from "axios";
     }
 )
 export  class ProductsService {
-  singleProduct : product | any;
+  singleProduct :  any;
   products: product [] = [];
   allCategories: any = [];
   mainCategories: any = [];
@@ -31,7 +31,7 @@ export  class ProductsService {
     this.mosquiProductFound.next(product);
   }
 
- setSingleProduct(prod:product | any){
+ setSingleProduct(prod:any){
     this.singleProduct = prod;
     localStorage.setItem("single",JSON.stringify(this.singleProduct))
     console.log(prod);

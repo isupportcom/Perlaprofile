@@ -5,27 +5,27 @@
     <div class="row">
       <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" style="padding-right: 24px;">
         <div class="row" style="align-items: end;height: 50px">
-          <h2>Στοιχεία της επιχείρησής σας</h2>
+          <h2 translate>check.details</h2>
         </div>
         <div class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;">
-            <form class="row" [formGroup]="FormData" >    
+            <form class="row" [formGroup]="FormData" >
                 <div class="row">
                     <div class="col-6" style="padding: 12px;">
-                        <label for="address">Διεύθυνση</label>
+                        <label for="address" translate>check.add</label>
                         <input type="text" name="address" formControlName="address" class="form-control" id="address" style="width: 100%;" required>
                     </div>
                     <div class="col-6" style="padding: 12px;">
-                        <label for="zipCode">Τ.Κ.</label>
+                        <label for="zipCode" translate>check.tk</label>
                         <input type="text" name="zipCode" formControlName="zipCode" class="form-control" id="zipCode" style="width: 100%;" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6" style="padding: 12px;">
-                        <label for="area">Περιοχή</label>
+                        <label for="area" translate>check.area</label>
                         <input type="text" name="area" formControlName="area" class="form-control" id="area" style="width: 100%;" required>
                     </div>
                     <div class="col-6" style="padding: 12px;">
-                        <label for="city">Πόλη</label>
+                        <label for="city" translate>check.city</label>
                         <input type="text" name="city" formControlName="city" class="form-control" id="city" style="width: 100%;" required>
                     </div>
                 </div>
@@ -34,15 +34,15 @@
             <div class="row" style="padding-left: 24px;">
                 <div class="form-check">
                     <input type="checkbox" id="check" (click)="handleTrigwnikh($event)" class="form-check-input" #check>
-                    <label for="check" class="form-check-label">Τριγωνική</label>
+                    <label for="check" class="form-check-label" translate>check.tring</label>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12" style="margin-top: 12px;padding: 0;">
-              <a class="goBackBtn" (click)="handleGoBackToCart()">
+              <a class="goBackBtn" (click)="handleGoBackToCart()" translate>
                 <img style="transform: rotate(180deg);" src="../../assets/chevron-right-white.svg" width="18px" alt="">
-                Πίσω στο καλάθι
+                check.back
               </a>
             </div>
           </div>
@@ -50,13 +50,14 @@
 
       <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 orderReview">
         <div class="row" style="align-items: end;height: 50px">
-          <h5>Σύνοψη Παραγγελίας</h5>
+          <h5 translate>cart.sum</h5>
         </div>
         <div class="row" style="background-color: white;border-radius: 16px;padding: 50px 12px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
             <div class="row productValue" *ngFor="let product of products" style="margin-bottom: 4px;">
                 <div class="col-6">
                   <div class="row">
-                    <p style="margin: 0;">{{ product.name }}:</p>
+                    <p style="margin: 0;" *ngIf="currentLang=='el'">{{ product.name }}:</p>
+                    <p style="margin: 0;" *ngIf="currentLang=='en'">{{ product.name1 }}:</p>
                   </div>
                 </div>
                 <div class="col-3">
@@ -70,16 +71,16 @@
                     </div>
                 </div>
               </div>
-      
-            
+
+
             <div class="row" style="margin-top: 12px;">
                 <hr style="border: 1px solid #6dae49;opacity: 1;">
             </div>
-          
+
             <div class="row productValue" style="margin-bottom: 4px;">
             <div class="col-6">
               <div class="row">
-                <p style="margin: 0;">Αξία Προϊόντων:</p>
+                <p style="margin: 0;" translate>cart.value</p>
               </div>
             </div>
             <div class="col-6">
@@ -88,11 +89,11 @@
               </div>
             </div>
           </div>
-  
+
           <div class="row shippingValue" style="margin-bottom: 4px;">
             <div class="col-6">
               <div class="row">
-                <p style="margin: 0;">Μεταφορικά:</p>
+                <p style="margin: 0;" translate>cart.trans<p>
               </div>
             </div>
             <div class="col-6">
@@ -101,16 +102,16 @@
               </div>
             </div>
           </div>
-  
+
           <div class="row" style="margin-top: 12px;">
             <hr style="border: 1px solid #6dae49;opacity: 1;">
           </div>
-          
-  
+
+
           <div class="row totalValue" style="font-weight: 600;font-size: 18px;">
             <div class="col-6">
               <div class="row">
-                <p style="margin: 0;">Συνολική Αξία:</p>
+                <p style="margin: 0;" translate>cart.total</p>
               </div>
             </div>
             <div class="col-6">
@@ -120,8 +121,8 @@
             </div>
           </div>
           <div class="row">
-            <a class="cart-btn" type="submit" (click)="onSubmit(FormData.value)" >
-              Προχωρήστε σε αγορά
+            <a class="cart-btn" translate type="submit" (click)="onSubmit(FormData.value)" >
+              cart.procceed
               <img src="../../assets/credit-card.svg" alt="">
             </a>
           </div>

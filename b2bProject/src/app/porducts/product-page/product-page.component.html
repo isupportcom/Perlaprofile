@@ -1,250 +1,671 @@
-
-
-
-
-
-
-<div class="container" style="margin-top: 180px !important;display: block">
-  <div class="row" style="padding-left: 17%;">
-
-  </div>
+<div class="container" style="margin-top: 180px !important; display: block">
+  <div class="row" style="padding-left: 17%"></div>
   <div class="row">
-    <div *ngIf="!slidesShown" class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 second-swiper-holder" style="display: flex;justify-content:right;align-items: center;">
-      <swiper
-      class="second-swiper"
-      [slidesPerView]="3"
-      [spaceBetween]="10"
-      (slideChange)="onSlideChange(secondSwiper)"
-      [navigation]="true"
-      [draggable]="true"
-      (swiper)="setThumbsSwiper($event)"
-      style="width: 100px;"
-      direction="vertical"
-      #secondSwiper
+    <div
+      *ngIf="!slidesShown"
+      class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 second-swiper-holder"
+      style="display: flex; justify-content: right; align-items: center"
     >
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="product.img" alt=""></ng-template>
-      <ng-template *ngFor="let img of product.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
-    </swiper>
+      <swiper
+        class="second-swiper"
+        [slidesPerView]="3"
+        [spaceBetween]="10"
+        (slideChange)="onSlideChange(secondSwiper)"
+        [navigation]="true"
+        [draggable]="true"
+        (swiper)="setThumbsSwiper($event)"
+        style="width: 100px"
+        direction="vertical"
+        #secondSwiper
+      >
+        <ng-template swiperSlide
+          ><img
+            style="
+              cursor: pointer;
+              border-radius: 8px;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+            "
+            width="100px"
+            height="100px"
+            [src]="product.img"
+            alt=""
+        /></ng-template>
+        <ng-template *ngFor="let img of product.otherImages" swiperSlide
+          ><img
+            style="
+              cursor: pointer;
+              border-radius: 8px;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+            "
+            width="100px"
+            height="100px"
+            [src]="img.img"
+            alt=""
+        /></ng-template>
+      </swiper>
     </div>
 
     <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
-      <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50"  [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
-        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;" [src]="product.img" alt=""></ng-template>
-        <ng-template *ngFor="let img of product.otherImages" swiperSlide><img width="500px" height="500px" style="border-radius: 8px;" [src]="img.img" alt=""></ng-template>
+      <swiper
+        class="big"
+        style="width: 500px"
+        [slidesPerView]="1"
+        [spaceBetween]="50"
+        [pagination]="{ clickable: true }"
+        [thumbs]="{ swiper: thumbsSwiper }"
+      >
+        <ng-template swiperSlide
+          ><img
+            width="500px"
+            height="500px"
+            style="border-radius: 8px"
+            [src]="product.img"
+            alt=""
+        /></ng-template>
+        <ng-template *ngFor="let img of product.otherImages" swiperSlide
+          ><img
+            width="500px"
+            height="500px"
+            style="border-radius: 8px"
+            [src]="img.img"
+            alt=""
+        /></ng-template>
       </swiper>
     </div>
-    <div *ngIf="slidesShown" class="col-sm-12 col-12" style="display: flex;justify-content:right;align-items: center;">
-      <swiper
-      class="third-swiper"
-      [slidesPerView]="3"
-      [spaceBetween]="0"
-      (slideChange)="onSlideChange(secondSwiper)"
-      [navigation]="true"
-      [draggable]="true"
-      (swiper)="setThumbsSwiper($event)"
-
-      direction="horizontal"
-      #secondSwiper
+    <div
+      *ngIf="slidesShown"
+      class="col-sm-12 col-12"
+      style="display: flex; justify-content: right; align-items: center"
     >
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="product.img" alt=""></ng-template>
-      <ng-template *ngFor="let img of product.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
-    </swiper>
+      <swiper
+        class="third-swiper"
+        [slidesPerView]="3"
+        [spaceBetween]="0"
+        (slideChange)="onSlideChange(secondSwiper)"
+        [navigation]="true"
+        [draggable]="true"
+        (swiper)="setThumbsSwiper($event)"
+        direction="horizontal"
+        #secondSwiper
+      >
+        <ng-template swiperSlide
+          ><img
+            style="
+              cursor: pointer;
+              border-radius: 8px;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+            "
+            width="100px"
+            height="100px"
+            [src]="product.img"
+            alt=""
+        /></ng-template>
+        <ng-template *ngFor="let img of product.otherImages" swiperSlide
+          ><img
+            style="
+              cursor: pointer;
+              border-radius: 8px;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+            "
+            width="100px"
+            height="100px"
+            [src]="img.img"
+            alt=""
+        /></ng-template>
+      </swiper>
     </div>
-    <hr class="line" style="margin-top: 50px;display: none">
-      <div *ngIf="product.category !== 116" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section" >
+    <hr class="line" style="margin-top: 50px; display: none" />
+    <div
+      *ngIf="product.category !== 116"
+      class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section"
+    >
+      <div class="row first-row">
+        <h2 *ngIf="currentLang == 'el'">{{ product.product_name }}</h2>
+        <h2 *ngIf="currentLang == 'en'">{{ product.product_name_eng }}</h2>
+      </div>
+      <div
+        *ngIf="username"
+        class="row first-row"
+        style="margin-top: 100px; margin-bottom: 24px"
+      >
+        <p
+          *ngIf="!product.hasOffer"
+          style="font-size: 20px; margin: 0px; height: fit-content"
+          translate
+        >
+          product_page.price :
+          <b style="color: #6dae49">{{ product.wholesale }}&euro;</b>
+        </p>
+        <p
+          *ngIf="product.hasOffer"
+          style="
+            font-size: 20px;
+            margin: 0px;
+            height: fit-content;
+            text-decoration: line-through;
+            color: red;
+          "
+          translate
+        >
+          product_page.price <b> : </b
+          ><b style="color: #6dae49">{{ product.wholesale }}&euro;</b>
+        </p>
+        <p
+          *ngIf="product.hasOffer"
+          style="font-size: 20px; margin: 0px; height: fit-content"
+          translate
+        >
+          product_page.price <b> : </b
+          ><b style="color: #6dae49">{{ product.offer }}&euro;</b>
+        </p>
 
-        <div class="row first-row">
-          <h2>{{product.product_name}}</h2>
+        <p style="font-size: 10px; margin: 0px; height: fit-content" translate>
+          product_page.fpa
+        </p>
+        <div class="row" style="margin-top: 24px; margin-bottom: 24px">
+          <div class="col-4" style="display: flex; align-items: center">
+            <p style="font-size: 20px; margin: 0px" translate>
+              product_page.qty
+            </p>
+          </div>
+          <div
+            class="col-8"
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <div class="numberInput">
+              <button
+                id="decrement"
+                (click)="stepper(input, decrement)"
+                #decrement
+              >
+                -
+              </button>
+              <input
+                type="number"
+                min="0"
+                [max]="product.stock"
+                step="1"
+                value="1"
+                id="my-input"
+                readonly
+                #input
+              />
+              <button
+                id="increment"
+                (click)="stepper(input, increment)"
+                #increment
+              >
+                +
+              </button>
+            </div>
+          </div>
         </div>
-        <div *ngIf="username" class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
-          <p *ngIf="!product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
-          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
-          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.offer }}&euro;</b></p>
+        <div class="row">
+          <button class="btn btn-success col-6" (click)="addToCart()" translate>
+            product_page.add
+          </button>
+          <button
+            class="col-6"
+            style="
+              border: none;
+              background-color: rgba(0, 0, 0, 0);
+              text-align: left;
+              cursor: auto;
+            "
+          >
+            <img
+              (click)="handleAddToFavorite()"
+              [ngClass]="productAddedToFav ? 'heartAnim heart' : 'heart'"
+              style="cursor: pointer"
+              [src]="
+                added
+                  ? '../../../assets/heart-alt-filled-green.svg'
+                  : '../../../assets/heart-alt-green.svg'
+              "
+              alt=""
+              width="44px"
+              alt=""
+            />
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="" />
+        <div style="margin-top: 18px">
+          <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+            product_page.apothiki <b>: {{ product.code }}</b>
+          </p>
+          <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+            product_page.tech_code <b>:{{ product.texnikos_kodikos }}</b>
+          </p>
+          <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+            product_page.man_code <b>:{{ product.kodikos_kataskeuasti }}</b>
+          </p>
+        </div>
+      </div>
+    </div>
 
-          <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
-          <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
-            <div class="col-4" style="display: flex;align-items:center;">
-              <p style="font-size: 20px;margin: 0px;">Ποσότητα:</p>
+    <div
+      *ngIf="product.category === 116"
+      class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section"
+    >
+      <div class="row">
+        <h2 *ngIf="currentLang == 'el'">{{ product.product_name }}</h2>
+        <h2 *ngIf="currentLang == 'en'">{{ product.product_name_eng }}</h2>
+      </div>
+      <div class="row">
+        <img
+          src="../../../assets/Line 8.svg"
+          width="100%"
+          style="margin-top: 24px; margin-bottom: 12px"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div
+        *ngIf="
+          product.category === 116 && showForm && !waitingProduct && username
+        "
+        class="row"
+      >
+        <app-mosqui-wizzard
+          *ngIf="currentLang == 'el'"
+          [name]="product.product_name"
+          [sub_id]="product.id"
+        ></app-mosqui-wizzard>
+        <app-mosqui-wizzard
+          *ngIf="currentLang == 'en'"
+          [name]="product.product_name_eng"
+          [sub_id]="product.id"
+        ></app-mosqui-wizzard>
+      </div>
+      <div *ngIf="waitingProduct" class="row">
+        <app-spinner
+          style="display: flex; justify-content: center; align-items: center"
+        ></app-spinner>
+      </div>
+      <div
+        *ngIf="
+          product.category === 116 &&
+          !showForm &&
+          !waitingProduct &&
+          mosquiProduct === undefined
+        "
+        class="row"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        "
+      >
+        <h2 translate>product_page.not_found</h2>
+        <button class="btn btn-success" translate (click)="handleFindNew()">
+          product_page.newProd
+        </button>
+      </div>
+      <div
+        *ngIf="
+          product.category === 116 &&
+          !showForm &&
+          !waitingProduct &&
+          mosquiProduct != undefined
+        "
+        class="row"
+      >
+        <div
+          class="row first-row"
+          style="margin-top: 32px; margin-bottom: 24px"
+        >
+          <p
+            *ngIf="!mosquiProduct.hasOffer"
+            style="font-size: 20px; margin: 0px; height: fit-content"
+          >
+            Τιμή:
+            <b style="color: #6dae49">{{ mosquiProduct.wholesale }}&euro;</b>
+          </p>
+          <p
+            *ngIf="mosquiProduct.hasOffer"
+            style="
+              font-size: 20px;
+              margin: 0px;
+              height: fit-content;
+              text-decoration: line-through;
+              color: red;
+            "
+          >
+            Τιμή: <b style="color: #6dae49">{{ product.wholesale }}&euro;</b>
+          </p>
+          <p
+            *ngIf="mosquiProduct.hasOffer"
+            style="font-size: 20px; margin: 0px; height: fit-content"
+          >
+            Τιμή: <b style="color: #6dae49">{{ mosquiProduct.offer }}&euro;</b>
+          </p>
+
+          <p style="font-size: 10px; margin: 0px; height: fit-content">
+            (*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)
+          </p>
+          <div class="row" style="margin-top: 24px; margin-bottom: 24px">
+            <div class="col-4" style="display: flex; align-items: center">
+              <p style="font-size: 20px; margin: 0px" translate>product_page.qty</p>
             </div>
-            <div  class="col-8" style="display: flex;justify-content:center;align-items: center;">
+            <div
+              class="col-8"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
               <div class="numberInput">
-                <button id="decrement" (click)="stepper(input,decrement)" #decrement> - </button>
-                <input type="number" min="0" [max]="product.stock" step="1" value="1" id="my-input" readonly #input>
-                <button id="increment" (click)="stepper(input,increment)" #increment> + </button>
-            </div>
+                <button
+                  id="decrement"
+                  (click)="stepper(input2, decrement)"
+                  #decrement
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="0"
+                  [max]="mosquiProduct.stock"
+                  step="1"
+                  value="1"
+                  id="my-input"
+                  readonly
+                  #input2
+                />
+                <button
+                  id="increment"
+                  (click)="stepper(input2, increment)"
+                  #increment
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
           <div class="row">
-            
+            <button translate class="btn  btn-success col-6" (click)="addToCartMosqui()">
+              product_page.add
+            </button>
 
-              <button class="btn btn-success col-6" (click)="addToCart()">Προσθήκη</button>
-              <button  class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;cursor: auto;">
-                <img (click)="handleAddToFavorite()" [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'" style="cursor: pointer;"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="" width="44px" alt="">
-              </button>
-            
-            
+            <button
+              (click)="handleAddToFavorite(mosquiProduct)"
+              class="col-6"
+              style="
+                border: none;
+                background-color: rgba(0, 0, 0, 0);
+                text-align: left;
+              "
+            >
+              <img
+                [ngClass]="productAddedToFav ? 'heartAnim heart' : 'heart'"
+                [src]="
+                  added
+                    ? '../../../assets/heart-alt-filled-green.svg'
+                    : '../../../assets/heart-alt-green.svg'
+                "
+                alt=""
+              />
+            </button>
           </div>
         </div>
         <div class="row">
-          <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
-          <div style="margin-top: 18px;">
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: {{product.code}}</p>
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{product.texnikos_kodikos}}</p>
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{product.kodikos_kataskeuasti}}</p>
+          <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="" />
+          <div style="margin-top: 18px">
+            <p translate style="color: #3e4148; margin: 0; font-size: 14px">
+              product_page.apothiki <b>: {{ mosquiProduct.code }}</b>
+            </p>
+            <p translate style="color: #3e4148; margin: 0; font-size: 14px">
+              product_page.tech_code <b>: {{ mosquiProduct.texnikos_kodikos }}</b>
+            </p>
+            <p translate style="color: #3e4148; margin: 0; font-size: 14px">
+              product_page.man_code <b>: {{ mosquiProduct.kodikos_kataskeuasti }}</b>
+            </p>
           </div>
+          <button
+            class="btn btn-success"
+            (click)="handleFindNew()"
+            style="margin-top: 24px"
+            translate
+            >
+            product_page.newProd
+          </button>
         </div>
       </div>
-
-      
-
-      <div *ngIf="product.category === 116" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section">
-        <div class="row">
-          <h2>{{ product.name }}</h2>
-        </div>
-        <div class="row">
-          <img src="../../../assets/Line 8.svg" width="100%" style="margin-top: 24px;margin-bottom: 12px" alt="" srcset="">
-        </div>
-        <div *ngIf="product.category === 116 && showForm && !waitingProduct && username" class="row">
-          <app-mosqui-wizzard [name]="product.name" [sub_id]="product.id"></app-mosqui-wizzard>
-        </div>
-        <div *ngIf="waitingProduct" class="row" >
-          <app-spinner style="display: flex;justify-content:center;align-items: center;"></app-spinner>
-        </div>
-        <div *ngIf="product.category === 116 && !showForm && !waitingProduct && mosquiProduct === undefined" class="row" style="display: flex;justify-content:center;align-items: center;text-align: center;">
-          <h2>Δεν βρέθηκε κάποιο προϊόν</h2>
-          <button class="btn btn-success" (click)="handleFindNew()">Βρες καινούριο προϊόν</button>
-        </div>
-        <div *ngIf="product.category === 116 && !showForm && !waitingProduct && mosquiProduct != undefined" class="row">
-            <div class="row first-row" style="margin-top: 32px;margin-bottom: 24px;">
-              <p *ngIf="!mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ mosquiProduct.wholesale }}&euro;</b></p>
-              <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
-              <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ mosquiProduct.offer }}&euro;</b></p>
-        
-              <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
-              <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
-                <div class="col-4" style="display: flex;align-items:center;">
-                  <p style="font-size: 20px;margin: 0px;">Ποσότητα:</p>
-                </div>
-                <div  class="col-8" style="display: flex;justify-content:center;align-items: center;">
-                  <div class="numberInput">
-                    <button id="decrement" (click)="stepper(input2,decrement)" #decrement> - </button>
-                    <input type="number" min="0" [max]="mosquiProduct.stock" step="1" value="1" id="my-input" readonly #input2>
-                    <button id="increment" (click)="stepper(input2,increment)" #increment> + </button>
-                </div>
-                </div>
-              </div>
-              <div class="row">
-                
-                  <button class="btn btn-success col-6" (click)="addToCartMosqui()">Προσθήκη</button>
-                
-                
-                  <button (click)="handleAddToFavorite(mosquiProduct)" class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
-                    <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
-                  </button>
-                
-              </div>
-            </div>
-            <div class="row">
-              <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
-              <div style="margin-top: 18px;">
-                <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: {{mosquiProduct.code}}</p>
-                <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{mosquiProduct.texnikos_kodikos}}</p>
-                <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{mosquiProduct.kodikos_kataskeuasti}}</p>
-              </div>
-              <button class="btn btn-success" (click)="handleFindNew()" style="margin-top: 24px;">Βρες καινούριο προϊόν</button>
-            </div>   
-        </div>
-      </div>
+    </div>
   </div>
 
-
-
-
-  <div class="row" style="background-color: white;border-radius: 16px;margin-top: 120px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
-    <div class="row" style="padding: 0px;">
-      <nav class="black navigation" style="display: flex;justify-content:center;align-items: center;">
+  <div
+    class="row"
+    style="
+      background-color: white;
+      border-radius: 16px;
+      margin-top: 120px;
+      padding: 24px;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+    "
+  >
+    <div class="row" style="padding: 0px">
+      <nav
+        class="black navigation"
+        style="display: flex; justify-content: center; align-items: center"
+      >
         <div class="underline col-3"></div>
         <div class="underline col-3"></div>
         <div class="underline col-3"></div>
 
-        <a class="col-3" (click)="ul(0)">Περιγραφή</a>
-        <a class="col-3" (click)="ul(1)">Πρόσθετες Λεπτομέριες</a>
-        <a class="col-3" (click)="ul(2)">Λήψεις</a>
-        <a class="col-3" (click)="ul(3)">Λύσεις</a>
+        <a class="col-3" (click)="ul(0)" translate>product_page.desc</a>
+        <a class="col-3" (click)="ul(1)" translate>product_page.data_sheet</a>
+        <a class="col-3" (click)="ul(2)" translate>product_page.down</a>
+        <a class="col-3" (click)="ul(3)" translate>product_page.sol</a>
       </nav>
     </div>
     <div class="row">
-      <hr>
+      <hr />
     </div>
     <div class="row">
-      <button *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0] " (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Περιγραφής </button>
-      <p *ngIf="showDesc[0]" [innerHTML]="product.description"></p>
-      <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button>
-      <p *ngIf="showDesc[1]" [innerHTML]="product.data_sheet"></p>
-      <p *ngIf="showDesc[2]"><button (click)="downloadMyFile(product.pdf)">Open PDF</button></p>
-      <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button>
-      <p *ngIf="showDesc[3]"><iframe width="850" height="315"
-        [src]="product.video | safePipe">
-        </iframe></p>
+      <button
+        *ngIf="!urlOpen && isAdmin && !switchDesc && showDesc[0]"
+        (click)="editDescription()"
+        style="margin-right: 1em"
+        class="btn btn-success"
+      >
+        Επεξεργασία Περιγραφής
+      </button>
+      <p
+        *ngIf="showDesc[0] && currentLang == 'el'"
+        [innerHTML]="product.description"
+      ></p>
+      <p
+        *ngIf="showDesc[0] && currentLang == 'en'"
+        [innerHTML]="product.description_eng"
+      ></p>
+      <button
+        *ngIf="!urlOpen && isAdmin && switchDesc && showDesc[1]"
+        (click)="editData()"
+        style="margin-right: 1em"
+        class="btn btn-success"
+      >
+        Επεξεργασία Πρόσθετων Λεπτομεριών
+      </button>
+      <p
+        *ngIf="showDesc[1] && currentLang == 'el'"
+        [innerHTML]="product.data_sheet"
+      ></p>
+      <p
+        *ngIf="showDesc[1] && currentLang == 'en'"
+        [innerHTML]="product.data_sheet_eng"
+      ></p>
+      <p *ngIf="showDesc[2]">
+        <button (click)="downloadMyFile(product.pdf)">Open PDF</button>
+      </p>
+      <button
+        *ngIf="urlOpen && isAdmin && showDesc[3]"
+        (click)="openURL()"
+        class="btn btn-success"
+      >
+        Επεξεργασία Βιντεο
+      </button>
+      <p *ngIf="showDesc[3]">
+        <iframe width="850" height="315" [src]="product.video | safePipe">
+        </iframe>
+      </p>
     </div>
+    <form class="form-control" *ngIf="onEditDesc" [formGroup]="desciptionForm">
+      <textarea
+        formControlName="description"
+        class="form-control"
+        style="height: 200px; width: 101%; margin-bottom: 10px"
+        placeholder="Περιγραφή Ελληνικά..."
+      ></textarea>
+    </form>
+    <form
+      class="form-control"
+      *ngIf="onEditDesc"
+      [formGroup]="desciptionFormEng"
+    >
+      <textarea
+        formControlName="descriptionEng"
+        class="form-control"
+        style="height: 200px; width: 101%; margin-bottom: 10px"
+        placeholder="Περιγραφή Αγγλικά..."
+      ></textarea>
+      <button
+        class="btn btn-success"
+        style="margin-bottom: 10px"
+        (click)="uploadDescription()"
+      >
+        Αποθήκευση Αλλαγών
+      </button>
+      <button
+        (click)="closeForm()"
+        style="margin-bottom: 10px; margin-right: 10px"
+        type="button"
+        class="btn btn-danger"
+      >
+        Ακυρωση
+      </button>
+      <b style="color: red" *ngIf="emptyText"
+        >Δεν μπορειτε να προχωρησετε χωρις να αφησετε κενο στις περιγραφες</b
+      >
+    </form>
 
+    <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetForm">
+      <textarea
+        formControlName="datas"
+        class="form-control"
+        style="height: 200px; width: 101%; margin-bottom: 10px"
+        placeholder="Πρόσθετες Λεπτομέριες Ελληνικά..."
+      ></textarea>
+    </form>
+    <form
+      class="form-control"
+      *ngIf="onEditData"
+      [formGroup]="dataSheetFormEng"
+    >
+      <textarea
+        formControlName="datasEng"
+        class="form-control"
+        style="height: 200px; width: 101%; margin-bottom: 10px"
+        placeholder="Πρόσθετες Λεπτομέριες Αγγλικά..."
+      ></textarea>
+      <button
+        class="btn btn-success"
+        style="margin-bottom: 10px"
+        (click)="updateDataSheet()"
+      >
+        Αποθήκευση Αλλαγών
+      </button>
+      <button
+        (click)="closeForm()"
+        style="margin-bottom: 10px"
+        type="button"
+        class="btn btn-danger"
+      >
+        Ακυρωση
+      </button>
+      <b style="color: res" *ngIf="emptyText"
+        >Δεν μπορειτε να προχωρησετε χωρις να αφησετε κενο στις περιγραφες</b
+      >
+    </form>
+    <form
+      (ngSubmit)="uploadUrl()"
+      [formGroup]="urlVideoForm"
+      class="form control"
+      *ngIf="urlOpen"
+    >
+      <input
+        class="form-control"
+        formControlName="video"
+        placeholder="https://example.com"
+      />
+      <br />
+      <button class="btn btn-success" type="submit">Αποθήκευση Αλλαγών</button>
+    </form>
   </div>
-  <br>
-  <form class="form-control" *ngIf="onEditDesc" [formGroup]="desciptionForm" (ngSubmit)="uploadDescription()" >
-    <textarea formControlName="description" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή..." ></textarea>
-    <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
-    <button (click)="closeForm()" style="margin-bottom:10px; margin-right: 10px;" type="button" class="btn btn-danger">Ακυρωση</button>
-  </form>
-  <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetForm" (ngSubmit)="updateDataSheet()" >
-    <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες..." ></textarea>
-    <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
-    <button (click)="closeForm()" style="margin-bottom:10px;" type="button" class="btn btn-danger">Ακυρωση</button>
-  </form>
-  <form (ngSubmit)="uploadUrl()" [formGroup]="urlVideoForm" class="form control" *ngIf="urlOpen">
-    <input class="form-control" formControlName="video" placeholder="https://example.com">
-    <br>
-    <button class="btn btn-success" type="submit">Αποθήκευση Αλλαγών</button>
-  </form>
+  <br />
 </div>
 
-  <div  class="container"  style="margin-top: 120px;">
-    <div class="row">
-      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1>Σχετικά Προϊόντα</h1></div>
-      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 30%;" src="../../../assets/Line%208.svg"></div>
-    </div>
-    <app-products-carousel [mode]="'suggested'" [mtrl]="product.mtrl"></app-products-carousel>
-  </div>
-
-<div  class="container" *ngIf="loggedIn" style="margin-top: 120px;">
+<div class="container" style="margin-top: 120px">
   <div class="row">
-      <div class="col-12" style="display: flex;justify-content: left;align-items: center;"><h3 style="margin: 0;">Είδατε Πρόσφατα</h3></div>
-      <div class="col-12"><hr style="border: 1px solid #6dae49;margin-top: 4px;opacity: 1;"></div>
+    <div
+      class="col-12"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <h1 translate>product_page.suggested</h1>
+    </div>
+    <div
+      class="col-12"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <img style="width: 30%" src="../../../assets/Line%208.svg" />
+    </div>
+  </div>
+  <app-products-carousel
+    [mode]="'suggested'"
+    [mtrl]="product.mtrl"
+  ></app-products-carousel>
+</div>
+
+<div class="container" *ngIf="loggedIn" style="margin-top: 120px">
+  <div class="row">
+    <div
+      class="col-12"
+      style="display: flex; justify-content: left; align-items: center"
+    >
+      <h3 style="margin: 0" translate>product_page.see_earlier</h3>
+    </div>
+    <div class="col-12">
+      <hr style="border: 1px solid #6dae49; margin-top: 4px; opacity: 1" />
+    </div>
   </div>
   <div *ngIf="!howManySeen" class="row imageRow2">
-    <div  class="col-2" *ngFor="let prod of seeEarlier">
+    <div class="col-2" *ngFor="let prod of seeEarlier">
       <div class="row imageRow2">
-        <img [src]="prod.img" width="150px" height="150px"  alt="">
+        <img [src]="prod.img" width="150px" height="150px" alt="" />
       </div>
       <div class="row text-center">
-        <p>{{ prod.name }}</p>
+        <p *ngIf="currentLang == 'el'">{{ prod.product_name }}</p>
+        <p *ngIf="currentLang == 'en'">{{ prod.product_name_eng }}</p>
       </div>
     </div>
-
   </div>
 
-    <div *ngIf="howManySeen" class="row imageRow">
-    <div  class="col-3" *ngFor="let prod of seeLess">
-      <div class="row imageRow" style="display: flex;justify-content: center;align-items: center;">
-        <img [src]="prod.img" class="smallImages"  alt="">
+  <div *ngIf="howManySeen" class="row imageRow">
+    <div class="col-3" *ngFor="let prod of seeLess">
+      <div
+        class="row imageRow"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <img [src]="prod.img" class="smallImages" alt="" />
       </div>
       <div class="row text-center">
-        <p style="font-size: 10px;">{{ prod.name }}</p>
+        <p *ngIf="currentLang == 'el'">{{ prod.product_name }}</p>
+        <p *ngIf="currentLang == 'en'">{{ prod.product_name_eng }}</p>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-

@@ -25,6 +25,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   products: product | any;
   showCreditCard: boolean = true;
   mtrlArr: any = [];
+  currentLang:any;
   qtyArr: any = [];
   answer:string = "";
   canGoBackToHome:boolean = false;
@@ -50,16 +51,16 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    
+      this.currentLang = localStorage.getItem('lang') || 'el';
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
-    
+
     this.FormData = this.builder.group({
       address: [{value: this.loadedUser.address, disabled: true}],
       zipCode: [{value: this.loadedUser.zip, disabled: true}],
       area: [{value: this.loadedUser.area, disabled: true}],
       city: [{value: this.loadedUser.city, disabled: true}],
     })
-    
+
 
     let resData = await axios.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
@@ -120,7 +121,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.FormData.controls['area'].enable();
       this.FormData.controls['city'].enable();
       this.trigwnikh = false;
-    } 
+    }
     else{
       this.FormData.controls['address'].disable();
       this.FormData.controls['zipCode'].disable();
@@ -144,7 +145,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   handleUserDetails(f: NgForm) {
     console.log(f.value);
-    
+
 
     localStorage.setItem('showUserDetails', 'false');
     localStorage.setItem('showPayment', 'true');
@@ -243,7 +244,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
               streetLine1: 'Revolut',
               streetLine2: '1 Canada Square',
               postcode: 'EC2V 6DN',
-              
+
             },
             shippingAddress: {
               countryCode: 'GB',
