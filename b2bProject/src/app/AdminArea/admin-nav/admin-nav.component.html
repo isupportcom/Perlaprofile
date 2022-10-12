@@ -26,31 +26,50 @@
       <li (click)="showContent(12)">
         <a > Update Mosqui Colors</a>
       </li>
-      <li (click)="setDropdown(dropdownCat5)" class="nav-item dropdown" #categories>
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <li  class="nav-item dropdown">
+        <a (click)="content()" #optionsToggler class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           PDF
         </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat5>
+
+       <ul class="ulAdmin" #options [ngClass]="
+       showList
+         ? makeSmallerDropDown
+           ? 'dropdown-menu my-dropdown-sm show'
+           : 'dropdown-menu my-dropdown show'
+         : 'dropdown-menu'
+     ">
         <li (click)="showContent(13)">
           <a > Upload PDF</a>
         </li>
         <li (click)="showContent(14)">
           <a >Insert PDF To Product</a>
         </li>
-      </div>
+      </ul>
 
-<li (click)="setDropdown(dropdownCat4)" class="nav-item dropdown" #categories>
-  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+<li  class="nav-item dropdown" >
+  <a (click)="showImages()" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #imgTogler>
     Images
   </a>
-<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat4>
+<ul #img
+  class="ulAdmin"
+  [ngClass]="
+  showImg
+    ? makeSmallerDropDown
+      ? 'dropdown-menu my-dropdown-sm show'
+      : 'dropdown-menu my-dropdown show'
+    : 'dropdown-menu'
+">
+
+
   <li (click)="showContent(9)">
     <a > Upload Image</a>
   </li>
   <li (click)="showContent(10)">
     <a >Insert Image To Product</a>
   </li>
-</div>
+</ul>
+
 
 </ul>
 

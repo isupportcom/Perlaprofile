@@ -2,6 +2,9 @@
   height: 80%;
 
 }
+.ulAdmin{
+  margin-left: 99%!important;
+}
 a{
   cursor: pointer;
 }

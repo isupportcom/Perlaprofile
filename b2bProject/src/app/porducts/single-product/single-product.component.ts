@@ -26,6 +26,7 @@ export class SingleProductComponent implements OnInit {
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
   productCount: any;
   products: any;
+  currentLang:any;
   productAddedToFav: boolean = false;
   source?: string;
   clickedAdd: boolean = false;
@@ -54,7 +55,7 @@ export class SingleProductComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("HELLO");
-    
+    this.currentLang = localStorage.getItem('lang')||'el'
     // console.log(this.index)
     this.innerWidth = window.innerWidth;
     if(this.innerWidth < 768 ){
@@ -67,17 +68,17 @@ export class SingleProductComponent implements OnInit {
 
 
       console.log(this.index);
-      
+
       if(this.index.addedToFav){
         this.added = true;
       }
       else{
         this.added = false;
       }
-    
-    
 
-    
+
+
+
 
   }
 
@@ -127,9 +128,9 @@ export class SingleProductComponent implements OnInit {
 
     })
     console.log(this.index);
-    
+
     this.index.addedToFav = this.added
-    
+
     localStorage.setItem("single",JSON.stringify(this.index));
 
 
@@ -149,7 +150,7 @@ export class SingleProductComponent implements OnInit {
     if(this.added){
 
       this.index.addedToFav = false;
-      
+
       this.productAddedToFav = true;
       setTimeout(() => {
         this.added = false;
@@ -162,7 +163,7 @@ export class SingleProductComponent implements OnInit {
     else{
       console.log(product);
 
-      
+
       this.productAddedToFav = true;
       setTimeout(() => {
         this.added = true;
@@ -172,8 +173,8 @@ export class SingleProductComponent implements OnInit {
       },1000)
       this.cartService.sendProductAddedToFav(true);
       this.cartService.addToFavorites(product);
-    }     
-    
+    }
+
 
   }
 

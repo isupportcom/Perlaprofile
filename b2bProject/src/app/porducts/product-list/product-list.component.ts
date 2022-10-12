@@ -38,38 +38,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   message: string = '';
   loadedUser: any;
   showProduct: boolean | any;
-  dummyColors: any = [
-    {
-      colorName: 'Απαλο',
-      id: 1,
-    },
-    {
-      colorName: 'Σκληρο',
-      id: 2,
-    },
-    {
-      colorName: 'Ευκαμπτο',
-      id: 3,
-    },
-    {
-      colorName: 'Μεταξι',
-      id: 4,
-    },
-  ];
-  colorsToChoose: any = [
-    {
-      name: 'blue',
-    },
-    {
-      name: 'red',
-    },
-    {
-      name: 'green',
-    },
-    {
-      name: 'black',
-    },
-  ];
+
   @ViewChild('menu1') menu1: ElementRef | any;
   @ViewChild('menu2') menu2: ElementRef | any;
   @ViewChild('menu3') menu3: ElementRef | any;
@@ -187,7 +156,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.currentLang = localStorage.getItem('lang')
+    this.currentLang = localStorage.getItem('lang') || 'el'
     console.log(this.currentLang);
 
     this.contactForm = this.fb.group({
