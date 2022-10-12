@@ -11,7 +11,7 @@
     "motion_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
     "mosqui_plus_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
     "profile_description": "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.",
-    "offer": "Best Offer"
+    "offer": "Offer"
   },
   "navbar": {
     "homepage": "Homepage",
@@ -129,21 +129,13 @@
       "role":"Garage Door Production Manager - Fissounas",
       "description":"Each of our orders is studied and manufactured with absolute care and quality control."
     },
-    {
-      "name":"Giorgos Xatzi",
-      "role":"Production Manager Sita Baras",
-      "description":"The control over the details in each production process ensures the quality of the product"
-    },
+
     {
       "name":"Flamour Shehi",
       "role":"Pleated Silk Production Manager",
       "description":"With absolute care we check all raw materials before the production of anti-mosquito systems to manufacture quality products."
     },
-    {
-      "name":"Jhony",
-      "role":"Parts Production Manager",
-      "description":"We produce and meticulously inspect consumable parts for rolls and screens."
-    },
+
     {
       "name":"Christoforos Sikobaris",
       "role":"Parts - Consumables Manager",

@@ -351,9 +351,7 @@ export class NavbarComponent implements OnInit{
 
 
   handleCategoryClick(){
-    setTimeout(() => {
-      window.location.reload();
-    },100)
+    window.location.reload();
 
   }
 

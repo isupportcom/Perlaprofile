@@ -330,45 +330,18 @@
               >navbar.homepage</a
             >
           </li>
-          <li>
-            <div  (mouseenter)="handleHover()" class="dropdown">
-              <a
-                translate
-                routerLink="/products"
-                (click)="handleProducts()"
-                routerLinkActive="my-active"
 
-                class="dropdown-toggle"
-                translate
-              >
-                navbar.products
-              </a>
-              <ul
-                (mouseenter)="handleHover()"
-                (mouseleave)="handleMouseleave()"
-                [ngClass]="
-                  hoverProducts
-                    ? 'dropdown-menu myMenu2'
-                    : 'dropdown-menu myMenu'
-                "
-                style="background-color: rgba(0,0,0,0.7);"
-              >
-              
-                <li
-                  [routerLink]="
-                    '/products/' + mainCategory.id + '/' + mainCategory.name
-                  "
-                  (click)="handleCategoryClick()"
-                  style="margin-right: 0px"
-                  *ngFor="let mainCategory of mainCategories"
-                >
-                  <a class="dropdown-item my-dropdown-item2" style="color: white !important">{{
-                    mainCategory.name
-                  }}</a>
-                </li>
-              </ul>
-            </div>
+
+          <li
+            
+            (click)="handleCategoryClick()"
+            
+            *ngFor="let mainCategory of mainCategories"
+          >
+            <a [routerLink]="'/products/' + mainCategory.id + '/' + mainCategory.name" routerLinkActive="my-active">{{ mainCategory.name }}</a>
           </li>
+              
+ 
 
           <li>
             <a routerLink="/company" routerLinkActive="my-active" translate

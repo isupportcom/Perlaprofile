@@ -85,9 +85,8 @@ export class HomepageComponent implements OnInit {
 
       console.log(resData.data)
       this.offer1 = resData.data.offers[0]
-      this.offer2 = resData.data.offers[1];
       console.log(this.offer1)
-      console.log(this.offer2)
+
     })
   }
  async getSeeEarlier(){
@@ -108,17 +107,14 @@ export class HomepageComponent implements OnInit {
     offerImg.classList.add('hoverBox');
   }
   handleOfferHoverLeave(offerImg: any){
-    
+
     offerImg.classList.remove('hoverBox');
   }
   goToProductPage( product:any){
     this.productsService.setSingleProduct(product);
     this.router.navigate(['../products/product-page']);
   }
-  handleOffer(product:any){
-    this.productsService.setSingleProduct(product);
-    this.router.navigate(['../products/product-page']);
-  }
+
   goToProducts(mainCategory: any){
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);
