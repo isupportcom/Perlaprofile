@@ -21,10 +21,10 @@ export class ProductsCarouselComponent implements OnInit {
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
     navSpeed: 700,
     navText: ['<', '>'],
     responsive: {
@@ -38,8 +38,8 @@ export class ProductsCarouselComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 4
-      }
+        items: 5
+      },
     },
     nav: true
   }

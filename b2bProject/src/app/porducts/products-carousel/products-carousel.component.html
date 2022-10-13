@@ -130,9 +130,9 @@
   <ng-container  *ngFor="let product of shownProducts">
     <ng-template carouselSlide id="yoyo">
       <div style="padding: 12px;">
-      <div (click)="seeProduct(product)" style="background-color: white;height: 400px !important;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2); border-radius: 16px;cursor: pointer;">
+      <div (click)="seeProduct(product)" class="product">
         <div class="row">
-          <img src="../../../assets/Frame 106.png"   style="border-top-left-radius: 16px;border-top-right-radius: 16px;" alt="" srcset="">
+          <img [src]="product.img"   style="border-top-left-radius: 16px;border-top-right-radius: 16px;width: 250px;height: 200px;" alt="" srcset="">
         </div>
         <div class="row" >
           <div class="row" >
@@ -141,11 +141,15 @@
           <div class="row" style="display: flex;justify-content: center;align-items: center;margin: 6px 0;">
             <img style="width: 100%;" src="../../../assets/Line%208.svg">
           </div>
-          <div class="row" style="display: flex;justify-content: center;align-items: center;margin: 6px 0;color: #9F9F9F;">
-            <p style="margin: 0px;">Stock: {{ product.stock }}</p>
-            <p style="margin: 0px;">Order Number: xxxx</p>
+          <div class="row" style="display: flex;justify-content: center;align-items: center;margin: 6px 0;color: #9F9F9F;font-size: 12px;">
+            <p style="margin: 0px;">Διαθέσιμα: {{ product.stock }}</p>
+            <p style="margin: 0px;">Τεχνικός Κωδικός: {{ product.texnikos_kodikos }}</p>
           </div>
+          <div class="row" style="text-align: center;">
+            <p *ngIf="product.hasOffer" class="col-12" style="margin-bottom: 4px; text-decoration:line-through ;opacity: 0.3;">Τιμή: {{product.wholesale}}&euro;</p>
+            <p *ngIf="product.hasOffer" class="col-12" style="margin-bottom: 4px;color: #6DAE49;font-weight: 600;">Τιμή: {{product.offer}}&euro;</p>
           </div>
+        </div>
       </div>
     </div>
     </ng-template>

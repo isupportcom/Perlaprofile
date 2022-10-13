@@ -54,9 +54,11 @@ export class SingleProductComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log("HELLO");
+
+    
     this.currentLang = localStorage.getItem('lang')||'el'
     // console.log(this.index)
+
     this.innerWidth = window.innerWidth;
     if(this.innerWidth < 768 ){
       this.altCartAnimation = true;
@@ -67,7 +69,6 @@ export class SingleProductComponent implements OnInit {
 
 
 
-      console.log(this.index);
 
       if(this.index.addedToFav){
         this.added = true;

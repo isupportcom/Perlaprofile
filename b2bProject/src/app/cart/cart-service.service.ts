@@ -154,14 +154,9 @@ export class CartServiceService {
     console.log(price);
     console.log(product);
 
-    // this.items = JSON.parse(localStorage.getItem('products') || '{}');
     let productAdded = true;
     localStorage.setItem('productAdded', 'true');
-    if(animate){
-      this.sendProductAdded(
-        localStorage.getItem('productAdded') == 'true' ? true : false
-      );
-    }
+
 
     
 
@@ -202,40 +197,6 @@ export class CartServiceService {
         discound: discount,
       })
       .then((resData) => console.log(resData.data));
-
-      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
-        mtrl:product.mtrl,
-        trdr:loadedUser.trdr
-      }).then(resData=>{
-        console.log(resData.data);
-
-      })
-
-
-    // let flag = false
-    // let index = 0;
-    // for(let i = 0 ; i <this.items.length;i++){
-    //   if(this.items[i].mtrl == product.mtrl){
-    //     flag = true;
-    //     index = i ;
-    //   }
-    // }
-    // if(flag){
-    //   console.log(this.items[index].qty);
-    //   console.log(this.items[index].stock);
-
-    //   if(this.items[index].qty < this.items[index].stock){
-    //     this.items[index].qty++;
-    //     this.sendProductCount(this.items.length);
-    //   }
-    //   else{
-    //     return;
-    //   }
-
-    // }else{
-    //   this.items.push(product);
-    //   this.sendProductCount(this.items.length);
-    // }
   }
 
   getItems() {

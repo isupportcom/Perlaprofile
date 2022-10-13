@@ -1,30 +1,45 @@
 <app-navbar></app-navbar>
-<!-- <div class="container content">
+<div class="container content">
   <div class="row">
     <h2>Τα Αγαπημένα Mου</h2>
     <hr style="opacity: 1;border: 1px solid #6dae49;">
   </div>
-  <div class="row" style="background-color: white;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.01); border-radius: 16px;padding: 32px">
-    <div class="col-3" style="padding: 24px;" *ngFor="let fav of products">
-      <div class="row" style="box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);">
-        <div class="row" style="justify-content: center;align-items: center">
-          <img [src]="fav.img" alt="" style="width: 200px;height: 200px;" />
+  <div class="row">
+    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6" style="padding: 24px;" *ngFor="let fav of products">
+      <div class="row" style="justify-content: right;">
+        <a (click)="removeOne(fav.mtrl)" style="width: fit-content;cursor: pointer;">
+          <img class="remove" alt=""  style="width: 32px;" srcset="">
+        </a> 
+      </div>
+      <div class="row">
+        <div class="row" style="justify-content: center;align-items: center;margin-bottom: 12px;padding: 0;">
+          <img [src]="fav.img" class="product-image" alt=""/>
         </div>
-        <div class="row text-center">
-          <h5>{{ fav.name }}</h5>
+        <div class="row" style="justify-content: center;text-align: center;">
+          <p class="product-title">{{ fav.name }}</p>
         </div>
         <div class="row" style="justify-content: center;align-items: center">
           <hr style="opacity: 1;border: 1px solid #6dae49;width: 90%;">
         </div>
+        <div class="row text-center" style="color: #878787;">
+          <p style="margin: 0px;">Τιμή: {{ fav.wholesale }}&euro;</p>
+          <p>Απόθεμα: {{ fav.stock }}</p>
+        </div>
         <div class="row">
-          <p>{{ fav.wholesale }}</p>
+          <button class="btn btn-success" style="width: 100%;" (click)="addToCart(fav)">
+            Προσθήκη
+          </button>
         </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
-<div class="container" style="margin-top: 200px">
+<!-- <a (click)="removeOne(fav.mtrl)" style="cursor: pointer;">
+  <img src="../../../assets/heart-alt-filled-green.svg" alt="" style="width: 32px;" srcset="">
+</a>  -->
+
+<!-- <div class="container" style="margin-top: 200px">
 <div class="left-side">
   <div>
     <div class="myCart">
@@ -68,6 +83,6 @@
     <h3>Δεν Υπάρχουν Προϊόντα</h3>
   </div>
 </div>
-</div>
+</div> -->
 
 <app-footer></app-footer>

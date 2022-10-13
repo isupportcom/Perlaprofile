@@ -1,8 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '../porducts/products.service';
 import axios from "axios";
 import { TranslateConfigService } from '../services/translate-config.service';
+
 
 @Component({
   selector: 'app-homepage',
@@ -26,7 +27,7 @@ export class HomepageComponent implements OnInit {
   showLoggedInContent: boolean = false;
   username = localStorage.getItem('username');
 
-  constructor(private productsService: ProductsService,private router: Router,private translate:TranslateConfigService) { }
+  constructor(private productsService: ProductsService,private router: Router,private translate:TranslateConfigService,private renderer: Renderer2,private elementRef: ElementRef) { }
 
   innerWidth:any;
   @HostListener('window:resize', ['$event'])
@@ -55,6 +56,8 @@ export class HomepageComponent implements OnInit {
   }
 
    ngOnInit() {
+
+
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     this.getSeeEarlier();
@@ -82,13 +85,9 @@ export class HomepageComponent implements OnInit {
 
       console.log(resData.data)
       this.offer1 = resData.data.offers[0]
-      this.offer2 = resData.data.offers[1];
       console.log(this.offer1)
-      console.log(this.offer2)
+
     })
-
-
-
   }
  async getSeeEarlier(){
    let req =await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php",{
@@ -104,14 +103,18 @@ export class HomepageComponent implements OnInit {
    console.log(this.seeEarlier);
 
   }
+  handleOfferHover(offerImg: any){
+    offerImg.classList.add('hoverBox');
+  }
+  handleOfferHoverLeave(offerImg: any){
+
+    offerImg.classList.remove('hoverBox');
+  }
   goToProductPage( product:any){
     this.productsService.setSingleProduct(product);
     this.router.navigate(['../products/product-page']);
   }
-  hundleOffer(product:any){
-    this.productsService.setSingleProduct(product);
-    this.router.navigate(['../products/product-page']);
-  }
+
   goToProducts(mainCategory: any){
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);

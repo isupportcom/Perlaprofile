@@ -143,7 +143,15 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+
     this.currentLang = localStorage.getItem('lang') || 'el';
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
+
 
     this.productsService.mosquiProductFound.subscribe((resData) => {
       this.waitingProduct = true;

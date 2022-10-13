@@ -201,7 +201,6 @@ export class NavbarComponent implements OnInit{
 
 
 
-
     this.innerWidth = window.innerWidth;
     // console.log(this.innerWidth);
 
@@ -358,9 +357,7 @@ export class NavbarComponent implements OnInit{
 
 
   handleCategoryClick(){
-    setTimeout(() => {
-      window.location.reload();
-    },100)
+    window.location.reload();
 
   }
 
