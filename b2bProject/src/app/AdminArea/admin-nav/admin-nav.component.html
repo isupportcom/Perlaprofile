@@ -1,77 +1,215 @@
 
-
-<div class="wrapper d-flex align-items-stretch">
-  <nav id="sidebar">
-    <div class="custom-menu">
-      <button type="button" id="sidebarCollapse" class="btn btn-primary">
-        <i class="fa fa-bars"></i>
-        <span class="sr-only">Toggle Menu</span>
-      </button>
-    </div>
-    <h1><a class="logo">Perlaprofil</a></h1>
-    <ul class="list-unstyled components mb-5">
-      <li class="active">
-        <a style="cursor: pointer;" (click)="handleHomepage()"><span class="fa fa-home mr-3" ></span> Homepage</a>
-      </li>
-
-      <li (click)="showContent(4)">
-        <a > Update Products</a>
-      </li>
-
-
-
-      <li (click)="showContent(5)">
-        <a > Update Categories</a>
-      </li>
-      <li (click)="showContent(12)">
-        <a > Update Ral Colors</a>
-      </li>
-      <li (click)="setDropdown(dropdownCat5)" class="nav-item dropdown" #categories>
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          PDF
-        </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat5>
-        <li (click)="showContent(13)">
-          <a > Upload PDF</a>
-        </li>
-        <li (click)="showContent(14)">
-          <a >Insert PDF To Product</a>
-        </li>
+<div class="container">
+  <div class="row">
+    <div class="col-2" style="display: flex;height: 100vh;align-items: center;">
+      <div class="container" style="margin: 0px;width: fit-content;padding: 24px;background-color: white;border-radius: 60px;box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);">
+        <div class="row" class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a class="row my-nav-item" (mouseover)="handleOver(home)" (mouseleave)="handleLeave(home)" #home>
+              <div class="col-4">
+                <img src="../../../assets/bxs_home.svg" alt="">
+              </div>
+              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;">
+                <p style="margin: 0px;">Αρχική</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a class="row my-nav-item" (mouseover)="handleOver(products)" (mouseleave)="handleLeave(products)" #products>
+              <div class="col-4">
+                <img src="../../../assets/bxs_shopping-bag.svg" alt="">
+              </div>
+              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;">
+                <p style="margin: 0px;">Προϊόντα</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a class="row my-nav-item" (mouseover)="handleOver(categories)" (mouseleave)="handleLeave(categories)" #categories>
+              <div class="col-4">
+                <img src="../../../assets/carbon_collapse-categories.svg" alt="">
+              </div>
+              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;">
+                <p style="margin: 0px;">Κατηγορίες</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a class="row my-nav-item" (mouseover)="handleOver(ral)" (mouseleave)="handleLeave(ral)" #ral>
+              <div class="col-4">
+                <img src="../../../assets/clarity_color-palette-solid.svg" alt="">
+              </div>
+              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;">
+                <p style="margin: 0px;">Χρώματα RAL</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/fa6-solid_file-pdf.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/bxs_image-add.svg" alt="">
+          </a>
+        </div>
+        <div class="row">
+          <a>
+            <img src="../../../assets/bxs_offer.svg" alt="">
+          </a>
+        </div>
       </div>
-
-<li (click)="setDropdown(dropdownCat4)" class="nav-item dropdown" #categories>
-  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Images
-  </a>
-<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" #dropdownCat4>
-  <li (click)="showContent(9)">
-    <a > Upload Image</a>
-  </li>
-  <li (click)="showContent(10)">
-    <a >Insert Image To Product</a>
-  </li>
-</div>
-<li (click)="showContent(7)">
-  <a > Offers</a>
-</li>
-</ul>
-
-  </nav>
-
-  <!-- Page Content  -->
-  <div id="content" class="p-4 p-md-5 pt-5 center">
-
-
-    <app-insert-products *ngIf="component==4"></app-insert-products>
-    <app-update-categories *ngIf="component==5"></app-update-categories>
-    <app-insert-categories *ngIf="component==6"></app-insert-categories>
-    <app-offers *ngIf="component==7"></app-offers>
-    <app-update-colors *ngIf="component==12"></app-update-colors>
-    <app-upload-image *ngIf="component==9"></app-upload-image>
-    <app-insert-images *ngIf="component==10"></app-insert-images>
-    <app-upload-pdf *ngIf="component==13"></app-upload-pdf>
-    <app-insert-pdf *ngIf="component==14"></app-insert-pdf>
+    </div>
+    <div class="col-10" style="background-color: red;height: 100vh">
+      <h1>hey</h1>
+    </div>
   </div>
 </div>
+
+
+  <!-- <div style="display: flex;justify-content: center;align-items: center;width: fit-content;height: 100vh;">
+    
+      <div class="container" style="padding: 24px;background-color: white;border-radius: 60px;box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);">
+        <div class="row" style="margin-bottom: 44px;">
+          <a class="nav-item" (mouseover)="handleOver()" (mouseleave)="handleLeave()">
+                <img src="../../../assets/bxs_home.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/bxs_shopping-bag.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/carbon_collapse-categories.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/clarity_color-palette-solid.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/fa6-solid_file-pdf.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/bxs_image-add.svg" alt="">
+          </a>
+        </div>
+        <div class="row">
+          <a>
+            <img src="../../../assets/bxs_offer.svg" alt="">
+          </a>
+        </div>
+      </div> -->
+
+    
+
+    <!-- <nav > -->
+  
+  
+  
+  
+      <!-- <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div>
+      <h1><a class="logo">Perlaprofil</a></h1>
+      <ul class="list-unstyled components mb-5">
+        <li class="active">
+          <a style="cursor: pointer;" (click)="handleHomepage()"><span class="fa fa-home mr-3" ></span> Homepage</a>
+        </li>
+  
+        <li (click)="showContent(4)">
+          <a > Update Products</a>
+        </li>
+  
+  
+  
+        <li (click)="showContent(5)">
+          <a > Update Categories</a>
+        </li>
+        <li (click)="showContent(12)">
+          <a > Update Mosqui Colors</a>
+        </li>
+        <li  class="nav-item dropdown">
+          <a (click)="content()" #optionsToggler class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PDF
+          </a>
+  
+         <ul class="ulAdmin" #options [ngClass]="
+         showList
+           ? makeSmallerDropDown
+             ? 'dropdown-menu my-dropdown-sm show'
+             : 'dropdown-menu my-dropdown show'
+           : 'dropdown-menu'
+       ">
+          <li (click)="showContent(13)">
+            <a > Upload PDF</a>
+          </li>
+          <li (click)="showContent(14)">
+            <a >Insert PDF To Product</a>
+          </li>
+        </ul>
+  
+  
+  <li  class="nav-item dropdown" >
+    <a (click)="showImages()" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #imgTogler>
+      Images
+    </a>
+  <ul #img
+    class="ulAdmin"
+    [ngClass]="
+    showImg
+      ? makeSmallerDropDown
+        ? 'dropdown-menu my-dropdown-sm show'
+        : 'dropdown-menu my-dropdown show'
+      : 'dropdown-menu'
+  ">
+  
+  
+    <li (click)="showContent(9)">
+      <a > Upload Image</a>
+    </li>
+    <li (click)="showContent(10)">
+      <a >Insert Image To Product</a>
+    </li>
+  </ul>
+  
+  
+  </ul> -->
+  
+  <!-- </nav> -->
+  
+    <!-- Page Content  -->
+    <!-- <div id="content" class="p-4 p-md-5 pt-5 center">
+  
+  
+      <app-insert-products *ngIf="component==4"></app-insert-products>
+      <app-update-categories *ngIf="component==5"></app-update-categories>
+      <app-insert-categories *ngIf="component==6"></app-insert-categories>
+  
+      <app-update-colors *ngIf="component==12"></app-update-colors>
+      <app-upload-image *ngIf="component==9"></app-upload-image>
+      <app-insert-images *ngIf="component==10"></app-insert-images>
+      <app-upload-pdf *ngIf="component==13"></app-upload-pdf>
+      <app-insert-pdf *ngIf="component==14"></app-insert-pdf>
+    </div> -->
+
+  <!-- </div> -->
 
 

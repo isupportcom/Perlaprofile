@@ -36,6 +36,20 @@ export class InsertImagesComponent implements OnInit {
     })
 
   }
+  openMain(item:any){
+    this.flag = true;
+    this.window = true;
+    this.modalService.image.subscribe((res:any)=>{
+      this.image = res;
+      axios.get("https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl="+item.mtrl+"&image="+this.image)
+      .then(res=> {
+        console.log(res.data)
+        setTimeout(()=>{
+          window.location.reload()
+       },500)
+      })
+    })
+  }
   open(item:any){
     this.flag = true;
     this.window =true;
@@ -51,9 +65,9 @@ export class InsertImagesComponent implements OnInit {
         mode:"insert"
       }).then(res=>{
         console.log(res)
-        // setTimeout(()=>{
-        //    window.location.reload()
-        // },1000)
+        setTimeout(()=>{
+           window.location.reload()
+        },500)
 
       })
     })

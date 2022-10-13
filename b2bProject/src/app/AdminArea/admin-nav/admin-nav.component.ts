@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 
@@ -9,13 +9,45 @@ import {Router} from "@angular/router";
 })
 export class AdminNavComponent implements OnInit {
   @ViewChild('dropdown') dropdown!: ElementRef;
+  @ViewChild('options')options!:ElementRef;
+  @ViewChild('optionsToggler') optionsToggler!: ElementRef;
+  @ViewChild('img')img!:ElementRef;
+  @ViewChild('imgTogler')imgTogler!:ElementRef;
+  showList:boolean=false;
+  showImg:boolean = false;
+
+  makeSmallerDropDown?: boolean;
   isOpen = false;
   component:number | any;
   constructor(
       private authService: AuthService,
-      private router:Router
-  ) { }
+      private router:Router,
+      private rendere :Renderer2
+  ) {
+    this.rendere.listen('window','click',(e:Event)=>{
+      if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
+        this.showList = false;
+      }
+      if(e.target !== this.img.nativeElement && e.target !== this.imgTogler.nativeElement){
+        this.showImg = false;
+      }
+    })
+  }
+  innerWidth:any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.innerWidth = window.innerWidth
 
+    if(this.innerWidth < 768 ){
+
+      this.makeSmallerDropDown = true;
+    }
+    else{
+
+      this.makeSmallerDropDown = false;
+    }
+
+  }
   ngOnInit(): void {
     localStorage.setItem("firsTime","1");
     if(localStorage.getItem("firstTime")=="1"){
@@ -36,10 +68,42 @@ export class AdminNavComponent implements OnInit {
   }
 
 
+  handleOver(el: any){
+    setTimeout(() => {
+      el.style.justifyContent = 'center'
+      el.style.alignItems = 'center'
+      el.children[1].style.display = 'block';
+    },220)
+  }
+
+  handleLeave(el: any){
+    setTimeout(() => {
+      el.children[1].style.display = 'none';
+      el.style.justifyContent = 'initial'
+      el.style.alignItems = 'initial'
+    },220)
+  }
   logout(){
 
   }
+  content(){
+    console.log(this.showList);
 
+
+    if(!this.showList){
+      this.showList=true;
+    }else{
+      this.showList=false;
+    }
+    console.log(this.showList);
+  }
+  showImages(){
+    if(!this.showImg){
+      this.showImg=true;
+    }else{
+      this.showImg=false;
+    }
+  }
   handleHomepage(){
     this.router.navigate(['home']);
     setTimeout(() => {
