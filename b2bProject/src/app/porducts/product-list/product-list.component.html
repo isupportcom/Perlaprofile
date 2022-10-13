@@ -9,8 +9,8 @@
     <div class="row categoryDesc">
         <div class="col">
             <div class="row">
-                <div class="col">
-                    <p><br><span style="background-color: rgba(255, 255, 255, 0.8);"translate>products.quote</span><br></p>
+                <div class="col" *ngIf="mainCategory.id == 114">
+                    <p ><br><span style="background-color: rgba(255, 255, 255, 0.8);"translate>products.quote</span><br></p>
                     <ul>
                         <li translate>products.solinota<br></li>
                         <li translate>products.probalomena<br></li>
@@ -27,6 +27,62 @@
                     </ul>
                     <p><span style="background-color: rgba(255, 255, 255, 0.8);" translate>products.quote3</span><br></p>
                 </div>
+                <div class="col" *ngIf="mainCategory.id == 115">
+                  <p ><br><span style="background-color: rgba(255, 255, 255, 0.8);"translate>products.quote_motion</span><br></p>
+                  <ul>
+                      <li translate>products.solinota<br></li>
+                      <li translate>products.probalomena<br></li>
+                      <li translate>products.pergkolas<br></li>
+                      <li translate>products.auloportas<br></li>
+                  </ul>
+                  <p><span style="background-color: rgba(255, 255, 255, 0.8);" translate>products.quote2_motion</span><br></p>
+                  <ul>
+                      <li translate>products.tentes<br></li>
+                      <li translate>products.gkarazoportes<br></li>
+                      <li translate>products.storia<br></li>
+                      <li translate>products.kourtines<br></li>
+                      <li translate>products.rola<br></li>
+                  </ul>
+                  <p><span style="background-color: rgba(255, 255, 255, 0.8);" translate>products.quote3_motion</span><br></p>
+                  <ul>
+                    <li translate>products.sts<br></li>
+                    <li translate>products.rdo<br></li>
+                    <li translate>products.elc<br></li>
+
+                </ul>
+              </div>
+              <div class="col" *ngIf="mainCategory.id == 116">
+                <p ><br><span style="background-color: rgba(255, 255, 255, 0.8);"translate>products.quote_mosqui<br>products.quote_mosqui_2</span></p>
+                <ul>
+                    <li translate>products.plise<br></li>
+                    <li translate>products.kathetis<br></li>
+                    <li translate>products.america<br></li>
+                    <li translate>products.orizontia<br></li>
+                    <li translate>products.orizontia_seiromeni</li>
+                    <li translate>products.epalili</li>
+                    <li translate>products.telaro</li>
+                    <li translate>products.plaisio</li>
+                </ul>
+               </div>
+            <!-- <div class="col" *ngIf="mainCategory.id == 117">
+              <p ><br><span style="background-color: rgba(255, 255, 255, 0.8);"translate>products.quote</span><br></p>
+              <ul>
+                  <li translate>products.solinota<br></li>
+                  <li translate>products.probalomena<br></li>
+                  <li translate>products.pergkolas<br></li>
+                  <li translate>products.auloportas<br></li>
+              </ul>
+              <p><span style="background-color: rgba(255, 255, 255, 0.8);" translate>products.quote2<i>&nbsp;</i>products.quote2_1</span><br></p>
+              <ul>
+                  <li translate>products.monokanala<br></li>
+                  <li translate>products.polukanala<br></li>
+                  <li translate>products.epitoixia<br></li>
+                  <li translate>products.asurmata<br></li>
+                  <li translate>products.xeiros<br></li>
+              </ul>
+              <p><span style="background-color: rgba(255, 255, 255, 0.8);" translate>products.quote3</span><br></p>
+
+          </div>-->
             </div>
         </div>
     </div>

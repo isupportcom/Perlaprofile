@@ -90,59 +90,60 @@
   "team": {
     "title": "Perla's Team",
 
-    "person":[ {
-      "name": "Konstantinos Aggelakaris",
-      "role": "CEO",
-      "description": "Our goal is to create and offer innovative products that cover all modern market needs"
-    },
-     {
-      "name": "Stella Aggelakari",
-      "role": "Logistics supervisor",
-      "description": "Customer Credit Check, balance check and update and supplier payments are our core competence in our department."
-    },
-     {
-      "name": "Aggeliki Tziana",
-      "role": "Order Department Manager",
-      "description": "Prompt service and getting orders right is our daily goal."
-    },
-     {
-      "name": "Anthi Lelekidou",
-      "role": "Export Manager",
-      "description": "Receiving orders, preparing offers, checking loads and sending all supporting documents and necessary documents is our daily mission."
-    },
-     {
-      "name": "Konstantinos Gourgoulas",
-      "role": "Profile Commercial Department Manager",
-      "description": "The thorough knowledge of the codes and technical characteristics of the profiles is the basic element for the immediate service of our customers."
-    },
-     {
-      "name": "Efraim Topsinoglou",
-      "role": "Loading - Transportation Manager",
-      "description": "The correct and safe transport of the goods with the appropriate packaging is the main goal."
-    },
-     {
-      "name": "Stelios Fougias",
-      "role":"Production Manager of Ready Rolls - Sitas",
-      "description":"Producing correct and functional products is our daily goal."
-    },
-    {
-      "name":"Iordanis Dometeiou",
-      "role":"Garage Door Production Manager - Fissounas",
-      "description":"Each of our orders is studied and manufactured with absolute care and quality control."
-    },
+    "person": [
+      {
+        "name": "Konstantinos Aggelakaris",
+        "role": "CEO",
+        "description": "Our goal is to create and offer innovative products that cover all modern market needs"
+      },
+      {
+        "name": "Stella Aggelakari",
+        "role": "Logistics supervisor",
+        "description": "Customer Credit Check, balance check and update and supplier payments are our core competence in our department."
+      },
+      {
+        "name": "Aggeliki Tziana",
+        "role": "Order Department Manager",
+        "description": "Prompt service and getting orders right is our daily goal."
+      },
+      {
+        "name": "Anthi Lelekidou",
+        "role": "Export Manager",
+        "description": "Receiving orders, preparing offers, checking loads and sending all supporting documents and necessary documents is our daily mission."
+      },
+      {
+        "name": "Konstantinos Gourgoulas",
+        "role": "Profile Commercial Department Manager",
+        "description": "The thorough knowledge of the codes and technical characteristics of the profiles is the basic element for the immediate service of our customers."
+      },
+      {
+        "name": "Efraim Topsinoglou",
+        "role": "Loading - Transportation Manager",
+        "description": "The correct and safe transport of the goods with the appropriate packaging is the main goal."
+      },
+      {
+        "name": "Stelios Fougias",
+        "role": "Production Manager of Ready Rolls - Sitas",
+        "description": "Producing correct and functional products is our daily goal."
+      },
+      {
+        "name": "Iordanis Dometeiou",
+        "role": "Garage Door Production Manager - Fissounas",
+        "description": "Each of our orders is studied and manufactured with absolute care and quality control."
+      },
 
-    {
-      "name":"Flamour Shehi",
-      "role":"Pleated Silk Production Manager",
-      "description":"With absolute care we check all raw materials before the production of anti-mosquito systems to manufacture quality products."
-    },
+      {
+        "name": "Flamour Shehi",
+        "role": "Pleated Silk Production Manager",
+        "description": "With absolute care we check all raw materials before the production of anti-mosquito systems to manufacture quality products."
+      },
 
-    {
-      "name":"Christoforos Sikobaris",
-      "role":"Parts - Consumables Manager",
-      "description":"Εξυπηρετούμε καθημερινά κάθε ανάγκη των επαγγελματιών προσφέροντας κορυφαία προϊόντα σε μεγάλη γκάμα άμεσα διαθέσιμη."
-    }]
-
+      {
+        "name": "Christoforos Sikobaris",
+        "role": "Parts - Consumables Manager",
+        "description": "Εξυπηρετούμε καθημερινά κάθε ανάγκη των επαγγελματιών προσφέροντας κορυφαία προϊόντα σε μεγάλη γκάμα άμεσα διαθέσιμη."
+      }
+    ]
   },
   "contact": {
     "title": "Contact",
@@ -169,7 +170,28 @@
     "epitoixia": "Wall remote control",
     "asurmata": "Wireless remote controls",
     "xeiros": "Hand remote control.",
-    "quote3": "We also created a remote control with a timer for easy and quick adjustment of closing and opening our device programmed."
+    "quote3": "We also created a remote control with a timer for easy and quick adjustment of closing and opening our device programmed.",
+    "quote_motion": "At Perla Profil we design and manufacture motors such as:",
+    "quote_mosqui": "At Perla Profil we design and produce screen systems to protect against annoying insects.",
+    "quote_mosqui_2": "Some of our systems are:",
+    "plise": "Pleated screen with bottom guide",
+    "kathetis": "Vertical motion screen 'EVA39'",
+    "america": "Opening sieve 'AMERICA'",
+    "orizontia": "Horizontal sliding spring screen with crawler",
+    "orizontia_seiromeni": "Horizontal Sliding Spring Screen 'KIT40'",
+    "epalili": "Superimposed sliding screen",
+    "telaro": "Sliding screen in crate",
+    "plaisio": "Stable mesh frame",
+    "quote2_motion": "Depending on the movement needs, we can classify them into the following categories:",
+    "tentes": "Motors for awnings",
+    "gkarazoportes": "Motors for garage doors",
+    "storia": "Motors for venetian blinds",
+    "kourtines": "Motors for curtains",
+    "rola": "Motors for roller shutters",
+    "quote3_motion": "So we offer you the following types depending on each application",
+    "sts": "STS - Wired tubular motors with mechanical limits",
+    "rdo": "RDO - Wireless tubular motors with mechanical limits",
+    "elc": "ELC - Wireless tubular motors with electronic limits"
   },
   "product_page": {
     "price": "Price",
@@ -188,23 +210,22 @@
     "see_earlier": "Seen Recently",
     "not_fount": "No Products Found"
   },
-  "cart":{
-    "order":"Order",
-    "continue":"Continue Shopping",
-    "sum":"Order Summary",
-    "value":"Product Value:",
-    "trans":"Transportation:",
-    "total":"Total value:",
-    "procceed":"Proceed to purchase"
+  "cart": {
+    "order": "Order",
+    "continue": "Continue Shopping",
+    "sum": "Order Summary",
+    "value": "Product Value:",
+    "trans": "Transportation:",
+    "total": "Total value:",
+    "procceed": "Proceed to purchase"
   },
-  "check":{
-      "details":"Details of your business",
-      "add":"Address",
-      "tk":"ZIP",
-      "area":"Area",
-      "city":"City",
-      "tring":"Triangular",
-      "back":"Back To Cart"
-
+  "check": {
+    "details": "Details of your business",
+    "add": "Address",
+    "tk": "ZIP",
+    "area": "Area",
+    "city": "City",
+    "tring": "Triangular",
+    "back": "Back To Cart"
   }
 }

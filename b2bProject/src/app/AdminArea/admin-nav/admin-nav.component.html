@@ -1,4 +1,4 @@
-
+<!--
 <div class="container">
   <div class="row">
     <div class="col-2" style="display: flex;height: 100vh;align-items: center;">
@@ -72,11 +72,11 @@
       <h1>hey</h1>
     </div>
   </div>
-</div>
+</div> -->
 
 
   <!-- <div style="display: flex;justify-content: center;align-items: center;width: fit-content;height: 100vh;">
-    
+
       <div class="container" style="padding: 24px;background-color: white;border-radius: 60px;box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);">
         <div class="row" style="margin-bottom: 44px;">
           <a class="nav-item" (mouseover)="handleOver()" (mouseleave)="handleLeave()">
@@ -114,15 +114,15 @@
           </a>
         </div>
       </div> -->
+ -->
 
-    
 
-    <!-- <nav > -->
-  
-  
-  
-  
-      <!-- <div class="custom-menu">
+     <nav >
+
+
+
+
+      <div class="custom-menu">
         <button type="button" id="sidebarCollapse" class="btn btn-primary">
           <i class="fa fa-bars"></i>
           <span class="sr-only">Toggle Menu</span>
@@ -133,13 +133,13 @@
         <li class="active">
           <a style="cursor: pointer;" (click)="handleHomepage()"><span class="fa fa-home mr-3" ></span> Homepage</a>
         </li>
-  
+
         <li (click)="showContent(4)">
           <a > Update Products</a>
         </li>
-  
-  
-  
+
+
+
         <li (click)="showContent(5)">
           <a > Update Categories</a>
         </li>
@@ -150,7 +150,7 @@
           <a (click)="content()" #optionsToggler class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             PDF
           </a>
-  
+
          <ul class="ulAdmin" #options [ngClass]="
          showList
            ? makeSmallerDropDown
@@ -165,8 +165,8 @@
             <a >Insert PDF To Product</a>
           </li>
         </ul>
-  
-  
+
+
   <li  class="nav-item dropdown" >
     <a (click)="showImages()" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #imgTogler>
       Images
@@ -180,8 +180,8 @@
         : 'dropdown-menu my-dropdown show'
       : 'dropdown-menu'
   ">
-  
-  
+
+
     <li (click)="showContent(9)">
       <a > Upload Image</a>
     </li>
@@ -189,27 +189,26 @@
       <a >Insert Image To Product</a>
     </li>
   </ul>
-  
-  
-  </ul> -->
-  
-  <!-- </nav> -->
-  
+
+
+  </ul>
+
+   </nav>
+
     <!-- Page Content  -->
-    <!-- <div id="content" class="p-4 p-md-5 pt-5 center">
-  
-  
+ <div id="content" class="p-4 p-md-5 pt-5 center">
+
+
       <app-insert-products *ngIf="component==4"></app-insert-products>
       <app-update-categories *ngIf="component==5"></app-update-categories>
       <app-insert-categories *ngIf="component==6"></app-insert-categories>
-  
+
       <app-update-colors *ngIf="component==12"></app-update-colors>
       <app-upload-image *ngIf="component==9"></app-upload-image>
       <app-insert-images *ngIf="component==10"></app-insert-images>
       <app-upload-pdf *ngIf="component==13"></app-upload-pdf>
       <app-insert-pdf *ngIf="component==14"></app-insert-pdf>
-    </div> -->
+    </div>
 
-  <!-- </div> -->
-
+ <!-- </div> -->
 
