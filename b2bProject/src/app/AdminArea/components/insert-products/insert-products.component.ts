@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./insert-products.component.css']
 })
 export class InsertProductsComponent implements OnInit {
+  search: string = "";
   offer:boolean = false;
   products:  any = [];
   page: number |any;
@@ -31,12 +32,13 @@ export class InsertProductsComponent implements OnInit {
     private fb : FormBuilder,
     private productsService: ProductsService,
     private modalService:ModalService,
-    private cartServiceService : CartServiceService
+    private cartService : CartServiceService
   ) {
   }
 
+
   ngOnInit() {
-    this.cartServiceService.searchResult.subscribe((res:any)=>{
+    this.cartService.searchResult.subscribe((res:any)=>{
       console.log(res)
       this.products = res
       this.searched = false;
@@ -64,6 +66,31 @@ export class InsertProductsComponent implements OnInit {
 
 
   }
+
+  findProducts() {
+    console.log('mpike gia res');
+    if(this.search == ''){
+      this.getProducts();
+    }
+    else{
+      axios
+        .post('https://perlarest.vinoitalia.gr/php-auth-api/search.php', {
+          search: this.search,
+        })
+        .then((resData) => {
+          console.log(resData.data.products);
+          if (resData.data.products.length != 0) {
+              this.products = resData.data.products;
+          } 
+          else {
+            setTimeout(() => {
+              this.getProducts();
+            }, 100);
+          }
+        });
+    }
+  }
+
   changePage(e:any){
     this.page = e;
     localStorage.setItem("pagination",this.page);
@@ -90,6 +117,7 @@ export class InsertProductsComponent implements OnInit {
           mtrl: resData.data.products[i].mtrl,
           name: resData.data.products[i].name,
           name1: resData.data.products[i].name1,
+          product_name: resData.data.products[i].onoma,
           code: resData.data.products[i].code,
           retail: resData.data.products[i].retailPrice,
           wholesale: resData.data.products[i].wholesalePrice,
@@ -109,30 +137,31 @@ export class InsertProductsComponent implements OnInit {
 
 
    openOffer(item:any){
-  this.offer = true;
-  console.log(item);
+    this.cartService.sendOpenOffer(item);
+  // this.offer = true;
+  // console.log(item);
 
-     console.log(typeof(item.wholesalePrice))
-    this.modalService.offer.subscribe((res:number)=> {
-     localStorage.setItem("discound",JSON.stringify(res));
-      this.offerprice = +item.wholesale - ((+item.wholesale * +res) / 100)
-      console.log(this.offerprice)
-      console.log(typeof(item.mtrl))
-      let data ={
-        product:item.mtrl,
-        offer:JSON.stringify(this.offerprice),
-        discount:res,
-        show:"no"
-      }
-      console.log(data)
-      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/offers.php", data
-      ).then(resData=>{
-        console.log(resData.data)
-        setTimeout(()=>{
-          window.location.reload()
-        },100)
-      })
-    })
+  //    console.log(typeof(item.wholesalePrice))
+  //   this.modalService.offer.subscribe((res:number)=> {
+  //    localStorage.setItem("discound",JSON.stringify(res));
+  //     this.offerprice = +item.wholesale - ((+item.wholesale * +res) / 100)
+  //     console.log(this.offerprice)
+  //     console.log(typeof(item.mtrl))
+  //     let data ={
+  //       product:item.mtrl,
+  //       offer:JSON.stringify(this.offerprice),
+  //       discount:res,
+  //       show:"no"
+  //     }
+  //     console.log(data)
+  //     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/offers.php", data
+  //     ).then(resData=>{
+  //       console.log(resData.data)
+  //       setTimeout(()=>{
+  //         window.location.reload()
+  //       },100)
+  //     })
+  //   })
 
   }
   test(e:any){
@@ -171,21 +200,10 @@ export class InsertProductsComponent implements OnInit {
 
 
   open(item:any) {
-    this.flag = true;
-    this.window =true;
-    console.log(item)
-    this.modalService.image.subscribe((res:any)=> {
-      this.image = res
-      console.log(this.image)
-        axios.get("https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl="+item+"&image="+this.image)
-          .then(res=> {
-            console.log(res.data)
+    this.cartService.sendAddImagePopup(item);
 
 
-          } )
-       // window.location.reload()
-    })
-      }
+  }
 
 
 

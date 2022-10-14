@@ -1,3 +1,42 @@
 .error{
   color:red;
 }
+
+
+.soft1-btn{
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 60px;
+  padding: 12px 24px;
+  font-size: 20px;
+  color: #6dae49;
+  transition: all 0.3s ease-in-out;
+}
+
+.soft1-btn:hover{
+  background-color: rgba(0,0,0,0);
+  color: white;
+}
+
+.login-btn{
+  border: none;
+  background-color: #6dae49;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.login-btn:hover{
+  background-color: #4a7632;
+}
+
+.remove{
+  content: url(../../../../assets/x-black.svg);
+  transition: all 1s ease-in-out;
+}
+
+.remove:hover{
+  content: url(../../../../assets/x-red.svg);
+}

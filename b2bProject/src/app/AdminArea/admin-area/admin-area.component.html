@@ -1,5 +1,14 @@
-<div class="content">
-  <app-admin-nav></app-admin-nav>
+<app-add-image-popup *ngIf="flag && window"></app-add-image-popup>
+<app-offer-popup *ngIf="offer"></app-offer-popup>
+<div class="container" style="margin-left: 50px;margin-right: 0px;max-width: 90%;">
+  <div class="row">
+    <div class="col-2" style="display: flex;height: 100vh;align-items: center;justify-content: left;">
+      <app-admin-nav></app-admin-nav>
+    </div>
+    <div class="col-10" style="height: 100vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
 
 

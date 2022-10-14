@@ -70,18 +70,14 @@ export class AdminNavComponent implements OnInit {
 
   handleOver(el: any){
     setTimeout(() => {
-      el.style.justifyContent = 'center'
-      el.style.alignItems = 'center'
-      el.children[1].style.display = 'block';
-    },220)
+      el.children[1].style.display = 'flex';
+    },250)
   }
 
   handleLeave(el: any){
     setTimeout(() => {
       el.children[1].style.display = 'none';
-      el.style.justifyContent = 'initial'
-      el.style.alignItems = 'initial'
-    },220)
+    },250)
   }
   logout(){
 

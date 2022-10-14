@@ -84,7 +84,7 @@ export class LogInComponent implements OnInit, OnDestroy {
           }).then(res=>{
             console.log(res.data)
             if(resData.isAdmin== "1"){
-              this.router.navigate(['dashboard']);
+              this.router.navigate(['dashboard/insert-products']);
             }else{
               this.router.navigate(['home']);
             }

@@ -108,6 +108,7 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
+    window.location.reload();
 
     
   }

@@ -333,7 +333,7 @@ export class NavbarComponent implements OnInit{
   handleDashboard(){
     // this.isAdminArea = true;
     console.log(this.isAdminArea);
-    this.router.navigate(["dashboard"]);
+    this.router.navigate(["dashboard/insert-products"]);
   }
 
   handleMyOrders(){

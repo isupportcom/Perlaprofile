@@ -10,8 +10,8 @@ import {CartServiceService} from "../../../cart/cart-service.service";
   styleUrls: ['./searchbar.component.css']
 })
 export class SearchbarComponent implements OnInit {
-code:string |any;
-name:string |any;
+code:string = "";
+name:string = "";
 string:string |any;
 id:number |any;
   constructor(

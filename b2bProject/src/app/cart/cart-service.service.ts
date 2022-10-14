@@ -15,6 +15,20 @@ export class CartServiceService {
 
   id: any;
 
+  openOffer = new Subject<any>();
+  castOpenOffer = this.openOffer.asObservable();
+
+  sendOpenOffer(prod: any) {
+    this.openOffer.next(prod);
+  }
+
+  addImagePopup = new Subject<any>();
+  castAddImagePopup = this.addImagePopup.asObservable();
+
+  sendAddImagePopup(prod: any) {
+    this.addImagePopup.next(prod);
+  }
+
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
 
   productAdded = new Subject<boolean>();
