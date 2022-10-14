@@ -17,8 +17,8 @@ export class AuthGuard implements CanActivate {
             map(user => {
             const isAuth = !!user?.token;
             console.log(isAuth);
-            
-            
+
+
             if(isAuth){
                 return true;
             }
@@ -26,8 +26,8 @@ export class AuthGuard implements CanActivate {
                 localStorage.setItem('loggedIn', 'true');
                 return this.router.createUrlTree(['home']);
             }
-            
-        }), 
+
+        }),
         // tap(isAuth => {
         //     if(!isAuth){
         //         this.router.navigate(['']);
