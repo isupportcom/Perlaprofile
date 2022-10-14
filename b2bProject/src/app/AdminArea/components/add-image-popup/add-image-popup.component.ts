@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalService} from "./modal-service.service";
 import axios from "axios";
+import { CartServiceService } from 'src/app/cart/cart-service.service';
 
 @Component({
   selector: 'app-add-image-popup',
@@ -10,7 +11,7 @@ import axios from "axios";
 export class AddImagePopupComponent implements OnInit {
   isClicked:boolean=true;
 
-  constructor(private modalService: ModalService) {}
+  constructor(private cartService: CartServiceService,private modalService: ModalService) {}
     images:string |any= [];
 
 
@@ -27,10 +28,10 @@ export class AddImagePopupComponent implements OnInit {
     }
   sendNUDES(image:string){
       this.modalService.sendImage(image);
-    this.modalService.openPopup(false);
+      this.cartService.sendAddImagePopup(false);
   }
     close(){
-      this.modalService.openPopup(false);
+      this.cartService.sendAddImagePopup(false);
   }
 
 }

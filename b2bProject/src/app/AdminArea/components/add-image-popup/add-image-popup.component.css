@@ -1,0 +1,41 @@
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #6dae49; 
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a7632; 
+  }
+
+
+
+.image{
+    box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.image:hover{
+    box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
+}
+
+
+.remove{
+    content: url(../../../../assets/x-black.svg);
+    transition: all 1s ease-in-out;
+  }
+  
+  .remove:hover{
+    content: url(../../../../assets/x-red.svg);
+  }

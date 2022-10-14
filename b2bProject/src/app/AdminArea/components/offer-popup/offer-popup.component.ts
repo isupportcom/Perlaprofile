@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
+import { CartServiceService } from 'src/app/cart/cart-service.service';
 import {ModalService} from "../add-image-popup/modal-service.service";
 
 @Component({
@@ -9,7 +10,7 @@ import {ModalService} from "../add-image-popup/modal-service.service";
 })
 export class OfferPopupComponent implements OnInit {
   contactForm:FormGroup|any;
-  constructor(public fb:FormBuilder,private modalService:ModalService) { }
+  constructor(private cartService: CartServiceService,public fb:FormBuilder,private modalService:ModalService) { }
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
@@ -19,7 +20,7 @@ export class OfferPopupComponent implements OnInit {
     });
   }
   close(){
-    this.modalService.openPopup(false);
+    this.cartService.sendOpenOffer(false);
   }
   uploadOffer(){
     console.log(this.contactForm.value.offer)
