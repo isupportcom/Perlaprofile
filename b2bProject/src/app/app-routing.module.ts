@@ -3,7 +3,15 @@ import { Routes,RouterModule } from "@angular/router";
 import { AdminAreaComponent } from "./AdminArea/admin-area/admin-area.component";
 import { AdminareaproductsComponent } from "./AdminArea/adminareaproducts/adminareaproducts.component";
 import { AdminareausersComponent } from "./AdminArea/adminareausers/adminareausers.component";
+import { InsertImagesComponent } from "./AdminArea/components/insert-images/insert-images.component";
+import { InsertPdfComponent } from "./AdminArea/components/insert-pdf/insert-pdf.component";
 import { InsertProductsComponent } from "./AdminArea/components/insert-products/insert-products.component";
+import { UpdateCategoriesComponent } from "./AdminArea/components/update-categories/update-categories.component";
+import { UpdateColorsComponent } from "./AdminArea/components/update-colors/update-colors.component";
+import { UploadImageComponent } from "./AdminArea/components/upload-image/upload-image.component";
+import { UploadPdfComponent } from "./AdminArea/components/upload-pdf/upload-pdf.component";
+import { ImageComponent } from "./AdminArea/image/image.component";
+import { PdfComponent } from "./AdminArea/pdf-component/pdf-component.component";
 import { CartComponent } from "./cart/cart.component";
 import { FavoriteComponent } from "./cart/favorite/favorite.component";
 import { CheckoutPageComponent } from "./checkout-page/checkout-page.component";
@@ -58,11 +66,45 @@ const routes :Routes =[
     canActivate:[AdminGuard],
     component:AdminAreaComponent,
     children:[
-
-
       {
         path: 'insert-products',
         component: InsertProductsComponent
+      },
+      {
+        path: 'update-categories',
+        component: UpdateCategoriesComponent
+      },
+      {
+        path: 'update-colors',
+        component: UpdateColorsComponent
+      },
+      {
+        path: 'pdf',
+        component: PdfComponent,
+        children:[
+          {
+            path: 'upload',
+            component: UploadPdfComponent
+          },
+          {
+            path: 'insert',
+            component: InsertPdfComponent
+          }
+        ]
+      },
+      {
+        path: 'image',
+        component: ImageComponent,
+        children: [
+          {
+            path: 'upload',
+            component: UploadImageComponent
+          },
+          {
+            path: 'insert',
+            component: InsertImagesComponent
+          }
+        ]
       }
 
     ]

@@ -1,0 +1,132 @@
+.content{
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+.myRow{
+    margin-top: 12px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 58vh;
+    width: 100%;
+}
+
+.form-control{
+    width: 400px;
+}
+
+.mySelect:focus{
+    box-shadow: 0 0 0 0.25rem rgba(109, 174, 73, .3) !important;
+    border-color: #6dae49;
+}
+
+.mySelect{
+    border-radius: 6px;
+    padding: 12px;
+    color: #4a7632;
+}
+
+.remove{
+    content: url(../../../../assets/x-black.svg);
+    transition: all 1s ease-in-out;
+  }
+  
+  .remove:hover{
+    content: url(../../../../assets/x-red.svg);
+  }
+
+.myBtn{
+    margin-top: 15px;
+    width: fit-content;
+    border: none;
+    background-color: #6dae49;
+    color: white;
+    border-radius: 16px;
+    padding: 8px 24px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .myBtn:hover{
+    background-color: #4a7632;
+  }
+  
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #6dae49; 
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a7632; 
+  }
+
+.search-container{
+    width: 400px;
+    background: #fff;
+    height: 30px;
+    border-radius: 30px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    border: 2px solid #6dae49;
+    /* box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    inset -7px -7px 10px 0px rgba(0,0,0,.1),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+   text-shadow:  0px 0px 6px rgba(255,255,255,.3),
+              -4px -4px 6px rgba(116, 125, 136, .2);
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.5); */
+  /* box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2); */
+    /* box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+     */
+  }
+  
+  
+  /* .search-container:hover > .search-input{
+    width: 700px;
+  } */
+  
+  .search-container .search-input{
+    background: transparent;
+    border: none;
+    outline:none;
+    width: 400px;
+    
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.8s;
+  
+  }
+  
+  @keyframes hoverShake {
+  0% {transform: skew(0deg,0deg);}
+  25% {transform: skew(5deg, 5deg);}
+  75% {transform: skew(-5deg, -5deg);}
+  100% {transform: skew(0deg,0deg);}
+  }
+  
+  .search-container:hover{
+    border-color: #4a7632;
+  /* animation: hoverShake 0.15s linear 3; */
+  }

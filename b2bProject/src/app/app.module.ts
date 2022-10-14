@@ -72,6 +72,8 @@ import { TeamComponent } from './team/team.component';
 
 import { SwiperModule } from 'swiper/angular';
 import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
+import { PdfComponent } from './AdminArea/pdf-component/pdf-component.component';
+import { ImageComponent } from './AdminArea/image/image.component';
 
 
 
@@ -135,7 +137,9 @@ export function rootLoaderactory(http:any){
     SafePipePipe,
 
     TheCompanyComponent,
-    TeamComponent
+    TeamComponent,
+    PdfComponent,
+    ImageComponent
 
 
   ],

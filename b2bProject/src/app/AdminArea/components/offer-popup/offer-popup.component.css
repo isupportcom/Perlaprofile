@@ -12,15 +12,7 @@
     border-color: #6dae49;
 }
 
-.form-check-input:checked{
-    background-color: #6dae49;
-    border-color: #6dae49;
-}
 
-.form-check-input:focus{
-    box-shadow: none;
-    border-color: #6dae49;
-}
 
 .myBtn{
     border: none;

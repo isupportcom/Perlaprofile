@@ -1,12 +1,15 @@
     <div>
       <div class="container" style="margin: 0px;width: fit-content;padding: 24px;background-color: white;border-radius: 60px;box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);">
+        <div class="row">
+            <img src="../../../assets/LogoSmall.svg" width="32px" height="32px" style="margin-bottom: 40px;padding-left: 8px;padding-right: 16px;" alt="">
+        </div>
         <div class="row" class="row" style="margin-bottom: 44px;">
           <div class="container">
             <a routerLink="/home" class="row my-nav-item" (mouseover)="handleOver(home)" (mouseleave)="handleLeave(home)" #home>
               <div class="col-4">
                 <img src="../../../assets/bxs_home.svg" alt="">
               </div>
-              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
+              <div class="col-8" style="display: none;opacity: 0;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
                 <p style="margin: 0px;">Αρχική</p>
               </div>
             </a>
@@ -18,7 +21,7 @@
               <div class="col-4">
                 <img src="../../../assets/bxs_shopping-bag.svg" alt="">
               </div>
-              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
+              <div class="col-8" style="display: none;opacity: 0;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
                 <p style="margin: 0px;">Προϊόντα</p>
               </div>
             </a>
@@ -26,11 +29,11 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a class="row my-nav-item" (mouseover)="handleOver(categories)" (mouseleave)="handleLeave(categories)" #categories>
+            <a routerLink="/dashboard/update-categories" class="row my-nav-item" (mouseover)="handleOver(categories)" (mouseleave)="handleLeave(categories)" #categories>
               <div class="col-4">
                 <img src="../../../assets/carbon_collapse-categories.svg" alt="">
               </div>
-              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
+              <div class="col-8" style="display: none;opacity: 0;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
                 <p style="margin: 0px;">Κατηγορίες</p>
               </div>
             </a>
@@ -38,11 +41,11 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a class="row my-nav-item" (mouseover)="handleOver(ral)" (mouseleave)="handleLeave(ral)" #ral>
+            <a routerLink="/dashboard/update-colors" class="row my-nav-item" (mouseover)="handleOver(ral)" (mouseleave)="handleLeave(ral)" #ral>
               <div class="col-4">
                 <img src="../../../assets/clarity_color-palette-solid.svg" alt="">
               </div>
-              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
+              <div class="col-8" style="display: none;opacity: 0;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
                 <p style="margin: 0px;font-size: 14px;">Χρώματα RAL</p>
               </div>
             </a>
@@ -50,11 +53,11 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a class="row my-nav-item" style="padding-left: 2px;"  (mouseover)="handleOver(pdf)" (mouseleave)="handleLeave(pdf)" #pdf>
+            <a routerLink="/dashboard/pdf/upload" class="row my-nav-item" style="padding-left: 2px;"  (mouseover)="handleOver(pdf)" (mouseleave)="handleLeave(pdf)" #pdf>
               <div class="col-4">
                 <img src="../../../assets/fa6-solid_file-pdf.svg" alt="">
               </div>
-              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;align-items: center;">
+              <div class="col-8" style="display: none;opacity: 0;transition: all 0.2s ease-in-out;align-items: center;">
                 <p style="margin: 0px;font-size: 14px;">Επεξεργασία PDF</p>
               </div>
             </a>
@@ -62,32 +65,15 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a class="row my-nav-item2" (mouseover)="handleOver(img)" (mouseleave)="handleLeave(img)" #img>
+            <a routerLink="/dashboard/image/upload" class="row my-nav-item2" (mouseover)="handleOver(img)" (mouseleave)="handleLeave(img)" #img>
               <div class="col-4">
                 <img src="../../../assets/bxs_image-add.svg" alt="">
               </div>
-              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;align-items: center;">
+              <div class="col-8" style="display: none;opacity: 0;transition: all 0.2s ease-in-out;align-items: center;">
                 <p style="margin: 0px;font-size: 14px;">Επεξεργασία Φωτογραφιών</p>
               </div>
             </a>
           </div>
-        </div>
-        <div class="row">
-          <div class="container">
-            <a class="row my-nav-item" (mouseover)="handleOver(offer)" (mouseleave)="handleLeave(offer)" #offer>
-              <div class="col-4">
-                <img src="../../../assets/bxs_offer.svg" alt="">
-              </div>
-              <div class="col-8" style="display: none;transition: all 0.2s ease-in-out;justify-content: center;align-items: center;">
-                <p style="margin: 0px;">Προσφορές</p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <a>
-            <img src="../../../assets/bxs_offer.svg" alt="">
-          </a>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <!-- <app-add-image-popup *ngIf="flag && window"></app-add-image-popup> -->
-<div class="row">
-  <app-searchbar></app-searchbar>
+<!-- <div class="row">
+
   <div class="col-md-8" >
     <div *ngFor="let product of products">
       <h3 >{{product.name}}</h3>
@@ -28,7 +28,96 @@
 
 
   </div>
-</div>
+</div> -->
 
+<div class="container content">
+  <div class="row">
+    <form #form2 (ngForm)="findProducts()">
+      <div class="search-container">
+        <input type="text" name="search" [(ngModel)]="search" placeholder="Search..." class="search-input">
+        <a (click)="findProducts()" class="search-btn">
+          <img class="search-glass" src="../../../../assets/bx_search-alt.svg" width="20px" height="20px" alt="" srcset="">     
+        </a>
+      </div>
+      <button
+      type="submit"
+      style="display: none"
+      (click)="findProducts()"
+       ></button>
+    </form>
+  </div>
+
+  <div class="row myRow">
+    <div *ngFor="let product of products" style="margin-bottom: 12px;">
+      <div class="container" style="padding: 0px;">
+        <div class="row">
+          <div class="col-3">
+            <img [src]="product.image" style="width: 200px; height: 200px!important;">
+          </div>
+          <div class="col">
+            <div class="container" style="padding: 0px;">
+              <div class="row">
+                <h5 style="padding: 0px;">{{ product.onoma }}</h5>
+              </div>
+              <div class="row">
+                <hr style="opacity: 1;border: 1px solid #6dae49;width: 60%;border-radius: 16px;">
+              </div>
+              <div class="row">
+                
+                <div class="container" style="padding: 0px;"> 
+                  <div class="row" >
+                    <div class="container">
+                      <div class="row" *ngIf="selected && product.mtrl == selectedMtrl">
+                        <form [formGroup]="pdfForm" (ngSubmit)="uploadPdf()">
+                          <select formControlName="pdf" class="mySelect">
+                            <option [ngValue]="null" selected disabled>Αρχεία PDF</option>
+                            <option [ngValue]="p.pdf"  *ngFor="let p of pdf" style="width:100%!important;">{{p.pdf}}</option>
+                          </select>
+                          <br>
+                          <button class="myBtn">Αποθηκευση Αλλαγών</button>
+                          <a (click) = "close()" style="width: fit-content;cursor: pointer;margin-left: 120px;">
+                            <img class="remove" alt=""  style="width: 32px;" srcset="">
+                          </a>
+                        </form>
+                      </div>
+                      <div class="row" *ngIf="product.mtrl != selectedMtrl || !selected">
+                        <b style="color: #6dae49">Τρέχων PDF</b>
+                        <label><b>Όνομα Αρχείου</b>: {{product.pdf}}</label>
+                        <label><b>Επισκόπηση: </b><a style="color: #4a7632;" [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+product.pdf" target="_blank">Πάνε στο PDF</a></label>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <button *ngIf="product.mtrl != selectedMtrl || !selected" class="myBtn" (click)="openDropDown(product.mtrl)">Πρόσθεσε PDF</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <h3 >{{product.name}}</h3>
+      <br>
+      <div></div>
+      <h4>Product Photo</h4>
+      <img [src]="product.image" style="width: 30%; height: 30%!important;">
+      <hr>
+      <h5> PDF  | <button class="btn btn-primary" (click)="openDropDown(product.mtrl)">Add PDF</button></h5>
+      <div class="row" >
+        <form *ngIf="selected && product.mtrl == selectedMtrl"  [formGroup]="pdfForm" (ngSubmit)="uploadPdf()">
+          <select formControlName="pdf" class="form-control">
+            <option [ngValue]="p.pdf"  *ngFor="let p of pdf" style="width:100%!important;">{{p.pdf}}</option>
+
+          </select>
+          <button class="btn btn-success  form-control">Αποθηκευση Αλλαγών</button>
+        </form>
+        <h4>Current PDF</h4>
+        <label><b>Name</b>: {{product.pdf}}</label>
+        <label><b>View:</b><a [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+product.pdf" target="_blank"> Go To Pdf</a></label>
+        </div>
+      <br>
+      <hr> -->
+    </div>
+  </div>
+</div>
 
 

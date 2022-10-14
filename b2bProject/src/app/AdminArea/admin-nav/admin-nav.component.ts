@@ -70,14 +70,17 @@ export class AdminNavComponent implements OnInit {
 
   handleOver(el: any){
     setTimeout(() => {
-      el.children[1].style.display = 'flex';
-    },250)
+      el.children[1].style.opacity = '1';
+    },200)
+    el.children[1].style.display = 'flex';
+
   }
 
   handleLeave(el: any){
-    setTimeout(() => {
       el.children[1].style.display = 'none';
-    },250)
+      setTimeout(() => {
+        el.children[1].style.opacity = '0';
+      },200)
   }
   logout(){
 
