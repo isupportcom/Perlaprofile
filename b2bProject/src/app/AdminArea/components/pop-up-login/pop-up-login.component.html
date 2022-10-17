@@ -1,5 +1,5 @@
-<div class="container">
-  <button type="button" class="soft1-btn" (click) = "show()">{{ button }}</button>
+<div [ngClass]="id === 5 || id === 12? 'container noPad' : 'container'">
+  <button type="button" [ngClass]="id === 5 || id === 12?  'soft1-btn2' : 'soft1-btn'" (click) = "show()">{{ button }}</button>
 </div>
 <!-- Creates the bootstrap modal where the image will appear -->
 <div style="background: rgba(0,0,0,0.4);" [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -12,7 +12,7 @@
         </a> 
       </div>
       <div class="modal-body">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="text-align: left;">
+        <form *ngIf="!spinnerVis" [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="text-align: left;">
           <div class="form-group">
             <label>Username</label>
             <input type="text" formControlName="username" class="form-control"/>
@@ -24,12 +24,16 @@
               <div *ngIf="f.password.errors.required">Password is required</div>
               <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
             </div>
-            <app-spinner *ngIf="spinnerVis"></app-spinner>
           </div>
           <br>
           <button type="submit" class="login-btn">Σύνδεση</button>
           <p [ngClass]="{'error': isError}">{{ answer }}</p>
         </form>
+        <div class="container">
+          <div class="row" style="justify-content: center;align-items: center">
+            <app-spinner *ngIf="spinnerVis" style="width: fit-content;" ></app-spinner>
+          </div>
+        </div>
       </div>
     </div>
   </div>

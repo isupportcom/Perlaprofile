@@ -2,6 +2,9 @@
   color:red;
 }
 
+.noPad{
+  padding: 0px;
+}
 
 .soft1-btn{
   border: 1px solid white;
@@ -16,6 +19,21 @@
 .soft1-btn:hover{
   background-color: rgba(0,0,0,0);
   color: white;
+}
+
+.soft1-btn2{
+  border: 2px solid #6dae49;
+  background-color: #6dae49;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.soft1-btn2:hover{
+  background-color: rgba(0,0,0,0);
+  color: #6dae49;
 }
 
 .login-btn{
