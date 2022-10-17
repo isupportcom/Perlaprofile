@@ -23,16 +23,7 @@ export class AdminNavComponent implements OnInit {
       private authService: AuthService,
       private router:Router,
       private rendere :Renderer2
-  ) {
-    this.rendere.listen('window','click',(e:Event)=>{
-      if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
-        this.showList = false;
-      }
-      if(e.target !== this.img.nativeElement && e.target !== this.imgTogler.nativeElement){
-        this.showImg = false;
-      }
-    })
-  }
+  ) {}
   innerWidth:any;
   @HostListener('window:resize', ['$event'])
   onResize(event: any){

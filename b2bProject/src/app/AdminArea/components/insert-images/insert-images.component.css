@@ -10,6 +10,22 @@
     height: 58vh;
     width: 100%;
 }
+
+.myBtn{
+    margin-top: 15px;
+    width: fit-content;
+    border: none;
+    background-color: #6dae49;
+    color: white;
+    border-radius: 16px;
+    padding: 8px 24px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .myBtn:hover{
+    background-color: #4a7632;
+  }
+
 ::-webkit-scrollbar {
     width: 5px;
   }
