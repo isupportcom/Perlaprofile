@@ -36,7 +36,7 @@
       <div class="search-container">
         <input type="text" name="search" [(ngModel)]="search" placeholder="Search..." class="search-input">
         <a (click)="findProducts()" class="search-btn">
-          <img class="search-glass" src="../../../../assets/bx_search-alt.svg" width="20px" height="20px" alt="" srcset="">     
+          <img class="search-glass" src="../../../../assets/bx_search-alt.svg" width="20px" height="20px" alt="" srcset="">
         </a>
       </div>
       <button
@@ -63,8 +63,8 @@
                 <hr style="opacity: 1;border: 1px solid #6dae49;width: 60%;border-radius: 16px;">
               </div>
               <div class="row">
-                
-                <div class="container" style="padding: 0px;"> 
+
+                <div class="container" style="padding: 0px;">
                   <div class="row" >
                     <div class="container">
                       <div class="row" *ngIf="selected && product.mtrl == selectedMtrl">
@@ -83,7 +83,7 @@
                       <div class="row" *ngIf="product.mtrl != selectedMtrl || !selected">
                         <b style="color: #6dae49">Τρέχων PDF</b>
                         <label><b>Όνομα Αρχείου</b>: {{product.pdf}}</label>
-                        <label><b>Επισκόπηση: </b><a style="color: #4a7632;" [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+product.pdf" target="_blank">Πάνε στο PDF</a></label>
+                        <label><b>Επισκόπηση: </b><a style="color: #4a7632;" [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+product.pdf" target="_blank">Πήγαινε στο PDF</a></label>
                         </div>
                       </div>
                     </div>
