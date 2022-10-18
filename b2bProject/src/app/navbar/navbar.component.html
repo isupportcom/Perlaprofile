@@ -31,7 +31,7 @@
               role="button"
               ><img
                 i18n-alt
-                alt="Ενα Προιον Προσθεθηκε Στο καλαθι"
+                alt="Ενα Προιον Προσθεθηκε Στα Αγαπημένα"
                 [ngClass]="productAddedToFav ? 'heartAnim' : ''"
                 [src]="source"
                 width="18px"
@@ -88,14 +88,10 @@
                       : 'dropdown-menu my-dropdown show'
                     : 'dropdown-menu'
                 "
+                
               >
                 <li>
-                  <a class="dropdown-item my-dropdown-item" translate
-                    >navbar.profile</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item my-dropdown-item" translate
+                  <a routerLink="/my-orders" class="dropdown-item my-dropdown-item" translate
                     >navbar.orders</a
                   >
                 </li>
@@ -107,10 +103,10 @@
                     >navbar.dashboard</a
                   >
                 </li>
-                <li>
+                <li style="display: flex;justify-content: center;align-items: center;margin-top: 12px;">
                   <a
                     (click)="logout()"
-                    class="dropdown-item my-dropdown-item"
+                    class="dropdown-item my-dropdown-item myBtn2"
                     translate
                     >navbar.logout</a
                   >
@@ -332,8 +328,44 @@
           </li>
 
 
+          <li
+            
+            (click)="handleCategoryClick()"
+            
+          >
+            <a routerLink="/products/114/Control" routerLinkActive="my-active">Control</a>
+
+          </li>
 
           <li
+            
+          (click)="handleCategoryClick()"
+          
+        >
+          <a routerLink="/products/115/Motion" routerLinkActive="my-active">Motion</a>
+
+        </li>
+
+          <li
+            
+          (click)="handleCategoryClick()"
+          
+        >
+          <a routerLink="/products/116/Mosqui%20Plus" routerLinkActive="my-active">Mosqui Plus</a>
+
+        </li>
+
+        <li
+            
+        (click)="handleCategoryClick()"
+        
+      >
+        <a routerLink="/products/117/Profile" routerLinkActive="my-active">Profile</a>
+
+      </li>
+
+
+          <!-- <li
             
             (click)="handleCategoryClick()"
             
@@ -341,7 +373,7 @@
           >
             <a [routerLink]="'/products/' + mainCategory.id + '/' + mainCategory.name" routerLinkActive="my-active">{{ mainCategory.name }}</a>
 
-          </li>
+          </li> -->
               
  
 

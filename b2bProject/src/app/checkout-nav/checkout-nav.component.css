@@ -1,0 +1,51 @@
+.text{
+    width: fit-content;
+    margin: 0px !important;
+    font-size: 18px;
+    padding: 0px;
+    font-weight: 600;
+    color: #6dae49;
+    letter-spacing: 0.2px;
+}
+
+.line{
+    margin: 0px;
+    opacity: 1;
+    width: 230px;
+    border: 1px solid #6dae49
+}
+
+@media (max-width: 1400px){
+    .text{
+        font-size: 16px;
+    }
+
+    .image{
+        padding-right: 10px !important;
+    }
+
+    .line{
+        width: 200px;
+    }
+}
+
+@media (max-width: 1200px){
+    .text{
+        font-size: 14px;
+    }
+
+    .image{
+        padding-right: 32px !important;
+    }
+
+}
+
+@media (max-width: 576px){
+    .left-side{
+        display: none;
+    }
+
+    .right-side{
+        text-align: center;
+    }
+}

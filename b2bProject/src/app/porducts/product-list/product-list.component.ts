@@ -157,7 +157,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentLang = localStorage.getItem('lang') || 'el'
-    console.log(this.currentLang);
+    
+    this.waiting = true;
+    setTimeout(() => {
+      this.waiting = false;
+    },800)
+
 
     this.contactForm = this.fb.group({
       width: [null],
@@ -255,17 +260,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         setTimeout(() => {
           console.log(this.favorites);
-          for (let favorite of this.favorites) {
-            for (let prod of this.products) {
-              if (prod.mtrl === favorite.mtrl) {
-                prod.addedToFav = true;
+          if(this.favorites){
+            for (let favorite of this.favorites) {
+              for (let prod of this.products) {
+                if (prod.mtrl === favorite.mtrl) {
+                  prod.addedToFav = true;
+                }
               }
-            }
-            for (let prod of this.products) {
-              if (!prod.addedToFav) {
-                prod.addedToFav = false;
+              for (let prod of this.products) {
+                if (!prod.addedToFav) {
+                  prod.addedToFav = false;
+                }
               }
-            }
+          }
           }
         }, 200);
 
@@ -615,18 +622,21 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         for (let product of temp) {
           let flag2 = true;
-          for (let favProd of this.favorites) {
-            if (product.mtrl == favProd.mtrl) {
-              console.log('Mphka');
-
-              product.addedToFav = true;
-              flag2 = false;
+          if(this.favorites){
+            for (let favProd of this.favorites) {
+              if (product.mtrl == favProd.mtrl) {
+                console.log('Mphka');
+  
+                product.addedToFav = true;
+                flag2 = false;
+              }
             }
-          }
-          if (flag2) {
-            product.addedToFav = false;
-          }
+            if (flag2) {
+              product.addedToFav = false;
+            }
 
+          }
+          
           let flag = false;
           if (product.category == this.mainCategory.id) {
             for (let el of this.shownProducts) {
@@ -635,14 +645,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 flag = true;
               }
             }
-
+  
             if (!flag) {
               if (product.stock !== 0) {
                 console.log(product.stock);
                 this.shownProducts.push(product);
               }
             }
-          }
+        }
         }
 
         if (this.shownProducts.length == 0) {

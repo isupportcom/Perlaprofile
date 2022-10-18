@@ -90,8 +90,27 @@
 
 .myBtn {
   background: #6DAE49;
-  border-radius: 0px;
+  /* border-radius: 8px; */
+  padding: 8px 28px;
   color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.myBtn:hover{
+  background-color: #4c7c33;
+}
+
+.myBtn2{
+  text-align: center;
+  background: #6DAE49;
+  border-radius: 8px;
+  width: 80%;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.myBtn2:hover{
+  background-color: #4a7632;
 }
 
 @media (max-width: 992px) {
@@ -212,7 +231,7 @@
 
 .wrapper .bottom_nav ul li a{
   color: black;
-  font-size: 12px;
+  font-size: 14px;
   text-decoration: none;
   cursor: pointer;
   
@@ -221,20 +240,20 @@
 
 .wrapper .bottom_nav ul li{
   color: #494949;
-  letter-spacing: 2px;
+  /* letter-spacing: 0.5px; */
   margin-right: 14px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 12px;
 
 }
 
 .my-active{
-  background-color: #6DAE49;
+  /* background-color: #6DAE49;
   
   border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  padding: 16px;
-  color: white !important;
+  border-top-right-radius: 6px; */
+  /* padding: 16px; */
+  color: #6DAE49 !important;
 
 }
 

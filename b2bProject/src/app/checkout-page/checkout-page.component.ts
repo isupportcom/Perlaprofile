@@ -38,9 +38,11 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   trigwnikh: boolean = true;
   FormData: FormGroup |any;
+  BankData: FormGroup |any;
   showUserDetails?: boolean;
   showPayment?: boolean;
   totalPrice: number = 0;
+  showBankCredentials: boolean = false;
 
   constructor(
     private cartService: CartServiceService,
@@ -58,6 +60,13 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       zipCode: [{value: this.loadedUser.zip, disabled: true}],
       area: [{value: this.loadedUser.area, disabled: true}],
       city: [{value: this.loadedUser.city, disabled: true}],
+    })
+
+    this.BankData = this.builder.group({
+      address: [{value: this.loadedUser.address, disabled: false}],
+      zipCode: [{value: this.loadedUser.zip, disabled: false}],
+      area: [{value: this.loadedUser.area, disabled: false}],
+      city: [{value: this.loadedUser.city, disabled: false}],
     })
     
 
@@ -106,12 +115,27 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     // this.showPayment = localStorage.getItem('showPayment') == 'true'? true : false;
   }
 
+  onSubmit2(){
+    this.router.navigate(['order-completed'])
+    
+  }
 
   onSubmit(FormData:any) {
     console.log(FormData)
     this.placeOrder();
   }
 
+  bankCredentials(showCredentials: boolean,row?: any){
+
+    
+    if(showCredentials){
+      this.showBankCredentials = false;
+    }
+    else{
+      this.showBankCredentials = true;
+    }
+    
+  }
 
   handleTrigwnikh(event: any){
     if(this.trigwnikh){

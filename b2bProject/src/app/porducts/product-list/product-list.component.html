@@ -201,11 +201,12 @@
                       <li><a class="dropdown-item" href="#">Another action</a></li>
                       <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul> -->
-                    <select name="" id="" class="filter-dropdown">
-                      <option value="" disabled selected>Προϊόντα ανά Σελίδα</option>
-                      <option value="">8</option>
-                      <option value="">4</option>
-                      <option value="">2</option>
+                    <select name="" id="" class="filter-dropdown" [(ngModel)]="itemsPP">
+                      <option value="10" disabled selected>Προϊόντα ανά Σελίδα</option>
+                      <option value="10" selected>10</option>
+                      <option value="8">8</option>
+                      <option value="4">4</option>
+                      <option value="2">2</option>
                     </select>
                 </div>
 

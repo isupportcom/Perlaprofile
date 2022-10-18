@@ -38,7 +38,7 @@ export class AdminAreaComponent implements OnInit {
       
       
                 } )
-              // window.location.reload()
+              window.location.reload();
           })
         }
       })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {ModalService} from "./modal-service.service";
 import axios from "axios";
 import { CartServiceService } from 'src/app/cart/cart-service.service';
@@ -9,6 +9,7 @@ import { CartServiceService } from 'src/app/cart/cart-service.service';
   styleUrls: ['./add-image-popup.component.css']
 })
 export class AddImagePopupComponent implements OnInit {
+  @Input() secondary?: boolean;
   isClicked:boolean=true;
 
   constructor(private cartService: CartServiceService,private modalService: ModalService) {}
@@ -31,7 +32,12 @@ export class AddImagePopupComponent implements OnInit {
       this.cartService.sendAddImagePopup(false);
   }
     close(){
-      this.cartService.sendAddImagePopup(false);
+      if(this.secondary){
+        window.location.reload();
+      }
+      else{
+        this.cartService.sendAddImagePopup(false);
+      }
   }
 
 }

@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit{
   hoverProducts: boolean = false;
   makeSmallerDropDown?: boolean;
   productAddedToFav: boolean = false;
-  source?: string;
+  source?: string = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt.svg';
   sourceCart?: string;
 
 
@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit{
   showUserOptions: boolean = false;
   showLang :boolean = false;
   mainCategories : any = [];
-
+  loggedIn: boolean = localStorage.getItem('username') ? true : false;
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
 
   constructor(
@@ -69,16 +69,17 @@ export class NavbarComponent implements OnInit{
 
       this.titleService.setTitle($localize `${this.title}`);
 
-
-      this.renderer.listen('window', 'click',(e:Event)=>{
-
-        if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
-          this.showUserOptions = false;
-        }
-        if(e.target !== this.optionslang.nativeElement && e.target !== this.langTogler.nativeElement){
-          this.showLang = false;
-        }
-      })
+      if(this.loggedIn){
+        this.renderer.listen('window', 'click',(e:Event)=>{
+          
+          if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
+            this.showUserOptions = false;
+          }
+          if(e.target !== this.optionslang.nativeElement && e.target !== this.langTogler.nativeElement){
+            this.showLang = false;
+          }
+        })
+      }
 
 
      }
@@ -121,22 +122,23 @@ export class NavbarComponent implements OnInit{
 
 
     })
-
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
-        trdr: this.loadedUser.trdr,
-        mtrl:"dontNeedIt",
-        mode:"fetch"
-      })
-      .then(resData=>{
-        console.log(resData.data);
-
-        this.products = resData.data.products
-        if(resData.data.products.length !=0){
-          this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt-filled.svg'
-        }else{
-          this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt.svg'
-        }
-      })
+    if(this.loggedIn){
+      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+          trdr: this.loadedUser.trdr,
+          mtrl:"dontNeedIt",
+          mode:"fetch"
+        })
+        .then(resData=>{
+          console.log(resData.data);
+  
+          this.products = resData.data.products
+          if(resData.data.products.length !=0){
+            this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt-filled.svg'
+          }else{
+            this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt.svg'
+          }
+        })
+    }
 
     this.cartService.productAdded.subscribe(resData => {
       if(window.scrollX === 0){

@@ -26,6 +26,20 @@
     background-color: #4a7632;
   }
 
+  .remove{
+    content: url(../../../../assets/x-black.svg);
+    transition: all 1s ease-in-out;
+  }
+  
+  .remove:hover{
+    content: url(../../../../assets/x-red.svg);
+  }
+
+  .ex{
+    position: absolute;
+    left: 80px;
+  }
+  
 ::-webkit-scrollbar {
     width: 5px;
   }

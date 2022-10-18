@@ -1,3 +1,5 @@
+<app-add-image-popup [secondary]="true" style="position: absolute;top: 0;left: 0;" *ngIf="flag && window"></app-add-image-popup>
+
 <div class="container content">
   <div class="row">
     <form #form2 (ngForm)="findProducts()">
@@ -22,7 +24,7 @@
           <div class="col-3">
             <img [src]="product.image" style="width: 200px; height: 200px!important;">
           </div>
-          <div class="col">
+          <div class="col-9">
             <div class="container" style="padding: 0px;">
               <div class="row">
                 <h5 style="padding: 0px;">{{ product.name }}</h5>
@@ -32,8 +34,32 @@
               </div>
               <div class="row">
                 <div class="container" style="padding: 0px;"> 
-                  <div class="row" >
-                    <button class="myBtn" (click)="openMain(product)">Change Photo</button>
+                  <div class="row">
+                    <div class="col-3">
+                      <button class="myBtn" (click)="open(product)">Προσθήκη Φωτογραφίας</button>
+                    </div>
+                    <div *ngIf="product.otherImages.length > 0" class="col-7">
+                      <swiper
+                      class="fourth-swiper"
+                      [slidesPerView]="product.otherImages.length > 3? 3 : product.otherImages.length"
+                      [spaceBetween]="0"
+                      (slideChange)="onSlideChange(secondSwiper)"
+                      [navigation]="true"
+                      [draggable]="true"
+                      (swiper)="setThumbsSwiper($event)"
+                
+                      direction="horizontal"
+                      #secondSwiper
+                    >
+                    
+                      <ng-template *ngFor="let img of product.otherImages" swiperSlide>
+                        <a (click)="remove(product.mtrl,img.img)" class="ex" style="width: fit-content;cursor: pointer;">
+                          <img class="remove" alt=""  style="width: 32px;" srcset="">
+                        </a> 
+                        <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt="">
+                      </ng-template>
+                    </swiper>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -41,7 +67,8 @@
           </div>
         </div>
       </div>
-
+      
+      </div>
 
 
 
