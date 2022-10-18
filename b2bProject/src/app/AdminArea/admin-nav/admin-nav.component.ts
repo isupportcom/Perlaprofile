@@ -60,6 +60,7 @@ export class AdminNavComponent implements OnInit {
 
 
   handleOver(el: any){
+    el.style.width = '320px';
     setTimeout(() => {
       el.children[1].style.opacity = '1';
     },200)
@@ -68,11 +69,35 @@ export class AdminNavComponent implements OnInit {
   }
 
   handleLeave(el: any){
+    el.style.width = '60px';
       el.children[1].style.display = 'none';
       setTimeout(() => {
         el.children[1].style.opacity = '0';
       },200)
   }
+
+  handleShowAllOver(arr: any){
+    // console.log(arr);
+    for(let el of arr){
+      el.style.width = '320px';
+      setTimeout(() => {
+        el.children[1].style.opacity = '1';
+      },200)
+      el.children[1].style.display = 'flex';
+    }
+    
+  }
+
+  handleShowAllLeave(arr: any){
+    for(let el of arr){
+      el.style.width = '60px';
+      el.children[1].style.display = 'none';
+      setTimeout(() => {
+        el.children[1].style.opacity = '0';
+      },200)
+    }
+  }
+
   logout(){
 
   }

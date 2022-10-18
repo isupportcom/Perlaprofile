@@ -1,60 +1,68 @@
 <app-navbar></app-navbar>
-<h1>Your Orders</h1>
-<h3>{{noOrderText}}</h3>
-<div>
-  <table class="table table-dark">
+
+<div class="container" style="margin-top: 200px;">
+  
+  <h1>Ιστορικό Παραγγελιών</h1>
+  <h3>{{noOrderText}}</h3>
+
+  <div style="height: 60vh;overflow-y: scroll;background-color: white; padding: 12px;padding-top: 0px;border-radius: 16px;">
+    <table class="myTable">
+      <thead >
+      <tr class="head">
+  
+        <th scope="col">Fincode</th>
+        <th scope="col">Findoc</th>
+        <th scope="col">Date</th>
+        <th scope="col">No Tax Ammount</th>
+        <th scope="col">Tax</th>
+        <th scope="col">Sumarry</th>
+        <th>Details</th>
+  
+      </tr>
+      </thead>
+      <tbody class="bodyHolder">
+      <tr class="body" *ngFor="let order of orders;">
+        <th scope="row">{{ order.FINCODE }}</th>
+        <td>{{ order.FINDOC }}</td>
+        <td>{{ order.TRNDATE }}</td>
+        <td>{{ order.NETAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
+        <td>{{ order.VATAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
+        <td>{{ order.SUMAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
+        <td> <button class="myBtn" (click)="showOrder(order.FINDOC)">Λεπτομέριες</button></td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+
+
+      </div>
+
+  </div>
+  
+  <table class="table table-dark" *ngIf="orderDetail">
     <thead>
     <tr>
 
-      <th scope="col">Fincode</th>
-      <th scope="col">Findoc</th>
-      <th scope="col">Date</th>
-      <th scope="col">No Tax Ammount</th>
-      <th scope="col">Tax</th>
-      <th scope="col">Sumarry</th>
-      <th>Details</th>
+      <th scope="col">Code</th>
+      <th scope="col">Linenum</th>
+      <th scope="col">Lineval</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
 
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let order of orders;">
-      <th scope="row">{{ order.FINCODE }}</th>
-      <td>{{ order.FINDOC }}</td>
-      <td>{{ order.TRNDATE }}</td>
-      <td>{{ order.NETAMNT }}</td>
-      <td>{{ order.VATAMNT }}</td>
-      <td>{{ order.SUMAMNT }}</td>
-      <td> <button class="btn btn-primary" (click)="showOrder(order.FINDOC)">Show Details</button></td>
+    <tr *ngFor="let order of orderDetail;" >
+      <th scope="row">{{ order.code }}</th>
+      <td>{{ order.linenum }}</td>
+      <td>{{ order.lineval }}</td>
+      <td>{{ order.name }}</td>
+      <td>{{ order.price }}</td>
+      <td>{{ order.qty1 }}</td>
     </tr>
     </tbody>
   </table>
-  <div>
-
-
-      <table class="table table-dark" *ngIf="orderDetail">
-        <thead>
-        <tr>
-
-          <th scope="col">Code</th>
-          <th scope="col">Linenum</th>
-          <th scope="col">Lineval</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let order of orderDetail;" >
-          <th scope="row">{{ order.code }}</th>
-          <td>{{ order.linenum }}</td>
-          <td>{{ order.lineval }}</td>
-          <td>{{ order.name }}</td>
-          <td>{{ order.price }}</td>
-          <td>{{ order.qty1 }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
 </div>
+
+<app-footer></app-footer>

@@ -231,10 +231,10 @@
                       <li><a class="dropdown-item">Another action</a></li>
                       <li><a class="dropdown-item">Something else here</a></li>
                     </ul> -->
-                    <select name="" id="" class="filter-dropdown">
-                      <option value="" disabled selected>Ταξινόμηση</option>
-                      <option value="">Αύξουσα</option>
-                      <option value="">Φθίνουσα</option>
+                    <select name="" id="" class="filter-dropdown" (change)="handleAscend($event)">
+                      <option value="0" disabled selected>Ταξινόμηση</option>
+                      <option value="1" >Αύξουσα</option>
+                      <option value="2">Φθίνουσα</option>
                     </select>
                   </div>
 

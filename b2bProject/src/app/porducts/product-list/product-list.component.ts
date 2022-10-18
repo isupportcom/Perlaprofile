@@ -259,7 +259,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.updateProducts();
 
         setTimeout(() => {
-          console.log(this.favorites);
+          
+
+
+          
           if(this.favorites){
             for (let favorite of this.favorites) {
               for (let prod of this.products) {
@@ -277,8 +280,55 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }, 200);
 
         this.totalLength = this.products.length;
-        console.log(this.products);
+        
+        // this.shownProducts.sort((a: any,b: any) => {
+        //   if(a.hasOffer){
+        //     if(b.hasOffer){
+        //       if(+a.offer > +b.offer){
+        //         return -1;
+        //       }
+        //       else{
+        //         return 1;
+        //       }
+        //     }
+        //     else{
+        //       if(+a.offer > +b.wholesale){
+        //         return -1;
+        //       }
+        //       else{
+        //         return 1;
+        //       }
+        //     }
+        //   }
+        //   else{
+        //     if(b.hasOffer){
+        //       if(+a.wholesale > +b.offer){
+        //         return -1;
+        //       }
+        //       else{
+        //         return 1;
+        //       }
+        //     }
+        //     else{
+        //       if(+a.wholesale > +b.wholesale){
+        //         return -1;
+        //       }
+        //       else{
+        //         return 1;
+        //       }
+        //     }
+        //   }
+        // });
+
+
+
       });
+
+
+
+
+
+
 
     this.route.params.subscribe((params) => {
       console.log(params);
@@ -686,7 +736,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
           this.noProducts = true;
         }
       }
+
     }, 500);
+    
   }
 
   handleShowFilters() {
@@ -759,7 +811,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   handlePageChange(event: any) {
-    console.log('Hello');
+
+    
 
     this.waiting = true;
     setTimeout(() => {
@@ -767,6 +820,106 @@ export class ProductListComponent implements OnInit, OnDestroy {
       this.waiting = false;
     }, 200);
   }
+
+  handleAscend(event: any){
+    if(event.target.value == 1){
+      let temp;
+      for(let i=0;i<this.shownProducts.length-1;i++){
+        console.log('Hey: ' + this.shownProducts.length);
+        
+        for(let y=0;y<this.shownProducts.length-1-i;y++){
+          if(this.shownProducts[y].hasOffer){
+            if(this.shownProducts[y+1].hasOffer){
+              if(+this.shownProducts[y].offer > +this.shownProducts[y+1].offer){
+                temp = this.shownProducts[y];
+                this.shownProducts[y] = this.shownProducts[y+1];
+                this.shownProducts[y+1] = temp;
+                
+              }
+            }
+            else{
+              if(+this.shownProducts[y].offer > +this.shownProducts[y+1].wholesale){
+                
+                temp = this.shownProducts[y];
+                this.shownProducts[y] = this.shownProducts[y+1];
+                this.shownProducts[y+1] = temp;
+              }
+            }
+          }
+          else{
+            if(this.shownProducts[y+1].hasOffer){
+              if(+this.shownProducts[y].wholesale > +this.shownProducts[y+1].offer){
+                
+                temp = this.shownProducts[y];
+                this.shownProducts[y] = this.shownProducts[y+1];
+                this.shownProducts[y+1] = temp;
+              }
+            }
+            else{
+              if(+this.shownProducts[y].wholesale > +this.shownProducts[y+1].wholesale){
+                
+                temp = this.shownProducts[y];
+                this.shownProducts[y] = this.shownProducts[y+1];
+                this.shownProducts[y+1] = temp;
+              }
+            }
+          }
+        }
+      }
+  
+      console.log(this.shownProducts);
+    }
+
+    if(event.target.value == 2){
+      let temp;
+      for(let i=0;i<this.shownProducts.length-1;i++){
+        console.log('Hey: ' + this.shownProducts.length);
+        
+        for(let y=0;y<this.shownProducts.length-1-i;y++){
+          if(this.shownProducts[y].hasOffer){
+            if(this.shownProducts[y+1].hasOffer){
+              if(+this.shownProducts[y].offer < +this.shownProducts[y+1].offer){
+                temp = this.shownProducts[y];
+                this.shownProducts[y] = this.shownProducts[y+1];
+                this.shownProducts[y+1] = temp;
+                
+              }
+            }
+            else{
+              if(+this.shownProducts[y].offer < +this.shownProducts[y+1].wholesale){
+                
+                temp = this.shownProducts[y];
+                this.shownProducts[y] = this.shownProducts[y+1];
+                this.shownProducts[y+1] = temp;
+              }
+            }
+          }
+          else{
+            if(this.shownProducts[y+1].hasOffer){
+              if(+this.shownProducts[y].wholesale < +this.shownProducts[y+1].offer){
+                
+                temp = this.shownProducts[y];
+                this.shownProducts[y] = this.shownProducts[y+1];
+                this.shownProducts[y+1] = temp;
+              }
+            }
+            else{
+              if(+this.shownProducts[y].wholesale < +this.shownProducts[y+1].wholesale){
+                
+                temp = this.shownProducts[y];
+                this.shownProducts[y] = this.shownProducts[y+1];
+                this.shownProducts[y+1] = temp;
+              }
+            }
+          }
+        }
+      }
+  
+      console.log(this.shownProducts);
+    }
+    
+  }
+
   findProducts() {
     console.log('mpike gia res');
     axios
