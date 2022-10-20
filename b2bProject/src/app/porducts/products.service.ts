@@ -31,6 +31,14 @@ export  class ProductsService {
     this.mosquiProductFound.next(product);
   }
 
+
+  prevfilters = new Subject<any>();
+  castFilters = this.prevfilters.asObservable();
+
+  sendFilters(filters: any) {
+    this.prevfilters.next(filters);
+  }
+
  setSingleProduct(prod:product | any){
     this.singleProduct = prod;
     localStorage.setItem("single",JSON.stringify(this.singleProduct))

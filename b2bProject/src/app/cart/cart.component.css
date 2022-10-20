@@ -124,6 +124,21 @@
     background-color: #4a7832;
 }
 
+.clearAllBtn{
+    color: white;
+    text-decoration: none;
+    background-color: red;
+    padding: 8px;
+    padding-right: 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.clearAllBtn:hover{
+    background-color: rgb(185, 1, 1);
+}
+
 input[type="number"]{
     -moz-appearance: textfield;
     text-align: center;

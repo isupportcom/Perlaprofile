@@ -405,6 +405,7 @@
 
 .ngx-pagination{
     margin-bottom: 0px !important;
+    
 }
 
 
@@ -415,6 +416,10 @@
 
 
 
+
+.ngx-pagination a{
+  text-decoration: none !important;
+}
 
 
 

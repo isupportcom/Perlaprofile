@@ -76,7 +76,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   shownProducts: product | any = [];
   filterOn?: boolean;
   noProducts?: boolean;
-  listArray: any = [];
+  listArray?: any;
   checked?: boolean;
   contactForm: FormGroup | any;
   fabric: FormGroup | any;
@@ -103,13 +103,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
   showFilters: boolean = false;
   extend: boolean = false;
   currentLang: any;
-  filters: any = document.getElementsByClassName(
-    'boxes'
-  ) as HTMLCollectionOf<HTMLElement>;
+  filters: any = document.getElementsByClassName('filter');
   showExtraFilters: boolean = false;
   fit: boolean = true;
   favorites: any;
   innerWidth!: number;
+  executed?: boolean;
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = window.innerWidth;
@@ -155,13 +154,18 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit(): void {
+  async ngOnInit(){
     this.currentLang = localStorage.getItem('lang') || 'el'
+  
+    
     
     this.waiting = true;
     setTimeout(() => {
       this.waiting = false;
     },800)
+
+
+    
 
 
     this.contactForm = this.fb.group({
@@ -223,7 +227,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     console.log(JSON.parse(localStorage.getItem('products') || '{}'));
     axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php')
-      .then((resData: any) => {
+      .then(async (resData: any) => {
         console.log(resData.data);
         // console.log(resData.data)
         console.log(resData.data);
@@ -255,8 +259,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
           };
           this.productsService.setAll(this.products[i]);
         }
+        
 
-        this.updateProducts();
+        
+        
+        
 
         setTimeout(() => {
           
@@ -280,47 +287,47 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }, 200);
 
         this.totalLength = this.products.length;
+
+        this.listArray = [];
+
+
         
-        // this.shownProducts.sort((a: any,b: any) => {
-        //   if(a.hasOffer){
-        //     if(b.hasOffer){
-        //       if(+a.offer > +b.offer){
-        //         return -1;
-        //       }
-        //       else{
-        //         return 1;
-        //       }
-        //     }
-        //     else{
-        //       if(+a.offer > +b.wholesale){
-        //         return -1;
-        //       }
-        //       else{
-        //         return 1;
-        //       }
-        //     }
-        //   }
-        //   else{
-        //     if(b.hasOffer){
-        //       if(+a.wholesale > +b.offer){
-        //         return -1;
-        //       }
-        //       else{
-        //         return 1;
-        //       }
-        //     }
-        //     else{
-        //       if(+a.wholesale > +b.wholesale){
-        //         return -1;
-        //       }
-        //       else{
-        //         return 1;
-        //       }
-        //     }
-        //   }
-        // });
 
+        this.productsService.prevfilters.subscribe(resData => {
+          this.listArray = [];
+          let filterList = Object.values(resData)
+          for(let filter of filterList){
+            this.listArray.push(filter);
+          }
+          console.log(this.listArray);
+          setTimeout(() => {
+            for(let i=0; i<this.filters.length; i++){
+              for(let id of this.listArray){
+                if(id === this.filters[i].value){
+                  this.filters[i].checked = true;
+                  // this.handleCheckboxes(this.filters[i]);
+                }
+              }
+            }
+            this.executed = true;
+          },100)
+        })
 
+        this.updateProducts();
+
+        setTimeout(() => {
+          
+          for(let filter of this.filters){
+            if(filter.checked){
+              // console.log('TSOUTSOU');
+              
+              this.handleCheckboxes(filter)
+            }
+            
+          }
+        },300)
+
+        
 
       });
 
@@ -611,8 +618,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
       console.log(this.listArray);
     } else {
-      if (e.target.checked) {
-        this.listArray.push(e.target.value);
+      if (e.checked) {
+        this.listArray.push(e.value);
         this.waiting = true;
         this.updateProducts();
         setTimeout(() => {
@@ -626,7 +633,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         // this.listArray = this.listArray.filter((e: any) => e !== this.value)
         // console.log('hello');
         for (let i = 0; i < this.listArray.length; i++) {
-          if (e.target.value == this.listArray[i]) {
+          if (e.value == this.listArray[i]) {
             this.listArray.splice(i, 1);
           }
         }
@@ -664,6 +671,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
     });
 
     setTimeout(() => {
+      console.log(this.listArray);
+      
       if (this.listArray.length == 0) {
         this.noProducts = false;
         this.filterOn = false;
@@ -711,6 +720,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         console.log(this.shownProducts);
       } else {
+        console.log("POUTSA");
+        
         this.filterOn = true;
 
         let temp = this.products;
@@ -737,7 +748,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }
       }
 
-    }, 500);
+    }, 800);
     
   }
 
@@ -961,10 +972,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
     // this.router.navigate(['products/mosqui',id,name]);
   }
   ngOnDestroy(): void {
-    console.log('hello');
-
-    this.listArray = [];
-
+    console.log(this.router.url);
+    // /products/product-page
+    
+    console.log(this.listArray);
     this.shownProducts = [];
+    if(this.router.url === '/products/product-page'){
+      this.productsService.sendFilters(this.listArray)
+    }
+    this.listArray = [];
   }
 }

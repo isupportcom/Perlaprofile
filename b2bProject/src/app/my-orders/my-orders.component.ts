@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {User} from "../services/user.model";
 import axios from "axios";
 
@@ -16,9 +16,30 @@ export class MyOrdersComponent implements OnInit {
   noOrderText = "";
   test:boolean = false;
   orderDetail:any ;
+  showVertical: boolean = false;
   constructor() { }
 
+  innerWidth:any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.innerWidth = window.innerWidth
+
+    if(this.innerWidth <= 768){
+      this.showVertical = true;
+    }else{
+      this.showVertical = false;
+    }
+  }
+
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth
+
+    if(this.innerWidth <= 768){
+      this.showVertical = true;
+    }else{
+      this.showVertical = false;
+    }
+
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/orders.php",{
       method:"ORDERS",
       trdr: this.loadedUser.trdr
@@ -31,6 +52,10 @@ export class MyOrdersComponent implements OnInit {
         console.log(this.orders)
       }
     })
+  }
+
+  close(){
+    this.orderDetail = false;
   }
   showOrder(findoc:any){
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/analisiOrder.php",{

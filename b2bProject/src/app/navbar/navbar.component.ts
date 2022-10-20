@@ -67,7 +67,6 @@ export class NavbarComponent implements OnInit{
     public translate:TranslateConfigService,
     private http: HttpClient) {
 
-      this.titleService.setTitle($localize `${this.title}`);
 
       if(this.loggedIn){
         this.renderer.listen('window', 'click',(e:Event)=>{
@@ -106,11 +105,16 @@ export class NavbarComponent implements OnInit{
 
   async ngOnInit(){
 
-
+    let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
+   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
+    .then(resData => {
+      console.log(resData.data.products.length);
+      this.productCount = resData.data.products.length
+      
+    })
 
     this.cartService.productCount.subscribe(resData => {
-      console.log(resData);
-      this.productCount = resData+1;
+
 
       // if(resData == 0){
       //   this.productCount = resData+1;
@@ -141,6 +145,16 @@ export class NavbarComponent implements OnInit{
     }
 
     this.cartService.productAdded.subscribe(resData => {
+
+      setTimeout(() => {
+        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
+        .then(resData => {
+          console.log(resData.data.products.length);
+          this.productCount = resData.data.products.length
+          
+        })
+      },500)
+
       if(window.scrollX === 0){
         if(!this.productAdded){
           setTimeout(() => {

@@ -71,8 +71,62 @@
   top: 0%;
 }
 
+.fas {
+  margin-left: 12px;
+  margin-top: 12px;
+  font-size: 10px;
+  height: 8px;
+  width: 8px;
+  border-radius: 60px;
+  padding: 8px;
+  background-color: white;
+  color: #6DAE49;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.fa1 {
+  position: absolute;
+  top: -15px;
+  left: 0;
+}
 
+.text div {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  text-align: center;
+  /* width: 100%; */
+  /* padding: 30px 60px; */
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.box {
+  background-color: transparent;
+  border-radius: 3px;
+  color: #fff;
+  transform-style: preserve-3d;
+  /* perspective: 2000px; */
+  text-align: center;
+}
+.box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  box-sizing: border-box;
+}
+.box:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
 
 @media (max-width: 1200px) {
   .navbar {

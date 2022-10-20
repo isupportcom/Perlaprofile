@@ -113,11 +113,11 @@
                           <label>
                             <input
                               type="checkbox"
-                              id="filterList"
                               name="category"
+                              class="filter"
                               style="margin-right: 5%"
                               [value]="subcategory.sub_id"
-                              (click)="handleCheckboxes($event)"
+                              (click)="handleCheckboxes($event.target)"
                             />
                             <span class="checkbox"></span>
                           </label>
@@ -263,6 +263,7 @@
                 <div class="col col-4 filters" style="display: flex;justify-content: center;align-items: center;vertical-align: middle;">
                     <pagination-controls
                     *ngIf="!noProducts"
+                    style="text-decoration: none;"
                     [ngClass]="
                         innerWidth >= 768
                         ? 'text-center my-pagination goLeft'
@@ -346,7 +347,9 @@
                         };
                 let index
                 "
-                [index]="sProd"></app-single-product>
+                [index]="sProd"
+                [filters]="listArray"
+                ></app-single-product>
                 <div style="display: flex;justify-content: center;align-items: center;">
                   <h1 *ngIf="shownProducts.length === 0">No Products Available!</h1>
                 </div>
@@ -379,7 +382,7 @@
         </div>
         <pagination-controls
         *ngIf="!noProducts"
-        style="display: flex;justify-content: center;align-items: center;margin-top: 8px;"
+        style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
         class="text-center my-pagination goLeft"
         (pageChange)="handlePageChange($event)"
         #paginate

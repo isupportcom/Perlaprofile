@@ -5,6 +5,10 @@
   font-family: 'Ubuntu', sans-serif !important;
 }
 
+a{
+  text-decoration: none;
+}
+
 
 .owl-next, .owl-prev
 {

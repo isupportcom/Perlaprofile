@@ -58,7 +58,12 @@ const routes :Routes =[
     component:PorductsComponent,
     children: [
       {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
-      {path: 'product-page', component: ProductPageComponent},
+      {path: 'product-page', component: ProductPageComponent,children: [
+        {
+          path: '**',
+          component: ProductPageComponent
+        }
+      ]},
       {path: 'mosqui/:sub_id/:sub_name',component:MosquiWizzardComponent}
     ]
   },

@@ -22,6 +22,7 @@ import SwiperCore, {
   Controller
 }  from 'swiper';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 SwiperCore.use([
   Navigation,
@@ -86,6 +87,8 @@ export class ProductPageComponent implements OnInit {
    productAddedToFav: boolean = false;
    added?: boolean;
 
+
+   filters: any;
    @HostListener('window:resize', ['$event'])
    onResize(event: any){
      this.innerWidth = window.innerWidth;
@@ -138,7 +141,9 @@ export class ProductPageComponent implements OnInit {
       private el: ElementRef,
       private productsService : ProductsService,
       private cartService : CartServiceService,
-      private http: HttpClient
+      private http: HttpClient,
+      private router: Router,
+      private route: ActivatedRoute
   ) { }
 
   async ngOnInit() {
@@ -148,6 +153,10 @@ export class ProductPageComponent implements OnInit {
       behavior: 'auto'
     });
 
+
+    this.route.params.subscribe((params) => {
+      this.filters = params
+    })
 
     this.productsService.mosquiProductFound.subscribe(resData => {
       this.waitingProduct = true;
@@ -574,5 +583,19 @@ async uploadUrl(){
   console.log(req.data);
   this.product.video = req.data.video
   this.productsService.setSingleProduct(this.product);
+}
+
+ngOnDestroy(): void {
+  console.log(this.router.url.split('/')[2]);
+  console.log(this.product.category);
+  console.log(this.filters);
+  
+  if(this.router.url.split('/')[2] == this.product.category){
+    this.productsService.sendFilters(this.filters);
+    
+  }
+  
+  // /products/product-page
+
 }
 }

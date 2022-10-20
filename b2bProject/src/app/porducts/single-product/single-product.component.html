@@ -80,14 +80,29 @@
                 <p *ngIf="index.hasOffer" class="col-5" style="margin-bottom: 4px;padding-left: 0px; text-decoration:line-through ;opacity: 0.3;">Τιμή: {{index.wholesale}}&euro;</p>
                 <p *ngIf="index.hasOffer" class="col-6" style="margin-bottom: 4px;padding-left: 0px;color: #6DAE49;font-weight: 600;">Τιμή: {{index.offer}}&euro;</p>
 
-                <button
+                <button class="button col-8" style="transition: background-color 0.2s ease-in-out;" (click)="handleAddToCart(addToCartBtn)"
+                [disabled]="index.stock == 0" #addToCartBtn>
+                  <span>Add to cart</span>
+                  <div class="cart">
+                  <svg viewBox="0 0 36 26">
+                    <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
+                    <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                  </svg>
+                  </div>
+                  </button>
 
-                  class="myBtn col-8"
-                  (click)="handleAddToCart()"
+                <!-- <button
+                  #addToCartBtn
+                  class="cart-button col-8"
+                  (click)="handleAddToCart(addToCartBtn)"
                   [disabled]="index.stock == 0"
                   >
-                    Προσθήκη
-                </button>
+                    <span class="add-to-cart">Προσθήκη</span>
+                    <span class="added">Προστέθηκε</span>
+                    <fa-icon id="firstFa" [icon]="faShoppingCart"></fa-icon>
+                    <fa-icon id="secondFa" [icon]="faBox"></fa-icon>
+                    
+                </button> -->
                 <button (click)="handleAddToFavorite(index)" style="border: none;background-color: rgba(0,0,0,0);" class="col-4">
                   <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
                 </button>
