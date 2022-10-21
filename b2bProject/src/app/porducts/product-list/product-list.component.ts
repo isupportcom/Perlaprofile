@@ -105,11 +105,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
   currentLang: any;
   filters: any = document.getElementsByClassName('filter');
   filters2: any = document.getElementsByClassName('boxes');
+  filterList: any;
   showExtraFilters: boolean = false;
   fit: boolean = true;
   favorites: any;
   innerWidth!: number;
-  executed?: boolean;
+  executed: boolean = false;
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = window.innerWidth;
@@ -141,7 +142,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
     if (this.innerWidth <= 768) {
       this.showBigFilters = false;
     } else {
+
+
       this.showBigFilters = true;
+
     }
 
     if (this.innerWidth < 1400) {
@@ -212,18 +216,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
     if (this.innerWidth <= 768) {
       this.showBigFilters = false;
     } else {
+      
       this.showBigFilters = true;
     }
 
-    if (this.innerWidth < 1400) {
-      this.relatedProducts = [1, 2, 3];
-    }
-    if (this.innerWidth < 992) {
-      this.relatedProducts = [1, 2];
-    }
-    if (this.innerWidth < 576) {
-      this.relatedProducts = [1];
-    }
 
     console.log(JSON.parse(localStorage.getItem('products') || '{}'));
     axios
@@ -295,13 +291,21 @@ export class ProductListComponent implements OnInit, OnDestroy {
         
 
         this.productsService.prevfilters.subscribe(resData => {
+          console.log("EIMMAI MESA");
+          
           this.listArray = [];
-          let filterList = Object.values(resData)
-          for(let filter of filterList){
+          this.filterList = Object.values(resData)
+          
+          
+          
+          for(let filter of this.filterList){
             this.listArray.push(filter);
           }
-          console.log(this.listArray);
+          
+          
           setTimeout(() => {
+            console.log(this.filters);
+            
             for(let i=0; i<this.filters.length; i++){
               for(let id of this.listArray){
                 if(id === this.filters[i].value){
@@ -311,23 +315,31 @@ export class ProductListComponent implements OnInit, OnDestroy {
               }
             }
 
+
             this.executed = true;
-          },100)
+          },300)
         })
+        
+          this.updateProducts();
+        
 
-        this.updateProducts();
-
-        setTimeout(() => {
+        // setTimeout(() => {
           
-          for(let filter of this.filters){
-            if(filter.checked){
-              // console.log('TSOUTSOU');
+        //   for(let filter of this.filters){
+        //     if(filter.checked){
+        //       this.handleCheckboxes(filter)
+        //     }
+        //   }
+
+        //   for(let filter of this.filters2){
+        //     if(filter.checked){
               
-              this.handleCheckboxes(filter)
-            }
+              
+        //       this.handleCheckboxes(filter)
+        //     }
             
-          }
-        },300)
+        //   }
+        // },300)
 
         
 
@@ -527,6 +539,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
       this.shouldContinue = true;
     }
   }
+
+  updateFilters(){
+    
+  }
+
   getFavourites() {
     return this.http.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/favorites.php',
@@ -582,6 +599,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   handleCheckboxes(e: any, clickeP?: boolean) {
+    
+    
     if (clickeP) {
       if (!e.checked) {
         e.checked = true;
@@ -651,6 +670,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
       console.log(this.listArray);
     }
+
+    if(e.classList[0] === 'boxes'){
+      for(let i=0;i< this.filters.length; i++){
+        if(e.value === this.filters[i].value){
+          this.filters[i].checked = e.checked;
+        }
+        
+      }
+    }
   }
 
   hanldeCategoriesList(background: any, arrow: any) {
@@ -663,7 +691,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateProducts() {
+  updateProducts(listArray?: any) {
     let favouritesObs: Observable<any>;
 
     favouritesObs = this.getFavourites();
@@ -672,8 +700,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
       this.favorites = resData.products;
     });
 
+    console.log(listArray);
     setTimeout(() => {
-      console.log(this.listArray);
       
       if (this.listArray.length == 0) {
         this.noProducts = false;
@@ -750,7 +778,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
       }
 
     }, 800);
-    
+    if(this.executed){
+      this.executed = false;
+    }
   }
 
   handleShowFilters() {
@@ -766,45 +796,22 @@ export class ProductListComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.extend = true;
 
-
+        // console.log(this.filters);
         for(let i=0; i<this.filters2.length; i++){
           for(let id of this.listArray){
             if(id === this.filters2[i].value){
               this.filters2[i].checked = true;
-              console.log(this.filters2[i]);
               
               // this.handleCheckboxes(this.filters[i]);
             }
           }
         }
 
-        // for(let filter of this.filters2){
-        //   if(filter.checked){
-        //     console.log(filter);
-            
-        //     this.handleCheckboxes(filter)
-        //   }
-          
-        // }
+        for(let i=0; i<this.filters2.length; i++){
+          this.filters[i] = this.filters2[i].checked
+        }
       },50);
     }
-
-
-    // setTimeout(() => {
-
-
-    // },100)
-
-
-    // setTimeout(() => {
-    //   for (let filter of this.listArray) {
-    //     for (let i = 0; i < this.filters.length; i++) {
-    //       if (filter == this.filters[i].value) {
-    //         this.filters[i].checked = true;
-    //       }
-    //     }
-    //   }
-    // }, 10);
   }
 
   handleClearFilters() {

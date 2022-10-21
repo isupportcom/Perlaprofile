@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
-import {Subject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Category } from "./categories.model";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -31,9 +31,9 @@ export  class ProductsService {
     this.mosquiProductFound.next(product);
   }
 
-
-  prevfilters = new Subject<any>();
-  castFilters = this.prevfilters.asObservable();
+  prevfilters = new BehaviorSubject<any>(null);
+//   prevfilters = new BehaviorSubject<any>(null)();
+  
 
   sendFilters(filters: any) {
     this.prevfilters.next(filters);

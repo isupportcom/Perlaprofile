@@ -35,6 +35,7 @@ export class SingleProductComponent implements OnInit {
   clickedAdd: boolean = false;
   faShoppingCart = faShoppingCart
   faBox = faBox;
+  reduced: any;
   constructor(
       private renderer: Renderer2,
       private router: Router,
@@ -59,8 +60,16 @@ export class SingleProductComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.filters);
-    
+
+    this.reduced =     this.filters.reduce((acc: any[], cur: any) => {
+      if (!acc.includes(cur)) {
+          acc.push(cur);
+      }
+      return acc;
+  }, [])
+
+  console.log(this.reduced);
+  
     
     this.currentLang = localStorage.getItem('lang')||'el'
     // console.log(this.index)
@@ -147,7 +156,7 @@ export class SingleProductComponent implements OnInit {
         window.location.reload();
       }
       else{
-        this.router.navigate(['../../product-page', this.filters],{relativeTo:this.route});
+        this.router.navigate(['../../product-page', this.reduced],{relativeTo:this.route});
       }
 
     },100)
