@@ -104,6 +104,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   extend: boolean = false;
   currentLang: any;
   filters: any = document.getElementsByClassName('filter');
+  filters2: any = document.getElementsByClassName('boxes');
   showExtraFilters: boolean = false;
   fit: boolean = true;
   favorites: any;
@@ -309,6 +310,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 }
               }
             }
+
             this.executed = true;
           },100)
         })
@@ -700,7 +702,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
           if (product.category == this.mainCategory.id) {
             for (let el of this.shownProducts) {
               if (product.mtrl == el.mtrl) {
-                console.log('mpastardo');
+                
                 flag = true;
               }
             }
@@ -720,7 +722,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         console.log(this.shownProducts);
       } else {
-        console.log("POUTSA");
         
         this.filterOn = true;
 
@@ -753,25 +754,57 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   handleShowFilters() {
+
+    
     if (this.showFilters) {
       this.showFilters = false;
       this.extend = false;
-    } else {
+    } 
+    else {
       this.showFilters = true;
       this.extend = false;
       setTimeout(() => {
         this.extend = true;
-      });
-    }
-    setTimeout(() => {
-      for (let filter of this.listArray) {
-        for (let i = 0; i < this.filters.length; i++) {
-          if (filter == this.filters[i].value) {
-            this.filters[i].checked = true;
+
+
+        for(let i=0; i<this.filters2.length; i++){
+          for(let id of this.listArray){
+            if(id === this.filters2[i].value){
+              this.filters2[i].checked = true;
+              console.log(this.filters2[i]);
+              
+              // this.handleCheckboxes(this.filters[i]);
+            }
           }
         }
-      }
-    }, 10);
+
+        // for(let filter of this.filters2){
+        //   if(filter.checked){
+        //     console.log(filter);
+            
+        //     this.handleCheckboxes(filter)
+        //   }
+          
+        // }
+      },50);
+    }
+
+
+    // setTimeout(() => {
+
+
+    // },100)
+
+
+    // setTimeout(() => {
+    //   for (let filter of this.listArray) {
+    //     for (let i = 0; i < this.filters.length; i++) {
+    //       if (filter == this.filters[i].value) {
+    //         this.filters[i].checked = true;
+    //       }
+    //     }
+    //   }
+    // }, 10);
   }
 
   handleClearFilters() {

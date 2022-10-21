@@ -96,11 +96,12 @@
 } */
 
 
+
 @media (max-width: 768px) {
   .itemTitle {
     margin-bottom: 3px;
     font-size: 18px;
-
+    height: 50px;
   }
 }
 
@@ -116,6 +117,7 @@
   .itemTitle {
     margin-bottom: 3px;
     font-size: 12px;
+    height: 40px;
   }
 }
 
@@ -139,14 +141,14 @@
   .itemTitle {
     margin-bottom: 4px;
     font-size: 12px;
-    height: 50px;
+    height: 40px;
   }
 }
 
 @media (min-width: 993px) {
   .itemTitle {
     margin-bottom: 8px;
-    height: 30px;
+    height: 25px;
   }
 }
 
@@ -361,7 +363,7 @@
 @media (max-width: 768px) {
 
   .logged-in-btns{
-    margin-top: 22px;
+    margin-top: 8px;
     font-size: 12px;
   }
   .logged-in-btns p{
@@ -543,6 +545,9 @@
   transform: scale(var(--scale, 1));
   transition: transform 0.4s cubic-bezier(0.36, 1.01, 0.32, 1.27);
   }
+
+  
+
   .button:hover{
     background-color: #4a7832;
   }
@@ -560,6 +565,8 @@
   transform: translateY(var(--span-y, 0));
   transition: transform 0.7s ease;
   }
+
+  
   .button span:before, .button span:after {
   content: '';
   width: var(--w, 2px);
@@ -578,6 +585,78 @@
   --l: 2px;
   --t: 12px;
   }
+
+  @media (max-width: 1400px){
+    .button span{
+      font-size: 12px;
+    }
+    .button{
+      padding: 6px 28px;
+      min-width: 120px;
+    }
+  }
+
+  @media (max-width: 1200px){
+    .button{
+      padding: 4px 12px;
+      min-width: 100px;
+    }
+  }
+
+  @media (max-width: 992px){
+    .button{
+      padding: 4px 8px;
+      min-width: 80px;
+    }
+  }
+
+  @media (max-width: 768px){
+    .button span{
+      font-size: 14px;
+    }
+    .button{
+      padding: 8px 28px;
+      min-width: 144px;
+    }
+  }
+
+  @media(max-width: 490px){
+    .button{
+      padding: 8px 24px;
+      min-width: 120px;
+    }
+  }
+
+  @media(max-width: 461px){
+    .button span{
+      font-size: 12px;
+    }
+    .button{
+      padding: 6px 20px;
+      min-width: 100px;
+    }
+  }
+
+  @media(max-width: 407px){
+    .button span{
+      font-size: 12px;
+    }
+    .button{
+      padding: 4px 12px;
+      min-width: 80px;
+    }
+  }
+
+  @media(max-width: 359px){
+    .button span{
+      font-size: 12px;
+    }
+    .button{
+      padding: 4px 8px;
+      min-width: 60px;
+    }
+  }
+
   .button .cart {
   position: absolute;
   left: 50%;
@@ -609,6 +688,8 @@
   transform: perspective(4px) rotateX(-6deg) scaleY(var(--fill, 0));
   transition: transform 1.2s ease var(--fill-d);
   }
+
+
   .button .cart svg {
   z-index: 1;
   width: 36px;

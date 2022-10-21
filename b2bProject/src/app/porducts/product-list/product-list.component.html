@@ -278,18 +278,19 @@
             <div *ngIf="showFilters" [ngClass]="extend? 'extend' : ''" style="background-color: white;border-bottom-left-radius: 8px;border-bottom-right-radius: 8px;padding: 10px;margin-left: 4px;height: 0px;transition: all 1s ease-in-out;transition-delay: 1s;box-shadow: 0px 6px 13px rgba(0, 0, 0, 0.1);">
               <div class="row" *ngIf="showExtraFilters">
                 <div [ngClass]="fit? 'col-6' : 'col-12'" style="margin-top: 12px;">
-                  <select name="" id="" class="filter-dropdown">
-                    <option value="" disabled selected>Ταξινόμηση</option>
-                    <option value="">Αύξουσα</option>
-                    <option value="">Φθίνουσα</option>
+                  <select name="" id="" class="filter-dropdown" (change)="handleAscend($event)">
+                    <option value="0" disabled selected>Ταξινόμηση</option>
+                    <option value="1" >Αύξουσα</option>
+                    <option value="2">Φθίνουσα</option>
                   </select>
                 </div>
                 <div [ngClass]="fit? 'col-6' : 'col-12'" style="margin-top: 12px;">
-                  <select name="" id="" class="filter-dropdown">
-                    <option value="" disabled selected>Προϊόντα ανά Σελίδα</option>
-                    <option value="">8</option>
-                    <option value="">4</option>
-                    <option value="">2</option>
+                  <select name="" id="" class="filter-dropdown" [(ngModel)]="itemsPP">
+                    <option value="10" disabled selected>Προϊόντα ανά Σελίδα</option>
+                    <option value="10" selected>10</option>
+                    <option value="8">8</option>
+                    <option value="4">4</option>
+                    <option value="2">2</option>
                   </select>
                 </div>
               </div>
@@ -305,7 +306,7 @@
                           name="category"
                           [value]="subcategory.sub_id"
                           class="boxes"
-                          (click)="handleCheckboxes($event)"
+                          (click)="handleCheckboxes($event.target)"
                         />
                         <span class="checkbox"></span>
                       </label>
