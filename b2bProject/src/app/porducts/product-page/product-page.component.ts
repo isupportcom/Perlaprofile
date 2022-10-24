@@ -294,7 +294,14 @@ export class ProductPageComponent implements OnInit {
     },200) 
   }
 
-  addToCartMosqui(){
+  addToCartMosqui(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => btn.classList.remove('loading'), 3700);
+      }
+
+
+
     axios.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
       {
@@ -303,6 +310,7 @@ export class ProductPageComponent implements OnInit {
     ).then(resData => {
       this.cartService.sendProductCount(resData.data.products.length);
     });
+    this.mosquiProduct.qty = this.qty;
 
     this.mosquiProduct.show = true;
     this.cartService.addToCart(this.mosquiProduct);
@@ -375,7 +383,12 @@ export class ProductPageComponent implements OnInit {
     console.log(this.seeLess);
    }
 
-  addToCart(){
+  addToCart(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => btn.classList.remove('loading'), 3700);
+      }
+
     axios.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
       {

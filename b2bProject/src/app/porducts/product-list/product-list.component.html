@@ -86,7 +86,7 @@
                   </div>
                 </div>
                 <div
-                  *ngIf="mainCategory.id !=116"
+                  *ngIf="mainCategory.id !=116 && mainCategory.id != 117"
                   style="
                     padding-top: 5%;
                     text-align: center;
@@ -104,7 +104,7 @@
 
                 <div>
 
-                  <ul *ngIf="mainCategory.id != 116" style="margin-top: -17px; padding-top: 15%; list-style: none">
+                  <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="margin-top: -17px; padding-top: 15%; list-style: none">
 
                     <li *ngFor="let subcategory of categories" style="margin-bottom: 8%">
 
@@ -133,7 +133,7 @@
                       </div>
                     </li>
                   </ul>
-                  <hr *ngIf="mainCategory.id != 116" />
+                  <hr *ngIf="mainCategory.id != 116 && mainCategory.id != 117" />
                   <button
                     *ngIf="filterOn"
                     class="btn btn-danger clearFilters"
@@ -296,7 +296,7 @@
               </div>
 
               <img style="width: 100%;margin-bottom: 12px;" src="../../../assets/Line%208.svg">
-              <ul *ngIf="mainCategory.id != 116" style="list-style: none;padding-left: 0px;">
+              <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="list-style: none;padding-left: 0px;">
                 <li *ngFor="let subcategory of categories">
                   <div class="row">
                     <div class="col-1 col-md-1 col-sm-1" style="display: flex;justify-content: center;align-items: center;vertical-align: middle;">
@@ -333,7 +333,7 @@
                 <app-spinner></app-spinner>
             </div>
 
-            <div class="row" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id != 116">
+            <div class="row" style="display: flex;justify-content: center;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id != 116 && mainCategory.id != 117">
 
                 <app-single-product
                 class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products"
@@ -373,13 +373,102 @@
                   <p class="itemTitle" style="cursor: pointer;" (click)="handleWizzard(sub.name,sub.sub_id)"><strong *ngIf="currentLang == 'el'">{{ sub.name }}</strong><strong *ngIf="currentLang == 'en'">{{ sub.name_en }}</strong><br></p>
                   <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
 
-                  <button (click)="handleWizzard(sub.name,sub.sub_id)" class="btn btn-primary seeMoreBtn" type="button">Δες Περισσότερα</button>
+                  <button (click)="handleWizzard(sub.name,sub.sub_id)" class="myBtn" type="button">Δες Περισσότερα</button>
             </div>
           </div>
           </div>
           <div>
 
           </div>
+        </div>
+        <div class="" *ngIf="!waiting && mainCategory.id == 117">
+          <div class="login-box">
+            <form         
+            class="container"
+            #form>
+              <div class="row">
+                <div class="user-box col">
+                    <input              
+                    type="number"
+                    required>
+                    <label>Αναζήτηση προφίλ</label>
+                </div>
+                <div class="user-box col">
+                    <input 
+                    type="number"
+                    required
+                    >
+                    <label>Αναζήτηση χρώματος</label>
+                </div>
+              </div>
+                <div class="user-box">
+                  <select
+                  class="select"
+                  required
+                >
+                  <option
+                    [ngValue]="null"
+                    [disabled]="true"
+                  >
+                  Προφίλ
+                  </option>
+                </select>
+                  <label></label>
+              </div>
+            <div class="row">
+              <div class="user-box col">
+                <input              
+                type="number"
+                required>
+                <label>Βέργες</label>
+            </div>
+            <div class="user-box col">
+              <input              
+              type="number"
+              required>
+              <label>Διαθεσιμότητα</label>
+            </div>
+            </div>
+            <div class="user-box">
+              <select
+              class="select"
+              required
+            >
+              <option
+                [ngValue]="null"
+                [disabled]="true"
+              >
+              Χρώμα
+              </option>
+            </select>
+              <label></label>
+          </div>
+          <div class="row">
+            <div class="user-box col">
+              <input              
+              type="number"
+              required>
+              <label>Μήκος</label>
+          </div>
+          <div class="user-box col">
+            <input              
+            type="number"
+            required>
+            <label>Κιλά</label>
+          </div>
+          </div>
+          <hr>
+          <div class="row" style="justify-content: center;align-items: center;">
+            <button type="button"  class="myBtn2"  style="position: relative;" (click)="findProduct(btn)"   #btn>
+              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              <p style="margin: 0px;color: rgba(0,0,0,0);">Εμφάνιση Προϊόντος</p>
+              <p class="textAnim">Εμφάνιση Προϊόντος</p>
+              <!-- [disabled]="!profForm.valid" -->
+              <!-- [ngClass]="profForm.valid? 'myBtn2' : 'disabled'"   GIA TO BUTTON -->
+            </button>
+          </div>
+              </form>
+            </div>
         </div>
         <pagination-controls
         *ngIf="!noProducts"

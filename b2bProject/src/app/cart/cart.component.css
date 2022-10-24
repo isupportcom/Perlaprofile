@@ -9,6 +9,11 @@
     }
 }
 
+
+.trash:active{
+    transform: scale(0.95);
+}
+
 .productImg{
     width: 80px;
     height: 80px;

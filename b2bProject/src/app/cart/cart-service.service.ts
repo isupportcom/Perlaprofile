@@ -125,10 +125,11 @@ export class CartServiceService {
   }
 
   addToFavorites(product:product|any){
-    console.log(product);
+    console.log(product.mtrl);
 
   let loadedUser = JSON.parse(localStorage.getItem('userData')||'{}');
-
+  
+  
   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
   {
     mtrl:product.mtrl,
@@ -136,7 +137,7 @@ export class CartServiceService {
     mode:"insert"
   })
   .then(resData=>{
-    console.log(resData.data);
+    console.log(resData);
 
   })
 

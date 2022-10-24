@@ -67,7 +67,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
   ngOnInit() {
-
     this.innerWidth = window.innerWidth;
     if(this.innerWidth <= 768){
       this.changeBtn = true;

@@ -82,6 +82,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     for(let prod of this.products){
       this.GrandTotal += +prod.wholesale *prod.qty;
     }
+    this.GrandTotal = +this.GrandTotal.toFixed(4)
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 

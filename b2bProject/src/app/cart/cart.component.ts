@@ -63,6 +63,7 @@ export class CartComponent implements OnInit, OnDestroy {
         for(let prod of this.products){
           this.GrandTotal += +prod.wholesale *prod.qty;
         }
+        this.GrandTotal = +this.GrandTotal.toFixed(4);
         console.log(this.GrandTotal)
       }
       );
@@ -143,6 +144,8 @@ export class CartComponent implements OnInit, OnDestroy {
       for(let prod of this.products){
         this.GrandTotal += +prod.wholesale *prod.qty;
       }     
+
+      this.GrandTotal = +this.GrandTotal.toFixed(4);
       
       console.log(this.GrandTotal)
 
@@ -173,6 +176,7 @@ export class CartComponent implements OnInit, OnDestroy {
       else{
         this.GrandTotal = 0;
       }
+      this.GrandTotal = +this.GrandTotal.toFixed(4);
         console.log(item);
 
         let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');

@@ -80,35 +80,46 @@ export class MosquiWizzardComponent implements OnInit {
   }
 
 
-  findProduct(){
+
+  findProduct(btn: any){
+
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        btn.classList.remove('loading')
+        if(this.dimentions.valid){
+          axios
+          .post(
+            'https://perlarest.vinoitalia.gr/php-auth-api/findMosquiProduct.php',
+            {
+              subcategory: this.sub_id,
+              fabric: this.dimentions.value.fabric,
+              profile: this.dimentions.value.profile,
+              width: this.dimentions.value.width,
+              height: this.dimentions.value.height,
+              color: this.dimentions.value.extra? this.dimentions.value.extra : 'none' 
+            }
+          )
+          .then((resData) => {
+            console.log(resData.data);
+            this.product = resData.data.products
+            console.log(this.product);
+            this.flag = true;
+            this.productService.sendMosquiProductFound(resData.data.products);
+          });
+      }}, 2700);
+      }
     console.log(this.dimentions.value);
 
-    if(this.dimentions.valid){
-      axios
-      .post(
-        'https://perlarest.vinoitalia.gr/php-auth-api/findMosquiProduct.php',
-        {
-          subcategory: this.sub_id,
-          fabric: this.dimentions.value.fabric,
-          profile: this.dimentions.value.profile,
-          width: this.dimentions.value.width,
-          height: this.dimentions.value.height,
-          color: this.dimentions.value.extra? this.dimentions.value.extra : 'none' 
-        }
-      )
-      .then((resData) => {
-        console.log(resData.data);
-        this.product = resData.data.products
-        console.log(this.product);
-        this.flag = true;
-        this.productService.sendMosquiProductFound(resData.data.products);
-      });
+
+
+    
       
       // setTimeout(() => {
         
       // },100)
     }
-  }
+  
 
   hasHeigh: boolean | any;
   hasWidth: boolean | any;

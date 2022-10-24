@@ -38,7 +38,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   message: string = '';
   loadedUser: any;
   showProduct: boolean | any;
-
+  profForm: FormGroup | any;
   @ViewChild('menu1') menu1: ElementRef | any;
   @ViewChild('menu2') menu2: ElementRef | any;
   @ViewChild('menu3') menu3: ElementRef | any;
@@ -538,6 +538,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
     ) {
       this.shouldContinue = true;
     }
+  }
+
+  findProduct(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        btn.classList.remove('loading')
+    }, 2700);
+      }
   }
 
   updateFilters(){
