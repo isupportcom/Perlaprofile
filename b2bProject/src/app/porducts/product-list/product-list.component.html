@@ -270,6 +270,10 @@
                         : 'topPagination2 filters'
                     "
                     (pageChange)="handlePageChange($event)"
+                    
+                    [responsive]="true"
+                    previousLabel=""
+                    nextLabel=""
                     #paginate
                     ></pagination-controls>
                     <!-- <p class="filters" style="margin-bottom: 0px;">&lt;&nbsp; 1&nbsp; 2&nbsp; 3&nbsp; 4&nbsp; 5&nbsp; &gt;</p> -->
@@ -475,6 +479,9 @@
         style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
         class="text-center my-pagination goLeft"
         (pageChange)="handlePageChange($event)"
+        [responsive]="true"
+        previousLabel=""
+        nextLabel=""
         #paginate
         ></pagination-controls>
     </div>

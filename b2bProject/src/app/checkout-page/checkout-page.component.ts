@@ -229,6 +229,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
     var goToOrder: any;
     let price = this.float2int(this.GrandTotal * 100);
+    
     let req = await axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/checkout.php', {
         amount: price,

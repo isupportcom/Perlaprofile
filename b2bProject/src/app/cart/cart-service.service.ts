@@ -137,7 +137,7 @@ export class CartServiceService {
     mode:"insert"
   })
   .then(resData=>{
-    console.log(resData);
+    console.log(resData.data);
 
   })
 

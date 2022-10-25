@@ -22,6 +22,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationControlsComponent } from 'ngx-pagination';
 import { Observable } from 'rxjs';
 import { TranslateConfigService } from 'src/app/services/translate-config.service';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 
 interface mainCat {
   id: number;
@@ -60,7 +61,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     //   }
     // })
   }
-
+  faChevronRight = faChevronRight;
   loggedIn: boolean = localStorage.getItem('username') ? true : false;
   products: product | any = [];
   totalLength: number | undefined;
