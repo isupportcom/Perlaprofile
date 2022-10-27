@@ -136,7 +136,7 @@ export class SingleProductComponent implements OnInit {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     this.productsService.setSingleProduct(this.index);
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
+    axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
       mtrl:this.index.mtrl,
       trdr:loadedUser.trdr
     }).then(resData=>{
@@ -195,24 +195,31 @@ export class SingleProductComponent implements OnInit {
   }
 
 
-  handleAddToCart(btn: any){
+ async handleAddToCart(btn: any){
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => btn.classList.remove('loading'), 3700);
       }
     console.log(btn);
     
-    axios.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+   let req = await axios.post(
+      'https://perlarest.vinoitalia.gr/cart/fetchCart.php',
       {
         trdr: this.loadedUser.trdr,
-      }
-    ).then(resData => {
+      })
+      this.products  = req.data.cart
+      console.log(req.data);
+      
+      this.cartService.sendProductCount(req.data.cart.length);
+    // ).then(resData => {
 
-      this.products = resData.data.products;
-      this.cartService.sendProductCount(this.products.length);
+    //   console.log(resData.data.products.length);
+      
 
-    });
+    //   // this.products = resData.data.products;
+    //   // this.cartService.sendProductCount(resData.data.products.length);
+
+    // });
 
 
 
@@ -226,29 +233,31 @@ export class SingleProductComponent implements OnInit {
       this.relatedProducts = resData.related;
 
     })
-    setTimeout(() => {
-        console.log(this.relatedProducts);
+    this.cartService.addToCart(this.index);
+    // setTimeout(() => {
+    //     console.log(this.relatedProducts);
 
-      if(this.relatedProducts.length <= 0){
 
-        this.cartService.setId(this.index.mtrl)
+    //   if(this.relatedProducts.length <= 0){
 
-        this.productsService.setSingleProduct(this.index);
-        this.index.show = true;
-        this.cartService.addToCart(this.index);
+    //     this.cartService.setId(this.index.mtrl)
 
-        this.cartService.sendProductAdded(true);
-      }
-      else{
-        window.scroll({
-          top: 0,
-          left: 0,
-          behavior: 'smooth'
-        });
-        this.productsService.setSingleProduct(this.index);
-        this.cartService.sendStartScope(true);
-      }
-    },500);
+    //     this.productsService.setSingleProduct(this.index);
+    //     this.index.show = true;
+    //     this.cartService.addToCart(this.index);
+
+    //     this.cartService.sendProductAdded(true);
+    //   }
+    //   else{
+    //     window.scroll({
+    //       top: 0,
+    //       left: 0,
+    //       behavior: 'smooth'
+    //     });
+    //     this.productsService.setSingleProduct(this.index);
+    //     this.cartService.sendStartScope(true);
+    //   }
+    // },500);
 
 
 

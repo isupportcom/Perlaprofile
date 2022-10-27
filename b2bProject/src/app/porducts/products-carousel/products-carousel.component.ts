@@ -56,32 +56,37 @@ export class ProductsCarouselComponent implements OnInit {
     
     if(this.mode == 'suggested'){
       
-      let request = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllproductsRelated.php",{mtrl: +this.mtrl})
+      let request = await axios.post("https://perlarest.vinoitalia.gr/products/related/getAllRelated.php",{mtrl: +this.mtrl})
       console.log(request.data)
       this.suggestedProducts = request.data.products;
       if(this.suggestedProducts.length !=0){
         this.hasSuggested = true;
       }
   
-      let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
+      let sugg = await axios.post("https://perlarest.vinoitalia.gr/products/getSuggested.php",
       {
         mtrl:this.mtrl
-      })
-      console.log(sugg.data.products);
-      this.suggested = sugg.data.products;
-      if(this.suggested.length ==0){
-          this.hasSuggested=false;
-      }else{
-        this.hasSuggested = true;
-      }
+      }).then(resData =>{
+          console.log(resData);
+          
+        }
+      )
+      // console.log(sugg.data.products);
+      // this.suggested = sugg.data.products;
+      // if(this.suggested.length ==0){
+      //     this.hasSuggested=false;
+      // }else{
+      //   this.shownProducts = this.suggested 
+      //   this.hasSuggested = true;
+      // }
     }
     
     
     if(this.mode == 'offers'){
-      axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
+      axios.post('https://perlarest.vinoitalia.gr/products/offers/offersByCategory.php', {
         category_id: this.category.id
       }).then(resData => {
-        this.shownProducts = resData.data.products;
+        this.shownProducts = resData.data.offers;
         
       })
     }
@@ -91,8 +96,8 @@ export class ProductsCarouselComponent implements OnInit {
     console.log(product);
     this.productsService.setSingleProduct(product)
 
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
-      mtrl: product.mtrl,
+    axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
+     
       trdr: this.loadedUser.trdr
     }).then(resData=>{
       console.log(resData.data);

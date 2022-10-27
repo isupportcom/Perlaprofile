@@ -64,7 +64,7 @@ export  class ProductsService {
 
  getAllCategories(id:any){
     return  this.http.post(
-        'https://perlarest.vinoitalia.gr/php-auth-api/getAllCategories.php',{category:id});
+        'https://perlarest.vinoitalia.gr/categories/getCategories.php',{id:id});
  }
 
  getAllProducts(){
@@ -74,15 +74,17 @@ export  class ProductsService {
  }
 
  getMainCategories(){
-    return this.http.get('https://perlarest.vinoitalia.gr/php-auth-api/getAllMainCat.php/?id=8&method=allMainCategories');
+    return this.http.post('https://perlarest.vinoitalia.gr/categories/getMainCat.php',{
+      method:"MAINCAT"
+    });
  }
 
  getRelatedProducts(mtrl: any){
   console.log(mtrl);
 
-    return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/findRelatedProduct.php',
+    return this.http.post('https://perlarest.vinoitalia.gr/products/related/findRelated.php',
     {
-        product_mtrl: mtrl
+      product_mtrlp: mtrl
     });
  }
 

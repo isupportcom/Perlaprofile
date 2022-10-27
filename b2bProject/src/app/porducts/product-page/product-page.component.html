@@ -158,6 +158,8 @@
           product_page.price <b> : </b
           ><b style="color: #6dae49">{{ product.offer }}&euro;</b>
         </p>
+    <hr class="line" style="margin-top: 50px;display: none">
+      <div *ngIf="product.category !== 116 && product.category !== 117" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section" >
 
         <p style="font-size: 10px; margin: 0px; height: fit-content" translate>
           product_page.fpa
@@ -431,7 +433,83 @@
         </div>
       </div>
 
+      <div *ngIf="product.category === 117" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section">
+        <div class="row">
+          <h2>{{ product.name }}</h2>
+        </div>
+        <div class="row">
+            <hr style="opacity: 1;border: 2px solid #6dae49;border-radius: 8px;">
+        </div>
+        <div class="login-box">
+          <form
+          class=" row"
+          #form>
+              <div class="user-box">
+                  <input
+                  type="number"
 
+                  required>
+                  <label>Κωδικος αποθήκης</label>
+              </div>
+              <div class="user-box">
+                  <input
+                  type="text"
+
+                  required
+                  >
+                  <label>Περιγραφή</label>
+              </div>
+              <div class="user-box">
+                <select
+                class="select"
+
+                required
+              >
+                <option
+                  [ngValue]="null"
+                  [disabled]="true"
+                >
+                  Eπιλεξτε Χρώμα
+                </option>
+              </select>
+                <label></label>
+            </div>
+
+            <div class="user-box">
+              <div class="container" style="padding-left: 0px !important;padding-right: 0px !important;">
+                <div class="row" style="padding-left: 0px !important;">
+                  <div class="col-6">
+                    <input
+                    type="number"
+
+                    required
+                    >
+                    <label>Μήκος</label>
+                  </div>
+                  <div class="col-6">
+                    <input
+                    type="number"
+
+                    required
+                    >
+                    <label>Διαθεσιμότητα</label>
+                  </div>
+                </div>
+              </div>
+          </div>
+        <hr>
+        <div class="row" style="justify-content: center;align-items: center;">
+          <button type="button"  style="position: relative;" (click)="animation(btn)"  ngClass="myBtn" #btn>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p style="margin: 0px;color: rgba(0,0,0,0);">Εμφάνιση Προϊόντος</p>
+            <p class="textAnim">Εμφάνιση Προϊόντος</p>
+
+
+          </button>
+        </div>
+            </form>
+          </div>
+      </div>
 
       <div *ngIf="product.category === 116" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section">
         <div class="row">
@@ -673,6 +751,7 @@
   <br />
 </div>
 
+<<<<<<< HEAD
 <div class="container" style="margin-top: 120px">
   <div class="row">
     <div
@@ -686,6 +765,12 @@
       style="display: flex; justify-content: center; align-items: center"
     >
       <img style="width: 30%" src="../../../assets/Line%208.svg" />
+=======
+  <div *ngIf="product.category !== 116 && product.category !== 117" class="container"  style="margin-top: 120px;">
+    <div class="row">
+      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1>Σχετικά Προϊόντα</h1></div>
+      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 30%;" src="../../../assets/Line%208.svg"></div>
+>>>>>>> 246fec19338ed04ef454a781a667fc638da9b8a3
     </div>
   </div>
   <app-products-carousel

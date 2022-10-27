@@ -54,15 +54,12 @@ input::-webkit-inner-spin-button{
   -webkit-appearance: none;
   margin: 0;
 }
-button{
-  color: #6dae49;
-  background-color: #ffffff;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
+
 #decrement{
   /* padding: 15px 5px 15px 25px; */
+  border: 0;
+  background-color: transparent;
+  color: #6DAE49;
   padding: 10px;
   border-radius: 45px 0 0 45px;
   padding-left: 20px;
@@ -70,6 +67,9 @@ button{
 }
 #increment{
   /* padding: 15px 25px 15px 5px; */
+  border: 0;
+  background-color: transparent;
+  color: #6DAE49;
   padding: 10px;
   padding-left: 5px;
   padding-right: 20px;
@@ -416,4 +416,220 @@ nav.black .underline {
   100% {
   transform: translateX(140px) rotate(-18deg);
   }
+  }
+
+
+  .myBtn{
+    width: fit-content;
+    cursor: pointer;
+    padding: 8px 72px;
+    border: none;
+    background-color: #6DAE49;
+    color: white;
+    border-radius: 8px;
+    margin-top: 12px;
+    transition: background-color 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  
+  
+  .disabled{
+    width: fit-content;
+    cursor: pointer;
+    padding: 8px 72px;
+    border: none;
+    background-color: #6DAE49;
+    color: white;
+    opacity: 0.5;
+    border-radius: 8px;
+    margin-top: 12px;
+    overflow: hidden;
+    cursor: not-allowed;
+  }
+  
+  .myBtn:active{
+    transform: scale(0.95);
+  }
+  
+  .myBtn:hover{
+    background-color: #4a7632;
+  }
+  
+  @media (max-width: 1400px){
+    .myBtn, .disabled{
+      padding: 8px 40px;
+    }
+  }
+  
+  @media (max-width: 1200px){
+    .myBtn, .disabled{
+      padding: 8px 72px;
+    }
+  }
+  
+  @media (max-width: 440px){
+    .myBtn, .disabled{
+      padding: 8px 40px;
+    }
+  }
+  
+  @media (max-width: 376px){
+    .myBtn, .disabled{
+      padding: 8px 20px;
+    }
+  }
+  
+  @media (max-width: 336px){
+    .myBtn, .disabled{
+      padding: 8px 10px;
+    }
+  }
+  
+  .login-box {
+    /* width: 400px; */
+    padding: 40px;
+    padding-top: 0px;
+    border-radius: 10px;
+  }
+  
+  
+  .login-box .user-box input {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    /* margin-bottom: 30px; */
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background: transparent;
+  }
+  
+  .login-box .user-box input:focus{
+    border-bottom: 1px solid #4a7632;
+  }
+  
+  .login-box .user-box label {
+    position: relative;
+    left: 0;
+    top: -40px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login-box .user-box input:focus~label,
+  .login-box .user-box input:valid~label {
+    top: -60px;
+    left: 0;
+    color: #6DAE49;
+    font-size: 12px;
+  }
+  
+  .select{
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 30px;
+    border: 0;
+    color: white;
+    background-color: #6DAE49;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .select:hover{
+    background-color: #4a7632;
+    border: 0;
+    outline: 0;
+  }
+  
+  .select:focus{
+    background-color: #4a7632;
+    border: 0;
+    outline: 0;
+  }
+  
+  
+  
+  .select option{
+    background-color: white;
+    color: black;
+  }
+  
+  .textAnim{
+    position: absolute;
+    top: 20%;
+  }
+  
+  .loading .textAnim{
+    animation-name: text;
+    animation-duration: 0.3s;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes text{
+    0%{
+      top: 20%
+    }
+    100%{
+      top: -60%;
+    }
+  }
+  
+  .loading .lds-ring{
+    animation-name: loader;
+    animation-duration: 0.3s;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes loader {
+    0%{
+      transform: scale(0);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+  
+  .lds-ring {
+    display: inline-block;
+    position: absolute;
+    left: 46%;
+    transform: scale(0);
+    width: 20px;
+    height: 20px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }

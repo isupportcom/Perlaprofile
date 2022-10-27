@@ -134,6 +134,8 @@ export class ProductPageComponent implements OnInit {
     this.thumbsSwiper = swiper;
   }
 
+  profile: FormGroup | any;
+
   constructor(
       private fb :FormBuilder,
       private sanitizer:DomSanitizer,
@@ -237,10 +239,12 @@ export class ProductPageComponent implements OnInit {
       this.howManySeen = false;
     }
 
-    this.product = this.productsService.getSingelProduct();
-    console.log(this.product);
-    console.log(this.product.category);
-    console.log(typeof this.product.description);
+    this.product=this.productsService.getSingelProduct()
+    console.log(this.product)
+    // console.log(this.product.category);
+    // console.log(typeof(this.product.description));
+
+
 
     let favouritesObs: Observable<any>;
 
@@ -271,15 +275,21 @@ export class ProductPageComponent implements OnInit {
     this.getSeeEarlier();
   }
 
-  getFavourites() {
-    return this.http.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/favorites.php',
-      {
-        trdr: this.loadedUser.trdr,
-        mtrl: 'dontNeedIt',
-        mode: 'fetch',
-      }
-    );
+  animation(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        btn.classList.remove('loading')
+      }, 2700);
+    }
+  }
+
+  getFavourites(){
+    return this.http.post("https://perlarest.vinoitalia.gr/products/favorites.php",{
+      trdr: this.loadedUser.trdr,
+      mtrl:"dontNeedIt",
+      mode:"fetch"
+    })
   }
 
   handleFindNew() {
@@ -386,19 +396,16 @@ export class ProductPageComponent implements OnInit {
     this.onEditDesc = true;
   }
 
-  async getSeeEarlier() {
-    let req = await axios.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php',
-      {
-        trdr: this.loadedUser.trdr,
-      }
-    );
-    this.seeEarlier = req.data.products;
-    if (this.seeEarlier.length == 0) {
-      this.isEmpty = true;
-    } else {
-      this.isEmpty = false;
-    }
+  async getSeeEarlier(){
+    let req =await axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
+       trdr: this.loadedUser.trdr
+     })
+     this.seeEarlier = req.data.products;
+     if(this.seeEarlier.length == 0){
+       this.isEmpty = true;
+     }else{
+       this.isEmpty = false;
+     }
 
     console.log(this.seeEarlier);
     for (let i = 0; i < 4; i++) {
