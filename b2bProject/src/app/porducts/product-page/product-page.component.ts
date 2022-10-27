@@ -133,6 +133,8 @@ export class ProductPageComponent implements OnInit {
     this.thumbsSwiper = swiper;
   }
 
+  profile: FormGroup | any;
+
   constructor(
       private fb :FormBuilder,
       private sanitizer:DomSanitizer,
@@ -147,6 +149,7 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+
     window.scroll({
       top: 0,
       left: 0,
@@ -236,8 +239,8 @@ export class ProductPageComponent implements OnInit {
 
     this.product=this.productsService.getSingelProduct()
     console.log(this.product)
-    console.log(this.product.category);
-    console.log(typeof(this.product.description));
+    // console.log(this.product.category);
+    // console.log(typeof(this.product.description));
 
 
 
@@ -278,8 +281,17 @@ export class ProductPageComponent implements OnInit {
 
   }
 
+  animation(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        btn.classList.remove('loading')
+      }, 2700);
+    }
+  }
+
   getFavourites(){
-    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+    return this.http.post("https://perlarest.vinoitalia.gr/products/favorites.php",{
       trdr: this.loadedUser.trdr,
       mtrl:"dontNeedIt",
       mode:"fetch"
@@ -366,7 +378,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   async getSeeEarlier(){
-    let req =await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php",{
+    let req =await axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
        trdr: this.loadedUser.trdr
      })
      this.seeEarlier = req.data.products;

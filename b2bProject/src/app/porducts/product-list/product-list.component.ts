@@ -222,52 +222,46 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
 
+    this.route.params.subscribe((params) => {
+      console.log(params);
+
+      console.log(+params['cat_id']);
+      console.log(params['cat_name']);
+
+      this.mainCategory.id = +params['cat_id'];
+      this.productsService
+        .getAllCategories(this.mainCategory.id)
+        .subscribe((resData: any) => {
+          console.log(resData.cat[0].subcategory);
+          this.productsService.setAllCategoriesArray(
+            resData.cat[0].subcategory
+          );
+          this.categories = this.productsService.getCategoriesArray();
+          console.log(this.categories);
+        });
+
+      this.mainCategory.name = params['cat_name'];
+
+      this.productsService.setMainCategory(this.mainCategory);
+
+      localStorage.setItem(
+        'currentCategory',
+        JSON.stringify(this.mainCategory)
+      );
+    });
     console.log(JSON.parse(localStorage.getItem('products') || '{}'));
-    axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php')
+ 
+    console.log(this.mainCategory.id);
+    setTimeout(()=>{
+      axios.post('https://perlarest.vinoitalia.gr/products/getProducts.php',{
+        category_id:this.mainCategory.id
+      })
       .then(async (resData: any) => {
         console.log(resData.data);
-        // console.log(resData.data)
+   
         console.log(resData.data);
-        for (let i = 0; i < resData.data.products.length; i++) {
-          this.products[i] = {
-            mtrl: resData.data.products[i].mtrl,
-            name: resData.data.products[i].name,
-            name1: resData.data.products[i].name1,
-            code: resData.data.products[i].code,
-            retail: resData.data.products[i].retailPrice,
-            wholesale: resData.data.products[i].wholesalePrice,
-            qty: 1,
-            offer: resData.data.products[i].offer,
-            discount: resData.data.products[i].discount,
-            hasOffer: resData.data.products[i].hasOffer,
-            stock: resData.data.products[i].stock,
-            category: resData.data.products[i].category,
-            subcategory: resData.data.products[i].subcategory,
-            img: resData.data.products[i].image,
-            otherImages: resData.data.products[i].otherImages,
-            description: resData.data.products[i].description,
-            data_sheet: resData.data.products[i].data_sheet,
-            pdf: resData.data.products[i].pdf,
-            video: resData.data.products[i].video,
-            product_name: resData.data.products[i].onoma,
-            product_name_eng: resData.data.products[i].onoma_eng,
-            kodikos_kataskeuasti: resData.data.products[i].kodikos_kataskeuasti,
-            texnikos_kodikos: resData.data.products[i].texnikos_kodikos,
-          };
-          this.productsService.setAll(this.products[i]);
-        }
-        
-
-        
-        
-        
-
+        this.shownProducts = resData.data.products;
         setTimeout(() => {
-          
-
-
-          
           if(this.favorites){
             for (let favorite of this.favorites) {
               for (let prod of this.products) {
@@ -293,6 +287,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         this.productsService.prevfilters.subscribe(resData => {
           console.log("EIMMAI MESA");
+          console.log(resData);
           
           this.listArray = [];
           this.filterList = Object.values(resData)
@@ -321,7 +316,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
           },300)
         })
         
-          this.updateProducts();
+          // this.updateProducts();
         
 
         // setTimeout(() => {
@@ -345,6 +340,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
         
 
       });
+    },50)
+     
 
 
 
@@ -352,33 +349,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
 
 
-    this.route.params.subscribe((params) => {
-      console.log(params);
-
-      console.log(+params['cat_id']);
-      console.log(params['cat_name']);
-
-      this.mainCategory.id = +params['cat_id'];
-      this.productsService
-        .getAllCategories(this.mainCategory.id)
-        .subscribe((resData: any) => {
-          console.log(resData);
-          this.productsService.setAllCategoriesArray(
-            resData.Categories[0].subcategoris
-          );
-          this.categories = this.productsService.getCategoriesArray();
-          console.log(this.categories);
-        });
-
-      this.mainCategory.name = params['cat_name'];
-
-      this.productsService.setMainCategory(this.mainCategory);
-
-      localStorage.setItem(
-        'currentCategory',
-        JSON.stringify(this.mainCategory)
-      );
-    });
 
     // this.productsService.getAllCategories().subscribe(resData => {
     //   console.log(resData);
@@ -556,7 +526,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   getFavourites() {
     return this.http.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/favorites.php',
+      'https://perlarest.vinoitalia.gr/products/favorites.php',
       {
         trdr: this.loadedUser.trdr,
         mtrl: 'dontNeedIt',
@@ -1016,6 +986,17 @@ export class ProductListComponent implements OnInit, OnDestroy {
       name: name,
       id: id,
       category: 116,
+    });
+    this.router.navigate(['/products/product-page']);
+
+    // this.router.navigate(['products/mosqui',id,name]);
+  }
+
+  handleWizzardProfile(name: string, id: number) {
+    this.productsService.setSingleProduct({
+      name: name,
+      id: id,
+      category: 117,
     });
     this.router.navigate(['/products/product-page']);
 
