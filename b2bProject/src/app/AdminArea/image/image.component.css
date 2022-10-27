@@ -13,7 +13,7 @@
     border-left: 1px solid transparent !important;
     border-right: 25px solid transparent !important;
     height: 50px !important;
-    width: 200px !important;
+    width: 220px !important;
   }
 
   .trapezoid2{
@@ -25,7 +25,7 @@
     border-left: 1px solid transparent;
     border-right: 25px solid transparent;
     height: 0;
-    width: 200px;
+    width: 220px;
   }
 
   .secondLink{

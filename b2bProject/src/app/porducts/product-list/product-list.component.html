@@ -142,7 +142,7 @@
                   </div>
                 </div>
                 <div
-                  *ngIf="mainCategory.id !=116"
+                  *ngIf="mainCategory.id !=116 && mainCategory.id != 117"
                   style="
                     padding-top: 5%;
                     text-align: center;
@@ -160,7 +160,7 @@
 
                 <div>
 
-                  <ul *ngIf="mainCategory.id != 116" style="margin-top: -17px; padding-top: 15%; list-style: none">
+                  <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="margin-top: -17px; padding-top: 15%; list-style: none">
 
                     <li *ngFor="let subcategory of categories" style="margin-bottom: 8%">
 
@@ -169,11 +169,11 @@
                           <label>
                             <input
                               type="checkbox"
-                              id="filterList"
                               name="category"
+                              class="filter"
                               style="margin-right: 5%"
                               [value]="subcategory.sub_id"
-                              (click)="handleCheckboxes($event)"
+                              (click)="handleCheckboxes($event.target)"
                             />
                             <span class="checkbox"></span>
                           </label>
@@ -189,7 +189,7 @@
                       </div>
                     </li>
                   </ul>
-                  <hr *ngIf="mainCategory.id != 116" />
+                  <hr *ngIf="mainCategory.id != 116 && mainCategory.id != 117" />
                   <button
                     *ngIf="filterOn"
                     class="btn btn-danger clearFilters"
@@ -257,11 +257,12 @@
                       <li><a class="dropdown-item" href="#">Another action</a></li>
                       <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul> -->
-                    <select name="" id="" class="filter-dropdown">
-                      <option value="" disabled selected>Προϊόντα ανά Σελίδα</option>
-                      <option value="">8</option>
-                      <option value="">4</option>
-                      <option value="">2</option>
+                    <select name="" id="" class="filter-dropdown" [(ngModel)]="itemsPP">
+                      <option value="10" disabled selected>Προϊόντα ανά Σελίδα</option>
+                      <option value="10" selected>10</option>
+                      <option value="8">8</option>
+                      <option value="4">4</option>
+                      <option value="2">2</option>
                     </select>
                 </div>
 
@@ -286,10 +287,10 @@
                       <li><a class="dropdown-item">Another action</a></li>
                       <li><a class="dropdown-item">Something else here</a></li>
                     </ul> -->
-                    <select name="" id="" class="filter-dropdown">
-                      <option value="" disabled selected>Ταξινόμηση</option>
-                      <option value="">Αύξουσα</option>
-                      <option value="">Φθίνουσα</option>
+                    <select name="" id="" class="filter-dropdown" (change)="handleAscend($event)">
+                      <option value="0" disabled selected>Ταξινόμηση</option>
+                      <option value="1" >Αύξουσα</option>
+                      <option value="2">Φθίνουσα</option>
                     </select>
                   </div>
 
@@ -318,6 +319,7 @@
                 <div class="col col-4 filters" style="display: flex;justify-content: center;align-items: center;vertical-align: middle;">
                     <pagination-controls
                     *ngIf="!noProducts"
+                    style="text-decoration: none;"
                     [ngClass]="
                         innerWidth >= 768
                         ? 'text-center my-pagination goLeft'
@@ -332,24 +334,25 @@
             <div *ngIf="showFilters" [ngClass]="extend? 'extend' : ''" style="background-color: white;border-bottom-left-radius: 8px;border-bottom-right-radius: 8px;padding: 10px;margin-left: 4px;height: 0px;transition: all 1s ease-in-out;transition-delay: 1s;box-shadow: 0px 6px 13px rgba(0, 0, 0, 0.1);">
               <div class="row" *ngIf="showExtraFilters">
                 <div [ngClass]="fit? 'col-6' : 'col-12'" style="margin-top: 12px;">
-                  <select name="" id="" class="filter-dropdown">
-                    <option value="" disabled selected>Ταξινόμηση</option>
-                    <option value="">Αύξουσα</option>
-                    <option value="">Φθίνουσα</option>
+                  <select name="" id="" class="filter-dropdown" (change)="handleAscend($event)">
+                    <option value="0" disabled selected>Ταξινόμηση</option>
+                    <option value="1" >Αύξουσα</option>
+                    <option value="2">Φθίνουσα</option>
                   </select>
                 </div>
                 <div [ngClass]="fit? 'col-6' : 'col-12'" style="margin-top: 12px;">
-                  <select name="" id="" class="filter-dropdown">
-                    <option value="" disabled selected>Προϊόντα ανά Σελίδα</option>
-                    <option value="">8</option>
-                    <option value="">4</option>
-                    <option value="">2</option>
+                  <select name="" id="" class="filter-dropdown" [(ngModel)]="itemsPP">
+                    <option value="10" disabled selected>Προϊόντα ανά Σελίδα</option>
+                    <option value="10" selected>10</option>
+                    <option value="8">8</option>
+                    <option value="4">4</option>
+                    <option value="2">2</option>
                   </select>
                 </div>
               </div>
 
               <img style="width: 100%;margin-bottom: 12px;" src="../../../assets/Line%208.svg">
-              <ul *ngIf="mainCategory.id != 116" style="list-style: none;padding-left: 0px;">
+              <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="list-style: none;padding-left: 0px;">
                 <li *ngFor="let subcategory of categories">
                   <div class="row">
                     <div class="col-1 col-md-1 col-sm-1" style="display: flex;justify-content: center;align-items: center;vertical-align: middle;">
@@ -359,7 +362,7 @@
                           name="category"
                           [value]="subcategory.sub_id"
                           class="boxes"
-                          (click)="handleCheckboxes($event)"
+                          (click)="handleCheckboxes($event.target)"
                         />
                         <span class="checkbox"></span>
                       </label>
@@ -386,7 +389,7 @@
                 <app-spinner></app-spinner>
             </div>
 
-            <div class="row" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id != 116">
+            <div class="row" style="display: flex;justify-content: center;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id != 116 && mainCategory.id != 117">
 
                 <app-single-product
                 class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products"
@@ -401,7 +404,9 @@
                         };
                 let index
                 "
-                [index]="sProd"></app-single-product>
+                [index]="sProd"
+                [filters]="listArray"
+                ></app-single-product>
                 <div style="display: flex;justify-content: center;align-items: center;">
                   <h1 *ngIf="shownProducts.length === 0">No Products Available!</h1>
                 </div>
@@ -424,7 +429,7 @@
                   <p class="itemTitle" style="cursor: pointer;" (click)="handleWizzard(sub.name,sub.sub_id)"><strong *ngIf="currentLang == 'el'">{{ sub.name }}</strong><strong *ngIf="currentLang == 'en'">{{ sub.name_en }}</strong><br></p>
                   <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
 
-                  <button (click)="handleWizzard(sub.name,sub.sub_id)" class="btn btn-primary seeMoreBtn" type="button">Δες Περισσότερα</button>
+                  <button (click)="handleWizzard(sub.name,sub.sub_id)" class="myBtn" type="button">Δες Περισσότερα</button>
             </div>
           </div>
           </div>
@@ -432,9 +437,98 @@
 
           </div>
         </div>
+        <div class="" *ngIf="!waiting && mainCategory.id == 117">
+          <div class="login-box">
+            <form         
+            class="container"
+            #form>
+              <div class="row">
+                <div class="user-box col">
+                    <input              
+                    type="number"
+                    required>
+                    <label>Αναζήτηση προφίλ</label>
+                </div>
+                <div class="user-box col">
+                    <input 
+                    type="number"
+                    required
+                    >
+                    <label>Αναζήτηση χρώματος</label>
+                </div>
+              </div>
+                <div class="user-box">
+                  <select
+                  class="select"
+                  required
+                >
+                  <option
+                    [ngValue]="null"
+                    [disabled]="true"
+                  >
+                  Προφίλ
+                  </option>
+                </select>
+                  <label></label>
+              </div>
+            <div class="row">
+              <div class="user-box col">
+                <input              
+                type="number"
+                required>
+                <label>Βέργες</label>
+            </div>
+            <div class="user-box col">
+              <input              
+              type="number"
+              required>
+              <label>Διαθεσιμότητα</label>
+            </div>
+            </div>
+            <div class="user-box">
+              <select
+              class="select"
+              required
+            >
+              <option
+                [ngValue]="null"
+                [disabled]="true"
+              >
+              Χρώμα
+              </option>
+            </select>
+              <label></label>
+          </div>
+          <div class="row">
+            <div class="user-box col">
+              <input              
+              type="number"
+              required>
+              <label>Μήκος</label>
+          </div>
+          <div class="user-box col">
+            <input              
+            type="number"
+            required>
+            <label>Κιλά</label>
+          </div>
+          </div>
+          <hr>
+          <div class="row" style="justify-content: center;align-items: center;">
+            <button type="button"  class="myBtn2"  style="position: relative;" (click)="findProduct(btn)"   #btn>
+              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              <p style="margin: 0px;color: rgba(0,0,0,0);">Εμφάνιση Προϊόντος</p>
+              <p class="textAnim">Εμφάνιση Προϊόντος</p>
+              <!-- [disabled]="!profForm.valid" -->
+              <!-- [ngClass]="profForm.valid? 'myBtn2' : 'disabled'"   GIA TO BUTTON -->
+            </button>
+          </div>
+              </form>
+            </div>
+        </div>
         <pagination-controls
         *ngIf="!noProducts"
-        style="display: flex;justify-content: center;align-items: center;margin-top: 8px;"
+        style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
         class="text-center my-pagination goLeft"
         (pageChange)="handlePageChange($event)"
         #paginate

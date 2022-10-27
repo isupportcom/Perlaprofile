@@ -22,7 +22,8 @@ export class AdminNavComponent implements OnInit {
   constructor(
       private authService: AuthService,
       private router:Router,
-      private rendere :Renderer2
+      private renderer :Renderer2,
+      private element: ElementRef
   ) {}
   innerWidth:any;
   @HostListener('window:resize', ['$event'])
@@ -60,19 +61,46 @@ export class AdminNavComponent implements OnInit {
 
 
   handleOver(el: any){
+    
+    this.renderer.setStyle(el, 'width' , '320px')
     setTimeout(() => {
-      el.children[1].style.opacity = '1';
-    },200)
-    el.children[1].style.display = 'flex';
+      this.renderer.setStyle(el.children[1].children[0], 'color' , 'black')
+      this.renderer.setStyle(el.children[1].children[0], 'opacity' , '1')
+    },50)
 
   }
 
   handleLeave(el: any){
-      el.children[1].style.display = 'none';
-      setTimeout(() => {
-        el.children[1].style.opacity = '0';
-      },200)
+    this.renderer.setStyle(el, 'width' , '60px')
+    setTimeout(() => {
+      this.renderer.setStyle(el.children[1].children[0], 'color' , 'white')
+      this.renderer.setStyle(el.children[1].children[0], 'opacity' , '0')
+    },50)
+
   }
+
+  handleShowAllOver(arr: any){
+    // console.log(arr);
+    for(let el of arr){
+      this.renderer.setStyle(el, 'width' , '320px')
+      setTimeout(() => {
+        this.renderer.setStyle(el.children[1].children[0], 'color' , 'black')
+        this.renderer.setStyle(el.children[1].children[0], 'opacity' , '1')
+      },50)
+    }
+    
+  }
+
+  handleShowAllLeave(arr: any){
+    for(let el of arr){
+      this.renderer.setStyle(el, 'width' , '60px')
+      setTimeout(() => {
+        this.renderer.setStyle(el.children[1].children[0], 'color' , 'white')
+        this.renderer.setStyle(el.children[1].children[0], 'opacity' , '0')
+      },50)
+    }
+  }
+
   logout(){
 
   }

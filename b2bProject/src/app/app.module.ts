@@ -74,7 +74,9 @@ import { SwiperModule } from 'swiper/angular';
 import { SafePipePipe } from './porducts/product-page/safe-pipe.pipe';
 import { PdfComponent } from './AdminArea/pdf-component/pdf-component.component';
 import { ImageComponent } from './AdminArea/image/image.component';
-
+import { CheckoutNavComponent } from './checkout-nav/checkout-nav.component';
+import { OrderCompletedComponent } from './order-completed/order-completed.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 
 
@@ -139,7 +141,9 @@ export function rootLoaderactory(http:any){
     TheCompanyComponent,
     TeamComponent,
     PdfComponent,
-    ImageComponent
+    ImageComponent,
+    CheckoutNavComponent,
+    OrderCompletedComponent
 
 
   ],
@@ -153,7 +157,7 @@ export function rootLoaderactory(http:any){
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CarouselModule,
-
+    FontAwesomeModule,
     SwiperModule,
     AppRoutingModule,
     TranslateModule.forRoot({

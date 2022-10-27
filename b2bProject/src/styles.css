@@ -5,6 +5,10 @@
   font-family: 'Ubuntu', sans-serif !important;
 }
 
+a{
+  text-decoration: none;
+}
+
 
 .owl-next, .owl-prev
 {
@@ -83,6 +87,10 @@
   width: 100px !important;
 }
 
+
+.fourth-swiper .swiper-slide{
+  
+}
 
 
 @media (max-width: 768px){

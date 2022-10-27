@@ -1,0 +1,143 @@
+.myBtn{
+    border: none;
+    color: white;
+    background-color: #6DAE49;
+    padding: 8px;
+    border-radius: 60px;
+    transition: all 0.3s ease-in-out;
+}
+
+.myBtn:hover{
+    background-color: #4a7632;
+}
+
+.head th{
+    padding: 12px;
+    background-color: #6DAE49;
+    text-align: center;
+    color: white;
+}
+
+.head th:first-child{
+    border-bottom-left-radius: 40px;
+}
+
+.head th:last-child{
+    border-bottom-right-radius: 40px;
+}
+
+.head{
+    position: sticky;
+    top: 0;
+}
+
+.body th, .body td{
+    padding: 20px;
+    text-align: center;
+}
+
+
+.myTable{
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #6dae49; 
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a7632; 
+  }
+
+.my-container{
+    height: 60vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: white;
+    padding: 12px;
+    padding-top: 0px;
+}
+
+.content{
+    margin-top: 200px;
+}
+
+.remove{
+    content: url(../../assets/x-black.svg);
+    transition: all 1s ease-in-out;
+  }
+  
+  .remove:hover{
+    content: url(../../assets/x-red.svg);
+  }
+
+@media (max-width: 768px){
+    .content{
+        margin-top: 150px;
+        /* padding: 0px !important; */
+    }
+    .my-container{
+        height: fit-content;
+        padding-bottom: 0px;
+        border-radius: 16px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+
+       
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        border-radius: 0px;
+        background: #4a7632; 
+        transition: all 0.3s ease-in-out;
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #6dae49; 
+      }
+}
+
+@media (min-width: 576px){
+    .container{
+        max-width: 650px;
+    }
+}
+
+@media (min-width: 768px){
+    .container{
+        max-width: 800px;
+    }
+}
+
+@media (min-width: 992px){
+    .container{
+        max-width: 960px;
+    }
+}
+
+
+@media (min-width: 1200px){
+    .container{
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px){
+    .container{
+        max-width: 1320px;
+    }
+}

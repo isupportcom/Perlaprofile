@@ -3,13 +3,26 @@ import axios from "axios";
 import {product} from "../../adminareaproducts/adminareaproducts.component";
 import {ModalService} from "../add-image-popup/modal-service.service";
 import {CartServiceService} from "../../../cart/cart-service.service";
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { SwiperComponent } from 'swiper/angular';
 @Component({
   selector: 'app-insert-images',
   templateUrl: './insert-images.component.html',
   styleUrls: ['./insert-images.component.css']
 })
 export class InsertImagesComponent implements OnInit {
+  
+  onSwiper(e: Event) {
+
+  }
+  onSlideChange(swiper: SwiperComponent) {
+
+  }
+
+  thumbsSwiper: any;
+  setThumbsSwiper(swiper: any){
+    this.thumbsSwiper = swiper;
+  }
   products :product |any =[];
   window:boolean = false
   flag:boolean = false;

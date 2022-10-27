@@ -38,10 +38,18 @@
     transform: translate(-5px, -4px);
     transform: rotate(0deg);
   }
+
+  .descLinks{
+    transition: all 0.2s ease-in-out;
+  }
+
+  .descLinks:hover{
+    color: #6dae49;
+  }
   
 .title {
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     margin-bottom: 0px;
   }

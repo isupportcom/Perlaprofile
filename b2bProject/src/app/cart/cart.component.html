@@ -43,21 +43,9 @@
                       {{ item.name1 }}
                     </p>
                   </div>
-                  <div class="row" style="align-items: end">
-                    <button
-                      (click)="removeOne(item, i, true)"
-                      style="
-                        border: none;
-                        background-color: rgba(0, 0, 0, 0);
-                        text-align: left;
-                      "
-                    >
-                      <img
-                        src="../../assets/trash-alt.svg"
-                        alt=""
-                        srcset=""
-                        style="width: 20px; height: 20px"
-                      />
+                  <div class="row" style="align-items: end;">
+                    <button class="trash" (click)="removeOne(item,i,true)" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
+                      <img src="../../assets/trash-alt.svg" alt="" srcset="" style="width: 20px;height: 20px;">
                     </button>
                   </div>
                 </div>
@@ -197,16 +185,18 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12" style="margin-top: 12px; padding: 0">
-          <a class="goBackBtn" (click)="handleContinueShopping()" translate>
-            <img
-              style="transform: rotate(180deg)"
-              src="../../assets/chevron-right-white.svg"
-              width="18px"
-              alt=""
 
-            />
+        <div class="col-12" style="padding:0px;margin-top: 12px;">
+          <a class="clearAllBtn" (click)="clearAll(true)">
+            <img src="../../assets/trash-alt-white.svg" width="20px" alt="">
+            Καθάρισε Το Καλάθι
+          </a>
+        </div>
+        <div class="col-12" style="margin-top: 24px;padding: 0;">
+          <a class="goBackBtn" (click)="handleContinueShopping()">
+            <img style="transform: rotate(180deg);" src="../../assets/chevron-right-white.svg" width="18px" alt="">
             cart.continue
+
           </a>
         </div>
       </div>
@@ -286,12 +276,8 @@
 </div>
 
 <div class="container footer">
-  <div class="row" style="text-align: center">
-    <p style="color: black">
-      Web site created by
-      <span style="color: #6dae49; font-weight: bold">ISG Informatics</span> ⓒ
-      All rights reserved
-    </p>
+  <div class="row" style="text-align:center">
+    <p style="color: black;">Web site created by <a href="https://isg.gr/"  style="color: #6DAE49;font-weight: bold;text-decoration: none;">ISG Informatics</a> ⓒ All rights reserved</p>
   </div>
 </div>
 

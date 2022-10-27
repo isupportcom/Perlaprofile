@@ -39,9 +39,11 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   trigwnikh: boolean = true;
   FormData: FormGroup |any;
+  BankData: FormGroup |any;
   showUserDetails?: boolean;
   showPayment?: boolean;
   totalPrice: number = 0;
+  showBankCredentials: boolean = false;
 
   constructor(
     private cartService: CartServiceService,
@@ -62,6 +64,15 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     })
 
 
+    this.BankData = this.builder.group({
+      address: [{value: this.loadedUser.address, disabled: false}],
+      zipCode: [{value: this.loadedUser.zip, disabled: false}],
+      area: [{value: this.loadedUser.area, disabled: false}],
+      city: [{value: this.loadedUser.city, disabled: false}],
+    })
+
+
+
     let resData = await axios.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
       {
@@ -74,6 +85,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     for(let prod of this.products){
       this.GrandTotal += +prod.wholesale *prod.qty;
     }
+    this.GrandTotal = +this.GrandTotal.toFixed(4)
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
@@ -107,12 +119,27 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     // this.showPayment = localStorage.getItem('showPayment') == 'true'? true : false;
   }
 
+  onSubmit2(){
+    this.router.navigate(['order-completed'])
+
+  }
 
   onSubmit(FormData:any) {
     console.log(FormData)
     this.placeOrder();
   }
 
+  bankCredentials(showCredentials: boolean,row?: any){
+
+
+    if(showCredentials){
+      this.showBankCredentials = false;
+    }
+    else{
+      this.showBankCredentials = true;
+    }
+
+  }
 
   handleTrigwnikh(event: any){
     if(this.trigwnikh){

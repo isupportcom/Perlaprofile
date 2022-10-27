@@ -65,7 +65,7 @@ export class AuthService {
     console.log(username);
     console.log(password)
     return this.http.post<AuthResponseData>(
-      'https://perlarest.vinoitalia.gr/php-auth-api/login.php',
+      'https://perlarest.vinoitalia.gr/login.php',
       {
         name: username,
         password: password,
@@ -95,11 +95,11 @@ export class AuthService {
   }
 
   logout(){
-    
+
     this.user.next(null);
     // console.log("hello");
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
-    
+
 
     localStorage.removeItem('userData');
     localStorage.removeItem('username');
@@ -110,7 +110,7 @@ export class AuthService {
     this.tokenExpirationTimer = null;
     window.location.reload();
 
-    
+
   }
 
   autoLogin(){

@@ -78,19 +78,20 @@ export class LogInComponent implements OnInit, OnDestroy {
 
       authObs.subscribe((resData:any) =>{
         if(resData.success == 1){
-          console.log(resData);
-          axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
-            method:"STOCKUPDATE"
-          }).then(res=>{
-            console.log(res.data)
-            if(resData.isAdmin== "1"){
-              this.router.navigate(['dashboard/insert-products']);
-            }else{
-              this.router.navigate(['home']);
-            }
+          if(resData.isAdmin== "1"){
+            this.router.navigate(['dashboard/insert-products']);
+          }else{
+            this.router.navigate(['home']);
+          }
+          // console.log(resData);
+          // // axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
+          // //   method:"STOCKUPDATE"
+          // // }).then(res=>{
+          // //   console.log(res.data)
 
 
-          })
+
+          // })
 
         }
 

@@ -29,6 +29,7 @@ import SwiperCore, {
   Controller,
 } from 'swiper';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 SwiperCore.use([
   Navigation,
@@ -95,9 +96,11 @@ export class ProductPageComponent implements OnInit {
   productAddedToFav: boolean = false;
   added?: boolean;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.innerWidth = window.innerWidth;
+
+   filters: any;
+   @HostListener('window:resize', ['$event'])
+   onResize(event: any){
+     this.innerWidth = window.innerWidth;
 
     if (this.innerWidth < 768) {
       this.altCartAnimation = true;
@@ -132,15 +135,17 @@ export class ProductPageComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder,
-    private sanitizer: DomSanitizer,
-    private authService: AuthService,
-    private renderer: Renderer2,
-    private el: ElementRef,
-    private productsService: ProductsService,
-    private cartService: CartServiceService,
-    private http: HttpClient
-  ) {}
+      private fb :FormBuilder,
+      private sanitizer:DomSanitizer,
+      private authService :AuthService,
+      private renderer: Renderer2,
+      private el: ElementRef,
+      private productsService : ProductsService,
+      private cartService : CartServiceService,
+      private http: HttpClient,
+      private router: Router,
+      private route: ActivatedRoute
+  ) { }
 
   async ngOnInit() {
 
@@ -153,7 +158,11 @@ export class ProductPageComponent implements OnInit {
     });
 
 
-    this.productsService.mosquiProductFound.subscribe((resData) => {
+    this.route.params.subscribe((params) => {
+      this.filters = params
+    })
+
+    this.productsService.mosquiProductFound.subscribe(resData => {
       this.waitingProduct = true;
       this.showForm = false;
       setTimeout(() => {
@@ -281,14 +290,23 @@ export class ProductPageComponent implements OnInit {
     }, 200);
   }
 
-  addToCartMosqui() {
-    axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php', {
+  addToCartMosqui(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => btn.classList.remove('loading'), 3700);
+      }
+
+
+
+    axios.post(
+      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+      {
         trdr: this.loadedUser.trdr,
-      })
-      .then((resData) => {
-        this.cartService.sendProductCount(resData.data.products.length);
-      });
+      }
+    ).then(resData => {
+      this.cartService.sendProductCount(resData.data.products.length);
+    });
+    this.mosquiProduct.qty = this.qty;
 
     this.mosquiProduct.show = true;
     this.cartService.addToCart(this.mosquiProduct);
@@ -389,9 +407,15 @@ export class ProductPageComponent implements OnInit {
     console.log(this.seeLess);
   }
 
-  addToCart() {
-    axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php', {
+  addToCart(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => btn.classList.remove('loading'), 3700);
+      }
+
+    axios.post(
+      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+      {
         trdr: this.loadedUser.trdr,
       })
       .then((resData) => {
@@ -567,16 +591,32 @@ export class ProductPageComponent implements OnInit {
     this.urlOpen = true;
   }
 
-  async uploadUrl() {
-    let req = await axios.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
-      {
-        mtrl: this.product.mtrl,
-        url: this.urlVideoForm.value.video,
-      }
-    );
-    console.log(req.data);
-    this.product.video = req.data.video;
-    this.productsService.setSingleProduct(this.product);
+
+
+async uploadUrl(){
+
+
+
+  let req = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php",{
+    mtrl:this.product.mtrl,
+    url:this.urlVideoForm.value.video
+  })
+  console.log(req.data);
+  this.product.video = req.data.video
+  this.productsService.setSingleProduct(this.product);
+}
+
+ngOnDestroy(): void {
+  console.log(this.router.url.split('/')[2]);
+  console.log(this.product.category);
+  console.log(this.filters);
+
+  if(this.router.url.split('/')[2] == this.product.category){
+    this.productsService.sendFilters(this.filters);
+
   }
+
+  // /products/product-page
+
+}
 }

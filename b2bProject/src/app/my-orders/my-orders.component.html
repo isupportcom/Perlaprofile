@@ -1,60 +1,199 @@
 <app-navbar></app-navbar>
-<h1>Your Orders</h1>
-<h3>{{noOrderText}}</h3>
-<div>
-  <table class="table table-dark">
-    <thead>
-    <tr>
 
-      <th scope="col">Fincode</th>
-      <th scope="col">Findoc</th>
-      <th scope="col">Date</th>
-      <th scope="col">No Tax Ammount</th>
-      <th scope="col">Tax</th>
-      <th scope="col">Sumarry</th>
-      <th>Details</th>
+<div class="container content">
+  
+  <h1>Ιστορικό Παραγγελιών</h1>
+  <h3>{{noOrderText}}</h3>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let order of orders;">
-      <th scope="row">{{ order.FINCODE }}</th>
-      <td>{{ order.FINDOC }}</td>
-      <td>{{ order.TRNDATE }}</td>
-      <td>{{ order.NETAMNT }}</td>
-      <td>{{ order.VATAMNT }}</td>
-      <td>{{ order.SUMAMNT }}</td>
-      <td> <button class="btn btn-primary" (click)="showOrder(order.FINDOC)">Show Details</button></td>
-    </tr>
-    </tbody>
-  </table>
-  <div>
-
-
-      <table class="table table-dark" *ngIf="orderDetail">
-        <thead>
-        <tr>
-
-          <th scope="col">Code</th>
-          <th scope="col">Linenum</th>
-          <th scope="col">Lineval</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let order of orderDetail;" >
-          <th scope="row">{{ order.code }}</th>
-          <td>{{ order.linenum }}</td>
-          <td>{{ order.lineval }}</td>
-          <td>{{ order.name }}</td>
-          <td>{{ order.price }}</td>
-          <td>{{ order.qty1 }}</td>
-        </tr>
-        </tbody>
-      </table>
+  <div class="my-container">
+    <div class="container" style="padding: 0px;" *ngIf="showVertical">
+      <div class="row" style="flex-wrap: nowrap;">
+        <div style="height: fit-content;width: 100px;background-color: #6DAE49;color: white;">
+          <div class="container" style="padding: 0px;">
+            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Fincode</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Findoc</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Date</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">No Tax Ammount</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Tax</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Sumarry</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Details</p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex;" >
+          <div style="margin-right: 32px;" *ngFor="let order of orders;">
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.FINCODE }}</p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.FINDOC }}</p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.TRNDATE }}</p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.NETAMNT }}<span style="color: #6DAE49;" >&euro;</span></p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.VATAMNT }} <span style="color: #6DAE49;" >&euro;</span></p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.SUMAMNT }} <span style="color: #6DAE49;" >&euro;</span></p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px"><button class="myBtn" (click)="showOrder(order.FINDOC)">Λεπτομέριες</button></p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
 
+
+
+
+
+
+    
+    <table class="myTable" *ngIf="!showVertical">
+      <thead >
+      <tr class="head">
+  
+        <th scope="col">Fincode</th>
+        <th scope="col">Findoc</th>
+        <th scope="col">Date</th>
+        <th scope="col">No Tax Ammount</th>
+        <th scope="col">Tax</th>
+        <th scope="col">Sumarry</th>
+        <th>Details</th>
+  
+      </tr>
+      </thead>
+      <tbody class="bodyHolder">
+      <tr class="body" *ngFor="let order of orders;">
+        <th scope="row">{{ order.FINCODE }}</th>
+        <td>{{ order.FINDOC }}</td>
+        <td>{{ order.TRNDATE }}</td>
+        <td>{{ order.NETAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
+        <td>{{ order.VATAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
+        <td>{{ order.SUMAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
+        <td> <button class="myBtn" (click)="showOrder(order.FINDOC)">Λεπτομέριες</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
+
+<div *ngIf="orderDetail" style="z-index: 90000;position: fixed;top: 0;left: 0;width: 100vw;height: 100vh;background: rgba(0,0,0,0.4);">
+  <div class="container content" style="display: flex;justify-content: center;align-items: center;padding: 32px;padding-top: 0px;">
+    <div *ngIf="!showVertical" class="container">
+      <div class="row" style="text-align: right;display: block;">
+        <a (click) = "close()" style="width: fit-content;cursor: pointer;">
+          <img class="remove" alt=""  style="width: 32px;" srcset="">
+        </a>
+      </div>
+      <div class="row">
+        <table class="myTable" style="background-color: white;">
+          <thead>
+          <tr class="head">
+      
+            <th scope="col">Code</th>
+            <th scope="col">Linenum</th>
+            <th scope="col">Lineval</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+      
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="body"  *ngFor="let order of orderDetail;" >
+            <th scope="row">{{ order.code }}</th>
+            <td>{{ order.linenum }}</td>
+            <td>{{ order.lineval }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.price }}&euro;</td>
+            <td>{{ order.qty1 }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="my-container" style="background-color: rgba(0,0,0,0);overflow: hidden;" *ngIf="showVertical">
+      <div class="container" >
+        <div class="row" style="text-align: right;display: block;">
+          <a (click) = "close()" style="width: fit-content;cursor: pointer;padding: 0px;">
+            <img class="remove" alt=""  style="width: 32px;" srcset="">
+          </a>
+        </div>
+      </div>
+    
+    <div class="container" style="padding: 0px;width: fit-content;" >
+      <div class="row" style="flex-wrap: nowrap;background-color: white;overflow-x: scroll;">
+        <div style="height: 100%;width: 100px;background-color: #6DAE49;color: white;">
+          <div class="container" style="padding: 0px;">
+            <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Code</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Linenum</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Lineval</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Name</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Price</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Quantity</p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex;" >
+          <div style="margin-right: 32px;" *ngFor="let order of orderDetail;">
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.code }}</p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.linenum }}</p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.lineval }}</p>
+            </div>
+            <div style="height: 120px;justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.name }}</p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.price }} <span style="color: #6DAE49;" >&euro;</span></p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.qty1 }}</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+<app-footer></app-footer>
