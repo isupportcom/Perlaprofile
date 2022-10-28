@@ -1,0 +1,53 @@
+<!-- <div  style="position: fixed; z-index: 100; background: rgba(0, 0, 0, 0.5);width: 100vw;height: 100vh; text-align: center;padding-top: 10%; padding-left: 15%;">
+  <div style="background-color: white; width: 50%;height: auto; border-radius: 16px;padding-top: 2%;">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-lg-3" *ngFor="let image of images">
+        <button (click)="sendNUDES(image)">
+          <img
+            [src]="image"
+            height="50px"
+            width="50px"
+            alt="PRODUCT IMAGE"
+          />
+        </button>
+
+
+
+      </div>
+    </div>
+    <button (click)="close()">X</button>
+  </div>
+</div> -->
+
+
+<div style="position: fixed; z-index: 1000; background: rgba(0, 0, 0, 0.5);width: 100vw;height: 100vh;">
+  <div class="container">
+    <div class="row" style="height: 100vh;justify-content: center;align-items: center;padding: 100px;">
+      <div class="container" style="background-color: white;border-radius: 16px;padding: 24px;">
+        <div class="row">
+          <div class="col-6" style="text-align: left;">
+            <h1>Media Gallery</h1>
+          </div>
+          <div class="col-6" style="text-align: right;">
+            <a (click) = "close()" style="width: fit-content;cursor: pointer;">
+              <img class="remove" alt=""  style="width: 32px;" srcset="">
+            </a> 
+          </div>
+        </div>
+        <div class="row" style="justify-content: center;align-items: center;">
+          <hr style="opacity: 1;border: 1px solid #6dae49;">
+        </div>
+        <div class="row" style="height: 600px;overflow:scroll">
+          <div class="col-3 " *ngFor="let image of images" style="padding: 12px;">
+              <a (click)="sendNUDES(image)">
+                <img [src]="image" class="image" style="cursor: pointer;" width="250px" height="250px" alt="" srcset="">
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

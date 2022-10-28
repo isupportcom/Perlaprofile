@@ -1,0 +1,190 @@
+Date : 2022-09-09 15:31:48
+Directory : c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app
+Total : 132 files,  22736 codes, 356 comments, 3537 blanks, all 26629 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| CSS        |         29 |     18,554 |        139 |      2,328 |     21,021 |
+| TypeScript |         74 |      3,152 |        115 |        988 |      4,255 |
+| HTML       |         29 |      1,030 |        102 |        221 |      1,353 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                   |        132 |     22,736 |        356 |      3,537 |     26,629 |
+| AdminArea                                                                                                                           |         56 |     16,159 |         42 |      1,961 |     18,162 |
+| AdminArea\admin-area                                                                                                                |          4 |      7,542 |         10 |        837 |      8,389 |
+| AdminArea\admin-nav                                                                                                                 |          4 |      7,624 |         11 |        858 |      8,493 |
+| AdminArea\adminareaproducts                                                                                                         |          4 |         67 |         15 |         25 |        107 |
+| AdminArea\adminareausers                                                                                                            |          4 |         62 |          0 |         17 |         79 |
+| AdminArea\components                                                                                                                |         40 |        864 |          6 |        224 |      1,094 |
+| AdminArea\components\add-image-popup                                                                                                |          6 |         90 |          0 |         29 |        119 |
+| AdminArea\components\allimages                                                                                                      |          4 |         50 |          0 |         19 |         69 |
+| AdminArea\components\insert-categories                                                                                              |          4 |         40 |          0 |         13 |         53 |
+| AdminArea\components\insert-products                                                                                                |          4 |        148 |          1 |         43 |        192 |
+| AdminArea\components\offers                                                                                                         |          4 |        104 |          1 |         18 |        123 |
+| AdminArea\components\pop-up-login                                                                                                   |          4 |        152 |          4 |         18 |        174 |
+| AdminArea\components\searchbar                                                                                                      |          4 |         79 |          0 |         22 |        101 |
+| AdminArea\components\update-categories                                                                                              |          4 |         40 |          0 |         13 |         53 |
+| AdminArea\components\upload-image                                                                                                   |          6 |        161 |          0 |         49 |        210 |
+| cart                                                                                                                                |         10 |        686 |         35 |        192 |        913 |
+| cart\cart-item                                                                                                                      |          4 |        197 |          0 |         47 |        244 |
+| checkout-page                                                                                                                       |          4 |        329 |         14 |         71 |        414 |
+| footer                                                                                                                              |          4 |        130 |          0 |         21 |        151 |
+| homepage                                                                                                                            |          4 |      2,585 |         39 |        465 |      3,089 |
+| log-in                                                                                                                              |          4 |        142 |         10 |         48 |        200 |
+| my-orders                                                                                                                           |          4 |        111 |          0 |         22 |        133 |
+| navbar                                                                                                                              |          4 |        168 |         37 |         72 |        277 |
+| porducts                                                                                                                            |         17 |      1,513 |        161 |        444 |      2,118 |
+| porducts\product-list                                                                                                               |          4 |        752 |         54 |        212 |      1,018 |
+| porducts\product-page                                                                                                               |          3 |        390 |         98 |         99 |        587 |
+| porducts\single-product                                                                                                             |          4 |        202 |          8 |         69 |        279 |
+| profile                                                                                                                             |          4 |         47 |          0 |         15 |         62 |
+| services                                                                                                                            |          7 |        268 |         16 |         77 |        361 |
+| shared                                                                                                                              |          5 |         59 |          0 |         16 |         75 |
+| shared\product-added-to-cart                                                                                                        |          5 |         59 |          0 |         16 |         75 |
+| spinner                                                                                                                             |          4 |        110 |          1 |         13 |        124 |
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                            | language   | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-area\admin-area.component.css                              | CSS        |      7,507 |         10 |        822 |      8,339 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-area\admin-area.component.html                             | HTML       |          3 |          0 |          2 |          5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-area\admin-area.component.spec.ts                          | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-area\admin-area.component.ts                               | TypeScript |         14 |          0 |          7 |         21 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-nav\admin-nav.component.css                                | CSS        |      7,512 |         10 |        823 |      8,345 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-nav\admin-nav.component.html                               | HTML       |         45 |          1 |         14 |         60 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-nav\admin-nav.component.spec.ts                            | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-nav\admin-nav.component.ts                                 | TypeScript |         49 |          0 |         15 |         64 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\adminareaproducts\adminareaproducts.component.css                | CSS        |         12 |          0 |          1 |         13 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\adminareaproducts\adminareaproducts.component.html               | HTML       |          4 |         15 |          6 |         25 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\adminareaproducts\adminareaproducts.component.spec.ts            | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\adminareaproducts\adminareaproducts.component.ts                 | TypeScript |         33 |          0 |         12 |         45 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\adminareausers\adminareausers.component.css                      | CSS        |          9 |          0 |          1 |         10 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\adminareausers\adminareausers.component.html                     | HTML       |         10 |          0 |          4 |         14 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\adminareausers\adminareausers.component.spec.ts                  | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\adminareausers\adminareausers.component.ts                       | TypeScript |         25 |          0 |          6 |         31 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\add-image-popup.component.css         | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\add-image-popup.component.html        | HTML       |         16 |          0 |          4 |         20 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\add-image-popup.component.spec.ts     | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\add-image-popup.component.ts          | TypeScript |         29 |          0 |          8 |         37 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\modal-service.service.spec.ts         | TypeScript |         12 |          0 |          5 |         17 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\modal-service.service.ts              | TypeScript |         15 |          0 |          5 |         20 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\allimages\allimages.component.css                     | CSS        |          0 |          0 |          2 |          2 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\allimages\allimages.component.html                    | HTML       |         11 |          0 |          4 |         15 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\allimages\allimages.component.spec.ts                 | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\allimages\allimages.component.ts                      | TypeScript |         21 |          0 |          7 |         28 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-categories\insert-categories.component.css     | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-categories\insert-categories.component.html    | HTML       |         11 |          0 |          1 |         12 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-categories\insert-categories.component.spec.ts | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-categories\insert-categories.component.ts      | TypeScript |         11 |          0 |          5 |         16 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-products\insert-products.component.css         | CSS        |          3 |          0 |          1 |          4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-products\insert-products.component.html        | HTML       |         51 |          0 |         11 |         62 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-products\insert-products.component.spec.ts     | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-products\insert-products.component.ts          | TypeScript |         76 |          1 |         25 |        102 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\offers\offers.component.css                           | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\offers\offers.component.html                          | HTML       |         41 |          0 |          7 |         48 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\offers\offers.component.spec.ts                       | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\offers\offers.component.ts                            | TypeScript |         45 |          1 |          4 |         50 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\pop-up-login\pop-up-login.component.css               | CSS        |          3 |          0 |          1 |          4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\pop-up-login\pop-up-login.component.html              | HTML       |         35 |          1 |          2 |         38 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\pop-up-login\pop-up-login.component.spec.ts           | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\pop-up-login\pop-up-login.component.ts                | TypeScript |         96 |          3 |          9 |        108 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\searchbar\searchbar.component.css                     | CSS        |          7 |          0 |          5 |         12 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\searchbar\searchbar.component.html                    | HTML       |          7 |          0 |          2 |          9 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\searchbar\searchbar.component.spec.ts                 | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\searchbar\searchbar.component.ts                      | TypeScript |         47 |          0 |          9 |         56 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\update-categories\update-categories.component.css     | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\update-categories\update-categories.component.html    | HTML       |         11 |          0 |          1 |         12 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\update-categories\update-categories.component.spec.ts | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\update-categories\update-categories.component.ts      | TypeScript |         11 |          0 |          5 |         16 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\upload-image\upload-image.component.css               | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\upload-image\upload-image.component.html              | HTML       |         18 |          0 |         11 |         29 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\upload-image\upload-image.component.spec.ts           | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\upload-image\upload-image.component.ts                | TypeScript |         90 |          0 |         18 |        108 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\upload-image\upload-image.service.spec.ts             | TypeScript |         12 |          0 |          5 |         17 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\upload-image\upload-image.service.ts                  | TypeScript |         23 |          0 |          8 |         31 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.component.css                                                          | CSS        |         23 |          0 |         10 |         33 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.component.html                                                         | HTML       |         68 |          0 |         16 |         84 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.component.spec.ts                                                      | TypeScript |         27 |          0 |          5 |         32 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.component.ts                                                           | TypeScript |        157 |          1 |         61 |        219 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.module.ts                                                              | TypeScript |        154 |          0 |         28 |        182 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart-item\cart-item.component.css                                     | CSS        |        141 |          0 |         29 |        170 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart-item\cart-item.component.html                                    | HTML       |         16 |          0 |          1 |         17 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart-item\cart-item.component.spec.ts                                 | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart-item\cart-item.component.ts                                      | TypeScript |         22 |          0 |         11 |         33 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart-service.service.spec.ts                                          | TypeScript |         12 |          0 |          5 |         17 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart-service.service.ts                                               | TypeScript |        106 |         26 |         48 |        180 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart.component.css                                                    | CSS        |        164 |          0 |         29 |        193 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart.component.html                                                   | HTML       |         64 |          0 |         11 |         75 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart.component.spec.ts                                                | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart.component.ts                                                     | TypeScript |        125 |          9 |         46 |        180 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\checkout-page\checkout-page.component.css                                  | CSS        |         78 |         11 |         18 |        107 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\checkout-page\checkout-page.component.html                                 | HTML       |        102 |          0 |          9 |        111 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\checkout-page\checkout-page.component.spec.ts                              | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\checkout-page\checkout-page.component.ts                                   | TypeScript |        131 |          3 |         38 |        172 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\footer\footer.component.css                                                | CSS        |         57 |          0 |          8 |         65 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\footer\footer.component.html                                               | HTML       |         44 |          0 |          2 |         46 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\footer\footer.component.spec.ts                                            | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\footer\footer.component.ts                                                 | TypeScript |         11 |          0 |          5 |         16 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\homepage\homepage.component.css                                            | CSS        |      2,411 |         39 |        434 |      2,884 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\homepage\homepage.component.html                                           | HTML       |         77 |          0 |          7 |         84 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\homepage\homepage.component.spec.ts                                        | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\homepage\homepage.component.ts                                             | TypeScript |         79 |          0 |         18 |         97 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\log-in\log-in.component.css                                                | CSS        |          7 |          0 |          3 |         10 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\log-in\log-in.component.html                                               | HTML       |         32 |          2 |         15 |         49 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\log-in\log-in.component.spec.ts                                            | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\log-in\log-in.component.ts                                                 | TypeScript |         85 |          8 |         24 |        117 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\my-orders\my-orders.component.css                                          | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\my-orders\my-orders.component.html                                         | HTML       |         53 |          0 |          8 |         61 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\my-orders\my-orders.component.spec.ts                                      | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\my-orders\my-orders.component.ts                                           | TypeScript |         40 |          0 |          7 |         47 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\navbar\navbar.component.css                                                | CSS        |         14 |          0 |          1 |         15 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\navbar\navbar.component.html                                               | HTML       |         26 |         27 |         13 |         66 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\navbar\navbar.component.spec.ts                                            | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\navbar\navbar.component.ts                                                 | TypeScript |        110 |         10 |         52 |        172 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\categories.model.ts                                               | TypeScript |          3 |          0 |          1 |          4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\porducts.component.css                                            | CSS        |         13 |          0 |          7 |         20 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\porducts.component.html                                           | HTML       |          7 |          1 |          9 |         17 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\porducts.component.spec.ts                                        | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\porducts.component.ts                                             | TypeScript |         50 |          0 |         15 |         65 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-list\product-list.component.css                           | CSS        |        179 |          1 |         47 |        227 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-list\product-list.component.html                          | HTML       |        185 |         18 |         25 |        228 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-list\product-list.component.spec.ts                       | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-list\product-list.component.ts                            | TypeScript |        370 |         35 |        134 |        539 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-page\product-page.component.css                           | CSS        |        249 |         65 |         52 |        366 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-page\product-page.component.html                          | HTML       |         69 |         32 |         24 |        125 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-page\product-page.component.ts                            | TypeScript |         72 |          1 |         23 |         96 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\products.service.ts                                               | TypeScript |         78 |          0 |         26 |        104 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\single-product\single-product.component.css                       | CSS        |         85 |          2 |         25 |        112 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\single-product\single-product.component.html                      | HTML       |         19 |          5 |          8 |         32 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\single-product\single-product.component.spec.ts                   | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\single-product\single-product.component.ts                        | TypeScript |         80 |          1 |         30 |        111 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\profile\profile.component.css                                              | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\profile\profile.component.html                                             | HTML       |          3 |          0 |          2 |          5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\profile\profile.component.spec.ts                                          | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\profile\profile.component.ts                                               | TypeScript |         26 |          0 |          6 |         32 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\services\admin.guard.spec.ts                                               | TypeScript |         12 |          0 |          5 |         17 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\services\admin.guard.ts                                                    | TypeScript |         27 |          5 |          6 |         38 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\services\auth-interceptor.service.ts                                       | TypeScript |         20 |          0 |          4 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\services\auth.guard.ts                                                     | TypeScript |         27 |          5 |          5 |         37 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\services\auth.service.spec.ts                                              | TypeScript |         12 |          0 |          5 |         17 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\services\auth.service.ts                                                   | TypeScript |        161 |          3 |         48 |        212 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\services\user.model.ts                                                     | TypeScript |          9 |          3 |          4 |         16 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\shared\product-added-to-cart\checkout.guard.ts                             | TypeScript |         28 |          0 |          2 |         30 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\shared\product-added-to-cart\product-added-to-cart.component.css           | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\shared\product-added-to-cart\product-added-to-cart.component.html          | HTML       |          1 |          0 |          1 |          2 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\shared\product-added-to-cart\product-added-to-cart.component.spec.ts       | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\shared\product-added-to-cart\product-added-to-cart.component.ts            | TypeScript |         12 |          0 |          6 |         18 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\spinner\spinner.component.css                                              | CSS        |         80 |          1 |          1 |         82 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\spinner\spinner.component.html                                             | HTML       |          1 |          0 |          1 |          2 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\spinner\spinner.component.spec.ts                                          | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\spinner\spinner.component.ts                                               | TypeScript |         11 |          0 |          5 |         16 |
+| Total                                                                                                                               |            |     22,736 |        356 |      3,537 |     26,629 |
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

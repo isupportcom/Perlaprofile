@@ -1,1 +1,19 @@
+*{
+    font-family: 'Commissioner';
+}
+
+
+.container1{
+    padding: 0% 10%;
+}
+
+.heroImg{
+    
+    z-index: 0;
+    margin-top: -6%;
+}
+
+.row{
+    --bs-gutter-x: 0rem;
+}
 

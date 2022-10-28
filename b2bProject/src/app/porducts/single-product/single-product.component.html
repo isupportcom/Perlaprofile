@@ -1,22 +1,167 @@
-
-
-<div id="productCard" (mouseover)="handleHover()" (mouseleave)="handleMouseLeave()"  #productCard >
-    <div id="productImg" #productImg>
-      <img src="../../../assets/35S-35SD.jpg" alt="" width="100%" height="100%" />
-    </div>
-    <div id="productTitle" (click)="handleClick()" #productTitle><p>{{ index.name }}</p></div>
-    <div id="productDescription" #productDescription>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<!-- <div
+  class="row"
+  style="
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);
+  "
+>
+  <div class="col col-6" style="padding: 0px; cursor: pointer">
+    <img
+      (click)="handleClick()"
+      class="image"
+      style="border-top-left-radius: 8px; border-bottom-left-radius: 8px"
+      [src]="index.img"
+    />
+  </div>
+  <div class="col col-6" style="padding: 8px">
+    <p class="itemTitle" style="cursor: pointer" (click)="handleClick()">
+      <strong *ngIf="currentLang == 'el'">{{ index.product_name }}</strong
+      >
+      <strong *ngIf="currentLang == 'en'">{{ index.product_name_eng }}</strong
+        >
+      <br />
+    </p>
+    <p class="itemDescription">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br />
+    </p>
+    <img
+      [ngClass]="!loggedIn ? 'itemHr' : 'itemHr2'"
+      style="width: 100%"
+      src="../../../assets/Line%208.svg"
+    />
+    <p class="details"><strong>Order number</strong>: XXXXXXXXX<br /></p>
+    <p class="details"><strong>Stock</strong>: {{ index.stock }}<br /></p>
+    <button
+      *ngIf="!loggedIn"
+      class="btn btn-primary seeMoreBtn"
+      type="button"
+      (click)="handleClick()"
+    >
+      Δες Περισσότερα
+    </button>
+    <div *ngIf="loggedIn" class="row logged-in-btns" style="margin-left: 0px">
+      <p *ngIf="!index.hasOffer" style="margin-bottom: 4px; padding-left: 0px">
+        Τιμή: {{ index.wholesale }}&euro;
       </p>
-    </div>
-    <div id="productPrice" #productPrice>
-      <p>Price</p>
-      <h2>{{ index.wholesale }}&#x20AC;</h2>
-    </div>
-    <div id="addToCart" (mouseover)="handleBtnHover()" (mouseleave)="handleBtnMouseLeave()"  #addToCart>
-      <input type="number" class="form-control" style="width: 20%; display: inline-block;" [disabled]="index.stock == 0 "  [(ngModel)]="index.qty" min="1" [max]="index.stock">
-      <button (click)="handleAddToCart()" id="addToCartBtn" #addToCartBtn [disabled]="index.stock == 0">Add to cart</button>
-      <span>({{index.stock}})</span>
+      <p
+        *ngIf="index.hasOffer"
+        class="col-5"
+        style="
+          margin-bottom: 4px;
+          padding-left: 0px;
+          text-decoration: line-through;
+          color: red;
+        "
+      >
+        Τιμή: {{ index.wholesale }}&euro;
+      </p>
+      <p
+        *ngIf="index.hasOffer"
+        class="col-6"
+        style="margin-bottom: 4px; padding-left: 0px"
+      >
+        Τιμή: {{ index.offer }}&euro;
+      </p>
+ -->
+
+
+      <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
+          <div class="col col-6" style="padding: 0px;cursor: pointer;"><img (click)="handleClick()" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" [src]="index.img"></div>
+          <div class="col col-6" style="padding: 8px;">
+              <p class="itemTitle" style="cursor: pointer;" (click)="handleClick()"><strong>{{ index.product_name }}</strong><br></p>
+              <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
+              <img  [ngClass]="!loggedIn? 'itemHr' : 'itemHr2'" style="width: 100%;" src="../../../assets/Line%208.svg">
+              <p class="details" *ngIf="loggedIn"><strong>Διαθέσιμα</strong>: {{index.stock}}<br></p>
+              <p class="details"><strong>Τεχνικός Κωδικός</strong>: {{ index.texnikos_kodikos }}<br></p>
+              <button *ngIf="!loggedIn" class="btn btn-primary seeMoreBtn" type="button" (click)="handleClick()">Δες Περισσότερα</button>
+              <div *ngIf="loggedIn"  class="row logged-in-btns" style="margin-left: 0px">
+                <p *ngIf="!index.hasOffer" style="margin-bottom: 4px;padding-left: 0px;">Τιμή: {{index.wholesale}}&euro;</p>
+                <p *ngIf="index.hasOffer" class="col-5" style="margin-bottom: 4px;padding-left: 0px; text-decoration:line-through ;opacity: 0.3;">Τιμή: {{index.wholesale}}&euro;</p>
+                <p *ngIf="index.hasOffer" class="col-6" style="margin-bottom: 4px;padding-left: 0px;color: #6DAE49;font-weight: 600;">Τιμή: {{index.offer}}&euro;</p>
+
+                <button class="button col-8" style="transition: background-color 0.2s ease-in-out;" (click)="handleAddToCart(addToCartBtn)"
+                [disabled]="index.stock == 0" #addToCartBtn>
+                  <span>Add to cart</span>
+                  <div class="cart">
+                  <svg viewBox="0 0 36 26">
+                    <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
+                    <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                  </svg>
+                  </div>
+                  </button>
+
+                <!-- <button
+                  #addToCartBtn
+                  class="cart-button col-8"
+                  (click)="handleAddToCart(addToCartBtn)"
+                  [disabled]="index.stock == 0"
+                  >
+                    <span class="add-to-cart">Προσθήκη</span>
+                    <span class="added">Προστέθηκε</span>
+                    <fa-icon id="firstFa" [icon]="faShoppingCart"></fa-icon>
+                    <fa-icon id="secondFa" [icon]="faBox"></fa-icon>
+                    
+                </button> -->
+                <button (click)="handleAddToFavorite(index)" style="border: none;background-color: rgba(0,0,0,0);" class="col-4">
+                  <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
+                </button>
+
+              </div>
+
+          </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="productCard">
+  <div class="row">
+    <img [src]="index.img" class="col-12 productImg" alt="productImg" />
+  </div>
+  <div class="row productTitle" (click)="handleClick()">
+    <p class="col-12">{{ index.name }}</p>
+  </div>
+  <hr class="lines" />
+  <div class="row stock">
+    <p>Stock: {{ index.stock }}</p>
+  </div>
+  <hr class="lines" />
+
+  <div class="row price">
+    <p *ngIf="!index.hasOffer">{{ index.wholesale }}&#x20AC;</p>
+    <div *ngIf="index.hasOffer">
+      <p style="color: red; text-decoration: line-through">
+        {{ index.wholesale }}&euro;
+      </p>
+      <p>{{ index.offer }}&euro;</p>
     </div>
   </div>
+
+  <div class="row" style="padding-left: 24px; padding-right: 24px">
+    <button
+      class="myBtn"
+      (click)="handleAddToCart()"
+      [disabled]="index.stock == 0"
+    >
+      Προσθήκη
+    </button>
+
+    <button
+      style="margin-top: 10px"
+      class="myBtn"
+      (click)="handleAddToFavorite(index)"
+      [disabled]="index.stock == 0"
+    >
+      Προσθήκη Στα Αγαπημένα
+    </button>
+  </div>
+</div> -->

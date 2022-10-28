@@ -1,34 +1,227 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0px 10px;">
-  <a class="navbar-brand" href="#">[Logo]</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('edit-products')">Products</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" (click)="navigateTo('users')">Users</a>
-      </li>
-
-      <li  class="nav-item ">
-        <a class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="navigateTo('products')">
-          View Site
-        </a>
-
-
-      </li>
-
-    </ul>
-    <ul class="navbar nav ms-auto" >
-      <li class="nav-item me-auto">
+    <div>
+      <div class="container" style="margin: 0px;width: fit-content;padding: 24px;background-color: white;border-radius: 60px;box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);">
+        <div class="row">
+            <img src="../../../assets/LogoSmall.svg" width="32px" height="32px" style="margin-bottom: 40px;padding-left: 8px;padding-right: 16px;" alt="">
+        </div>
+        <div class="row" class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a routerLink="/home" class="row my-nav-item" (mouseover)="handleOver(home)" (mouseleave)="handleLeave(home)" #home>
+              <div class="col-4">
+                <img src="../../../assets/bxs_home.svg" alt="">
+              </div>
+              <div class="col-8" style="justify-content: center;align-items: center;">
+                <p style="color: white;opacity: 0;transition: all 0.4s ease-in-out;margin: 0px;">Αρχική</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a routerLink="/dashboard/insert-products" class="row my-nav-item" (mouseover)="handleOver(products)" (mouseleave)="handleLeave(products)" #products>
+              <div class="col-4">
+                <img src="../../../assets/bxs_shopping-bag.svg" alt="">
+              </div>
+              <div class="col-8" style="justify-content: center;align-items: center;">
+                <p style="margin: 0px;color: white;opacity: 0;transition: all 0.4s ease-in-out;">Προϊόντα</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a routerLink="/dashboard/update-categories" class="row my-nav-item" (mouseover)="handleOver(categories)" (mouseleave)="handleLeave(categories)" #categories>
+              <div class="col-4">
+                <img src="../../../assets/carbon_collapse-categories.svg" alt="">
+              </div>
+              <div class="col-8" style="justify-content: center;align-items: center;">
+                <p style="color: white;opacity: 0;transition: all 0.4s ease-in-out;margin: 0px;">Κατηγορίες</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a routerLink="/dashboard/update-colors" class="row my-nav-item" (mouseover)="handleOver(ral)" (mouseleave)="handleLeave(ral)" #ral>
+              <div class="col-4">
+                <img src="../../../assets/clarity_color-palette-solid.svg" alt="">
+              </div>
+              <div class="col-8" style="justify-content: center;align-items: center;">
+                <p style="color: white;opacity: 0;transition: all 0.4s ease-in-out;margin: 0px;font-size: 14px;">Χρώματα RAL</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a routerLink="/dashboard/pdf/upload" class="row my-nav-item" style="padding-left: 2px;"  (mouseover)="handleOver(pdf)" (mouseleave)="handleLeave(pdf)" #pdf>
+              <div class="col-4">
+                <img src="../../../assets/fa6-solid_file-pdf.svg" alt="">
+              </div>
+              <div class="col-8" style="align-items: center;">
+                <p style="color: white;opacity: 0;transition: all 0.4s ease-in-out;margin: 0px;font-size: 14px;">Επεξεργασία PDF</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a routerLink="/dashboard/image/upload" class="row my-nav-item2" (mouseover)="handleOver(img)" (mouseleave)="handleLeave(img)" #img>
+              <div class="col-4">
+                <img src="../../../assets/bxs_image-add.svg" alt="">
+              </div>
+              <div class="col-8" style="align-items: center;">
+                <p style="color: white;opacity: 0;transition: all 0.4s ease-in-out;margin: 0px;font-size: 14px;">Επεξεργασία Φωτογραφιών</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 44px; padding: 0px;text-align: center;">
+          <a class="showAll" (mouseover)="handleShowAllOver([home,products,categories,ral,pdf,img])" (mouseleave)="handleShowAllLeave([home,products,categories,ral,pdf,img])">
+              <img src="../../../assets/showAll.svg" style="width: 20px;height: 20px;" alt="">
+              
+            </a>
         
-        <button class="btn btn-primary me-auto" (click)="logout()" >Log Out</button>
-      </li>
-    </ul>
-  </div>
-</nav>
+        </div>
+      </div>
+    </div>
 
 
-<!-- (click)="logOut()" -->
+
+  <!-- <div style="display: flex;justify-content: center;align-items: center;width: fit-content;height: 100vh;">
+    
+      <div class="container" style="padding: 24px;background-color: white;border-radius: 60px;box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);">
+        <div class="row" style="margin-bottom: 44px;">
+          <a class="nav-item" (mouseover)="handleOver()" (mouseleave)="handleLeave()">
+                <img src="../../../assets/bxs_home.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/bxs_shopping-bag.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/carbon_collapse-categories.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/clarity_color-palette-solid.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/fa6-solid_file-pdf.svg" alt="">
+          </a>
+        </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <a>
+            <img src="../../../assets/bxs_image-add.svg" alt="">
+          </a>
+        </div>
+        <div class="row">
+          <a>
+            <img src="../../../assets/bxs_offer.svg" alt="">
+          </a>
+        </div>
+      </div> -->
+
+    
+
+    <!-- <nav > -->
+  
+  
+  
+  
+      <!-- <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div>
+      <h1><a class="logo">Perlaprofil</a></h1>
+      <ul class="list-unstyled components mb-5">
+        <li class="active">
+          <a style="cursor: pointer;" (click)="handleHomepage()"><span class="fa fa-home mr-3" ></span> Homepage</a>
+        </li>
+  
+        <li (click)="showContent(4)">
+          <a > Update Products</a>
+        </li>
+  
+  
+  
+        <li (click)="showContent(5)">
+          <a > Update Categories</a>
+        </li>
+        <li (click)="showContent(12)">
+          <a > Update Mosqui Colors</a>
+        </li>
+        <li  class="nav-item dropdown">
+          <a (click)="content()" #optionsToggler class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PDF
+          </a>
+  
+         <ul class="ulAdmin" #options [ngClass]="
+         showList
+           ? makeSmallerDropDown
+             ? 'dropdown-menu my-dropdown-sm show'
+             : 'dropdown-menu my-dropdown show'
+           : 'dropdown-menu'
+       ">
+          <li (click)="showContent(13)">
+            <a > Upload PDF</a>
+          </li>
+          <li (click)="showContent(14)">
+            <a >Insert PDF To Product</a>
+          </li>
+        </ul>
+  
+  
+  <li  class="nav-item dropdown" >
+    <a (click)="showImages()" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #imgTogler>
+      Images
+    </a>
+  <ul #img
+    class="ulAdmin"
+    [ngClass]="
+    showImg
+      ? makeSmallerDropDown
+        ? 'dropdown-menu my-dropdown-sm show'
+        : 'dropdown-menu my-dropdown show'
+      : 'dropdown-menu'
+  ">
+  
+  
+    <li (click)="showContent(9)">
+      <a > Upload Image</a>
+    </li>
+    <li (click)="showContent(10)">
+      <a >Insert Image To Product</a>
+    </li>
+  </ul>
+  
+  
+  </ul> -->
+  
+  <!-- </nav> -->
+  
+    <!-- Page Content  -->
+    <!-- <div id="content" class="p-4 p-md-5 pt-5 center">
+  
+  
+      <app-insert-products *ngIf="component==4"></app-insert-products>
+      <app-update-categories *ngIf="component==5"></app-update-categories>
+      <app-insert-categories *ngIf="component==6"></app-insert-categories>
+  
+      <app-update-colors *ngIf="component==12"></app-update-colors>
+      <app-upload-image *ngIf="component==9"></app-upload-image>
+      <app-insert-images *ngIf="component==10"></app-insert-images>
+      <app-upload-pdf *ngIf="component==13"></app-upload-pdf>
+      <app-insert-pdf *ngIf="component==14"></app-insert-pdf>
+    </div> -->
+
+  <!-- </div> -->
+
+

@@ -1,0 +1,119 @@
+.content{
+    margin-top: 200px;
+}
+
+@media (max-width: 768px){
+    .content{
+        margin-top: 150px;
+    }
+}
+ 
+
+.center{
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    color: rgba(0,0,0,0.5);
+}
+
+button{
+    width: fit-content;
+    padding: 8px 72px;
+    border: none;
+    background-color: #6DAE49;
+    color: white;
+    border-radius: 8px;
+    margin-top: 44px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:active{
+    transform: scale(0.95);
+}
+
+button:hover{
+    background-color: #4a7632;
+}
+
+.wrapper{
+    position: relative;
+    height: 250px;
+}
+
+.cart{
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: -200px; 
+    animation-name: cartAnimation;
+    animation-timing-function:cubic-bezier(0.23, 1, 0.320, 1);
+    animation-duration: 2s;
+    animation-delay: 1.5s;
+    animation-fill-mode: both;
+}
+
+@media (max-width: 768px){
+    .cart{
+        width: 150px;
+        animation-name: cartAnimation768;
+    }
+    .wrapper{
+        height: 200px;
+    }
+}
+
+@media (max-width: 450px){
+    .cart{
+        animation-name: cartAnimation450;
+    }
+}
+
+@keyframes cartAnimation450 {
+    0%{
+        left: -200px;
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(-12deg);
+    }
+    70%{
+        transform: rotate(0deg);
+    }
+    100%{
+        left: 28%;
+    }
+}
+
+@keyframes cartAnimation768 {
+    0%{
+        left: -200px;
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(-12deg);
+    }
+    90%{
+        transform: rotate(0deg);
+    }
+    100%{
+        left: 33%;
+    }
+}
+
+@keyframes cartAnimation {
+    0%{
+        left: -200px;
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(-12deg);
+    }
+    90%{
+        transform: rotate(0deg);
+    }
+    100%{
+        left: 40%;
+    }
+}
