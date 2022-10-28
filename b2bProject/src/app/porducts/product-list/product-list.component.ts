@@ -162,16 +162,16 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   async ngOnInit(){
     this.currentLang = localStorage.getItem('lang') || 'el'
-  
-    
-    
+
+
+
     this.waiting = true;
     setTimeout(() => {
       this.waiting = false;
     },800)
 
 
-    
+
 
 
     this.contactForm = this.fb.group({
@@ -217,7 +217,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     if (this.innerWidth <= 768) {
       this.showBigFilters = false;
     } else {
-      
+
       this.showBigFilters = true;
     }
 
@@ -250,15 +250,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
       );
     });
     console.log(JSON.parse(localStorage.getItem('products') || '{}'));
- 
+
     console.log(this.mainCategory.id);
     setTimeout(()=>{
-      axios.post('https://perlarest.vinoitalia.gr/products/getProducts.php',{
-        category_id:this.mainCategory.id
-      })
+      axios.post('https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php/?id=2&method=allProducts/')
       .then(async (resData: any) => {
         console.log(resData.data);
-   
+
         console.log(resData.data);
         this.shownProducts = resData.data.products;
         setTimeout(() => {
@@ -283,25 +281,25 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.listArray = [];
 
 
-        
+
 
         this.productsService.prevfilters.subscribe(resData => {
           console.log("EIMMAI MESA");
           console.log(resData);
-          
+
           this.listArray = [];
           this.filterList = Object.values(resData)
-          
-          
-          
+
+
+
           for(let filter of this.filterList){
             this.listArray.push(filter);
           }
-          
-          
+
+
           setTimeout(() => {
             console.log(this.filters);
-            
+
             for(let i=0; i<this.filters.length; i++){
               for(let id of this.listArray){
                 if(id === this.filters[i].value){
@@ -315,12 +313,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
             this.executed = true;
           },300)
         })
-        
+
           // this.updateProducts();
-        
+
 
         // setTimeout(() => {
-          
+
         //   for(let filter of this.filters){
         //     if(filter.checked){
         //       this.handleCheckboxes(filter)
@@ -329,19 +327,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         //   for(let filter of this.filters2){
         //     if(filter.checked){
-              
-              
+
+
         //       this.handleCheckboxes(filter)
         //     }
-            
+
         //   }
         // },300)
 
-        
+
 
       });
     },50)
-     
+
 
 
 
@@ -521,7 +519,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   updateFilters(){
-    
+
   }
 
   getFavourites() {
@@ -579,8 +577,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   handleCheckboxes(e: any, clickeP?: boolean) {
-    
-    
+
+
     if (clickeP) {
       if (!e.checked) {
         e.checked = true;
@@ -656,7 +654,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         if(e.value === this.filters[i].value){
           this.filters[i].checked = e.checked;
         }
-        
+
       }
     }
   }
@@ -682,7 +680,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     console.log(listArray);
     setTimeout(() => {
-      
+
       if (this.listArray.length == 0) {
         this.noProducts = false;
         this.filterOn = false;
@@ -695,7 +693,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             for (let favProd of this.favorites) {
               if (product.mtrl == favProd.mtrl) {
                 console.log('Mphka');
-  
+
                 product.addedToFav = true;
                 flag2 = false;
               }
@@ -705,16 +703,16 @@ export class ProductListComponent implements OnInit, OnDestroy {
             }
 
           }
-          
+
           let flag = false;
           if (product.category == this.mainCategory.id) {
             for (let el of this.shownProducts) {
               if (product.mtrl == el.mtrl) {
-                
+
                 flag = true;
               }
             }
-  
+
             if (!flag) {
               if (product.stock !== 0) {
                 console.log(product.stock);
@@ -730,7 +728,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         console.log(this.shownProducts);
       } else {
-        
+
         this.filterOn = true;
 
         let temp = this.products;
@@ -765,11 +763,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   handleShowFilters() {
 
-    
+
     if (this.showFilters) {
       this.showFilters = false;
       this.extend = false;
-    } 
+    }
     else {
       this.showFilters = true;
       this.extend = false;
@@ -781,7 +779,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
           for(let id of this.listArray){
             if(id === this.filters2[i].value){
               this.filters2[i].checked = true;
-              
+
               // this.handleCheckboxes(this.filters[i]);
             }
           }
@@ -843,7 +841,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   handlePageChange(event: any) {
 
-    
+
 
     this.waiting = true;
     setTimeout(() => {
@@ -857,7 +855,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
       let temp;
       for(let i=0;i<this.shownProducts.length-1;i++){
         console.log('Hey: ' + this.shownProducts.length);
-        
+
         for(let y=0;y<this.shownProducts.length-1-i;y++){
           if(this.shownProducts[y].hasOffer){
             if(this.shownProducts[y+1].hasOffer){
@@ -865,12 +863,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 temp = this.shownProducts[y];
                 this.shownProducts[y] = this.shownProducts[y+1];
                 this.shownProducts[y+1] = temp;
-                
+
               }
             }
             else{
               if(+this.shownProducts[y].offer > +this.shownProducts[y+1].wholesale){
-                
+
                 temp = this.shownProducts[y];
                 this.shownProducts[y] = this.shownProducts[y+1];
                 this.shownProducts[y+1] = temp;
@@ -880,7 +878,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
           else{
             if(this.shownProducts[y+1].hasOffer){
               if(+this.shownProducts[y].wholesale > +this.shownProducts[y+1].offer){
-                
+
                 temp = this.shownProducts[y];
                 this.shownProducts[y] = this.shownProducts[y+1];
                 this.shownProducts[y+1] = temp;
@@ -888,7 +886,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             }
             else{
               if(+this.shownProducts[y].wholesale > +this.shownProducts[y+1].wholesale){
-                
+
                 temp = this.shownProducts[y];
                 this.shownProducts[y] = this.shownProducts[y+1];
                 this.shownProducts[y+1] = temp;
@@ -897,7 +895,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
           }
         }
       }
-  
+
       console.log(this.shownProducts);
     }
 
@@ -905,7 +903,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
       let temp;
       for(let i=0;i<this.shownProducts.length-1;i++){
         console.log('Hey: ' + this.shownProducts.length);
-        
+
         for(let y=0;y<this.shownProducts.length-1-i;y++){
           if(this.shownProducts[y].hasOffer){
             if(this.shownProducts[y+1].hasOffer){
@@ -913,12 +911,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 temp = this.shownProducts[y];
                 this.shownProducts[y] = this.shownProducts[y+1];
                 this.shownProducts[y+1] = temp;
-                
+
               }
             }
             else{
               if(+this.shownProducts[y].offer < +this.shownProducts[y+1].wholesale){
-                
+
                 temp = this.shownProducts[y];
                 this.shownProducts[y] = this.shownProducts[y+1];
                 this.shownProducts[y+1] = temp;
@@ -928,7 +926,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
           else{
             if(this.shownProducts[y+1].hasOffer){
               if(+this.shownProducts[y].wholesale < +this.shownProducts[y+1].offer){
-                
+
                 temp = this.shownProducts[y];
                 this.shownProducts[y] = this.shownProducts[y+1];
                 this.shownProducts[y+1] = temp;
@@ -936,7 +934,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             }
             else{
               if(+this.shownProducts[y].wholesale < +this.shownProducts[y+1].wholesale){
-                
+
                 temp = this.shownProducts[y];
                 this.shownProducts[y] = this.shownProducts[y+1];
                 this.shownProducts[y+1] = temp;
@@ -945,10 +943,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
           }
         }
       }
-  
+
       console.log(this.shownProducts);
     }
-    
+
   }
 
   findProducts() {
@@ -1005,7 +1003,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log(this.router.url);
     // /products/product-page
-    
+
     console.log(this.listArray);
     this.shownProducts = [];
     if(this.router.url === '/products/product-page'){

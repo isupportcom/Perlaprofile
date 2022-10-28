@@ -78,16 +78,19 @@ export class HomepageComponent implements OnInit {
 
     });
 
-    axios.post("https://perlarest.vinoitalia.gr/products/offers/getOffers.php").then(resData=>{
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllOffers.php",{
+      product:"all",
+      offer:"all"
+    }).then(resData=>{
 
-      console.log(resData.data.products)
-      this.offer1 = resData.data.products[0];
+      console.log(resData.data)
+      this.offer1 = resData.data.offers[0];
       // console.log(this.offer1)
 
     })
   }
  async getSeeEarlier(){
-   let req =await axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
+   let req =await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php",{
       trdr: this.loadedUser.trdr
     })
     this.seeEarlier = req.data.products;

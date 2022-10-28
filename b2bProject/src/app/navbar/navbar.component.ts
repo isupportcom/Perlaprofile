@@ -70,7 +70,7 @@ export class NavbarComponent implements OnInit{
 
       if(this.loggedIn){
         this.renderer.listen('window', 'click',(e:Event)=>{
-          
+
           if(e.target !== this.options.nativeElement && e.target !== this.optionsToggler.nativeElement){
             this.showUserOptions = false;
           }
@@ -106,11 +106,11 @@ export class NavbarComponent implements OnInit{
   async ngOnInit(){
 
     let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
-   axios.post("https://perlarest.vinoitalia.gr/cart/fetchCart.php",{trdr:loadedUser.trdr})
+   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
     .then(resData => {
-      console.log(resData.data.cart.length);
-      this.productCount = resData.data.cart.length;
-      
+      console.log(resData.data);
+      this.productCount = resData.data.products.length;
+
     })
 
     this.cartService.productCount.subscribe(resData => {
@@ -123,23 +123,23 @@ export class NavbarComponent implements OnInit{
       //   this.productCount = resData;
       // }
 
-      axios.post("https://perlarest.vinoitalia.gr/cart/fetchCart.php",{trdr:loadedUser.trdr})
+      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
         .then(resData => {
           console.log(resData.data.cart.length);
           this.productCount = resData.data.cart.length;
-          
+
         })
 
     })
     if(this.loggedIn){
-      axios.post("https://perlarest.vinoitalia.gr/products/favorites.php",{
+      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
           trdr: this.loadedUser.trdr,
           mtrl:"dontNeedIt",
           mode:"fetch"
         })
         .then(resData=>{
           console.log(resData.data);
-  
+
           this.products = resData.data.products
           if(resData.data.products.length !=0){
             this.source = 'https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/heart-alt-filled.svg'
@@ -152,10 +152,10 @@ export class NavbarComponent implements OnInit{
     this.cartService.productAdded.subscribe(resData => {
 
       setTimeout(() => {
-        axios.post("https://perlarest.vinoitalia.gr/cart/fetchCart.php",{trdr:loadedUser.trdr})
+        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
         .then(resData => {
-          this.productCount = resData.data.cart.length;
-          
+          this.productCount = resData.data.products.length;
+
         })
       },500)
 

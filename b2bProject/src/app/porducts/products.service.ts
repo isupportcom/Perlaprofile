@@ -33,7 +33,7 @@ export  class ProductsService {
 
   prevfilters = new BehaviorSubject<any>(null);
 //   prevfilters = new BehaviorSubject<any>(null)();
-  
+
 
   sendFilters(filters: any) {
     this.prevfilters.next(filters);
@@ -62,7 +62,7 @@ export  class ProductsService {
 
  getAllCategories(id:any){
     return  this.http.post(
-        'https://perlarest.vinoitalia.gr/categories/getCategories.php',{id:id});
+        'https://perlarest.vinoitalia.gr/php-auth-api/getAllCategories.php',{category:id});
  }
 
  getAllProducts(){
@@ -72,7 +72,7 @@ export  class ProductsService {
  }
 
  getMainCategories(){
-    return this.http.post('https://perlarest.vinoitalia.gr/categories/getMainCat.php',{
+    return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/getAllMainCat.php',{
       method:"MAINCAT"
     });
  }
@@ -80,7 +80,7 @@ export  class ProductsService {
  getRelatedProducts(mtrl: any){
   console.log(mtrl);
 
-    return this.http.post('https://perlarest.vinoitalia.gr/products/related/findRelated.php',
+    return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/findRelatedProduct.php',
     {
       product_mtrlp: mtrl
     });
