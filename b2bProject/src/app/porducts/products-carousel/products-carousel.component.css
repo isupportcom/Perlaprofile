@@ -1,0 +1,12 @@
+.product{
+  background-color: white;
+  height: 400px !important;
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2); 
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+}
+
+.product:hover{
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4); 
+}

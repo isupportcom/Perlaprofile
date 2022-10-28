@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+
+<div class="container content">
+    <div class="row">
+
+        <h2 style="font-weight: 300;" translate>company.title</h2>
+        <hr style="border: 1px solid #6DAE49;opacity: 1;">
+    </div>
+    <div class="row">
+        <img src="../../assets/Perla-Sunset-1280x563.jpg" alt="" srcset="">
+    </div>
+    <div class="row" style="background-color: white;border-radius: 16px;margin-top: 44px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
+        <div class="row" style="padding: 0px;">
+          <nav class="black navigation" style="display: flex;justify-content:center;align-items: center;">
+
+            <div class="underline col-3"></div>
+            <div class="underline col-3"></div>
+            <div class="underline col-3"></div>
+
+
+            <a class="col-3" (click)="ul(1)" translate>company.option1</a>
+            <a class="col-3" (click)="ul(2)"translate>company.option2</a>
+
+          </nav>
+        </div>
+        <div class="row">
+          <hr>
+        </div>
+        <div class="row">
+            <div class="cotainer">
+                <div *ngIf="showDesc[0]" class="row">
+                    <div style="border-radius: 16px;">
+                        <owl-carousel-o  [options]="customOptions">
+                          <ng-container *ngFor="let img of images">
+                            <ng-template carouselSlide id="yoyo">
+                                <div style="padding: 10px;">
+                                    <img [src]="img" alt="">
+                                </div>
+                            </ng-template>
+                          </ng-container>
+
+                        </owl-carousel-o>
+                    </div>
+                    <div class="row" style="padding-left: 50px;padding-right: 50px;">
+                        <p class="my-text"translate>company.option1_text_p1_before_b <b>PERLA PROFIL s.a.</b> company.option1_text_p1_after_b</p>
+                        <p class="my-text" translate>company.option1_text_p2</p>
+                        <p class="my-text"translate>company.option1_text_p3</p>
+                        <p class="my-text"translate>company.option1_text_p4</p>
+                        <p class="my-text"translate>company.option1_text_p5</p>
+                        <p class="my-text"translate>company.option1_text_p6</p>
+                    </div>
+                </div>
+
+                <div *ngIf="showDesc[1]" class="row">
+                    <p translate>company.option2_text_before_i<i>&nbsp;</i> company.option2_text_after_i<i>&amp;</i> company.option2_text_after_i_2_before_br<br>
+                        company.option2_text_after_br<br>
+                        company.option2_text_after_br2<br>
+                        company.option2_text_after_br3<br>
+                        company.option2_text_after_br4_before_i<i>&nbsp;</i> company.option2_text_after_br4_after_i<br>
+                        company.option2_text_after_br5_before_i<i>&nbsp;</i> company.option2_text_after_br5_after_i<br>
+                        <i>&nbsp;</i>company.option2_text_after_br6<br>
+                        company.option2_after_br7<br>
+                        company.option2_after_br8_before_i<i>&nbsp;</i> company.option2_after_br8_after_i<br>
+                        company.option2_text_after_br9_before_i<i>&nbsp;</i>company.option2_text_after_br9_after_i1<i>&nbsp;</i> company.option2_text_afterbr9_before_i2<br>
+                        company.option2_text_after_br10_before_i<i>&nbsp;</i> company.option2_text_after_br10_in_i<i>&nbsp;</i> company.option2_text_after_br10_after_i<i>&nbsp;</i>company.option2_text_after_br10_after_i2<i>&nbsp;</i> company.option2_text_after_br10_after_i3<i>&nbsp;</i>company.option2_text_after_br10_after_i4<i>&nbsp;</i>company.option2_text_after_br10_after_i5<br>
+                        company.option2_after_br11_before_i<i>&nbsp;</i> company.option2_text_after_br11_after_i<i>&nbsp;</i> company.option2_text_after_br11_after_i2<br>
+                        company.option2_text_after_br12_before_i<i>&nbsp;</i>company.option2_text_after_br12_after_i<i>&nbsp;</i> company.option2_text_after_br12_after_i2<br>
+                        company.option2_text_after_br13_before_i<i>&nbsp;</i>company.option2_text_after_br13_after_i<i>&nbsp;</i>company.option2_after_br13_after_i2</p>
+                </div>
+            </div>
+
+        </div>
+
+      </div>
+</div>
+
+<app-footer></app-footer>

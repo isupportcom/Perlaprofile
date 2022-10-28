@@ -1,0 +1,251 @@
+
+
+
+    <div class="row" style="padding: 12px;">
+      <div class="row">
+        <h1>{{ subCategoryName }}</h1>
+
+      </div>
+      <div class="row">
+        <div class="login-box">
+          <form         
+          [formGroup]="dimentions"
+          class=" row"
+          (ngSubmit)="addToCart()"
+          #form>
+              <div class="user-box">
+                  <input              
+                  type="number"
+                  formControlName="width"
+                  (click)="checkValid()"
+                  required>
+                  <label>Πλάτος σε mm</label>
+              </div>
+              <div class="user-box">
+                  <input 
+                  type="number"
+                  formControlName="height"
+                  (click)="checkValid()"
+                  required
+                  >
+                  <label>Υψος σε mm</label>
+              </div>
+              <div class="user-box">
+                <select
+                class="select"
+                formControlName="fabric"
+                (click)="checkValid()"
+                required
+              >
+                <option
+                  (click)="checkValid()"
+                  [ngValue]="null"
+                  [disabled]="true"
+                >
+                  Eπιλεξτε Υφασμα
+                </option>
+                <option [ngValue]="fab.id" *ngFor="let fab of fabric">
+                  {{ fab.name }}
+                </option>
+              </select>
+                <label></label>
+            </div>
+
+            <div class="user-box">
+              <select
+              class="select"
+              formControlName="profile"
+              (click)="checkValid()"
+              required
+              (change)="needsExtra()"
+            >
+              <option
+                (click)="checkValid()"
+                [ngValue]="null"
+                [disabled]="true"
+              >
+                Eπιλεξτε Προφιλ
+              </option>
+              <option [ngValue]="prof.id" *ngFor="let prof of profile">
+                {{ prof.name }}
+              </option>
+            </select>
+              <label></label>
+          </div>
+
+          <div class="user-box" *ngIf="extraInput">
+            <select
+            class="select"
+            formControlName="extra"
+            required
+          >
+            <option [ngValue]="null" [disabled]="true">
+              Eπιλεξτε Χρώμα
+            </option>
+            <option [ngValue]="extra.id" *ngFor="let extra of extraInputArray">
+              {{ extra.name }}
+            </option>
+          </select>
+            <label></label>
+        </div>
+        <hr>
+        <div class="row" style="justify-content: center;align-items: center;">
+          <button type="button"  style="position: relative;" (click)="findProduct(btn)" [disabled]="!dimentions.valid"  [ngClass]="dimentions.valid? 'myBtn' : 'disabled'" #btn>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p style="margin: 0px;color: rgba(0,0,0,0);">Εμφάνιση Προϊόντος</p>
+            <p class="textAnim">Εμφάνιση Προϊόντος</p>
+            
+
+          </button>
+        </div>
+            </form>
+          </div>
+      </div>
+
+      
+
+
+      
+      <!-- (click)="findProduct()" -->
+
+
+
+        <!-- <form
+          [formGroup]="dimentions"
+          class="form-control row"
+          (ngSubmit)="addToCart()"
+          #form
+        >
+          <div class="row">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label> Πλατους σε mm </label>
+            </div>
+            <div class="col-6">
+              <input
+              type="number"
+              formControlName="width"
+              class="form-control"
+              placeholder="Εισαγωγη Πλατους"
+              (click)="checkValid()"
+              required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <hr>
+          </div>
+
+          <div class="row">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label> Υψος σε mm </label>
+            </div>
+            <div class="col-6">
+              <input
+              type="number"
+              formControlName="height"
+              class="form-control"
+              placeholder="Εισαγωγη Υψους"
+              (click)="checkValid()"
+              required
+            />
+            </div>
+          </div>
+
+          <div class="row">
+            <hr>
+          </div>
+
+          <div class="row">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label >Επιλογη Υφασματος</label>
+            </div>
+            <div class="col-6">
+              <select
+                class=""
+                style="width: 100%;padding: 6px 12px;border-radius: 0.25rem;border: 1px solid #ced4da;color: #212529a3;"
+                formControlName="fabric"
+                (click)="checkValid()"
+                required
+              >
+                <option
+                  (click)="checkValid()"
+                  [ngValue]="null"
+                  [disabled]="true"
+                >
+                  Eπιλεξτε Υφασμα
+                </option>
+                <option [ngValue]="fab.id" *ngFor="let fab of fabric">
+                  {{ fab.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <hr>
+          </div>
+
+
+          <div class="row">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label >Επιλογη Προφιλ</label>
+            </div>
+            <div class="col-6">
+              <select
+              style="width: 100%;padding: 6px 12px;border-radius: 0.25rem;border: 1px solid #ced4da;color: #212529a3;"
+              formControlName="profile"
+              (click)="checkValid()"
+              required
+              (change)="needsExtra()"
+            >
+              <option
+                (click)="checkValid()"
+                [ngValue]="null"
+                [disabled]="true"
+              >
+                Eπιλεξτε Προφιλ
+              </option>
+              <option [ngValue]="prof.id" *ngFor="let prof of profile">
+                {{ prof.name }}
+              </option>
+            </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <hr>
+          </div>
+
+
+          <div class="row" style="margin-bottom: 12px" *ngIf="extraInput">
+            <div class="col-6" style="display: flex;align-items: center;">
+              <label>Επιλογη Χρωματος</label>
+            </div>
+            <div class="col-6">
+              <select
+              style="width: 100%;padding: 6px 12px;border-radius: 0.25rem;border: 1px solid #ced4da;color: #212529a3;"
+              formControlName="extra"
+              required
+            >
+              <option [ngValue]="null" [disabled]="true">
+                Eπιλεξτε Χρώμα
+              </option>
+              <option [ngValue]="extra.id" *ngFor="let extra of extraInputArray">
+                {{ extra.name }}
+              </option>
+            </select>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content: center;align-items: center;">
+            <button type="button" [disabled]="!dimentions.valid" (click)="findProduct()" [ngClass]="dimentions.valid? 'myBtn' : 'disabled'">
+              Εμφάνιση Προϊόντος
+            </button>
+          </div>
+        </form> -->
+
+    </div>
+
+
+

@@ -1,42 +1,275 @@
+
+
+<div class="container content" style="margin-bottom: 44px;">
+  <div class="row" style="justify-content: center;align-items: center;">
+    <h1 style="width: fit-content;">Επεξεργασία Προϊόντων</h1>
+  </div>
+  <div class="row" style="justify-content: center;align-items: center;">
+    <hr style="opacity: 1;border: 2px solid #6dae49;width: 50%;">
+  </div>
+  <div class="row" style="justify-content: center;align-items: center;">
+    <p>Σε αυτή την σελιδά διεξάγονται όλες οι χρήσιμες λειτουργείες για κάθες προϊόν. Βλέποντας απο την αρχή της σελιδάς υπάρχει ένα κουμπί με όνομα 'Update Products'. Με αυτό το κουμπί αναναιώνονται τα προϊόντα με όλες τις αλλαγές που έχουν γίνει στο Soft1. Στη συνέχεια υπάρχει ένας πίνακας με όλα τα ενεργά προϊόντα που υπάρχουν στην ιστοσελίδα.
+      <br><br>
+      Σε αυτόν τον πίνακα μπορούν να επεξεργαστούν πεδία οπως: <br>
+      1)Αρχική φωτογραφία προϊόνοτς <br>
+      2)Προσθήκη Προσφοράς <br>
+      3)Αλλαγη Προσφοράς <br>
+      4)Αφαίρεση Προσφοράς <br>
+      5)Επιλογή της προσφοράς που εμφανίζεται στην αρχική σελίδα</p>
+  </div>
+  <div class="row" style="background-color: white;border-radius: 16px;margin-top: 0px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
+    <div class="container" style="background-color: #6dae49;border-top-left-radius: 16px;border-top-right-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
+      <div class="row">
+        <div class="col-6" style="display: flex;align-items: center;">
+          <h3 style="margin: 0px;color: white;">Βρέθηκαν {{ products.length }} Προϊόντα</h3>
+        </div>
+        <div class="col-6">
+          <div class="container">
+            <div class="row" style="justify-content: right;text-align: right;">
+              <app-pop-up-login [button]="'Ανανέωση Softone'" [id]="'4'"></app-pop-up-login>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 12px;margin-left: 0px">
+
+      <form #form2 (ngForm)="findProducts()">
+          <div class="search-container">
+            <input type="text" name="search" [(ngModel)]="search" placeholder="Search..." class="search-input">
+            <a (click)="findProducts()" class="search-btn">
+              <img class="search-glass" src="../../../../assets/bx_search-alt.svg" width="20px" height="20px" alt="" srcset="">     
+            </a>
+          </div>
+          <button
+          type="submit"
+          style="display: none"
+          (click)="findProducts()"
+        ></button>
+      </form>
+    </div>
+
+    <div class="row" style="padding: 12px; margin-left: 0px;">
+      <div class="container" style="background-color: #dbdbdb;border-radius: 60px;">
+        <div class="row table-items" >
+          <div class="col">
+            <p>Φωτογραφία</p>
+          </div>
+          <div class="col">
+            <p>Όνομα Προϊόντος</p>
+          </div>
+          <div class="col">
+            <p>Κωδικός</p>
+          </div>
+          <div class="col">
+            <p>Διαθεσιμότητα</p>
+          </div>
+          <div class="col">
+            <p>Τιμή Λιανικής</p>
+          </div>
+          <div class="col">
+            <p>Τιμή Χονδρικής</p>
+          </div>
+          <div class="col">
+            <p>Αλλαγή Φωτογραφίας</p>
+          </div>
+          <div class="col">
+            <p>Προσφορά</p>
+          </div>
+          <div class="col">
+            <p>Εμφάνιση στην Αρχική</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 300px;overflow:scroll">
+      <div *ngFor="let product of products" class="row my-table" style="padding: 12px; margin-left: 0px;height: 100px;">
+        <div class="container product">
+          <div class="row table-items" style="font-size: 14px !important;">
+            <div class="col">
+              <img [src]="product.img" width="60px" height="60px" alt="">
+            </div>
+            <div class="col" style="height: 30px; ">
+              <p>{{ product.product_name }}</p>
+            </div>
+            <div class="col">
+              <p>{{ product.code }}</p>
+            </div>
+            <div class="col">
+              <p>{{ product.stock }}</p>
+            </div>
+            <div class="col">
+              <p>{{ product.retail }}&euro;</p>
+            </div>
+            <div class="col">
+              <p *ngIf="!product.hasOffer">{{product.wholesale}}&euro;</p>
+              <p *ngIf="product.hasOffer" style="text-decoration:line-through ;opacity: 0.3;">{{product.wholesale}}&euro;</p>
+              <p *ngIf="product.hasOffer" style="color: #6DAE49;font-weight: 600;">{{product.offer}}&euro;</p>
+            </div>
+            <div class="col">
+              <button (click)="open(product.mtrl)" class="table-btn">
+                Αλλαγή
+              </button>
+            </div>
+            <div class="col">
+
+              <button
+              *ngIf="!product.hasOffer"
+              class="table-btn"
+              (click)="openOffer(product)"
+            >
+              Προσθήκη
+            </button>
+            <button
+              class="table-btn2"
+              *ngIf="product.hasOffer"
+              (click)="openOffer(product)"
+            >
+              Αλλαγή
+            </button>
+            </div>
+            <div class="col">
+              <button [ngClass]="!product.hasOffer? 'table-btn disabled' : 'table-btn'" [disabled]="!product.hasOffer" (click)="addToHomePage(product)">
+                Εμφάνιση
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 
+
 <div class="col-sm-8 text-left">
-  <h1>Insert Products</h1>
-  <p>Lorem ipsum dolor sit amet,
-    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
-    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <app-pop-up-login [button]="'Insert Customers'"></app-pop-up-login>
-  <hr>
+  <h1>{{ answer }}</h1>
+  <h1>Update Products</h1>
+  <p>
+    Σε αυτή την σελιδά διεξάγονται όλες οι χρήσιμες λειτουργείες για κάθες
+    προϊόν. Βλέποντας απο την αρχή της σελιδάς υπάρχει ένα κουμπί με όνομα
+    'Update Products'. Με αυτό το κουμπί αναναιώνονται τα προϊόντα με όλες τις
+    αλλαγές που έχουν γίνει στο Soft1. Στη συνέχεια υπάρχει ένας πίνακας με όλα
+    τα ενεργά προϊόντα που υπάρχουν στην ιστοσελίδα. <br /><br />Σε αυτόν τον
+    πίνακα μπορούν να επεξεργαστούν πεδία οπως:<br />
+    1)Αρχική φωτογραφία προϊόνοτς<br>
+    2)Προσθήκη Προσφοράς<br>
+    3)Αλλαγη Προσφοράς<br>
+    4)Αφαίρεση Προσφοράς<br>
+    5)Επιλογή της προσφοράς που εμφανίζεται στην αρχική σελίδα
+
+
+  </p>
+  <app-pop-up-login [button]="'Update Products'" [id]="'4'"></app-pop-up-login>
+  <hr />
 
   <h3>Current Products</h3>
+  <app-searchbar></app-searchbar>
+  <br />
   <table class="table table-dark">
     <thead>
-    <tr>
-      <th scope="col">Mtrl</th>
-      <th scope="col">Code</th>
-      <th scope="col">Name</th>
-      <th scope="col">Retail Price</th>
-      <th scope="col">Wholesale Price</th>
-      <th scope="col">Stock</th>
-    </tr>
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Availability</th>
+        <th scope="col">Retail Price</th>
+        <th scope="col">Wholesale Price</th>
+
+        <th scope="col">Image</th>
+        <th scope="col">Change</th>
+        <th scope="col">Offer</th>
+        <th scope="col">Show In Homepage</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of products | paginate: {
-          itemsPerPage: 9,
-          currentPage: page ,
-          totalItems: products.length
-};">
-      <th scope="row">{{ item.mtrl }}</th>
-      <td>{{ item.code }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.retail }}</td>
-      <td>{{ item.wholesale }}</td>
-      <td>{{ item.stock }}</td>
-    </tr>
+      <tr
+        *ngFor="
+          let item of products
+            | paginate
+              : {
+                  itemsPerPage: 9,
+                  currentPage: page,
+                  totalItems: products.length
+                }
+        "
+      >
+        <td style="padding-right: 50px">
+          <p style="width: 200%">{{ item.code }}</p>
+        </td>
+        <td style="padding-right: 300px">
+          <p style="width: 350%">{{ item.name }}</p>
+        </td>
+        <td>{{ item.stock }}</td>
+        <td>{{ item.retail }}</td>
+        <td>{{ item.wholesale }}</td>
+        <td>
+          <button
+            class="btn btn-success"
+            *ngIf="item.img == 'EMPTY'"
+            (click)="open(item.mtrl)"
+          >
+            Add image
+          </button>
+          <img
+            *ngIf="item.img != 'EMPTY'"
+            style="width: 100%"
+            [src]="item.img"
+          />
+        </td>
+        <td>
+          <button
+            class="btn btn-success"
+            *ngIf="item.img != 'EMPTY'"
+            (click)="open(item.mtrl)"
+          >
+            Change Photo
+          </button>
+        </td>
+        <td>
+          <button
+            *ngIf="!item.hasOffer"
+            class="btn btn-success"
+            (click)="openOffer(item)"
+          >
+            Add offer
+          </button>
+          <p *ngIf="item.hasOffer">{{ item.offer }}</p>
+          <button
+            class="btn btn-success"
+            *ngIf="item.hasOffer"
+            (click)="openOffer(item)"
+          >
+            Change Offer
+          </button>
+          <br />
 
+          <button
+            class="btn btn-danger"
+            *ngIf="item.hasOffer"
+            (click)="deleteOffer(item)"
+          >
+            Remove Offer
+          </button>
+        </td>
+
+        <td>
+          <button
+            class="btn btn-success"
+            style="width: 100%"
+            [disabled]="!item.hasOffer"
+            (click)="addToHomePage(item)"
+          >
+            Add To Homepage
+          </button>
+        </td>
+      </tr>
     </tbody>
   </table>
-  <pagination-controls class="text-center my-pagination" (pageChange)="page = $event"></pagination-controls>
-
-</div>
+  <pagination-controls
+    class="text-center my-pagination"
+    (pageChange)="changePage($event)"
+  ></pagination-controls>
+</div> -->

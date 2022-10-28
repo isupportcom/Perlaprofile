@@ -1,0 +1,101 @@
+.accordion-item{
+    border-bottom: 1px solid white;
+}
+
+.accordion collapse {
+    border: 0;
+  }
+  
+  .accordion-button:focus {
+    box-shadow: none;
+    border: none;
+  }
+  
+  .accordion-button:not(.collapsed) {
+    background: none;
+    color: #ff9800;
+    box-shadow: none;
+    border-bottom: none;
+  }
+  
+  .accordion-button::after {
+    width: auto;
+    height: auto;
+    content: "+";
+    font-size: 40px;
+    background-image: none;
+    font-weight: 100;
+    color: #1b6ce5;
+    transform: translateY(-4px);
+  }
+  
+  .accordion-button:not(.collapsed)::after {
+    width: auto;
+    height: auto;
+    background-image: none;
+    content: "-";
+    font-size: 48px;
+    transform: translate(-5px, -4px);
+    transform: rotate(0deg);
+  }
+
+  .descLinks{
+    transition: all 0.2s ease-in-out;
+  }
+
+  .descLinks:hover{
+    color: #6dae49;
+  }
+  
+.title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
+  
+  .desc {
+    color: white;
+    font-weight: 100;
+    margin-bottom: 0px;
+  }
+  
+  .footerHr {
+    width: 100%;
+  }
+  
+  .contactInfo {
+    margin-bottom: 16px;
+  }
+  
+  @media (max-width: 992px) {
+    .footerContent {
+      display: none;
+    }
+  }
+  
+  .my-accordion-item {
+    margin-bottom: 8px;
+  }
+  
+  @media (min-width: 993px) {
+    .accord {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .detailsImg {
+      width: 30px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .details {
+      display: none;
+    }
+  }
+
+  
+  
+  

@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import data from "../../dummyData.json";
 import axios from 'axios';
 import { Observable } from 'rxjs';
+import { CartServiceService } from '../cart/cart-service.service';
 export interface user{
   name:string,
   surname:string,
@@ -19,7 +20,7 @@ export interface AuthResponseData{
   idToken: string;
   username: string;
 
-  
+
 
   refreshToken: string;
   expiresIn: string;
@@ -38,52 +39,62 @@ export class LogInComponent implements OnInit, OnDestroy {
   password:string = '';
   user : user | any;
   private tokenExpirationTimer: any;
+  products: any;
   constructor(private router:Router,
               private authService:AuthService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private cartService: CartServiceService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem("userType") != "notLoggin" ){
-      if(localStorage.getItem('userType') == "Admin"){
-        this.authService.setAdmin(true)
-      }
-    }
-
     this.authService.sendLoggedIn(false);
+    // this.authService.setAdmin(false);
+
+      // if(localStorage.getItem('userType') == "Admin"){
+      //   this.authService.setAdmin(true)
+      // }
+
+
+
 
   }
 
-  loginProcess(f:NgForm){
+  clearAll(){
+    this.products = this.cartService.clearCart();
+    localStorage.setItem("products",JSON.stringify(this.products));
+  }
 
-      this.username = f.value.username;
-      this.password = f.value.password;
-      
+  loginProcess(f:NgForm){
+    console.log(f);
+    console.log(f.value);
+      //  this.username = f.value.username;
+      //  this.password = f.value.password;
+    // console.log(f.value.username)
+    // console.log(f.value.password)
+    console.log(this.username);
+    console.log(this.password);
       let authObs: Observable<AuthResponseData>;
 
       authObs = this.authService.login(this.username,this.password);
 
-      authObs.subscribe(resData =>{
+      authObs.subscribe((resData:any) =>{
         if(resData.success == 1){
           console.log(resData);
-          this.router.navigate(['products']); 
+          axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
+            method:"STOCKUPDATE"
+          }).then(res=>{
+            console.log(res.data)
+            if(resData.isAdmin== "1"){
+              this.router.navigate(['dashboard/insert-products']);
+            }else{
+              this.router.navigate(['home']);
+            }
+
+
+          })
+
         }
-        
+
       })
-
-    this.username = f.value.username;
-    this.password = f.value.password;
-
-    
-
-    authObs = this.authService.login(this.username,this.password);
-
-    authObs.subscribe(resData =>{
-      if(resData.success == 1){
-        console.log(resData);
-        this.router.navigate(['products']);
-      }
-
-    })
 
   }
 

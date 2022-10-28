@@ -1,14 +1,64 @@
-.nav-link{
-  cursor: pointer;
-}
-
-.active{
-
+.nav-item{
   background-color: blue;
-  border-radius: 20px;
-  color: white !important;
-
-
-
+  padding: 8px;
+  border-radius: 32px;
+  width: 48px;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  display: block;
 }
 
+.showAll{
+  margin-top: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  position: absolute;
+  background-color: white;
+  border-radius: 60px;
+  width: 60px;
+  height: 40px;
+  transition: all 0.4s ease-in-out;
+}
+
+.showAll:hover{
+  transform: scale(1.2);
+}
+
+@keyframes rotate{
+  
+}
+
+.my-nav-item{
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  position: absolute;
+  background-color: white;
+  border-radius: 60px;
+  width: 60px;
+  height: 40px;
+  transition: all 0.4s ease-in-out;
+}
+
+
+
+.my-nav-item2{
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  position: absolute;
+  background-color: white;
+  border-radius: 60px;
+  width: 60px;
+  height: 40px;
+  transition: all 0.4s ease-in-out;
+}
+
+
+.container{
+  max-width: 90vw !important;
+}

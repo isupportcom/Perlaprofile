@@ -1,0 +1,35 @@
+<div class="container content">
+  <div class="row" style="justify-content: center;align-items: center;">
+    <p>Σε αυτή την σελίδα ανεβαίνουν τα pdf για να χρησμοποιηθούν επειτα στο αντίστοιχο προϊόν.</p>
+  </div>
+  <div class="row">
+    <form class="form-group" [formGroup]="pdfForm" (ngSubmit)="uploadPDF()">
+      <div class="container" style="padding: 0px">
+        <div class="row" style="--bs-gutter-x: 0">
+          <input type="file"  (change)="uploadFile($event)" class="custom-file-input">
+        </div>
+        <div class="row">
+          <button class="soft1-btn2" style="margin-left: 10px;margin-top: 8px;"  type="submit">Upload PDF</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row" style="margin-top: 8px;">
+    <h3>{{msg}}</h3>
+    <div class="progress form-group" *ngIf="progress > 0">
+      <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" aria-valuemin="0" aria-valuemax="100" [style.width]="progress + '%'">
+    </div>
+  </div>
+</div>
+
+
+<!-- <h1>Upload PDF</h1>
+<p>Σε αυτή την σελίδα ανεβαίνουν τα pdf για να χρησμοποιηθούν επειτα στο αντίστοιχο προϊόν.</p>
+
+  </div>
+  <h3>{{msg}}</h3>
+<form class="form-group" [formGroup]="pdfForm" (ngSubmit)="uploadPDF()">
+
+  <input type="file"  (change)="uploadFile($event)" class="form-control" style="width:400px;">
+  <button class="form-control btn btn-success" style="width:400px;margin-top:10px;" type="submit">Upload PDF</button>
+</form> -->

@@ -1,1 +1,278 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~swiper/swiper-bundle';
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+*{
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+a{
+  text-decoration: none;
+}
+
+
+.owl-next, .owl-prev
+{
+  background: #6dae49 !important;
+  font-size: 18px;
+  transition: all 0.2s ease-in-out;
+}
+
+.owl-next{
+  position: absolute;
+  top: 50%;
+  right: -15px;
+}
+
+.owl-prev{
+  position: absolute;
+  top: 50%;
+  left: -15px;
+}
+
+.owl-next:hover, .owl-prev:hover
+{
+  background: #477230 !important;
+}
+
+.owl-theme .owl-nav [class*=owl-]
+{
+  padding: 8px 14px;
+  border-radius: 24px;
+}
+
+.second-swiper{
+  margin-right: 0px !important;
+}
+
+
+.second-swiper .swiper-slide{
+  margin-top: 20px !important;
+  height: 100px !important;
+}
+
+.second-swiper{
+  height: 400px;
+  overflow: hidden;
+}
+
+.swiper-pagination-bullet-active{
+  background: #6dae49 !important;
+}
+
+.swiper-button-prev , .swiper-button-next{
+  color: #6dae49;
+}
+
+.second-swiper .swiper-button-prev {
+  left: 30%;
+  top: 2%;
+  transform: rotate(90deg);
+  right: auto;
+}
+
+.second-swiper .swiper-button-next {
+  left: 30%;
+  top: 98%;
+  transform: rotate(90deg);
+  right: auto;
+}
+
+
+.second-swiper .swiper-button-prev::after, .second-swiper .swiper-button-next::after{
+  font-size: 26px !important;
+}
+
+
+.third-swiper .swiper-slide{
+  width: 100px !important;
+}
+
+
+.fourth-swiper .swiper-slide{
+  
+}
+
+
+@media (max-width: 768px){
+  .big{
+    width: 350px !important;
+  }
+
+  .big .swiper-pagination{
+    width: 350px !important;
+  }
+
+  .second-swiper{
+    margin-left: 0px !important;
+    height: 350px;
+  }
+
+
+  .second-swiper .swiper-slide{
+    margin-top: 8px !important;
+  }
+
+  .second-swiper .swiper-wrapper{
+    margin-top: 10px !important;
+  }
+
+  .second-swiper .swiper-button-prev {
+    left: 26%;
+    top: 2%;
+    transform: rotate(90deg);
+    right: auto;
+  }
+
+  .second-swiper .swiper-button-next {
+    left: 26%;
+    top: 98%;
+    transform: rotate(90deg);
+    right: auto;
+  }
+}
+
+@media (max-width: 576px){
+  .big{
+    width: 250px !important;
+  }
+
+  .big .swiper-pagination{
+    width: 250px !important;
+  }
+
+  .second-swiper{
+    margin-left: 0px !important;
+    height: 250px;
+  }
+
+
+  .second-swiper .swiper-slide{
+    margin-top: 0px !important;
+  }
+
+  .second-swiper .swiper-wrapper{
+    margin-top: 30px !important;
+  }
+
+  .second-swiper .swiper-button-prev {
+    left: 26%;
+    top: 3%;
+    transform: rotate(90deg);
+    right: auto;
+  }
+
+  .second-swiper .swiper-button-next {
+    left: 26%;
+    top: 97%;
+    transform: rotate(90deg);
+    right: auto;
+  }
+
+  .third-swiper .swiper-slide{
+    width: 100px !important;
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 550px) {
+  .third-swiper .swiper-slide{
+
+    margin-left: 40px;
+  }
+  .third-swiper img{
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
+@media (max-width: 477px) {
+
+  .third-swiper .swiper-slide{
+
+    margin-left: 20px;
+  }
+  .third-swiper .swiper-slide-active{
+    margin-left: 40px !important;
+  }
+}
+
+@media (max-width: 428px) {
+  .third-swiper .swipper-wrapper{
+    width: 100px !important;
+  }
+  .third-swiper .swiper-slide{
+
+    margin-left: 5px;
+  }
+  .third-swiper .swiper-slide-active{
+    margin-left: 40px !important;
+  }
+}
+
+@media (max-width: 396px) {
+  .third-swiper .swiper-slide-active{
+    margin-left: 0px !important;
+  }
+  .third-swiper .swiper-slide{
+    width: 90px !important;
+    margin-left: 0px;
+  }
+}
+
+.third-swiper{
+  margin-top: 24px !important;
+  width: 100% !important;
+}
+
+.third-swiper .swiper-button-next:after, .third-swiper .swiper-button-prev:after{
+  font-size: 16px !important;
+}
+
+
+
+
+@media (max-width: 430px) {
+  .third-swiper img{
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .third-swiper .swiper-slide-active{
+    margin-left: 50px !important;
+  }
+}
+
+
+
+
+
+/*
+ .swiper{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+} */
+/*
+.swiper-container{
+  width: auto;
+  height: auto;
+  margin: 10px auto;
+}
+
+.swiper-slide{
+  text-align: center;
+  line-height: 300px;
+
+}
+.swiper--main-pic{
+  width: 500px !important;
+  height: 500px !important;
+}
+
+.swiper--lower-third-pic{
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.swiper-slide-lineheight{
+  line-height: 5vh !important;
+} */

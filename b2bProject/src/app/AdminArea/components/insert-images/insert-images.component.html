@@ -1,0 +1,102 @@
+<app-add-image-popup [secondary]="true" style="position: absolute;top: 0;left: 0;" *ngIf="flag && window"></app-add-image-popup>
+
+<div class="container content">
+  <div class="row">
+    <form #form2 (ngForm)="findProducts()">
+      <div class="search-container">
+        <input type="text" name="search" [(ngModel)]="search" placeholder="Search..." class="search-input">
+        <a (click)="findProducts()" class="search-btn">
+          <img class="search-glass" src="../../../../assets/bx_search-alt.svg" width="20px" height="20px" alt="" srcset="">     
+        </a>
+      </div>
+      <button
+      type="submit"
+      style="display: none"
+      (click)="findProducts()"
+       ></button>
+    </form>
+  </div>
+
+  <div class="row myRow">
+    <div *ngFor="let product of products" style="margin-bottom: 12px;">
+      <div class="container" style="padding: 0px;">
+        <div class="row">
+          <div class="col-3">
+            <img [src]="product.image" style="width: 200px; height: 200px!important;">
+          </div>
+          <div class="col-9">
+            <div class="container" style="padding: 0px;">
+              <div class="row">
+                <h5 style="padding: 0px;">{{ product.name }}</h5>
+              </div>
+              <div class="row">
+                <hr style="opacity: 1;border: 1px solid #6dae49;width: 60%;border-radius: 16px;">
+              </div>
+              <div class="row">
+                <div class="container" style="padding: 0px;"> 
+                  <div class="row">
+                    <div class="col-3">
+                      <button class="myBtn" (click)="open(product)">Προσθήκη Φωτογραφίας</button>
+                    </div>
+                    <div *ngIf="product.otherImages.length > 0" class="col-7">
+                      <swiper
+                      class="fourth-swiper"
+                      [slidesPerView]="product.otherImages.length > 3? 3 : product.otherImages.length"
+                      [spaceBetween]="0"
+                      (slideChange)="onSlideChange(secondSwiper)"
+                      [navigation]="true"
+                      [draggable]="true"
+                      (swiper)="setThumbsSwiper($event)"
+                
+                      direction="horizontal"
+                      #secondSwiper
+                    >
+                    
+                      <ng-template *ngFor="let img of product.otherImages" swiperSlide>
+                        <a (click)="remove(product.mtrl,img.img)" class="ex" style="width: fit-content;cursor: pointer;">
+                          <img class="remove" alt=""  style="width: 32px;" srcset="">
+                        </a> 
+                        <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt="">
+                      </ng-template>
+                    </swiper>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      </div>
+
+
+
+<!-- <app-add-image-popup *ngIf="flag && window"></app-add-image-popup>
+<div class="row">
+  <app-searchbar></app-searchbar>
+  <div class="col-md-8" >
+    <div *ngFor="let product of products">
+      <h3 >{{product.name}}</h3>
+      <br>
+      <div></div>
+      <h4>Product Photo</h4>
+      <img [src]="product.img" style="width: 30%; height: 30%!important;">
+      <button class="btn btn-primary" (click)="openMain(product)">Change Photo</button>
+      <hr>
+      <h5>Other Photos  | <button class="btn btn-primary" (click)="open(product)">Add More Images</button></h5>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-lg-3" *ngFor="let otherImages of product.otherImages" >
+
+          <img [src]="otherImages.img" style="width: 50%; "> <br> <br> <button class="btn btn-danger" (click)="remove(product.mtrl,otherImages.img)">Remove</button>
+        </div>
+      <br>
+      <hr>
+    </div>
+
+
+  </div>
+</div>
+
+
+ -->

@@ -1,0 +1,192 @@
+<app-navbar></app-navbar>
+
+<div class="container content">
+  <div class="row">
+    <h2 style="font-weight: 300;" translate>contact.title</h2>
+    <hr style="border: 1px solid #6DAE49;opacity: 1;">
+  </div>
+  <div class="row">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12087.259074741472!2d22.4426523!3d40.7660986!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xad92459be857faa4!2zUGVybGEgUHJvZmlsIHMuYS4gLSDOp8-BLiDOkc6zzrPOtc67zrHOus6sz4HOt8-CIM6RzpXOks6V!5e0!3m2!1sel!2sgr!4v1664871373473!5m2!1sel!2sgr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <div class="row text-center" style="padding: 50px;">
+    <p style="margin-bottom: 0px"translate>contact.message</p>
+  </div>
+  <div class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
+    <form class="row" [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
+      <div class="col-6">
+        <label for="fullname" translate>contact.name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Fullname"
+              formControlName="Fullname"
+            />
+      </div>
+      <div class="col-6">
+        <label for="subject" translate>contact.afm</label>
+        <input
+          type="text"
+          class="form-control"
+          name="afm"
+          formControlName="Afm"
+        />
+      </div>
+      <div class="col-12" style="margin-top: 12px;">
+        <label for="Email" translate>contact.email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="Email"
+          aria-describedby="emailHelp"
+          
+          formControlName="Email"
+        />
+      </div>
+      <div class="col-6" style="margin-top: 12px;">
+        <label for="doy" translate>contact.doy</label>
+        <input
+          type="text"
+          class="form-control"
+          name="doy"
+          formControlName="Doy"
+        />
+      </div>
+      <div class="col-6" style="margin-top: 12px;">
+        <label for="jobType" translate>contact.job</label>
+        <input
+          type="text"
+          class="form-control"
+          name="jobType"
+          formControlName="JobType"
+        />
+      </div>
+      <div class="col-12" style="margin-top: 12px;">
+        <label for="subject" translate>contact.subject</label>
+        <input
+          type="text"
+          class="form-control"
+          name="subject"
+          formControlName="Subject"
+        />
+      </div>
+      <div class="col-12" style="margin-top: 12px;">
+        <label for="comment" translate>contact.comment</label>
+        <textarea
+          class="form-control"
+          formControlName="Comment"
+          name="Comment"
+          rows="4"
+        >
+        </textarea>
+      </div>
+      <div class="col-3" style="margin-top: 12px;">
+          <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!FormData.valid"
+          translate
+        >
+          contact.button
+      </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="wrapper-box">
+  <div class="container">
+<br>
+    <br>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
+          <div class="form-group">
+            <label for="Email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="Email"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              formControlName="Email"
+            />
+            <small id="emailHelp" class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Fullname"
+              placeholder="Full Name"
+              formControlName="Fullname"
+            />
+          </div>
+          <div class="form-group">
+            <label for="subject">afm</label>
+            <input
+              type="text"
+              class="form-control"
+              name="afm"
+              placeholder="Afm"
+              formControlName="Afm"
+            />
+          </div>
+          <div class="form-group">
+            <label for="subject">Doy</label>
+            <input
+              type="text"
+              class="form-control"
+              name="doy"
+              placeholder="doy"
+              formControlName="Doy"
+            />
+            <div class="form-group">
+              <label for="subject">Job Type</label>
+              <input
+                type="text"
+                class="form-control"
+                name="jobType"
+                placeholder="Job Type"
+                formControlName="JobType"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input
+              type="text"
+              class="form-control"
+              name="subject"
+              placeholder="Subject"
+              formControlName="Subject"
+            />
+          </div>
+          <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea
+              class="form-control"
+              formControlName="Comment"
+              name="Comment"
+            >
+            </textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!FormData.valid"
+          >
+            Submit
+          </button>
+          <app-spinner *ngIf="spinner"></app-spinner>
+        </form>
+      <h3>{{ answer }}</h3>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+<app-footer></app-footer>

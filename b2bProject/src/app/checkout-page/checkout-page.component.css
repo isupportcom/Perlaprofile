@@ -1,8 +1,108 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-*{
-    font-family: 'Montserrat';
+
+
+.content{
+    margin-top: 200px;
 }
+
+@media (max-width: 768px){
+    .content{
+        margin-top: 100px;
+    }
+}
+
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.25rem rgba(109, 174, 73, .3) !important;
+    border-color: #6dae49;
+}
+
+.form-check-input:checked{
+    background-color: #6dae49;
+    border-color: #6dae49;
+}
+
+.form-check-input:focus{
+    box-shadow: none;
+    border-color: #6dae49;
+}
+
+
+
+.cart-btn {
+    text-align: center;
+    display: inline-block;
+    background-color: #6dae49;
+    border-radius: 6px;
+    border: none;
+    margin-top: 5%;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 0px;
+    cursor: pointer;
+    transition: all .3s;
+  }
+
+  .goBackBtn{
+    color: white;
+    text-decoration: none;
+    background-color: #6dae49;
+    padding: 8px;
+    padding-right: 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.goBackBtn:hover{
+    background-color: #4a7832;
+}
+
+  @media (max-width: 992px){
+    .cart-btn {
+        font-size: 12px;
+    }
+    .cart-btn img{
+        width: 16px !important;
+    }
+  }
+
+.cart-btn:hover {
+    background-color: #4a7832;
+    box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+}
+
+.productValue p, .shippingValue p, .totalValue p{
+    padding: 0;
+}
+
+
+@media(max-width: 1200px){
+    .productValue p, .shippingValue p{
+        font-size: 12px;
+    }
+
+    .totalValue p{
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 992px){
+    .productValue p, .shippingValue p{
+        font-size: 12px;
+        
+    }
+
+    .totalValue p{
+        font-size: 14px;
+    }
+}
+
+
+
+
+
 
 
 .left-side{
