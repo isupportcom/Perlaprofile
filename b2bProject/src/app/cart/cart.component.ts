@@ -37,7 +37,7 @@ export class CartComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    // console.log(this.cartService.getItemsToCartArray())
+    console.log(this.cartService.getItemsToCartArray())
 
     // console.log(JSON.parse(localStorage.getItem("products") || '{}'))
     console.log(this.cartService.getItems());
@@ -117,8 +117,6 @@ export class CartComponent implements OnInit, OnDestroy {
       console.log(this.cartItems);
 
   }
-
-  
 
   stepper(myInput:any,btn: any,item: any){
 

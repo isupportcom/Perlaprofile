@@ -69,7 +69,8 @@
       <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
           <div class="col col-6" style="padding: 0px;cursor: pointer;"><img (click)="handleClick()" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" [src]="index.img"></div>
           <div class="col col-6" style="padding: 8px;">
-              <p class="itemTitle" style="cursor: pointer;" (click)="handleClick()"><strong>{{ index.product_name }}</strong><br></p>
+              <p *ngIf="currentLang == 'el'" class="itemTitle" style="cursor: pointer;" (click)="handleClick()"><strong>{{ index.product_name }}</strong><br></p>
+              <p class="itemTitle" *ngIf="currentLang == 'en'" style="cursor: pointer;" (click)="handleClick()"><strong>{{ index.product_name_eng }}</strong><br></p>
               <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
               <img  [ngClass]="!loggedIn? 'itemHr' : 'itemHr2'" style="width: 100%;" src="../../../assets/Line%208.svg">
               <p class="details" *ngIf="loggedIn"><strong>Διαθέσιμα</strong>: {{index.stock}}<br></p>
@@ -101,7 +102,7 @@
                     <span class="added">Προστέθηκε</span>
                     <fa-icon id="firstFa" [icon]="faShoppingCart"></fa-icon>
                     <fa-icon id="secondFa" [icon]="faBox"></fa-icon>
-                    
+
                 </button> -->
                 <button (click)="handleAddToFavorite(index)" style="border: none;background-color: rgba(0,0,0,0);" class="col-4">
                   <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">

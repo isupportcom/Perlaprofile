@@ -116,7 +116,7 @@
                               name="category"
                               class="filter"
                               style="margin-right: 5%"
-                              [value]="subcategory.subcategory_id"
+                              [value]="subcategory.sub_id"
                               (click)="handleCheckboxes($event.target)"
                             />
                             <span class="checkbox"></span>
@@ -124,10 +124,10 @@
                         </div>
                         <div class="col-10 col-md-10 col-sm-3" style="padding-left: 0">
                           <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;" *ngIf="currentLang == 'el'">
-                            {{ subcategory.subcategory |translate}}
+                            {{ subcategory.name |translate}}
                           </p>
                           <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;" *ngIf="currentLang == 'en'">
-                            {{ subcategory.subcategory_em |translate}}
+                            {{ subcategory.name_en |translate}}
                           </p>
                         </div>
                       </div>
@@ -270,7 +270,7 @@
                         : 'topPagination2 filters'
                     "
                     (pageChange)="handlePageChange($event)"
-                    
+
                     [responsive]="true"
                     previousLabel=""
                     nextLabel=""
@@ -308,7 +308,7 @@
                         <input
                           type="checkbox"
                           name="category"
-                          [value]="subcategory.subcategory_id"
+                          [value]="subcategory.sub_id"
                           class="boxes"
                           (click)="handleCheckboxes($event.target)"
                         />
@@ -316,8 +316,11 @@
                       </label>
                     </div>
                     <div class="col-10 col-md-10 col-sm-10" style="padding-left: 0">
-                      <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;">
-                        {{ subcategory.subcategory }}
+                      <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;" *ngIf="currentLang== 'el'">
+                        {{ subcategory.name }}
+                      </p>
+                      <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;" *ngIf="currentLang== 'en'">
+                        {{ subcategory.name_en }}
                       </p>
                     </div>
 
