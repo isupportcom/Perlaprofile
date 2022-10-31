@@ -270,6 +270,10 @@
                         : 'topPagination2 filters'
                     "
                     (pageChange)="handlePageChange($event)"
+
+                    [responsive]="true"
+                    previousLabel=""
+                    nextLabel=""
                     #paginate
                     ></pagination-controls>
                     <!-- <p class="filters" style="margin-bottom: 0px;">&lt;&nbsp; 1&nbsp; 2&nbsp; 3&nbsp; 4&nbsp; 5&nbsp; &gt;</p> -->
@@ -312,8 +316,11 @@
                       </label>
                     </div>
                     <div class="col-10 col-md-10 col-sm-10" style="padding-left: 0">
-                      <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;">
+                      <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;" *ngIf="currentLang== 'el'">
                         {{ subcategory.name }}
+                      </p>
+                      <p (click)="handleCheckboxes2($event)" class="smallerFont" style="margin-bottom: 0;cursor: pointer;" *ngIf="currentLang== 'en'">
+                        {{ subcategory.name_en }}
                       </p>
                     </div>
 
@@ -381,100 +388,29 @@
 
           </div>
         </div>
-        <div class="" *ngIf="!waiting && mainCategory.id == 117">
-          <div class="login-box">
-            <form         
-            class="container"
-            #form>
-              <div class="row">
-                <div class="user-box col">
-                    <input              
-                    type="number"
-                    required>
-                    <label>Αναζήτηση προφίλ</label>
-                </div>
-                <div class="user-box col">
-                    <input 
-                    type="number"
-                    required
-                    >
-                    <label>Αναζήτηση χρώματος</label>
-                </div>
-              </div>
-                <div class="user-box">
-                  <select
-                  class="select"
-                  required
-                >
-                  <option
-                    [ngValue]="null"
-                    [disabled]="true"
-                  >
-                  Προφίλ
-                  </option>
-                </select>
-                  <label></label>
-              </div>
-            <div class="row">
-              <div class="user-box col">
-                <input              
-                type="number"
-                required>
-                <label>Βέργες</label>
-            </div>
-            <div class="user-box col">
-              <input              
-              type="number"
-              required>
-              <label>Διαθεσιμότητα</label>
-            </div>
-            </div>
-            <div class="user-box">
-              <select
-              class="select"
-              required
-            >
-              <option
-                [ngValue]="null"
-                [disabled]="true"
-              >
-              Χρώμα
-              </option>
-            </select>
-              <label></label>
+        <div class="row" *ngIf="!waiting && mainCategory.id == 117" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;">
+        <div style="padding: 16px;padding-top: 0px;padding-bottom: 8px;" class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products">
+          <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
+            <div class="col col-6" (click)="handleWizzardProfile('Προφίλ Roplasto', mainCategory.id)" style="padding: 0px;cursor: pointer;"><img class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
+            <div class="col col-6" style="padding: 12px;">
+                <p class="itemTitle" style="cursor: pointer;"><strong *ngIf="currentLang == 'el'">Προφίλ Roplasto</strong><strong *ngIf="currentLang == 'en'">Profile Roplasto</strong><br></p>
+                <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
+
+                <button class="myBtn" type="button" (click)="handleWizzardProfile('Προφίλ Roplasto', mainCategory.id)">Δες Περισσότερα</button>
           </div>
-          <div class="row">
-            <div class="user-box col">
-              <input              
-              type="number"
-              required>
-              <label>Μήκος</label>
-          </div>
-          <div class="user-box col">
-            <input              
-            type="number"
-            required>
-            <label>Κιλά</label>
-          </div>
-          </div>
-          <hr>
-          <div class="row" style="justify-content: center;align-items: center;">
-            <button type="button"  class="myBtn2"  style="position: relative;" (click)="findProduct(btn)"   #btn>
-              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-              <p style="margin: 0px;color: rgba(0,0,0,0);">Εμφάνιση Προϊόντος</p>
-              <p class="textAnim">Εμφάνιση Προϊόντος</p>
-              <!-- [disabled]="!profForm.valid" -->
-              <!-- [ngClass]="profForm.valid? 'myBtn2' : 'disabled'"   GIA TO BUTTON -->
-            </button>
-          </div>
-              </form>
-            </div>
         </div>
+        </div>
+        </div>
+        <div>
+
         <pagination-controls
         *ngIf="!noProducts"
         style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
         class="text-center my-pagination goLeft"
         (pageChange)="handlePageChange($event)"
+        [responsive]="true"
+        previousLabel=""
+        nextLabel=""
         #paginate
         ></pagination-controls>
     </div>

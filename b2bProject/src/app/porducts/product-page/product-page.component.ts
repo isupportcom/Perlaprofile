@@ -164,32 +164,32 @@ export class ProductPageComponent implements OnInit {
       setTimeout(() => {
         this.mosquiProduct = resData[0];
         console.log(this.mosquiProduct);
-        
+
         let favouritesObs: Observable<any>;
 
         favouritesObs = this.getFavourites();
-    
+
         favouritesObs.subscribe((resData => {
           this.favorites = resData.products;
         }))
         setTimeout(() => {
 
-          for(let favorite of this.favorites){      
+          for(let favorite of this.favorites){
             if(this.mosquiProduct.mtrl === favorite.mtrl){
               console.log('HeHe');
               this.added = true;
               this.mosquiProduct.addedToFav = true;
-    
+
             }
           }
-            
+
           if(!this.mosquiProduct.addedToFav){
             this.added = false;
             this.mosquiProduct.addedToFav = false;
           }
         },500)
         this.waitingProduct = false;
-      },200) 
+      },200)
     });
 
     this.dataSheetForm = this.fb.group({
@@ -251,30 +251,30 @@ export class ProductPageComponent implements OnInit {
 
     setTimeout(() => {
       console.log(this.favorites);
-      if(this.product.category != 116){        
-        for(let favorite of this.favorites){      
+      if(this.product.category != 116){
+        for(let favorite of this.favorites){
           if(this.product.mtrl === favorite.mtrl){
             console.log('HeHe');
             this.added = true;
             this.product.addedToFav = true;
-  
+
           }
         }
-          
+
         if(!this.product.addedToFav){
           this.added = false;
           this.product.addedToFav = false;
         }
-      
-      } 
+
+      }
     },200)
 
-    
-   
+
+
 
     this.getSeeEarlier();
 
-    
+
 
   }
 
@@ -291,7 +291,7 @@ export class ProductPageComponent implements OnInit {
     this.showForm = true;
     setTimeout(() => {
       this.waitingProduct = false;
-    },200) 
+    },200)
   }
 
   addToCartMosqui(btn: any){
@@ -411,7 +411,7 @@ export class ProductPageComponent implements OnInit {
     setTimeout(() => {
       this.product.qty = this.qty;
       console.log(this.product.qty);
-      
+
       if(this.relatedProducts.length <= 0){
         console.log("HEllo");
         if(!this.altCartAnimation){
@@ -445,7 +445,7 @@ export class ProductPageComponent implements OnInit {
     if(prod){
       if(this.added){
 
-        this.product.addedToFav = false;     
+        this.product.addedToFav = false;
         this.productAddedToFav = true;
         setTimeout(() => {
           this.added = false;
@@ -457,7 +457,7 @@ export class ProductPageComponent implements OnInit {
       }
       else{
 
-        
+
         this.productAddedToFav = true;
         setTimeout(() => {
           this.added = true;
@@ -472,7 +472,7 @@ export class ProductPageComponent implements OnInit {
     else{
       if(this.added){
 
-        this.product.addedToFav = false;     
+        this.product.addedToFav = false;
         this.productAddedToFav = true;
         setTimeout(() => {
           this.added = false;
@@ -485,7 +485,7 @@ export class ProductPageComponent implements OnInit {
       else{
         console.log(this.product);
 
-        
+
         this.productAddedToFav = true;
         setTimeout(() => {
           this.added = true;
@@ -495,15 +495,22 @@ export class ProductPageComponent implements OnInit {
         },1000)
         this.cartService.sendProductAddedToFav(true);
         this.cartService.addToFavorites(this.product);
-      }     
+      }
     }
 
   }
-
+  animation(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        btn.classList.remove('loading')
+      }, 2700);
+    }
+  }
 
   stepper(myInput:any,btn: any){
-    
-    
+
+
       let id = btn.id;
       let min = myInput.getAttribute("min");
       let max = myInput.getAttribute("max");
@@ -512,7 +519,7 @@ export class ProductPageComponent implements OnInit {
       let calcStep = (id == "increment") ? (step*1) : (step * -1);
       let newValue = parseInt(val) + calcStep;
       this.qty = newValue;
-      
+
       if(newValue >= min && newValue <= max){
         myInput.setAttribute("value", newValue);
       }
@@ -602,12 +609,12 @@ ngOnDestroy(): void {
   console.log(this.router.url.split('/')[2]);
   console.log(this.product.category);
   console.log(this.filters);
-  
+
   if(this.router.url.split('/')[2] == this.product.category){
     this.productsService.sendFilters(this.filters);
-    
+
   }
-  
+
   // /products/product-page
 
 }
