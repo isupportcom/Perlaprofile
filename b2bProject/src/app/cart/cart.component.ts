@@ -199,6 +199,9 @@ export class CartComponent implements OnInit, OnDestroy {
           this.length = this.products.length
           console.log(resData);
           console.log(this.products)
+
+          this.cartService.sendProductCount(this.products.length);
+
           this.GrandTotal = 0;
           if(this.length == 0){
             this.shouldContinue = false;
@@ -253,7 +256,7 @@ export class CartComponent implements OnInit, OnDestroy {
       (resData:any)=>{
         console.log(resData);
         this.products = resData.data.products
-
+        this.cartService.sendProductCount(this.products.length);
       })
 
 

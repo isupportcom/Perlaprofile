@@ -56,19 +56,19 @@ export class ProductsCarouselComponent implements OnInit {
     
     if(this.mode == 'suggested'){
       
-      let request = await axios.post("https://perlarest.vinoitalia.gr/products/related/getAllRelated.php",{mtrl: +this.mtrl})
+      let request = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllproductsRelated.php",{mtrl: +this.mtrl})
       console.log(request.data)
       this.suggestedProducts = request.data.products;
       if(this.suggestedProducts.length !=0){
         this.hasSuggested = true;
       }
   
-      let sugg = await axios.post("https://perlarest.vinoitalia.gr/products/getSuggested.php",
+      let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
       {
         mtrl:this.mtrl
       }).then(resData =>{
           console.log(resData);
-          
+          this.shownProducts = resData.data.products;
         }
       )
       // console.log(sugg.data.products);
@@ -83,10 +83,11 @@ export class ProductsCarouselComponent implements OnInit {
     
     
     if(this.mode == 'offers'){
-      axios.post('https://perlarest.vinoitalia.gr/products/offers/offersByCategory.php', {
+      axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
         category_id: this.category.id
       }).then(resData => {
-        this.shownProducts = resData.data.offers;
+        this.shownProducts = resData.data.products;
+
         
       })
     }
@@ -96,8 +97,8 @@ export class ProductsCarouselComponent implements OnInit {
     console.log(product);
     this.productsService.setSingleProduct(product)
 
-    axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
-     
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
+      mtrl :product.mtrl,
       trdr: this.loadedUser.trdr
     }).then(resData=>{
       console.log(resData.data);

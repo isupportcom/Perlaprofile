@@ -392,7 +392,8 @@ export class ProductPageComponent implements OnInit {
       btn.classList.add('loading');
       setTimeout(() => btn.classList.remove('loading'), 3700);
       }
-
+    console.log(btn);
+    
     axios.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
       {
@@ -400,31 +401,27 @@ export class ProductPageComponent implements OnInit {
       }
     ).then(resData => {
       this.cartService.sendProductCount(resData.data.products.length);
+
     });
 
-    this.product.show = true;
+
 
     let relatedProductsObs: Observable<any>;
 
     relatedProductsObs = this.productsService.getRelatedProducts(this.product.mtrl);
 
     relatedProductsObs.subscribe(resData => {
+      console.log(resData);
+
       this.relatedProducts = resData.related;
 
     })
     setTimeout(() => {
       this.product.qty = this.qty;
       console.log(this.product.qty);
+        console.log(this.relatedProducts);
 
       if(this.relatedProducts.length <= 0){
-        console.log("HEllo");
-        if(!this.altCartAnimation){
-          window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-          });
-        }
 
         this.cartService.setId(this.product.mtrl)
 
@@ -435,11 +432,20 @@ export class ProductPageComponent implements OnInit {
         this.cartService.sendProductAdded(true);
       }
       else{
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
         this.productsService.setSingleProduct(this.product);
-        this.cartService.sendProductAdded(true);
+        this.cartService.sendStartScope(true);
       }
     },500);
 
+    
+
+
+      
 
 
 
