@@ -13,7 +13,7 @@ import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.c
 
 import { ProductsService } from '../products.service';
 import axios from 'axios';
-import { Category } from '../categories.model';
+// import { Category } from '../categories.model';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { tap } from 'rxjs/operators';

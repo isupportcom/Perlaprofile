@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductsService} from "../../../porducts/products.service";
 import {product} from "../../adminareaproducts/adminareaproducts.component";
 import axios from "axios";
-import {ModalService} from "../add-image-popup/modal-service.service";
+import { ModalService } from '../add-image-popup/modal-service.service';
 import {CartServiceService} from "../../../cart/cart-service.service";
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -81,7 +81,7 @@ export class InsertProductsComponent implements OnInit {
           console.log(resData.data.products);
           if (resData.data.products.length != 0) {
               this.products = resData.data.products;
-          } 
+          }
           else {
             setTimeout(() => {
               this.getProducts();
