@@ -199,6 +199,7 @@ export class CartComponent implements OnInit, OnDestroy {
           this.length = this.products.length
           console.log(resData);
           console.log(this.products)
+          this.cartService.sendProductCount(this.products.length);
           this.GrandTotal = 0;
           if(this.length == 0){
             this.shouldContinue = false;
@@ -247,23 +248,31 @@ export class CartComponent implements OnInit, OnDestroy {
 
       this.GrandTotal = 0 ;
       this.length = 0;
+      this.cartItems = [];
+      this.products = resData.data.products;
+      this.length = this.products.length
+      this.cartService.sendProductCount(this.length);
+      this.GrandTotal = 0;
+      if(this.length == 0){
+        this.shouldContinue = false;
+      }
+      else{
+        this.shouldContinue = true;
+      }
+      this.cartService.shouldContinue.next(this.shouldContinue);
 
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
-    .then(
-      (resData:any)=>{
-        console.log(resData);
-        this.products = resData.data.products
-
-      })
-
+      for(let prod of this.products){
+        this.GrandTotal += +prod.wholesale *prod.qty;
+      }
+      this.GrandTotal = +this.GrandTotal.toFixed(4);
+      console.log(this.GrandTotal)
 
     })
+    setTimeout(()=>{
+      this.declareArray();
+    },400)
 
-    if(reload){
-      setTimeout(() => {
-        window.location.reload();
-      }, 500)
-    }
+
 
 
   }
