@@ -60,7 +60,7 @@ export class HomepageComponent implements OnInit {
 
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
-    this.getSeeEarlier();
+    // this.getSeeEarlier();
 
 
     if(this.username){
@@ -89,20 +89,20 @@ export class HomepageComponent implements OnInit {
 
     })
   }
- async getSeeEarlier(){
-   let req =await axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
-      trdr: this.loadedUser.trdr
-    })
-    this.seeEarlier = req.data.products;
-    if(this.seeEarlier.length == 0){
-      this.isEmpry = true;
-    }else{
-      this.isEmpry = false;
-    }
+//  async getSeeEarlier(){
+//    let req =await axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
+//       trdr: this.loadedUser.trdr
+//     })
+//     this.seeEarlier = req.data.products;
+//     if(this.seeEarlier.length == 0){
+//       this.isEmpry = true;
+//     }else{
+//       this.isEmpry = false;
+//     }
 
-   console.log(this.seeEarlier);
+//    console.log(this.seeEarlier);
 
-  }
+//   }
   handleOfferHover(offerImg: any){
     offerImg.classList.add('hoverBox');
   }

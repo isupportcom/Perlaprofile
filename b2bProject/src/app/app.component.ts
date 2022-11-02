@@ -111,12 +111,17 @@ export class AppComponent implements OnDestroy, OnInit {
         for(let relatedProd of this.relatedProducts){
           let groupingObs: Observable<any>;
           let temp;
+          let scope2b;
+          relatedProd.qty = this.singleProduct.qty
+
           groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,relatedProd.grouping);
 
           groupingObs.subscribe(resData => {
+            scope2b = resData.Scope2[0];
+            scope2b.qty = this.singleProduct.qty
             temp = {
               scope1: relatedProd,
-              scope2: resData.Scope2[0]
+              scope2: scope2b
             };
             this.tempGroup.push(temp);
 
@@ -166,6 +171,7 @@ export class AppComponent implements OnDestroy, OnInit {
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(product);
           for(let prod of this.group.Scope2){
+            prod.qty = this.singleProduct.qty;
             prod.show = true;
             // this.cartService.addToCart(prod);
 
@@ -176,10 +182,15 @@ export class AppComponent implements OnDestroy, OnInit {
 
         }
         else{
+          for(let i=0 ; i < this.group.Scope3.length;i++){
+            this.group.Scope3[i].qty = this.singleProduct.qty;
+          }
+
           this.itemsToCart.push(this.singleProduct);
           this.itemsToCart.push(product);
           console.log(product);
           for(let prod of this.group.Scope2){
+            prod.qty = this.singleProduct.qty;
             this.itemsToCart.push(prod);
           }
           console.log(this.itemsToCart);
@@ -211,6 +222,11 @@ export class AppComponent implements OnDestroy, OnInit {
           window.location.reload();
         }
         else{
+          
+          for(let i=0 ; i < this.group.Scope3.length;i++){
+            this.group.Scope3[i].qty = this.singleProduct.qty;
+          }
+
           this.itemsToCart.push(this.singleProduct);
           this.itemsToCart.push(product);
           console.log(this.itemsToCart);
@@ -225,7 +241,7 @@ export class AppComponent implements OnDestroy, OnInit {
     },500)
   }
 
-  addToCart(product: any){
+  addToCart(product: any,scope3?: boolean){
 
     this.itemsToCart.push(product);
 
