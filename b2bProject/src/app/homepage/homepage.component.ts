@@ -78,10 +78,13 @@ export class HomepageComponent implements OnInit {
 
     });
 
-    axios.post("https://perlarest.vinoitalia.gr/products/offers/getOffers.php").then(resData=>{
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllOffers.php",{
+      product:"Home",
+      offer:"Home"
+    }).then(resData=>{
 
-      console.log(resData.data.products)
-      this.offer1 = resData.data.products[0];
+      console.log(resData.data.offers)
+      this.offer1 = resData.data.offers[0]
       // console.log(this.offer1)
 
     })

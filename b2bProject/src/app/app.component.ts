@@ -95,6 +95,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
 
     this.cartService.startScope.subscribe(res => {
+      this.itemsToCart = [];
       this.products = this.productService.getAll();
       this.singleProduct = this.productService.getSingelProduct();
 
@@ -152,7 +153,7 @@ export class AppComponent implements OnDestroy, OnInit {
       if(this.group.Scope2.length > 0){
         if(this.group.Scope3.length <= 0){
           this.singleProduct.show = true;
-          this.cartService.addToCart(this.singleProduct);
+          // this.cartService.addToCart(this.singleProduct);
 
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(this.singleProduct);
@@ -160,13 +161,13 @@ export class AppComponent implements OnDestroy, OnInit {
           product.show = true;
 
 
-          this.cartService.addToCart(product);
+          // this.cartService.addToCart(product);
 
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(product);
           for(let prod of this.group.Scope2){
             prod.show = true;
-            this.cartService.addToCart(prod);
+            // this.cartService.addToCart(prod);
 
             this.cartService.sendProductAdded(true);
             this.itemsToCart.push(prod);
@@ -194,13 +195,13 @@ export class AppComponent implements OnDestroy, OnInit {
       else{
         if(this.group.Scope3.length <= 0){
           this.singleProduct.show = true;
-          this.cartService.addToCart(this.singleProduct);
+          // this.cartService.addToCart(this.singleProduct);
 
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(this.singleProduct);
 
           product.show = true;
-          this.cartService.addToCart(product);
+          // this.cartService.addToCart(product);
 
           this.cartService.sendProductAdded(true);
           this.itemsToCart.push(product);
@@ -243,9 +244,16 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.cartService.setId(id);
 
+    
+    
     for(let prod of this.itemsToCart){
-      id = id + prod.mtrl;
+      // id = id + prod.mtrl;
+      prod.group_id = id;
       prod.show = true;
+    
+      console.log(prod);
+      
+
       this.cartService.addToCart(prod);
 
       this.cartService.sendProductAdded(true);

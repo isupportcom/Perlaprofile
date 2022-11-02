@@ -98,4 +98,16 @@
 
   
   
-  
+  .social-media{
+    padding: 2px;
+    
+    background-color: transparent;
+    font-size: 0px;
+    border-radius: 24px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .social-media:hover{
+    font-size: 26px;
+    background-color: #6dae49;
+  }

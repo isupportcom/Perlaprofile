@@ -46,7 +46,7 @@
           </div>
         </div>
 
-        <div class="row" *ngIf="items.length > 1">
+        <div class="row" *ngIf="items.length > 1" #prod>
           <div class="row" *ngFor="let item of items" style="margin-bottom: 12px;">
             <div class="col-6">
               <div class="row" style="display: flex;justify-content: center;align-items:center;">
@@ -65,9 +65,9 @@
                 <div class="col-8">
                   <div class="row" style="justify-content: right;">
                     <div class="numberInput">
-                      <button id="decrement" (click)="stepper(input2,decrement,item)" #decrement> - </button>
-                      <input type="number" min="0" [max]="products[i].stock" step="1" [value]="products[i].qty" id="my-input" readonly #input2>
-                      <button id="increment" (click)="stepper(input2,increment,item)" #increment> + </button>
+                      <button id="decrement" (click)="stepper(input2,decrement,item,items,prod)" #decrement> - </button>
+                      <input type="number" min="0" [max]="item.stock" step="1" [value]="item.qty" id="my-input" readonly #input2>
+                      <button id="increment" (click)="stepper(input2,increment,item,items,prod)" #increment> + </button>
                     </div>
                   </div>
                 </div>
