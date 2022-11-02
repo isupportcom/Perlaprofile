@@ -797,7 +797,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }
       }
 
-    }, 800);
+    }, 300);
     if(this.executed){
       this.executed = false;
     }
@@ -837,7 +837,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
   handleClearFilters() {
     this.filterOn = false;
     this.listArray = [];
-    window.location.reload();
+
+
+    for(let i=0; i<this.filters.length; i++){ 
+      this.filters[i].checked = false;
+    }
+
+    this.waiting = true;
+    this.updateProducts();
+    setTimeout(() => {
+      this.waiting = false;
+
+    },600);
+
   }
 
   getSubcategories() {

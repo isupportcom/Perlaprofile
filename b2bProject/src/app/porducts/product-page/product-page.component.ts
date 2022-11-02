@@ -427,7 +427,7 @@ export class ProductPageComponent implements OnInit {
 
         this.productsService.setSingleProduct(this.product);
         this.product.show = true;
-        this.cartService.addToCart(this.product);
+        this.cartService.addToCart(this.product,false,true);
 
         this.cartService.sendProductAdded(true);
       }

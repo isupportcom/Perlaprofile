@@ -117,7 +117,46 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   }
 
   onSubmit2(){
-    this.router.navigate(['order-completed'])
+    for (let i = 0; i < this.products.length; i++) {
+      this.mtrlArr[i] = this.products[i].mtrl;
+      this.qtyArr[i] = this.products[i].qty;
+      this.discArr[i] =this.products[i].discount;
+    }
+    console.log(this.mtrlArr);
+    console.log(this.mtrlArr.join(','));
+    console.log(this.qtyArr);
+    console.log(this.qtyArr.join(','));
+
+    console.log(this.loadedUser.trdr);
+    let payment;
+
+      payment = 2;
+
+    axios
+      .post(
+        'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
+        {
+          mtrl: this.mtrlArr.join(','),
+          qty: this.qtyArr.join(','),
+          trdr: this.loadedUser.trdr,
+          discount: this.discArr.join(','),
+          payment: payment,
+        }
+      )
+      .then((resData) => {
+        // let h3 :any
+          //  h3 = document.getElementById("orderComplete");
+          // h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
+          setTimeout(()=>{
+            this.router.navigate(['order-completed'])
+            setTimeout(()=>{
+              window.location.reload();
+            })
+          },100)
+
+
+      });
+
     
   }
 

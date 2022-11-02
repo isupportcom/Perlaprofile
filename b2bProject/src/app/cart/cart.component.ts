@@ -37,10 +37,8 @@ export class CartComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    console.log(this.cartService.getItemsToCartArray())
 
-    // console.log(JSON.parse(localStorage.getItem("products") || '{}'))
-    console.log(this.cartService.getItems());
+    
     let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
     .then(
@@ -118,8 +116,20 @@ export class CartComponent implements OnInit, OnDestroy {
 
   }
 
-  stepper(myInput:any,btn: any,item: any){
+  stepper(myInput:any,btn: any,item: any,items?: any,prod?: any){
+      let inputsArray = [];  
 
+      if(items){
+        for(let product of prod.children){
+          if(product.children[0].nodeName != 'BUTTON'){
+            // console.log(product.children[1].children[0].children[0].children[0].children[0].children[1]);
+            inputsArray.push(product.children[1].children[0].children[0].children[0].children[0].children[1]);
+          } 
+        }
+      }
+
+      
+      let temp;
       let index: any;
 
       for(let i=0; i< this.products.length;i++){
@@ -128,23 +138,63 @@ export class CartComponent implements OnInit, OnDestroy {
         }
       }
 
-      let id = btn.id;
-      let min = myInput.getAttribute("min");
-      let max = myInput.getAttribute("max");
-      let step = myInput.getAttribute("step");
-      let val = this.products[index].qty;
-      let calcStep = (id == "increment") ? (step*1) : (step * -1);
-      let newValue = +val + calcStep;
-      this.products[index].qty = newValue;
 
 
-      if(newValue >= min && newValue <= max){
-        myInput.setAttribute("value", this.products[index].qty);
+      if(items){
+        
+        
+        
+          for(let i=0;i<this.products.length;i++){
+            
+            if(this.products[i].group_id == item.group_id){
+              let id = btn.id;
+              let min = myInput.getAttribute("min");
+              let max = myInput.getAttribute("max");
+              let step = myInput.getAttribute("step");
+              let val = this.products[i].qty;
+              let calcStep = (id == "increment") ? (step*1) : (step * -1);
+              let newValue = +val + calcStep;
+
+              this.products[i].qty = newValue;
+            
+              
+              
+
+              for(let input of inputsArray){
+                if(newValue >= min && newValue <= max){
+                  input.setAttribute("value", this.products[i].qty);
+                }
+              }
+                // console.log(myInput.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children)
+               
+                this.cartService.addToCart(this.products[i],false)
+
+                
+              }
+            }
+          
+      }
+      else{
+        console.log('POUTsa');
+        
+        let id = btn.id;
+        let min = myInput.getAttribute("min");
+        let max = myInput.getAttribute("max");
+        let step = myInput.getAttribute("step");
+        let val = this.products[index].qty;
+        let calcStep = (id == "increment") ? (step*1) : (step * -1);
+        let newValue = +val + calcStep;
+
+        this.products[index].qty = newValue;
+        
+  
+        console.log(this.products[index]);
+  
+        this.cartService.addToCart(this.products[index],false)
       }
 
-      console.log(this.products[index]);
 
-      this.cartService.addToCart(this.products[index],false)
+
       this.GrandTotal = 0;
       for(let prod of this.products){
         this.GrandTotal += +prod.wholesale *prod.qty;
@@ -157,20 +207,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
 }
 
-  currentQuantity(quantity:any,index:number,prevQuantity:number) {
-    // if (quantity > prevQuantity){
-    //   this.GrandTotal = (this.GrandTotal + (this.products[index].wholesale * quantity)) - this.products[index].wholesale * prevQuantity;
-    // }else{
-    //   this.GrandTotal = (this.GrandTotal - (this.products[index].wholesale * quantity)) + this.products[index].wholesale * prevQuantity;
-    // }
-    // console.log(quantity);
-    // console.log(prevQuantity);
-    this.products[index].qty = quantity;
 
-    // window.location.reload();
-
-
-  }
 
 
   removeOne(item: any, index: number,reload: boolean){
