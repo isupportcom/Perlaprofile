@@ -7,7 +7,6 @@ import { TranslateConfigService } from '../services/translate-config.service';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-
   constructor(private translate:TranslateConfigService) { }
 
   ngOnInit(): void {

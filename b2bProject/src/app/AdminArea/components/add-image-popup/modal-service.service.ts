@@ -12,6 +12,13 @@ export class ModalService {
   offer = new Subject<number>()
   castOffer = this.image.asObservable();
 
+  products = new Subject<any>();
+  prodCast = this.products.asObservable();
+
+  sendProducts(products: any) {
+    this.products.next(products);
+  }
+
   sendOffer(offer:number){
     this.offer.next(offer)
   }

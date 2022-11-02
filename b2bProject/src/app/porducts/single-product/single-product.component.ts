@@ -60,7 +60,7 @@ export class SingleProductComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    console.log(this.index)
     this.reduced =     this.filters.reduce((acc: any[], cur: any) => {
       if (!acc.includes(cur)) {
           acc.push(cur);
@@ -69,8 +69,8 @@ export class SingleProductComponent implements OnInit {
   }, [])
 
   console.log(this.reduced);
-  
-    
+
+
     this.currentLang = localStorage.getItem('lang')||'el'
     // console.log(this.index)
 
@@ -201,7 +201,7 @@ export class SingleProductComponent implements OnInit {
       setTimeout(() => btn.classList.remove('loading'), 3700);
       }
     console.log(btn);
-    
+
     axios.post(
       'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
       {

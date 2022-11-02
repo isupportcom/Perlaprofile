@@ -75,7 +75,7 @@
             </div>
           </div>
           <div class="row">
-
+            
 
             <button class="button col-6" style="transition: background-color 0.2s ease-in-out;" (click)="addToCart(addToCartBtn)"
             [disabled]="product.stock == 0" #addToCartBtn>
@@ -91,8 +91,8 @@
               <button  class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;cursor: auto;">
                 <img (click)="handleAddToFavorite()" [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'" style="cursor: pointer;"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="" width="44px" alt="">
               </button>
-
-
+            
+            
           </div>
         </div>
         <div class="row">
@@ -113,20 +113,20 @@
             <hr style="opacity: 1;border: 2px solid #6dae49;border-radius: 8px;">
         </div>
         <div class="login-box">
-          <form
+          <form         
           class=" row"
           #form>
               <div class="user-box">
-                  <input
+                  <input              
                   type="number"
-
+                  
                   required>
                   <label>Κωδικος αποθήκης</label>
               </div>
               <div class="user-box">
-                  <input
+                  <input 
                   type="text"
-
+                  
                   required
                   >
                   <label>Περιγραφή</label>
@@ -134,7 +134,7 @@
               <div class="user-box">
                 <select
                 class="select"
-
+                
                 required
               >
                 <option
@@ -151,17 +151,17 @@
               <div class="container" style="padding-left: 0px !important;padding-right: 0px !important;">
                 <div class="row" style="padding-left: 0px !important;">
                   <div class="col-6">
-                    <input
+                    <input 
                     type="number"
-
+                    
                     required
                     >
                     <label>Μήκος</label>
                   </div>
                   <div class="col-6">
-                    <input
+                    <input 
                     type="number"
-
+                    
                     required
                     >
                     <label>Διαθεσιμότητα</label>
@@ -175,7 +175,7 @@
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             <p style="margin: 0px;color: rgba(0,0,0,0);">Εμφάνιση Προϊόντος</p>
             <p class="textAnim">Εμφάνιση Προϊόντος</p>
-
+            
 
           </button>
         </div>
@@ -205,7 +205,7 @@
               <p *ngIf="!mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ mosquiProduct.wholesale }}&euro;</b></p>
               <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
               <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ mosquiProduct.offer }}&euro;</b></p>
-
+        
               <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
               <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
                 <div class="col-4" style="display: flex;align-items:center;">
@@ -231,12 +231,12 @@
                   </svg>
                   </div>
                   </button>
-
-
+                
+                
                   <button (click)="handleAddToFavorite(mosquiProduct)" class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
                     <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
                   </button>
-
+                
               </div>
             </div>
             <div class="row">
@@ -247,7 +247,7 @@
                 <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{mosquiProduct.kodikos_kataskeuasti}}</p>
               </div>
               <button class="myBtn" (click)="handleFindNew()" style="margin-top: 24px;">Βρες καινούριο προϊόν</button>
-            </div>
+            </div>   
         </div>
       </div>
   </div>

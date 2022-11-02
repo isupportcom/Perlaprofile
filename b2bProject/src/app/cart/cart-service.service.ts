@@ -110,9 +110,9 @@ export class CartServiceService {
 
   removeOneFav(product:any){
     console.log(product);
-    
 
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
+
+    axios.post("https://perlarest.vinoitalia.gr/products/favorites.php",
     {
       mtrl:product.mtrl,
       trdr:this.loadedUser.trdr,
@@ -121,23 +121,23 @@ export class CartServiceService {
     .then(resData=>{
     })
 
-    
+
   }
 
   addToFavorites(product:product|any){
     console.log(product.mtrl);
 
   let loadedUser = JSON.parse(localStorage.getItem('userData')||'{}');
-  
-  
-  axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
+
+
+  axios.post("https://perlarest.vinoitalia.gr/products/favorites.php",
   {
     mtrl:product.mtrl,
     trdr:loadedUser.trdr,
     mode:"insert"
   })
   .then(resData=>{
-    console.log(resData);
+    console.log(resData.data);
 
   })
 
@@ -173,7 +173,7 @@ export class CartServiceService {
     localStorage.setItem('productAdded', 'true');
 
 
-    
+
 
     let discount:any;
     if(product.discound == 0){
@@ -195,21 +195,17 @@ export class CartServiceService {
     }else{
       qty=product.qty
     }
+    console.log(product);
+    console.log(loadedUser.trdr);
+    console.log(qty);
+
     axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php', {
+      .post('https://perlarest.vinoitalia.gr/cart/addToCart.php', {
         mtrl: product.mtrl,
         trdr: loadedUser.trdr,
-        code: product.code,
-        name: product.name,
-        name1: product.name1,
-        img: image,
-        category: category,
         qty: qty,
-        retail: product.retail,
-        wholesale: price,
-        stock: product.stock,
-        group_id: this.id,
-        discound: discount,
+        groupId: this.id,
+
       })
       .then((resData) => console.log(resData.data));
   }
@@ -218,7 +214,7 @@ export class CartServiceService {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     return this.http.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+      'https://perlarest.vinoitalia.gr/cart/fetchCart.php',
       {
         trdr: loadedUser.trdr,
       }

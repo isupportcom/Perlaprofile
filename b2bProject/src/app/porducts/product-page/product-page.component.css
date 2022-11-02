@@ -432,8 +432,6 @@ nav.black .underline {
     overflow: hidden;
   }
 
-
-
   .disabled{
     width: fit-content;
     cursor: pointer;
@@ -461,31 +459,26 @@ nav.black .underline {
       padding: 8px 40px;
     }
   }
-
   @media (max-width: 1200px){
     .myBtn, .disabled{
       padding: 8px 72px;
     }
   }
-
   @media (max-width: 440px){
     .myBtn, .disabled{
       padding: 8px 40px;
     }
   }
-
   @media (max-width: 376px){
     .myBtn, .disabled{
       padding: 8px 20px;
     }
   }
-
   @media (max-width: 336px){
     .myBtn, .disabled{
       padding: 8px 10px;
     }
   }
-
   .login-box {
     /* width: 400px; */
     padding: 40px;
@@ -521,7 +514,6 @@ nav.black .underline {
     pointer-events: none;
     transition: .5s;
   }
-
   .login-box .user-box input:focus~label,
   .login-box .user-box input:valid~label {
     top: -60px;
@@ -529,7 +521,6 @@ nav.black .underline {
     color: #6DAE49;
     font-size: 12px;
   }
-
   .select{
     width: 100%;
     padding: 6px 12px;
@@ -540,13 +531,11 @@ nav.black .underline {
     transition: all 0.3s ease-in-out;
     cursor: pointer;
   }
-
   .select:hover{
     background-color: #4a7632;
     border: 0;
     outline: 0;
   }
-
   .select:focus{
     background-color: #4a7632;
     border: 0;
@@ -559,19 +548,16 @@ nav.black .underline {
     background-color: white;
     color: black;
   }
-
   .textAnim{
     position: absolute;
     top: 20%;
   }
-
   .loading .textAnim{
     animation-name: text;
     animation-duration: 0.3s;
     animation-delay: 0.2s;
     animation-fill-mode: both;
   }
-
   @keyframes text{
     0%{
       top: 20%
@@ -580,14 +566,12 @@ nav.black .underline {
       top: -60%;
     }
   }
-
   .loading .lds-ring{
     animation-name: loader;
     animation-duration: 0.3s;
     animation-delay: 0.4s;
     animation-fill-mode: both;
   }
-
   @keyframes loader {
     0%{
       transform: scale(0);
@@ -596,7 +580,6 @@ nav.black .underline {
       transform: scale(1);
     }
   }
-
   .lds-ring {
     display: inline-block;
     position: absolute;

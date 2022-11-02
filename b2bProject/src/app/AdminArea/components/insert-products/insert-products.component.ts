@@ -43,6 +43,11 @@ export class InsertProductsComponent implements OnInit {
       this.products = res
       this.searched = false;
     })
+    this.modalService.products.subscribe((res:any)=>{
+      console.log(res)
+      this.products = res
+      this.cartService.sendOpenOffer(false);
+    })
     if(this.searched){
       this.getProducts();
       this.page = localStorage.getItem("pagination");

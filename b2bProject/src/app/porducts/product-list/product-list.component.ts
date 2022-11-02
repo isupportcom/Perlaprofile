@@ -999,7 +999,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
       })
       .then((resData) => {
         this.waiting = true;
-        console.log(resData.data.products);
+        console.log(resData.data);
         if (resData.data.products.length != 0) {
           setTimeout(() => {
             for (let favorite of this.favorites) {
