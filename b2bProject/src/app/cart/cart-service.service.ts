@@ -112,7 +112,7 @@ export class CartServiceService {
     console.log(product);
 
 
-    axios.post("https://perlarest.vinoitalia.gr/products/favorites.php",
+    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
     {
       mtrl:product.mtrl,
       trdr:this.loadedUser.trdr,
@@ -130,7 +130,7 @@ export class CartServiceService {
   let loadedUser = JSON.parse(localStorage.getItem('userData')||'{}');
 
 
-  axios.post("https://perlarest.vinoitalia.gr/products/favorites.php",
+  axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
   {
     mtrl:product.mtrl,
     trdr:loadedUser.trdr,
@@ -247,7 +247,7 @@ export class CartServiceService {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     return this.http.post(
-      'https://perlarest.vinoitalia.gr/cart/fetchCart.php',
+      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
       {
         trdr: loadedUser.trdr,
       }

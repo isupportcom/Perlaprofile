@@ -255,12 +255,14 @@ export class ProductPageComponent implements OnInit {
     setTimeout(() => {
       console.log(this.favorites);
       if(this.product.category != 116){
-        for(let favorite of this.favorites){
-          if(this.product.mtrl === favorite.mtrl){
-            console.log('HeHe');
-            this.added = true;
-            this.product.addedToFav = true;
-
+        if(this.favorites){
+          for(let favorite of this.favorites){
+            if(this.product.mtrl === favorite.mtrl){
+              console.log('HeHe');
+              this.added = true;
+              this.product.addedToFav = true;
+  
+            }
           }
         }
 
@@ -283,7 +285,7 @@ export class ProductPageComponent implements OnInit {
 
 
   getFavourites(){
-    return this.http.post("https://perlarest.vinoitalia.gr/products/favorites.php",{
+    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
       trdr: this.loadedUser.trdr,
       mtrl:"dontNeedIt",
       mode:"fetch"
@@ -370,7 +372,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   async getSeeEarlier(){
-    let req =await axios.post("https://perlarest.vinoitalia.gr/products/getSeeEarlier.php",{
+    let req =await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php",{
        trdr: this.loadedUser.trdr
      })
      this.seeEarlier = req.data.products;

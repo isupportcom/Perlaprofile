@@ -155,9 +155,9 @@ export class NavbarComponent implements OnInit{
     this.cartService.productAdded.subscribe(resData => {
 
       setTimeout(() => {
-        axios.post("https://perlarest.vinoitalia.gr/cart/fetchCart.php",{trdr:loadedUser.trdr})
+        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
         .then(resData => {
-          this.productCount = resData.data.cart.length;
+          this.productCount = resData.data.products.length;
 
         })
       },500)

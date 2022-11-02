@@ -111,9 +111,13 @@ export class AppComponent implements OnDestroy, OnInit {
         for(let relatedProd of this.relatedProducts){
           let groupingObs: Observable<any>;
           let temp;
+          relatedProd.qty = this.singleProduct.qty;
+          let scope2b;
           groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,relatedProd.grouping);
 
           groupingObs.subscribe(resData => {
+            scope2b = resData.Scope2[0];
+            scope2b.qty = this.singleProduct.qty;
             temp = {
               scope1: relatedProd,
               scope2: resData.Scope2[0]
@@ -152,6 +156,10 @@ export class AppComponent implements OnDestroy, OnInit {
 
       if(this.group.Scope2.length > 0){
         if(this.group.Scope3.length <= 0){
+          for(let i=0;i<this.group.Scope2.length;i++){
+            this.group.Scope2[i].qty = this.singleProduct.qty;
+          }
+          
           this.singleProduct.show = true;
           // this.cartService.addToCart(this.singleProduct);
 
@@ -176,6 +184,14 @@ export class AppComponent implements OnDestroy, OnInit {
 
         }
         else{
+          for(let i=0;i<this.group.Scope2.length;i++){
+            this.group.Scope2[i].qty = this.singleProduct.qty;
+          }
+
+          for(let i=0;i<this.group.Scope3.length;i++){
+            this.group.Scope3[i].qty = this.singleProduct.qty;
+          }
+
           this.itemsToCart.push(this.singleProduct);
           this.itemsToCart.push(product);
           console.log(product);
@@ -211,6 +227,10 @@ export class AppComponent implements OnDestroy, OnInit {
           window.location.reload();
         }
         else{
+          for(let i=0;i<this.group.Scope3.length;i++){
+            this.group.Scope3[i].qty = this.singleProduct.qty;
+          }
+
           this.itemsToCart.push(this.singleProduct);
           this.itemsToCart.push(product);
           console.log(this.itemsToCart);
