@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AddImagePopupComponent implements OnInit {
   @Input() secondary?: boolean;
   isClicked: boolean = true;
+  imagesArr :string|any= [];
   searchPhoto: FormGroup | any;
   constructor(
     private cartService: CartServiceService,
@@ -35,7 +36,7 @@ export class AddImagePopupComponent implements OnInit {
       )
       .then((photoName) => {
         console.log(photoName);
-         
+
         for (let i = 0; i < photoName.data.length; i++) {
           this.imagesNames.push(photoName.data[i].image)
           this.images[i] =
@@ -45,8 +46,17 @@ export class AddImagePopupComponent implements OnInit {
       });
   }
   sendNUDES(image: string) {
-    this.modalService.sendImage(image);
+    this.imagesArr.push(image);
+    // console.log(this.imagesArr);
+
+    // this.modalService.sendImage(image);
     // this.cartService.sendAddImagePopup(false);
+  }
+  addImages(){
+
+    console.log(this.imagesArr)
+    this.modalService.sendImage(this.imagesArr);
+
   }
   searchPhotoByName(){
     console.log(this.searchPhoto.value.imageName)
@@ -59,7 +69,7 @@ export class AddImagePopupComponent implements OnInit {
       )
       .then((photoName) => {
         console.log(photoName);
-         
+
         for (let i = 0; i < photoName.data.length; i++) {
           this.imagesNames.push(photoName.data[i].image)
           this.images[i] =
@@ -78,18 +88,18 @@ export class AddImagePopupComponent implements OnInit {
         this.images = [];
         // this.images[0] = photoName.data.search;
         for(let image of photoName.data.images){
-  
+
           this.images.push(image.image);
           this.imagesNames.push(image.name);
         }
       })
-  
-  
-  
+
+
+
       this.searchPhoto.reset();
     }
 
-    
+
   }
   close() {
     if (this.secondary) {
