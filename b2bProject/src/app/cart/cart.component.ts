@@ -71,7 +71,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
       setTimeout(()=>{
         this.declareArray();
-      },400)
+      },600)
 
 
 
@@ -83,36 +83,39 @@ export class CartComponent implements OnInit, OnDestroy {
 
       let counter = 0;
       let temp: any;
-      for(let i=0;i<this.products.length;i++){
-        if(i === 0){
-
-          this.cartItems.push([]);
-          // this.cartItems[i].push([]);
-          this.cartItems[counter].push(this.products[i]);
-          temp = this.products[i];
-        }
-        else{
-          if(temp?.group_id != this.products[i].group_id){
-            console.log("Hey");
+      if(this.products){
+        for(let i=0;i<this.products.length;i++){
+          if(i === 0){
+  
             this.cartItems.push([]);
             // this.cartItems[i].push([]);
-            counter++;
             this.cartItems[counter].push(this.products[i]);
-
+            temp = this.products[i];
           }
           else{
-            if(this.products[i].group_id.length < 10){
-              this.cartItems[counter][0].qty += this.products[i].qty;
+            if(temp?.group_id != this.products[i].group_id){
+              console.log("Hey");
+              this.cartItems.push([]);
+              // this.cartItems[i].push([]);
+              counter++;
+              this.cartItems[counter].push(this.products[i]);
+  
             }
             else{
-              this.cartItems[counter].push(this.products[i]);
+              if(this.products[i].group_id.length < 10){
+                this.cartItems[counter][0].qty += this.products[i].qty;
+              }
+              else{
+                this.cartItems[counter].push(this.products[i]);
+              }
             }
+            console.log(temp.group_id + ' ' + this.products[i].group_id);
+            temp = this.products[i];
           }
-          console.log(temp.group_id + ' ' + this.products[i].group_id);
-          temp = this.products[i];
         }
+        console.log(this.cartItems);
       }
-      console.log(this.cartItems);
+
 
   }
 
@@ -175,7 +178,6 @@ export class CartComponent implements OnInit, OnDestroy {
           
       }
       else{
-        console.log('POUTsa');
         
         let id = btn.id;
         let min = myInput.getAttribute("min");
@@ -233,6 +235,8 @@ export class CartComponent implements OnInit, OnDestroy {
           this.products = resData.data.products;
           this.temp = this.products
           this.cartItems = [];
+          this.declareArray();
+
           this.length = this.products.length
           console.log(resData);
           console.log(this.products)
@@ -255,9 +259,9 @@ export class CartComponent implements OnInit, OnDestroy {
           console.log(this.GrandTotal)
 
         })
-        setTimeout(()=>{
-          this.declareArray();
-        },400)
+        // setTimeout(()=>{
+        //   this.declareArray();
+        // },400)
 
         // if(reload){
         //   setTimeout(() => {

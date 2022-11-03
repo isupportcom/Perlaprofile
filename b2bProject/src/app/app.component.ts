@@ -23,7 +23,7 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnDestroy, OnInit {
+export class AppComponent implements OnInit {
   title = 'b2bProject';
   age = '10';
   loggedIn: boolean = true;
@@ -138,8 +138,13 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
 
-  handleGrouping(product: any){
-    let groupingObs: Observable<any>;
+  handleGrouping(product: any,btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        
+
+        let groupingObs: Observable<any>;
 
     groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
 
@@ -242,59 +247,75 @@ export class AppComponent implements OnDestroy, OnInit {
         this.productAdded = false;
          window.location.reload();
       }
+      btn.classList.remove('loading');
     },500)
+      }, 1000);
+    }
+
+    
   }
 
-  addToCart(product: any){
+  addToCart(product: any,btn?: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
 
-    this.itemsToCart.push(product);
+        this.itemsToCart.push(product);
 
-    this.cartService.setItemsToCartArray(this.itemsToCart);
+        this.cartService.setItemsToCartArray(this.itemsToCart);
 
-    let id = '';
+        let id = '';
 
 
-    for(let prod of this.itemsToCart){
-      id = id + prod.mtrl;
-      // prod.show = true;
-      // this.cartService.addToCart(prod);
-      // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-      // this.cartService.sendProductAdded(true);
+        for(let prod of this.itemsToCart){
+          id = id + prod.mtrl;
+          // prod.show = true;
+          // this.cartService.addToCart(prod);
+          // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
+          // this.cartService.sendProductAdded(true);
+        }
+
+        this.cartService.setId(id);
+
+        
+        
+        for(let prod of this.itemsToCart){
+          // id = id + prod.mtrl;
+          prod.group_id = id;
+          prod.show = true;
+        
+          console.log(prod);
+          
+
+          this.cartService.addToCart(prod);
+
+          this.cartService.sendProductAdded(true);
+
+        }
+
+
+        this.productAdded = false;
+        this.showScope3 = false;
+
+        console.log('OPA');
+
+
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000)
+
+
+        btn.classList.remove('loading');
+  
+      }, 1200);
     }
 
-    this.cartService.setId(id);
-
     
-    
-    for(let prod of this.itemsToCart){
-      // id = id + prod.mtrl;
-      prod.group_id = id;
-      prod.show = true;
-    
-      console.log(prod);
-      
-
-      this.cartService.addToCart(prod);
-
-      this.cartService.sendProductAdded(true);
-
-    }
-
-
-    this.productAdded = false;
-    this.showScope3 = false;
-
-    console.log('OPA');
-
-
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1000)
 
 
 
@@ -317,5 +338,5 @@ export class AppComponent implements OnDestroy, OnInit {
     }, 100);
   }
 
-  ngOnDestroy() {}
+
 }

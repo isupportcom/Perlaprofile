@@ -46,9 +46,10 @@
           <hr style="opacity: 1;border: 1px solid #6dae49;">
         </div>
         <div class="row" style="height: 600px;overflow:scroll">
-          <div class="col-3 " *ngFor="let image of images" style="padding: 12px;">
+          <div class="col-3 " *ngFor="let image of images;let i = index" style="padding: 12px;">
               <a (click)="sendNUDES(image)">
                 <img [src]="image" class="image" style="cursor: pointer;" width="250px" height="250px" alt="" srcset="">
+                <p>{{ imagesNames[i] }}</p>
               </a>
           </div>
         </div>

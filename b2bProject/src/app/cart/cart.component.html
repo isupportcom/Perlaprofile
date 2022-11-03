@@ -86,7 +86,7 @@
 
       </div>
       <div class="row">
-        <div class="col-12" style="padding:0px;margin-top: 12px;">
+        <div *ngIf="cartItems.length>0" class="col-12" style="padding:0px;margin-top: 12px;">
           <a class="clearAllBtn" (click)="clearAll(true)">
             <img src="../../assets/trash-alt-white.svg" width="20px" alt="">
             Καθάρισε Το Καλάθι

@@ -837,7 +837,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   handleClearFilters() {
     this.filterOn = false;
     this.listArray = [];
-
+    this.shownProducts = [];
+    this.search = '';
 
     for(let i=0; i<this.filters.length; i++){ 
       this.filters[i].checked = false;
@@ -1004,8 +1005,44 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   findProducts() {
-    console.log('mpike gia res');
-    axios
+    this.filterOn = false;
+    console.log(this.search);
+    if(this.search === ""){
+      axios
+      .post('https://perlarest.vinoitalia.gr/php-auth-api/search.php', {
+        search: '100',
+        
+      })
+      .then((resData) => {
+        this.waiting = true;
+        console.log(resData.data);
+        if (resData.data.products.length != 0) {
+          setTimeout(() => {
+            for (let favorite of this.favorites) {
+              for (let prod of resData.data.products) {
+                if (favorite.mtrl === prod.mtrl) {
+                  prod.addedToFav = true;
+                }
+              }
+            }
+            this.waiting = false;
+            this.shownProducts = [];
+            this.products = resData.data.products;
+            this.updateProducts();
+            this.message = '';
+          }, 100);
+        } 
+        else {
+          setTimeout(() => {
+            this.waiting = false;
+            this.shownProducts = [];
+          }, 100);
+        }
+      });
+    }
+    else{
+      this.filterOn = true;
+      axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/search.php', {
         search: this.search,
       })
@@ -1032,6 +1069,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
           }, 100);
         }
       });
+    }
+
   }
   handleWizzard(name: string, id: number) {
     this.productsService.setSingleProduct({

@@ -47,8 +47,7 @@ export class FavoriteComponent implements OnInit {
     })
     .then(resData=>{
       console.log(resData.data);
-      this.getProducts()
-      window.location.reload();
+      this.products = resData.data.products;
     })
 
     

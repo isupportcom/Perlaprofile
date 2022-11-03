@@ -19,6 +19,7 @@ export class AddImagePopupComponent implements OnInit {
     private fb:FormBuilder
   ) {}
   images: string | any = [];
+  imagesNames: string[] = [];
 
   ngOnInit(): void {
 
@@ -34,7 +35,9 @@ export class AddImagePopupComponent implements OnInit {
       )
       .then((photoName) => {
         console.log(photoName);
+         
         for (let i = 0; i < photoName.data.length; i++) {
+          this.imagesNames.push(photoName.data[i].image)
           this.images[i] =
             'https://perlarest.vinoitalia.gr/php-auth-api/upload/' +
             photoName.data[i].image;
@@ -43,26 +46,56 @@ export class AddImagePopupComponent implements OnInit {
   }
   sendNUDES(image: string) {
     this.modalService.sendImage(image);
-    this.cartService.sendAddImagePopup(false);
+    // this.cartService.sendAddImagePopup(false);
   }
   searchPhotoByName(){
     console.log(this.searchPhoto.value.imageName)
 
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/searchPhoto.php",{
-      search:this.searchPhoto.value.imageName
-    })
-    .then(photoName=>{
-      this.images = [];
-      this.images[0] = photoName.data.search;
-    })
+    if(this.searchPhoto.value.imageName == null){
 
+      axios
+      .get(
+        'https://perlarest.vinoitalia.gr/php-auth-api/getImages.php/?id=9&method=allImages'
+      )
+      .then((photoName) => {
+        console.log(photoName);
+         
+        for (let i = 0; i < photoName.data.length; i++) {
+          this.imagesNames.push(photoName.data[i].image)
+          this.images[i] =
+            'https://perlarest.vinoitalia.gr/php-auth-api/upload/' +
+            photoName.data[i].image;
+        }
+      });
+    }
+    else{
+      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/searchPhoto.php",{
+        search:this.searchPhoto.value.imageName
+      })
+      .then(photoName=>{
+        console.log(photoName);
+        this.imagesNames = [];
+        this.images = [];
+        // this.images[0] = photoName.data.search;
+        for(let image of photoName.data.images){
+  
+          this.images.push(image.image);
+          this.imagesNames.push(image.name);
+        }
+      })
+  
+  
+  
+      this.searchPhoto.reset();
+    }
 
-
-    this.searchPhoto.reset();
+    
   }
   close() {
     if (this.secondary) {
-      window.location.reload();
+
+      this.cartService.sendAddImagePopup(false);
+      // window.location.reload();
     } else {
       this.cartService.sendAddImagePopup(false);
     }

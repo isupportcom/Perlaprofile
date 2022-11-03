@@ -4,7 +4,7 @@
 
 
 
-<div *ngIf="productAdded && relatedProducts.length > 0" class="scroll1" style="position: fixed; z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
+<div *ngIf="productAdded && relatedProducts.length > 0" class="scroll1" style="position: fixed;top: 0;z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
     <div class="container scroll" style="background-color: white;padding-top: 2%; height: fit-content;">
         <div class="row">
           <div class="col-5" style="display: flex;justify-content: center;align-items: center;">
@@ -32,10 +32,17 @@
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Quantity: {{ product.scope1.qty }}</p></div>
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="!product.scope1.hasOffer">Price: {{ product.scope1.wholesale * product.scope1.qty}}&#x20AC;</p></div>
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="product.scope1.hasOffer">Price: {{ product.scope1.wholesale * product.scope1.qty}}&#x20AC;</p></div>
-                        <div class="row" style="display: flex;justify-content: left;align-items: center;padding-left: 12px;"><button class="btn btn-success" (click)="handleGrouping(product.scope1)">
+                        <!-- <div class="row" style="display: flex;justify-content: left;align-items: center;padding-left: 12px;"><button class="btn btn-success" (click)="handleGrouping(product.scope1)">
                            <p *ngIf="!changeBtn">Προσθήκη</p>
                            <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
-                        </button></div>
+                        </button></div> -->
+                        <button type="button"  style="position: relative;" (click)="handleGrouping(product.scope1,btn)"  class="myBtn" #btn>
+                          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                          <p style="margin: 0px;color: rgba(0,0,0,0);">Επιλογή</p>
+                          <p class="textAnim">Επιλογή</p>
+                          
+              
+                        </button>
                       </div>
 
                   </div>
@@ -59,7 +66,7 @@
     </div>
 
 
-<div *ngIf="showScope3" class="scroll1" style="position: fixed; z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
+<div *ngIf="showScope3" class="scroll1" style="position: fixed;top: 0;z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
     <div class="container scroll" style="background-color: white;padding: 2%; height: fit-content; width: fit-content;">
       <div class="row">
         <h2>Scope 3</h2>
@@ -75,10 +82,17 @@
             <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><h6>{{ product.name }}</h6></div>
             <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Quantity: {{ product.qty }}</p></div>
             <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Price: {{ product.wholesale * product.qty}}&#x20AC;</p></div>
-            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><button class="btn btn-success" (click)="addToCart(product)">
+            <!-- <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><button class="btn btn-success" (click)="addToCart(product)">
               <p *ngIf="!changeBtn">Προσθήκη</p>
               <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
-           </button></div>
+           </button></div> -->
+           <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="addToCart(product,btn2)"  class="myBtn" #btn2>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p style="margin: 0px;color: rgba(0,0,0,0);">Προσθήκη</p>
+            <p class="textAnim">Προσθήκη</p>
+            
+
+          </button>
           </div>
         </div>
     </div>

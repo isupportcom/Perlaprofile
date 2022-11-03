@@ -45,9 +45,20 @@ export class InsertImagesComponent implements OnInit {
      this.products = resData.data.products
 
    })
-    this.modalService.isClicked.subscribe((res:any)=>{
-      this.window = false;
-    })
+    // this.modalService.isClicked.subscribe((res:any)=>{
+    //   this.window = false;
+    // })
+
+    this.cartService.addImagePopup.subscribe((resData) => {
+      if (resData == false) {
+        this.flag = false;
+        this.window = false;
+      } else {
+        console.log(resData);
+        this.flag = true;
+        this.window = true;
+      }
+    });
 
   }
   openMain(item:any){
@@ -80,9 +91,7 @@ export class InsertImagesComponent implements OnInit {
         mode:"insert"
       }).then(res=>{
         console.log(res)
-        setTimeout(()=>{
-           window.location.reload()
-        },500)
+        this.products = res.data.images;
 
       })
     })
@@ -94,10 +103,7 @@ export class InsertImagesComponent implements OnInit {
       mode:"remove"
     }).then(res=>{
       console.log(res)
-      setTimeout(()=>{
-        window.location.reload()
-      },500)
-
+      this.products = res.data.images;
     })
 
   }
@@ -105,7 +111,21 @@ export class InsertImagesComponent implements OnInit {
   findProducts() {
     console.log('mpike gia res');
     if(this.search == ''){
-      this.getProducts();
+      axios
+      .post('https://perlarest.vinoitalia.gr/php-auth-api/search.php', {
+        search: '100',
+      })
+      .then((resData) => {
+        console.log(resData.data.products);
+        if (resData.data.products.length != 0) {
+            this.products = resData.data.products;
+        } 
+        else {
+          setTimeout(() => {
+            // this.getProducts();
+          }, 100);
+        }
+      });
     }
     else{
       axios
