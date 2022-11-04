@@ -187,12 +187,22 @@ export class CartComponent implements OnInit, OnDestroy {
         let calcStep = (id == "increment") ? (step*1) : (step * -1);
         let newValue = +val + calcStep;
 
+        let flag = false;
+        if(this.products[index].qty > newValue){
+          flag = true;
+          
+        }
         this.products[index].qty = newValue;
         
   
         console.log(this.products[index]);
-  
-        this.cartService.addToCart(this.products[index],false)
+        
+        if(flag){
+          this.cartService.addToCart(this.products[index],false,undefined,true);
+        }
+        else{
+          this.cartService.addToCart(this.products[index]);
+        }
       }
 
 

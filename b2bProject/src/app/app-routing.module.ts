@@ -166,6 +166,8 @@ const routes :Routes =[
     component: TeamComponent
   }
 
+
+
 ];
 @NgModule({
   imports:[RouterModule.forRoot(routes)],

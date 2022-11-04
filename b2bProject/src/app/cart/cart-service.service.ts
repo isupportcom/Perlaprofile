@@ -143,7 +143,16 @@ export class CartServiceService {
 
   }
 
-  addToCart(product: product | any,animate?: boolean,product_page?: boolean) {
+  addToCart(product: product | any,animate?: boolean,product_page?: boolean,decrement?: boolean) {
+    let dec;
+    if(decrement){
+      dec = 2;
+    }
+    else{
+      dec = 1;
+    }
+
+
     let p_page;
 
     if(product_page){
@@ -157,6 +166,8 @@ export class CartServiceService {
     else{
       p_page = 1;
     }
+    console.log(p_page);
+    
 
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     console.log(loadedUser.trdr);
@@ -212,6 +223,8 @@ export class CartServiceService {
       product.group_id = product.mtrl;
 
     }
+    console.log(product.group_id);
+    
 
     let qty
     if(product.qty == undefined){
@@ -219,7 +232,8 @@ export class CartServiceService {
     }else{
       qty=product.qty
     }
-
+      console.log(qty);
+      
 
       axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php', {
@@ -236,7 +250,8 @@ export class CartServiceService {
         stock: product.stock,
         group_id: product.group_id,
         discound: discount,
-        p_page: p_page
+        p_page: p_page,
+        dec: dec
       })
       .then((resData) => console.log(resData.data));
 

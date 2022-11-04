@@ -74,9 +74,9 @@ export class FavoriteComponent implements OnInit {
       }
 
       console.log(product);
-      this.productsService.setSingleProduct(product);
+      // this.productsService.setSingleProduct(product);
       this.cartService.sendProductAdded(true);
-      this.cartService.setId(product.mtrl)
+      // this.cartService.setId(product.mtrl)
       this.cartService.addToCart(product)
   }
 
