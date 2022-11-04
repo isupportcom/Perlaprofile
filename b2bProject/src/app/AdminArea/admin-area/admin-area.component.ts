@@ -36,6 +36,8 @@ export class AdminAreaComponent implements OnInit {
 
         this.modalService.image.subscribe((res: any) => {
           this.image = res;
+          console.log(resData);
+
           axios
             .get(
               'https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl=' +
@@ -46,7 +48,7 @@ export class AdminAreaComponent implements OnInit {
             .then((res) => {
               console.log(res.data);
             });
-          window.location.reload();
+         // window.location.reload();
         });
       }
     });

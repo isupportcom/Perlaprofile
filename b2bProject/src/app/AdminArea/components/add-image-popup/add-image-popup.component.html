@@ -50,7 +50,7 @@ sendNUDES
         </div>
         <div class="row" style="height: 600px;overflow:scroll">
           <div class="col-3 " *ngFor="let image of images;let i = index" style="padding: 12px;">
-              <a (click)="sendNUDES(imagesNames[i])">
+              <a (click)="sendNUDES(image)">
                 <img [src]="image" class="image" style="cursor: pointer;" width="250px" height="250px" alt="" srcset="">
                 <p>{{ imagesNames[i] }}</p>
               </a>

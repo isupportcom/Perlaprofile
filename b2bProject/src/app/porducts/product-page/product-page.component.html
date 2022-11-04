@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <div class="container" style="margin-top: 180px !important;display: block">
   <div class="row" style="padding-left: 17%;">
 
@@ -54,17 +49,18 @@
       <div *ngIf="product.category !== 116 && product.category !== 117" class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section" >
 
         <div class="row first-row">
-          <h2>{{product.product_name}}</h2>
+          <h2 *ngIf="currentLang=='en'">{{product.product_name_eng}}</h2>
+          <h2 *ngIf="currentLang=='el'">{{product.product_name}}</h2>
         </div>
         <div *ngIf="username" class="row first-row" style="margin-top: 100px;margin-bottom: 24px;">
-          <p *ngIf="!product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
-          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
-          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ product.offer }}&euro;</b></p>
+          <p *ngIf="!product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;" translate> product_page.price <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;" translate> product_page.price  <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+          <p *ngIf="product.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;" translate> product_page.price <b style="color:#6dae49;">{{ product.offer }}&euro;</b></p>
 
-          <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
+          <p style="font-size: 10px;margin: 0px;height: fit-content" translate> product_page.fpa </p>
           <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
             <div class="col-4" style="display: flex;align-items:center;">
-              <p style="font-size: 20px;margin: 0px;">Ποσότητα:</p>
+              <p style="font-size: 20px;margin: 0px;" translate> product_page.qty </p>
             </div>
             <div  class="col-8" style="display: flex;justify-content:center;align-items: center;">
               <div class="numberInput">
@@ -75,11 +71,11 @@
             </div>
           </div>
           <div class="row">
-            
+
 
             <button class="button col-6" style="transition: background-color 0.2s ease-in-out;" (click)="addToCart(addToCartBtn)"
             [disabled]="product.stock == 0" #addToCartBtn>
-              <span>Add to cart</span>
+              <span translate> product_page.add </span>
               <div class="cart">
               <svg viewBox="0 0 36 26">
                 <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
@@ -91,16 +87,16 @@
               <button  class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;cursor: auto;">
                 <img (click)="handleAddToFavorite()" [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'" style="cursor: pointer;"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="" width="44px" alt="">
               </button>
-            
-            
+
+
           </div>
         </div>
         <div class="row">
           <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
           <div style="margin-top: 18px;">
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: {{product.code}}</p>
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{product.texnikos_kodikos}}</p>
-            <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{product.kodikos_kataskeuasti}}</p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;" translate> product_page.apoth <b>{{product.code}}</b></p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;" translate> product_page.texn <b>{{product.texnikos_kodikos}}</b></p>
+            <p style="color: #3E4148;margin: 0;font-size: 14px;" translate> product_page.kat <b>{{product.kodikos_kataskeuasti}}</b></p>
           </div>
         </div>
       </div>
@@ -113,35 +109,36 @@
             <hr style="opacity: 1;border: 2px solid #6dae49;border-radius: 8px;">
         </div>
         <div class="login-box">
-          <form         
+          <form
           class=" row"
           #form>
               <div class="user-box">
-                  <input              
+                  <input
                   type="number"
-                  
+
                   required>
-                  <label>Κωδικος αποθήκης</label>
+                  <label translate> product_page.apoth</label>
               </div>
               <div class="user-box">
-                  <input 
+                  <input
                   type="text"
-                  
+
                   required
                   >
-                  <label>Περιγραφή</label>
+                  <label translate> product_page.desc </label>
               </div>
               <div class="user-box">
                 <select
                 class="select"
-                
+
                 required
               >
                 <option
                   [ngValue]="null"
                   [disabled]="true"
-                >
-                  Eπιλεξτε Χρώμα
+                  translate
+                  >
+                  product_page.color
                 </option>
               </select>
                 <label></label>
@@ -151,20 +148,20 @@
               <div class="container" style="padding-left: 0px !important;padding-right: 0px !important;">
                 <div class="row" style="padding-left: 0px !important;">
                   <div class="col-6">
-                    <input 
+                    <input
                     type="number"
-                    
+
                     required
                     >
-                    <label>Μήκος</label>
+                    <label translate> product_page.width </label>
                   </div>
                   <div class="col-6">
-                    <input 
+                    <input
                     type="number"
-                    
+
                     required
                     >
-                    <label>Διαθεσιμότητα</label>
+                    <label translate> product_page.avail </label>
                   </div>
                 </div>
               </div>
@@ -173,9 +170,9 @@
         <div class="row" style="justify-content: center;align-items: center;">
           <button type="button"  style="position: relative;" (click)="animation(btn)"  ngClass="myBtn" #btn>
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-            <p style="margin: 0px;color: rgba(0,0,0,0);">Εμφάνιση Προϊόντος</p>
-            <p class="textAnim">Εμφάνιση Προϊόντος</p>
-            
+            <p style="margin: 0px;color: rgba(0,0,0,0);" translate> product_page.show</p>
+            <p class="textAnim" translate> product_page.show</p>
+
 
           </button>
         </div>
@@ -197,19 +194,19 @@
           <app-spinner style="display: flex;justify-content:center;align-items: center;"></app-spinner>
         </div> -->
         <div *ngIf="product.category === 116 && !showForm && !waitingProduct && mosquiProduct === undefined" class="row" style="display: flex;justify-content:center;align-items: center;text-align: center;">
-          <h2>Δεν βρέθηκε κάποιο προϊόν</h2>
-          <button class="myBtn" (click)="handleFindNew()">Βρες καινούριο προϊόν</button>
+          <h2 translate>product_page.fail</h2>
+          <button class="myBtn" (click)="handleFindNew()" translate>product_page.find</button>
         </div>
         <div *ngIf="product.category === 116 && !showForm && !waitingProduct && mosquiProduct != undefined" class="row">
             <div class="row first-row" style="margin-top: 32px;margin-bottom: 24px;">
-              <p *ngIf="!mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ mosquiProduct.wholesale }}&euro;</b></p>
-              <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;">Τιμή: <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
-              <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;">Τιμή: <b style="color:#6dae49;">{{ mosquiProduct.offer }}&euro;</b></p>
-        
-              <p style="font-size: 10px;margin: 0px;height: fit-content">(*Στις τιμές δεν περιλαμβάνεται ο Φ.Π.Α)</p>
+              <p *ngIf="!mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;" translate>product_page.price <b style="color:#6dae49;">{{ mosquiProduct.wholesale }}&euro;</b></p>
+              <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;" translate>product_page.price <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
+              <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;" translate>product_page.price<b style="color:#6dae49;">{{ mosquiProduct.offer }}&euro;</b></p>
+
+              <p style="font-size: 10px;margin: 0px;height: fit-content" translate>product_page.fpa</p>
               <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
                 <div class="col-4" style="display: flex;align-items:center;">
-                  <p style="font-size: 20px;margin: 0px;">Ποσότητα:</p>
+                  <p style="font-size: 20px;margin: 0px;" translate>product_page.qty</p>
                 </div>
                 <div  class="col-8" style="display: flex;justify-content:center;align-items: center;">
                   <div class="numberInput">
@@ -223,7 +220,7 @@
 
                 <button class="button col-6" style="transition: background-color 0.2s ease-in-out;" (click)="addToCartMosqui(addToCartBtn)"
                 [disabled]="product.stock == 0" #addToCartBtn>
-                  <span>Add to cart</span>
+                  <span translate>product_page.add</span>
                   <div class="cart">
                   <svg viewBox="0 0 36 26">
                     <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
@@ -231,23 +228,23 @@
                   </svg>
                   </div>
                   </button>
-                
-                
+
+
                   <button (click)="handleAddToFavorite(mosquiProduct)" class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
                     <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
                   </button>
-                
+
               </div>
             </div>
             <div class="row">
               <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
               <div style="margin-top: 18px;">
-                <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Αποθήκης: {{mosquiProduct.code}}</p>
-                <p style="color: #3E4148;margin: 0;font-size: 14px;">Τεχνικός Κωδικός: {{mosquiProduct.texnikos_kodikos}}</p>
-                <p style="color: #3E4148;margin: 0;font-size: 14px;">Κωδικός Κατασκευαστή: {{mosquiProduct.kodikos_kataskeuasti}}</p>
+                <p style="color: #3E4148;margin: 0;font-size: 14px;" translate>product_page.apoth<b> {{mosquiProduct.code}}</b></p>
+                <p style="color: #3E4148;margin: 0;font-size: 14px;"translate>product_page.texn <b>{{mosquiProduct.texnikos_kodikos}}</b></p>
+                <p style="color: #3E4148;margin: 0;font-size: 14px;"translate>product_page.kat <b>{{mosquiProduct.kodikos_kataskeuasti}}</b></p>
               </div>
-              <button class="myBtn" (click)="handleFindNew()" style="margin-top: 24px;">Βρες καινούριο προϊόν</button>
-            </div>   
+              <button class="myBtn" (click)="handleFindNew()" style="margin-top: 24px;" translate>product_page.find</button>
+            </div>
         </div>
       </div>
   </div>
@@ -262,10 +259,10 @@
         <div class="underline col-3"></div>
         <div class="underline col-3"></div>
 
-        <a class="col-3" (click)="ul(0)">Περιγραφή</a>
-        <a class="col-3" (click)="ul(1)">Πρόσθετες Λεπτομέριες</a>
-        <a class="col-3" (click)="ul(2)">Λήψεις</a>
-        <a class="col-3" (click)="ul(3)">Λύσεις</a>
+        <a class="col-3" (click)="ul(0)" translate>product_page.desc</a>
+        <a class="col-3" (click)="ul(1)" translate>product_page.additional</a>
+        <a class="col-3" (click)="ul(2)" translate>product_page.down</a>
+        <a class="col-3" (click)="ul(3)" translate>product_page.sol</a>
       </nav>
     </div>
     <div class="row">
@@ -273,9 +270,11 @@
     </div>
     <div class="row">
       <button *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0] " (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Περιγραφής </button>
-      <p *ngIf="showDesc[0]" [innerHTML]="product.description"></p>
+      <p *ngIf="showDesc[0] && currentLang=='el'" [innerHTML]="product.description"></p>
+      <p *ngIf="showDesc[0] && currentLang=='en'" [innerHTML]="product.description_eng"></p>
       <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button>
-      <p *ngIf="showDesc[1]" [innerHTML]="product.data_sheet"></p>
+      <p *ngIf="showDesc[1]&& currentLang=='el'" [innerHTML]="product.data_sheet"></p>
+      <p *ngIf="showDesc[1]&& currentLang=='en'" [innerHTML]="product.data_sheet_eng"></p>
       <p *ngIf="showDesc[2]"><button (click)="downloadMyFile(product.pdf)">Open PDF</button></p>
       <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button>
       <p *ngIf="showDesc[3]"><iframe width="850" height="315"
@@ -285,16 +284,24 @@
 
   </div>
   <br>
-  <form class="form-control" *ngIf="onEditDesc" [formGroup]="desciptionForm" (ngSubmit)="uploadDescription()" >
-    <textarea formControlName="description" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή..." ></textarea>
-    <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
-    <button (click)="closeForm()" style="margin-bottom:10px; margin-right: 10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+  <form class="form-control" *ngIf="onEditDesc" [formGroup]="desciptionForm"  >
+    <textarea formControlName="description" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή Ελληνικά..." ></textarea>
+   </form>
+  <form class="form-control" *ngIf="onEditDesc" [formGroup]="desciptionFormEng"  >
+    <textarea formControlName="descriptionEng" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή Αγγλικά..." ></textarea>
+
   </form>
-  <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetForm" (ngSubmit)="updateDataSheet()" >
-    <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες..." ></textarea>
-    <button  class="btn btn-success" style="margin-bottom:10px;" type="submit">Αποθήκευση Αλλαγών</button>
-    <button (click)="closeForm()" style="margin-bottom:10px;" type="button" class="btn btn-danger">Ακυρωση</button>
-  </form>
+  <button  class="btn btn-success" *ngIf="onEditDesc" style="margin-bottom:10px;" type="submit" (click)="uploadDescription()">Αποθήκευση Αλλαγών</button>
+  <button (click)="closeForm()" *ngIf="onEditDesc" style="margin-bottom:10px; margin-right: 10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+  <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetForm"  >
+    <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες Ελληνικά..." ></textarea>
+   </form>
+  <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetFormEng"  >
+    <textarea formControlName="datasEng" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες Αγγλικά..." ></textarea>
+   </form>
+   <button  class="btn btn-success" *ngIf="onEditData" style="margin-bottom:10px;" (click)="updateDataSheet()" type="submit">Αποθήκευση Αλλαγών</button>
+   <button (click)="closeForm()"*ngIf="onEditData" style="margin-bottom:10px;" type="button" class="btn btn-danger">Ακυρωση</button>
+
   <form (ngSubmit)="uploadUrl()" [formGroup]="urlVideoForm" class="form control" *ngIf="urlOpen">
     <input class="form-control" formControlName="video" placeholder="https://example.com">
     <br>
@@ -304,7 +311,7 @@
 
   <div *ngIf="product.category !== 116 && product.category !== 117" class="container"  style="margin-top: 120px;">
     <div class="row">
-      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1>Σχετικά Προϊόντα</h1></div>
+      <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1 translate>product_page.sugg</h1></div>
       <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 30%;" src="../../../assets/Line%208.svg"></div>
     </div>
     <app-products-carousel [mode]="'suggested'" [mtrl]="product.mtrl"></app-products-carousel>
@@ -312,7 +319,7 @@
 
 <div  class="container" *ngIf="loggedIn" style="margin-top: 120px;">
   <div class="row">
-      <div class="col-12" style="display: flex;justify-content: left;align-items: center;"><h3 style="margin: 0;">Είδατε Πρόσφατα</h3></div>
+      <div class="col-12" style="display: flex;justify-content: left;align-items: center;"><h3 style="margin: 0;" translate>product_page.earlier</h3></div>
       <div class="col-12"><hr style="border: 1px solid #6dae49;margin-top: 4px;opacity: 1;"></div>
   </div>
   <div *ngIf="!howManySeen" class="row imageRow2">
@@ -321,7 +328,8 @@
         <img [src]="prod.img" width="150px" height="150px"  alt="">
       </div>
       <div class="row text-center">
-        <p>{{ prod.name }}</p>
+        <p *ngIf="currentLang=='el'">{{ prod.onoma }}</p>
+        <p *ngIf="currentLang=='en'">{{prod.onoma_eng}}</p>
       </div>
     </div>
 
