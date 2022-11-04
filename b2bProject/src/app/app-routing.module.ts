@@ -19,6 +19,7 @@ import { HomepageComponent } from "./homepage/homepage.component";
 import { LogInComponent } from "./log-in/log-in.component";
 import { MyOrdersComponent } from "./my-orders/my-orders.component";
 import { OrderCompletedComponent } from "./order-completed/order-completed.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { MosquiWizzardComponent } from "./porducts/mosqui-wizzard/mosqui-wizzard.component";
 import { PorductsComponent } from "./porducts/porducts.component";
 import { ProductListComponent } from "./porducts/product-list/product-list.component";
@@ -164,7 +165,15 @@ const routes :Routes =[
   {
     path: 'the-team',
     component: TeamComponent
-  }
+  },
+{
+  path:'**',
+  redirectTo:'404'
+},
+{
+  path:'404',
+  component:PageNotFoundComponent
+}
 
 ];
 @NgModule({
