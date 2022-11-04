@@ -14,6 +14,7 @@ export class ProductsCarouselComponent implements OnInit {
   @Input() mode: any;
   @Input() mtrl: any;
   @Input() category?: any;
+  currentLang:string|any;
   suggestedProducts:product|any;
   hasSuggested:boolean =false;
   suggested:any;
@@ -50,7 +51,7 @@ export class ProductsCarouselComponent implements OnInit {
     private router: Router,) { }
 
   async ngOnInit() {
-    
+    this.currentLang = localStorage.getItem('lang');
     console.log(this.category);
     
     
@@ -87,7 +88,8 @@ export class ProductsCarouselComponent implements OnInit {
         category_id: this.category.id
       }).then(resData => {
         this.shownProducts = resData.data.products;
-
+        console.log(resData.data.products);
+        
         
       })
     }

@@ -19,6 +19,12 @@
   border-radius: 60px;
   width: 60px;
   height: 40px;
+  perspective: 100px;
+  transition: all 0.4s ease-in-out;
+}
+
+.showAll img{
+  transform-style: preserve-3d;
   transition: all 0.4s ease-in-out;
 }
 

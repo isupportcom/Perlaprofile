@@ -187,7 +187,7 @@
         <div class="row">
           <img src="../../../assets/Line 8.svg" width="100%" style="margin-top: 24px;margin-bottom: 12px" alt="" srcset="">
         </div>
-        <div *ngIf="product.category === 116 && showForm && !waitingProduct && username" class="row">
+        <div *ngIf="product.category === 116 && showForm && !waitingProduct" class="row">
           <app-mosqui-wizzard [name]="product.name" [sub_id]="product.id"></app-mosqui-wizzard>
         </div>
         <!-- <div *ngIf="waitingProduct" class="row" >
@@ -198,7 +198,7 @@
           <button class="myBtn" (click)="handleFindNew()" translate>product_page.find</button>
         </div>
         <div *ngIf="product.category === 116 && !showForm && !waitingProduct && mosquiProduct != undefined" class="row">
-            <div class="row first-row" style="margin-top: 32px;margin-bottom: 24px;">
+            <div *ngIf="username" class="row first-row" style="margin-top: 32px;margin-bottom: 24px;">
               <p *ngIf="!mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;" translate>product_page.price <b style="color:#6dae49;">{{ mosquiProduct.wholesale }}&euro;</b></p>
               <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content; text-decoration: line-through;color:red;" translate>product_page.price <b style="color:#6dae49;">{{ product.wholesale }}&euro;</b></p>
               <p *ngIf="mosquiProduct.hasOffer" style="font-size: 20px;margin: 0px;height: fit-content;" translate>product_page.price<b style="color:#6dae49;">{{ mosquiProduct.offer }}&euro;</b></p>
@@ -237,7 +237,7 @@
               </div>
             </div>
             <div class="row">
-              <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
+              <img *ngIf="username" src="../../../assets/Line 8.svg" width="100%" alt="" srcset="">
               <div style="margin-top: 18px;">
                 <p style="color: #3E4148;margin: 0;font-size: 14px;" translate>product_page.apoth<b> {{mosquiProduct.code}}</b></p>
                 <p style="color: #3E4148;margin: 0;font-size: 14px;"translate>product_page.texn <b>{{mosquiProduct.texnikos_kodikos}}</b></p>

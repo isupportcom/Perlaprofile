@@ -11,13 +11,10 @@
         <div style="height: fit-content;width: 100px;background-color: #6DAE49;color: white;">
           <div class="container" style="padding: 0px;">
             <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">Fincode</p>
-            </div>
-            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">Findoc</p>
-            </div>
-            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">Date</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Fincode</p>
             </div>
             <div class="row" style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">No Tax Ammount</p>
@@ -36,13 +33,10 @@
         <div style="display: flex;" >
           <div style="margin-right: 32px;" *ngFor="let order of orders;">
             <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.FINCODE }}</p>
-            </div>
-            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.FINDOC }}</p>
-            </div>
-            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.TRNDATE }}</p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.FINCODE }}</p>
             </div>
             <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.NETAMNT }}<span style="color: #6DAE49;" >&euro;</span></p>
@@ -72,9 +66,8 @@
       <thead >
       <tr class="head">
   
-        <th scope="col">Fincode</th>
-        <th scope="col">Findoc</th>
         <th scope="col">Date</th>
+        <th scope="col">Fincode</th>
         <th scope="col">No Tax Ammount</th>
         <th scope="col">Tax</th>
         <th scope="col">Sumarry</th>
@@ -84,9 +77,8 @@
       </thead>
       <tbody class="bodyHolder">
       <tr class="body" *ngFor="let order of orders;">
-        <th scope="row">{{ order.FINCODE }}</th>
-        <td>{{ order.FINDOC }}</td>
-        <td>{{ order.TRNDATE }}</td>
+        <th scope="row">{{ order.TRNDATE }}</th>
+        <td>{{ order.FINCODE }}</td>
         <td>{{ order.NETAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
         <td>{{ order.VATAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
         <td>{{ order.SUMAMNT }} <span style="color: #6DAE49;" >&euro;</span></td>
@@ -111,23 +103,23 @@
           <thead>
           <tr class="head">
       
-            <th scope="col">Code</th>
             <th scope="col">Linenum</th>
-            <th scope="col">Lineval</th>
+            <th scope="col">Code</th>
             <th scope="col">Name</th>
-            <th scope="col">Price</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Lineval</th>
       
           </tr>
           </thead>
           <tbody>
           <tr class="body"  *ngFor="let order of orderDetail;" >
-            <th scope="row">{{ order.code }}</th>
-            <td>{{ order.linenum }}</td>
-            <td>{{ order.lineval }}</td>
+            <th scope="row">{{ order.linenum }}</th>
+            <td>{{ order.code }}</td>
             <td>{{ order.name }}</td>
-            <td>{{ order.price }}&euro;</td>
             <td>{{ order.qty1 }}</td>
+            <td>{{ order.price }}&euro;</td>
+            <td>{{ order.lineval }}&euro;</td>
           </tr>
           </tbody>
         </table>
@@ -148,44 +140,45 @@
         <div style="height: 100%;width: 100px;background-color: #6DAE49;color: white;">
           <div class="container" style="padding: 0px;">
             <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">Code</p>
-            </div>
-            <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">Linenum</p>
             </div>
             <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">Lineval</p>
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Code</p>
             </div>
+
             <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">Name</p>
+            </div>
+            <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Quantity</p>
             </div>
             <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">Price</p>
             </div>
             <div class="row" style="justify-content: center;align-items:center;padding: 35px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">Quantity</p>
+              <p style="margin: 0px;font-weight: 600;padding: 0px">Lineval</p>
             </div>
           </div>
         </div>
         <div style="display: flex;" >
           <div style="margin-right: 32px;" *ngFor="let order of orderDetail;">
             <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.code }}</p>
-            </div>
-            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.linenum }}</p>
             </div>
             <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.lineval }}</p>
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.code }}</p>
             </div>
-            <div style="height: 120px;justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.name }}</p>
+            </div>
+            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.qty1 }}</p>
             </div>
             <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
               <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.price }} <span style="color: #6DAE49;" >&euro;</span></p>
             </div>
-            <div style="justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
-              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.qty1 }}</p>
+            <div style="height: 120px;justify-content: center;align-items:center;padding: 32px 0px;text-align: center;">
+              <p style="margin: 0px;font-weight: 600;padding: 0px">{{ order.lineval }}<span style="color: #6DAE49;" >&euro;</span></p>
             </div>
           </div>
         </div>

@@ -49,6 +49,8 @@ export class MosquiWizzardComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+
     axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/getAllColors.php', {
         method: 'notNeed',

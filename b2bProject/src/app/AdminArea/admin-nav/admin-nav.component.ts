@@ -15,9 +15,11 @@ export class AdminNavComponent implements OnInit {
   @ViewChild('imgTogler')imgTogler!:ElementRef;
   showList:boolean=false;
   showImg:boolean = false;
-
+  flag: boolean = false;
   makeSmallerDropDown?: boolean;
   isOpen = false;
+  arr: any = [];
+  arrow: any;
   component:number | any;
   constructor(
       private authService: AuthService,
@@ -71,12 +73,28 @@ export class AdminNavComponent implements OnInit {
   }
 
   handleLeave(el: any){
-    this.renderer.setStyle(el, 'width' , '60px')
-    setTimeout(() => {
-      this.renderer.setStyle(el.children[1].children[0], 'color' , 'white')
-      this.renderer.setStyle(el.children[1].children[0], 'opacity' , '0')
-    },50)
+    
 
+
+    if(this.flag){
+      // this.renderer.setStyle(this.arrow,'transform','rotateY(0deg)')
+
+      // for(let el of this.arr){
+      //   this.renderer.setStyle(el, 'width' , '60px')
+      //   setTimeout(() => {
+      //     this.renderer.setStyle(el.children[1].children[0], 'color' , 'white')
+      //     this.renderer.setStyle(el.children[1].children[0], 'opacity' , '0')
+      //   },50)
+      // }
+      // this.flag = false;
+    }
+    else{
+      this.renderer.setStyle(el, 'width' , '60px')
+      setTimeout(() => {
+        this.renderer.setStyle(el.children[1].children[0], 'color' , 'white')
+        this.renderer.setStyle(el.children[1].children[0], 'opacity' , '0')
+      },50)
+    }
   }
 
   handleShowAllOver(arr: any){
@@ -99,6 +117,36 @@ export class AdminNavComponent implements OnInit {
         this.renderer.setStyle(el.children[1].children[0], 'opacity' , '0')
       },50)
     }
+  }
+
+  clickShowAll(arr: any, arrow: any){
+    this.arr = arr;
+    this.arrow = arrow;
+    if(this.flag){
+      this.renderer.setStyle(arrow,'transform','rotateY(0deg)')
+
+      for(let el of arr){
+        this.renderer.setStyle(el, 'width' , '60px')
+        setTimeout(() => {
+          this.renderer.setStyle(el.children[1].children[0], 'color' , 'white')
+          this.renderer.setStyle(el.children[1].children[0], 'opacity' , '0')
+        },50)
+      }
+      this.flag = false;
+    }
+    else{
+      this.renderer.setStyle(arrow,'transform','rotateY(180deg)')
+
+      for(let el of arr){
+        this.renderer.setStyle(el, 'width' , '320px')
+        setTimeout(() => {
+          this.renderer.setStyle(el.children[1].children[0], 'color' , 'black')
+          this.renderer.setStyle(el.children[1].children[0], 'opacity' , '1')
+        },50)
+      }
+      this.flag = true;
+    }
+
   }
 
   logout(){

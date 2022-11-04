@@ -136,7 +136,8 @@
         </div>
         <div class="row" >
           <div class="row" >
-            <h5 style="display: flex;justify-content: center;align-items: center;margin: 6px 14px;height: 50px">{{ product.name }}</h5>
+            <h6 *ngIf="currentLang == 'el'" style="display: flex;justify-content: center;align-items: center;margin: 6px 14px;height: 50px">{{ product.onoma }}</h6>
+            <h6 *ngIf="currentLang == 'en'" style="display: flex;justify-content: center;align-items: center;margin: 6px 14px;height: 50px">{{ product.onoma_eng }}</h6>
           </div>
           <div class="row" style="display: flex;justify-content: center;align-items: center;margin: 6px 0;">
             <img style="width: 100%;" src="../../../assets/Line%208.svg">
