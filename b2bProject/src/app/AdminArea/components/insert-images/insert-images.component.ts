@@ -11,7 +11,7 @@ import { SwiperComponent } from 'swiper/angular';
   styleUrls: ['./insert-images.component.css']
 })
 export class InsertImagesComponent implements OnInit {
-  
+
   onSwiper(e: Event) {
 
   }
@@ -26,7 +26,7 @@ export class InsertImagesComponent implements OnInit {
   products :product |any =[];
   window:boolean = false
   flag:boolean = false;
-  image:string ="";
+  image:string|any =[];
   search: string = "";
   mtrl = '';
   constructor(private cartService : CartServiceService,private modalService : ModalService,private cartServiceService: CartServiceService) { }
@@ -94,10 +94,10 @@ export class InsertImagesComponent implements OnInit {
         }).then(resData=>{
           console.log( resData.data.products)
           this.products = resData.data.products
-     
+
         })
       },100)
-      
+
     })
 
     // this.modalService.image.subscribe((res:any)=> {
@@ -140,7 +140,7 @@ export class InsertImagesComponent implements OnInit {
         console.log(resData.data.products);
         if (resData.data.products.length != 0) {
             this.products = resData.data.products;
-        } 
+        }
         else {
           setTimeout(() => {
             // this.getProducts();
@@ -157,7 +157,7 @@ export class InsertImagesComponent implements OnInit {
           console.log(resData.data.products);
           if (resData.data.products.length != 0) {
               this.products = resData.data.products;
-          } 
+          }
           else {
             setTimeout(() => {
               this.getProducts();
@@ -167,7 +167,7 @@ export class InsertImagesComponent implements OnInit {
     }
   }
 
-  
+
   getProducts(){
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then(resData => {
       // console.log(resData.data)

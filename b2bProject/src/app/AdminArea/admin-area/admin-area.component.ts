@@ -35,7 +35,7 @@ export class AdminAreaComponent implements OnInit {
         this.flag = true;
         this.window = true;
         this.mtrl = resData;
- 
+
       }
     });
 

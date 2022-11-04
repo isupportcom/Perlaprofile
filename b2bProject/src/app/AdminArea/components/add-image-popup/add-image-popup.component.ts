@@ -13,6 +13,7 @@ export class AddImagePopupComponent implements OnInit {
   @Input() secondary?: boolean;
   @Input() mtrl?: string;
   isClicked: boolean = true;
+  imagesArr :string|any= [];
   searchPhoto: FormGroup | any;
   constructor(
     private cartService: CartServiceService,
@@ -28,7 +29,7 @@ export class AddImagePopupComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.mtrl);
-    
+
 
     this.searchPhoto = this.fb.group({
 
@@ -42,7 +43,7 @@ export class AddImagePopupComponent implements OnInit {
       )
       .then((photoName) => {
         console.log(photoName);
-         
+
         for (let i = 0; i < photoName.data.length; i++) {
           this.imagesNames.push(photoName.data[i].image)
           this.images[i] =
@@ -52,9 +53,9 @@ export class AddImagePopupComponent implements OnInit {
       });
   }
   sendNUDES(image: string,container: any) {
-    
-    
-    
+
+
+
     if(!container.classList.contains('selected')){
       if(this.secondary){
         //gia secondary images
@@ -90,17 +91,17 @@ export class AddImagePopupComponent implements OnInit {
         this.renderer.removeClass(container, 'selected');
         this.thumbnail = undefined;
       }
-      
-      
+
+
     }
     // console.log(this.imagesToSend);
-    
+
     // container.style.border = '2px solid #6dae49'
 
     // this.modalService.sendImage(image);
     // this.cartService.sendAddImagePopup(false);
   }
-  
+
   insertImages(btn: any){
     console.log("TSATSA");
     if(!btn.classList.contains('loading')) {
@@ -108,28 +109,28 @@ export class AddImagePopupComponent implements OnInit {
       setTimeout(() => {
         if(this.secondary){
           let joinedImagesArray =this.imagesToSend.join(',')
-        
+
           axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
             mtrl:this.mtrl,
             img:  joinedImagesArray,
             mode:"insert"
           }).then(res=>{
             console.log(res)
-  
+
           })
           this.imagesToSend = [];
           this.modalService.sendImage(joinedImagesArray);
         }
         else{
-          
-          
+
+
           if(this.thumbnail){
             console.log(this.thumbnail);
             console.log(this.mtrl);
-            
+
             // let splitted = this.thumbnail.split('/')
             // console.log(splitted);
-            
+
             axios
             .get(
               'https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl=' +
@@ -159,7 +160,7 @@ export class AddImagePopupComponent implements OnInit {
       )
       .then((photoName) => {
         console.log(photoName);
-         
+
         for (let i = 0; i < photoName.data.length; i++) {
           this.imagesNames.push(photoName.data[i].image)
           this.images[i] =
@@ -178,18 +179,18 @@ export class AddImagePopupComponent implements OnInit {
         this.images = [];
         // this.images[0] = photoName.data.search;
         for(let image of photoName.data.images){
-  
+
           this.images.push(image.image);
           this.imagesNames.push(image.name);
         }
       })
-  
-  
-  
+
+
+
       this.searchPhoto.reset();
     }
 
-    
+
   }
   close() {
     if (this.secondary) {

@@ -76,7 +76,8 @@ import { PdfComponent } from './AdminArea/pdf-component/pdf-component.component'
 import { ImageComponent } from './AdminArea/image/image.component';
 import { CheckoutNavComponent } from './checkout-nav/checkout-nav.component';
 import { OrderCompletedComponent } from './order-completed/order-completed.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 
 
@@ -143,7 +144,8 @@ export function rootLoaderactory(http:any){
     PdfComponent,
     ImageComponent,
     CheckoutNavComponent,
-    OrderCompletedComponent
+    OrderCompletedComponent,
+    PageNotFoundComponent
 
 
   ],
