@@ -22,13 +22,24 @@
           <hr style="opacity: 1;border: 1px solid #6dae49;width: 90%;">
         </div>
         <div class="row text-center" style="color: #878787;">
-          <p style="margin: 0px;">Τιμή: {{ fav.wholesale }}&euro;</p>
+          <p *ngIf="!fav.hasOffer" style="margin: 0px;">Τιμή: {{ fav.wholesale }}&euro;</p>
+          <p *ngIf="fav.hasOffer" style="margin: 0px;text-decoration: line-through;">Τιμή: {{ fav.wholesale }}&euro;</p>
+          <p *ngIf="fav.hasOffer" style="margin: 0px;color: #6dae49;">Τιμή: {{ fav.offer }}&euro;</p>
           <p>Απόθεμα: {{ fav.stock }}</p>
         </div>
         <div class="row">
-          <button class="btn btn-success" style="width: 100%;" (click)="addToCart(fav)">
+          <button class="button" style="transition: background-color 0.2s ease-in-out;" (click)="addToCart(fav,addToCartBtn)" #addToCartBtn>
+            <span>Προσθήκη</span>
+            <div class="cart">
+            <svg viewBox="0 0 36 26">
+              <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
+              <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+            </svg>
+            </div>
+            </button>
+          <!-- <button class="btn btn-success" style="width: 100%;" (click)="addToCart(fav)">
             Προσθήκη
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

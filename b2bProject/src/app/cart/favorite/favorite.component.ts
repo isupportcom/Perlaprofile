@@ -67,10 +67,15 @@ export class FavoriteComponent implements OnInit {
 
     
   }
-  addToCart(product:any){
+  addToCart(product:any,btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => btn.classList.remove('loading'), 3700);
+      }
+
       console.log(product);
       this.productsService.setSingleProduct(product);
-
+      this.cartService.sendProductAdded(true);
       this.cartService.setId(product.mtrl)
       this.cartService.addToCart(product)
   }
