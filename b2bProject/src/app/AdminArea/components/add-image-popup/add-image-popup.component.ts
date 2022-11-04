@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { ModalService } from './modal-service.service';
 import axios from 'axios';
 import { CartServiceService } from 'src/app/cart/cart-service.service';
@@ -11,17 +11,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddImagePopupComponent implements OnInit {
   @Input() secondary?: boolean;
+  @Input() mtrl?: string;
   isClicked: boolean = true;
   searchPhoto: FormGroup | any;
   constructor(
     private cartService: CartServiceService,
     private modalService: ModalService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private renderer: Renderer2,
+    private el: ElementRef
   ) {}
   images: string | any = [];
   imagesNames: string[] = [];
+  imagesToSend: string[] = [];
+  thumbnail?: string;
 
   ngOnInit(): void {
+    console.log(this.mtrl);
+    
 
     this.searchPhoto = this.fb.group({
 
@@ -44,10 +51,103 @@ export class AddImagePopupComponent implements OnInit {
         }
       });
   }
-  sendNUDES(image: string) {
-    this.modalService.sendImage(image);
+  sendNUDES(image: string,container: any) {
+    
+    
+    
+    if(!container.classList.contains('selected')){
+      if(this.secondary){
+        //gia secondary images
+        this.imagesToSend.push(image);
+        this.renderer.addClass(container, 'selected');
+      }
+      else{
+        // gia thumbnail
+        let selectedImages = document.getElementsByClassName('selected');
+        if(selectedImages.length > 0){
+          for(let i=0;i<selectedImages.length;i++){
+            this.renderer.removeClass(selectedImages[i],'selected');
+          }
+          this.renderer.addClass(container, 'selected');
+          this.thumbnail = image;
+        }
+        else{
+          this.renderer.addClass(container, 'selected');
+          this.thumbnail = image;
+        }
+      }
+    }
+    else{
+      if(this.secondary){
+        this.renderer.removeClass(container, 'selected');
+        this.imagesToSend.forEach((img,index) => {
+          if(image === img){
+            this.imagesToSend.splice(index,1);
+          }
+        })
+      }
+      else{
+        this.renderer.removeClass(container, 'selected');
+        this.thumbnail = undefined;
+      }
+      
+      
+    }
+    // console.log(this.imagesToSend);
+    
+    // container.style.border = '2px solid #6dae49'
+
+    // this.modalService.sendImage(image);
     // this.cartService.sendAddImagePopup(false);
   }
+  
+  insertImages(btn: any){
+    console.log("TSATSA");
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        if(this.secondary){
+          let joinedImagesArray =this.imagesToSend.join(',')
+        
+          axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+            mtrl:this.mtrl,
+            img:  joinedImagesArray,
+            mode:"insert"
+          }).then(res=>{
+            console.log(res)
+  
+          })
+          this.imagesToSend = [];
+          this.modalService.sendImage(joinedImagesArray);
+        }
+        else{
+          
+          
+          if(this.thumbnail){
+            console.log(this.thumbnail);
+            console.log(this.mtrl);
+            
+            // let splitted = this.thumbnail.split('/')
+            // console.log(splitted);
+            
+            axios
+            .get(
+              'https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl=' +
+                this.mtrl +
+                '&image=' +
+                this.thumbnail
+            )
+            .then((res) => {
+              console.log(res.data);
+            });
+          }
+        }
+        btn.classList.remove('loading')
+        this.cartService.sendAddImagePopup(false);
+      }, 1500);
+    }
+  }
+
   searchPhotoByName(){
     console.log(this.searchPhoto.value.imageName)
 

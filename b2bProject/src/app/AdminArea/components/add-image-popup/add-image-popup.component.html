@@ -47,11 +47,20 @@
         </div>
         <div class="row" style="height: 600px;overflow:scroll">
           <div class="col-3 " *ngFor="let image of images;let i = index" style="padding: 12px;">
-              <a (click)="sendNUDES(image)">
-                <img [src]="image" class="image" style="cursor: pointer;" width="250px" height="250px" alt="" srcset="">
+              <a (click)="sendNUDES(image,imageContainer)">
+                <img [src]="image" class="image" style="cursor: pointer;" width="250px" height="250px" alt="" srcset="" #imageContainer>
                 <p>{{ imagesNames[i] }}</p>
               </a>
           </div>
+        </div>
+        <div class="row" style="justify-content: right;">
+          <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="insertImages(btn)" [disabled]="(secondary && imagesToSend.length<=0) || (!secondary && thumbnail==undefined)" [ngClass]="(imagesToSend.length>0) || (!secondary && thumbnail!=undefined)? 'myBtn' : 'myBtn disabled'" #btn>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p style="margin: 0px;color: rgba(0,0,0,0);">Προσθήκη</p>
+            <p class="textAnim">Προσθήκη</p>
+            
+
+          </button>
         </div>
       </div>
     </div>

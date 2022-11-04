@@ -28,6 +28,7 @@ export class InsertImagesComponent implements OnInit {
   flag:boolean = false;
   image:string ="";
   search: string = "";
+  mtrl = '';
   constructor(private cartService : CartServiceService,private modalService : ModalService,private cartServiceService: CartServiceService) { }
 
   ngOnInit(): void {
@@ -77,24 +78,44 @@ export class InsertImagesComponent implements OnInit {
     // })
   }
   open(item:any){
-    this.flag = true;
-    this.window =true;
+    this.mtrl = item.mtrl;
+    setTimeout(() => {
+      this.flag = true;
+      this.window =true;
+    },100)
+
     this.modalService.image.subscribe((res:any)=> {
-      this.image = res
-      console.log(this.image)
-      console.log(res)
-      console.log(item);
-
-      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
-        mtrl:item.mtrl,
-        img:this.image,
-        mode:"insert"
-      }).then(res=>{
-        console.log(res)
-        this.products = res.data.images;
-
-      })
+      console.log('HEYYYYY');
+      setTimeout(() => {
+        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+          mtrl:"mtrl",
+          img:"img",
+          mode:"getimage"
+        }).then(resData=>{
+          console.log( resData.data.products)
+          this.products = resData.data.products
+     
+        })
+      },100)
+      
     })
+
+    // this.modalService.image.subscribe((res:any)=> {
+    //   this.image = res
+    //   console.log(this.image)
+    //   console.log(res)
+    //   console.log(item);
+    //   // this.image = this.image.join(',');
+    //   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+    //     mtrl:item.mtrl,
+    //     img:this.image,
+    //     mode:"insert"
+    //   }).then(res=>{
+    //     console.log(res)
+    //     this.products = res.data.images;
+
+    //   })
+    // })
   }
   remove(item:any,img:any){
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{

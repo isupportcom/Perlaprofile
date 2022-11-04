@@ -38,6 +38,11 @@ export class InsertProductsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.cartService.addImagePopup.subscribe((resData) => {
+      setTimeout(() => {
+        this.getProducts();
+      },300)
+    })
     this.cartService.searchResult.subscribe((res:any)=>{
       console.log(res)
       this.products = res
