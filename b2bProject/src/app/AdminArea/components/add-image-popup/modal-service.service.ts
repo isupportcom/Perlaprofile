@@ -6,6 +6,7 @@ export class ModalService {
   isClicked = new Subject<boolean>();
   castIsClicked = this.isClicked.asObservable();
 
+
   image = new Subject<string>();
   castImage = this.image.asObservable();
 

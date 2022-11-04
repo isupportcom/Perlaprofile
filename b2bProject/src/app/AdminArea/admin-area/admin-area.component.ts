@@ -17,6 +17,7 @@ export class AdminAreaComponent implements OnInit {
   offer: boolean = false;
   image: string = '';
   offerprice: any;
+  mtrl: string = '';
   constructor(
     private modalService: ModalService,
     private cartService: CartServiceService,
@@ -33,23 +34,8 @@ export class AdminAreaComponent implements OnInit {
         console.log(resData);
         this.flag = true;
         this.window = true;
+        this.mtrl = resData;
 
-        this.modalService.image.subscribe((res: any) => {
-          this.image = res;
-          console.log(resData);
-
-          axios
-            .get(
-              'https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl=' +
-                resData +
-                '&image=' +
-                this.image
-            )
-            .then((res) => {
-              console.log(res.data);
-            });
-         // window.location.reload();
-        });
       }
     });
 

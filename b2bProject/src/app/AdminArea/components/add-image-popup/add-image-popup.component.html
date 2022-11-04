@@ -10,7 +10,7 @@
             alt="PRODUCT IMAGE"
           />
         </button>
-sendNUDES
+
 
 
       </div>
@@ -25,13 +25,10 @@ sendNUDES
     <div class="row" style="height: 100vh;justify-content: center;align-items: center;padding: 100px;">
       <div class="container" style="background-color: white;border-radius: 16px;padding: 24px;">
         <div class="row">
-          <div class="col-3" style="text-align: left;">
+          <div class="col-4" style="text-align: left;">
             <h1>Media Gallery</h1>
           </div>
-          <div class="col-3" style="text-align: left;">
-            <button class="btn" style="background-color: #6dae49;" (click)="addImages()">Αποθήκευση Αλλαγών</button>
-          </div>
-          <div class="col-3" style="text-align: center;">
+          <div class="col-4" style="text-align: center;">
             <form [formGroup]="searchPhoto" (ngSubmit)="searchPhotoByName()">
               <input formControlName="imageName" class="form-control" type="text" placeholder="Search..." >
 
@@ -39,7 +36,7 @@ sendNUDES
 
             </form>
           </div>
-          <div class="col-3" style="text-align: right;">
+          <div class="col-4" style="text-align: right;">
             <a (click) = "close()" style="width: fit-content;cursor: pointer;">
               <img class="remove" alt=""  style="width: 32px;" srcset="">
             </a>
@@ -50,11 +47,20 @@ sendNUDES
         </div>
         <div class="row" style="height: 600px;overflow:scroll">
           <div class="col-3 " *ngFor="let image of images;let i = index" style="padding: 12px;">
-              <a (click)="sendNUDES(image)">
-                <img [src]="image" class="image" style="cursor: pointer;" width="250px" height="250px" alt="" srcset="">
+              <a (click)="sendNUDES(image,imageContainer)">
+                <img [src]="image" class="image" style="cursor: pointer;" width="250px" height="250px" alt="" srcset="" #imageContainer>
                 <p>{{ imagesNames[i] }}</p>
               </a>
           </div>
+        </div>
+        <div class="row" style="justify-content: right;">
+          <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="insertImages(btn)" [disabled]="(secondary && imagesToSend.length<=0) || (!secondary && thumbnail==undefined)" [ngClass]="(imagesToSend.length>0) || (!secondary && thumbnail!=undefined)? 'myBtn' : 'myBtn disabled'" #btn>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p style="margin: 0px;color: rgba(0,0,0,0);">Προσθήκη</p>
+            <p class="textAnim">Προσθήκη</p>
+
+
+          </button>
         </div>
       </div>
     </div>
