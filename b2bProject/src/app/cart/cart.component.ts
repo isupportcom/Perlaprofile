@@ -38,7 +38,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    
+
     let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
     .then(
@@ -71,7 +71,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
       setTimeout(()=>{
         this.declareArray();
-      },600)
+      },200)
 
 
 
@@ -86,7 +86,7 @@ export class CartComponent implements OnInit, OnDestroy {
       if(this.products){
         for(let i=0;i<this.products.length;i++){
           if(i === 0){
-  
+
             this.cartItems.push([]);
             // this.cartItems[i].push([]);
             this.cartItems[counter].push(this.products[i]);
@@ -99,7 +99,7 @@ export class CartComponent implements OnInit, OnDestroy {
               // this.cartItems[i].push([]);
               counter++;
               this.cartItems[counter].push(this.products[i]);
-  
+
             }
             else{
               if(this.products[i].group_id.length < 10){
@@ -120,18 +120,18 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   stepper(myInput:any,btn: any,item: any,items?: any,prod?: any){
-      let inputsArray = [];  
+      let inputsArray = [];
 
       if(items){
         for(let product of prod.children){
           if(product.children[0].nodeName != 'BUTTON'){
             // console.log(product.children[1].children[0].children[0].children[0].children[0].children[1]);
             inputsArray.push(product.children[1].children[0].children[0].children[0].children[0].children[1]);
-          } 
+          }
         }
       }
 
-      
+
       let temp;
       let index: any;
 
@@ -144,11 +144,11 @@ export class CartComponent implements OnInit, OnDestroy {
 
 
       if(items){
-        
-        
-        
+
+
+
           for(let i=0;i<this.products.length;i++){
-            
+
             if(this.products[i].group_id == item.group_id){
               let id = btn.id;
               let min = myInput.getAttribute("min");
@@ -158,20 +158,10 @@ export class CartComponent implements OnInit, OnDestroy {
               let calcStep = (id == "increment") ? (step*1) : (step * -1);
               let newValue = +val + calcStep;
 
-              let flag = false;
-              if(this.products[i].qty > newValue){
-                flag = true;
-                
-              }
               this.products[i].qty = newValue;
-              
-              
 
 
-              this.products[i].qty = newValue;
-            
-              
-              
+
 
               for(let input of inputsArray){
                 if(newValue >= min && newValue <= max){
@@ -179,21 +169,16 @@ export class CartComponent implements OnInit, OnDestroy {
                 }
               }
                 // console.log(myInput.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children)
-               
-                if(flag){
-                  this.cartService.addToCart(this.products[i],false,undefined,true);
-                }
-                else{
-                  this.cartService.addToCart(this.products[i]);
-                }
 
-                
+                this.cartService.addToCart(this.products[i],false)
+
+
               }
             }
-          
+
       }
       else{
-        
+
         let id = btn.id;
         let min = myInput.getAttribute("min");
         let max = myInput.getAttribute("max");
@@ -205,13 +190,13 @@ export class CartComponent implements OnInit, OnDestroy {
         let flag = false;
         if(this.products[index].qty > newValue){
           flag = true;
-          
+
         }
         this.products[index].qty = newValue;
-        
-  
+
+
         console.log(this.products[index]);
-        
+
         if(flag){
           this.cartService.addToCart(this.products[index],false,undefined,true);
         }
