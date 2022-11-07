@@ -5,7 +5,7 @@
         </div>
         <div class="row" class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a routerLink="/home" class="row my-nav-item" (mouseover)="handleOver(home)" (mouseleave)="handleLeave(home)" #home>
+            <a class="row my-nav-item" (click)="navigateTo('/home')" (mouseover)="handleOver(home)" (mouseleave)="handleLeave(home)" #home>
               <div class="col-4">
                 <img src="../../../assets/bxs_home.svg" alt="">
               </div>
@@ -17,7 +17,7 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a routerLink="/dashboard/insert-products" class="row my-nav-item" (mouseover)="handleOver(products)" (mouseleave)="handleLeave(products)" #products>
+            <a (click)="navigateTo('/dashboard/insert-products')" class="row my-nav-item" (mouseover)="handleOver(products)" (mouseleave)="handleLeave(products)" #products>
               <div class="col-4">
                 <img src="../../../assets/bxs_shopping-bag.svg" alt="">
               </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a routerLink="/dashboard/update-categories" class="row my-nav-item" (mouseover)="handleOver(categories)" (mouseleave)="handleLeave(categories)" #categories>
+            <a (click)="navigateTo('/dashboard/update-categories')" class="row my-nav-item" (mouseover)="handleOver(categories)" (mouseleave)="handleLeave(categories)" #categories>
               <div class="col-4">
                 <img src="../../../assets/carbon_collapse-categories.svg" alt="">
               </div>
@@ -41,7 +41,7 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a routerLink="/dashboard/update-colors" class="row my-nav-item" (mouseover)="handleOver(ral)" (mouseleave)="handleLeave(ral)" #ral>
+            <a (click)="navigateTo('/dashboard/update-colors')" class="row my-nav-item" (mouseover)="handleOver(ral)" (mouseleave)="handleLeave(ral)" #ral>
               <div class="col-4">
                 <img src="../../../assets/clarity_color-palette-solid.svg" alt="">
               </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a routerLink="/dashboard/pdf/upload" class="row my-nav-item" style="padding-left: 2px;"  (mouseover)="handleOver(pdf)" (mouseleave)="handleLeave(pdf)" #pdf>
+            <a (click)="navigateTo('/dashboard/pdf/upload')" class="row my-nav-item" style="padding-left: 2px;"  (mouseover)="handleOver(pdf)" (mouseleave)="handleLeave(pdf)" #pdf>
               <div class="col-4">
                 <img src="../../../assets/fa6-solid_file-pdf.svg" alt="">
               </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a routerLink="/dashboard/image/upload" class="row my-nav-item2" (mouseover)="handleOver(img)" (mouseleave)="handleLeave(img)" #img>
+            <a (click)="navigateTo('/dashboard/image/upload')" class="row my-nav-item2" (mouseover)="handleOver(img)" (mouseleave)="handleLeave(img)" #img>
               <div class="col-4">
                 <img src="../../../assets/bxs_image-add.svg" alt="">
               </div>

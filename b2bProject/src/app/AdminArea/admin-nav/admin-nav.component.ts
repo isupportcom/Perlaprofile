@@ -63,12 +63,13 @@ export class AdminNavComponent implements OnInit {
 
 
   handleOver(el: any){
-    
-    this.renderer.setStyle(el, 'width' , '320px')
-    setTimeout(() => {
-      this.renderer.setStyle(el.children[1].children[0], 'color' , 'black')
-      this.renderer.setStyle(el.children[1].children[0], 'opacity' , '1')
-    },50)
+    if(!this.flag){
+      this.renderer.setStyle(el, 'width' , '320px')
+      setTimeout(() => {
+        this.renderer.setStyle(el.children[1].children[0], 'color' , 'black')
+        this.renderer.setStyle(el.children[1].children[0], 'opacity' , '1')
+      },50)
+    }
 
   }
 
@@ -76,19 +77,8 @@ export class AdminNavComponent implements OnInit {
     
 
 
-    if(this.flag){
-      // this.renderer.setStyle(this.arrow,'transform','rotateY(0deg)')
+    if(!this.flag){
 
-      // for(let el of this.arr){
-      //   this.renderer.setStyle(el, 'width' , '60px')
-      //   setTimeout(() => {
-      //     this.renderer.setStyle(el.children[1].children[0], 'color' , 'white')
-      //     this.renderer.setStyle(el.children[1].children[0], 'opacity' , '0')
-      //   },50)
-      // }
-      // this.flag = false;
-    }
-    else{
       this.renderer.setStyle(el, 'width' , '60px')
       setTimeout(() => {
         this.renderer.setStyle(el.children[1].children[0], 'color' , 'white')
@@ -179,6 +169,10 @@ export class AdminNavComponent implements OnInit {
   }
 
   navigateTo(destination:string){
+      if(this.flag){
+
+        this.clickShowAll(this.arr,this.arrow)
+      }  
       this.router.navigate([destination])
 
   }
