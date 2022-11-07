@@ -167,7 +167,7 @@ export class CartServiceService {
       p_page = 1;
     }
     console.log(p_page);
-    
+
 
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     console.log(loadedUser.trdr);
@@ -224,7 +224,7 @@ export class CartServiceService {
 
     }
     console.log(product.group_id);
-    
+
 
     let qty
     if(product.qty == undefined){
@@ -233,8 +233,8 @@ export class CartServiceService {
       qty=product.qty
     }
       console.log(qty);
-      
 
+    console.log(dec)
       axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php', {
         mtrl: product.mtrl,

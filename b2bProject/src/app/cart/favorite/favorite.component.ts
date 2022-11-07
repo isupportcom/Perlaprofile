@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/porducts/products.service';
 import { CartServiceService } from '../cart-service.service';
 
@@ -12,6 +13,7 @@ export class FavoriteComponent implements OnInit {
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
   hasProducts:boolean=false;
   products:any;
+  relatedProducts:any
   constructor(private cartService:CartServiceService,private productsService:ProductsService) { }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class FavoriteComponent implements OnInit {
   }
   removeOne(product:any){
     console.log(product);
-    
+
 
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
     {
@@ -50,7 +52,7 @@ export class FavoriteComponent implements OnInit {
       this.products = resData.data.products;
     })
 
-    
+
   }
   removeAll(){
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
@@ -65,19 +67,45 @@ export class FavoriteComponent implements OnInit {
       window.location.reload();
     })
 
-    
+
   }
   addToCart(product:any,btn: any){
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => btn.classList.remove('loading'), 3700);
       }
+      let relatedProductsObs: Observable<any>;
 
-      console.log(product);
-      // this.productsService.setSingleProduct(product);
-      this.cartService.sendProductAdded(true);
-      // this.cartService.setId(product.mtrl)
-      this.cartService.addToCart(product)
+      relatedProductsObs = this.productsService.getRelatedProducts(
+        product.mtrl
+      );
+
+      relatedProductsObs.subscribe((resData) => {
+        console.log(resData);
+
+        this.relatedProducts = resData.related;
+      });
+      setTimeout(() => {
+
+
+        if (this.relatedProducts.length <= 0) {
+          this.cartService.setId(product.mtrl);
+
+          this.productsService.setSingleProduct(product);
+          product.show = true;
+          this.cartService.addToCart(product, false, true);
+
+          this.cartService.sendProductAdded(true);
+        } else {
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+          });
+          this.productsService.setSingleProduct(product);
+          this.cartService.sendStartScope(true);
+        }
+      }, 500);
   }
 
 }
