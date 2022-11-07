@@ -44,6 +44,25 @@
     border: 2px solid #6dae49;
   }
 
+  .myBtnDanger{
+    width: fit-content;
+    cursor: pointer;
+    padding: 8px 72px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    margin-top: 12px;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  .myBtnDanger:active{
+    transform: scale(0.8);
+  }
+  
+  .myBtnDanger:hover{
+    background-color: rgb(164, 0, 0);
+  }
 
   .myBtn{
     width: fit-content;
@@ -54,7 +73,7 @@
     color: white;
     border-radius: 8px;
     margin-top: 12px;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     overflow: hidden;
   }
 

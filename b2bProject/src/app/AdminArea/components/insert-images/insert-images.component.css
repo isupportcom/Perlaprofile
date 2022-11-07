@@ -26,6 +26,10 @@
     background-color: #4a7632;
   }
 
+  .myBtn:active{
+    transform: scale(0.7);
+  }
+
   .remove{
     content: url(../../../../assets/x-black.svg);
     transition: all 1s ease-in-out;

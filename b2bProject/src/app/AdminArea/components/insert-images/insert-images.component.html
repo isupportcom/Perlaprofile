@@ -1,8 +1,8 @@
-<app-add-image-popup [secondary]="true" [mtrl]="mtrl" style="position: absolute;top: 0;left: 0;" *ngIf="flag && window"></app-add-image-popup>
+<app-add-image-popup [secondary]="secondary" [general]="general" [mtrl]="mtrl" style="position: absolute;top: 0;left: 0;" *ngIf="flag && window"></app-add-image-popup>
 
 <div class="container content">
   <div class="row">
-    <form #form2 (ngForm)="findProducts()">
+    <form class="col" #form2 (ngForm)="findProducts()">
       <div class="search-container">
         <input type="text" name="search" [(ngModel)]="search" placeholder="Search..." class="search-input">
         <a (click)="findProducts()" class="search-btn">
@@ -15,6 +15,13 @@
       (click)="findProducts()"
        ></button>
     </form>
+    <div class="col">
+      <div class="container">
+        <div class="row" style="justify-content: right;align-items:right">
+          <button class="myBtn" style="width: fit-content;margin-right: 44px;margin-top: 0px;" (click)="openGallery()">Media Gallery</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="row myRow">
