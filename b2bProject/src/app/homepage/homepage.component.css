@@ -233,7 +233,7 @@
 }
 
 .offer-button{
-  height: 60%;
+  height: 33%;
   justify-content: start;
   align-items: end;
 }
@@ -245,7 +245,7 @@
   }
 
   .offer-button{
-    height: 60%;
+    height: 33%;
     justify-content: center;
     align-items: center;
   }
@@ -565,6 +565,25 @@
       opacity: 0;
     }
   }
+
+  .simple-btn{
+    width: fit-content;
+    padding: 8px 72px;
+    border: none;
+    background-color: #6DAE49;
+    color: white;
+    border-radius: 8px;
+    margin-top: 44px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.simple-btn:active{
+    transform: scale(0.95);
+}
+
+.simple-btn:hover{
+    background-color: #4a7632;
+}
   
   .hero {
     margin-top: 300px;

@@ -23,6 +23,7 @@
         </div>
         <div class="row text-center" style="color: #878787;">
           <p *ngIf="!fav.hasOffer" style="margin: 0px;">Τιμή: {{ fav.wholesale }}&euro;</p>
+          <p *ngIf="!fav.hasOffer" style="margin: 0px;opacity: 0;">Τιμή: {{ fav.wholesale }}&euro;</p>
           <p *ngIf="fav.hasOffer" style="margin: 0px;text-decoration: line-through;">Τιμή: {{ fav.wholesale }}&euro;</p>
           <p *ngIf="fav.hasOffer" style="margin: 0px;color: #6dae49;">Τιμή: {{ fav.offer }}&euro;</p>
           <p>Απόθεμα: {{ fav.stock }}</p>

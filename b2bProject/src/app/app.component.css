@@ -18,6 +18,10 @@
   text-align: center;
 }
 
+.myBtnDisabled{
+  opacity: 0.5;
+}
+
 .myBtn{
   width: fit-content;
   cursor: pointer;

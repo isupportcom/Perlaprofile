@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
   itemsToCart: product|any = [];
   tempGroup: grouping[] | any = [];
   date = new Date();
+  btnLoading: boolean = false;
 
   changeBtn?: boolean;
   constructor(
@@ -139,8 +140,11 @@ export class AppComponent implements OnInit {
 
 
   handleGrouping(product: any,btn: any){
+    btn.style.opacity = '1';
+    this.btnLoading = true;
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
+
       setTimeout(() => {
         
 
@@ -247,6 +251,7 @@ export class AppComponent implements OnInit {
         this.productAdded = false;
          window.location.reload();
       }
+      this.btnLoading = false;
       btn.classList.remove('loading');
     },500)
       }, 1000);
@@ -256,6 +261,8 @@ export class AppComponent implements OnInit {
   }
 
   addToCart(product: any,btn?: any){
+    btn.style.opacity = '1';
+    this.btnLoading = true;
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
@@ -309,7 +316,7 @@ export class AppComponent implements OnInit {
         //   window.location.reload();
         // }, 1000)
 
-
+        this.btnLoading = false;
         btn.classList.remove('loading');
   
       }, 1200);

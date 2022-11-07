@@ -29,6 +29,7 @@
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.1",
     "ng-image-slider": "^6.0.0",
+    "ngx-lottie": "^9.1.0",
     "ngx-owl-carousel-o": "^14.0.1",
     "ngx-pagination": "^6.0.2",
     "ngx-toastr": "^15.0.0",

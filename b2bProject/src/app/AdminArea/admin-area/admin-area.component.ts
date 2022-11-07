@@ -18,6 +18,7 @@ export class AdminAreaComponent implements OnInit {
   image: string = '';
   offerprice: any;
   mtrl: string = '';
+  offerProd: any;
   constructor(
     private modalService: ModalService,
     private cartService: CartServiceService,
@@ -41,9 +42,11 @@ export class AdminAreaComponent implements OnInit {
 
     this.cartService.openOffer.subscribe((resData) => {
       if (resData) {
-        this.offer = true;
+        this.offerProd = resData
+        setTimeout(() => {
+          this.offer = true;
+        },50)
         console.log(resData);
-
         console.log(typeof resData.wholesalePrice);
         this.modalService.offer.subscribe((res: number) => {
           if (+res === 0) {

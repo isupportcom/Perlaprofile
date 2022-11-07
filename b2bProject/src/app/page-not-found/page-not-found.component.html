@@ -1,4 +1,18 @@
-<p>page-not-found works!</p>
+<app-navbar></app-navbar>
 
+<div class="container content">
+    <div class="row">
+        <ng-lottie [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+        <div class="container">
+            <div class="row">
+                <div class="row" style="justify-content: center;align-items: center;">
+                    <button routerLink="/home">Επιστροφή Στην Αρχική</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<a routerLink="/home">Back Home</a>
+<div>
+    <app-footer></app-footer>
+</div>

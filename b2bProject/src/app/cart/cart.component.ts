@@ -158,22 +158,44 @@ export class CartComponent implements OnInit, OnDestroy {
               let calcStep = (id == "increment") ? (step*1) : (step * -1);
               let newValue = +val + calcStep;
 
-              this.products[i].qty = newValue;
+              if(newValue == 0){
+                this.removeOne(this.products[i],i,false);
+
+              }
+              else{
+                let flag = false;
+                if(this.products[i].qty > newValue){
+                  flag = true;
+
+                }
+                this.products[i].qty = newValue;
 
 
 
 
-              for(let input of inputsArray){
-                if(newValue >= min && newValue <= max){
-                  input.setAttribute("value", this.products[i].qty);
+                this.products[i].qty = newValue;
+
+
+
+
+                for(let input of inputsArray){
+                  if(newValue >= min && newValue <= max){
+                    input.setAttribute("value", this.products[i].qty);
+                  }
+                }
+                  // console.log(myInput.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children)
+
+                  if(flag){
+                    this.cartService.addToCart(this.products[i],false,undefined,true);
+                  }
+                  else{
+                    this.cartService.addToCart(this.products[i]);
+                  }
+
+
                 }
               }
-                // console.log(myInput.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children)
 
-                this.cartService.addToCart(this.products[i],false)
-
-
-              }
             }
 
       }
@@ -187,22 +209,29 @@ export class CartComponent implements OnInit, OnDestroy {
         let calcStep = (id == "increment") ? (step*1) : (step * -1);
         let newValue = +val + calcStep;
 
-        let flag = false;
-        if(this.products[index].qty > newValue){
-          flag = true;
+        if(newValue == 0){
+          this.removeOne(this.products[index],index,false);
 
-        }
-        this.products[index].qty = newValue;
-
-
-        console.log(this.products[index]);
-
-        if(flag){
-          this.cartService.addToCart(this.products[index],false,undefined,true);
         }
         else{
-          this.cartService.addToCart(this.products[index]);
+          let flag = false;
+          if(this.products[index].qty > newValue){
+            flag = true;
+
+          }
+          this.products[index].qty = newValue;
+
+
+          console.log(this.products[index]);
+
+          if(flag){
+            this.cartService.addToCart(this.products[index],false,undefined,true);
+          }
+          else{
+            this.cartService.addToCart(this.products[index]);
+          }
         }
+
       }
 
 

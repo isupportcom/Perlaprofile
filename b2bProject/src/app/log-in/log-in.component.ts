@@ -63,39 +63,46 @@ export class LogInComponent implements OnInit, OnDestroy {
     localStorage.setItem("products",JSON.stringify(this.products));
   }
 
-  loginProcess(f:NgForm){
-    console.log(f);
-    console.log(f.value);
-      //  this.username = f.value.username;
-      //  this.password = f.value.password;
-    // console.log(f.value.username)
-    // console.log(f.value.password)
-    // console.log(this.username);
-    // console.log(this.password);
-      let authObs: Observable<AuthResponseData>;
+  loginProcess(f:NgForm,btn:any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        console.log(f);
+        console.log(f.value);
+          //  this.username = f.value.username;
+          //  this.password = f.value.password;
+        // console.log(f.value.username)
+        // console.log(f.value.password)
+        // console.log(this.username);
+        // console.log(this.password);
+          let authObs: Observable<AuthResponseData>;
+    
+          authObs = this.authService.login(this.username,this.password);
+    
+          authObs.subscribe((resData:any) =>{
+            if(resData.success == 1){
+              // console.log(resData);
+              // axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
+              //   method:"STOCKUPDATE"
+              // }).then(res=>{
+              //   console.log(res.data)
+               
+    
+    
+              // })
+    
+              if(resData.isAdmin== "1"){
+                this.router.navigate(['dashboard/insert-products']);
+              }else{
+                this.router.navigate(['home']);
+              }
+            }
+    
+          })
+        btn.classList.remove('loading');
+      },1500)
+    }
 
-      authObs = this.authService.login(this.username,this.password);
-
-      authObs.subscribe((resData:any) =>{
-        if(resData.success == 1){
-          // console.log(resData);
-          // axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
-          //   method:"STOCKUPDATE"
-          // }).then(res=>{
-          //   console.log(res.data)
-           
-
-
-          // })
-
-          if(resData.isAdmin== "1"){
-            this.router.navigate(['dashboard/insert-products']);
-          }else{
-            this.router.navigate(['home']);
-          }
-        }
-
-      })
 
   }
 

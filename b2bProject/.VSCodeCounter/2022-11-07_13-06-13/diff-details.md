@@ -1,8 +1,8 @@
 # Diff Details
 
-Date : 2022-09-07 17:13:44
+Date : 2022-11-07 13:06:13
 
-Directory c:\\Users\\User1\\Desktop\\B2bProject\\b2b\\b2bProject\\src
+Directory c:\\Users\\User1\\Desktop\\B2bProject\\b2b\\b2bProject\\src\\app
 
 Total : 0 files,  0 codes, 0 comments, 0 blanks, all 0 lines
 
