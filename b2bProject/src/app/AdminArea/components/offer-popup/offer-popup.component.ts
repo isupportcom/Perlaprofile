@@ -16,7 +16,7 @@ export class OfferPopupComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.product);
-    
+
     this.contactForm = this.fb.group({
 
       offer:[null],
@@ -47,10 +47,11 @@ export class OfferPopupComponent implements OnInit {
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/deleteOffer.php",{
       mtrl: item.mtrl
     }).then(resData=>{
+      this.modalService.sendProducts(resData.data.products);
       console.log(resData.data)
-      setTimeout(()=>{
-        // window.location.reload()
-      },800)
+      // setTimeout(()=>{
+      //   // window.location.reload()
+      // },800)
     })
 
   }

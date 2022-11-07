@@ -59,9 +59,10 @@ export class AdminAreaComponent implements OnInit {
               )
               .then((resData) => {
                 console.log(resData.data);
-                setTimeout(() => {
-                  window.location.reload();
-                }, 800);
+                this.modalService.sendProducts(resData.data.products);
+                // setTimeout(() => {
+                //   window.location.reload();
+                // }, 800);
               });
           } else {
             localStorage.setItem('discound', JSON.stringify(res));
