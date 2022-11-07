@@ -138,7 +138,8 @@ export class InsertProductsComponent implements OnInit {
           img : resData.data.products[i].image,
           offer: resData.data.products[i].offer,
           hasOffer:resData.data.products[i].hasOffer,
-          discount:resData.data.products[i].discount
+          discount:resData.data.products[i].discount,
+          homePageOffer: resData.data.products[i].homePageOffer
         }
       }
     })
@@ -203,7 +204,8 @@ export class InsertProductsComponent implements OnInit {
      mtrl:item.mtrl,
      discount: item.discount
    }).then(resData=>{
-     console.log(resData.data)
+    this.products = resData.data.products; 
+     console.log(resData.data.products)
    })
 
   }

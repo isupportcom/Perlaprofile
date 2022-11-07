@@ -131,7 +131,7 @@
             </button>
             </div>
             <div class="col">
-              <button [ngClass]="!product.hasOffer? 'table-btn disabled' : 'table-btn'" [disabled]="!product.hasOffer" (click)="addToHomePage(product)">
+              <button [ngClass]="!product.hasOffer? 'table-btn disabled' : (product.homePageOffer? 'table-btn2' : 'table-btn')" [disabled]="!product.hasOffer" (click)="addToHomePage(product)">
                 Εμφάνιση
               </button>
             </div>

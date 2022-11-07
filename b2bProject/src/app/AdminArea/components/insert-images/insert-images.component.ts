@@ -29,6 +29,8 @@ export class InsertImagesComponent implements OnInit {
   image:string|any =[];
   search: string = "";
   mtrl = '';
+  general:boolean = false;
+  secondary:boolean = true;
   constructor(private cartService : CartServiceService,private modalService : ModalService,private cartServiceService: CartServiceService) { }
 
   ngOnInit(): void {
@@ -62,6 +64,16 @@ export class InsertImagesComponent implements OnInit {
     });
 
   }
+
+  openGallery(){
+    this.secondary = false;
+    this.general = true;
+    setTimeout(() => {
+      this.flag = true;
+      this.window =true;
+    },100)
+  }
+
   openMain(item:any){
     this.cartService.sendAddImagePopup(item);
     // this.flag = true;

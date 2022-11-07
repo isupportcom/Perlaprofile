@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddImagePopupComponent implements OnInit {
   @Input() secondary?: boolean;
+  @Input() general?: boolean;
   @Input() mtrl?: string;
   isClicked: boolean = true;
   imagesArr :string|any= [];
@@ -28,7 +29,9 @@ export class AddImagePopupComponent implements OnInit {
   thumbnail?: string;
 
   ngOnInit(): void {
-    console.log(this.mtrl);
+    console.log('general = ' + this.general);
+    console.log('secondary = ' + this.secondary);
+    
 
 
     this.searchPhoto = this.fb.group({
@@ -54,10 +57,8 @@ export class AddImagePopupComponent implements OnInit {
   }
   sendNUDES(image: string,container: any) {
 
-
-
     if(!container.classList.contains('selected')){
-      if(this.secondary){
+      if(this.secondary || this.general){
         //gia secondary images
         this.imagesToSend.push(image);
         this.renderer.addClass(container, 'selected');
@@ -79,7 +80,7 @@ export class AddImagePopupComponent implements OnInit {
       }
     }
     else{
-      if(this.secondary){
+      if(this.secondary || this.general){
         this.renderer.removeClass(container, 'selected');
         this.imagesToSend.forEach((img,index) => {
           if(image === img){
@@ -94,7 +95,7 @@ export class AddImagePopupComponent implements OnInit {
 
 
     }
-    // console.log(this.imagesToSend);
+    console.log(this.imagesToSend);
 
     // container.style.border = '2px solid #6dae49'
 
@@ -103,50 +104,75 @@ export class AddImagePopupComponent implements OnInit {
   }
 
   insertImages(btn: any){
-    console.log("TSATSA");
-    if(!btn.classList.contains('loading')) {
-      btn.classList.add('loading');
-      setTimeout(() => {
-        if(this.secondary){
+
+    if(this.general){
+      if(!btn.classList.contains('loading')) {
+        btn.classList.add('loading');
+        setTimeout(() => {
           let joinedImagesArray =this.imagesToSend.join(',')
-
-          axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
-            mtrl:this.mtrl,
-            img:  joinedImagesArray,
-            mode:"insert"
-          }).then(res=>{
-            console.log(res)
-
+          axios.post('https://perlarest.vinoitalia.gr/php-auth-api/deleteImage.php',{
+            "image_name":joinedImagesArray
+          }).then(resData => {
+            let tempImages = [];
+            for(let img of resData.data.images){
+              tempImages.push('https://perlarest.vinoitalia.gr/php-auth-api/upload/' + img);
+            }
+            this.images = [];
+            this.images = tempImages;
           })
-          this.imagesToSend = [];
-          this.modalService.sendImage(joinedImagesArray);
-        }
-        else{
+          btn.classList.remove('loading')
+          
+        },1500)
+      }
 
-
-          if(this.thumbnail){
-            console.log(this.thumbnail);
-            console.log(this.mtrl);
-
-            // let splitted = this.thumbnail.split('/')
-            // console.log(splitted);
-
-            axios
-            .get(
-              'https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl=' +
-                this.mtrl +
-                '&image=' +
-                this.thumbnail
-            )
-            .then((res) => {
-              console.log(res.data);
-            });
-          }
-        }
-        btn.classList.remove('loading')
-        this.cartService.sendAddImagePopup(false);
-      }, 1500);
     }
+    else{
+      console.log("TSATSA");
+      if(!btn.classList.contains('loading')) {
+        btn.classList.add('loading');
+        setTimeout(() => {
+          if(this.secondary){
+            let joinedImagesArray =this.imagesToSend.join(',')
+  
+            axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+              mtrl:this.mtrl,
+              img:  joinedImagesArray,
+              mode:"insert"
+            }).then(res=>{
+              console.log(res)
+  
+            })
+            this.imagesToSend = [];
+            this.modalService.sendImage(joinedImagesArray);
+          }
+          else{
+  
+  
+            if(this.thumbnail){
+              console.log(this.thumbnail);
+              console.log(this.mtrl);
+  
+              // let splitted = this.thumbnail.split('/')
+              // console.log(splitted);
+  
+              axios
+              .get(
+                'https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl=' +
+                  this.mtrl +
+                  '&image=' +
+                  this.thumbnail
+              )
+              .then((res) => {
+                console.log(res.data);
+              });
+            }
+          }
+          btn.classList.remove('loading')
+          this.cartService.sendAddImagePopup(false);
+        }, 1500);
+      }
+    }
+    
   }
 
   searchPhotoByName(){
