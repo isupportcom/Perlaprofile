@@ -158,6 +158,16 @@ export class CartComponent implements OnInit, OnDestroy {
               let calcStep = (id == "increment") ? (step*1) : (step * -1);
               let newValue = +val + calcStep;
 
+              let flag = false;
+              if(this.products[i].qty > newValue){
+                flag = true;
+                
+              }
+              this.products[i].qty = newValue;
+              
+              
+
+
               this.products[i].qty = newValue;
             
               
@@ -170,7 +180,12 @@ export class CartComponent implements OnInit, OnDestroy {
               }
                 // console.log(myInput.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children)
                
-                this.cartService.addToCart(this.products[i],false)
+                if(flag){
+                  this.cartService.addToCart(this.products[i],false,undefined,true);
+                }
+                else{
+                  this.cartService.addToCart(this.products[i]);
+                }
 
                 
               }
