@@ -22,7 +22,7 @@
           </div>
           <div class="row" style="margin-top: 24px">
             <form
-            (ngSubmit)="loginProcess(form)"
+            (ngSubmit)="loginProcess(form,btn)"
             #form="ngForm"
         
             >   
@@ -32,10 +32,19 @@
             
               <label class="form-label" for="password" value="password" style="margin-top: 20px">Password</label>
               <input type="password" id="password" class="form-control"  name="password"[(ngModel)]="password"      id="password" required minlength="9"/>
-            
-              
 
-              <button class="myBtn" type="submit">Συνδέσου</button>
+              <div class="container">
+                <div class="row" style="justify-content: center;align-items: center;">
+                  <button type="button" type="submit" style="position: relative;" class="myBtn" #btn>
+                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    <p style="margin: 0px;color: rgba(0,0,0,0);">Επιλογή</p>
+                    <p class="textAnim">Επιλογή</p>
+                    
+        
+                  </button>
+                </div>
+              </div>
+
         
         
             </form>

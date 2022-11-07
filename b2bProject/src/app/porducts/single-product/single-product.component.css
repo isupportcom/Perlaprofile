@@ -547,6 +547,9 @@
   }
 
   
+  .disabled{
+    opacity: 0.5;
+  }
 
   .button:hover{
     background-color: #4a7832;

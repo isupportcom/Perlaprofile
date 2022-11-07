@@ -20,10 +20,7 @@ export class ContatcFormComponent implements OnInit {
       Fullname: new FormControl('', [Validators.required]),
       Email: new FormControl('', [Validators.required]),
       Subject:new FormControl('',[Validators.required]),
-      Comment: new FormControl('', [Validators.required]),
-      Afm : new FormControl('', [Validators.required]),
-      Doy: new FormControl('', [Validators.required]),
-      JobType:new FormControl('', [Validators.required]),
+      Comment: new FormControl('', [Validators.required])
 
     });
   }
@@ -37,10 +34,7 @@ export class ContatcFormComponent implements OnInit {
       from_mail: FormData.Email,
       subject : FormData.Subject,
       message: FormData.Comment,
-      name:FormData.Fullname,
-      afm:FormData.Afm,
-      doy:FormData.Doy,
-      jobtype:FormData.JobType
+      name:FormData.Fullname
     }).then(resData=> {
       setTimeout(()=>{
         this.spinner = false
@@ -49,10 +43,7 @@ export class ContatcFormComponent implements OnInit {
           Fullname: new FormControl('', [Validators.required]),
           Email: new FormControl('', [Validators.required]),
           Subject:new FormControl('',[Validators.required]),
-          Comment: new FormControl('', [Validators.required]),
-          Afm : new FormControl('', [Validators.required]),
-          Doy: new FormControl('', [Validators.required]),
-          JobType:new FormControl('', [Validators.required]),
+          Comment: new FormControl('', [Validators.required])
 
         });
         setTimeout(()=>{

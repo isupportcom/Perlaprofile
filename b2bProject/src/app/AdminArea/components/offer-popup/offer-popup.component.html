@@ -25,12 +25,25 @@
               <label for="inputCity">Ποσοστό</label>
               <div class="row">
                 <div class="col-2">
-                  <input type="text" formControlName="offer" class="form-control" id="inputCity">
+                  <input type="text" formControlName="offer" class="form-control" id="inputCity" [placeholder]="product.discount">
                 </div>
-                <div class="col-10">
+                <div class="col-6">
                   <div class="container" style="padding: 0;">
                     <div class="row" style="text-align: left;align-items: center;">
                       <p style="margin: 0;width: fit-content;font-size: 24px;">%</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="container" style="padding: 0;">
+                    <div class="row" style="text-align: left;align-items: center;">
+                      <button type="button" (click)="clearOffer(btn)"  style="position: relative;" [disabled]="!product.hasOffer" [ngClass]="product.hasOffer? 'myBtn2' : 'disabled'" #btn>
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        <p style="margin: 0px;color: rgba(0,0,0,0);">Αφαίρεση Προσφοράς</p>
+                        <p class="textAnim">Αφαίρεση Προσφοράς</p>
+                        
+            
+                      </button>
                     </div>
                   </div>
                 </div>

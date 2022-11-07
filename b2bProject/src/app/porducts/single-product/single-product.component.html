@@ -81,8 +81,8 @@
                 <p *ngIf="index.hasOffer" class="col-5" style="margin-bottom: 4px;padding-left: 0px; text-decoration:line-through ;opacity: 0.3;">Τιμή: {{index.wholesale}}&euro;</p>
                 <p *ngIf="index.hasOffer" class="col-6" style="margin-bottom: 4px;padding-left: 0px;color: #6DAE49;font-weight: 600;">Τιμή: {{index.offer}}&euro;</p>
 
-                <button class="button col-8" style="transition: background-color 0.2s ease-in-out;" (click)="handleAddToCart(addToCartBtn)"
-                [disabled]="index.stock == 0" #addToCartBtn>
+                <button [ngClass]="index.wholesale == 0? 'button col-8 disabled' : 'button col-8'" style="transition: background-color 0.2s ease-in-out;" (click)="handleAddToCart(addToCartBtn)"
+                [disabled]="index.stock == 0 || index.wholesale == 0" #addToCartBtn>
                   <span>Προσθήκη</span>
                   <div class="cart">
                   <svg viewBox="0 0 36 26">
