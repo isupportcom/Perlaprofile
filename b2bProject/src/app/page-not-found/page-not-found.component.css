@@ -1,0 +1,28 @@
+.content{
+    margin-top: 200px;
+}
+
+@media (max-width: 768px){
+    .content{
+        margin-top: 150px;
+    }
+}
+
+button{
+    width: fit-content;
+    padding: 8px 72px;
+    border: none;
+    background-color: #6DAE49;
+    color: white;
+    border-radius: 8px;
+    margin-top: 44px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:active{
+    transform: scale(0.95);
+}
+
+button:hover{
+    background-color: #4a7632;
+}

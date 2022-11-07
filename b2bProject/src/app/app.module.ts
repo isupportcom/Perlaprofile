@@ -78,10 +78,13 @@ import { CheckoutNavComponent } from './checkout-nav/checkout-nav.component';
 import { OrderCompletedComponent } from './order-completed/order-completed.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 
 
-
-
+export function playerFactory() {
+  return player;
+}
 
 
 
@@ -170,7 +173,7 @@ export function rootLoaderactory(http:any){
       }
     }),
 
-
+    [LottieModule.forRoot({ player: playerFactory })],
 
 
 

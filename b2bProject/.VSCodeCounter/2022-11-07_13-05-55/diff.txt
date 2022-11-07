@@ -1,0 +1,189 @@
+Date : 2022-11-07 13:05:55
+Directory : c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app
+Total : 132 files,  -163 codes, 79 comments, 4 blanks, all -80 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| TypeScript |         30 |        459 |          4 |         61 |        524 |
+| CSS        |         12 |        402 |         72 |         -1 |        473 |
+| HTML       |         12 |         60 |          8 |         26 |         94 |
+| JSON       |          3 |       -350 |          0 |         -7 |       -357 |
+| XML        |         75 |       -734 |         -5 |        -75 |       -814 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                         | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                            |        132 |       -163 |         79 |          4 |        -80 |
+| ..                                                                                                                           |         86 |     -1,478 |       -120 |       -194 |     -1,792 |
+| ..\assets                                                                                                                    |         78 |     -1,234 |        -23 |       -112 |     -1,369 |
+| ..\assets\css                                                                                                                |          1 |       -158 |        -18 |        -31 |       -207 |
+| ..\assets\i18n                                                                                                               |          2 |       -342 |          0 |         -6 |       -348 |
+| ..\environments                                                                                                              |          2 |         -6 |        -11 |         -4 |        -21 |
+| AdminArea                                                                                                                    |          9 |        357 |         61 |         62 |        480 |
+| AdminArea\admin-area                                                                                                         |          1 |          4 |          3 |         -5 |          2 |
+| AdminArea\admin-nav                                                                                                          |          2 |         41 |          0 |          7 |         48 |
+| AdminArea\components                                                                                                         |          6 |        312 |         58 |         60 |        430 |
+| AdminArea\components\add-image-popup                                                                                         |          4 |        283 |         39 |         57 |        379 |
+| AdminArea\components\insert-images                                                                                           |          1 |         19 |         19 |          3 |         41 |
+| AdminArea\components\insert-products                                                                                         |          1 |         10 |          0 |          0 |         10 |
+| cart                                                                                                                         |          5 |        315 |         14 |         64 |        393 |
+| cart\favorite                                                                                                                |          3 |        215 |          5 |         18 |        238 |
+| checkout-page                                                                                                                |          1 |         30 |          3 |          7 |         40 |
+| footer                                                                                                                       |          3 |         23 |          0 |          1 |         24 |
+| homepage                                                                                                                     |          3 |         -3 |         18 |          9 |         24 |
+| log-in                                                                                                                       |          1 |         -8 |          8 |          1 |          1 |
+| my-orders                                                                                                                    |          1 |         -8 |          0 |          1 |         -7 |
+| navbar                                                                                                                       |          1 |          2 |         -6 |          0 |         -4 |
+| page-not-found                                                                                                               |          4 |         77 |          0 |         21 |         98 |
+| porducts                                                                                                                     |         12 |        332 |         58 |        -13 |        377 |
+| porducts\mosqui-wizzard                                                                                                      |          1 |          0 |          0 |          2 |          2 |
+| porducts\product-list                                                                                                        |          3 |         23 |         45 |         14 |         82 |
+| porducts\product-page                                                                                                        |          3 |        307 |          4 |        -28 |        283 |
+| porducts\products-carousel                                                                                                   |          2 |          1 |          8 |          0 |          9 |
+| porducts\single-product                                                                                                      |          2 |          2 |          0 |         -1 |          1 |
+| shared                                                                                                                       |          1 |         20 |          0 |          4 |         24 |
+| shared\contatc-form                                                                                                          |          1 |         20 |          0 |          4 |         24 |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                     | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-area\admin-area.component.ts                        | TypeScript |          4 |          3 |         -5 |          2 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-nav\admin-nav.component.css                         | CSS        |          5 |          0 |          1 |          6 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\admin-nav\admin-nav.component.ts                          | TypeScript |         36 |          0 |          6 |         42 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\add-image-popup.component.css  | CSS        |        133 |         29 |         21 |        183 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\add-image-popup.component.html | HTML       |         20 |          0 |          7 |         27 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\add-image-popup.component.ts   | TypeScript |        125 |         10 |         26 |        161 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\add-image-popup\modal-service.service.ts       | TypeScript |          5 |          0 |          3 |          8 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-images\insert-images.component.ts       | TypeScript |         19 |         19 |          3 |         41 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\AdminArea\components\insert-products\insert-products.component.ts   | TypeScript |         10 |          0 |          0 |         10 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app-routing.module.ts                                               | TypeScript |          9 |          0 |          2 |         11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.component.css                                                   | CSS        |        128 |         29 |         19 |        176 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.component.html                                                  | HTML       |          2 |          8 |          4 |         14 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.component.ts                                                    | TypeScript |         31 |          6 |         19 |         56 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\app.module.ts                                                       | TypeScript |          8 |          0 |         -3 |          5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart-service.service.ts                                        | TypeScript |         23 |          8 |         13 |         44 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\cart.component.ts                                              | TypeScript |         77 |          1 |         33 |        111 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\favorite\favorite.component.css                                | CSS        |        204 |          0 |         18 |        222 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\favorite\favorite.component.html                               | HTML       |          9 |          3 |          0 |         12 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\cart\favorite\favorite.component.ts                                 | TypeScript |          2 |          2 |          0 |          4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\checkout-page\checkout-page.component.ts                            | TypeScript |         30 |          3 |          7 |         40 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\footer\footer.component.css                                         | CSS        |         11 |          0 |          1 |         12 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\footer\footer.component.html                                        | HTML       |         12 |          0 |          1 |         13 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\footer\footer.component.ts                                          | TypeScript |          0 |          0 |         -1 |         -1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\homepage\homepage.component.css                                     | CSS        |         18 |         16 |         11 |         45 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\homepage\homepage.component.html                                    | HTML       |         -7 |          0 |         -1 |         -8 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\homepage\homepage.component.ts                                      | TypeScript |        -14 |          2 |         -1 |        -13 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\log-in\log-in.component.ts                                          | TypeScript |         -8 |          8 |          1 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\my-orders\my-orders.component.html                                  | HTML       |         -8 |          0 |          1 |         -7 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\navbar\navbar.component.ts                                          | TypeScript |          2 |         -6 |          0 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\page-not-found\page-not-found.component.css                         | CSS        |         24 |          0 |          4 |         28 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\page-not-found\page-not-found.component.html                        | HTML       |         16 |          0 |          2 |         18 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\page-not-found\page-not-found.component.spec.ts                     | TypeScript |         18 |          0 |          6 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\page-not-found\page-not-found.component.ts                          | TypeScript |         19 |          0 |          9 |         28 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\mosqui-wizzard\mosqui-wizzard.component.ts                 | TypeScript |          0 |          0 |          2 |          2 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-list\product-list.component.css                    | CSS        |         21 |         45 |         -2 |         64 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-list\product-list.component.html                   | HTML       |        -52 |         -2 |          9 |        -45 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-list\product-list.component.ts                     | TypeScript |         54 |          2 |          7 |         63 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-page\product-page.component.css                    | CSS        |        183 |          2 |         14 |        199 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-page\product-page.component.html                   | HTML       |         80 |          0 |          4 |         84 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\product-page\product-page.component.ts                     | TypeScript |         44 |          2 |        -46 |          0 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\products-carousel\products-carousel.component.html         | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\products-carousel\products-carousel.component.ts           | TypeScript |          0 |          8 |          0 |          8 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\products.service.ts                                        | TypeScript |         -1 |          1 |          0 |          0 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\single-product\single-product.component.html               | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\porducts\single-product\single-product.component.ts                 | TypeScript |          1 |          0 |         -1 |          0 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\app\shared\contatc-form\contatc-form.component.css                      | CSS        |         20 |          0 |          4 |         24 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Arrow 1.svg                                                      | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Frame 102.svg                                                    | XML        |         -7 |          0 |         -1 |         -8 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Frame 4 (1).svg                                                  | XML        |         -5 |          0 |         -1 |         -6 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Frame 4.svg                                                      | XML        |         -5 |          0 |         -1 |         -6 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Image.svg                                                        | XML        |        -24 |          0 |         -1 |        -25 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Line 1.svg                                                       | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Line 7.svg                                                       | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Line 8.svg                                                       | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\LogoSmall.svg                                                    | XML        |        -24 |          0 |         -1 |        -25 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\PerlaProfilLogo-dark 1.svg                                       | XML        |         -8 |          0 |         -1 |         -9 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\PerlaProfilLogo-white 1.svg                                      | XML        |         -8 |          0 |         -1 |         -9 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\PerlaProfilLogo-white.svg                                        | XML        |       -127 |         -1 |         -1 |       -129 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Rectangle1.svg                                                   | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\Vector.svg                                                       | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\bi_cart-check-fill.svg                                           | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\bx_search-alt.svg                                                | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\bxs_home.svg                                                     | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\bxs_image-add.svg                                                | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\bxs_offer.svg                                                    | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\bxs_shopping-bag.svg                                             | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\carbon_collapse-categories.svg                                   | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\cart-with-products.svg                                           | XML        |         -6 |          0 |         -1 |         -7 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\chevron-down.svg                                                 | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\chevron-right-white.svg                                          | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\chevron-right.svg                                                | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\clarity_color-palette-solid.svg                                  | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\control-logo-dark3 1.svg                                         | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\control-logo-dark3.svg                                           | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\control-logo-white-with-green 1.svg                              | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\control-logo-white-with-green.svg                                | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\control-logo-white.svg                                           | XML        |        -34 |         -1 |         -1 |        -36 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\credit-card.svg                                                  | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\css\demo.css                                                     | CSS        |       -158 |        -18 |        -31 |       -207 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\down lines.svg                                                   | XML        |         -7 |          0 |         -1 |         -8 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\entypo_upload.svg                                                | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\equalizer.svg                                                    | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\fa6-solid_file-pdf.svg                                           | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\facebook-f.svg                                                   | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\footerHr.svg                                                     | XML        |        -59 |          0 |         -1 |        -60 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\footerLines.svg                                                  | XML        |         -7 |          0 |         -1 |         -8 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\heart-alt-filled-green.svg                                       | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\heart-alt-filled.svg                                             | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\heart-alt-green.svg                                              | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\heart-alt.svg                                                    | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\i18n\el.json                                                     | JSON       |       -172 |          0 |         -3 |       -175 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\i18n\en.json                                                     | JSON       |       -170 |          0 |         -3 |       -173 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\incoming-call.svg                                                | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\instagram.svg                                                    | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\location-pin-alt.svg                                             | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\mail.svg                                                         | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\mailSmall.svg                                                    | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\map.svg                                                          | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\message.svg                                                      | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\mosqui-logo-dark2 1.svg                                          | XML        |         -9 |          0 |         -1 |        -10 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\mosqui-logo-dark2.svg                                            | XML        |         -9 |          0 |         -1 |        -10 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\mosqui-logo-white-with-green.svg                                 | XML        |         -9 |          0 |         -1 |        -10 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\mosqui-logo-white.svg                                            | XML        |        -52 |         -1 |         -1 |        -54 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\motion-logo-dark2 1.svg                                          | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\motion-logo-dark2.svg                                            | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\motion-logo-white-with-green.svg                                 | XML        |        -10 |          0 |         -1 |        -11 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\motion-logo-white.svg                                            | XML        |        -30 |         -1 |         -1 |        -32 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\phone.svg                                                        | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\print.svg                                                        | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\profile-logo-dark2 1.svg                                         | XML        |        -11 |          0 |         -1 |        -12 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\profile-logo-dark2.svg                                           | XML        |        -11 |          0 |         -1 |        -12 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\profile-logo-white-with-green.svg                                | XML        |        -11 |          0 |         -1 |        -12 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\profile-logo-white.svg                                           | XML        |        -25 |         -1 |         -1 |        -27 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\shopping-cart.svg                                                | XML        |         -5 |          0 |         -1 |         -6 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\showAll.svg                                                      | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\straight lines.svg                                               | XML        |         -5 |          0 |         -1 |         -6 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\trash-alt-white.svg                                              | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\trash-alt.svg                                                    | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\upper lines.svg                                                  | XML        |         -7 |          0 |         -1 |         -8 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\user-green.svg                                                   | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\user.svg                                                         | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\x-black.svg                                                      | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\x-red.svg                                                        | XML        |         -4 |          0 |         -1 |         -5 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\assets\youtube.svg                                                      | XML        |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\dummyData.json                                                          | JSON       |         -8 |          0 |         -1 |         -9 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\environments\environment.prod.ts                                        | TypeScript |         -3 |          0 |         -1 |         -4 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\environments\environment.ts                                             | TypeScript |         -3 |        -11 |         -3 |        -17 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\index.html                                                              | HTML       |        -14 |         -1 |         -1 |        -16 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\main.ts                                                                 | TypeScript |         -9 |          0 |         -4 |        -13 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\polyfills.ts                                                            | TypeScript |         -2 |        -50 |         -6 |        -58 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\styles.css                                                              | CSS        |       -187 |        -31 |        -61 |       -279 |
+| c:\Users\User1\Desktop\B2bProject\b2b\b2bProject\src\test.ts                                                                 | TypeScript |        -18 |         -4 |         -5 |        -27 |
+| Total                                                                                                                        |            |       -163 |         79 |          4 |        -80 |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

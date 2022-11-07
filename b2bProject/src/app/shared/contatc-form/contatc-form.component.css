@@ -13,3 +13,27 @@
         margin-top: 100px;
     }
 }
+
+.disabled{
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.myBtn{
+    width: fit-content;
+    padding: 8px 72px;
+    border: none;
+    background-color: #6DAE49;
+    color: white;
+    border-radius: 8px;
+    margin-top: 44px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.myBtn:active{
+    transform: scale(0.95);
+}
+
+.myBtn:hover{
+    background-color: #4a7632;
+}

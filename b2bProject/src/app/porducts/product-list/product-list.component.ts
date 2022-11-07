@@ -620,7 +620,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   handleCheckboxes(e: any, clickeP?: boolean) {
-
+    this.shownProducts = [];
 
     if (clickeP) {
       if (!e.checked) {

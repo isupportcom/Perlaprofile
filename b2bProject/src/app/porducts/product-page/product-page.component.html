@@ -84,7 +84,7 @@
               </div>
               </button>
               <!-- <button class="btn btn-success col-6" (click)="addToCart()">Προσθήκη</button> -->
-              <button  class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;cursor: auto;">
+              <button  class="col-4" style="border: none;background-color: rgba(0,0,0,0);text-align: left;cursor: auto;">
                 <img (click)="handleAddToFavorite()" [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'" style="cursor: pointer;"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="" width="44px" alt="">
               </button>
 
@@ -230,8 +230,8 @@
                   </button>
 
 
-                  <button (click)="handleAddToFavorite(mosquiProduct)" class="col-6" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
-                    <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="">
+                  <button (click)="handleAddToFavorite(mosquiProduct)" class="col-4" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
+                    <img [ngClass]="productAddedToFav? 'heartAnim heart' : 'heart'"  [src]="added? '../../../assets/heart-alt-filled-green.svg' : '../../../assets/heart-alt-green.svg'" alt="" width="44px">
                   </button>
 
               </div>

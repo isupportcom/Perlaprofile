@@ -32,7 +32,62 @@
     </div>
 </div>
 <div class="container">
+      <div class="row" *ngIf="waiting && (mainCategory.id == 116 || mainCategory.id == 117)" style="margin-left: 50%;margin-top: 40px;">
+          <app-spinner></app-spinner>
+      </div>
+      <div class="row" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id == 116">
+        <div
+        
+        style="padding: 16px;padding-top: 0px;padding-bottom: 8px;"
+        *ngFor="let sub of categories
+        | paginate
+        : {
+            itemsPerPage: itemsPP,
+            currentPage: page,
+            totalItems: shownProducts.length
+            };"
+        class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products"
+      >
+      <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
+        <div class="col col-6 mospro" style="padding: 0px;cursor: pointer;"><img (click)="handleWizzard(sub.name,sub.sub_id)" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
+        <div class="col col-6" style="padding: 12px;">
+            <p class="itemTitle" style="cursor: pointer;" (click)="handleWizzard(sub.name,sub.sub_id)"><strong *ngIf="currentLang == 'el'">{{ sub.name }}</strong><strong *ngIf="currentLang == 'en'">{{ sub.name_en }}</strong><br></p>
+            <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
+
+            <button (click)="handleWizzard(sub.name,sub.sub_id)" class="myBtn" type="button">Δες Περισσότερα</button>
+      </div>
+    </div>
+    </div>
+    <div>
+
+    </div>
+    </div>
+
+    <div class="row" *ngIf="!waiting && mainCategory.id == 117" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;">
+      <div style="padding: 16px;padding-top: 0px;padding-bottom: 8px;" class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products">
+        <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
+          <div class="col col-6" (click)="handleWizzardProfile('Προφίλ Roplasto', mainCategory.id)" style="padding: 0px;cursor: pointer;"><img class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
+          <div class="col col-6" style="padding: 12px;">
+              <p class="itemTitle" style="cursor: pointer;"><strong *ngIf="currentLang == 'el'">Προφίλ Roplasto</strong><strong *ngIf="currentLang == 'en'">Profile Roplasto</strong><br></p>
+              <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
+
+              <button class="myBtn" type="button" (click)="handleWizzardProfile('Προφίλ Roplasto', mainCategory.id)">Δες Περισσότερα</button>
+        </div>
+      </div>
+      </div>
+      </div>
+      <pagination-controls
+      *ngIf="!noProducts && mainCategory.id == 116 || mainCategory.id == 117 "
+      style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
+      class="text-center my-pagination goLeft"
+      (pageChange)="handlePageChange($event)"
+      [responsive]="true"
+      previousLabel=""
+      nextLabel=""
+      #paginate
+      ></pagination-controls>
     <div class="row">
+      
         <!-- <div class="col col-3 categories">
             <p style="margin-bottom: 0px;"><strong>Κύρια Κατηγορία</strong></p>
             <p><strong>200</strong> προϊόντα</p>
@@ -47,7 +102,7 @@
         </div> -->
 
         <div class="row">
-            <div *ngIf="showBigFilters" class="col col-3 categories">
+            <div *ngIf="showBigFilters && mainCategory.id != 116 && mainCategory.id != 117" class="col col-3 categories">
               <div>
                 <div
                   style="
@@ -147,7 +202,7 @@
 
 
         <div class="col col-lg-9 col-md-12 col-sm-12">
-            <div [ngClass]="showFilters? 'row straighten' : 'row circly'" style="background-color: white;border-radius: 8px;padding: 10px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);margin-left: 4px;transition: all 0.1s ease-in-out;">
+            <div *ngIf="mainCategory.id != 116 && mainCategory.id != 117" [ngClass]="showFilters? 'row straighten' : 'row circly'" style="background-color: white;border-radius: 8px;padding: 10px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);margin-left: 4px;transition: all 0.1s ease-in-out;">
                 <div
                 class="col-lg-3 col-md-4 col-sm-8 col-6"
                 style="height: fit-content; margin-top: 4px"
@@ -336,7 +391,7 @@
               Clear Filters
             </button>
             </div>
-            <div class="row" *ngIf="waiting" style="margin-left: 50%;margin-top: 40px;">
+            <div class="row" *ngIf="waiting && mainCategory.id != 116 && mainCategory.id != 117" style="margin-left: 50%;margin-top: 40px;">
                 <app-spinner></app-spinner>
             </div>
 
@@ -362,49 +417,13 @@
                   <h1 *ngIf="shownProducts.length === 0">No Products Available!</h1>
                 </div>
             </div>
-            <div class="row" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id == 116">
-              <div
-              style="padding: 16px;padding-top: 0px;padding-bottom: 8px;"
-              *ngFor="let sub of categories
-              | paginate
-              : {
-                  itemsPerPage: itemsPP,
-                  currentPage: page,
-                  totalItems: shownProducts.length
-                  };"
-              class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products"
-            >
-            <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
-              <div class="col col-6" style="padding: 0px;cursor: pointer;"><img (click)="handleWizzard(sub.name,sub.sub_id)" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
-              <div class="col col-6" style="padding: 12px;">
-                  <p class="itemTitle" style="cursor: pointer;" (click)="handleWizzard(sub.name,sub.sub_id)"><strong *ngIf="currentLang == 'el'">{{ sub.name }}</strong><strong *ngIf="currentLang == 'en'">{{ sub.name_en }}</strong><br></p>
-                  <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
 
-                  <button (click)="handleWizzard(sub.name,sub.sub_id)" class="myBtn" type="button">Δες Περισσότερα</button>
-            </div>
-          </div>
-          </div>
-          <div>
 
-          </div>
-        </div>
-        <div class="row" *ngIf="!waiting && mainCategory.id == 117" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;">
-        <div style="padding: 16px;padding-top: 0px;padding-bottom: 8px;" class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products">
-          <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
-            <div class="col col-6" (click)="handleWizzardProfile('Προφίλ Roplasto', mainCategory.id)" style="padding: 0px;cursor: pointer;"><img class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
-            <div class="col col-6" style="padding: 12px;">
-                <p class="itemTitle" style="cursor: pointer;"><strong *ngIf="currentLang == 'el'">Προφίλ Roplasto</strong><strong *ngIf="currentLang == 'en'">Profile Roplasto</strong><br></p>
-                <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>
 
-                <button class="myBtn" type="button" (click)="handleWizzardProfile('Προφίλ Roplasto', mainCategory.id)">Δες Περισσότερα</button>
-          </div>
-        </div>
-        </div>
-        </div>
         <div>
 
         <pagination-controls
-        *ngIf="!noProducts"
+        *ngIf="!noProducts && mainCategory.id != 116 && mainCategory.id != 117 "
         style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
         class="text-center my-pagination goLeft"
         (pageChange)="handlePageChange($event)"

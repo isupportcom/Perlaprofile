@@ -18,6 +18,16 @@
   color: black;
 }
 
+.mospro{
+  width: fit-content;
+}
+
+@media (max-width: 992px){
+  .mospro{
+    width: 50%;
+  }
+}
+
 .itemDescription{
   margin-bottom: 0px;
 }
@@ -72,7 +82,7 @@
   .itemTitle {
     margin-bottom: 4px;
     font-size: 12px;
-    height: 50px;
+    height: 35px;
   }
 }
 
