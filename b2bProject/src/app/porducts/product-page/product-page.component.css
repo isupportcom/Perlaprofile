@@ -32,8 +32,223 @@ html, body {
   color: black;
 }
 
+.remove{
+  content: url(../../../assets/x-black.svg);
+  transition: all 1s ease-in-out;
+}
+
+.remove:hover{
+  content: url(../../../assets/x-red.svg);
+}
+
+.remove:active{
+  transform: scale(0.7);
+}
+
+.myBtn{
+  width: fit-content;
+  cursor: pointer;
+  padding: 8px 72px;
+  border: none;
+  background-color: #6DAE49;
+  color: white;
+  border-radius: 8px;
+  margin-top: 12px;
+  transition: background-color 0.3s ease-in-out;
+  overflow: hidden;
+}
 
 
+
+.disabled{
+  width: fit-content;
+  cursor: pointer;
+  padding: 8px 72px;
+  border: none;
+  background-color: #6DAE49;
+  color: white;
+  opacity: 0.5;
+  border-radius: 8px;
+  margin-top: 12px;
+  overflow: hidden;
+  cursor: not-allowed;
+}
+
+.myBtn:active{
+  transform: scale(0.95);
+}
+
+.myBtn:hover{
+  background-color: #4a7632;
+}
+
+.textAnim2{
+  position: absolute;
+  top: 20%;
+}
+
+.download{
+  position: absolute;
+  top: -60%;
+  left: 44%;
+}
+
+.hoverDown .textAnim2{
+  animation-name: text2;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+@keyframes text2{
+  0%{
+    top: 20%
+  }
+  100%{
+    top: 100%;
+  }
+}
+
+.hoverDown .download{
+  animation-name: loader2;
+  animation-duration: 0.3s;
+  animation-fill-mode: both; 
+}
+@keyframes loader2{
+  0%{
+    top: -60%
+  }
+  100%{
+    top: 20%;
+  }
+}
+
+.leaveDown .textAnim2{
+  animation-name: text3;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+@keyframes text3{
+  0%{
+    top: 100%;
+  }
+  100%{
+    top: 20%
+  }
+}
+
+.leaveDown .download{
+  animation-name: loader3;
+  animation-duration: 0.3s;
+  animation-fill-mode: both; 
+}
+@keyframes loader3{
+  0%{
+    top: 20%;
+  }
+  100%{
+    top: -60%
+  }
+}
+
+
+.textAnim{
+  position: absolute;
+  top: 20%;
+}
+
+.loading .textAnim{
+  animation-name: text;
+  animation-duration: 0.3s;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+@keyframes text{
+  0%{
+    top: 20%
+  }
+  100%{
+    top: -60%;
+  }
+}
+
+.loading .lds-ring{
+  animation-name: loader;
+  animation-duration: 0.3s;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+}
+
+@keyframes loader {
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.lds-ring {
+  display: inline-block;
+  position: absolute;
+  left: 46%;
+  transform: scale(0);
+  width: 20px;
+  height: 20px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.editBtn{
+  width: fit-content;
+  padding: 4px 8px;
+  border: 1px solid #6dae49;
+  border-radius: 24px;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+}
+
+.editBtn:hover{
+  background-color: #6DAE49;
+}
+
+fa-icon{
+  transition: all 0.1s ease-in-out;
+}
+
+.editBtn:hover fa-icon{
+  color: white;
+}
+
+.editBtn:active{
+  transform: scale(0.7);
+}
 
 .numberInput{
   width: fit-content;

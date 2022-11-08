@@ -80,6 +80,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+import { NgxSummernoteModule } from 'ngx-summernote';
 
 
 export function playerFactory() {
@@ -153,6 +154,7 @@ export function rootLoaderactory(http:any){
 
   ],
   imports: [
+    NgxSummernoteModule,
     BrowserModule,
      RouterModule,
     FormsModule,
@@ -174,10 +176,7 @@ export function rootLoaderactory(http:any){
     }),
 
     [LottieModule.forRoot({ player: playerFactory })],
-
-
-
-
+    
     SwiperModule
 
   ],
