@@ -72,7 +72,7 @@ export class ProductPageComponent implements OnInit {
   hasSuggested: boolean = false;
   innerWidth: any;
   qty: any = 1;
-
+  urlOpen: boolean = false;
   mode: string = 'Περιγραφής';
   desciptionForm: FormGroup | any;
   dataSheetForm: FormGroup | any;
@@ -168,7 +168,8 @@ export class ProductPageComponent implements OnInit {
       setTimeout(() => {
         this.mosquiProduct = resData[0];
         console.log(this.mosquiProduct);
-
+        this.productsService.setSingleProduct(this.mosquiProduct);
+        this.product = this.productsService.getSingelProduct();
         let favouritesObs: Observable<any>;
 
         favouritesObs = this.getFavourites();
@@ -289,6 +290,7 @@ export class ProductPageComponent implements OnInit {
   handleFindNew() {
     this.waitingProduct = true;
     this.showForm = true;
+    this.mosquiProduct = null;
     setTimeout(() => {
       this.waitingProduct = false;
     }, 200);
@@ -326,7 +328,30 @@ export class ProductPageComponent implements OnInit {
       this.desciptionFormEng.value.descriptionEng != null
     ) {
       console.log(this.desciptionForm.value.description);
-      axios
+      console.log(this.desciptionFormEng.value.descriptionEng);
+      console.log( this.product.mtrl);
+      console.log(this.mosquiProduct.mtrl);
+
+      if(this.product.mtrl == undefined){
+          axios.post(
+            "https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php",
+            {
+              mtrl: this.mosquiProduct.mtrl,
+              desc: this.desciptionForm.value.description,
+              desc_eng: this.desciptionFormEng.value.descriptionEng
+            }
+          )
+          .then(resData=>{
+            console.log(resData.data);
+            setTimeout(()=>{
+
+              this.mosquiProduct.description = this.desciptionForm.value.description;
+              this.mosquiProduct.description_eng = this.desciptionFormEng.value.descriptionEng;
+              this.productsService.setSingleProduct(this.mosquiProduct);
+            },50)
+          })
+      }else{
+        axios
         .post(
           'https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php',
           {
@@ -346,9 +371,38 @@ export class ProductPageComponent implements OnInit {
           }, 50);
         });
     }
+      }
+
   }
   updateDataSheet() {
-    axios
+    console.log(this.dataSheetForm.value.datas);
+    console.log(this.dataSheetFormEng.value.datasEng);
+    console.log( this.product.mtrl);
+    console.log(this.mosquiProduct.mtrl);
+    if(this.product.mtrl == undefined){
+      axios.post(
+        "https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php",
+        {
+          mtrl:this.mosquiProduct.mtrl,
+          data_el: this.dataSheetForm.value.datas,
+          data_en:this.dataSheetFormEng.value.datasEng
+        }
+      )
+      .then(
+        resData=>{
+          console.log(resData.data);
+
+          setTimeout(()=>{
+            this.mosquiProduct.data_sheet = resData.data.data_sheet;
+            this.mosquiProduct.data_sheet_eng = resData.data.data_sheet_eng;
+            this.productsService.setSingleProduct(this.mosquiProduct);
+          },50)
+        }
+      )
+    }else{
+
+
+      axios
       .post(
         'https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php',
         {
@@ -356,20 +410,21 @@ export class ProductPageComponent implements OnInit {
           data_el: this.dataSheetForm.value.datas,
           data_en:this.dataSheetFormEng.value.datasEng
         }
-      )
-      .then((resData) => {
-        setTimeout(() => {
-          console.log(resData.data);
+        )
+        .then((resData) => {
+          setTimeout(() => {
+            console.log(resData.data);
 
-          this.product.data_sheet = resData.data.data_sheet;
-          this.product.data_sheet_eng = resData.data.data_sheet_eng;
-          console.log(this.product);
+            this.product.data_sheet = resData.data.data_sheet;
+            this.product.data_sheet_eng = resData.data.data_sheet_eng;
+            console.log(this.product);
 
-          this.productsService.setSingleProduct(this.product);
-          //  window.location.reload();
-        }, 50);
-      });
-  }
+            this.productsService.setSingleProduct(this.product);
+            //  window.location.reload();
+          }, 50);
+        });
+      }
+    }
   closeForm() {
     window.location.reload();
   }
@@ -582,7 +637,7 @@ export class ProductPageComponent implements OnInit {
     link.click();
     link.remove();
   }
-  urlOpen: boolean = false;
+
   openURL() {
     this.urlOpen = true;
   }

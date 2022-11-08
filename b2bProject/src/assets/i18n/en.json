@@ -191,5 +191,13 @@
     "sugg": "Related Products",
     "earlier": "Seen Recently",
     "fail":"No products found"
+  },
+  "login":{
+
+    "header":"Connect to Perla Profil's B2B",
+    "username":"Username",
+    "password":"Password",
+    "button":"Login"
+
   }
 }
