@@ -31,13 +31,10 @@
           <div class="col-4" style="text-align: center;">
             <form [formGroup]="searchPhoto" (ngSubmit)="searchPhotoByName()">
               <input formControlName="imageName" class="form-control" type="text" placeholder="Search..." >
-
-
-
             </form>
           </div>
           <div class="col-4" style="text-align: right;">
-            <a (click) = "close()" style="width: fit-content;cursor: pointer;">
+            <a (click) ="close()" style="width: fit-content;cursor: pointer;">
               <img class="remove" alt=""  style="width: 32px;" srcset="">
             </a>
           </div>
@@ -45,7 +42,7 @@
         <div class="row" style="justify-content: center;align-items: center;">
           <hr style="opacity: 1;border: 1px solid #6dae49;">
         </div>
-        <div *ngIf="images.length > 0">       
+        <div *ngIf="images.length > 0">
           <div class="row" style="height: 600px;overflow:scroll">
 
             <div class="col-3 " *ngFor="let image of images;let i = index" style="padding: 12px;">

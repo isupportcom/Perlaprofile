@@ -75,6 +75,8 @@ export class InsertImagesComponent implements OnInit {
   }
 
   openMain(item:any){
+    this.general = false;
+    this.secondary = true;
     this.cartService.sendAddImagePopup(item);
     // this.flag = true;
     // this.window = true;
@@ -90,6 +92,8 @@ export class InsertImagesComponent implements OnInit {
     // })
   }
   open(item:any){
+    this.general = false;
+    this.secondary = true;
     this.mtrl = item.mtrl;
     setTimeout(() => {
       this.flag = true;
