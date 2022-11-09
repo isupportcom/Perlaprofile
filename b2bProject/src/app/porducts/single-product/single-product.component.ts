@@ -175,6 +175,9 @@ export class SingleProductComponent implements OnInit {
         this.productAddedToFav = false;
       },1000)
       this.cartService.removeOneFav(product);
+      setTimeout(() => {
+        this.cartService.sendProductAddedToFav(false);
+      },50)
     }
     else{
       console.log(product);

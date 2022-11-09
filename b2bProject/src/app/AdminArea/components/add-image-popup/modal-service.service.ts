@@ -13,6 +13,14 @@ export class ModalService {
   offer = new Subject<number>()
   castOffer = this.image.asObservable();
 
+
+  imagesUpdated = new Subject<any>();
+  castImagesUpdated = this.imagesUpdated.asObservable();
+
+  sendImagesUpdated(flag: any){
+    this.imagesUpdated.next(flag);
+  }
+
   products = new Subject<any>();
   prodCast = this.products.asObservable();
 

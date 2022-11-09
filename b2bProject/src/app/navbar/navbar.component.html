@@ -247,7 +247,38 @@
                 </li>
                 <li style="margin-bottom: 8px">
                   <div class="dropdown">
-                    <a
+                    <ul>
+                      <li (click)="handleCategoryClick()">
+                        <a routerLink="/products/114/Control" routerLinkActive="my-active">Control</a>
+                      </li>
+                      <li
+            
+                      (click)="handleCategoryClick()"
+                      
+                    >
+                      <a routerLink="/products/115/Motion" routerLinkActive="my-active">Motion</a>
+            
+                    </li>
+            
+                      <li
+                        
+                      (click)="handleCategoryClick()"
+                      
+                    >
+                      <a routerLink="/products/116/Mosqui%20Plus" routerLinkActive="my-active">Mosqui Plus</a>
+            
+                    </li>
+            
+                    <li
+                        
+                    (click)="handleCategoryClick()"
+                    
+                  >
+                    <a routerLink="/products/117/Profile" routerLinkActive="my-active">Profile</a>
+            
+                  </li>
+                    </ul>
+                    <!-- <a
                       routerLink="/products"
                       routerLinkActive="active"
                       (click)="handleProducts()"
@@ -281,7 +312,7 @@
                       >
                         <a class="dropdown-item">{{ mainCategory.name }}</a>
                       </li>
-                    </ul>
+                    </ul> -->
                   </div>
                 </li>
                 <li style="margin-bottom: 8px">
@@ -334,7 +365,7 @@
             (click)="handleCategoryClick()"
             
           >
-            <a routerLink="/products/114/Control" routerLinkActive="my-active">Control</a>
+          <a routerLink="/products/114/Control" routerLinkActive="my-active">Control</a>
 
           </li>
 

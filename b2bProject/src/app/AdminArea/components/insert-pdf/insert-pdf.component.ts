@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import axios from 'axios';
 
 @Component({
@@ -12,11 +12,15 @@ export class InsertPdfComponent implements OnInit {
   search: string = "";
   pdfForm:FormGroup|any
   pdf:any;
+  showList: boolean = false;
   constructor(private fb:FormBuilder) { }
 
+  showListFunc(){  
+    this.showList = !this.showList
+  }
   async ngOnInit() {
     this.pdfForm = this.fb.group({
-      pdf:[null]
+      pdf: ['', [Validators.required]]
     })
      let req =  await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php")
 
@@ -37,6 +41,25 @@ export class InsertPdfComponent implements OnInit {
     this.selected = true;
     this.selectedMtrl = mtrl;
   }
+
+  deletePDFfromDB(btn: any){
+    
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        axios.post('https://perlarest.vinoitalia.gr/php-auth-api/deletePdf.php',{
+          pdf_name: this.pdfForm.value.pdf
+        })
+        .then(resData => {
+          console.log(resData.data)
+          this.pdf = resData.data.pdf
+          this.products = resData.data.products
+        })
+        this.showList = !this.showList;
+        btn.classList.remove('loading');
+      },2500)
+    }
+  }
  async uploadPdf(){
     console.log(this.selectedMtrl);
     console.log(this.pdfForm.value.pdf);
@@ -52,6 +75,23 @@ export class InsertPdfComponent implements OnInit {
 
     },50)
 
+  }
+
+  deletePDF(btn: any,mtrl: any){
+    
+    
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        axios.post('https://perlarest.vinoitalia.gr/php-auth-api/removeSinglePdf.php',{
+          mtrl: mtrl
+        }).then(resData =>{
+          this.products = resData.data.products
+        })
+
+        btn.classList.remove('loading')
+      },2500)
+    }
   }
 
   findProducts() {

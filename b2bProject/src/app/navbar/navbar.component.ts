@@ -195,8 +195,26 @@ export class NavbarComponent implements OnInit{
 
       }
       else{
+        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+          trdr: this.loadedUser.trdr,
+          mtrl:"dontNeedIt",
+          mode:"fetch"
+        })
+        .then(resData=>{
+          
+          if(resData.data.products.length <= 0){
+            console.log("SNFHKSNDHNKSD");
+            
+            this.source = '../../assets/heart-alt.svg';
+          }
+          else{
+            this.source = '../../assets/heart-alt-filled.svg';
+            
+            
+          }
+          
+        })
         this.productAddedToFav = false;
-        this.source = '../../assets/heart-alt.svg';
       }
 
     })
