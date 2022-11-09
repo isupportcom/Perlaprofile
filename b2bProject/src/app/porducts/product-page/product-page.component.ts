@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -15,6 +16,8 @@ import axios from 'axios';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {faPen} from '@fortawesome/free-solid-svg-icons'
+import {faDownload} from '@fortawesome/free-solid-svg-icons'
 
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, {
@@ -49,6 +52,9 @@ SwiperCore.use([
   styleUrls: ['./product-page.component.css'],
 })
 export class ProductPageComponent implements OnInit {
+  config: any;
+  faDownload = faDownload;
+  faPen = faPen;
   favorites: any;
   showDesc = [true, false, false, false];
   seeEarlier: any;
@@ -72,7 +78,7 @@ export class ProductPageComponent implements OnInit {
   hasSuggested: boolean = false;
   innerWidth: any;
   qty: any = 1;
-  urlOpen: boolean = false;
+
   mode: string = 'Περιγραφής';
   desciptionForm: FormGroup | any;
   dataSheetForm: FormGroup | any;
@@ -95,6 +101,8 @@ export class ProductPageComponent implements OnInit {
   smallerLine?: boolean;
   productAddedToFav: boolean = false;
   added?: boolean;
+
+  // isVisible: boolean = true;
 
   filters: any;
   @HostListener('window:resize', ['$event'])
@@ -145,18 +153,16 @@ export class ProductPageComponent implements OnInit {
     private cartService: CartServiceService,
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ref: ChangeDetectorRef
   ) {}
 
   async ngOnInit() {
+    // console.log(this.ref.detectChanges());
     this.currentLang = localStorage.getItem('lang');
     console.log(this.currentLang);
 
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'auto',
-    });
+    // window.scrollTo(0,0);
 
     this.route.params.subscribe((params) => {
       this.filters = params;
@@ -168,8 +174,7 @@ export class ProductPageComponent implements OnInit {
       setTimeout(() => {
         this.mosquiProduct = resData[0];
         console.log(this.mosquiProduct);
-        this.productsService.setSingleProduct(this.mosquiProduct);
-        this.product = this.productsService.getSingelProduct();
+
         let favouritesObs: Observable<any>;
 
         favouritesObs = this.getFavourites();
@@ -242,6 +247,22 @@ export class ProductPageComponent implements OnInit {
 
     this.product = this.productsService.getSingelProduct();
     console.log(this.product);
+
+    this.config = {
+      placeholder: '',
+      tabsize: 2,
+      height: '200px',
+      toolbar: [
+          ['misc', ['codeview', 'undo', 'redo']],
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+          ['fontsize', ['fontname', 'fontsize', 'color']],
+          ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
+          ['insert', ['table', 'link',  'hr']]
+      ],
+      fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times']
+    }
+
     // console.log(this.product.category);
     // console.log(typeof(this.product.description));
 
@@ -287,10 +308,24 @@ export class ProductPageComponent implements OnInit {
     );
   }
 
+  handleHoverDownload(btn:any){
+    if (!btn.classList.contains('hoverDown')) {
+      btn.classList.add('hoverDown');
+
+
+    }
+    else{
+      btn.classList.remove('hoverDown')
+      btn.classList.add('leaveDown');
+      setTimeout(() => {
+        btn.classList.remove('leaveDown')
+      }, 400);
+    }
+  }
+
   handleFindNew() {
     this.waitingProduct = true;
     this.showForm = true;
-    this.mosquiProduct = null;
     setTimeout(() => {
       this.waitingProduct = false;
     }, 200);
@@ -322,94 +357,53 @@ export class ProductPageComponent implements OnInit {
 
     this.onEditData = true;
   }
-  uploadDescription() {
-    if (
-      this.desciptionForm.value.description != null &&
-      this.desciptionFormEng.value.descriptionEng != null
-    ) {
-      console.log(this.desciptionForm.value.description);
-      console.log(this.desciptionFormEng.value.descriptionEng);
-      console.log( this.product.mtrl);
-      console.log(this.mosquiProduct.mtrl);
+  uploadDescription(btn: any) {
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        if (
+          this.desciptionForm.value.description != null &&
+          this.desciptionFormEng.value.descriptionEng != null
+        ) {
+          console.log(this.desciptionForm.value.description);
+          axios
+            .post(
+              'https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php',
+              {
+                mtrl: this.product.mtrl,
+                desc: this.desciptionForm.value.description,
+                desc_eng: this.desciptionFormEng.value.descriptionEng,
+              }
+            )
+            .then((resData) => {
+              console.log(resData.data);
 
-      if(this.product.mtrl == undefined){
-          axios.post(
-            "https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php",
-            {
-              mtrl: this.mosquiProduct.mtrl,
-              desc: this.desciptionForm.value.description,
-              desc_eng: this.desciptionFormEng.value.descriptionEng
-            }
-          )
-          .then(resData=>{
-            console.log(resData.data);
-            setTimeout(()=>{
-
-              this.mosquiProduct.description = this.desciptionForm.value.description;
-              this.mosquiProduct.description_eng = this.desciptionFormEng.value.descriptionEng;
-              this.productsService.setSingleProduct(this.mosquiProduct);
-            },50)
-          })
-      }else{
-        axios
-        .post(
-          'https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php',
-          {
-            mtrl: this.product.mtrl,
-            desc: this.desciptionForm.value.description,
-            desc_eng: this.desciptionFormEng.value.descriptionEng,
-          }
-        )
-        .then((resData) => {
-          console.log(resData.data);
-
-          setTimeout(() => {
-            this.product.description = resData.data.description;
-            this.product.description_eng = resData.data.desc_eng;
-            this.productsService.setSingleProduct(this.product);
-            // window.location.reload();
-          }, 50);
-        });
+              setTimeout(() => {
+                this.product.description = resData.data.description;
+                this.product.description_eng = resData.data.desc_eng;
+                this.productsService.setSingleProduct(this.product);
+                // window.location.reload();
+              }, 50);
+            });
+        }
+        this.closeForm();
+        btn.classList.remove('loading')
+      },1500)
     }
-      }
 
   }
-  updateDataSheet() {
-    console.log(this.dataSheetForm.value.datas);
-    console.log(this.dataSheetFormEng.value.datasEng);
-    console.log( this.product.mtrl);
-    console.log(this.mosquiProduct.mtrl);
-    if(this.product.mtrl == undefined){
-      axios.post(
-        "https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php",
-        {
-          mtrl:this.mosquiProduct.mtrl,
-          data_el: this.dataSheetForm.value.datas,
-          data_en:this.dataSheetFormEng.value.datasEng
-        }
-      )
-      .then(
-        resData=>{
-          console.log(resData.data);
-
-          setTimeout(()=>{
-            this.mosquiProduct.data_sheet = resData.data.data_sheet;
-            this.mosquiProduct.data_sheet_eng = resData.data.data_sheet_eng;
-            this.productsService.setSingleProduct(this.mosquiProduct);
-          },50)
-        }
-      )
-    }else{
-
-
-      axios
-      .post(
-        'https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php',
-        {
-          mtrl: this.product.mtrl,
-          data_el: this.dataSheetForm.value.datas,
-          data_en:this.dataSheetFormEng.value.datasEng
-        }
+  updateDataSheet(btn: any) {
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        axios
+        .post(
+          'https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php',
+          {
+            mtrl: this.product.mtrl,
+            data_el: this.dataSheetForm.value.datas,
+            data_en:this.dataSheetFormEng.value.datasEng
+          }
         )
         .then((resData) => {
           setTimeout(() => {
@@ -423,13 +417,30 @@ export class ProductPageComponent implements OnInit {
             //  window.location.reload();
           }, 50);
         });
-      }
+        this.closeForm();
+        btn.classList.remove('loading')
+      },1500)
     }
+
+  }
   closeForm() {
-    window.location.reload();
+    this.onEditDesc = false;
+    this.onEditData = false;
   }
   editDescription() {
+    console.log(this.product.description);
+
     this.onEditDesc = true;
+  }
+
+  goToSeeEarlier(prod: any,div: any){
+    this.renderer.setStyle(div, 'transform', 'scale(0.95)');
+    setTimeout(() => {
+      this.renderer.setStyle(div, 'transform', 'scale(1)');
+    },30)
+    this.productsService.setSingleProduct(prod);
+    this.product = this.productsService.getSingelProduct();
+    window.scrollTo(0,0);
   }
 
   async getSeeEarlier() {
@@ -637,22 +648,35 @@ export class ProductPageComponent implements OnInit {
     link.click();
     link.remove();
   }
-
+  urlOpen: boolean = false;
   openURL() {
-    this.urlOpen = true;
+    if(this.urlOpen){
+      this.urlOpen = false;
+    }
+    else{
+      this.urlOpen = true;
+    }
   }
 
-  async uploadUrl() {
-    let req = await axios.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
-      {
-        mtrl: this.product.mtrl,
-        url: this.urlVideoForm.value.video,
-      }
-    );
-    console.log(req.data);
-    this.product.video = req.data.video;
-    this.productsService.setSingleProduct(this.product);
+  async uploadUrl(btn: any) {
+    if (!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(async () => {
+        let req = await axios.post(
+          'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+          {
+            mtrl: this.product.mtrl,
+            url: this.urlVideoForm.value.video,
+          }
+        );
+        console.log(req.data);
+        this.product.video = req.data.video;
+        this.productsService.setSingleProduct(this.product);
+
+        btn.classList.remove('loading')
+      },1500);
+    }
+
   }
 
   ngOnDestroy(): void {
