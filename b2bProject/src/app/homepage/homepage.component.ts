@@ -22,7 +22,7 @@ export class HomepageComponent implements OnInit {
   isEmpry:boolean=false;
   offer1:any = [];
   offer2:any=[];
-
+  currentLang:string|any;
   source: string = '../../assets/pexels-expect-best-323772.jpg';
   showLoggedInContent: boolean = false;
   username = localStorage.getItem('username');
@@ -57,7 +57,7 @@ export class HomepageComponent implements OnInit {
 
    ngOnInit() {
 
-
+    this.currentLang = localStorage.getItem('lang');
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     // this.getSeeEarlier();

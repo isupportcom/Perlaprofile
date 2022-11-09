@@ -95,14 +95,15 @@ export class AuthService {
   }
 
   logout(){
-    
+
     this.user.next(null);
     // console.log("hello");
     console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
-    
+
 
     localStorage.removeItem('userData');
     localStorage.removeItem('username');
+    localStorage.removeItem('lang');
 
     if(this.tokenExpirationTimer){
       clearTimeout(this.tokenExpirationTimer);
@@ -110,7 +111,7 @@ export class AuthService {
     this.tokenExpirationTimer = null;
     window.location.reload();
 
-    
+
   }
 
   autoLogin(){

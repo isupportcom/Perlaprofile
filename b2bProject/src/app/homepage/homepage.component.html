@@ -5,7 +5,6 @@
     height="100%"
     alt="Φωτογραφια αρχικης σελιδας"
     i18n-alt
-
   />
 </div>
 <app-navbar></app-navbar>
@@ -21,7 +20,7 @@
           >
             <!-- <img class="index" src="../../assets/Frame 102.svg"> Lorem ipsum dolor sit amet, consectetur adipiscing-->
             <p translate>
-              home.first_P_before_br<br>home.second_p_after_br<br>
+              home.first_P_before_br<br />home.second_p_after_br<br />
             </p>
           </div>
         </div>
@@ -43,106 +42,122 @@
   </div>
 </div>
 <div class="container cardHolder">
-  <div class="row" style="justify-content: center;align-items: center;">
-    
-    <div (click)="goToProducts({id: 114,name: 'Control'})" class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-
-
+  <div class="row" style="justify-content: center; align-items: center">
+    <div
+      (click)="goToProducts({ id: 114, name: 'Control' })"
+      class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"
+    >
       <div class="flip-card-back">
-          <h2>
-              Click to see more <br><span>--></span>
-
-          </h2>
+        <h2>Click to see more <br /><span>--></span></h2>
       </div>
-      <div class="image_container" style="background: url(../../assets/Frame\ 106.png);background-size: cover;background-repeat: no-repeat;">
-
-      </div>
+      <div
+        class="image_container"
+        style="
+          background: url(../../assets/Frame\ 106.png);
+          background-size: cover;
+          background-repeat: no-repeat;
+        "
+      ></div>
 
       <div class="text_back">
-          <div>
-            <img class="card-title" style="cursor: pointer;" src="../../assets/control-logo-dark3 1.svg">
-
-              <p  translate>home.control_description</p>
-
-
-
-      </div>
-  </div>
-  </div>
-
-  <div (click)="goToProducts({id: 115,name: 'Motion'})" class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-
-
-    <div class="flip-card-back">
-        <h2>
-            Click to see more <br><span>--></span>
-        </h2>
-    </div>
-    <div class="image_container" style="background: url('../../assets/Frame 106 (1).png');background-size: cover;background-repeat: no-repeat;">
-
-    </div>
-
-    <div class="text_back">
         <div>
-          <img class="card-title" style="cursor: pointer;" src="../../assets/motion-logo-dark2%201.svg">
+          <img
+            class="card-title"
+            style="cursor: pointer"
+            src="../../assets/control-logo-dark3 1.svg"
+          />
 
-            <p  translate>home.motion_description</p>
-
-
-
+          <p translate>home.control_description</p>
+        </div>
+      </div>
     </div>
-</div>
-</div>
 
-<div (click)="goToProducts({id: 116,name: 'Mosqui'})" class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+    <div
+      (click)="goToProducts({ id: 115, name: 'Motion' })"
+      class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"
+    >
+      <div class="flip-card-back">
+        <h2>Click to see more <br /><span>--></span></h2>
+      </div>
+      <div
+        class="image_container"
+        style="
+          background: url('../../assets/Frame 106 (1).png');
+          background-size: cover;
+          background-repeat: no-repeat;
+        "
+      ></div>
 
+      <div class="text_back">
+        <div>
+          <img
+            class="card-title"
+            style="cursor: pointer"
+            src="../../assets/motion-logo-dark2%201.svg"
+          />
 
-  <div class="flip-card-back">
-      <h2>
-          Click to see more <br><span>--></span>
+          <p translate>home.motion_description</p>
+        </div>
+      </div>
+    </div>
 
-      </h2>
-  </div>
-  <div class="image_container" style="background: url('../../assets/Frame%20106%20(2).png');background-size: cover;background-repeat: no-repeat;">
+    <div
+      (click)="goToProducts({ id: 116, name: 'Mosqui' })"
+      class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"
+    >
+      <div class="flip-card-back">
+        <h2>Click to see more <br /><span>--></span></h2>
+      </div>
+      <div
+        class="image_container"
+        style="
+          background: url('../../assets/Frame%20106%20(2).png');
+          background-size: cover;
+          background-repeat: no-repeat;
+        "
+      ></div>
 
-  </div>
+      <div class="text_back">
+        <div>
+          <img
+            class="card-title"
+            style="cursor: pointer"
+            src="../../assets/mosqui-logo-dark2%201.svg"
+          />
 
-  <div class="text_back">
-      <div>
-        <img class="card-title"  style="cursor: pointer;" src="../../assets/mosqui-logo-dark2%201.svg">
+          <p translate>home.mosqui_plus_description</p>
+        </div>
+      </div>
+    </div>
 
-          <p  translate>home.mosqui_plus_description</p>
+    <div
+      (click)="goToProducts({ id: 117, name: 'Profile' })"
+      class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"
+    >
+      <div class="flip-card-back">
+        <h2>Click to see more <br /><span>--></span></h2>
+      </div>
+      <div
+        class="image_container"
+        style="
+          background: url('../../assets/Frame%20106%20(3).png');
+          background-size: cover;
+          background-repeat: no-repeat;
+        "
+      ></div>
 
-
-
-  </div>
-</div>
-</div>
-
-<div (click)="goToProducts({id: 117,name: 'Profile'})" class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-
-
-  <div class="flip-card-back">
-      <h2>
-          Click to see more <br><span>--></span>
-
-      </h2>
-  </div>
-  <div class="image_container" style="background: url('../../assets/Frame%20106%20(3).png');background-size: cover;background-repeat: no-repeat;">
-
-  </div>
-
-  <div class="text_back">
-      <div>
-        <img class="card-title" style="cursor: pointer;" src="../../assets/profile-logo-dark2%201.svg">
+      <div class="text_back">
+        <div>
+          <img
+            class="card-title"
+            style="cursor: pointer"
+            src="../../assets/profile-logo-dark2%201.svg"
+          />
 
           <p class="card-text" translate>home.profile_description</p>
-
-
-
-  </div>
-</div>
-</div>
+        </div>
+      </div>
+    </div>
     <!-- <div class="col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cardCol">
       <div class="card" style="border: none;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);border-radius: 9px;">
         <div class="card-header" style="padding: 0;" (click)="goToProducts({id: 114,name: 'Control'})"><img class="headerImg" src="../../assets/Frame 106.png" style="border-top-right-radius: 9px;border-top-left-radius: 9px;cursor: pointer;"></div>
@@ -202,62 +217,90 @@
         </div>
       </div>
     </div> -->
-
-
-
-  </div>
-
-</div>
-
-<div
-*ngIf="showLoggedInContent"
-style="margin-top: 72px;"
->
-<div class="container" style="text-align: center;margin-bottom: 24px">
-  <div class="row">
-
-    <h1 translate>home.offer</h1>
-  </div>
-  <div class="row" style="justify-content: center;">
-    <hr style="width: 20%; border: 1px solid #6dae49;opacity: 1;" />
   </div>
 </div>
-<div>
-  <div class="container" style="
-  background-color: white;
-  border-radius: 30px;
-  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);
-  padding: 80px;
-  
-  ">
-  <div class="row">
-    <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12" style="display: flex;justify-content: center;align-items: center;">
-      <div class="box" (click)="goToProductPage(offer1)" style="cursor: pointer;" #offerImg>
-        <div class="text">
-          <i class="fas fa1">-{{ offer1.discount }}%</i>
-          <img [src]="offer1.img" width="100%" height="100%" alt="" srcset="">
-          <div>
+
+<div *ngIf="showLoggedInContent" style="margin-top: 72px">
+  <div class="container" style="text-align: center; margin-bottom: 24px">
+    <div class="row">
+      <h1 translate>home.offer</h1>
+    </div>
+    <div class="row" style="justify-content: center">
+      <hr style="width: 20%; border: 1px solid #6dae49; opacity: 1" />
+    </div>
+  </div>
+  <div>
+    <div
+      class="container"
+      style="
+        background-color: white;
+        border-radius: 30px;
+        box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);
+        padding: 80px;
+      "
+    >
+      <div class="row">
+        <div
+          class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12"
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <div
+            class="box"
+            (click)="goToProductPage(offer1)"
+            style="cursor: pointer"
+            #offerImg
+          >
+            <div class="text">
+              <i class="fas fa1">-{{ offer1.discount }}%</i>
+              <img
+                [src]="offer1.img"
+                width="100%"
+                height="100%"
+                alt=""
+                srcset=""
+              />
+              <div></div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 description"
+        >
+          <div class="row">
+            <h2 *ngIf="currentLang == 'el'">{{ offer1.product_name }}</h2>
+            <h2 *ngIf="currentLang == 'en'">{{ offer1.product_name_eng }}</h2>
+          </div>
+          <div class="row">
+            <p
+              *ngIf="currentLang == 'el'"
+              class="descText"
+              [innerHTML]="
+                (offer1.description | slice: 0:315) + '<span>...</span>'
+              "
+            ></p>
+            <p
+            *ngIf="currentLang == 'en'"
+            class="descText"
+            [innerHTML]="
+              (offer1.description_eng | slice: 0:315) + '<span>...</span>'
+            "
+          ></p>
+          </div>
+          <div class="row offer-button">
+            <button
+              class="simple-btn"
+              (mouseover)="handleOfferHover(offerImg)"
+              (mouseleave)="handleOfferHoverLeave(offerImg)"
+              (click)="goToProductPage(offer1)"
+              style="height: fit-content; width: fit-content"
+            >
+              Μάθε Περισσότερα
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 description">
-      <div class="row">
-        <h2>{{ offer1.product_name}}</h2>
-      </div>
-      <div class="row">
-        <p class="descText" [innerHTML]="(offer1.description | slice:0:315)+'<span>...</span>'"></p>
-      </div>
-      <div class="row offer-button">
-        <button class="simple-btn" (mouseover)="handleOfferHover(offerImg)" (mouseleave)="handleOfferHoverLeave(offerImg)" (click)="goToProductPage(offer1)" style="height: fit-content;width: fit-content;">Μάθε Περισσότερα</button>
-      </div>
-    </div>
   </div>
 </div>
-</div>
-
-</div>
-
-
 
 <app-footer></app-footer>

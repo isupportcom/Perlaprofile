@@ -50,7 +50,8 @@ export class AppComponent implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartServiceService,
     private renderer: Renderer2,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private translate: TranslateService
   ) {
 
   }
@@ -146,7 +147,7 @@ export class AppComponent implements OnInit {
       btn.classList.add('loading');
 
       setTimeout(() => {
-        
+
 
         let groupingObs: Observable<any>;
 
@@ -168,7 +169,7 @@ export class AppComponent implements OnInit {
           for(let i=0;i<this.group.Scope2.length;i++){
             this.group.Scope2[i].qty = this.singleProduct.qty;
           }
-          
+
           this.singleProduct.show = true;
           // this.cartService.addToCart(this.singleProduct);
 
@@ -257,7 +258,7 @@ export class AppComponent implements OnInit {
       }, 1000);
     }
 
-    
+
   }
 
   addToCart(product: any,btn?: any){
@@ -284,15 +285,15 @@ export class AppComponent implements OnInit {
 
         this.cartService.setId(id);
 
-        
-        
+
+
         for(let prod of this.itemsToCart){
           // id = id + prod.mtrl;
           prod.group_id = id;
           prod.show = true;
-        
+
           console.log(prod);
-          
+
 
           this.cartService.addToCart(prod);
 
@@ -318,11 +319,11 @@ export class AppComponent implements OnInit {
 
         this.btnLoading = false;
         btn.classList.remove('loading');
-  
+
       }, 1200);
     }
 
-    
+
 
 
 

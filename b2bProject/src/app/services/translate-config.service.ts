@@ -10,7 +10,7 @@ export class TranslateConfigService{
   constructor(public translateService: TranslateService){
 
     this.translateService.setDefaultLang(localStorage.getItem('lang') ||'el');
-
+    localStorage.setItem('lang',this.currentLang() || localStorage.getItem('lang') || 'el');
     console.log(this.translateService.currentLang);
   }
   changeLanguage(type:string){
