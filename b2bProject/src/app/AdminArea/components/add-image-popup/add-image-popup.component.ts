@@ -113,15 +113,12 @@ export class AddImagePopupComponent implements OnInit {
           axios.post('https://perlarest.vinoitalia.gr/php-auth-api/deleteImage.php',{
             "image_name":joinedImagesArray
           }).then(resData => {
-            console.log(resData);
-            
             let tempImages = [];
             for(let img of resData.data.images){
               tempImages.push('https://perlarest.vinoitalia.gr/php-auth-api/upload/' + img);
             }
             this.images = [];
             this.images = tempImages;
-            this.modalService.sendImagesUpdated(true)
           })
           btn.classList.remove('loading')
 

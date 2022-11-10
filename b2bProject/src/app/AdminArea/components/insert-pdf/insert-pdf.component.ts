@@ -15,20 +15,15 @@ export class InsertPdfComponent implements OnInit {
   showList: boolean = false;
   constructor(private fb:FormBuilder) { }
 
-  showListFunc(){  
+  showListFunc(){
     this.showList = !this.showList
   }
   async ngOnInit() {
     this.pdfForm = this.fb.group({
       pdf: ['', [Validators.required]]
     })
-     let req =  await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php")
-
-
-   console.log(req.data);
-
-   this.products = req.data.products;
-   req = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getPdfs.php",{
+    this.prods();
+   let req = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getPdfs.php",{
     method:"pdf"
    })
    console.log(req.data)
@@ -41,9 +36,16 @@ export class InsertPdfComponent implements OnInit {
     this.selected = true;
     this.selectedMtrl = mtrl;
   }
+  async prods(){
+    let req =  await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php")
 
+
+    console.log(req.data);
+
+    this.products = req.data.products;
+  }
   deletePDFfromDB(btn: any){
-    
+
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
@@ -78,8 +80,8 @@ export class InsertPdfComponent implements OnInit {
   }
 
   deletePDF(btn: any,mtrl: any){
-    
-    
+
+
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
@@ -97,7 +99,7 @@ export class InsertPdfComponent implements OnInit {
   findProducts() {
     console.log('mpike gia res');
     if(this.search == ''){
-      this.getProducts();
+      this.prods();
     }
     else{
       axios
@@ -106,19 +108,35 @@ export class InsertPdfComponent implements OnInit {
         })
         .then((resData) => {
           console.log(resData.data.products);
-          if (resData.data.products.length != 0) {
-              this.products = resData.data.products;
-          } 
-          else {
-            setTimeout(() => {
-              this.getProducts();
-            }, 100);
+          if (resData.data.products.length != 0 && resData.data.products.length != this.products.length) {
+            this.products = [];
+            for (let i = 0; i < resData.data.products.length; i++) {
+              this.products.push({
+                mtrl: resData.data.products[i].mtrl,
+                name: resData.data.products[i].name,
+                name1: resData.data.products[i].name1,
+                onoma: resData.data.products[i].product_name,
+                code: resData.data.products[i].code,
+                retail: resData.data.products[i].retailPrice,
+                wholesale: resData.data.products[i].wholesalePrice,
+                qty: 1,
+                 description :resData.data.products[i].description,
+                 data_sheet:resData.data.products[i].data_sheet,
+                stock: resData.data.products[i].stock,
+                image : resData.data.products[i].img,
+                offer: resData.data.products[i].offer,
+                hasOffer:resData.data.products[i].hasOffer,
+                discount:resData.data.products[i].discount,
+                pdf:resData.data.products[i].pdf
+              }) ;
           }
+        }
+
         });
     }
   }
 
-  
+
   getProducts(){
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then(resData => {
       // console.log(resData.data)
@@ -129,7 +147,7 @@ export class InsertPdfComponent implements OnInit {
           mtrl: resData.data.products[i].mtrl,
           name: resData.data.products[i].name,
           name1: resData.data.products[i].name1,
-          product_name: resData.data.products[i].onoma,
+          onoma: resData.data.products[i].product_name,
           code: resData.data.products[i].code,
           retail: resData.data.products[i].retailPrice,
           wholesale: resData.data.products[i].wholesalePrice,
