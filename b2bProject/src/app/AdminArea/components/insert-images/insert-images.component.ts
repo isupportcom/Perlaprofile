@@ -52,6 +52,19 @@ export class InsertImagesComponent implements OnInit {
     //   this.window = false;
     // })
 
+    this.modalService.imagesUpdated.subscribe((resData) => {
+      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+        mtrl:"mtrl",
+        img:"img",
+        mode:"getimage"
+      }).then(resData=>{
+        console.log( resData.data.products)
+        this.products = resData.data.products
+   
+      })
+      
+    })
+
     this.cartService.addImagePopup.subscribe((resData) => {
       if (resData == false) {
         this.flag = false;

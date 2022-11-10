@@ -49,6 +49,10 @@
   .myBtn:hover{
     background-color: #4a7632;
   }
+
+  .myBtn:active{
+    transform: scale(0.85);
+  }
   
 
 ::-webkit-scrollbar {
@@ -129,4 +133,108 @@
   .search-container:hover{
     border-color: #4a7632;
   /* animation: hoverShake 0.15s linear 3; */
+  }
+
+
+
+  .myBtn2{
+    margin-top: 15px;
+    margin-left: 12px;
+    width: fit-content;
+    cursor: pointer;
+    padding: 8px 24px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 16px;
+    height: fit-content;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .disabled{
+    opacity: 0.5;
+  }
+  
+  
+  .myBtn2:active{
+    transform: scale(0.85);
+  }
+  
+  .myBtn2:hover{
+    background-color: rgb(141, 0, 0);
+  }
+  
+  .textAnim{
+    position: absolute;
+    top: 20%;
+  }
+  
+  .loading .textAnim{
+    animation-name: text;
+    animation-duration: 0.3s;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes text{
+    0%{
+      top: 20%
+    }
+    100%{
+      top: -60%;
+    }
+  }
+  
+  .loading .lds-ring{
+    animation-name: loader;
+    animation-duration: 0.3s;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes loader {
+    0%{
+      transform: scale(0);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+  
+  .lds-ring {
+    display: inline-block;
+    position: absolute;
+    left: 46%;
+    transform: scale(0);
+    width: 20px;
+    height: 20px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }

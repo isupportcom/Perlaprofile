@@ -66,11 +66,12 @@
  -->
 
 
-      <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
+      <div class="row pCard" >
           <div class="col col-6" style="padding: 0px;cursor: pointer;"><img (click)="handleClick()" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" [src]="index.img"></div>
           <div class="col col-6" style="padding: 8px;">
               <p *ngIf="currentLang == 'el'" class="itemTitle" style="cursor: pointer;" (click)="handleClick()"><strong>{{ index.product_name }}</strong><br></p>
               <p class="itemTitle" *ngIf="currentLang == 'en'" style="cursor: pointer;" (click)="handleClick()"><strong>{{ index.product_name_eng }}</strong><br></p>
+<<<<<<< HEAD
               <!-- <p class="itemDescription" *ngIf="currentLang=='el'" [innerHTML]="index.description"><br></p>
               <p class="itemDescription" *ngIf="currentLang=='en'" [innerHTML]="index.description_eng"><br></p> -->
               <img  [ngClass]="!loggedIn? 'itemHr' : 'itemHr2'" style="width: 100%;" src="../../../assets/Line%208.svg">
@@ -79,6 +80,15 @@
               <button *ngIf="!loggedIn" class="btn btn-primary seeMoreBtn" type="button" (click)="handleClick()" translate>home.see_more_button</button>
               <div *ngIf="loggedIn"  class="row logged-in-btns" style="margin-left: 0px">
                 <p *ngIf="!index.hasOffer" style="margin-bottom: 4px;padding-left: 0px;" translate>product_page.price <b>: {{index.wholesale}}&euro;</b></p>
+=======
+              <!-- <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p> -->
+              <img  [ngClass]="!loggedIn? 'itemHr' : 'itemHr2'" style="width: 100%;" src="../../../assets/Line%208.svg">
+              <p class="details" *ngIf="loggedIn"><strong>Διαθέσιμα</strong>: {{index.stock}}<br></p>
+              <p class="details"><strong>Τεχνικός Κωδικός</strong>: {{ index.texnikos_kodikos }}<br></p>
+              <button *ngIf="!loggedIn" class="btn btn-primary seeMoreBtn" type="button" (click)="handleClick()">Δες Περισσότερα</button>
+              <div *ngIf="loggedIn"  class="row logged-in-btns" style="margin-left: 0px;margin-top: 30px;">
+                <p *ngIf="!index.hasOffer" style="margin-bottom: 4px;padding-left: 0px;">Τιμή: {{index.wholesale}}&euro;</p>
+>>>>>>> 0515f4fe1840e6f64c98cb703e9d4f2d5f1d2a24
                 <p *ngIf="index.hasOffer" class="col-5" style="margin-bottom: 4px;padding-left: 0px; text-decoration:line-through ;opacity: 0.3;">Τιμή: {{index.wholesale}}&euro;</p>
                 <p *ngIf="index.hasOffer" class="col-6" style="margin-bottom: 4px;padding-left: 0px;color: #6DAE49;font-weight: 600;">Τιμή: {{index.offer}}&euro;</p>
 

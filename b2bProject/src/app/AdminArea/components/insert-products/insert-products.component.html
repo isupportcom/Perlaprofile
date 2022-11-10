@@ -123,7 +123,7 @@
               Προσθήκη
             </button>
             <button
-              class="table-btn2"
+              class="table-btn3"
               *ngIf="product.hasOffer"
               (click)="openOffer(product)"
             >
@@ -131,8 +131,8 @@
             </button>
             </div>
             <div class="col">
-              <button [ngClass]="!product.hasOffer? 'table-btn disabled' : (product.homePageOffer? 'table-btn2' : 'table-btn')" [disabled]="!product.hasOffer" (click)="addToHomePage(product)">
-                Εμφάνιση
+              <button [ngClass]="!product.hasOffer? 'table-btn disabled' : (product.homePageOffer? 'table-btn3' : 'table-btn')" [disabled]="!product.hasOffer" (click)="addToHomePage(product)">
+                {{product.homePageOffer? 'Ενεργό' : 'Εμφάνιση'}}
               </button>
             </div>
           </div>

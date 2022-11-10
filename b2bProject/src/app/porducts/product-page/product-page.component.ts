@@ -174,7 +174,7 @@ export class ProductPageComponent implements OnInit {
       setTimeout(() => {
         this.mosquiProduct = resData[0];
         console.log(this.mosquiProduct);
-
+        // this.product = this.mosquiProduct;
         let favouritesObs: Observable<any>;
 
         favouritesObs = this.getFavourites();
@@ -324,6 +324,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   handleFindNew() {
+    this.mosquiProduct = {};
     this.waitingProduct = true;
     this.showForm = true;
     setTimeout(() => {
@@ -361,6 +362,7 @@ export class ProductPageComponent implements OnInit {
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
+
         if (
           this.desciptionForm.value.description != null &&
           this.desciptionFormEng.value.descriptionEng != null
@@ -385,7 +387,63 @@ export class ProductPageComponent implements OnInit {
                 // window.location.reload();
               }, 50);
             });
+          }
+        if(this.mosquiProduct){
+          if (
+            this.desciptionForm.value.description != null &&
+            this.desciptionFormEng.value.descriptionEng != null
+          ) {
+            console.log(this.desciptionForm.value.description);
+            axios
+              .post(
+                'https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php',
+                {
+                  mtrl: this.mosquiProduct.mtrl,
+                  desc: this.desciptionForm.value.description,
+                  desc_eng: this.desciptionFormEng.value.descriptionEng,
+                }
+              )
+              .then((resData) => {
+                console.log(resData.data);
+
+                setTimeout(() => {
+                  this.mosquiProduct.description = resData.data.description;
+                  this.mosquiProduct.description_eng = resData.data.desc_eng;
+                  // window.location.reload();
+                }, 50);
+              });
+          }
+
+
         }
+        else{
+          if (
+            this.desciptionForm.value.description != null &&
+            this.desciptionFormEng.value.descriptionEng != null
+          ) {
+            console.log(this.desciptionForm.value.description);
+            axios
+              .post(
+                'https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php',
+                {
+                  mtrl: this.product.mtrl,
+                  desc: this.desciptionForm.value.description,
+                  desc_eng: this.desciptionFormEng.value.descriptionEng,
+                }
+              )
+              .then((resData) => {
+                console.log(resData.data);
+
+                setTimeout(() => {
+                  this.product.description = resData.data.description;
+                  this.product.description_eng = resData.data.desc_eng;
+                  this.productsService.setSingleProduct(this.product);
+                  // window.location.reload();
+                }, 50);
+              });
+          }
+        }
+
         this.closeForm();
         btn.classList.remove('loading')
       },1500)
@@ -396,27 +454,52 @@ export class ProductPageComponent implements OnInit {
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
-        axios
-        .post(
-          'https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php',
-          {
-            mtrl: this.product.mtrl,
-            data_el: this.dataSheetForm.value.datas,
-            data_en:this.dataSheetFormEng.value.datasEng
-          }
-        )
-        .then((resData) => {
-          setTimeout(() => {
-            console.log(resData.data);
+        if(this.mosquiProduct){
+          console.log(this.mosquiProduct.mtrl);
 
-            this.product.data_sheet = resData.data.data_sheet;
-            this.product.data_sheet_eng = resData.data.data_sheet_eng;
-            console.log(this.product);
+          axios
+          .post(
+            'https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php',
+            {
+              mtrl: this.mosquiProduct.mtrl,
+              data_el: this.dataSheetForm.value.datas,
+              data_en:this.dataSheetFormEng.value.datasEng
+            }
+          )
+          .then((resData) => {
+            setTimeout(() => {
+              console.log(resData.data);
 
-            this.productsService.setSingleProduct(this.product);
-            //  window.location.reload();
-          }, 50);
-        });
+              this.mosquiProduct.data_sheet = resData.data.data_sheet;
+              this.mosquiProduct.data_sheet_eng = resData.data.data_sheet_eng;
+              //  window.location.reload();
+            }, 50);
+          });
+        }
+        else{
+          axios
+          .post(
+            'https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php',
+            {
+              mtrl: this.product.mtrl,
+              data_el: this.dataSheetForm.value.datas,
+              data_en:this.dataSheetFormEng.value.datasEng
+            }
+          )
+          .then((resData) => {
+            setTimeout(() => {
+              console.log(resData.data);
+
+              this.product.data_sheet = resData.data.data_sheet;
+              this.product.data_sheet_eng = resData.data.data_sheet_eng;
+              console.log(this.product);
+
+              this.productsService.setSingleProduct(this.product);
+              //  window.location.reload();
+            }, 50);
+          });
+        }
+
         this.closeForm();
         btn.classList.remove('loading')
       },1500)
@@ -527,6 +610,9 @@ export class ProductPageComponent implements OnInit {
           this.productAddedToFav = false;
         }, 1000);
         this.cartService.removeOneFav(this.mosquiProduct);
+        setTimeout(() => {
+          this.cartService.sendProductAddedToFav(false);
+        })
       } else {
         this.productAddedToFav = true;
         setTimeout(() => {
@@ -549,6 +635,9 @@ export class ProductPageComponent implements OnInit {
           this.productAddedToFav = false;
         }, 1000);
         this.cartService.removeOneFav(this.product);
+        setTimeout(() => {
+          this.cartService.sendProductAddedToFav(false);
+        },50)
       } else {
         console.log(this.product);
 
@@ -662,16 +751,29 @@ export class ProductPageComponent implements OnInit {
     if (!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(async () => {
-        let req = await axios.post(
-          'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
-          {
-            mtrl: this.product.mtrl,
-            url: this.urlVideoForm.value.video,
-          }
-        );
-        console.log(req.data);
-        this.product.video = req.data.video;
-        this.productsService.setSingleProduct(this.product);
+        if(this.mosquiProduct){
+          let req = await axios.post(
+            'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+            {
+              mtrl: this.mosquiProduct.mtrl,
+              url: this.urlVideoForm.value.video,
+            }
+          );
+          console.log(req.data);
+          this.mosquiProduct.video = req.data.video;
+        }else{
+
+          let req = await axios.post(
+            'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+            {
+              mtrl: this.product.mtrl,
+              url: this.urlVideoForm.value.video,
+            }
+          );
+          console.log(req.data);
+          this.product.video = req.data.video;
+          this.productsService.setSingleProduct(this.product);
+        }
 
         btn.classList.remove('loading')
       },1500);
