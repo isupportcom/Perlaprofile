@@ -45,7 +45,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   constructor(private router:Router,
               private authService:AuthService,
               private route: ActivatedRoute,
-              private translateService:TranslateConfigService,
+              private translateService: TranslateConfigService,
               private cartService: CartServiceService) { }
 
   ngOnInit(): void {
@@ -81,9 +81,9 @@ export class LogInComponent implements OnInit, OnDestroy {
         // console.log(this.username);
         // console.log(this.password);
           let authObs: Observable<AuthResponseData>;
-    
+
           authObs = this.authService.login(this.username,this.password);
-    
+
           authObs.subscribe((resData:any) =>{
             if(resData.success == 1){
               // console.log(resData);
@@ -91,9 +91,9 @@ export class LogInComponent implements OnInit, OnDestroy {
               //   method:"STOCKUPDATE"
               // }).then(res=>{
               //   console.log(res.data)
-               
-    
-    
+
+
+
               // })
               this.error = false;
               if(resData.isAdmin== "1"){
