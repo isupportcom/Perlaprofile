@@ -64,7 +64,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
   loggedIn: boolean = localStorage.getItem('username') ? true : false;
   products: product | any = [];
   totalLength: number | undefined;
+  keepPagination = localStorage.getItem('keepPagination');
+  tempPage = localStorage.getItem('page')
+  paginationCat = localStorage.getItem('paginationCat');
   page: number = 1;
+
   categories: any = [];
   mainCategory: mainCat = {
     id: 0,
@@ -371,6 +375,33 @@ export class ProductListComponent implements OnInit, OnDestroy {
         });
 
       this.mainCategory.name = params['cat_name'];
+      
+      if ( this.paginationCat){
+        if(+this.paginationCat == this.mainCategory.id){
+          if(!this.keepPagination){
+            this.page = 1;
+          }
+          else{
+            if(this.keepPagination == 'true'){
+              if(this.tempPage){
+                this.page = +this.tempPage
+              }
+              else{
+                this.page = 1;
+              }
+            }
+            else{
+              this.page = 1;
+            }
+          }
+        }
+        else{
+          localStorage.removeItem('paginationCat');
+          this.page = 1;
+        }
+      }
+      // page = this.paginationCat? (this.paginationCat == this.mainCategory?)  : 1;
+      // (!this.keepPagination? 1 : (this.keepPagination == 'true'? (this.tempPage? +this.tempPage : 1)  : 1))
 
       this.productsService.setMainCategory(this.mainCategory);
 
@@ -1086,7 +1117,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log(this.router.url);
     // /products/product-page
+    localStorage.setItem('page', this.page.toString());
 
+    localStorage.setItem('keepPagination', 'false');
     console.log(this.listArray);
     this.shownProducts = [];
     if(this.router.url === '/products/product-page'){

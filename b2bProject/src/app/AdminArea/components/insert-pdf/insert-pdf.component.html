@@ -89,7 +89,6 @@
                       <div class="row" *ngIf="selected && product.mtrl == selectedMtrl">
                         <form [formGroup]="pdfForm" (ngSubmit)="uploadPdf()">
                           <select formControlName="pdf" class="mySelect">
-                            <option [ngValue]="null" selected disabled>Αρχεία PDF</option>
                             <option [ngValue]="p.pdf"  *ngFor="let p of pdf" style="width:100%!important;">{{p.pdf}}</option>
                           </select>
                           <br>
@@ -108,7 +107,7 @@
                     </div>
                 </div>
                 <button *ngIf="product.mtrl != selectedMtrl || !selected" class="myBtn" (click)="openDropDown(product.mtrl)">{{product.pdf != 'empty'? 'Άλλαξε PDF' : 'Πρόσθεσε PDF'}}</button>
-                <button type="button" (click)="deletePDF(btn,product.mtrl)" *ngIf="product.pdf != 'empty'" class="myBtn2"  style="position: relative;" #btn>
+                <button  type="button" (click)="deletePDF(btn,product.mtrl)" *ngIf="product.pdf != 'empty' && (!selected || product.mtrl != selectedMtrl)" class="myBtn2"  style="position: relative;" #btn>
                   <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                   <p style="margin: 0px;color: rgba(0,0,0,0);font-size: 16px;">Αφαίρεση PDF</p>
                   <p class="textAnim" style="font-size: 16px;">Αφαίρεση PDF</p>

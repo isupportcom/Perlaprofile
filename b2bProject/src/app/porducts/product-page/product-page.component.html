@@ -1,14 +1,26 @@
 <div class="container" style="margin-top: 180px !important; display: block">
-  <div class="row" style="padding-left: 17%"></div>
+  <div class="row" >
   <div class="row">
     <div
       *ngIf="!slidesShown"
       class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 second-swiper-holder"
       style="display: flex; justify-content: right; align-items: center"
     >
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
-      <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
-
+        <swiper
+        class="second-swiper"
+        [slidesPerView]="3"
+        [spaceBetween]="10"
+        (slideChange)="onSlideChange(secondSwiper)"
+        [navigation]="true"
+        [draggable]="true"
+        (swiper)="setThumbsSwiper($event)"
+        style="width: 100px;"
+        direction="vertical"
+        #secondSwiper
+      >
+        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
+        <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+      </swiper>
     </div>
 
     <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
@@ -22,9 +34,21 @@
       class="col-sm-12 col-12"
       style="display: flex; justify-content: right; align-items: center"
     >
-      <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
-      <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+      <swiper
+      class="third-swiper"
+      [slidesPerView]="3"
+      [spaceBetween]="0"
+      (slideChange)="onSlideChange(secondSwiper)"
+      [navigation]="true"
+      [draggable]="true"
+      (swiper)="setThumbsSwiper($event)"
 
+      direction="horizontal"
+      #secondSwiper
+      >
+        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
+        <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+      </swiper>
     </div>
     <hr class="line" style="margin-top: 50px; display: none" />
     <div
@@ -55,16 +79,16 @@
             margin: 0px;
             height: fit-content;
             text-decoration: line-through;
-            color: red;
+            color: rgba(0, 0, 0, 0.4);
           "
           translate
         >
           product_page.price
-          <b style="color: #6dae49">{{ product.wholesale }}&euro;</b>
+          <b style="color: rgba(0, 0, 0, 0.4)">{{ product.wholesale }}&euro;</b>
         </p>
         <p
           *ngIf="product.hasOffer"
-          style="font-size: 20px; margin: 0px; height: fit-content"
+          style="font-size: 20px; margin: 0px; height: fit-content;color: #6dae49"
           translate
         >
           product_page.price
@@ -94,7 +118,7 @@
               </button>
               <input
                 type="number"
-                min="0"
+                min="1"
                 [max]="product.stock"
                 step="1"
                 value="1"
@@ -114,10 +138,10 @@
         </div>
         <div class="row">
           <button
-            class="button col-6"
+            [ngClass]="product.stock <= 0 || product.wholesale <= 0? 'button col-6 myDisabled' : 'button col-6'"
             style="transition: background-color 0.2s ease-in-out"
             (click)="addToCart(addToCartBtn)"
-            [disabled]="product.stock == 0"
+            [disabled]="product.stock <= 0 || product.wholesale <= 0"
             #addToCartBtn
           >
             <span translate> product_page.add </span>
@@ -309,34 +333,34 @@
           style="margin-top: 32px; margin-bottom: 24px"
         >
           <p
-            *ngIf="!mosquiProduct.hasOffer"
+            *ngIf="mosquiProduct.offer == mosquiProduct.wholesale"
             style="font-size: 20px; margin: 0px; height: fit-content"
             translate
           >
             product_page.price
-            <b style="color: #6dae49">{{ product.wholesale }}&euro;</b>
+            <b style="color: #6dae49">{{ mosquiProduct.wholesale }}&euro;</b>
           </p>
           <p
-            *ngIf="product.offer != product.wholesale"
+            *ngIf="mosquiProduct.offer != mosquiProduct.wholesale"
             style="
               font-size: 20px;
               margin: 0px;
               height: fit-content;
               text-decoration: line-through;
-              color: red;
+              color: rgba(0, 0, 0, 0.4);
             "
             translate
           >
             product_page.price
-            <b style="color: #6dae49">{{ product.wholesale }}&euro;</b>
+            <b style="color: rgba(0, 0, 0, 0.4)">{{ mosquiProduct.wholesale }}&euro;</b>
           </p>
           <p
-            *ngIf="product.offer != product.wholesale"
-            style="font-size: 20px; margin: 0px; height: fit-content"
+            *ngIf="mosquiProduct.offer != mosquiProduct.wholesale"
+            style="font-size: 20px; margin: 0px; height: fit-content;color: #6dae49;"
             translate
           >
             product_page.price<b style="color: #6dae49"
-              >{{ product.offer }}&euro;</b
+              >{{ mosquiProduct.offer }}&euro;</b
             >
           </p>
 
@@ -370,7 +394,7 @@
                 </button>
                 <input
                   type="number"
-                  min="0"
+                  min="1"
                   [max]="mosquiProduct.stock"
                   step="1"
                   value="1"
@@ -390,10 +414,10 @@
           </div>
           <div class="row">
             <button
-              class="button col-6"
+              [ngClass]="mosquiProduct.stock <= 0 || mosquiProduct.wholesale == 0? 'button col-6 myDisabled' : 'button col-6'"
               style="transition: background-color 0.2s ease-in-out"
               (click)="addToCartMosqui(addToCartBtn)"
-              [disabled]="product.stock == 0"
+              [disabled]="mosquiProduct.stock <= 0 || mosquiProduct.wholesale == 0"
               #addToCartBtn
             >
               <span translate>product_page.add</span>
@@ -460,7 +484,7 @@
       </div>
     </div>
   </div>
-
+  </div>
   <div
     class="row"
     style="
@@ -563,7 +587,7 @@
       </div>
       <div *ngIf="showDesc[1]&& !onEditData && currentLang=='el'" [innerHTML]="!mosquiProduct? product.data_sheet : mosquiProduct.data_sheet"></div>
       <div *ngIf="showDesc[1]&& !onEditData && currentLang=='en'" [innerHTML]="!mosquiProduct? product.data_sheet_eng : mosquiProduct.data_sheet_eng"></div>
-      <button *ngIf="showDesc[2]" (click)="downloadMyFile(product.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="product.pdf === 'empty' || mosquiProduct.pdf === 'empty'" [ngClass]="product.pdf === 'empty' || mosquiProduct.pdf === 'empty'?'disabled' : 'myBtn'" #downBtn>
+      <button *ngIf="showDesc[2]" (click)="downloadMyFile(product.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="product.pdf === 'empty' || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)" [ngClass]="product.pdf === 'empty' || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)? 'myBtn disabled' : 'myBtn'" #downBtn>
         <fa-icon style="width: fit-content;pointer-events: none;" class="download" [icon]="faDownload"></fa-icon>
         <p style="margin: 0px;color: rgba(0,0,0,0);pointer-events: none;" >Λήψη PDF</p>
         <p class="textAnim2" style="pointer-events: none;">Λήψη PDF</p>
@@ -581,7 +605,7 @@
         </div>
       </div>
       <!-- <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button> -->
-      <iframe *ngIf="showDesc[3] && ((product.video && product.video != 'empty') || (mosquiProduct.video && mosquiProduct.video != 'empty'))" width="850" height="315"
+      <iframe *ngIf="showDesc[3] && ((product.video && product.video != 'empty') || (mosquiProduct? (mosquiProduct.video && mosquiProduct.video != 'empty'? true : false) : false))" width="850" height="315"
       [src]="(!mosquiProduct? product.video : mosquiProduct.video) | safePipe">
       </iframe>
 
@@ -592,7 +616,15 @@
           <p style="margin: 0px;color: rgba(0,0,0,0);">Αποθήκευση Αλλαγών</p>
           <p class="textAnim">Αποθήκευση Αλλαγών</p>
         </button>
+        <button  type="button" (click)="deleteVideo(btn,product.mtrl)" *ngIf="!urlOpen && showDesc[3]" class="myBtn2"  style="position: relative;" #btn>
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          <p style="margin: 0px;color: rgba(0,0,0,0);font-size: 16px;">Αφαίρεση Video</p>
+          <p class="textAnim" style="font-size: 16px;">Αφαίρεση Video</p>
+          
+  
+        </button>
       </form>
+
     </div>
   </div>
   <br>

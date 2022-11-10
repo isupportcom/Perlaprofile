@@ -193,7 +193,12 @@
     "sol": "Solutions",
     "sugg": "Related Products",
     "earlier": "Seen Recently",
-    "fail":"No products found"
+    "fail":"No products found",
+    "width_mm":"Width in mm",
+    "height_mm":"Height in mm",
+    "fab":"Choose Fabric",
+    "prof":"Choose Profile",
+    "col":"Choose Color"
   },
   "login":{
 

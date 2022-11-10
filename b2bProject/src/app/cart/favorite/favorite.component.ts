@@ -52,6 +52,9 @@ export class FavoriteComponent implements OnInit {
       this.products = resData.data.products;
     })
 
+    setTimeout(() => {
+      this.cartService.sendProductAddedToFav(false);
+    },50)
 
   }
   removeAll(){

@@ -6,6 +6,7 @@ import data from "../../dummyData.json";
 import axios from 'axios';
 import { Observable } from 'rxjs';
 import { CartServiceService } from '../cart/cart-service.service';
+import { TranslateConfigService } from '../services/translate-config.service';
 export interface user{
   name:string,
   surname:string,
@@ -19,8 +20,7 @@ export interface AuthResponseData{
   token: string;
   idToken: string;
   username: string;
-
-
+  
 
   refreshToken: string;
   expiresIn: string;
@@ -34,6 +34,8 @@ export interface AuthResponseData{
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit, OnDestroy {
+  error: boolean = false;
+  message: string = '';
   userType:string = '';
   username:string = '';
   password:string = '';
@@ -43,6 +45,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   constructor(private router:Router,
               private authService:AuthService,
               private route: ActivatedRoute,
+              private translateService:TranslateConfigService,
               private cartService: CartServiceService) { }
 
   ngOnInit(): void {
@@ -69,6 +72,8 @@ export class LogInComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         console.log(f);
         console.log(f.value);
+        console.log("SDFGSDFGSDFG");
+        
           //  this.username = f.value.username;
           //  this.password = f.value.password;
         // console.log(f.value.username)
@@ -90,12 +95,17 @@ export class LogInComponent implements OnInit, OnDestroy {
     
     
               // })
-    
+              this.error = false;
               if(resData.isAdmin== "1"){
                 this.router.navigate(['dashboard/insert-products']);
               }else{
                 this.router.navigate(['home']);
               }
+            }
+            else{
+              this.message = resData.message
+              this.error = true;
+              localStorage.clear();
             }
     
           })

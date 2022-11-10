@@ -480,6 +480,35 @@
             >navbar.login</a
           >
         </li>
+        <li>
+          <div class="dropdown">
+            <a
+              #langTogler
+              (click)="langOptions()"
+              class="btn ms-md-2 myBtn dropdown-toggle"
+              role="button"
+              >&emsp;{{ choocenLang ? "Ελληνικά" : "English" }}&emsp;</a
+            >
+            <ul
+              #optionslang
+              [ngClass]="
+                showLang
+                  ? makeSmallerDropDown
+                    ? 'dropdown-menu my-dropdown-sm show'
+                    : 'dropdown-menu my-dropdown show'
+                  : 'dropdown-menu'
+              "
+            >
+              <li>
+                <a
+                  class="dropdown-item my-dropdown-item"
+                  (click)="switchLang()"
+                  >{{ choocenLang ? "English" : "Ελληνικά" }}</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
       </ul>
     </div>
   </div>

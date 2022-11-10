@@ -110,7 +110,7 @@
             </div>
             <div class="col">
               <button (click)="open(product.mtrl)" class="table-btn">
-                Αλλαγή
+                {{product.img === 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'?  'Προσθήκη' : 'Αλλαγή'}}
               </button>
             </div>
             <div class="col">

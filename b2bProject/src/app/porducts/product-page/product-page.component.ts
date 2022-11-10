@@ -50,6 +50,7 @@ SwiperCore.use([
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.css'],
+
 })
 export class ProductPageComponent implements OnInit {
   config: any;
@@ -101,7 +102,7 @@ export class ProductPageComponent implements OnInit {
   smallerLine?: boolean;
   productAddedToFav: boolean = false;
   added?: boolean;
-
+  
   // isVisible: boolean = true;
 
   filters: any;
@@ -158,6 +159,10 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    setTimeout(() => {
+      localStorage.setItem('keepPagination', 'true')
+      localStorage.setItem('paginationCat' , this.product.category);
+    },100)
     // console.log(this.ref.detectChanges());
     this.currentLang = localStorage.getItem('lang');
     console.log(this.currentLang);
@@ -232,6 +237,8 @@ export class ProductPageComponent implements OnInit {
     } else {
       this.slidesShown = false;
     }
+
+    
 
     if (this.innerWidth <= 1200) {
       this.smallerLine = true;
@@ -362,37 +369,56 @@ export class ProductPageComponent implements OnInit {
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
-
-        if (
-          this.desciptionForm.value.description != null &&
-          this.desciptionFormEng.value.descriptionEng != null
-        ) {
-          console.log(this.desciptionForm.value.description);
-          axios
-            .post(
-              'https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php',
-              {
-                mtrl: this.product.mtrl,
-                desc: this.desciptionForm.value.description,
-                desc_eng: this.desciptionFormEng.value.descriptionEng,
-              }
-            )
-            .then((resData) => {
-              console.log(resData.data);
-
-              setTimeout(() => {
-                this.product.description = resData.data.description;
-                this.product.description_eng = resData.data.desc_eng;
-                this.productsService.setSingleProduct(this.product);
-                // window.location.reload();
-              }, 50);
-            });
+        if (this.desciptionForm.value.description == null) {
+          
+          
+          if(this.mosquiProduct){
+            if(this.mosquiProduct.description){
+              this.desciptionForm.value.description = this.mosquiProduct.description 
+            }
+            else{
+              this.desciptionForm.value.description = '';
+            }
           }
+          else{
+            if(this.product.description){
+              this.desciptionForm.value.description = this.product.description 
+            }
+            else{
+              this.desciptionForm.value.description = '';
+            }
+          }
+        }
+        
+
+        if (this.desciptionFormEng.value.descriptionEng == null) {
+          if(this.mosquiProduct){
+            if(this.mosquiProduct.description_eng){
+              this.desciptionFormEng.value.descriptionEng = this.mosquiProduct.description_eng 
+            }
+            else{
+              this.desciptionFormEng.value.descriptionEng = '';
+            }
+          }
+          else{
+            if(this.product.description_eng){
+              this.desciptionFormEng.value.descriptionEng = this.product.description_eng 
+            }
+            else{
+              this.desciptionFormEng.value.descriptionEng = '';
+            }
+          }
+        }
+        // this.desciptionFormEng.value.descriptionEng != null
+
+
+        console.log(this.desciptionForm.value.description);
+        
+        console.log(this.desciptionFormEng.value.descriptionEng);
+        
+          
         if(this.mosquiProduct){
-          if (
-            this.desciptionForm.value.description != null &&
-            this.desciptionFormEng.value.descriptionEng != null
-          ) {
+
             console.log(this.desciptionForm.value.description);
             axios
               .post(
@@ -412,15 +438,11 @@ export class ProductPageComponent implements OnInit {
                   // window.location.reload();
                 }, 50);
               });
-          }
+          
 
 
         }
         else{
-          if (
-            this.desciptionForm.value.description != null &&
-            this.desciptionFormEng.value.descriptionEng != null
-          ) {
             console.log(this.desciptionForm.value.description);
             axios
               .post(
@@ -441,7 +463,7 @@ export class ProductPageComponent implements OnInit {
                   // window.location.reload();
                 }, 50);
               });
-          }
+          
         }
 
         this.closeForm();
@@ -449,6 +471,40 @@ export class ProductPageComponent implements OnInit {
       },1500)
     }
 
+  }
+
+  deleteVideo(btn: any,mtrl: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(async () => {
+        if(this.mosquiProduct){
+          let req = await axios.post(
+            'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+            {
+              mtrl: this.mosquiProduct.mtrl,
+              url: 'asd',
+              method: 'Delete'
+            }
+          );
+          console.log(req.data);
+          this.mosquiProduct.video = req.data.video;
+        }else{
+
+          let req = await axios.post(
+            'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+            {
+              mtrl: this.product.mtrl,
+              url: 'asd',
+              method: 'Delete'
+            }
+          );
+          console.log(req.data);
+          this.product.video = req.data.video;
+          this.productsService.setSingleProduct(this.product);
+        }
+        btn.classList.remove('loading')
+      },1500);
+    }
   }
   updateDataSheet(btn: any) {
     if(!btn.classList.contains('loading')) {

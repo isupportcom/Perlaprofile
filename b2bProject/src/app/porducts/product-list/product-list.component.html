@@ -49,7 +49,8 @@
         class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products"
       >
       <div class="row pCard" style="">
-        <div class="col col-6 mospro" style="padding: 0px;cursor: pointer;"><img (click)="handleWizzard(sub.name,sub.sub_id)" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
+        <div *ngIf="currentLang=='el'" class="col col-6 mospro" style="padding: 0px;cursor: pointer;"><img (click)="handleWizzard(sub.name,sub.sub_id)" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
+        <div *ngIf="currentLang=='en'" class="col col-6 mospro" style="padding: 0px;cursor: pointer;"><img (click)="handleWizzard(sub.name_en,sub.sub_id)" class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
         <div class="col col-6" style="padding: 12px;">
             <p class="itemTitle" style="cursor: pointer;" (click)="handleWizzard(sub.name,sub.sub_id)"><strong *ngIf="currentLang == 'el'">{{ sub.name }}</strong><strong *ngIf="currentLang == 'en'">{{ sub.name_en }}</strong><br></p>
             <p class="itemDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;<br></p>

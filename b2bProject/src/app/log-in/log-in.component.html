@@ -19,6 +19,7 @@
         <div class="container" style="padding: 40px;">
           <div class="row" style="text-align: center;">
             <h3 translate>login.header</h3>
+            <h4 *ngIf="error" style="color: red;">{{ message }}</h4>
           </div>
           <div class="row" style="margin-top: 24px">
             <form

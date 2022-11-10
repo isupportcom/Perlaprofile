@@ -19,7 +19,7 @@
                   formControlName="width"
                   (click)="checkValid()"
                   required>
-                  <label>Πλάτος σε mm</label>
+                  <label translate>product_page.width_mm</label>
               </div>
               <div class="user-box">
                   <input 
@@ -28,7 +28,7 @@
                   (click)="checkValid()"
                   required
                   >
-                  <label>Υψος σε mm</label>
+                  <label translate>product_page.height_mm</label>
               </div>
               <div class="user-box">
                 <select
@@ -41,8 +41,9 @@
                   (click)="checkValid()"
                   [ngValue]="null"
                   [disabled]="true"
+                  translate
                 >
-                  Eπιλεξτε Υφασμα
+                  product_page.fab
                 </option>
                 <option [ngValue]="fab.id" *ngFor="let fab of fabric">
                   {{ fab.name }}
@@ -63,8 +64,9 @@
                 (click)="checkValid()"
                 [ngValue]="null"
                 [disabled]="true"
+                translate
               >
-                Eπιλεξτε Προφιλ
+                product_page.prof
               </option>
               <option [ngValue]="prof.id" *ngFor="let prof of profile">
                 {{ prof.name }}
@@ -79,8 +81,8 @@
             formControlName="extra"
             required
           >
-            <option [ngValue]="null" [disabled]="true">
-              Eπιλεξτε Χρώμα
+            <option [ngValue]="null" [disabled]="true" translate>
+              product_page.col
             </option>
             <option [ngValue]="extra.id" *ngFor="let extra of extraInputArray">
               {{ extra.name }}
@@ -92,8 +94,8 @@
         <div class="row" style="justify-content: center;align-items: center;">
           <button type="button"  style="position: relative;" (click)="findProduct(btn)" [disabled]="!dimentions.valid"  [ngClass]="dimentions.valid? 'myBtn' : 'disabled'" #btn>
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-            <p style="margin: 0px;color: rgba(0,0,0,0);">Εμφάνιση Προϊόντος</p>
-            <p class="textAnim">Εμφάνιση Προϊόντος</p>
+            <p style="margin: 0px;color: rgba(0,0,0,0);"  translate>product_page.show</p>
+            <p class="textAnim" translate>product_page.show</p>
             
 
           </button>
