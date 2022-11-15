@@ -26,5 +26,16 @@ export class UploadImageService {
 
     )
   }
+  catalogueUpload(image:File,mtrl:string) : Observable<any>{
+    console.log(image)
+    var formData :any = new FormData();
+    formData.append("fileToUpload",image);
 
+    return this.http.post("https://perlarest.vinoitalia.gr/php-auth-api/catalogues.php/",formData,{
+      reportProgress:true,
+      observe:'events'
+    }).pipe(
+
+    )
+  }
 }

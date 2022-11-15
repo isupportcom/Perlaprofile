@@ -85,6 +85,8 @@ import { CatalogsComponent } from './AdminArea/catalogs/catalogs.component';
 import { UploadCatalogsComponent } from './AdminArea/components/upload-catalogs/upload-catalogs.component';
 import { DeleteCatalogsComponent } from './AdminArea/components/delete-catalogs/delete-catalogs.component';
 import { CatalogsFrontComponent } from './catalogs-front/catalogs-front.component';
+import { UpdateUsersComponent } from './AdminArea/components/update-users/update-users.component';
+
 
 
 export function playerFactory() {
@@ -157,7 +159,9 @@ export function rootLoaderactory(http:any){
     CatalogsComponent,
     UploadCatalogsComponent,
     DeleteCatalogsComponent,
-    CatalogsFrontComponent
+    CatalogsFrontComponent,
+    UpdateUsersComponent,
+
 
 
   ],

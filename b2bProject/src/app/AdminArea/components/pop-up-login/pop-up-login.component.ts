@@ -58,7 +58,7 @@ export class PopUpLoginComponent implements OnInit {
         case 4 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/updateProducts.php/?id=1&method=MTRLUPDATE";break;
         case 5 :
         case 6 :this.api = "https://perlarest.vinoitalia.gr/php-auth-api/subcategories.php/?id=6&method=SUBCATEGORIES&method1=CATEGORIES";break;
-        case 7 :
+        case 7 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/users.php";break;
         case 12 : this.api = "https://perlarest.vinoitalia.gr/php-auth-api/fabric.php";break;
 
       }
@@ -93,7 +93,18 @@ export class PopUpLoginComponent implements OnInit {
                   })
                 })
               })
-          }else{
+          }else if(this.id == 7){
+              axios.post(this.api,{method:"LOGIN"})
+              .then(resData=>{
+                this.spinnerVis = false;
+                console.log(resData.data);
+                this.answer = "Users Updated";
+                setTimeout(()=>{
+                  window.location.reload();
+                },1000);
+              })
+            }
+          else{
           axios.get(this.api)
             .then(resData=>{
               if(this.id == 4){
