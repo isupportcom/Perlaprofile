@@ -87,6 +87,7 @@ const routes :Routes =[
         path: 'insert-products',
         component: InsertProductsComponent
       },
+
       {
         path: 'update-categories',
         component: UpdateCategoriesComponent

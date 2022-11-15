@@ -104,6 +104,8 @@ export class ProductPageComponent implements OnInit {
   added?: boolean;
 
   fullscreen: boolean = false;
+
+  notEmpty: boolean = false;
   
   // isVisible: boolean = true;
 
@@ -161,6 +163,9 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+
+
+
     setTimeout(() => {
       localStorage.setItem('keepPagination', 'true')
       localStorage.setItem('paginationCat' , this.product.category);
@@ -303,6 +308,21 @@ export class ProductPageComponent implements OnInit {
       }
     }, 200);
 
+
+    let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
+    {
+      mtrl:this.product.mtrl
+    }).then(resData =>{
+      if(resData.data.products.length > 0){
+        this.notEmpty = true;
+      }
+      else{
+        this.notEmpty = false;
+      }
+
+      }
+    )
+
     this.getSeeEarlier();
   }
 
@@ -350,24 +370,52 @@ export class ProductPageComponent implements OnInit {
   }
 
   addToCartMosqui(btn: any) {
-    if (!btn.classList.contains('loading')) {
-      btn.classList.add('loading');
-      setTimeout(() => btn.classList.remove('loading'), 3700);
+    if(+this.product.diathesima > 0){
+      if (!btn.classList.contains('loading')) {
+        btn.classList.add('loading');
+        setTimeout(() => btn.classList.remove('loading'), 3700);
+      }
+  
+      axios
+        .post('https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php', {
+          trdr: this.loadedUser.trdr,
+        })
+        .then((resData) => {
+          this.cartService.sendProductCount(resData.data.products.length);
+        });
+      this.mosquiProduct.qty = this.qty;
+  
+      this.mosquiProduct.show = true;
+      this.cartService.addToCart(this.mosquiProduct);
+  
+      this.cartService.sendProductAdded(true);
     }
+    else{
+      this.productsService.sendBackOrderPopup(true);
 
-    axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php', {
-        trdr: this.loadedUser.trdr,
+      this.productsService.backOrder.subscribe(resData => {
+        if(resData){
+          if (!btn.classList.contains('loading')) {
+            btn.classList.add('loading');
+            setTimeout(() => btn.classList.remove('loading'), 3700);
+          }
+      
+          axios
+            .post('https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php', {
+              trdr: this.loadedUser.trdr,
+            })
+            .then((resData) => {
+              this.cartService.sendProductCount(resData.data.products.length);
+            });
+          this.mosquiProduct.qty = this.qty;
+      
+          this.mosquiProduct.show = true;
+          this.cartService.addToCart(this.mosquiProduct);
+      
+          this.cartService.sendProductAdded(true);
+        }
       })
-      .then((resData) => {
-        this.cartService.sendProductCount(resData.data.products.length);
-      });
-    this.mosquiProduct.qty = this.qty;
-
-    this.mosquiProduct.show = true;
-    this.cartService.addToCart(this.mosquiProduct);
-
-    this.cartService.sendProductAdded(true);
+    }
   }
 
   editData() {
@@ -614,54 +662,113 @@ export class ProductPageComponent implements OnInit {
   }
 
   addToCart(btn: any) {
-    if (!btn.classList.contains('loading')) {
-      btn.classList.add('loading');
-      setTimeout(() => btn.classList.remove('loading'), 3700);
-    }
-    console.log(btn);
-
-    axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php', {
-        trdr: this.loadedUser.trdr,
-      })
-      .then((resData) => {
-        this.cartService.sendProductCount(resData.data.products.length);
-      });
-
-    let relatedProductsObs: Observable<any>;
-
-    relatedProductsObs = this.productsService.getRelatedProducts(
-      this.product.mtrl
-    );
-
-    relatedProductsObs.subscribe((resData) => {
-      console.log(resData);
-
-      this.relatedProducts = resData.related;
-    });
-    setTimeout(() => {
-      this.product.qty = this.qty;
-      console.log(this.product.qty);
-      console.log(this.relatedProducts);
-
-      if (this.relatedProducts.length <= 0) {
-        this.cartService.setId(this.product.mtrl);
-
-        this.productsService.setSingleProduct(this.product);
-        this.product.show = true;
-        this.cartService.addToCart(this.product, false, true);
-
-        this.cartService.sendProductAdded(true);
-      } else {
-        window.scroll({
-          top: 0,
-          left: 0,
-          behavior: 'smooth',
-        });
-        this.productsService.setSingleProduct(this.product);
-        this.cartService.sendStartScope(true);
+    if(+this.product.diathesima > 0){
+      if (!btn.classList.contains('loading')) {
+        btn.classList.add('loading');
+        setTimeout(() => btn.classList.remove('loading'), 3700);
       }
-    }, 500);
+      console.log(btn);
+  
+      axios
+        .post('https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php', {
+          trdr: this.loadedUser.trdr,
+        })
+        .then((resData) => {
+          this.cartService.sendProductCount(resData.data.products.length);
+        });
+  
+      let relatedProductsObs: Observable<any>;
+  
+      relatedProductsObs = this.productsService.getRelatedProducts(
+        this.product.mtrl
+      );
+  
+      relatedProductsObs.subscribe((resData) => {
+        console.log(resData);
+  
+        this.relatedProducts = resData.related;
+      });
+      setTimeout(() => {
+        this.product.qty = this.qty;
+        console.log(this.product.qty);
+        console.log(this.relatedProducts);
+  
+        if (this.relatedProducts.length <= 0) {
+          this.cartService.setId(this.product.mtrl);
+  
+          this.productsService.setSingleProduct(this.product);
+          this.product.show = true;
+          this.cartService.addToCart(this.product, false, true);
+  
+          this.cartService.sendProductAdded(true);
+        } else {
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+          });
+          this.productsService.setSingleProduct(this.product);
+          this.cartService.sendStartScope(true);
+        }
+      }, 500);
+    }
+    else{
+      this.productsService.sendBackOrderPopup(true);
+
+      this.productsService.backOrder.subscribe(resData => {
+        if(resData){
+          if (!btn.classList.contains('loading')) {
+            btn.classList.add('loading');
+            setTimeout(() => btn.classList.remove('loading'), 3700);
+          }
+          console.log(btn);
+      
+          axios
+            .post('https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php', {
+              trdr: this.loadedUser.trdr,
+            })
+            .then((resData) => {
+              this.cartService.sendProductCount(resData.data.products.length);
+            });
+      
+          let relatedProductsObs: Observable<any>;
+      
+          relatedProductsObs = this.productsService.getRelatedProducts(
+            this.product.mtrl
+          );
+      
+          relatedProductsObs.subscribe((resData) => {
+            console.log(resData);
+      
+            this.relatedProducts = resData.related;
+          });
+          setTimeout(() => {
+            this.product.qty = this.qty;
+            console.log(this.product.qty);
+            console.log(this.relatedProducts);
+      
+            if (this.relatedProducts.length <= 0) {
+              this.cartService.setId(this.product.mtrl);
+      
+              this.productsService.setSingleProduct(this.product);
+              this.product.show = true;
+              this.cartService.addToCart(this.product, false, true);
+      
+              this.cartService.sendProductAdded(true);
+            } else {
+              window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth',
+              });
+              this.productsService.setSingleProduct(this.product);
+              this.cartService.sendStartScope(true);
+            }
+          }, 500);
+        }
+      })
+    }
+    
   }
 
   handleAddToFavorite(prod?: any) {

@@ -27,7 +27,7 @@
           <p *ngIf="!fav.hasOffer" style="margin: 0px;opacity: 0;"><a translate>favorites.price</a> {{ fav.wholesale }}&euro;</p>
           <p *ngIf="fav.hasOffer" style="margin: 0px;text-decoration: line-through;"><a translate>favorites.price</a> {{ fav.wholesale }}&euro;</p>
           <p *ngIf="fav.hasOffer" style="margin: 0px;color: #6dae49;"><a translate>favorites.price</a> {{ fav.offer }}&euro;</p>
-          <p><a translate>favorites.stock</a> {{ fav.stock }}</p>
+          <p><a translate>favorites.stock</a> {{ fav.diathesima }}</p>
         </div>
         <div class="row">
           <button class="button" style="transition: background-color 0.2s ease-in-out;" (click)="addToCart(fav,addToCartBtn)" #addToCartBtn>

@@ -11,6 +11,7 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./products-carousel.component.css'],
 })
 export class ProductsCarouselComponent implements OnInit {
+  notEmpty: boolean = false;
   @Input() mode: any;
   @Input() mtrl: any;
   @Input() category?: any;
@@ -68,8 +69,15 @@ export class ProductsCarouselComponent implements OnInit {
       {
         mtrl:this.mtrl
       }).then(resData =>{
-          console.log(resData);
+        if(resData.data.products.length > 0){
+          this.notEmpty = true;
           this.shownProducts = resData.data.products;
+          console.log(resData.data.products);
+        }
+        else{
+          this.notEmpty = false;
+        }
+  
         }
       )
       // console.log(sugg.data.products);
@@ -87,8 +95,14 @@ export class ProductsCarouselComponent implements OnInit {
       axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
         category_id: this.category.id
       }).then(resData => {
-        this.shownProducts = resData.data.products;
-        console.log(resData.data.products);
+        if(resData.data.products.length > 0){
+          this.notEmpty = true;
+          this.shownProducts = resData.data.products;
+          console.log(resData.data.products);
+        }
+        else{
+          this.notEmpty = false;
+        }
         
         
       })

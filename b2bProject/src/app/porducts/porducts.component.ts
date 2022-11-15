@@ -5,6 +5,7 @@ import { Category } from './categories.model';
 import { tap } from "rxjs/operators";
 import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
 import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'app-porducts',
@@ -15,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 
 
 export class PorductsComponent implements OnInit {
+  backOrder: boolean = false;
   relatedProducts:product |any =[1,2,3,4];
   logoSource!: string;
   mainCategory= {
@@ -40,6 +42,7 @@ export class PorductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
 
 
     this.mainCategory = JSON.parse(localStorage.getItem("currentCategory") || '{}');  
@@ -58,6 +61,7 @@ export class PorductsComponent implements OnInit {
       this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
     }
   }
+
 
 }
 
