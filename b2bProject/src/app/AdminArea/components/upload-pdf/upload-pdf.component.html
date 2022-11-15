@@ -6,7 +6,7 @@
     <form class="form-group" [formGroup]="pdfForm" (ngSubmit)="uploadPDF()">
       <div class="container" style="padding: 0px">
         <div class="row" style="--bs-gutter-x: 0">
-          <input type="file"  (change)="uploadFile($event)" class="custom-file-input">
+          <input type="file"  (change)="uploadFile($event)" class="custom-file-input" multiple>
         </div>
         <div class="row">
           <button class="soft1-btn2" style="margin-left: 10px;margin-top: 8px;"  type="submit">Upload PDF</button>

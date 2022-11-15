@@ -10,7 +10,7 @@ import { InsertPdfComponent } from "./AdminArea/components/insert-pdf/insert-pdf
 import { InsertProductsComponent } from "./AdminArea/components/insert-products/insert-products.component";
 import { UpdateCategoriesComponent } from "./AdminArea/components/update-categories/update-categories.component";
 import { UpdateColorsComponent } from "./AdminArea/components/update-colors/update-colors.component";
-import { UpdateRelatedComponent } from "./AdminArea/components/update-related/update-related.component";
+import { UpdateUsersComponent } from "./AdminArea/components/update-users/update-users.component";
 import { UploadCatalogsComponent } from "./AdminArea/components/upload-catalogs/upload-catalogs.component";
 import { UploadImageComponent } from "./AdminArea/components/upload-image/upload-image.component";
 import { UploadPdfComponent } from "./AdminArea/components/upload-pdf/upload-pdf.component";
@@ -87,10 +87,7 @@ const routes :Routes =[
         path: 'insert-products',
         component: InsertProductsComponent
       },
-      {
-        path: 'update-related',
-        component: UpdateRelatedComponent
-      },
+
       {
         path: 'update-categories',
         component: UpdateCategoriesComponent
@@ -140,8 +137,11 @@ const routes :Routes =[
             component: DeleteCatalogsComponent
           }
         ]
+      },
+      {
+        path:'update-users',
+        component:UpdateUsersComponent
       }
-
     ]
   },
 
