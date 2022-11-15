@@ -3,11 +3,14 @@ import { Routes,RouterModule } from "@angular/router";
 import { AdminAreaComponent } from "./AdminArea/admin-area/admin-area.component";
 import { AdminareaproductsComponent } from "./AdminArea/adminareaproducts/adminareaproducts.component";
 import { AdminareausersComponent } from "./AdminArea/adminareausers/adminareausers.component";
+import { CatalogsComponent } from "./AdminArea/catalogs/catalogs.component";
+import { DeleteCatalogsComponent } from "./AdminArea/components/delete-catalogs/delete-catalogs.component";
 import { InsertImagesComponent } from "./AdminArea/components/insert-images/insert-images.component";
 import { InsertPdfComponent } from "./AdminArea/components/insert-pdf/insert-pdf.component";
 import { InsertProductsComponent } from "./AdminArea/components/insert-products/insert-products.component";
 import { UpdateCategoriesComponent } from "./AdminArea/components/update-categories/update-categories.component";
 import { UpdateColorsComponent } from "./AdminArea/components/update-colors/update-colors.component";
+import { UploadCatalogsComponent } from "./AdminArea/components/upload-catalogs/upload-catalogs.component";
 import { UploadImageComponent } from "./AdminArea/components/upload-image/upload-image.component";
 import { UploadPdfComponent } from "./AdminArea/components/upload-pdf/upload-pdf.component";
 import { ImageComponent } from "./AdminArea/image/image.component";
@@ -110,6 +113,20 @@ const routes :Routes =[
           {
             path: 'insert',
             component: InsertImagesComponent
+          }
+        ]
+      },
+      {
+        path: 'catalogs',
+        component: CatalogsComponent,
+        children: [
+          {
+            path: 'upload',
+            component: UploadCatalogsComponent
+          },
+          {
+            path: 'delete',
+            component: DeleteCatalogsComponent
           }
         ]
       }

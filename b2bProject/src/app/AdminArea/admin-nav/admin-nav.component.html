@@ -75,8 +75,20 @@
             </a>
           </div>
         </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a (click)="navigateTo('/dashboard/catalogs/upload')" class="row my-nav-item2" (mouseover)="handleOver(catalog)" (mouseleave)="handleLeave(catalog)" #catalog>
+              <div class="col-4">
+                <img src="../../../assets/carbon_catalog.svg" alt="">
+              </div>
+              <div class="col-8" style="align-items: center;">
+                <p style="color: white;opacity: 0;transition: all 0.4s ease-in-out;margin: 0px;font-size: 14px;">Επεξεργασία Καταλόγων</p>
+              </div>
+            </a>
+          </div>
+        </div>
         <div class="row" style="margin-bottom: 44px; padding: 0px;text-align: center;">
-          <a class="showAll" (click)="clickShowAll([home,products,categories,ral,pdf,img], arrow)">
+          <a class="showAll" (click)="clickShowAll([home,products,categories,ral,pdf,img,catalog], arrow)">
               <img src="../../../assets/showAll.svg" style="width: 20px;height: 20px;" alt="" #arrow>
               
             </a>

@@ -81,6 +81,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { NgxSummernoteModule } from 'ngx-summernote';
+import { CatalogsComponent } from './AdminArea/catalogs/catalogs.component';
+import { UploadCatalogsComponent } from './AdminArea/components/upload-catalogs/upload-catalogs.component';
+import { DeleteCatalogsComponent } from './AdminArea/components/delete-catalogs/delete-catalogs.component';
 
 
 export function playerFactory() {
@@ -149,7 +152,10 @@ export function rootLoaderactory(http:any){
     ImageComponent,
     CheckoutNavComponent,
     OrderCompletedComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CatalogsComponent,
+    UploadCatalogsComponent,
+    DeleteCatalogsComponent
 
 
   ],
