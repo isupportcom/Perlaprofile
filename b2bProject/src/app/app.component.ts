@@ -126,6 +126,8 @@ export class AppComponent implements OnInit {
           groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,relatedProd.grouping);
 
           groupingObs.subscribe(resData => {
+            console.log(resData);
+            
             scope2b = resData.Scope2[0];
             scope2b.qty = this.singleProduct.qty;
             temp = {

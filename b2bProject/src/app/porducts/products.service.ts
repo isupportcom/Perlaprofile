@@ -98,6 +98,9 @@ export  class ProductsService {
  }
 
  setGrouping(mtrl:any,grouping: any){
+
+   
+   
     return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/addProductBasedOnGrouping.php',
     {
         product_mtrl : mtrl ,
