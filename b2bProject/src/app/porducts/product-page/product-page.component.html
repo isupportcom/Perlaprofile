@@ -1,3 +1,20 @@
+<div class="image-fullscreen" *ngIf="fullscreen">
+    <swiper style="width: 461px" direction="horizontal" [slidesPerView]="1" [spaceBetween]="50" [navigation]="true"  [pagination]="{ clickable: true }" (slideChange)="onSlideChange(imageFullscreenSwiper)" (swiper)="setThumbsSwiper($event)" #imageFullscreenSwiper>
+      <ng-template swiperSlide>
+        <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
+          <img class="remove" alt=""  style="width: 32px;" srcset="">
+        </a>
+        <img width="500px" height="500px" style="border-radius: 8px;" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt="">
+      </ng-template>
+      <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide>
+        <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
+          <img class="remove" alt=""  style="width: 32px;" srcset="">
+        </a>
+        <img width="500px" height="500px" style="border-radius: 8px;" [src]="img.img" alt="">
+      </ng-template>
+    </swiper>
+</div>
+
 <div class="container" style="margin-top: 180px !important; display: block">
   <div class="row" >
   <div class="row">
@@ -25,8 +42,8 @@
 
     <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
       <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50"  [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
-        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
-        <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img width="500px" height="500px" style="border-radius: 8px;" [src]="img.img" alt=""></ng-template>
+        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" (click)="openFullscreen()" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
+        <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img (click)="openFullscreen()" width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
     <div
@@ -183,6 +200,9 @@
       <div class="row">
         <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="" />
         <div style="margin-top: 18px">
+          <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+            Διαθεσιμότητα: <b style="color: #6dae49;">{{ product.stock > 0? 'Διαθέσιμο' : 'Μη Διαθέσιμο'}}</b>
+          </p>
           <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
             product_page.apoth <b>{{ product.code }}</b>
           </p>
@@ -587,7 +607,7 @@
       </div>
       <div *ngIf="showDesc[1]&& !onEditData && currentLang=='el'" [innerHTML]="!mosquiProduct? product.data_sheet : mosquiProduct.data_sheet"></div>
       <div *ngIf="showDesc[1]&& !onEditData && currentLang=='en'" [innerHTML]="!mosquiProduct? product.data_sheet_eng : mosquiProduct.data_sheet_eng"></div>
-      <button *ngIf="showDesc[2]" (click)="downloadMyFile(product.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="product.pdf === 'empty' || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)" [ngClass]="product.pdf === 'empty' || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)? 'myBtn disabled' : 'myBtn'" #downBtn>
+      <button *ngIf="showDesc[2]" (click)="downloadMyFile(product.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="product.pdf === 'empty' || product.category == 116 || product.category == 117 || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)" [ngClass]="product.pdf === 'empty' || product.category == 116 || product.category == 117 || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)? 'myBtn disabled' : 'myBtn'" #downBtn>
         <fa-icon style="width: fit-content;pointer-events: none;" class="download" [icon]="faDownload"></fa-icon>
         <p style="margin: 0px;color: rgba(0,0,0,0);pointer-events: none;" >Λήψη PDF</p>
         <p class="textAnim2" style="pointer-events: none;">Λήψη PDF</p>

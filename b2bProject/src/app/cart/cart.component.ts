@@ -5,6 +5,7 @@ import {product} from "../AdminArea/adminareaproducts/adminareaproducts.componen
 import { AuthService } from '../services/auth.service';
 import {CartServiceService} from "./cart-service.service";
 import axios from "axios";
+import { TranslateConfigService } from '../services/translate-config.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class CartComponent implements OnInit, OnDestroy {
   waiting: boolean = false;
   temp: any;
   cartItems: Array<Array<any>> = [];
+  currentLang = localStorage.getItem('lang') || 'el'
 
 
   @Input('quantityInput') quantityInput?: ElementRef;
@@ -33,6 +35,7 @@ export class CartComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private router: Router,
     private route: ActivatedRoute,
+    private translateService: TranslateConfigService,
     private cartService : CartServiceService
     ) { }
 
@@ -57,6 +60,12 @@ export class CartComponent implements OnInit, OnDestroy {
           this.shouldContinue = true;
         }
         this.cartService.shouldContinue.next(this.shouldContinue);
+
+        for(let i=0;i<this.products.length;i++){
+          if(this.products[i].hasOffer){
+            this.products[i].wholesale = this.products[i].offer
+          }
+        }
 
         for(let prod of this.products){
           this.GrandTotal += +prod.wholesale *prod.qty;
@@ -367,13 +376,18 @@ export class CartComponent implements OnInit, OnDestroy {
 
   }
 
-  handleCheckout(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
-      method:"STOCKUPDATE"
-    }).then(resData=>{
-      console.log(resData.data);
-      this.router.navigate(['checkout']);
-    })
+  handleCheckout(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
+        method:"STOCKUPDATE"
+      }).then(resData=>{
+        console.log(resData.data);
+        btn.classList.remove('loading')
+        this.router.navigate(['checkout']);
+      })
+    }
+
 
 
   }

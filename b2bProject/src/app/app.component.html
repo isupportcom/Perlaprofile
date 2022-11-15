@@ -36,7 +36,7 @@
                            <p *ngIf="!changeBtn">Προσθήκη</p>
                            <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
                         </button></div> -->
-                        <button type="button"  style="position: relative;" (click)="handleGrouping(product.scope1,btn)" [disabled]="btnLoading"  [ngClass]="btnLoading? 'myBtn myBtnDisabled' : 'myBtn'" #btn>
+                        <button type="button"  style="position: relative;" (click)="handleGrouping(product.scope1,btn)" [disabled]="btnLoading || product.scope1.stock <= 0 || product.scope2.stock <= 0"  [ngClass]="btnLoading || product.scope1.stock <= 0 || product.scope2.stock <= 0? 'myBtn myBtnDisabled' : 'myBtn'" #btn>
                           <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                           <p style="margin: 0px;color: rgba(0,0,0,0);">Επιλογή</p>
                           <p class="textAnim">Επιλογή</p>
@@ -86,7 +86,7 @@
               <p *ngIf="!changeBtn">Προσθήκη</p>
               <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
            </button></div> -->
-           <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="addToCart(product,btn2)" [disabled]="btnLoading"  [ngClass]="btnLoading? 'myBtn myBtnDisabled' : 'myBtn'"  class="myBtn" #btn2>
+           <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="addToCart(product,btn2)" [disabled]="btnLoading || product.stock <= 0"  [ngClass]="btnLoading || product.stock <= 0? 'myBtn myBtnDisabled' : 'myBtn'"  class="myBtn" #btn2>
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             <p style="margin: 0px;color: rgba(0,0,0,0);">Προσθήκη</p>
             <p class="textAnim">Προσθήκη</p>

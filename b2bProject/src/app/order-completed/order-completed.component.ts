@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { CartServiceService } from '../cart/cart-service.service';
+import { TranslateConfigService } from '../services/translate-config.service';
 
 @Component({
   selector: 'app-order-completed',
@@ -8,8 +9,8 @@ import { CartServiceService } from '../cart/cart-service.service';
   styleUrls: ['./order-completed.component.css']
 })
 export class OrderCompletedComponent implements OnInit {
-
-  constructor(private cartService: CartServiceService) { }
+  currentLang = localStorage.getItem('lang') || 'el'
+  constructor(private cartService: CartServiceService,private translateService: TranslateConfigService) { }
 
   ngOnInit(): void {
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');

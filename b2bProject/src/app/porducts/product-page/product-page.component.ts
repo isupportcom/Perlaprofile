@@ -102,6 +102,8 @@ export class ProductPageComponent implements OnInit {
   smallerLine?: boolean;
   productAddedToFav: boolean = false;
   added?: boolean;
+
+  fullscreen: boolean = false;
   
   // isVisible: boolean = true;
 
@@ -313,6 +315,14 @@ export class ProductPageComponent implements OnInit {
         mode: 'fetch',
       }
     );
+  }
+
+  openFullscreen(){
+    this.fullscreen = true;
+  }
+
+  closeFullscreen(){
+    this.fullscreen = false;
   }
 
   handleHoverDownload(btn:any){

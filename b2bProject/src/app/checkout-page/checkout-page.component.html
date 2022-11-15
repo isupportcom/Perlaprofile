@@ -4,63 +4,126 @@
     <div class="row">
       <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" style="padding-right: 24px;">
         <div class="row" style="align-items: end;height: 50px">
-          <h2>Στοιχεία της επιχείρησής σας</h2>
+          <h2 translate>checkout.company_details</h2>
         </div>
         <div class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;">
             <form class="row" [formGroup]="FormData" >    
                 <div class="row">
                     <div class="col-6" style="padding: 12px;">
-                        <label for="address">Διεύθυνση</label>
+                        <label for="address" translate>checkout.address</label>
                         <input type="text" name="address" formControlName="address" class="form-control" id="address" style="width: 100%;" required>
                     </div>
                     <div class="col-6" style="padding: 12px;">
-                        <label for="zipCode">Τ.Κ.</label>
+                        <label for="zipCode" translate>checkout.zip_code</label>
                         <input type="text" name="zipCode" formControlName="zipCode" class="form-control" id="zipCode" style="width: 100%;" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6" style="padding: 12px;">
-                        <label for="area">Περιοχή</label>
+                        <label for="area" translate>checkout.area</label>
                         <input type="text" name="area" formControlName="area" class="form-control" id="area" style="width: 100%;" required>
                     </div>
                     <div class="col-6" style="padding: 12px;">
-                        <label for="city">Πόλη</label>
+                        <label for="city" translate>checkout.city</label>
                         <input type="text" name="city" formControlName="city" class="form-control" id="city" style="width: 100%;" required>
                     </div>
                 </div>
+                <div class="row">
+                  <div class="col-6" style="padding: 12px;">
+                      <label for="area" translate>Επωνυμία</label>
+                      <input type="text" name="name" formControlName="name" class="form-control" id="name" style="width: 100%;" required>
+                  </div>
+                  <div class="col-6" style="padding: 12px;">
+                      <label for="city" translate>ΔΟΥ</label>
+                      <input type="text" name="doy" formControlName="doy" class="form-control" id="doy" style="width: 100%;" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6" style="padding: 12px;">
+                      <label for="area" translate>ΑΦΜ</label>
+                      <input type="text" name="afm" formControlName="afm" class="form-control" id="afm" style="width: 100%;" required>
+                  </div>
+                  <div class="col-6" style="padding: 12px;">
+                      <label for="city" translate>Τηλέφωνο</label>
+                      <input type="text" name="phone" formControlName="phone" class="form-control" id="phone" style="width: 100%;" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12" style="padding: 12px;">
+                      <label for="area" translate>Ηλεκτρονική Διεύθυνση</label>
+                      <input type="text" name="email" formControlName="email" class="form-control" id="email" style="width: 100%;" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12" style="padding: 12px;">
+                      <label for="area" translate>Τρόπος Αποστολής</label>
+                      <input type="text" name="shippingMethod" formControlName="shippingMethod" class="form-control" id="shippingMethod" style="width: 100%;" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12" style="padding: 12px;">
+                      <label for="area" translate>Μεταφορεάς</label>
+                      <input type="text" name="courier" formControlName="courier" class="form-control" id="courier" style="width: 100%;" required>
+                  </div>
+                </div>
 
-            </form>
+            
             <div class="row" style="padding-left: 24px;">
                 <div class="form-check">
                     <input type="checkbox" id="check" (click)="handleTrigwnikh($event)" class="form-check-input" #check>
                     <label for="check" class="form-check-label">Τριγωνική</label>
                 </div>
             </div>
+
+
+          </form>
         </div>
         <div class="row" style="align-items: end;height: 50px">
-          <h2>Τρόπος Πληρωμής</h2>
+          <h2 translate>checkout.payment_method</h2>
         </div>
         <div class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;transition: height 0.5s ease-in-out;" #information>
           <div class="col">
             <div class="form-check">
               <input (click)="bankCredentials(true)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Πιστωτική/Χρεωστική Κάρτα 
+              <label class="form-check-label" for="flexRadioDefault1" translate>
+                checkout.card 
               </label>
             </div>
             <div class="form-check">
               <input (click)="bankCredentials(false,information)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" #check checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-                Τραπεζικός Λογαριασμός
+              <label class="form-check-label" for="flexRadioDefault2" translate>
+                checkout.bank
               </label>
             </div>
           </div>
         </div>
+
+        <div class="row" style="align-items: end;height: 50px">
+          <h2 translate>Μεταφορά</h2>
+        </div>
+        <div class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;transition: height 0.5s ease-in-out;" #information>
+          <div class="col">
+            <p>Όνομα Μεταφορικής</p>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="check2" id="apostoleas" #check2 checked>
+              <label class="form-check-label" for="apostoleas" translate>
+                Χρέωση Αποστολέα 
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="check2" id="paralhpths">
+              <label class="form-check-label" for="paralhpths"  translate>
+                Χρέωση Παραλήπτη 
+              </label>
+            </div>
+          </div>
+        </div>
+        
         <div class="row">
             <div class="col-12" style="margin-top: 12px;padding: 0;">
-              <a class="goBackBtn" (click)="handleGoBackToCart()">
+              <a class="goBackBtn" (click)="handleGoBackToCart()" translate>
                 <img style="transform: rotate(180deg);" src="../../assets/chevron-right-white.svg" width="18px" alt="">
-                Πίσω στο καλάθι
+                checkout.backToCart
               </a>
             </div>
           </div>
@@ -68,13 +131,14 @@
 
       <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 orderReview">
         <div class="row" style="align-items: end;height: 50px">
-          <h5>Σύνοψη Παραγγελίας</h5>
+          <h5 translate>checkout.order_summary</h5>
         </div>
         <div class="row" style="background-color: white;border-radius: 16px;padding: 50px 12px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
             <div class="row productValue" *ngFor="let product of products" style="margin-bottom: 4px;">
                 <div class="col-6">
                   <div class="row">
-                    <p style="margin: 0;">{{ product.name }}:</p>
+                    <p style="margin: 0;" *ngIf="currentLang == 'el'">{{ product.onoma }}:</p>
+                    <p style="margin: 0;" *ngIf="currentLang == 'en'">{{ product.onoma_eng }}:</p>
                   </div>
                 </div>
                 <div class="col-3">
@@ -97,7 +161,7 @@
             <div class="row productValue" style="margin-bottom: 4px;">
             <div class="col-6">
               <div class="row">
-                <p style="margin: 0;">Αξία Προϊόντων:</p>
+                <p style="margin: 0;" translate>checkout.p_value</p>
               </div>
             </div>
             <div class="col-6">
@@ -110,7 +174,7 @@
           <div class="row shippingValue" style="margin-bottom: 4px;">
             <div class="col-6">
               <div class="row">
-                <p style="margin: 0;">Μεταφορικά:</p>
+                <p style="margin: 0;" translate>checkout.shipping</p>
               </div>
             </div>
             <div class="col-6">
@@ -128,7 +192,7 @@
           <div class="row totalValue" style="font-weight: 600;font-size: 18px;">
             <div class="col-6">
               <div class="row">
-                <p style="margin: 0;">Συνολική Αξία:</p>
+                <p style="margin: 0;" translate>checkout.total_value</p>
               </div>
             </div>
             <div class="col-6">
@@ -137,11 +201,18 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <a class="cart-btn" type="submit" (click)="showBankCredentials? onSubmit2() : onSubmit(FormData.value)" >
+          <div class="row" style="justify-content: center;align-items: center;margin-top: 24px;">
+            <button type="button"  style="position: relative;margin-top: 4px !important;" class="myBtn" type="submit" (click)="showBankCredentials? onSubmit2(btn2) : onSubmit(FormData.value,btn2)" #btn2>
+              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              <p style="margin: 0px;color: rgba(0,0,0,0);" [ngClass]="currentLang=='en'?'yoho' : ''" translate>checkout.complete_order</p>
+              <p [ngClass]="currentLang=='el'? 'textAnim' : 'textAnim2'" translate>checkout.complete_order</p>
+              
+  
+            </button>
+            <!-- <a class="cart-btn" type="submit" (click)="showBankCredentials? onSubmit2() : onSubmit(FormData.value)" >
               Προχωρήστε σε αγορά
               <img src="../../assets/credit-card.svg" alt="">
-            </a>
+            </a> -->
           </div>
         </div>
       </div>

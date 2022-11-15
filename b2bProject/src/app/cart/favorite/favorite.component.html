@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container content">
   <div class="row">
-    <h2>Τα Αγαπημένα Mου</h2>
+    <h2 translate>favorites.heading</h2>
     <hr style="opacity: 1;border: 1px solid #6dae49;">
   </div>
   <div class="row">
@@ -16,21 +16,22 @@
           <img [src]="fav.img" class="product-image" alt=""/>
         </div>
         <div class="row" style="justify-content: center;text-align: center;">
-          <p class="product-title">{{ fav.name }}</p>
+          <p class="product-title" *ngIf="currentLang == 'el'">{{ fav.onoma }}</p>
+          <p class="product-title" *ngIf="currentLang == 'en'">{{ fav.onoma_eng }}</p>
         </div>
         <div class="row" style="justify-content: center;align-items: center">
           <hr style="opacity: 1;border: 1px solid #6dae49;width: 90%;">
         </div>
         <div class="row text-center" style="color: #878787;">
-          <p *ngIf="!fav.hasOffer" style="margin: 0px;">Τιμή: {{ fav.wholesale }}&euro;</p>
-          <p *ngIf="!fav.hasOffer" style="margin: 0px;opacity: 0;">Τιμή: {{ fav.wholesale }}&euro;</p>
-          <p *ngIf="fav.hasOffer" style="margin: 0px;text-decoration: line-through;">Τιμή: {{ fav.wholesale }}&euro;</p>
-          <p *ngIf="fav.hasOffer" style="margin: 0px;color: #6dae49;">Τιμή: {{ fav.offer }}&euro;</p>
-          <p>Απόθεμα: {{ fav.stock }}</p>
+          <p *ngIf="!fav.hasOffer" style="margin: 0px;"><a translate>favorites.price</a> {{ fav.wholesale }}&euro;</p>
+          <p *ngIf="!fav.hasOffer" style="margin: 0px;opacity: 0;"><a translate>favorites.price</a> {{ fav.wholesale }}&euro;</p>
+          <p *ngIf="fav.hasOffer" style="margin: 0px;text-decoration: line-through;"><a translate>favorites.price</a> {{ fav.wholesale }}&euro;</p>
+          <p *ngIf="fav.hasOffer" style="margin: 0px;color: #6dae49;"><a translate>favorites.price</a> {{ fav.offer }}&euro;</p>
+          <p><a translate>favorites.stock</a> {{ fav.stock }}</p>
         </div>
         <div class="row">
           <button class="button" style="transition: background-color 0.2s ease-in-out;" (click)="addToCart(fav,addToCartBtn)" #addToCartBtn>
-            <span>Προσθήκη</span>
+            <span translate>favorites.add</span>
             <div class="cart">
             <svg viewBox="0 0 36 26">
               <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>

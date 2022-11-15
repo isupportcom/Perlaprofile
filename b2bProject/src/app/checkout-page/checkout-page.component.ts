@@ -14,6 +14,7 @@ import { User } from '../services/user.model';
 import axios from 'axios';
 import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
 import RevolutCheckout from '@revolut/checkout';
+import { TranslateConfigService } from '../services/translate-config.service';
 
 
 @Component({
@@ -42,12 +43,14 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   showUserDetails?: boolean;
   showPayment?: boolean;
   totalPrice: number = 0;
-  showBankCredentials: boolean = false;
+  showBankCredentials: boolean = true;
+  currentLang = localStorage.getItem('lang') || 'el'
 
   constructor(
     private cartService: CartServiceService,
     private router: Router,
     private renderer: Renderer2,
+    private translateService: TranslateConfigService,
     private builder: FormBuilder
   ) {}
 
@@ -60,6 +63,13 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       zipCode: [{value: this.loadedUser.zip, disabled: true}],
       area: [{value: this.loadedUser.area, disabled: true}],
       city: [{value: this.loadedUser.city, disabled: true}],
+      name: [{value: this.loadedUser.eponimia, disabled: true}],
+      doy: [{value: this.loadedUser.doy, disabled: true}],
+      afm: [{value: this.loadedUser.afm, disabled: true}],
+      phone: [{value: 'XXXXXXXXXX', disabled: true}],
+      email: [{value: 'test@gmail.com', disabled: true}],
+      shippingMethod: [{value: 'Αντικαταβολή', disabled: true}],
+      courier: [{value: 'ACS', disabled: true}] 
     })
 
     this.BankData = this.builder.group({
@@ -67,6 +77,13 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       zipCode: [{value: this.loadedUser.zip, disabled: false}],
       area: [{value: this.loadedUser.area, disabled: false}],
       city: [{value: this.loadedUser.city, disabled: false}],
+      name: [{value: this.loadedUser.eponimia, disabled: false}],
+      doy: [{value: this.loadedUser.doy, disabled: false}],
+      afm: [{value: this.loadedUser.afm, disabled: false}],
+      phone: [{value: 'XXXXXXXXXX', disabled: false}],
+      email: [{value: 'test@gmail.com', disabled: false}],
+      shippingMethod: [{value: 'Αντικαταβολή', disabled: true}] ,
+      courier: [{value: 'ACS', disabled: true}]
     })
     
 
@@ -78,6 +95,12 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     );
 
     this.products = resData.data.products;
+
+    for(let i=0;i<this.products.length;i++){
+      if(this.products[i].hasOffer){
+        this.products[i].wholesale = this.products[i].offer
+      }
+    }
     console.log(this.products);
     for(let prod of this.products){
       this.GrandTotal += +prod.wholesale *prod.qty;
@@ -116,53 +139,68 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     // this.showPayment = localStorage.getItem('showPayment') == 'true'? true : false;
   }
 
-  onSubmit2(){
-    for (let i = 0; i < this.products.length; i++) {
-      this.mtrlArr[i] = this.products[i].mtrl;
-      this.qtyArr[i] = this.products[i].qty;
-      this.discArr[i] =this.products[i].discount;
-    }
-    console.log(this.mtrlArr);
-    console.log(this.mtrlArr.join(','));
-    console.log(this.qtyArr);
-    console.log(this.qtyArr.join(','));
-
-    console.log(this.loadedUser.trdr);
-    let payment;
-
-      payment = 2;
-
-    axios
-      .post(
-        'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
-        {
-          mtrl: this.mtrlArr.join(','),
-          qty: this.qtyArr.join(','),
-          trdr: this.loadedUser.trdr,
-          discount: this.discArr.join(','),
-          payment: payment,
+  onSubmit2(btn: any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        for (let i = 0; i < this.products.length; i++) {
+          this.mtrlArr[i] = this.products[i].mtrl;
+          this.qtyArr[i] = this.products[i].qty;
+          this.discArr[i] =this.products[i].discount;
         }
-      )
-      .then((resData) => {
-        // let h3 :any
-          //  h3 = document.getElementById("orderComplete");
-          // h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
-          setTimeout(()=>{
-            this.router.navigate(['order-completed'])
-            setTimeout(()=>{
-              window.location.reload();
-            })
-          },100)
-
-
-      });
+        console.log(this.mtrlArr);
+        console.log(this.mtrlArr.join(','));
+        console.log(this.qtyArr);
+        console.log(this.qtyArr.join(','));
+    
+        console.log(this.loadedUser.trdr);
+        let payment;
+    
+          payment = 2;
+    
+        axios
+          .post(
+            'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
+            {
+              mtrl: this.mtrlArr.join(','),
+              qty: this.qtyArr.join(','),
+              trdr: this.loadedUser.trdr,
+              discount: this.discArr.join(','),
+              payment: payment,
+            }
+          )
+          .then((resData) => {
+            // let h3 :any
+              //  h3 = document.getElementById("orderComplete");
+              // h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
+              setTimeout(()=>{
+                btn.classList.remove('loading');
+                this.router.navigate(['order-completed'])
+                setTimeout(()=>{
+                  window.location.reload();
+                })
+              },100)
+    
+    
+          });
+        
+      },1500);
+    }
+   
 
     
   }
 
-  onSubmit(FormData:any) {
-    console.log(FormData)
-    this.placeOrder();
+  onSubmit(FormData:any,btn: any) {
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        console.log(FormData)
+        this.placeOrder();
+        btn.classList.remove('loading');
+      },1500);
+    }
+
   }
 
   bankCredentials(showCredentials: boolean,row?: any){
@@ -183,6 +221,11 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.FormData.controls['zipCode'].enable();
       this.FormData.controls['area'].enable();
       this.FormData.controls['city'].enable();
+      this.FormData.controls['name'].enable();
+      this.FormData.controls['doy'].enable();
+      this.FormData.controls['afm'].enable();
+      this.FormData.controls['email'].enable();
+      this.FormData.controls['phone'].enable();
       this.trigwnikh = false;
     } 
     else{
@@ -190,6 +233,11 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.FormData.controls['zipCode'].disable();
       this.FormData.controls['area'].disable();
       this.FormData.controls['city'].disable();
+      this.FormData.controls['name'].disable();
+      this.FormData.controls['doy'].disable();
+      this.FormData.controls['afm'].disable();
+      this.FormData.controls['email'].disable();
+      this.FormData.controls['phone'].disable();
       this.trigwnikh = true;
     }
   }

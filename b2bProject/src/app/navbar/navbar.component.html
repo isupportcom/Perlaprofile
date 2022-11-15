@@ -246,6 +246,33 @@
                   >
                 </li>
                 <li style="margin-bottom: 8px">
+                  <a
+                    routerLink="/company"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.company</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
+                  <a
+                    routerLink="/the-team"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.team</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
+                  <a
+                    routerLink="/contact"
+                    routerLinkActive="active"
+                    class="dropdown-item"
+                    style="padding-left: 0px !important" translate
+                    >navbar.contanct</a
+                  >
+                </li>
+                <li style="margin-bottom: 8px">
                   <div class="dropdown">
                     <ul>
                       <li (click)="handleCategoryClick()">
@@ -315,33 +342,6 @@
                     </ul> -->
                   </div>
                 </li>
-                <li style="margin-bottom: 8px">
-                  <a
-                    routerLink="/company"
-                    routerLinkActive="active"
-                    class="dropdown-item"
-                    style="padding-left: 0px !important" translate
-                    >navbar.company</a
-                  >
-                </li>
-                <li style="margin-bottom: 8px">
-                  <a
-                    routerLink="/the-team"
-                    routerLinkActive="active"
-                    class="dropdown-item"
-                    style="padding-left: 0px !important" translate
-                    >navbar.team</a
-                  >
-                </li>
-                <li style="margin-bottom: 8px">
-                  <a
-                    routerLink="/contact"
-                    routerLinkActive="active"
-                    class="dropdown-item"
-                    style="padding-left: 0px !important" translate
-                    >navbar.contanct</a
-                  >
-                </li>
               </ul>
             </div>
           </div>
@@ -360,41 +360,7 @@
           </li>
 
 
-          <li
-            
-            (click)="handleCategoryClick()"
-            
-          >
-          <a routerLink="/products/114/Control" routerLinkActive="my-active">Control</a>
-
-          </li>
-
-          <li
-            
-          (click)="handleCategoryClick()"
           
-        >
-          <a routerLink="/products/115/Motion" routerLinkActive="my-active">Motion</a>
-
-        </li>
-
-          <li
-            
-          (click)="handleCategoryClick()"
-          
-        >
-          <a routerLink="/products/116/Mosqui%20Plus" routerLinkActive="my-active">Mosqui Plus</a>
-
-        </li>
-
-        <li
-            
-        (click)="handleCategoryClick()"
-        
-      >
-        <a routerLink="/products/117/Profile" routerLinkActive="my-active">Profile</a>
-
-      </li>
 
 
           <!-- <li
@@ -424,6 +390,45 @@
               >navbar.contanct</a
             >
           </li>
+          <div class="products">
+            <ul>
+                  <li
+                
+                (click)="handleCategoryClick()"
+                
+              >
+              <a routerLink="/products/114/Control" routerLinkActive="my-active">Control</a>
+
+              </li>
+
+              <li
+                
+              (click)="handleCategoryClick()"
+              
+            >
+              <a routerLink="/products/115/Motion" routerLinkActive="my-active">Motion</a>
+
+            </li>
+
+              <li
+                
+              (click)="handleCategoryClick()"
+              
+            >
+              <a routerLink="/products/116/Mosqui%20Plus" routerLinkActive="my-active">Mosqui Plus</a>
+
+            </li>
+
+            <li
+                
+            (click)="handleCategoryClick()"
+            
+          >
+            <a routerLink="/products/117/Profile" routerLinkActive="my-active">Profile</a>
+
+          </li>
+            </ul>
+          </div>
         </ul>
       </div>
     </div>

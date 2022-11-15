@@ -47,9 +47,6 @@
       (click)="goToProducts({ id: 114, name: 'Control' })"
       class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"
     >
-      <div class="flip-card-back">
-        <h2>Click to see more <br /><span>--></span></h2>
-      </div>
       <div
         class="image_container"
         style="
@@ -72,13 +69,12 @@
       </div>
     </div>
 
+    
     <div
       (click)="goToProducts({ id: 115, name: 'Motion' })"
       class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"
     >
-      <div class="flip-card-back">
-        <h2>Click to see more <br /><span>--></span></h2>
-      </div>
+
       <div
         class="image_container"
         style="
@@ -99,15 +95,13 @@
           <p translate>home.motion_description</p>
         </div>
       </div>
+  
     </div>
 
     <div
       (click)="goToProducts({ id: 116, name: 'Mosqui' })"
       class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"
     >
-      <div class="flip-card-back">
-        <h2>Click to see more <br /><span>--></span></h2>
-      </div>
       <div
         class="image_container"
         style="
@@ -134,9 +128,6 @@
       (click)="goToProducts({ id: 117, name: 'Profile' })"
       class="card col col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"
     >
-      <div class="flip-card-back">
-        <h2>Click to see more <br /><span>--></span></h2>
-      </div>
       <div
         class="image_container"
         style="
@@ -221,7 +212,7 @@
 </div>
 
 <div *ngIf="showLoggedInContent" style="margin-top: 72px">
-  <div class="container" style="text-align: center; margin-bottom: 24px">
+  <div class="container" style="text-align: center; margin-bottom: 24px;">
     <div class="row">
       <h1 translate>home.offer</h1>
     </div>
@@ -234,6 +225,8 @@
       class="container"
       style="
         background-color: white;
+        width: fit-content;
+        height: fit-content;
         border-radius: 30px;
         box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);
         padding: 80px;

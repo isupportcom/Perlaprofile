@@ -169,7 +169,11 @@
     "epitoixia": "Wall remote control",
     "asurmata": "Wireless remote controls",
     "xeiros": "Hand remote control.",
-    "quote3": "We also created a remote control with a timer for easy and quick adjustment of closing and opening our device programmed."
+    "quote3": "We also created a remote control with a timer for easy and quick adjustment of closing and opening our device programmed.",
+    "p_p_page":"Products Per Page",
+    "sort":"Sort",
+    "ascend":"Ascending",
+    "descending":"Descending"
   },
   "product_page": {
     "price": "Price",
@@ -207,5 +211,48 @@
     "password":"Password",
     "button":"Login"
 
+  },
+  "cart":{
+    "order":"Order",
+    "order_summary":"Order Summary",
+    "p_value":"Value of Products:",
+    "shipping":"Shipping:",
+    "total_value":"Total Value:",
+    "continue_shopping":"Continue Shopping",
+    "clear_cart":"Clear Cart",
+    "purchase":"Proceed to purchase"
+  },
+  "checkout":{
+    "order_summary":"Order Summary",
+    "company_details":"Company Details",
+    "address":"Address",
+    "zip_code":"Zip Code",
+    "area":"Area",
+    "city":"City",
+    "payment_method":"Payment Methods",
+    "card":"Credit/Debit Card",
+    "bank":"Bank Transfer",
+    "backToCart":"Back To Cart",
+    "p_value":"Value of Products:",
+    "shipping":"Shipping:",
+    "total_value":"Total Value:",
+    "complete_order":"Complete Order"
+  },
+  "checkout_nav":{
+    "details":"Company Details"
+  },
+  "favorites":{
+    "heading":"My Favorites",
+    "price":"Price:",
+    "stock":"Stock:",
+    "add":"Add To Cart"
+  },
+  "order_completed":{
+    "heading":"Your order has been registered",
+    "thanks":"Thank you very much for your order",
+    "order_code":"The code for your order is:",
+    "email":"You will receive an email with your order confirmation and details",
+    "continue_shopping":"Continue Shopping"
   }
+
 }

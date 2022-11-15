@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" style="padding-right: 24px;">
       <div class="row" style="align-items: end;height: 50px">
-        <h2>Παραγγελία</h2>
+        <h2 translate>cart.order</h2>
       </div>
       <div *ngFor="let items of cartItems;let i=index;" class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;">
         
@@ -17,7 +17,8 @@
                 </div>
                 <div class="col-6">
                   <div class="row">
-                    <p class="productName">{{ item.name }}</p>
+                    <p class="productName" *ngIf="currentLang == 'el'">{{ item.onoma }}</p>
+                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.onoma_eng }}</p>
                   </div>
                   <div class="row" style="align-items: end;">
                     <button class="trash" (click)="removeOne(item,i,true)" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
@@ -55,7 +56,8 @@
                 </div>
                 <div class="col-6">
                   <div class="row">
-                    <p class="productName">{{ item.name }}</p>
+                    <p class="productName" *ngIf="currentLang == 'el'">{{ item.onoma }}</p>
+                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.onoma_eng }}</p>
                   </div>
                 </div>
               </div>
@@ -87,28 +89,28 @@
       </div>
       <div class="row">
         <div *ngIf="cartItems.length>0" class="col-12" style="padding:0px;margin-top: 12px;">
-          <a class="clearAllBtn" (click)="clearAll(true)">
+          <a class="clearAllBtn" (click)="clearAll(true)" translate>
             <img src="../../assets/trash-alt-white.svg" width="20px" alt="">
-            Καθάρισε Το Καλάθι
+            cart.clear_cart
           </a>
         </div>
         <div class="col-12" style="margin-top: 24px;padding: 0;">
-          <a class="goBackBtn" (click)="handleContinueShopping()">
-            <img style="transform: rotate(180deg);" src="../../assets/chevron-right-white.svg" width="18px" alt="">
-            Συνέχισε να ψωνίζεις
+          <a class="goBackBtn" (click)="handleContinueShopping()" translate>
+            <img style="transform: rotate(180deg);" src="../../assets/chevron-right-white.svg" width="18px" alt="" >
+            cart.continue_shopping
           </a>
         </div>
       </div>
     </div>
     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 orderReview">
       <div class="row" style="align-items: end;height: 50px">
-        <h5>Σύνοψη Παραγγελίας</h5>
+        <h5 translate>cart.order_summary</h5>
       </div>
       <div class="row" style="background-color: white;border-radius: 16px;padding: 50px 12px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);">
         <div class="row productValue" style="margin-bottom: 4px;">
           <div class="col-6">
             <div class="row">
-              <p style="margin: 0;">Αξία Προϊόντων:</p>
+              <p style="margin: 0;" translate>cart.p_value</p>
             </div>
           </div>
           <div class="col-6">
@@ -121,7 +123,7 @@
         <div class="row shippingValue" style="margin-bottom: 4px;">
           <div class="col-6">
             <div class="row">
-              <p style="margin: 0;">Μεταφορικά:</p>
+              <p style="margin: 0;" translate>cart.shipping</p>
             </div>
           </div>
           <div class="col-6">
@@ -139,7 +141,7 @@
         <div class="row totalValue" style="font-weight: 600;font-size: 18px;">
           <div class="col-6">
             <div class="row">
-              <p style="margin: 0;">Συνολική Αξία:</p>
+              <p style="margin: 0;" translate>cart.total_value</p>
             </div>
           </div>
           <div class="col-6">
@@ -149,9 +151,10 @@
           </div>
         </div>
         <div class="row" *ngIf="shouldContinue">
-          <a class="cart-btn" (click)="handleCheckout()">
-            Προχωρήστε σε αγορά
-            <img src="../../assets/credit-card.svg" alt="">
+          <a class="cart-btn" (click)="handleCheckout(cartBtn)" #cartBtn>
+            <p style="margin: 0px;" translate>cart.purchase</p>
+            
+            <img class="btnImg" src="../../assets/credit-card.svg" alt="">
           </a>
         </div>
       </div>

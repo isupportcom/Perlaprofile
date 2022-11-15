@@ -1,12 +1,13 @@
   .card {
     /* position: absolute; */
+
     background-color: rgba(0, 0, 0, 0);
     border: 0;
     /* transform: translate(-50%, -50%); */
-    padding: 24px;
+    padding: 10px;
     height: 612px;
     border-radius: 25px;
-    transition: all 0.8s;
+    transition: all 0.2s;
     transform-style: preserve-3d;
     cursor: pointer;
   }
@@ -59,10 +60,17 @@
             
         }
         
+
+
         .card:hover {
-          transform: translate(3%, 0%) rotateY(180deg);
+          transform: scale(1.03);
+          /* transform: translate(3%, 0%) rotateY(180deg); */
           /*  */
          
+        }
+
+        .card:active{
+          transform: scale(0.95);
         }
 
         .flip-card-back {
@@ -135,8 +143,8 @@
   border-radius: 3px;
   color: #fff;
 
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   transform-style: preserve-3d;
   perspective: 2000px;
   transition: 0.4s;
@@ -150,8 +158,8 @@
   width: 100%;
   height: 100%;
   background: transparent;
-  border-top: 20px solid #6DAE49;
-  border-left: 20px solid #6DAE49;
+  border-top: 15px solid #6DAE49;
+  border-left: 15px solid #6DAE49;
   box-sizing: border-box;
 }
 .box:after {
@@ -161,8 +169,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border-bottom: 20px solid #6DAE49;
-  border-right: 20px solid #6DAE49;
+  border-bottom: 15px solid #6DAE49;
+  border-right: 15px solid #6DAE49;
   box-sizing: border-box;
 }
 .box .fas {

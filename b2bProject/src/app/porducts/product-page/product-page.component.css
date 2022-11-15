@@ -8,6 +8,19 @@ html, body {
 }
 
 
+.image-fullscreen{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000000;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+}
+
 
 
 
@@ -453,6 +466,7 @@ nav.black .underline {
     font-size: 12px !important;
   }
 
+
   .big img{
     width: 350px !important;
     height: 350px !important;
@@ -469,6 +483,14 @@ nav.black .underline {
   .big img{
     width: 250px !important;
     height: 250px !important;
+  }
+  .image-fullscreen img{
+    width: 350px !important;
+    height: 234px !important;
+  }
+  .image-fullscreen .remove{
+    width: 16px !important;
+    height: 16px !important;
   }
   .smallImages{
     width: 100px !important;

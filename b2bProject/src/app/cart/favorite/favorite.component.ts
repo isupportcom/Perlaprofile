@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/porducts/products.service';
+import { TranslateConfigService } from 'src/app/services/translate-config.service';
 import { CartServiceService } from '../cart-service.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class FavoriteComponent implements OnInit {
   hasProducts:boolean=false;
   products:any;
   relatedProducts:any
-  constructor(private cartService:CartServiceService,private productsService:ProductsService) { }
+  currentLang = localStorage.getItem('lang') || 'el'
+  constructor(private cartService:CartServiceService,private productsService:ProductsService,private translate: TranslateConfigService) { }
 
   ngOnInit(): void {
       this.getProducts();

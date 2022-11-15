@@ -546,6 +546,8 @@
   transition: transform 0.4s cubic-bezier(0.36, 1.01, 0.32, 1.27);
   }
 
+
+
   .pCard{
     background-color: white;
     border-radius: 8px;
@@ -608,7 +610,7 @@
       font-size: 12px;
     }
     .button{
-      padding: 6px 28px;
+      padding: 6px 20px;
       min-width: 120px;
     }
   }

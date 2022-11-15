@@ -327,6 +327,7 @@ input[type="number"]{
 }
 
 .cart-btn {
+    position: relative;
     text-align: center;
     display: inline-block;
     background-color: #6dae49;
@@ -339,8 +340,140 @@ input[type="number"]{
     padding: 12px 0px;
     cursor: pointer;
     transition: all .3s;
+    overflow: hidden;
   }
 
+
+  .btnImg{
+    position: absolute;
+    left: 100%;
+    top: 35%;
+  }
+
+ 
+  .loading .btnImg{
+    animation-name: card;
+    animation-duration: 0.3s;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+  }
+
+  @media (max-width: 1400px){
+    .loading .btnImg{
+        animation-name: card2;
+        animation-duration: 0.3s;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+      }
+  }
+
+  @media (max-width: 1200px){
+    .loading .btnImg{
+        animation-name: card3;
+        animation-duration: 0.3s;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+      }
+  }
+
+  @media (max-width: 992px){
+    .loading .btnImg{
+        animation-name: card4;
+        animation-duration: 0.3s;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+      }
+  }
+
+  @media (max-width: 768px){
+    .loading .btnImg{
+        animation-name: card5;
+        animation-duration: 0.3s;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+      }
+  }
+
+  @media (max-width: 576px){
+    .loading .btnImg{
+        animation-name: card6;
+        animation-duration: 0.3s;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+      }
+  }
+
+  @media (max-width: 375px){
+    .loading .btnImg{
+        animation-name: card7;
+        animation-duration: 0.3s;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+      }
+  }
+
+  @keyframes card{
+    0%{
+      left: 100%;
+    }
+    100%{
+      left:  75%;
+    }
+  }
+  @keyframes card2{
+    0%{
+      left: 100%;
+    }
+    100%{
+      left:  78%;
+    }
+  }
+
+  @keyframes card3{
+    0%{
+      left: 100%;
+    }
+    100%{
+      left:  83%;
+    }
+  }
+
+  @keyframes card4{
+    0%{
+      left: 100%;
+    }
+    100%{
+      left:  85%;
+    }
+  }
+
+  @keyframes card5{
+    0%{
+      left: 100%;
+    }
+    100%{
+      left:  65%;
+    }
+  }
+
+  @keyframes card6{
+    0%{
+      left: 100%;
+    }
+    100%{
+      left:  70%;
+    }
+  }
+
+  @keyframes card7{
+    0%{
+      left: 100%;
+    }
+    100%{
+      left:  72%;
+    }
+  }
+  
   @media (max-width: 992px){
     .cart-btn {
         font-size: 12px;
@@ -352,7 +485,10 @@ input[type="number"]{
 
 .cart-btn:hover {
     background-color: #4a7832;
-    box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+}
+
+.cart-btn:active{
+  transform: scale(0.8);
 }
 .disabled{
     display: inline-block;

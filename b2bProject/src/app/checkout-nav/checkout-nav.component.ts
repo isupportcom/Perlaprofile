@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateConfigService } from '../services/translate-config.service';
 
 @Component({
   selector: 'app-checkout-nav',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private translateService: TranslateConfigService
+  ) { }
 
   ngOnInit(): void {
   }

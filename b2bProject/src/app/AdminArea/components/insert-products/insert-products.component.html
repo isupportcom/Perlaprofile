@@ -109,7 +109,7 @@
               <p *ngIf="product.hasOffer" style="color: #6DAE49;font-weight: 600;">{{product.offer}}&euro;</p>
             </div>
             <div class="col">
-              <button (click)="open(product.mtrl)" class="table-btn">
+              <button (click)="open(product.mtrl)" [ngClass]="product.img === 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'? 'table-btn' :'table-btn3'">
                 {{product.img === 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'?  'Προσθήκη' : 'Αλλαγή'}}
               </button>
             </div>

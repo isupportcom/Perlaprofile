@@ -205,3 +205,276 @@ display: inline-block;
     color: black;
     transition: all 0.3s ease;
 }
+
+.myBtn{
+    width: fit-content;
+    cursor: pointer;
+    padding: 8px 72px;
+    border: none;
+    background-color: #6DAE49;
+    color: white;
+    border-radius: 8px;
+    margin-top: 12px;
+    transition: background-color 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .myBtn:active{
+    transform: scale(0.95);
+  }
+  
+  .myBtn:hover{
+    background-color: #4a7632;
+  }
+
+
+.textAnim{
+    position: absolute;
+    top: 20%;
+    margin: 0px;
+  }
+
+  .textAnim2{
+    position: absolute;
+    top: 20%;
+    margin: 0px;
+  }
+
+  .loading .textAnim2{
+    animation-name: text;
+    animation-duration: 0.3s;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+  }
+
+
+  @media (max-width: 992px){
+    .yoho{
+      font-size: 10px;
+    }
+
+    .textAnim2{
+      left: 20%;
+    }
+  }
+
+  @media (max-width: 768px){
+    .yoho{
+      font-size: initial;
+    }
+
+    .textAnim2{
+      left: initial;
+    }
+  }
+  
+  .loading .textAnim{
+    animation-name: text;
+    animation-duration: 0.3s;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+  }
+
+  @media (max-width: 1400px){
+    .textAnim{
+        top: 30%;
+    }
+
+    .loading .textAnim{
+        animation-name: text2;
+    }
+  }
+
+  @media (max-width: 1200px){
+    .textAnim{
+        top: 30%;
+        left: 15%;
+    }
+
+    .loading .textAnim{
+        animation-name: text2;
+    }
+  }
+
+  @media (max-width: 992px){
+    .textAnim{
+        top: 30%;
+        left: 5%;
+        font-size: 14px;
+    }
+
+    .loading .textAnim{
+        animation-name: text2;
+    }
+  }
+
+  @media (max-width: 768px){
+    .textAnim{
+        top: 22%;
+        left: 25%;
+        font-size: 14px;
+    }
+
+    .loading .textAnim{
+        animation-name: text3;
+    }
+  }
+
+  @media (max-width: 402px){
+    .textAnim{
+        top: 35%;
+        left: 25%;
+        font-size: 14px;
+    }
+
+    .loading .textAnim{
+        animation-name: text4;
+    }
+  }
+
+
+  
+  @keyframes text{
+    0%{
+      top: 20%
+    }
+    100%{
+      top: -60%;
+    }
+  }
+
+    
+  @keyframes text2{
+    0%{
+      top: 30%
+    }
+    100%{
+      top: -60%;
+    }
+  }
+
+  @keyframes text3{
+    0%{
+      top: 22%
+    }
+    100%{
+      top: -60%;
+    }
+  }
+  @keyframes text4{
+    0%{
+      top: 35%
+    }
+    100%{
+      top: -60%;
+    }
+  }
+  
+  
+  .loading .lds-ring{
+    animation-name: loader;
+    animation-duration: 0.3s;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes loader {
+    0%{
+      transform: scale(0);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+  
+  .lds-ring {
+    display: inline-block;
+    position: absolute;
+    left: 46%;
+    transform: scale(0);
+    width: 20px;
+    height: 20px;
+  }
+  
+  @media (max-width: 1400px){
+    .lds-ring{
+        width: 15px;
+        height: 15px;
+        left: 48%;
+        top: 36%;
+    }
+  }
+
+  @media (max-width: 1200px){
+    .lds-ring{
+        width: 15px;
+        height: 15px;
+        left: 46%;
+        top: 36%;
+    }
+  }
+
+  @media (max-width: 992px){
+    .lds-ring{
+        width: 15px;
+        height: 15px;
+        left: 44%;
+        top: 36%;
+    }
+  }
+
+  @media (max-width: 768px){
+    .lds-ring{
+      width: 15px;
+      height: 15px;
+      left: 44%;
+      top: 26%;
+    }
+  }
+  
+  @media (max-width: 576px){
+    .lds-ring{
+        width: 15px;
+        height: 15px;
+        left: 44%;
+        top: 26%;
+      }
+  }
+  
+  @media (max-width: 400px){
+    .lds-ring{
+        width: 15px;
+        height: 15px;
+        left: 44%;
+        top: 35%;
+      }
+  }
+  
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

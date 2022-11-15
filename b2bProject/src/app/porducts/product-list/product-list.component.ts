@@ -115,6 +115,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   favorites: any;
   innerWidth!: number;
   executed: boolean = false;
+  searched: boolean = false;
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = window.innerWidth;
@@ -652,83 +653,97 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   handleCheckboxes(e: any, clickeP?: boolean) {
     this.shownProducts = [];
+    let flag = false;
 
-    if (clickeP) {
-      if (!e.checked) {
-        e.checked = true;
-      } else {
-        e.checked = false;
-      }
-      if (e.checked) {
-        this.listArray.push(e.value);
-        this.waiting = true;
-        this.updateProducts();
-        setTimeout(() => {
-          this.waiting = false;
-
-        },600);
-
-      }
-      else{
-
-        // this.listArray = this.listArray.filter((e: any) => e !== this.value)
-        // console.log('hello');
-        for (let i = 0; i < this.listArray.length; i++) {
-          if (e.value == this.listArray[i]) {
-            this.listArray.splice(i, 1);
-          }
+    let boxes = e.parentElement.parentElement.parentElement.parentElement.parentElement.children;
+    for(let i=0; i<boxes.length;i++){
+      if(boxes[i].children[0].children[0].children[0].children[0].checked){
+        if(e.value == boxes[i].children[0].children[0].children[0].children[0].value){
+          flag = true;
         }
-        this.waiting = true;
-        this.updateProducts();
-        setTimeout(() => {
-          this.waiting = false;
-
-        },600);
-
-
+        boxes[i].children[0].children[0].children[0].children[0].checked = false;        
       }
-      this.checked = true;
-
-      console.log(this.listArray);
-    } else {
-      if (e.checked) {
-        this.listArray.push(e.value);
-        this.waiting = true;
-        this.updateProducts();
-        setTimeout(() => {
-          this.waiting = false;
-
-        },600);
-
-      }
-      else{
-
-        // this.listArray = this.listArray.filter((e: any) => e !== this.value)
-        // console.log('hello');
-        for (let i = 0; i < this.listArray.length; i++) {
-          if (e.value == this.listArray[i]) {
-            this.listArray.splice(i, 1);
-          }
-        }
-        this.waiting = true;
-        this.updateProducts();
-        setTimeout(() => {
-          this.waiting = false;
-
-        },600);
-
-      }
-      this.checked = true;
-
-      console.log(this.listArray);
     }
-
-    if(e.classList[0] === 'boxes'){
-      for(let i=0;i< this.filters.length; i++){
-        if(e.value === this.filters[i].value){
-          this.filters[i].checked = e.checked;
+    this.filterOn = false;
+    this.listArray = [];
+    if(!flag){
+      if (clickeP) {
+        if (!e.checked) {
+          e.checked = true;
+        } else {
+          e.checked = false;
         }
-
+        if (e.checked) {
+          this.listArray.push(e.value);
+          this.waiting = true;
+          setTimeout(() => {
+            this.updateProducts();
+            this.waiting = false;
+  
+          },600);
+  
+        }
+        else{
+  
+          // this.listArray = this.listArray.filter((e: any) => e !== this.value)
+          // console.log('hello');
+          for (let i = 0; i < this.listArray.length; i++) {
+            if (e.value == this.listArray[i]) {
+              this.listArray.splice(i, 1);
+            }
+          }
+          this.waiting = true;
+          this.updateProducts();
+          setTimeout(() => {
+            this.waiting = false;
+  
+          },600);
+  
+  
+        }
+        this.checked = true;
+  
+        console.log(this.listArray);
+      } else {
+        if (e.checked) {
+          this.listArray.push(e.value);
+          this.waiting = true;
+          this.updateProducts();
+          setTimeout(() => {
+            this.waiting = false;
+  
+          },600);
+  
+        }
+        else{
+  
+          // this.listArray = this.listArray.filter((e: any) => e !== this.value)
+          // console.log('hello');
+          for (let i = 0; i < this.listArray.length; i++) {
+            if (e.value == this.listArray[i]) {
+              this.listArray.splice(i, 1);
+            }
+          }
+          this.waiting = true;
+          this.updateProducts();
+          setTimeout(() => {
+            this.waiting = false;
+  
+          },600);
+  
+        }
+        this.checked = true;
+  
+        console.log(this.listArray);
+      }
+  
+      if(e.classList[0] === 'boxes'){
+        for(let i=0;i< this.filters.length; i++){
+          if(e.value === this.filters[i].value){
+            this.filters[i].checked = e.checked;
+          }
+  
+        }
       }
     }
   }
@@ -871,6 +886,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.listArray = [];
     this.shownProducts = [];
     this.search = '';
+    this.searched = false;
 
     for(let i=0; i<this.filters.length; i++){
       this.filters[i].checked = false;
@@ -1037,6 +1053,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   findProducts() {
+    this.searched = true;
     this.filterOn = false;
     console.log(this.search);
     if(this.search === ""){
