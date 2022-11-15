@@ -26,43 +26,52 @@ export class UploadPdfComponent implements OnInit {
   }
   uploadPDF(){
     console.log(this.pdfForm.value.pdf)
+    for(let i =0 ; i < this.pdfForm.value.pdf.length ; i++){
+      this.pdfService
+      .pdfUpload(this.pdfForm.value.pdf[i])
+      .subscribe((event:HttpEvent<any>)=>{
 
-    this.pdfService.pdfUpload(this.pdfForm.value.pdf).subscribe((event:HttpEvent<any>)=>{
+        switch (event.type) {
 
-      switch (event.type) {
+          case HttpEventType.UploadProgress: var eventTotal = event.total ?event.total :0;
+            if(event.total){
 
-        case HttpEventType.UploadProgress: var eventTotal = event.total ?event.total :0;
-          if(event.total){
+              this.progress = Math.round((100/event.total)*event.loaded);
+              this.msg = `Uploaded! ${this.progress}%`
+            }
+            break;
+          case HttpEventType.Response :
+            if(event.body.succes != undefined){
+              console.log(event.body);
 
-            this.progress = Math.round((100/event.total)*event.loaded);
-            this.msg = `Uploaded! ${this.progress}%`
-          }
-          break;
-        case HttpEventType.Response :
-          if(event.body.succes != undefined){
-            console.log(event.body);
+              this.msg = this.msg +" " + event.body.succes
+            }else{
+              console.log(event.body)
+              this.msg = event.body.success || event.body.error;
+            }
 
-            this.msg = this.msg +" " + event.body.succes
-          }else{
-            console.log(event.body)
-            this.msg = event.body.success || event.body.error;
-          }
+            break;
 
-          break;
+        }
 
-      }
+      })
+    }
 
-    })
 
   }
+  myfiles:string [] = [];
   uploadFile(event:any){
-
-    let file = event.target.files? event.target.files[0] : '';
-    console.log(file);
+    for(let i =0 ; i < event.target.files.length; i++ ){
+        this.myfiles.push(event.target.files[i]);
+    }
+    // let file = event.target.files? event.target.files[0] : '';
+    // console.log(file);
     this.pdfForm.patchValue({
-      pdf:file
+      pdf:this.myfiles
     })
     this.pdfForm.get('pdf')?.updateValueAndValidity();
+    console.log(this.pdfForm.value);
+
 
   }
 
