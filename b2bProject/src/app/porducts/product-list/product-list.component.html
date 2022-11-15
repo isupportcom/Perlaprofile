@@ -419,7 +419,7 @@
                 </div>
 
             </div>
-            <div *ngIf="(listArray.length == 0 && !searched) && !waiting" style="display: flex;justify-content: center;align-items: center;margin-top: 12px;">
+            <div *ngIf="(listArray.length == 0 && !searched) && !waiting && (mainCategory.id != 116 && mainCategory.id != 117)" style="display: flex;justify-content: center;align-items: center;margin-top: 12px;">
               <h1>Παρακαλώ Επιλέξτε Κατηγορία</h1>
             </div>
 
@@ -428,7 +428,7 @@
         <div>
 
         <pagination-controls
-        *ngIf="!noProducts && !waiting && shownProducts.length != 0 && (mainCategory.id != 116 && mainCategory.id != 117) && (listArray.length != 0 || searched)"
+        *ngIf="!noProducts && !waiting && shownProducts.length != 0 && (listArray.length != 0 || searched)"
         style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
         class="text-center my-pagination goLeft"
         (pageChange)="handlePageChange($event)"
