@@ -401,10 +401,14 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   handleContinueShopping(){
-    let currentCategory = JSON.parse(localStorage.getItem('currentCategory') || '{}')
-    console.log(currentCategory);
-
-    this.router.navigate(['products',currentCategory.id,currentCategory.name]);
+    let currentCategory = JSON.parse(localStorage.getItem('currentCategory') || 'null')
+    if(currentCategory != null){
+      console.log(currentCategory);
+      this.router.navigate(['products',currentCategory.id,currentCategory.name]);
+    }
+    else{
+      this.router.navigate(['home']);
+    }
   }
 
 

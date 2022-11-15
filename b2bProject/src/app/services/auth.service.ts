@@ -20,14 +20,14 @@ export interface AuthResponseData{
   city: string;
   doy: string;
   name: string;
-  phone1: string;
-  phone2: string;
+  phone01: string;
+  phone02: string;
   zip: string;
   registered?: boolean;
   isAdmin:number;
 
-  trdr:number
-
+  trdr:number,
+  email:string
 }
 
 @Injectable({
@@ -87,7 +87,7 @@ export class AuthService {
 
       }
 
-      this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.name,resData.phone1,resData.phone2,resData.zip,resData.trdr);
+      this.handleAuthentication(resData.username,resData.localId,resData.token,600,resData.address,resData.afm,resData.city,resData.doy,resData.name,resData.phone01,resData.phone02,resData.zip,resData.trdr,resData.email);
 
 
       })
@@ -130,8 +130,8 @@ export class AuthService {
       phone1:string,
       phone2:string,
       zip:string,
-      trdr:number
-
+      trdr:number,
+      email:string
     } = JSON.parse(localStorage.getItem('userData') || '{}');
     if(!userData){
       return;
@@ -140,13 +140,13 @@ export class AuthService {
       const expirationDate = new Date(new Date().getTime() + expiresIn * 1000 * 6);
       console.log(expirationDate);
 
-      const user = new User(userData.username, userData.id, userData._token , expirationDate,userData.address,userData.afm,userData.city,userData.doy,userData.eponimia,userData.phone1,userData.phone2,userData.zip,userData.trdr);
+      const user = new User(userData.username, userData.id, userData._token , expirationDate,userData.address,userData.afm,userData.city,userData.doy,userData.eponimia,userData.phone1,userData.phone2,userData.zip,userData.trdr,userData.email);
       this.user.next(user);
       // this.autoLogout(expiresIn * 1000);
       localStorage.setItem('userData', JSON.stringify(user));
     }
 
-    const loadedUser = new User(userData.username,userData.id,userData._token, new Date(userData._tokenExpirationDate),userData.address,userData.afm,userData.city,userData.doy,userData.eponimia,userData.phone1,userData.phone2,userData.zip,userData.trdr);
+    const loadedUser = new User(userData.username,userData.id,userData._token, new Date(userData._tokenExpirationDate),userData.address,userData.afm,userData.city,userData.doy,userData.eponimia,userData.phone1,userData.phone2,userData.zip,userData.trdr,userData.email);
 
     console.log(new Date().getTime());
 
@@ -188,11 +188,12 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  private handleAuthentication(username: string, userId: string, token: string, expiresIn: number,address: string,afm:string,city:string,doy:string,eponimia:string,phone1:string,phone2:string,zip:string,trdr:number){
+  private handleAuthentication(username: string, userId: string, token: string, expiresIn: number,address: string,afm:string,city:string,doy:string,eponimia:string,phone1:string,phone2:string,zip:string,trdr:number,email:string){
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000 * 6);
     console.log(expirationDate);
+    
 
-    const user = new User(username, userId, token , expirationDate,address,afm,city,doy,eponimia,phone1,phone2,zip,trdr);
+    const user = new User(username, userId, token , expirationDate,address,afm,city,doy,eponimia,phone1,phone2,zip,trdr,email);
     this.user.next(user);
     console.log(user)
     // this.autoLogout(expiresIn * 1000);

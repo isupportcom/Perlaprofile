@@ -66,8 +66,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       name: [{value: this.loadedUser.eponimia, disabled: true}],
       doy: [{value: this.loadedUser.doy, disabled: true}],
       afm: [{value: this.loadedUser.afm, disabled: true}],
-      phone: [{value: 'XXXXXXXXXX', disabled: true}],
-      email: [{value: 'test@gmail.com', disabled: true}],
+      phone: [{value: this.loadedUser.phone1, disabled: true}],
+      email: [{value: this.loadedUser.email, disabled: true}],
       shippingMethod: [{value: 'Αντικαταβολή', disabled: true}],
       courier: [{value: 'ACS', disabled: true}] 
     })
@@ -80,8 +80,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       name: [{value: this.loadedUser.eponimia, disabled: false}],
       doy: [{value: this.loadedUser.doy, disabled: false}],
       afm: [{value: this.loadedUser.afm, disabled: false}],
-      phone: [{value: 'XXXXXXXXXX', disabled: false}],
-      email: [{value: 'test@gmail.com', disabled: false}],
+      phone: [{value: this.loadedUser.phone1, disabled: false}],
+      email: [{value: this.loadedUser.email, disabled: false}],
       shippingMethod: [{value: 'Αντικαταβολή', disabled: true}] ,
       courier: [{value: 'ACS', disabled: true}]
     })

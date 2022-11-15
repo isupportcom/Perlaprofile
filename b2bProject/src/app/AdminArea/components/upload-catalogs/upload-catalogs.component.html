@@ -1,0 +1,47 @@
+<div class="container content">
+    <div class="row" style="justify-content: center;align-items: center;">
+      <p>Σε αυτή την σελίδα ανεβαίνουν οι κατάλογοι.</p>
+    </div>
+    <div class="row">
+      <form class="form-group" [formGroup]="form">
+        <div class="container" style="padding: 0px">
+          <div class="row" style="--bs-gutter-x: 0">
+            <input type="file"  (change)="uploadFile($event)" class="custom-file-input">
+          </div>
+          <div class="row">
+            <button (click)="submitImage()" class="soft1-btn2" style="margin-left: 10px;margin-top: 8px;"  type="submit">Μεταφόρτωση Εικόνας</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row" style="margin-top: 8px;">
+      <h3>{{msg}}</h3>
+      <div class="progress form-group" *ngIf="progress > 0">
+        <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" aria-valuemin="0" aria-valuemax="100" [style.width]="progress + '%'">
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- <div class="container-fluid">
+    <div class="row">
+      <h1>Image Upload</h1>
+    </div>
+    <div class="container">
+      <form [formGroup]="form" >
+  
+        <div class="progress form-group" *ngIf="progress > 0 ">
+          <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" aria-valuemin="0" aria-valuemax="100" [style.width]="progress + '%'">
+  
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="file" (change)="uploadFile($event)">
+        </div>
+        <div class="btn btn-success btn-block btn-lg btn-block" type="submit" (click)="submitImage()">Upload Image</div>
+  
+    <h2>{{msg}}</h2>
+      </form>
+    </div>
+  </div> -->
+  
