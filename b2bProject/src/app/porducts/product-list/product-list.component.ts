@@ -34,6 +34,7 @@ interface mainCat {
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit, OnDestroy {
+  notEmpty: boolean = false;
   search: string = '';
   message: string = '';
   loadedUser: any;
@@ -165,6 +166,20 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(){
+
+    axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
+      category_id: this.mainCategory.id
+    }).then(resData => {
+      if(resData.data.products.length > 0){
+        this.notEmpty = true;
+      }
+      else{
+        this.notEmpty = false;
+      }
+      
+      
+    })
+
     this.currentLang = localStorage.getItem('lang') || 'el'
 
 
@@ -259,6 +274,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             product_name_eng: resData.data.products[i].onoma_eng,
             kodikos_kataskeuasti: resData.data.products[i].kodikos_kataskeuasti,
             texnikos_kodikos: resData.data.products[i].texnikos_kodikos,
+            diathesima: resData.data.products[i].diathesima
           };
           this.productsService.setAll(this.products[i]);
         }
@@ -298,32 +314,37 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         this.productsService.prevfilters.subscribe(resData => {
           console.log("EIMMAI MESA");
-
+          console.log(resData);
+          
           this.listArray = [];
-          this.filterList = Object.values(resData)
+          if(resData != null){
+            this.filterList = Object.values(resData )
 
-
-
-          for(let filter of this.filterList){
-            this.listArray.push(filter);
+            for(let filter of this.filterList){
+              this.listArray.push(filter);
+            }
+  
+  
+            setTimeout(() => {
+              console.log(this.filters);
+  
+              for(let i=0; i<this.filters.length; i++){
+                for(let id of this.listArray){
+                  if(id === this.filters[i].value){
+                    this.filters[i].checked = true;
+                    // this.handleCheckboxes(this.filters[i]);
+                  }
+                }
+              }
+  
+  
+              this.executed = true;
+            },300)
           }
 
 
-          setTimeout(() => {
-            console.log(this.filters);
-
-            for(let i=0; i<this.filters.length; i++){
-              for(let id of this.listArray){
-                if(id === this.filters[i].value){
-                  this.filters[i].checked = true;
-                  // this.handleCheckboxes(this.filters[i]);
-                }
-              }
-            }
 
 
-            this.executed = true;
-          },300)
         })
 
           this.updateProducts();

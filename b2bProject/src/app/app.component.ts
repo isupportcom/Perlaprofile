@@ -24,6 +24,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  backOrder: boolean = false;
   title = 'b2bProject';
   age = '10';
   loggedIn: boolean = true;
@@ -76,6 +77,13 @@ export class AppComponent implements OnInit {
     else{
       this.changeBtn = false;
     }
+
+    this.productService.backOrderPopup.subscribe(resData => {
+      if(resData){
+        this.backOrder = resData
+      }
+      
+    });
 
     console.log(this.date.getHours()+':'+this.date.getMinutes());
 
@@ -329,7 +337,15 @@ export class AppComponent implements OnInit {
 
   }
 
+  continueBackOrder(){
+    this.productService.sendBackOrder(true);
+    this.backOrder = false;
+  }
 
+  stopBackOrder(){
+    this.productService.sendBackOrder(false);
+    this.backOrder = false;
+  }
 
   handleClose(){
 

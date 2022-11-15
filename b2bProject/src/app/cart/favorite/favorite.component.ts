@@ -75,42 +75,89 @@ export class FavoriteComponent implements OnInit {
 
   }
   addToCart(product:any,btn: any){
-    if(!btn.classList.contains('loading')) {
-      btn.classList.add('loading');
-      setTimeout(() => btn.classList.remove('loading'), 3700);
-      }
-      let relatedProductsObs: Observable<any>;
-
-      relatedProductsObs = this.productsService.getRelatedProducts(
-        product.mtrl
-      );
-
-      relatedProductsObs.subscribe((resData) => {
-        console.log(resData);
-
-        this.relatedProducts = resData.related;
-      });
-      setTimeout(() => {
-
-
-        if (this.relatedProducts.length <= 0) {
-          this.cartService.setId(product.mtrl);
-
-          this.productsService.setSingleProduct(product);
-          product.show = true;
-          this.cartService.addToCart(product, false, true);
-
-          this.cartService.sendProductAdded(true);
-        } else {
-          window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-          });
-          this.productsService.setSingleProduct(product);
-          this.cartService.sendStartScope(true);
+    if(product.diathesima > 0){
+      if(!btn.classList.contains('loading')) {
+        btn.classList.add('loading');
+        setTimeout(() => btn.classList.remove('loading'), 3700);
         }
-      }, 500);
+        let relatedProductsObs: Observable<any>;
+  
+        relatedProductsObs = this.productsService.getRelatedProducts(
+          product.mtrl
+        );
+  
+        relatedProductsObs.subscribe((resData) => {
+          console.log(resData);
+  
+          this.relatedProducts = resData.related;
+        });
+        setTimeout(() => {
+  
+  
+          if (this.relatedProducts.length <= 0) {
+            this.cartService.setId(product.mtrl);
+  
+            this.productsService.setSingleProduct(product);
+            product.show = true;
+            this.cartService.addToCart(product, false, true);
+  
+            this.cartService.sendProductAdded(true);
+          } else {
+            window.scroll({
+              top: 0,
+              left: 0,
+              behavior: 'smooth',
+            });
+            this.productsService.setSingleProduct(product);
+            this.cartService.sendStartScope(true);
+          }
+        }, 500);
+    }
+    else{
+      this.productsService.sendBackOrderPopup(true);
+
+      this.productsService.backOrder.subscribe(resData => {
+        if(resData){
+          if(!btn.classList.contains('loading')) {
+            btn.classList.add('loading');
+            setTimeout(() => btn.classList.remove('loading'), 3700);
+            }
+            let relatedProductsObs: Observable<any>;
+      
+            relatedProductsObs = this.productsService.getRelatedProducts(
+              product.mtrl
+            );
+      
+            relatedProductsObs.subscribe((resData) => {
+              console.log(resData);
+      
+              this.relatedProducts = resData.related;
+            });
+            setTimeout(() => {
+      
+      
+              if (this.relatedProducts.length <= 0) {
+                this.cartService.setId(product.mtrl);
+      
+                this.productsService.setSingleProduct(product);
+                product.show = true;
+                this.cartService.addToCart(product, false, true);
+      
+                this.cartService.sendProductAdded(true);
+              } else {
+                window.scroll({
+                  top: 0,
+                  left: 0,
+                  behavior: 'smooth',
+                });
+                this.productsService.setSingleProduct(product);
+                this.cartService.sendStartScope(true);
+              }
+            }, 500);
+        }
+      })
+    }
+    
   }
 
 }

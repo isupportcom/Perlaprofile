@@ -23,6 +23,19 @@ export  class ProductsService {
 
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
+  backOrderPopup = new Subject<boolean>();
+  castBackOrderPopup = this.backOrderPopup.asObservable();
+
+  sendBackOrderPopup(flag: boolean){
+   this.backOrderPopup.next(flag)
+  }
+
+  backOrder = new Subject<boolean>();
+  castBackOrder = this.backOrder.asObservable();
+
+  sendBackOrder(flag: boolean){
+   this.backOrder.next(flag)
+  }
 
   mosquiProductFound = new Subject<any>();
   castMosquiProductFound = this.mosquiProductFound.asObservable();
