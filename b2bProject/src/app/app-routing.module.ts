@@ -17,6 +17,7 @@ import { ImageComponent } from "./AdminArea/image/image.component";
 import { PdfComponent } from "./AdminArea/pdf-component/pdf-component.component";
 import { CartComponent } from "./cart/cart.component";
 import { FavoriteComponent } from "./cart/favorite/favorite.component";
+import { CatalogsFrontComponent } from "./catalogs-front/catalogs-front.component";
 import { CheckoutPageComponent } from "./checkout-page/checkout-page.component";
 import { HomepageComponent } from "./homepage/homepage.component";
 import { LogInComponent } from "./log-in/log-in.component";
@@ -51,6 +52,11 @@ const routes :Routes =[
     path:'edit-products',
     canActivate: [AuthGuard],
     component:AdminareaproductsComponent
+  },
+  {
+    path:'catalogs',
+    canActivate: [AuthGuard],
+    component: CatalogsFrontComponent
   },
   {
     path:'users',

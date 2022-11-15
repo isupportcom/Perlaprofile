@@ -84,6 +84,7 @@ import { NgxSummernoteModule } from 'ngx-summernote';
 import { CatalogsComponent } from './AdminArea/catalogs/catalogs.component';
 import { UploadCatalogsComponent } from './AdminArea/components/upload-catalogs/upload-catalogs.component';
 import { DeleteCatalogsComponent } from './AdminArea/components/delete-catalogs/delete-catalogs.component';
+import { CatalogsFrontComponent } from './catalogs-front/catalogs-front.component';
 
 
 export function playerFactory() {
@@ -155,7 +156,8 @@ export function rootLoaderactory(http:any){
     PageNotFoundComponent,
     CatalogsComponent,
     UploadCatalogsComponent,
-    DeleteCatalogsComponent
+    DeleteCatalogsComponent,
+    CatalogsFrontComponent
 
 
   ],
