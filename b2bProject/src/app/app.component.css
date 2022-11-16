@@ -251,6 +251,17 @@ div.scroll {
   }
 }
 
+.remove{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  content: url(../assets/x-black.svg);
+  transition: all 1s ease-in-out;
+}
+
+.remove:hover{
+  content: url(../assets/x-red.svg);
+}
 
 
 .popup{

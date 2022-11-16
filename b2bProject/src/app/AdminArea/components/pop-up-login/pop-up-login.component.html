@@ -1,5 +1,5 @@
-<div [ngClass]="id === 5 || id === 12? 'container noPad' : 'container'">
-  <button type="button" [ngClass]="id === 5 || id === 12?  'soft1-btn2' : 'soft1-btn'" (click) = "show()">{{ button }}</button>
+<div [ngClass]="id === 5 || id === 12 || id == 7? 'container noPad' : 'container'">
+  <button type="button" [ngClass]="id === 5 || id === 12 || id == 7?  'soft1-btn2' : 'soft1-btn'" (click) = "show()">{{ button }}</button>
 </div>
 <!-- Creates the bootstrap modal where the image will appear -->
 <div style="background: rgba(0,0,0,0.4);" [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -89,7 +89,7 @@
         </div>
         <div class="row" style="margin-bottom: 44px;">
           <div class="container">
-            <a (click)="navigateTo('/dashboard/update-users')" class="row my-nav-item2" (mouseover)="handleOver(related)" (mouseleave)="handleLeave(related)" #related>
+            <a (click)="navigateTo('/dashboard/update-users')" class="row my-nav-item2" (mouseover)="handleOver(users)" (mouseleave)="handleLeave(users)" #users>
               <div class="col-4">
                 <img src="../../../assets/user-green.svg" alt="">
               </div>
@@ -100,7 +100,7 @@
           </div>
         </div>
         <div class="row" style="margin-bottom: 44px; padding: 0px;text-align: center;">
-          <a class="showAll" (click)="clickShowAll([home,products,categories,ral,pdf,img,catalog,related], arrow)">
+          <a class="showAll" (click)="clickShowAll([home,products,categories,ral,pdf,img,catalog,users], arrow)">
               <img src="../../../assets/showAll.svg" style="width: 20px;height: 20px;" alt="" #arrow>
 
             </a>
