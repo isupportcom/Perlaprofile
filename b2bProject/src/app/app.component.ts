@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   LeftScroll: any;
   products: product[] = [];
   singleProduct: any;
-
+  scope3 : any = [];
   relatedProducts:product|any = [];
   group: any;
   showScope3: boolean = false;
@@ -137,7 +137,7 @@ export class AppComponent implements OnInit {
 
           groupingObs.subscribe(resData => {
             console.log(resData);
-            
+            this.scope3 = resData.Scope3;
             scope2b = resData.Scope2[0];
             scope2b.qty = this.singleProduct.qty;
             temp = {
@@ -163,417 +163,466 @@ export class AppComponent implements OnInit {
 
 
   handleGrouping(product: any,btn: any){
-    
+
     if(+this.singleProduct.diathesima <= 0){
       this.itemsToCart = []
+      this.itemsToCart.push(this.singleProduct)
       btn.style.opacity = '1';
       this.btnLoading = true;
+
       if(!btn.classList.contains('loading')) {
         btn.classList.add('loading');
-  
         setTimeout(() => {
-  
-  
-          let groupingObs: Observable<any>;
-  
-      groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
-  
-      groupingObs.subscribe(resData => {
-        console.log(resData);
-  
-        this.group = resData;
-  
-      });
-      setTimeout(() => {
-        console.log(this.group);
-  
-  
-  
-        if(this.group.Scope2.length > 0){
-          if(this.group.Scope3.length <= 0){
-            for(let i=0;i<this.group.Scope2.length;i++){
-              this.group.Scope2[i].qty = this.singleProduct.qty;
-            }
-  
-            this.singleProduct.show = true;
-            // this.cartService.addToCart(this.singleProduct);
-  
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(this.singleProduct);
-  
-            product.show = true;
-  
-  
-            // this.cartService.addToCart(product);
-  
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(product);
-            for(let prod of this.group.Scope2){
-              prod.show = true;
-              // this.cartService.addToCart(prod);
-  
-              this.cartService.sendProductAdded(true);
-              this.itemsToCart.push(prod);
-            }
-            this.cartService.setItemsToCartArray(this.itemsToCart);
-  
-          }
-          else{
-            for(let i=0;i<this.group.Scope2.length;i++){
-              this.group.Scope2[i].qty = this.singleProduct.qty;
-            }
-  
-            for(let i=0;i<this.group.Scope3.length;i++){
-              this.group.Scope3[i].qty = this.singleProduct.qty;
-            }
-  
-            this.itemsToCart.push(this.singleProduct);
-            this.itemsToCart.push(product);
-            console.log(product);
-            for(let prod of this.group.Scope2){
-              this.itemsToCart.push(prod);
-            }
+
+
+        console.log("HANDLE GROUPING");
+        console.log(this.tempGroup);
+        console.log(product);
+        for(let temp of this.tempGroup){
+          if(temp.scope1.mtrl == product.mtrl){
+            this.itemsToCart.push(temp.scope1)
+            this.itemsToCart.push(temp.scope2)
             console.log(this.itemsToCart);
-  
-            this.showScope3 = true;
-          }
-  
-  
-  
-          this.productAdded = false;
-          // window.location.reload();
-        }
-        else{
-          if(this.group.Scope3.length <= 0){
-            this.singleProduct.show = true;
-            // this.cartService.addToCart(this.singleProduct);
-  
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(this.singleProduct);
-  
-            product.show = true;
-            // this.cartService.addToCart(product);
-  
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(product);
-            this.cartService.setItemsToCartArray(this.itemsToCart);
-  
-  
-            window.location.reload();
-          }
-          else{
-            for(let i=0;i<this.group.Scope3.length;i++){
-              this.group.Scope3[i].qty = this.singleProduct.qty;
+            this.productAdded = false;
+            this.btnLoading = false;
+            if(this.scope3.length > 0){
+              this.showScope3 = true;
             }
-  
-            this.itemsToCart.push(this.singleProduct);
-            this.itemsToCart.push(product);
-            console.log(this.itemsToCart);
-            this.showScope3 = true;
+            else{
+              this.stopScope();
+            }
           }
-  
-  
-  
-          this.productAdded = false;
-           window.location.reload();
         }
-        this.btnLoading = false;
+        console.log(this.itemsToCart);
+        
+        
+        
+        
+
         btn.classList.remove('loading');
-      },500)
-        }, 1000);
+        },2500)
       }
     }
     else{
       this.itemsToCart = []
+      this.itemsToCart.push(this.singleProduct)
       btn.style.opacity = '1';
       this.btnLoading = true;
+
       if(!btn.classList.contains('loading')) {
         btn.classList.add('loading');
-  
         setTimeout(() => {
-  
-  
-          let groupingObs: Observable<any>;
-  
-      groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
-  
-      groupingObs.subscribe(resData => {
-        console.log(resData);
-  
-        this.group = resData;
-  
-      });
-      setTimeout(() => {
-        console.log(this.group);
-  
-  
-  
-        if(this.group.Scope2.length > 0){
-          if(this.group.Scope3.length <= 0){
-            
-            for(let i=0;i<this.group.Scope2.length;i++){
-              this.group.Scope2[i].qty = this.singleProduct.qty;
-            }
-  
-            this.singleProduct.show = true;
-            // this.cartService.addToCart(this.singleProduct);
-  
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(this.singleProduct);
-  
-            product.show = true;
-  
-  
-            // this.cartService.addToCart(product);
-  
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(product);
-
-
-            for(let prod of this.group.Scope2){
-              if(+prod.diathesima > 0){
-
-                prod.show = true;
-                // this.cartService.addToCart(prod);
-    
-                this.cartService.sendProductAdded(true);
-                this.itemsToCart.push(prod);
-              }
-              else{
-                this.productService.sendBackOrderPopup(true);
-
-                this.productService.backOrder.subscribe(resData => {
-                  if(resData){
-                    prod.show = true;
-                    // this.cartService.addToCart(prod);
-        
-                    this.cartService.sendProductAdded(true);
-                    this.itemsToCart.push(prod);
-                  }
+          
+          for(let temp of this.tempGroup){
+            if(temp.scope1.mtrl == product.mtrl){
+              if(temp.scope1.diathesima <= 0 || temp.scope2.diathesima <= 0){
+                  this.productService.sendBackOrderPopup(true);
                   
-                })
+                  this.productService.backOrder.subscribe(resData => {
+                    if(resData){
+                      this.itemsToCart.push(temp.scope1)
+                      this.itemsToCart.push(temp.scope2)
+                      console.log(this.itemsToCart);
+                      this.productAdded = false;
+                      this.btnLoading = false;
+                      if(this.scope3.length > 0){
+                        this.showScope3 = true;
+                      }
+                      else{
+                        this.stopScope();
+                      }
+                    }
+                  })
               }
-            }
-            this.cartService.setItemsToCartArray(this.itemsToCart);
-  
-          }
-          else{
-            for(let i=0;i<this.group.Scope2.length;i++){
-              this.group.Scope2[i].qty = this.singleProduct.qty;
-            }
-  
-            for(let i=0;i<this.group.Scope3.length;i++){
-              this.group.Scope3[i].qty = this.singleProduct.qty;
-            }
-  
-            
-
-            this.productService.backOrder.subscribe(resData => {
-              this.itemsToCart = [];
-              if(resData && (this.itemsToCart.length > 1)){
-                this.itemsToCart.push(this.singleProduct);
-                this.itemsToCart.push(product);
-                this.showScope3 = true;
-                this.productAdded = false;
-              } 
               else{
-                this.itemsToCart = []
-              }
-              setTimeout(() => {
+                this.itemsToCart.push(temp.scope1)
+                this.itemsToCart.push(temp.scope2)
                 console.log(this.itemsToCart);
-              },50)
-            })
-            console.log(product);
-            if(+product.diathesima > 0){
-              this.itemsToCart = [];
-              for(let prod of this.group.Scope2){
-                
-                
-                if(+prod.diathesima > 0){
-                  console.log(this.group.Scope2);
-                  
-  
-                  prod.show = true;
-                  // this.cartService.addToCart(prod);
-      
-                  // this.cartService.sendProductAdded(true);
-                  this.itemsToCart.push(prod);
-                  this.itemsToCart.push(this.singleProduct);
-                  this.itemsToCart.push(product);
-                  console.log(this.itemsToCart);
+                this.productAdded = false;
+                this.btnLoading = false;
+                if(this.scope3.length > 0){
                   this.showScope3 = true;
-                  this.productAdded = false;
-                  
                 }
                 else{
-                  this.productService.sendBackOrderPopup(true);
-  
-                  this.productService.backOrder.subscribe(resData => {
-                    
-                      if(resData){
-                        
-                        prod.show = true;
-                        // this.cartService.addToCart(prod);
-            
-                        this.cartService.sendProductAdded(true);
-                        this.itemsToCart.push(prod);
-                      }
-                  })
+                  this.stopScope();
                 }
               }
             }
-            else{
-              this.productService.sendBackOrderPopup(true);
-  
-              this.productService.backOrder.subscribe(resData => {
-                if(resData){
-                  for(let prod of this.group.Scope2){
-                    if(+prod.diathesima > 0){
-      
-                      prod.show = true;
-                      // this.cartService.addToCart(prod);
+          }
           
-                      this.cartService.sendProductAdded(true);
-                      this.itemsToCart.push(prod);
-                      this.showScope3 = true;
-                      this.productAdded = false;
-      
-                    }
-                    else{
-                      this.productService.sendBackOrderPopup(true);
-      
-                      this.productService.backOrder.subscribe(resData => {
-                        if(resData){
-                          prod.show = true;
-                          // this.cartService.addToCart(prod);
-              
-                          this.cartService.sendProductAdded(true);
-                          this.itemsToCart.push(prod);
-                        }
-                      })
-                    }
-                  }
-                }
-              })
-            }
-            
-  
-            
-          }
-  
-  
-  
-          
-          // window.location.reload();
-        }
-        else{
-          if(this.group.Scope3.length <= 0){
-            this.singleProduct.show = true;
-            // this.cartService.addToCart(this.singleProduct);
-  
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(this.singleProduct);
-  
-            product.show = true;
-            // this.cartService.addToCart(product);
-  
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(product);
-            this.cartService.setItemsToCartArray(this.itemsToCart);
-  
-  
-            window.location.reload();
-          }
-          else{
-            for(let i=0;i<this.group.Scope3.length;i++){
-              this.group.Scope3[i].qty = this.singleProduct.qty;
-            }
-  
-            this.itemsToCart.push(this.singleProduct);
-            this.itemsToCart.push(product);
-            console.log(this.itemsToCart);
-            this.showScope3 = true;
-          }
-  
-  
-  
-          this.productAdded = false;
-           window.location.reload();
-        }
-        this.btnLoading = false;
-        btn.classList.remove('loading');
-      },500)
-        }, 1000);
+          btn.classList.remove('loading');
+        },2500)
       }
+      
+     
     }
+
+
+    // if(+this.singleProduct.diathesima <= 0){
+    //   this.itemsToCart = []
+    //   btn.style.opacity = '1';
+    //   this.btnLoading = true;
+    //   if(!btn.classList.contains('loading')) {
+    //     btn.classList.add('loading');
+  
+    //     setTimeout(() => {
+  
+  
+    //       let groupingObs: Observable<any>;
+  
+    //   groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
+  
+    //   groupingObs.subscribe(resData => {
+    //     console.log(resData);
+  
+    //     this.group = resData;
+  
+    //   });
+    //   setTimeout(() => {
+    //     console.log(this.group);
+  
+  
+  
+    //     if(this.group.Scope2.length > 0){
+    //       if(this.group.Scope3.length <= 0){
+    //         for(let i=0;i<this.group.Scope2.length;i++){
+    //           this.group.Scope2[i].qty = this.singleProduct.qty;
+    //         }
+  
+    //         this.singleProduct.show = true;
+    //         // this.cartService.addToCart(this.singleProduct);
+  
+    //         this.cartService.sendProductAdded(true);
+    //         this.itemsToCart.push(this.singleProduct);
+  
+    //         product.show = true;
+  
+  
+    //         // this.cartService.addToCart(product);
+  
+    //         this.cartService.sendProductAdded(true);
+    //         this.itemsToCart.push(product);
+    //         for(let prod of this.group.Scope2){
+    //           prod.show = true;
+    //           // this.cartService.addToCart(prod);
+  
+    //           this.cartService.sendProductAdded(true);
+    //           this.itemsToCart.push(prod);
+    //         }
+    //         this.cartService.setItemsToCartArray(this.itemsToCart);
+  
+    //       }
+    //       else{
+    //         for(let i=0;i<this.group.Scope2.length;i++){
+    //           this.group.Scope2[i].qty = this.singleProduct.qty;
+    //         }
+  
+    //         for(let i=0;i<this.group.Scope3.length;i++){
+    //           this.group.Scope3[i].qty = this.singleProduct.qty;
+    //         }
+  
+    //         this.itemsToCart.push(this.singleProduct);
+    //         this.itemsToCart.push(product);
+    //         console.log(product);
+    //         for(let prod of this.group.Scope2){
+    //           this.itemsToCart.push(prod);
+    //         }
+    //         console.log(this.itemsToCart);
+  
+    //         this.showScope3 = true;
+    //       }
+  
+  
+  
+    //       this.productAdded = false;
+    //       // window.location.reload();
+    //     }
+    //     else{
+    //       if(this.group.Scope3.length <= 0){
+    //         this.singleProduct.show = true;
+    //         // this.cartService.addToCart(this.singleProduct);
+  
+    //         this.cartService.sendProductAdded(true);
+    //         this.itemsToCart.push(this.singleProduct);
+  
+    //         product.show = true;
+    //         // this.cartService.addToCart(product);
+  
+    //         this.cartService.sendProductAdded(true);
+    //         this.itemsToCart.push(product);
+    //         this.cartService.setItemsToCartArray(this.itemsToCart);
+  
+  
+    //         window.location.reload();
+    //       }
+    //       else{
+    //         for(let i=0;i<this.group.Scope3.length;i++){
+    //           this.group.Scope3[i].qty = this.singleProduct.qty;
+    //         }
+  
+    //         this.itemsToCart.push(this.singleProduct);
+    //         this.itemsToCart.push(product);
+    //         console.log(this.itemsToCart);
+    //         this.showScope3 = true;
+    //       }
+  
+  
+  
+    //       this.productAdded = false;
+    //        window.location.reload();
+    //     }
+    //     this.btnLoading = false;
+    //     btn.classList.remove('loading');
+    //   },500)
+    //     }, 1000);
+    //   }
+    // }
+    // else{
+    //   this.itemsToCart = []
+    //   btn.style.opacity = '1';
+    //   this.btnLoading = true;
+    //   if(!btn.classList.contains('loading')) {
+    //     btn.classList.add('loading');
+  
+    //     setTimeout(() => {
+  
+  
+    //       let groupingObs: Observable<any>;
+  
+    //   groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
+  
+    //   groupingObs.subscribe(resData => {
+    //     console.log(resData);
+  
+    //     this.group = resData;
+  
+    //   });
+    //   setTimeout(() => {
+    //     console.log(this.group);
+  
+  
+  
+    //     if(this.group.Scope2.length > 0){
+    //       if(this.group.Scope3.length <= 0){
+            
+    //         for(let i=0;i<this.group.Scope2.length;i++){
+    //           this.group.Scope2[i].qty = this.singleProduct.qty;
+    //         }
+  
+    //         this.singleProduct.show = true;
+    //         // this.cartService.addToCart(this.singleProduct);
+  
+    //         this.cartService.sendProductAdded(true);
+    //         this.itemsToCart.push(this.singleProduct);
+  
+    //         product.show = true;
+  
+  
+    //         // this.cartService.addToCart(product);
+  
+    //         this.cartService.sendProductAdded(true);
+    //         this.itemsToCart.push(product);
+
+
+    //         for(let prod of this.group.Scope2){
+    //           if(+prod.diathesima > 0){
+
+    //             prod.show = true;
+    //             // this.cartService.addToCart(prod);
+    
+    //             this.cartService.sendProductAdded(true);
+    //             this.itemsToCart.push(prod);
+    //           }
+    //           else{
+    //             this.productService.sendBackOrderPopup(true);
+
+    //             this.productService.backOrder.subscribe(resData => {
+    //               if(resData){
+    //                 prod.show = true;
+    //                 // this.cartService.addToCart(prod);
+        
+    //                 this.cartService.sendProductAdded(true);
+    //                 this.itemsToCart.push(prod);
+    //               }
+                  
+    //             })
+    //           }
+    //         }
+    //         this.cartService.setItemsToCartArray(this.itemsToCart);
+  
+    //       }
+    //       else{
+    //         for(let i=0;i<this.group.Scope2.length;i++){
+    //           this.group.Scope2[i].qty = this.singleProduct.qty;
+    //         }
+  
+    //         for(let i=0;i<this.group.Scope3.length;i++){
+    //           this.group.Scope3[i].qty = this.singleProduct.qty;
+    //         }
+  
+            
+
+    //         this.productService.backOrder.subscribe(resData => {
+    //           this.itemsToCart = [];
+    //           if(resData && (this.itemsToCart.length > 1)){
+    //             this.itemsToCart.push(this.singleProduct);
+    //             this.itemsToCart.push(product);
+    //             this.showScope3 = true;
+    //             this.productAdded = false;
+    //           } 
+    //           else{
+    //             this.itemsToCart = []
+    //           }
+    //           setTimeout(() => {
+    //             console.log(this.itemsToCart);
+    //           },50)
+    //         })
+    //         console.log(product);
+    //         if(+product.diathesima > 0){
+    //           this.itemsToCart = [];
+    //           for(let prod of this.group.Scope2){
+                
+                
+    //             if(+prod.diathesima > 0){
+    //               console.log(this.group.Scope2);
+                  
+  
+    //               prod.show = true;
+    //               // this.cartService.addToCart(prod);
+      
+    //               // this.cartService.sendProductAdded(true);
+    //               this.itemsToCart.push(prod);
+    //               this.itemsToCart.push(this.singleProduct);
+    //               this.itemsToCart.push(product);
+    //               console.log(this.itemsToCart);
+    //               this.showScope3 = true;
+    //               this.productAdded = false;
+                  
+    //             }
+    //             else{
+    //               this.productService.sendBackOrderPopup(true);
+  
+    //               this.productService.backOrder.subscribe(resData => {
+                    
+    //                   if(resData){
+                        
+    //                     prod.show = true;
+    //                     // this.cartService.addToCart(prod);
+            
+    //                     this.cartService.sendProductAdded(true);
+    //                     this.itemsToCart.push(prod);
+    //                   }
+    //               })
+    //             }
+    //           }
+    //         }
+    //         else{
+    //           this.productService.sendBackOrderPopup(true);
+  
+    //           this.productService.backOrder.subscribe(resData => {
+    //             if(resData){
+    //               for(let prod of this.group.Scope2){
+    //                 if(+prod.diathesima > 0){
+      
+    //                   prod.show = true;
+    //                   // this.cartService.addToCart(prod);
+          
+    //                   this.cartService.sendProductAdded(true);
+    //                   this.itemsToCart.push(prod);
+    //                   this.showScope3 = true;
+    //                   this.productAdded = false;
+      
+    //                 }
+    //                 else{
+    //                   this.productService.sendBackOrderPopup(true);
+      
+    //                   this.productService.backOrder.subscribe(resData => {
+    //                     if(resData){
+    //                       prod.show = true;
+    //                       // this.cartService.addToCart(prod);
+              
+    //                       this.cartService.sendProductAdded(true);
+    //                       this.itemsToCart.push(prod);
+    //                     }
+    //                   })
+    //                 }
+    //               }
+    //             }
+    //           })
+    //         }
+            
+  
+            
+    //       }
+  
+  
+  
+          
+    //       // window.location.reload();
+    //     }
+    //     else{
+    //       if(this.group.Scope3.length <= 0){
+    //         this.singleProduct.show = true;
+    //         // this.cartService.addToCart(this.singleProduct);
+  
+    //         this.cartService.sendProductAdded(true);
+    //         this.itemsToCart.push(this.singleProduct);
+  
+    //         product.show = true;
+    //         // this.cartService.addToCart(product);
+  
+    //         this.cartService.sendProductAdded(true);
+    //         this.itemsToCart.push(product);
+    //         this.cartService.setItemsToCartArray(this.itemsToCart);
+  
+  
+    //         window.location.reload();
+    //       }
+    //       else{
+    //         for(let i=0;i<this.group.Scope3.length;i++){
+    //           this.group.Scope3[i].qty = this.singleProduct.qty;
+    //         }
+  
+    //         this.itemsToCart.push(this.singleProduct);
+    //         this.itemsToCart.push(product);
+    //         console.log(this.itemsToCart);
+    //         this.showScope3 = true;
+    //       }
+  
+  
+  
+    //       this.productAdded = false;
+    //        window.location.reload();
+    //     }
+    //     this.btnLoading = false;
+    //     btn.classList.remove('loading');
+    //   },500)
+    //     }, 1000);
+    //   }
+    // }
 
    
 
   }
 
-  addToCart(product: any,btn?: any){
-    
-    if(+this.singleProduct.diathesima<0){
+  hanldeScope3(product: any,btn?: any){
+    if(+this.singleProduct.diathesima <= 0){
       btn.style.opacity = '1';
       this.btnLoading = true;
       if(!btn.classList.contains('loading')) {
         btn.classList.add('loading');
-        setTimeout(() => {
-  
+        setTimeout(() => { 
           this.itemsToCart.push(product);
-  
-          this.cartService.setItemsToCartArray(this.itemsToCart);
-  
-          let id = '';
-  
-  
-          for(let prod of this.itemsToCart){
-            id = id + prod.mtrl;
-            // prod.show = true;
-            // this.cartService.addToCart(prod);
-            // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-            // this.cartService.sendProductAdded(true);
-          }
-  
-          this.cartService.setId(id);
-  
-  
-  
-          for(let prod of this.itemsToCart){
-            // id = id + prod.mtrl;
-            prod.group_id = id;
-            prod.show = true;
-  
-            console.log(prod);
-  
-  
-            this.cartService.addToCart(prod);
-  
-            this.cartService.sendProductAdded(true);
-  
-          }
-  
-  
-          this.productAdded = false;
+          console.log(this.itemsToCart);
+          
+          
+          this.addToCart();
           this.showScope3 = false;
-  
-          console.log('OPA');
-  
-  
-          window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-          });
-          // setTimeout(() => {
-          //   window.location.reload();
-          // }, 1000)
-  
           this.btnLoading = false;
           btn.classList.remove('loading');
-  
         }, 1200);
       }
+      
     }
     else{
       if(+product.diathesima > 0){
@@ -581,171 +630,109 @@ export class AppComponent implements OnInit {
         this.btnLoading = true;
         if(!btn.classList.contains('loading')) {
           btn.classList.add('loading');
-          setTimeout(() => {
-
+          setTimeout(() => { 
             this.itemsToCart.push(product);
-
-            this.cartService.setItemsToCartArray(this.itemsToCart);
-
-            let id = '';
-
-
-            for(let prod of this.itemsToCart){
-              id = id + prod.mtrl;
-              // prod.show = true;
-              // this.cartService.addToCart(prod);
-              // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-              // this.cartService.sendProductAdded(true);
-            }
-
-            this.cartService.setId(id);
-
-
-
-            for(let prod of this.itemsToCart){
-              // id = id + prod.mtrl;
-              prod.group_id = id;
-              prod.show = true;
-
-              console.log(prod);
-
-
-              this.cartService.addToCart(prod);
-
-              this.cartService.sendProductAdded(true);
-
-            }
-
-
-            this.productAdded = false;
+            console.log(this.itemsToCart);
+            
+            
+            this.addToCart();
             this.showScope3 = false;
-
-            console.log('OPA');
-
-
-            window.scroll({
-              top: 0,
-              left: 0,
-              behavior: 'smooth'
-            });
-            // setTimeout(() => {
-            //   window.location.reload();
-            // }, 1000)
-
             this.btnLoading = false;
             btn.classList.remove('loading');
-
           }, 1200);
         }
+
       }
       else{
         this.productService.sendBackOrderPopup2(true);
-      
+                  
         this.productService.backOrder2.subscribe(resData => {
           if(resData){
             btn.style.opacity = '1';
             this.btnLoading = true;
             if(!btn.classList.contains('loading')) {
               btn.classList.add('loading');
-              setTimeout(() => {
-    
+              setTimeout(() => { 
                 this.itemsToCart.push(product);
-                setTimeout(() => {
-                  console.log(this.itemsToCart);
-                  
-                },50)
+                console.log(this.itemsToCart);
                 
-                // this.cartService.setItemsToCartArray(this.itemsToCart);
-    
-                let id = '';
-    
-    
-                for(let prod of this.itemsToCart){
-                  
-                  id = id + prod.mtrl;
-                  // prod.show = true;
-                  // this.cartService.addToCart(prod);
-                  // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-                  // this.cartService.sendProductAdded(true);
-                }
-    
-                this.cartService.setId(id);
-    
-    
-    
-                for(let prod of this.itemsToCart){
-                  // id = id + prod.mtrl;
-                  setTimeout(() => {
-                    prod.group_id = id;
-                    prod.show = true;
-      
-                    console.log(prod);
-      
-      
-                    this.cartService.addToCart(prod,false,false,false);
-      
-                    this.cartService.sendProductAdded(true);
-                  },100)
-    
-                }
-    
-    
-                this.productAdded = false;
+                
+                this.addToCart();
                 this.showScope3 = false;
-    
-                console.log('OPA');
-    
-    
-                window.scroll({
-                  top: 0,
-                  left: 0,
-                  behavior: 'smooth'
-                });
-                // setTimeout(() => {
-                //   window.location.reload();
-                // }, 1000)
-    
                 this.btnLoading = false;
                 btn.classList.remove('loading');
-    
               }, 1200);
             }
           }
         })
+
+        
       }
     }
   }
 
+  addToCart(){
+   
+    let id = '';
+
+
+    for(let prod of this.itemsToCart){
+      id = id + prod.mtrl;
+    }
+    this.cartService.setId(id)
+    console.log(id);
+    
+
+    for(let prod of this.itemsToCart){
+      // id = id + prod.mtrl;
+      prod.group_id = id;
+
+      console.log(prod);
+
+
+      this.cartService.addToCart(prod);
+
+      this.cartService.sendProductAdded(true);
+
+    }
+    this.itemsToCart = [];
+  }
+
   stopScope(){
+    this.btnLoading = false;
     this.relatedProducts = [];
   }
 
   stopScope2(){
+    this.btnLoading = false;
     this.showScope3 = false;
   }
 
   continueBackOrder(){
-    if(this.backOrder){
+    this.btnLoading = false;
       this.productService.sendBackOrder(true);
       this.backOrder = false;
-    }
 
-    if(this.backOrder2){
-      this.productService.sendBackOrder2(true);
-      this.backOrder2 = false;
-    }
   }
 
   stopBackOrder(){
-    if(this.backOrder){
+    this.btnLoading = false;
       this.productService.sendBackOrder(false);
       this.backOrder = false;
-    }
+  }
 
-    if(this.backOrder2){
+
+  continueBackOrder2(){
+    this.btnLoading = false;
+    this.productService.sendBackOrder2(true);
+    this.backOrder2 = false;
+
+  }
+
+  stopBackOrder2(){
+    this.btnLoading = false;
       this.productService.sendBackOrder2(false);
       this.backOrder2 = false;
-    }
   }
 
   handleClose(){

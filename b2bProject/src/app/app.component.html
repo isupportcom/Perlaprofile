@@ -2,12 +2,22 @@
 <app-homepage *ngIf="loggedIn"></app-homepage> -->
 <!-- <app-product-added-to-cart *ngIf="productAdded"></app-product-added-to-cart> -->
 
-<div *ngIf="backOrder || backOrder2" class="popup">
+<div *ngIf="backOrder" class="popup">
   <div class="window">
       <h3>Would you like to back order this item?</h3>
       <div class="buttons-holder">
           <button class="continue-btn my-Btn" (click)="continueBackOrder()">Συνέχεια</button>
           <button class="stop-btn my-Btn" (click)="stopBackOrder()">STOP</button>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="backOrder2" class="popup">
+  <div class="window">
+      <h3>Would you like to back order this item?</h3>
+      <div class="buttons-holder">
+          <button class="continue-btn my-Btn" (click)="continueBackOrder2()">Συνέχεια</button>
+          <button class="stop-btn my-Btn" (click)="stopBackOrder2()">STOP</button>
       </div>
   </div>
 </div>
@@ -91,7 +101,7 @@
       <div class="row">
         <hr>
       </div>
-        <div class="row products" *ngFor="let product of group.Scope3">
+        <div class="row products" *ngFor="let product of scope3">
           <div class="col-4">
             <img class="prodImg" [src]="product.image" alt="" style="display: inline-block;margin-bottom: 10%;">
           </div>
@@ -104,7 +114,7 @@
               <p *ngIf="!changeBtn">Προσθήκη</p>
               <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
            </button></div> -->
-           <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="addToCart(product,btn2)" [disabled]="btnLoading || product.stock <= 0"  [ngClass]="btnLoading || product.stock <= 0? 'myBtn myBtnDisabled' : 'myBtn'"  class="myBtn" #btn2>
+           <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="hanldeScope3(product,btn2)" [disabled]="btnLoading"  [ngClass]="btnLoading? 'myBtn myBtnDisabled' : 'myBtn'"  class="myBtn" #btn2>
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             <p style="margin: 0px;color: rgba(0,0,0,0);">Προσθήκη</p>
             <p class="textAnim">Προσθήκη</p>
