@@ -7,7 +7,13 @@
         <hr style="border: 1px solid #6DAE49;opacity: 1;">
     </div>
     <div class="row">
-        
+        <ul style="width: fit-content;margin-left: 16px;">
+            <li *ngFor="let catalogue of catalogueNames" style="margin-bottom: 12px;">
+                <a [href]="'https://perlarest.vinoitalia.gr/php-auth-api/catalogues/' + catalogue">
+                    {{ catalogue }}
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 
