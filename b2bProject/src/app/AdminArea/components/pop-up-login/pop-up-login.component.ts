@@ -96,12 +96,38 @@ export class PopUpLoginComponent implements OnInit {
           }else if(this.id == 7){
               axios.post(this.api,{method:"LOGIN"})
               .then(resData=>{
-                this.spinnerVis = false;
                 console.log(resData.data);
-                this.answer = "Users Updated";
-                setTimeout(()=>{
-                  window.location.reload();
-                },1000);
+                axios.post("https://perlarest.vinoitalia.gr/php-auth-api/upokatastimata.php",{method:"YPOKATASTIMATA"})
+                .then(resData=>{
+                  console.log(resData.data);
+                  axios.post("https://perlarest.vinoitalia.gr/php-auth-api/timi_ana_pelati_eidos.php",{method:"TIMOLOGIAKI102"})
+                  .then(resData=>{
+                    console.log(resData.data);
+                    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/ekptoseis_ana_ypokat_exalco.php",{method:"TIMOLOGIAKI3"})
+                    .then(resData=>{
+                      console.log(resData.data);
+                      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/timi_ana_pelati_omada_eidous.php",{method:"TIMOLOGIAKI2"})
+                      .then(resData=>{
+                        console.log(resData.data)
+                        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/katigoria_pelati_omada_eidous_geo_zoni.php",{method:"TIMOLOGIAKI1"})
+                        .then(resData=>{
+                          console.log(resData.data);
+                          axios.post("https://perlarest.vinoitalia.gr/php-auth-api/ekptosi.php",{method:"TIMOLOGIAKI101"})
+                          .then(resData=>{
+                            console.log(resData.data);
+                            this.spinnerVis = false;
+                            console.log(resData.data);
+                            this.answer = "Users Updated";
+                            setTimeout(()=>{
+                              window.location.reload();
+                            },1000);
+                          })
+                        })
+                      })
+                    })
+                  })
+                })
+
               })
             }
           else{

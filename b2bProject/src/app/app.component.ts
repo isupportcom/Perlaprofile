@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
       if(resData){
         this.backOrder = resData
       }
-      
+
     });
 
     console.log(this.date.getHours()+':'+this.date.getMinutes());
@@ -269,7 +269,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  addToCart(product: any,btn?: any){
+ addToCart (product: any,btn?: any){
     btn.style.opacity = '1';
     this.btnLoading = true;
     if(!btn.classList.contains('loading')) {

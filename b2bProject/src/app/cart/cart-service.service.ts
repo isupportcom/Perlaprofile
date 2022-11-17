@@ -4,7 +4,6 @@ import { product } from '../AdminArea/adminareaproducts/adminareaproducts.compon
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import axios from 'axios';
-import { group } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
