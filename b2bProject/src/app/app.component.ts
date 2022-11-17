@@ -83,7 +83,7 @@ export class AppComponent implements OnInit {
       if(resData){
         this.backOrder = resData
       }
-      
+
     });
 
     this.productService.backOrderPopup2.subscribe(resData => {

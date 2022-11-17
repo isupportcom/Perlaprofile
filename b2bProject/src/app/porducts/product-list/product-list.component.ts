@@ -279,14 +279,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
             product_name_eng: resData.data.products[i].onoma_eng,
             kodikos_kataskeuasti: resData.data.products[i].kodikos_kataskeuasti,
             texnikos_kodikos: resData.data.products[i].texnikos_kodikos,
-            diathesima: resData.data.products[i].diathesima
+            diathesima: resData.data.products[i].diathesima,
+            omada: resData.data.products[i].omada
           };
           this.productsService.setAll(this.products[i]);
         }
 
 
 
-
+        
 
 
         setTimeout(() => {
