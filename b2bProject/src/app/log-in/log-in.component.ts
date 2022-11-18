@@ -107,10 +107,14 @@ export class LogInComponent implements OnInit, OnDestroy {
                   trdr: resData.trdr
                 }).then(resData => {
                   console.log(resData.data.ypokat);
+                  if(resData.data.ypokat.length){
                   this.upokatastimata = resData.data.ypokat;
                   this.mphke = true;
+                  }else {
+                    this.router.navigate(['home']);
+                  }
                 })
-                // this.router.navigate(['home']);
+                 
               }
             }
             else{
@@ -144,6 +148,7 @@ export class LogInComponent implements OnInit, OnDestroy {
     }
     else{
       console.log(this.branch.nativeElement.value);
+      if(this.upokatastimata.length != 0 ){
       for(let upokat of this.upokatastimata){
         if(upokat.trdrbranch == this.branch.nativeElement.value){
           console.log(upokat);
@@ -152,6 +157,7 @@ export class LogInComponent implements OnInit, OnDestroy {
         }
       }
     }
+  }
     setTimeout(() => {
       this.router.navigate(['home']);
     },150);
