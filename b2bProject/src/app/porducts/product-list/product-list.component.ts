@@ -170,8 +170,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
     axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
       category_id: this.mainCategory.id
     }).then(resData => {
-      if(resData.data.products.length > 0){
-        this.notEmpty = true;
+      if(resData.data.products){
+        if(resData.data.products.length > 0){
+          this.notEmpty = true;
+        }
+        else{
+          this.notEmpty = false;  
+        }
       }
       else{
         this.notEmpty = false;

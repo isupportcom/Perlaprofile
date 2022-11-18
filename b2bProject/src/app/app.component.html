@@ -12,9 +12,22 @@
   </div>
 </div>
 
+<div *ngIf="backOrder2" class="popup">
+  <div class="window">
+      <h3>Would you like to back order this item?</h3>
+      <div class="buttons-holder">
+          <button class="continue-btn my-Btn" (click)="continueBackOrder2()">Συνέχεια</button>
+          <button class="stop-btn my-Btn" (click)="stopBackOrder2()">STOP</button>
+      </div>
+  </div>
+</div>
+
 
 <div *ngIf="productAdded && relatedProducts.length > 0" class="scroll1" style="position: fixed;top: 0;z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
-    <div class="container scroll" style="background-color: white;padding-top: 2%; height: fit-content;">
+    <div class="container scroll" style="position: relative;background-color: white;padding-top: 2%; height: fit-content;">
+        <a (click)="stopScope()" style="width: fit-content;cursor: pointer;">
+          <img class="remove" alt=""  style="width: 16px;" srcset="">
+        </a> 
         <div class="row">
           <div class="col-5" style="display: flex;justify-content: center;align-items: center;">
             <h2>Κορώνα</h2>
@@ -37,15 +50,16 @@
                         <img [src]="product.scope1.image" class="prodImg"  alt="">
                       </div>
                       <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-6 col-6">
-                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><h6>{{ product.scope1.name }}</h6></div>
-                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Quantity: {{ product.scope1.qty }}</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><h6 style="width: 320px">{{ product.scope1.name }}</h6></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Ποσότητα: {{ product.scope1.qty }}</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Διαθεσιμότητα: {{ product.scope1.diathesima }}</p></div>
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="!product.scope1.hasOffer">Price: {{ product.scope1.wholesale * product.scope1.qty}}&#x20AC;</p></div>
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="product.scope1.hasOffer">Price: {{ product.scope1.wholesale * product.scope1.qty}}&#x20AC;</p></div>
                         <!-- <div class="row" style="display: flex;justify-content: left;align-items: center;padding-left: 12px;"><button class="btn btn-success" (click)="handleGrouping(product.scope1)">
                            <p *ngIf="!changeBtn">Προσθήκη</p>
                            <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
                         </button></div> -->
-                        <button type="button"  style="position: relative;" (click)="handleGrouping(product.scope1,btn)" [disabled]="btnLoading || product.scope1.stock <= 0 || product.scope2.stock <= 0"  [ngClass]="btnLoading || product.scope1.stock <= 0 || product.scope2.stock <= 0? 'myBtn myBtnDisabled' : 'myBtn'" #btn>
+                        <button type="button"  style="position: relative;" (click)="handleGrouping(product.scope1,btn)" [disabled]="btnLoading"  [ngClass]="btnLoading? 'myBtn myBtnDisabled' : 'myBtn'" #btn>
                           <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                           <p style="margin: 0px;color: rgba(0,0,0,0);">Επιλογή</p>
                           <p class="textAnim">Επιλογή</p>
@@ -63,8 +77,9 @@
                       <img [src]="product.scope2.image" class="prodImg"  alt="">
                     </div>
                     <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-6 col-6">
-                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><h6>{{ product.scope2.name }}</h6></div>
-                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Quantity: {{ product.scope2.qty }}</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><h6 style="width: 320px">{{ product.scope2.name }}</h6></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Ποσότητα: {{ product.scope2.qty }}</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Διαθεσιμότητα: {{ product.scope2.diathesima }}</p></div>
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="!product.scope2.hasOffer">Price: {{ product.scope2.wholesale * product.scope2.qty}}&#x20AC;</p></div>
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="product.scope2.hasOffer">Price: {{ product.scope2.wholesale * product.scope2.qty}}&#x20AC;</p></div>
                     </div>
@@ -76,26 +91,30 @@
 
 
 <div *ngIf="showScope3" class="scroll1" style="position: fixed;top: 0;z-index: 10000000; background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;padding-top: 6%;">
-    <div class="container scroll" style="background-color: white;padding: 2%; height: fit-content; width: fit-content;">
+    <div class="container scroll" style="position: relative;background-color: white;padding: 2%; height: fit-content; width: fit-content;">
+      <a (click)="stopScope2()" style="width: fit-content;cursor: pointer;">
+        <img class="remove" alt=""  style="width: 16px;" srcset="">
+      </a> 
       <div class="row">
         <h2>Βάση</h2>
       </div>
       <div class="row">
         <hr>
       </div>
-        <div class="row products" *ngFor="let product of group.Scope3">
+        <div class="row products" *ngFor="let product of scope3">
           <div class="col-4">
             <img class="prodImg" [src]="product.image" alt="" style="display: inline-block;margin-bottom: 10%;">
           </div>
           <div class="col-8">
             <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><h6>{{ product.name }}</h6></div>
-            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Quantity: {{ product.qty }}</p></div>
+            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Ποσότητα: {{ product.qty }}</p></div>
+            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Διαθεσιμότητα: {{ product.diathesima }}</p></div>
             <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Price: {{ product.wholesale * product.qty}}&#x20AC;</p></div>
             <!-- <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><button class="btn btn-success" (click)="addToCart(product)">
               <p *ngIf="!changeBtn">Προσθήκη</p>
               <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">
            </button></div> -->
-           <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="addToCart(product,btn2)" [disabled]="btnLoading || product.stock <= 0"  [ngClass]="btnLoading || product.stock <= 0? 'myBtn myBtnDisabled' : 'myBtn'"  class="myBtn" #btn2>
+           <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="hanldeScope3(product,btn2)" [disabled]="btnLoading"  [ngClass]="btnLoading? 'myBtn myBtnDisabled' : 'myBtn'"  class="myBtn" #btn2>
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             <p style="margin: 0px;color: rgba(0,0,0,0);">Προσθήκη</p>
             <p class="textAnim">Προσθήκη</p>

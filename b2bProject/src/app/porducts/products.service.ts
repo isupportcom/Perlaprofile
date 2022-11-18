@@ -23,6 +23,21 @@ export  class ProductsService {
 
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
+  backOrderPopup2 = new Subject<boolean>();
+  castBackOrderPopup2 = this.backOrderPopup2.asObservable();
+
+  sendBackOrderPopup2(flag: boolean){
+   this.backOrderPopup2.next(flag)
+  }
+
+  backOrder2 = new Subject<boolean>();
+  castBackOrder2 = this.backOrder2.asObservable();
+
+  sendBackOrder2(flag: boolean){
+   this.backOrder2.next(flag)
+  }
+
+
   backOrderPopup = new Subject<boolean>();
   castBackOrderPopup = this.backOrderPopup.asObservable();
 
@@ -98,6 +113,9 @@ export  class ProductsService {
  }
 
  setGrouping(mtrl:any,grouping: any){
+
+   
+   
     return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/addProductBasedOnGrouping.php',
     {
         product_mtrl : mtrl ,

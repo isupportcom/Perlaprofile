@@ -25,6 +25,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   backOrder: boolean = false;
+  backOrder2: boolean = false;
   title = 'b2bProject';
   age = '10';
   loggedIn: boolean = true;
@@ -34,7 +35,7 @@ export class AppComponent implements OnInit {
   LeftScroll: any;
   products: product[] = [];
   singleProduct: any;
-
+  scope3 : any = [];
   relatedProducts:product|any = [];
   group: any;
   showScope3: boolean = false;
@@ -85,6 +86,13 @@ export class AppComponent implements OnInit {
 
     });
 
+    this.productService.backOrderPopup2.subscribe(resData => {
+      if(resData){
+        this.backOrder2 = resData
+      }
+
+    });
+
     console.log(this.date.getHours()+':'+this.date.getMinutes());
 
     this.authService.autoLogin();
@@ -105,8 +113,10 @@ export class AppComponent implements OnInit {
 
 
     this.cartService.startScope.subscribe(res => {
+      this.tempGroup = [];
+      this.relatedProducts = [];
       this.itemsToCart = [];
-      this.products = this.productService.getAll();
+      // this.products = this.productService.getAll();
       this.singleProduct = this.productService.getSingelProduct();
 
       let relatedProductsObs: Observable<any>;
@@ -126,6 +136,12 @@ export class AppComponent implements OnInit {
           groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,relatedProd.grouping);
 
           groupingObs.subscribe(resData => {
+            console.log(resData);
+            this.scope3 = resData.Scope3;
+            for(let i=0; i<this.scope3.length; i++){
+              this.scope3[i].qty = this.singleProduct.qty;
+            }
+
             scope2b = resData.Scope2[0];
             scope2b.qty = this.singleProduct.qty;
             temp = {
@@ -137,6 +153,8 @@ export class AppComponent implements OnInit {
           });
         }
       },500);
+      console.log(this.tempGroup);
+      console.log(this.itemsToCart);
 
 
       this.productAdded = true;
@@ -145,206 +163,308 @@ export class AppComponent implements OnInit {
 
 
     // this.router.navigate(['log-in'])
+
   }
 
 
   handleGrouping(product: any,btn: any){
-    btn.style.opacity = '1';
-    this.btnLoading = true;
-    if(!btn.classList.contains('loading')) {
-      btn.classList.add('loading');
 
-      setTimeout(() => {
+    if(+this.singleProduct.diathesima <= 0){
+      this.itemsToCart = []
+      this.itemsToCart.push(this.singleProduct)
+      btn.style.opacity = '1';
+      this.btnLoading = true;
 
-
-        let groupingObs: Observable<any>;
-
-    groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,product.grouping);
-
-    groupingObs.subscribe(resData => {
-      console.log(resData);
-
-      this.group = resData;
-
-    });
-    setTimeout(() => {
-      console.log(this.group);
-
-
-
-      if(this.group.Scope2.length > 0){
-        if(this.group.Scope3.length <= 0){
-          for(let i=0;i<this.group.Scope2.length;i++){
-            this.group.Scope2[i].qty = this.singleProduct.qty;
+      if(!btn.classList.contains('loading')) {
+        btn.classList.add('loading');
+        setTimeout(() => {
+        let flag = false;
+        let scope1;
+        let scope2;
+        // console.log("HANDLE GROUPING");
+        // console.log(this.tempGroup);
+        // console.log(product);
+        for(let temp of this.tempGroup){
+          if(temp.scope1.mtrl == product.mtrl){
+            flag = true;
+            scope1 = temp.scope1;
+            scope2 = temp.scope2;
           }
-
-          this.singleProduct.show = true;
-          // this.cartService.addToCart(this.singleProduct);
-
-          this.cartService.sendProductAdded(true);
-          this.itemsToCart.push(this.singleProduct);
-
-          product.show = true;
-
-
-          // this.cartService.addToCart(product);
-
-          this.cartService.sendProductAdded(true);
-          this.itemsToCart.push(product);
-          for(let prod of this.group.Scope2){
-            prod.show = true;
-            // this.cartService.addToCart(prod);
-
-            this.cartService.sendProductAdded(true);
-            this.itemsToCart.push(prod);
-          }
-          this.cartService.setItemsToCartArray(this.itemsToCart);
-
-        }
-        else{
-          for(let i=0;i<this.group.Scope2.length;i++){
-            this.group.Scope2[i].qty = this.singleProduct.qty;
-          }
-
-          for(let i=0;i<this.group.Scope3.length;i++){
-            this.group.Scope3[i].qty = this.singleProduct.qty;
-          }
-
-          this.itemsToCart.push(this.singleProduct);
-          this.itemsToCart.push(product);
-          console.log(product);
-          for(let prod of this.group.Scope2){
-            this.itemsToCart.push(prod);
-          }
-          console.log(this.itemsToCart);
-
-          this.showScope3 = true;
         }
 
+        if(flag == true){
+          this.itemsToCart.push(scope1)
+            this.itemsToCart.push(scope2)
+            console.log(this.itemsToCart);
+            this.productAdded = false;
+            this.btnLoading = false;
+            if(this.scope3.length > 0){
+              this.showScope3 = true;
+            }
+            else{
+              this.stopScope();
+            }
+        }
+        console.log(this.itemsToCart);
 
 
-        this.productAdded = false;
-        // window.location.reload();
+
+
+
+        btn.classList.remove('loading');
+        },2500)
       }
-      else{
-        if(this.group.Scope3.length <= 0){
-          this.singleProduct.show = true;
-          // this.cartService.addToCart(this.singleProduct);
-
-          this.cartService.sendProductAdded(true);
-          this.itemsToCart.push(this.singleProduct);
-
-          product.show = true;
-          // this.cartService.addToCart(product);
-
-          this.cartService.sendProductAdded(true);
-          this.itemsToCart.push(product);
-          this.cartService.setItemsToCartArray(this.itemsToCart);
-
-
-          window.location.reload();
-        }
-        else{
-          for(let i=0;i<this.group.Scope3.length;i++){
-            this.group.Scope3[i].qty = this.singleProduct.qty;
-          }
-
-          this.itemsToCart.push(this.singleProduct);
-          this.itemsToCart.push(product);
-          console.log(this.itemsToCart);
-          this.showScope3 = true;
-        }
-
-
-
-        this.productAdded = false;
-         window.location.reload();
-      }
-      this.btnLoading = false;
-      btn.classList.remove('loading');
-    },500)
-      }, 1000);
     }
+    else{
+      this.itemsToCart = []
+      this.itemsToCart.push(this.singleProduct)
+      btn.style.opacity = '1';
+      this.btnLoading = true;
+      console.log(this.btnLoading);
+
+      if(!btn.classList.contains('loading')) {
+        btn.classList.add('loading');
+        setTimeout(() => {
+          let flag = false;
+          let scope1: any;
+          let scope2: any;
+          for(let temp of this.tempGroup){
+            if(temp.scope1.mtrl == product.mtrl){
+              flag = true;
+              scope1 = temp.scope1;
+              scope2 = temp.scope2;
+            }
+          }
+
+          if(flag == true){
+            if(scope1.diathesima <= 0 || scope2.diathesima <= 0){
+              this.productService.sendBackOrderPopup(true);
+
+              this.productService.backOrder.subscribe(resData => {
+                if(resData){
+                  if(this.btnLoading || this.productAdded){
+                    this.itemsToCart.push(scope1)
+                    this.itemsToCart.push(scope2)
+                    console.log(this.itemsToCart);
+                    this.productAdded = false;
+                    this.btnLoading = false;
+                  }
+                  if(this.scope3.length > 0){
+                    this.showScope3 = true;
+
+                  }
+                  else{
+                    this.stopScope();
+                  }
+                }
+              })
+          }
+          else{
+
+            if(this.btnLoading || this.productAdded){
+              this.itemsToCart.push(scope1)
+              this.itemsToCart.push(scope2)
+              console.log(this.itemsToCart);
+              this.productAdded = false;
+              this.btnLoading = false;
+            }
+            if(this.scope3.length > 0){
+              this.showScope3 = true;
+            }
+            else{
+              this.stopScope();
+            }
+          }
+          }
+          this.renderer.setStyle(btn, 'opacity', '');
+          btn.classList.remove('loading');
+        },2500)
+      }
+
+
+    }
+
+
+
 
 
   }
 
- addToCart (product: any,btn?: any){
-    btn.style.opacity = '1';
-    this.btnLoading = true;
-    if(!btn.classList.contains('loading')) {
-      btn.classList.add('loading');
-      setTimeout(() => {
+  hanldeScope3(product: any,btn?: any){
 
-        this.itemsToCart.push(product);
+    if(+this.singleProduct.diathesima <= 0){
+      btn.style.opacity = '1';
+      this.btnLoading = true;
+      if(!btn.classList.contains('loading')) {
+        btn.classList.add('loading');
+        setTimeout(() => {
+          if(this.btnLoading || this.showScope3){
+            this.itemsToCart.push(product);
+            console.log(this.itemsToCart);
 
-        this.cartService.setItemsToCartArray(this.itemsToCart);
+            this.removeDuplicates();
+            this.addToCart();
+            this.showScope3 = false;
+            this.btnLoading = false;
+          }
+          btn.classList.remove('loading');
+        }, 1200);
+      }
 
-        let id = '';
+    }
+    else{
+      if(+product.diathesima > 0){
 
 
-        for(let prod of this.itemsToCart){
-          id = id + prod.mtrl;
-          // prod.show = true;
-          // this.cartService.addToCart(prod);
-          // localStorage.setItem("products",JSON.stringify(this.cartService.getItems()));
-          // this.cartService.sendProductAdded(true);
+        btn.style.opacity = '1';
+        this.btnLoading = true;
+        if(!btn.classList.contains('loading')) {
+          btn.classList.add('loading');
+          setTimeout(() => {
+            if(this.btnLoading || this.showScope3){
+              this.itemsToCart.push(product);
+              console.log(this.itemsToCart);
+
+              this.removeDuplicates();
+              this.addToCart();
+              this.showScope3 = false;
+              this.btnLoading = false;
+            }
+            btn.classList.remove('loading');
+          }, 1200);
         }
 
-        this.cartService.setId(id);
+      }
+      else{
+
+        this.productService.sendBackOrderPopup2(true);
+
+        this.productService.backOrder2.subscribe(resData => {
+          if(resData){
+            btn.style.opacity = '1';
+            this.btnLoading = true;
+            if(!btn.classList.contains('loading')) {
+              btn.classList.add('loading');
+              setTimeout(() => {
+                if(this.btnLoading || this.showScope3){
+                  this.itemsToCart.push(product);
+                  console.log(this.itemsToCart);
 
 
 
-        for(let prod of this.itemsToCart){
-          // id = id + prod.mtrl;
-          prod.group_id = id;
-          prod.show = true;
 
-          console.log(prod);
+                  this.removeDuplicates();
+                  this.addToCart();
+                  this.showScope3 = false;
+                  this.btnLoading = false;
+                }
+                btn.classList.remove('loading');
+              }, 1200);
+            }
+          }
+        })
 
 
-          this.cartService.addToCart(prod);
+      }
+    }
+  }
 
-          this.cartService.sendProductAdded(true);
+  removeDuplicates(){
+    let temp: {
+      mtrl: any,
+      counter: any
+    }[] = [];
 
+    for(let i=0;i<this.itemsToCart.length;i++){
+      temp.push({
+        mtrl: this.itemsToCart[i].mtrl,
+        counter: 0
+      })
+    }
+    console.log(temp);
+
+
+
+    for(let i=0;i<this.itemsToCart.length;i++){
+      for(let k=0;k<temp.length;k++){
+        if(temp[k].mtrl == this.itemsToCart[i].mtrl){
+          if(temp[k].counter == 0){
+            temp[k].counter ++
+          }
+          else{
+            temp[k].counter ++
+            this.itemsToCart.splice(i,1);
+          }
         }
-
-
-        this.productAdded = false;
-        this.showScope3 = false;
-
-        console.log('OPA');
-
-
-        window.scroll({
-          top: 0,
-          left: 0,
-          behavior: 'smooth'
-        });
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 1000)
-
-        this.btnLoading = false;
-        btn.classList.remove('loading');
-
-      }, 1200);
+      }
     }
 
+    console.log(temp);
+    console.log(this.itemsToCart);
+  }
+
+  addToCart(){
+
+    let id = '';
 
 
+    for(let prod of this.itemsToCart){
+      id = id + prod.mtrl;
+    }
+    this.cartService.setId(id)
+    console.log(id);
 
 
+    for(let prod of this.itemsToCart){
+      // id = id + prod.mtrl;
+      prod.group_id = id;
+
+      console.log(prod);
+
+
+      this.cartService.addToCart(prod);
+
+      this.cartService.sendProductAdded(true);
+
+    }
+    this.itemsToCart = [];
+  }
+
+  stopScope(){
+    this.btnLoading = false;
+    this.relatedProducts = [];
+  }
+
+  stopScope2(){
+    this.btnLoading = false;
+    this.showScope3 = false;
   }
 
   continueBackOrder(){
-    this.productService.sendBackOrder(true);
-    this.backOrder = false;
+    this.btnLoading = false;
+      this.productService.sendBackOrder(true);
+      this.backOrder = false;
+
   }
 
   stopBackOrder(){
-    this.productService.sendBackOrder(false);
-    this.backOrder = false;
+    this.btnLoading = false;
+      this.productService.sendBackOrder(false);
+      this.backOrder = false;
+  }
+
+
+  continueBackOrder2(){
+    this.btnLoading = false;
+    this.productService.sendBackOrder2(true);
+    this.backOrder2 = false;
+
+  }
+
+  stopBackOrder2(){
+    this.btnLoading = false;
+      this.productService.sendBackOrder2(false);
+      this.backOrder2 = false;
   }
 
   handleClose(){

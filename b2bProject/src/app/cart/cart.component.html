@@ -17,8 +17,10 @@
                 </div>
                 <div class="col-6">
                   <div class="row">
-                    <p class="productName" *ngIf="currentLang == 'el'">{{ item.onoma }}</p>
-                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.onoma_eng }}</p>
+                    <p class="productName" *ngIf="currentLang == 'el'">{{ item.mtrl }}</p>
+                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.mtrl }}</p>
+                    <!-- <p class="productName" *ngIf="currentLang == 'el'">{{ item.onoma }}</p>
+                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.onoma_eng }}</p> -->
                   </div>
                   <div class="row" style="align-items: end;">
                     <button class="trash" (click)="removeOne(item,i,true)" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
@@ -56,8 +58,10 @@
                 </div>
                 <div class="col-6">
                   <div class="row">
-                    <p class="productName" *ngIf="currentLang == 'el'">{{ item.onoma }}</p>
-                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.onoma_eng }}</p>
+                    <p class="productName" *ngIf="currentLang == 'el'">{{ item.mtrl }}</p>
+                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.mtrl }}</p>
+                    <!-- <p class="productName" *ngIf="currentLang == 'el'">{{ item.onoma }}</p>
+                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.onoma_eng }}</p> -->
                   </div>
                 </div>
               </div>
