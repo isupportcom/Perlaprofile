@@ -250,7 +250,11 @@ export class CartServiceService {
         group_id: product.group_id,
         discound: discount,
         p_page: p_page,
-        dec: dec
+        dec: dec,
+        omada: product.omada,
+        offer: product.offer,
+        empor_katig: loadedUser.emporiki_katigoria,
+        geo_zoni: loadedUser.geografikh_zwnh
       })
       .then((resData) => console.log(resData.data));
 

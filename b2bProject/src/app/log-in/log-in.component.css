@@ -3,6 +3,30 @@
 
 }
 
+.filter-dropdown{
+  border: none !important;
+  background-color: #6DAE49;
+  padding: 8px;
+  color: white;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.filter-dropdown:focus{
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.filter-dropdown option{
+  background-color: white;
+  color: black;
+}
+
+.filter-dropdown:hover{
+  background-color: #4a7632;
+}
+
 .card-body{
   max-width: 40%;
   background-color: white;

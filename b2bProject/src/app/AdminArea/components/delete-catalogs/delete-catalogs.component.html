@@ -1,1 +1,14 @@
-<p>delete-catalogs works!</p>
+<div class="container" style="height: 100%;width:100%;overflow-y: scroll;overflow-x: hidden;">
+    <div class="row" style="justify-content: center;align-items:center;height: 100%;width:100%;">
+        <ul style="width: fit-content;">
+            <li *ngFor="let catalogue of catalogueNames" style="margin-bottom: 12px;">
+                <a [href]="'https://perlarest.vinoitalia.gr/php-auth-api/catalogues/' + catalogue" style="margin-right: 12px;">
+                    {{ catalogue }}
+                </a>
+                <a class="remove" (click)="removeCatalogue(catalogue)">
+                    <img src="../../assets/trash-alt.svg" alt="" srcset="" style="width: 20px;height: 20px;">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

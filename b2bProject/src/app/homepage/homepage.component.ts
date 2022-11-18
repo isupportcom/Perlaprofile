@@ -26,7 +26,7 @@ export class HomepageComponent implements OnInit {
   source: string = '../../assets/pexels-expect-best-323772.jpg';
   showLoggedInContent: boolean = false;
   username = localStorage.getItem('username');
-
+  upokatastima: any;
   constructor(private productsService: ProductsService,private router: Router,private translate:TranslateConfigService,private renderer: Renderer2,private elementRef: ElementRef) { }
 
   innerWidth:any;
@@ -56,12 +56,13 @@ export class HomepageComponent implements OnInit {
   }
 
    ngOnInit() {
-
-    this.currentLang = localStorage.getItem('lang');
-    this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
-
-    // this.getSeeEarlier();
-
+     
+     this.currentLang = localStorage.getItem('lang');
+     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+     this.upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
+     // this.getSeeEarlier();
+     
+     console.log(this.upokatastima);
 
     if(this.username){
       this.showLoggedInContent = true;

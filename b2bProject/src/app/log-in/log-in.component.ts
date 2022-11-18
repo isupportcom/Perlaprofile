@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import {AuthService} from "../services/auth.service";
 import {NgForm} from "@angular/forms";
@@ -16,7 +16,7 @@ export interface user{
 
 export interface AuthResponseData{
   kind: string;
-
+  
   token: string;
   idToken: string;
   username: string;
@@ -35,13 +35,17 @@ export interface AuthResponseData{
 })
 export class LogInComponent implements OnInit, OnDestroy {
   error: boolean = false;
+  mphke: boolean = false;
   message: string = '';
   userType:string = '';
   username:string = '';
   password:string = '';
   user : user | any;
+  upokatastimata: any = [];
+  selectedId: any;
   private tokenExpirationTimer: any;
   products: any;
+  @ViewChild('branch') branch: any;
   constructor(private router:Router,
               private authService:AuthService,
               private route: ActivatedRoute,
@@ -66,7 +70,7 @@ export class LogInComponent implements OnInit, OnDestroy {
     localStorage.setItem("products",JSON.stringify(this.products));
   }
 
-  loginProcess(f:NgForm,btn:any){
+  loginProcess(f:NgForm,btn?:any){
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
@@ -99,7 +103,14 @@ export class LogInComponent implements OnInit, OnDestroy {
               if(resData.isAdmin== "1"){
                 this.router.navigate(['dashboard/insert-products']);
               }else{
-                this.router.navigate(['home']);
+                axios.post('https://perlarest.vinoitalia.gr/php-auth-api/getYpokatastimata.php',{
+                  trdr: resData.trdr
+                }).then(resData => {
+                  console.log(resData.data.ypokat);
+                  this.upokatastimata = resData.data.ypokat;
+                  this.mphke = true;
+                })
+                // this.router.navigate(['home']);
               }
             }
             else{
@@ -116,6 +127,35 @@ export class LogInComponent implements OnInit, OnDestroy {
 
   }
 
+  handleUpokat(e: any){
+    console.log(e.target.value);
+    this.selectedId = +e.target.value
+  }
+
+  saveUpokat(){
+    if(this.selectedId){
+      for(let upokat of this.upokatastimata){
+        if(upokat.trdrbranch == this.selectedId){
+          console.log(upokat);
+          upokat = JSON.stringify(upokat);
+          localStorage.setItem('upokatastima', upokat);
+        }
+      }
+    }
+    else{
+      console.log(this.branch.nativeElement.value);
+      for(let upokat of this.upokatastimata){
+        if(upokat.trdrbranch == this.branch.nativeElement.value){
+          console.log(upokat);
+          upokat = JSON.stringify(upokat);
+          localStorage.setItem('upokatastima', upokat);
+        }
+      }
+    }
+    setTimeout(() => {
+      this.router.navigate(['home']);
+    },150);
+  }
 
   authenticationProcces(name: string, surname: string, username: string, expiresIn: number ){
     if (this.username ==this.user.username  && this.password == this.user.password){

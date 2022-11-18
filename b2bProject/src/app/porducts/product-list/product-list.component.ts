@@ -279,14 +279,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
             product_name_eng: resData.data.products[i].onoma_eng,
             kodikos_kataskeuasti: resData.data.products[i].kodikos_kataskeuasti,
             texnikos_kodikos: resData.data.products[i].texnikos_kodikos,
-            diathesima: resData.data.products[i].diathesima
+            diathesima: resData.data.products[i].diathesima,
+            omada: resData.data.products[i].omada
           };
           this.productsService.setAll(this.products[i]);
         }
 
 
 
-
+        
 
 
         setTimeout(() => {
@@ -666,6 +667,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.handleCheckboxes(e, true);
   }
 
+  yoyo(e: any){
+    console.log(e);
+    
+    this.handleCheckboxes(e,false)
+    
+  }
+
   handleWizzardProfile(name: string, id: number) {
     this.productsService.setSingleProduct({
       name: name,
@@ -679,20 +687,56 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   handleCheckboxes(e: any, clickeP?: boolean) {
     this.shownProducts = [];
+    console.log(e);
+    
     let flag = false;
-
-    let boxes = e.parentElement.parentElement.parentElement.parentElement.parentElement.children;
-    for(let i=0; i<boxes.length;i++){
-      if(boxes[i].children[0].children[0].children[0].children[0].checked){
-        if(e.value == boxes[i].children[0].children[0].children[0].children[0].value){
-          flag = true;
+    let boxes;
+    boxes = e.parentElement.parentElement.parentElement.parentElement.parentElement.children;
+    
+    
+    if(clickeP){
+      console.log("P");
+      
+      console.log(boxes);
+      for(let i=0; i<boxes.length;i++){
+        if(boxes[i].children[0].children[0].children[0].children[0].checked){
+          if(e.value == boxes[i].children[0].children[0].children[0].children[0].value){
+            flag = true;
+          }
+          boxes[i].children[0].children[0].children[0].children[0].checked = false;        
         }
-        boxes[i].children[0].children[0].children[0].children[0].checked = false;        
       }
+    }
+    else{
+      console.log("INPUT");
+      
+      console.log(boxes);
+      for(let i=0; i<boxes.length;i++){
+        console.log(boxes[i].children[0].children[0].children[0].children[0].checked);
+        if(boxes[i].children[0].children[0].children[0].children[0].checked){
+          console.log("OUAOU");
+          console.log(e.value);
+          console.log(boxes[i].children[0].children[0].children[0].children[0].value);
+          
+          if(e.value == boxes[i].children[0].children[0].children[0].children[0].value){
+            console.log("YEAHHHHHHH");
+            
+            flag = true;
+          }
+          boxes[i].children[0].children[0].children[0].children[0].checked = false;   
+        }
+      }
+
+      // console.log(e.parentElement.parentElement.parentElement.parentElement.parentElement.children);
+      // .children[0].children[0].children[0].children[0]
+
     }
     this.filterOn = false;
     this.listArray = [];
-    if(!flag){
+    console.log(flag);
+    
+    if((flag && !clickeP) || (!flag && clickeP)){
+      
       if (clickeP) {
         if (!e.checked) {
           e.checked = true;
@@ -731,9 +775,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
   
         console.log(this.listArray);
       } else {
+        
+        if (!e.checked) {
+          
+          e.checked = true;
+        } else {
+          e.checked = false;
+        }
         if (e.checked) {
           this.listArray.push(e.value);
           this.waiting = true;
+          console.log(this.listArray);
+          
+          
           this.updateProducts();
           setTimeout(() => {
             this.waiting = false;
@@ -751,6 +805,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             }
           }
           this.waiting = true;
+
           this.updateProducts();
           setTimeout(() => {
             this.waiting = false;
