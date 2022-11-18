@@ -224,7 +224,7 @@ export class CartServiceService {
     }
     console.log(product.group_id);
 
-
+    let upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
     let qty
     if(product.qty == undefined){
       qty=1;
@@ -254,7 +254,8 @@ export class CartServiceService {
         omada: product.omada,
         offer: product.offer,
         empor_katig: loadedUser.emporiki_katigoria,
-        geo_zoni: loadedUser.geografikh_zwnh
+        geo_zoni: loadedUser.geografikh_zwnh,
+        ypokat: upokatastima.trdrbranch
       })
       .then((resData) => console.log(resData.data));
 

@@ -45,7 +45,18 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   totalPrice: number = 0;
   showBankCredentials: boolean = true;
   currentLang = localStorage.getItem('lang') || 'el'
-
+  upokatastima: any;
+  address: any | string;
+  zipCode: any | string;
+  area: any | string; 
+  city: any | string; 
+  name: any | string; 
+  doy: any | string; 
+  afm: any | string; 
+  phone: any | string; 
+  email: any | string; 
+  courier: any | string; 
+  upokat_name: any | string;
   constructor(
     private cartService: CartServiceService,
     private router: Router,
@@ -55,35 +66,68 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    
+    this.upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     
+    console.log(this.upokatastima != {});
+    
+    if(this.upokatastima == {}){
+      console.log("HEY");
+      
+      this.address = this.upokatastima.address;
+      this.zipCode = this.loadedUser.zip;
+      this.area = this.upokatastima.area;
+      this.city = this.upokatastima.city;
+      this.name = this.loadedUser.eponimia;
+      this.upokat_name = this.upokatastima.name;
+      this.doy = this.loadedUser.doy;
+      this.afm = this.loadedUser.afm;
+      this.phone = this.upokatastima.phone1;
+      this.email = this.loadedUser.email;
+      this.courier = this.loadedUser.metaforeas;
+    }
+    else{
+      this.address = this.loadedUser.address;
+      this.zipCode = this.loadedUser.zip;
+      this.area = this.loadedUser.geografikh_zwnh;
+      this.city = this.loadedUser.city;
+      this.name = this.loadedUser.eponimia;
+      this.upokat_name = '';
+      this.doy = this.loadedUser.doy;
+      this.afm = this.loadedUser.afm;
+      this.phone = this.loadedUser.phone1;
+      this.email = this.loadedUser.email;
+      this.courier = this.loadedUser.metaforeas;
+    }
+
+
+
     this.FormData = this.builder.group({
-      address: [{value: this.loadedUser.address, disabled: true}],
-      zipCode: [{value: this.loadedUser.zip, disabled: true}],
-      area: [{value: this.loadedUser.area, disabled: true}],
-      city: [{value: this.loadedUser.city, disabled: true}],
-      name: [{value: this.loadedUser.eponimia, disabled: true}],
-      doy: [{value: this.loadedUser.doy, disabled: true}],
-      afm: [{value: this.loadedUser.afm, disabled: true}],
-      phone: [{value: this.loadedUser.phone1, disabled: true}],
-      email: [{value: this.loadedUser.email, disabled: true}],
-      shippingMethod: [{value: 'Αντικαταβολή', disabled: true}],
-      courier: [{value: 'ACS', disabled: true}] 
+      address: [{value: this.address, disabled: true}],
+      zipCode: [{value: this.zipCode, disabled: true}],
+      area: [{value: this.area, disabled: true}],
+      city: [{value: this.city, disabled: true}],
+      name: [{value: this.name, disabled: true}],
+      upokat_name: [{value: this.upokat_name, disabled: true}],
+      doy: [{value: this.doy, disabled: true}],
+      afm: [{value: this.afm, disabled: true}],
+      phone: [{value: this.phone, disabled: true}],
+      email: [{value: this.email, disabled: true}],
+      courier: [{value: this.courier, disabled: true}] 
     })
 
     this.BankData = this.builder.group({
-      address: [{value: this.loadedUser.address, disabled: false}],
-      zipCode: [{value: this.loadedUser.zip, disabled: false}],
-      area: [{value: this.loadedUser.area, disabled: false}],
-      city: [{value: this.loadedUser.city, disabled: false}],
-      name: [{value: this.loadedUser.eponimia, disabled: false}],
-      doy: [{value: this.loadedUser.doy, disabled: false}],
-      afm: [{value: this.loadedUser.afm, disabled: false}],
-      phone: [{value: this.loadedUser.phone1, disabled: false}],
-      email: [{value: this.loadedUser.email, disabled: false}],
-      shippingMethod: [{value: 'Αντικαταβολή', disabled: true}] ,
-      courier: [{value: 'ACS', disabled: true}]
+      address: [{value: this.address, disabled: false}],
+      zipCode: [{value: this.zipCode, disabled: false}],
+      area: [{value: this.area, disabled: false}],
+      city: [{value: this.city, disabled: false}],
+      name: [{value: this.name, disabled: false}],
+      upokat_name: [{value: this.upokat_name, disabled: false}],
+      doy: [{value: this.doy, disabled: false}],
+      afm: [{value: this.afm, disabled: false}],
+      phone: [{value: this.phone, disabled: false}],
+      email: [{value: this.email, disabled: false}],
+      courier: [{value: this.courier, disabled: false}] 
     })
     
 

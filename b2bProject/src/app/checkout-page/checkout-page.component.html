@@ -28,14 +28,30 @@
                         <input type="text" name="city" formControlName="city" class="form-control" id="city" style="width: 100%;" required>
                     </div>
                 </div>
-                <div class="row">
+                <div *ngIf="upokatastima == {}" class="row">
                   <div class="col-6" style="padding: 12px;">
                       <label for="area" translate>Επωνυμία</label>
                       <input type="text" name="name" formControlName="name" class="form-control" id="name" style="width: 100%;" required>
                   </div>
                   <div class="col-6" style="padding: 12px;">
+                    <label for="upokat_name" translate>Επωνυμία Υποκαταστήματος</label>
+                    <input type="text" name="upokat_name" formControlName="upokat_name" class="form-control" id="upokat_name" style="width: 100%;" required>
+                  </div>
+                </div>
+                <div *ngIf="upokatastima == {}" class="row">
+                  <div class="col-12" style="padding: 12px;">
                       <label for="city" translate>ΔΟΥ</label>
                       <input type="text" name="doy" formControlName="doy" class="form-control" id="doy" style="width: 100%;" required>
+                  </div>
+                </div>
+                <div *ngIf="upokatastima != {}" class="row">
+                  <div class="col-6" style="padding: 12px;">
+                      <label for="area" translate>Επωνυμία</label>
+                      <input type="text" name="name" formControlName="name" class="form-control" id="name" style="width: 100%;" required>
+                  </div>
+                  <div class="col-6" style="padding: 12px;">
+                    <label for="city" translate>ΔΟΥ</label>
+                    <input type="text" name="doy" formControlName="doy" class="form-control" id="doy" style="width: 100%;" required>
                   </div>
                 </div>
                 <div class="row">
@@ -56,13 +72,7 @@
                 </div>
                 <div class="row">
                   <div class="col-12" style="padding: 12px;">
-                      <label for="area" translate>Τρόπος Αποστολής</label>
-                      <input type="text" name="shippingMethod" formControlName="shippingMethod" class="form-control" id="shippingMethod" style="width: 100%;" required>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12" style="padding: 12px;">
-                      <label for="area" translate>Μεταφορεάς</label>
+                      <label for="area" translate>Μεταφορικό Μέσο</label>
                       <input type="text" name="courier" formControlName="courier" class="form-control" id="courier" style="width: 100%;" required>
                   </div>
                 </div>
@@ -99,11 +109,10 @@
         </div>
 
         <div class="row" style="align-items: end;height: 50px">
-          <h2 translate>Μεταφορά</h2>
+          <h2 translate>Χρέωση Μεταφορικών</h2>
         </div>
         <div class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;transition: height 0.5s ease-in-out;" #information>
           <div class="col">
-            <p>Όνομα Μεταφορικής</p>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="check2" id="apostoleas" #check2 checked>
               <label class="form-check-label" for="apostoleas" translate>
