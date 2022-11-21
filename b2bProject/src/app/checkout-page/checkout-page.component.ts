@@ -45,7 +45,20 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   totalPrice: number = 0;
   showBankCredentials: boolean = true;
   currentLang = localStorage.getItem('lang') || 'el'
-
+  upokatastima: any;
+  address: any | string;
+  zipCode: any | string;
+  area: any | string; 
+  city: any | string; 
+  name: any | string; 
+  doy: any | string; 
+  afm: any | string; 
+  phone: any | string; 
+  email: any | string; 
+  courier: any | string; 
+  upokat_name: any | string;
+  courier_name: any | string;
+  shipping_method: any | string;
   constructor(
     private cartService: CartServiceService,
     private router: Router,
@@ -55,35 +68,76 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    
+    this.upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     
+    console.log(this.upokatastima != {});
+    
+    if(this.upokatastima != {}){
+      console.log("HEY");
+      
+      this.address = this.upokatastima.address;
+      this.zipCode = this.loadedUser.zip;
+      this.area = this.upokatastima.area;
+      this.city = this.upokatastima.city;
+      this.name = this.loadedUser.eponimia;
+      this.upokat_name = this.upokatastima.name;
+      this.doy = this.loadedUser.doy;
+      this.afm = this.loadedUser.afm;
+      this.phone = this.upokatastima.phone1;
+      this.email = this.loadedUser.email;
+      this.courier = this.loadedUser.metaforiko_meso;
+      this.courier_name = this.loadedUser.metaforeas
+      this.shipping_method = this.loadedUser.tropos_apostolis;
+    }
+    else{
+      this.address = this.loadedUser.address;
+      this.zipCode = this.loadedUser.zip;
+      this.area = this.loadedUser.geografikh_zwnh;
+      this.city = this.loadedUser.city;
+      this.name = this.loadedUser.eponimia;
+      this.upokat_name = '';
+      this.doy = this.loadedUser.doy;
+      this.afm = this.loadedUser.afm;
+      this.phone = this.loadedUser.phone1;
+      this.email = this.loadedUser.email;
+      this.courier = this.loadedUser.metaforiko_meso;
+      this.courier_name = this.loadedUser.metaforeas;
+      this.shipping_method = this.loadedUser.tropos_apostolis;
+    }
+
+
+
     this.FormData = this.builder.group({
-      address: [{value: this.loadedUser.address, disabled: true}],
-      zipCode: [{value: this.loadedUser.zip, disabled: true}],
-      area: [{value: this.loadedUser.area, disabled: true}],
-      city: [{value: this.loadedUser.city, disabled: true}],
-      name: [{value: this.loadedUser.eponimia, disabled: true}],
-      doy: [{value: this.loadedUser.doy, disabled: true}],
-      afm: [{value: this.loadedUser.afm, disabled: true}],
-      phone: [{value: this.loadedUser.phone1, disabled: true}],
-      email: [{value: this.loadedUser.email, disabled: true}],
-      shippingMethod: [{value: 'Αντικαταβολή', disabled: true}],
-      courier: [{value: 'ACS', disabled: true}] 
+      address: [{value: this.address, disabled: true}],
+      zipCode: [{value: this.zipCode, disabled: true}],
+      area: [{value: this.area, disabled: true}],
+      city: [{value: this.city, disabled: true}],
+      name: [{value: this.name, disabled: true}],
+      upokat_name: [{value: this.upokat_name, disabled: true}],
+      doy: [{value: this.doy, disabled: true}],
+      afm: [{value: this.afm, disabled: true}],
+      phone: [{value: this.phone, disabled: true}],
+      email: [{value: this.email, disabled: true}],
+      courier: [{value: this.courier, disabled: true}],
+      courier_name: [{value: this.courier_name, disabled: true}],
+      shipping_method: [{value: this.shipping_method, disabled: true}] 
     })
 
     this.BankData = this.builder.group({
-      address: [{value: this.loadedUser.address, disabled: false}],
-      zipCode: [{value: this.loadedUser.zip, disabled: false}],
-      area: [{value: this.loadedUser.area, disabled: false}],
-      city: [{value: this.loadedUser.city, disabled: false}],
-      name: [{value: this.loadedUser.eponimia, disabled: false}],
-      doy: [{value: this.loadedUser.doy, disabled: false}],
-      afm: [{value: this.loadedUser.afm, disabled: false}],
-      phone: [{value: this.loadedUser.phone1, disabled: false}],
-      email: [{value: this.loadedUser.email, disabled: false}],
-      shippingMethod: [{value: 'Αντικαταβολή', disabled: true}] ,
-      courier: [{value: 'ACS', disabled: true}]
+      address: [{value: this.address, disabled: false}],
+      zipCode: [{value: this.zipCode, disabled: false}],
+      area: [{value: this.area, disabled: false}],
+      city: [{value: this.city, disabled: false}],
+      name: [{value: this.name, disabled: false}],
+      upokat_name: [{value: this.upokat_name, disabled: false}],
+      doy: [{value: this.doy, disabled: false}],
+      afm: [{value: this.afm, disabled: false}],
+      phone: [{value: this.phone, disabled: false}],
+      email: [{value: this.email, disabled: false}],
+      courier: [{value: this.courier, disabled: false}],
+      courier_name: [{value: this.courier_name, disabled: false}],
+      shipping_method: [{value: this.shipping_method, disabled: false}] 
     })
     
 
@@ -156,7 +210,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         console.log(this.loadedUser.trdr);
         let payment;
     
-          payment = 2;
+          payment = 14;
     
         axios
           .post(
@@ -166,10 +220,21 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
               qty: this.qtyArr.join(','),
               trdr: this.loadedUser.trdr,
               discount: this.discArr.join(','),
+              tropos_apostolis: this.shipping_method,
               payment: payment,
+              ypokat: this.upokatastima.trdrbranch,
+              metaforeas: this.loadedUser.metaforeas,
+              metaforiko_meso: this.loadedUser.metaforiko_meso,
+              address: this.address,
+              tk: this.zipCode,
+              area: this.area,
+              city: this.city,
+              dromologio: this.loadedUser.dromologio
             }
           )
           .then((resData) => {
+            console.log(resData);
+            
             // let h3 :any
               //  h3 = document.getElementById("orderComplete");
               // h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
@@ -177,7 +242,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
                 btn.classList.remove('loading');
                 this.router.navigate(['order-completed'])
                 setTimeout(()=>{
-                  window.location.reload();
+                  // window.location.reload();
                 })
               },100)
     
@@ -226,6 +291,9 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.FormData.controls['afm'].enable();
       this.FormData.controls['email'].enable();
       this.FormData.controls['phone'].enable();
+      this.FormData.controls['courier'].enable();
+      this.FormData.controls['courier_name'].enable();
+      this.FormData.controls['shipping_method'].enable();
       this.trigwnikh = false;
     } 
     else{
@@ -238,6 +306,9 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.FormData.controls['afm'].disable();
       this.FormData.controls['email'].disable();
       this.FormData.controls['phone'].disable();
+      this.FormData.controls['courier'].disable();
+      this.FormData.controls['courier_name'].disable();
+      this.FormData.controls['shipping_method'].disable();
       this.trigwnikh = true;
     }
   }
@@ -333,6 +404,15 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         let discArr:any = [];
         let route = this.router;
         let loadedUser = this.loadedUser
+        let shipping_method = this.shipping_method
+        let trdrbranch = this.upokatastima.trdrbranch;
+        let metaforeas = this.loadedUser.metaforeas;
+        let metaforiko_meso = this.loadedUser.metaforiko_meso;
+        let address = this.address;
+        let zipCode = this.zipCode;
+        let area = this.area;
+        let city = this.city;
+        let dromologio = this.loadedUser.dromologio
         // let cardElementRef = useRef(null);
         // await RevolutCheckout(req.data.data.public_id).then(RC => {
         //   console.log(RC);
@@ -390,7 +470,16 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
                   qty: qtyArr.join(','),
                   trdr: loadedUser.trdr,
                   discount: discArr.join(','),
-                  payment: payment,
+                  tropos_apostolis: shipping_method,
+                  ypokat: trdrbranch,
+                  metaforeas: metaforeas,
+                  metaforiko_meso: metaforiko_meso,
+                  address: address,
+                  tk: zipCode,
+                  area: area,
+                  city: city,
+                  dromologio: dromologio,
+                  payment: 9,
                 }
               )
               .then((resData) => {

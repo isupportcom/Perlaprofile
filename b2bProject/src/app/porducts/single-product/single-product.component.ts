@@ -1,5 +1,5 @@
 import { singleProduct } from './../../AdminArea/adminareaproducts/adminareaproducts.component';
-import {AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, Input, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, Input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from "axios"
@@ -14,7 +14,7 @@ import { faBox } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './single-product.component.html',
   styleUrls: ['./single-product.component.css']
 })
-export class SingleProductComponent implements OnInit {
+export class SingleProductComponent implements OnInit, OnDestroy {
   @ViewChild('productCard') productCard: ElementRef | undefined;
   @ViewChild('productImg') productImg: ElementRef | undefined;
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
@@ -199,6 +199,7 @@ export class SingleProductComponent implements OnInit {
 
 
   handleAddToCart(btn: any){
+    let counter = 0;
     if(+this.index.diathesima > 0){
 
         if(!btn.classList.contains('loading')) {
@@ -207,18 +208,8 @@ export class SingleProductComponent implements OnInit {
           }
         console.log(btn);
     
-        axios.post(
-          'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
-          {
-            trdr: this.loadedUser.trdr,
-          }
-        ).then(resData => {
-    
-          this.products = resData.data.products;
-          this.cartService.sendProductCount(this.products.length);
-    
-        });
-    
+        
+        this.cartService.sendProductAdded(true);
     
     
         let relatedProductsObs: Observable<any>;
@@ -238,11 +229,13 @@ export class SingleProductComponent implements OnInit {
     
             this.cartService.setId(this.index.mtrl)
     
-            this.productsService.setSingleProduct(this.index);
-            this.index.show = true;
+            // this.productsService.setSingleProduct(this.index);
+            
+            console.log("PEOS");
+            
+            this.cartService.sendProductAdded(true);
             this.cartService.addToCart(this.index);
     
-            this.cartService.sendProductAdded(true);
           }
           else{
             window.scroll({
@@ -259,24 +252,17 @@ export class SingleProductComponent implements OnInit {
       this.productsService.sendBackOrderPopup(true);
 
       this.productsService.backOrder.subscribe(resData => {
-        if(resData){
+        console.log(resData);
+        
+        if(resData && counter == 0){
+          console.log("this.index");
           if(!btn.classList.contains('loading')) {
             btn.classList.add('loading');
             setTimeout(() => btn.classList.remove('loading'), 3700);
-            }
+          }
           console.log(btn);
       
-          axios.post(
-            'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
-            {
-              trdr: this.loadedUser.trdr,
-            }
-          ).then(resData => {
-      
-            this.products = resData.data.products;
-            this.cartService.sendProductCount(this.products.length);
-      
-          });
+          this.cartService.sendProductAdded(true);
       
       
       
@@ -296,12 +282,11 @@ export class SingleProductComponent implements OnInit {
             if(this.relatedProducts.length <= 0){
       
               this.cartService.setId(this.index.mtrl)
-      
-              this.productsService.setSingleProduct(this.index);
-              this.index.show = true;
+              counter++;
               this.cartService.addToCart(this.index);
+              this.productsService.sendBackOrderPopup(false);
       
-              this.cartService.sendProductAdded(true);
+              // this.cartService.sendProductAdded(true);
             }
             else{
               window.scroll({
@@ -319,6 +304,10 @@ export class SingleProductComponent implements OnInit {
     }
 
 
+
+  }
+
+  ngOnDestroy(): void {
 
   }
 }

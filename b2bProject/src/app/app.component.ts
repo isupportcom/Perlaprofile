@@ -26,6 +26,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit {
   backOrder: boolean = false;
   backOrder2: boolean = false;
+  backOrder3: boolean = false;
   title = 'b2bProject';
   age = '10';
   loggedIn: boolean = true;
@@ -89,6 +90,13 @@ export class AppComponent implements OnInit {
     this.productService.backOrderPopup2.subscribe(resData => {
       if(resData){
         this.backOrder2 = resData
+      }
+
+    });
+
+    this.productService.backOrderPopup3.subscribe(resData => {
+      if(resData){
+        this.backOrder3 = resData
       }
 
     });
@@ -238,9 +246,9 @@ export class AppComponent implements OnInit {
 
           if(flag == true){
             if(scope1.diathesima <= 0 || scope2.diathesima <= 0){
-              this.productService.sendBackOrderPopup(true);
+              this.productService.sendBackOrderPopup3(true);
 
-              this.productService.backOrder.subscribe(resData => {
+              this.productService.backOrder3.subscribe(resData => {
                 if(resData){
                   if(this.btnLoading || this.productAdded){
                     this.itemsToCart.push(scope1)
@@ -303,6 +311,7 @@ export class AppComponent implements OnInit {
             console.log(this.itemsToCart);
 
             this.removeDuplicates();
+            console.log("PEOS")
             this.addToCart();
             this.showScope3 = false;
             this.btnLoading = false;
@@ -326,6 +335,7 @@ export class AppComponent implements OnInit {
               console.log(this.itemsToCart);
 
               this.removeDuplicates();
+              console.log("PEOS")
               this.addToCart();
               this.showScope3 = false;
               this.btnLoading = false;
@@ -354,6 +364,7 @@ export class AppComponent implements OnInit {
 
 
                   this.removeDuplicates();
+                  console.log("PEOS")
                   this.addToCart();
                   this.showScope3 = false;
                   this.btnLoading = false;
@@ -404,7 +415,7 @@ export class AppComponent implements OnInit {
   }
 
   addToCart(){
-
+    console.log("PEOS")
     let id = '';
 
 
@@ -441,20 +452,36 @@ export class AppComponent implements OnInit {
   }
 
   continueBackOrder(){
-    this.btnLoading = false;
+      this.productService.sendBackOrderPopup(false);
       this.productService.sendBackOrder(true);
       this.backOrder = false;
 
   }
 
   stopBackOrder(){
-    this.btnLoading = false;
+      this.productService.sendBackOrderPopup(false);
       this.productService.sendBackOrder(false);
       this.backOrder = false;
   }
 
+  continueBackOrder3(){
+    // this.productService.sendBackOrderPopup3(false);
+    this.btnLoading = false;
+    this.productService.sendBackOrder3(true);
+    this.backOrder3 = false;
+
+  }
+
+  stopBackOrder3(){
+    // this.productService.sendBackOrderPopup3(false);
+    this.btnLoading = false;
+    this.productService.sendBackOrder3(false);
+    this.backOrder3 = false;
+  }
+
 
   continueBackOrder2(){
+    this.productService.sendBackOrderPopup2(false);
     this.btnLoading = false;
     this.productService.sendBackOrder2(true);
     this.backOrder2 = false;
@@ -462,6 +489,7 @@ export class AppComponent implements OnInit {
   }
 
   stopBackOrder2(){
+    this.productService.sendBackOrderPopup2(false);
     this.btnLoading = false;
       this.productService.sendBackOrder2(false);
       this.backOrder2 = false;

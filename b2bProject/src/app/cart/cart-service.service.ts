@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class CartServiceService {
   itemsToCart: any = [];
   date = new Date();
-
+  itRun: boolean = false;
   id: any;
 
   openOffer = new Subject<any>();
@@ -143,6 +143,8 @@ export class CartServiceService {
   }
 
   addToCart(product: product | any,animate?: boolean,product_page?: boolean,decrement?: boolean) {
+    console.log("MPHKA");
+    
     let dec;
     if(decrement){
       dec = 2;
@@ -224,40 +226,45 @@ export class CartServiceService {
     }
     console.log(product.group_id);
 
-
+    let upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
     let qty
+    
     if(product.qty == undefined){
       qty=1;
     }else{
       qty=product.qty
     }
-      console.log(qty);
-
-    console.log(dec)
-      axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php', {
-        mtrl: product.mtrl,
-        trdr: loadedUser.trdr,
-        code: product.code,
-        name: product.name,
-        name1: product.name1,
-        img: image,
-        category: category,
-        qty: qty,
-        retail: product.retail,
-        wholesale: price,
-        stock: product.stock,
-        group_id: product.group_id,
-        discound: discount,
-        p_page: p_page,
-        dec: dec,
-        omada: product.omada,
-        offer: product.offer,
-        empor_katig: loadedUser.emporiki_katigoria,
-        geo_zoni: loadedUser.geografikh_zwnh
-      })
-      .then((resData) => console.log(resData.data));
-
+      console.log('qty');
+    
+    axios
+    .post('https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php', {
+      mtrl: product.mtrl,
+      trdr: loadedUser.trdr,
+      code: product.code,
+      name: product.name,
+      name1: product.name1,
+      img: image,
+      category: category,
+      qty: qty,
+      retail: product.retail,
+      wholesale: price,
+      stock: product.stock,
+      group_id: product.group_id,
+      discound: discount,
+      p_page: p_page,
+      dec: dec,
+      omada: product.omada,
+      offer: product.offer,
+      empor_katig: loadedUser.emporiki_katigoria,
+      geo_zoni: loadedUser.geografikh_zwnh,
+      ypokat: upokatastima.trdrbranch
+    })
+    .then((resData) => {
+      
+      console.log(resData.data)
+      
+ 
+    });
 
   }
 

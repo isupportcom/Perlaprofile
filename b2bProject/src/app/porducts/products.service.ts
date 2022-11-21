@@ -38,6 +38,20 @@ export  class ProductsService {
   }
 
 
+  backOrderPopup3 = new Subject<boolean>();
+  castBackOrderPopup3 = this.backOrderPopup3.asObservable();
+
+  sendBackOrderPopup3(flag: boolean){
+   this.backOrderPopup3.next(flag)
+  }
+
+  backOrder3 = new Subject<boolean>();
+  castBackOrder3 = this.backOrder3.asObservable();
+
+  sendBackOrder3(flag: boolean){
+   this.backOrder3.next(flag)
+  }
+
   backOrderPopup = new Subject<boolean>();
   castBackOrderPopup = this.backOrderPopup.asObservable();
 
