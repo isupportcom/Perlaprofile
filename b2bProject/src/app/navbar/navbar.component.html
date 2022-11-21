@@ -38,7 +38,7 @@
             /></a>
           </li>
           <li class="nav-item my-nav-item2">
-            
+
             <a
               [ngClass]="
                 productAdded
@@ -89,7 +89,7 @@
                       : 'dropdown-menu my-dropdown show'
                     : 'dropdown-menu'
                 "
-                
+
               >
                 <li>
                   <a routerLink="/my-orders" class="dropdown-item my-dropdown-item" translate
@@ -279,31 +279,40 @@
                         <a routerLink="/products/114/Control" routerLinkActive="my-active">Control</a>
                       </li>
                       <li
-            
+
                       (click)="handleCategoryClick()"
-                      
+
                     >
                       <a routerLink="/products/115/Motion" routerLinkActive="my-active">Motion</a>
-            
+
                     </li>
-            
+
                       <li
-                        
+
                       (click)="handleCategoryClick()"
-                      
+
                     >
                       <a routerLink="/products/116/Mosqui%20Plus" routerLinkActive="my-active">Mosqui Plus</a>
-            
+
                     </li>
-            
+
                     <li
-                        
+
                     (click)="handleCategoryClick()"
-                    
+
                   >
                     <a routerLink="/products/117/Profile" routerLinkActive="my-active">Profile</a>
-            
+
                   </li>
+
+                  <li
+
+                  (click)="handleCategoryClick()"
+
+                >
+                  <a routerLink="/products/118/Accessories" routerLinkActive="my-active">Accessories</a>
+
+                </li>
                     </ul>
                     <li style="margin-bottom: 8px">
                       <a
@@ -369,20 +378,20 @@
           </li>
 
 
-          
+
 
 
           <!-- <li
-            
+
             (click)="handleCategoryClick()"
-            
+
             *ngFor="let mainCategory of mainCategories"
           >
             <a [routerLink]="'/products/' + mainCategory.id + '/' + mainCategory.name" routerLinkActive="my-active">{{ mainCategory.name }}</a>
 
           </li> -->
-              
- 
+
+
 
           <li>
             <a routerLink="/company" routerLinkActive="my-active" translate
@@ -402,40 +411,48 @@
           <div class="products">
             <ul>
                   <li
-                
+
                 (click)="handleCategoryClick()"
-                
+
               >
               <a routerLink="/products/114/Control" routerLinkActive="my-active">Control</a>
 
               </li>
 
               <li
-                
+
               (click)="handleCategoryClick()"
-              
+
             >
               <a routerLink="/products/115/Motion" routerLinkActive="my-active">Motion</a>
 
             </li>
 
               <li
-                
+
               (click)="handleCategoryClick()"
-              
+
             >
               <a routerLink="/products/116/Mosqui%20Plus" routerLinkActive="my-active">Mosqui Plus</a>
 
             </li>
 
             <li
-                
+
             (click)="handleCategoryClick()"
-            
+
           >
             <a routerLink="/products/117/Profile" routerLinkActive="my-active">Profile</a>
 
           </li>
+          <li
+
+          (click)="handleCategoryClick()"
+
+        >
+          <a routerLink="/products/118/Accessories" routerLinkActive="my-active">Accessories</a>
+
+        </li>
             </ul>
           </div>
           <li>
