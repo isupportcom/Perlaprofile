@@ -162,12 +162,13 @@
 
                   <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="margin-top: -17px; padding-top: 15%; list-style: none" #checkboxes>
 
-                    <li *ngFor="let subcategory of categories" style="margin-bottom: 8%">
+                    <li *ngFor="let subcategory of categories;let i = index" style="margin-bottom: 8%" >
 
                       <div class="row">
                         <div class="col-2 col-md-2 col-sm-2">
                           <label>
                             <input
+                              [attr.id]="'check'+ i"
                               type="checkbox"
                               name="category"
                               class="filter"
