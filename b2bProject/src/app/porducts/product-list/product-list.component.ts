@@ -81,7 +81,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   shownProducts: product | any = [];
   filterOn?: boolean;
   noProducts?: boolean;
-  listArray?: any;
+  listArray: any;
   checked?: boolean;
   contactForm: FormGroup | any;
   fabric: FormGroup | any;
@@ -167,11 +167,13 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    console.log(this.checkboxes.nativeElement.children);
+
+
     
+
   }
 
-  async ngOnInit(){
+  ngOnInit(){
 
     axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
       category_id: this.mainCategory.id
@@ -406,21 +408,49 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
               resData.Categories[0].subcategoris
             );
             this.categories = this.productsService.getCategoriesArray();
-  
-            console.log(this.categories);
+            console.log(this.listArray);
+            
+            setTimeout(() => {
+              if(this.mainCategory.id != 116 && this.mainCategory.id != 117)
+              for(let i=0;i<this.categories.length;i++){
+                console.log("HEY");
+                
+                let id = 'check'+i;
+                console.log(id);
+                let check = document.getElementById(id)
+                console.log(this.listArray);
+                
+                console.log(this.categories[0].sub_id);
+                
+                console.log((<HTMLInputElement>check).value);
+                if((<HTMLInputElement>check).value == this.categories[0].sub_id){
+                  console.log("HEYYY");
+                  if(this.listArray.length == 0){
+                    (<HTMLInputElement>check).checked = true;
+                    // this.handleCheckboxes((<HTMLInputElement>check));
+                    this.listArray.push(this.categories[0].sub_id)
+                    // this.listArray[0] = (<HTMLInputElement>check).value;
+                    // this.updateProducts();
+                  }
+                  break;
+                }
+              }
+              
+            },50)
+            console.log(this.categories.length);
+            
+
           });
   
-        console.log(!this.listArray);
-        
+
+        console.log(this.listArray);
   
         this.mainCategory.name = params['cat_name'];
-  
-        if(!this.listArray && (this.mainCategory.id != 116 && this.mainCategory.id != 117)){
-          
-          
-          this.listArray = [this.categories[0].sub_id];
-          this.updateProducts();
-        }
+
+        
+
+        
+
         
         if ( this.paginationCat){
           if(+this.paginationCat == this.mainCategory.id){

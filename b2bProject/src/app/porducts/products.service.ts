@@ -157,6 +157,8 @@ export  class ProductsService {
 
 
  getCategoriesArray(){
+   console.log(this.allCategories.length);
+   
     return this.allCategories;
  }
 
