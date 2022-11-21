@@ -160,7 +160,7 @@
 
                 <div>
 
-                  <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="margin-top: -17px; padding-top: 15%; list-style: none">
+                  <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="margin-top: -17px; padding-top: 15%; list-style: none" #checkboxes>
 
                     <li *ngFor="let subcategory of categories" style="margin-bottom: 8%">
 
@@ -356,8 +356,8 @@
               </div>
 
               <img style="width: 100%;margin-bottom: 12px;" src="../../../assets/Line%208.svg">
-              <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="list-style: none;padding-left: 0px;">
-                <li *ngFor="let subcategory of categories">
+              <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="list-style: none;padding-left: 0px;" >
+                <li *ngFor="let subcategory of categories;let i = index;">
                   <div class="row">
                     <div class="col-1 col-md-1 col-sm-1" style="display: flex;justify-content: center;align-items: center;vertical-align: middle;">
                       <label>

@@ -662,6 +662,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   addToCart(btn: any) {
+    let counter = 0;
     if(+this.product.diathesima > 0){
       if (!btn.classList.contains('loading')) {
         btn.classList.add('loading');
@@ -698,6 +699,8 @@ export class ProductPageComponent implements OnInit {
   
           this.productsService.setSingleProduct(this.product);
           this.product.show = true;
+          console.log("JINGLE");
+          
           this.cartService.addToCart(this.product, false, true);
   
           this.cartService.sendProductAdded(true);
@@ -716,7 +719,7 @@ export class ProductPageComponent implements OnInit {
       this.productsService.sendBackOrderPopup(true);
 
       this.productsService.backOrder.subscribe(resData => {
-        if(resData){
+        if(resData && counter == 0){
           if (!btn.classList.contains('loading')) {
             btn.classList.add('loading');
             setTimeout(() => btn.classList.remove('loading'), 3700);
@@ -752,6 +755,8 @@ export class ProductPageComponent implements OnInit {
       
               this.productsService.setSingleProduct(this.product);
               this.product.show = true;
+              console.log("JINGLE");
+              counter++;
               this.cartService.addToCart(this.product, false, true);
       
               this.cartService.sendProductAdded(true);
