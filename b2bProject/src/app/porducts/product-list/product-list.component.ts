@@ -256,8 +256,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
     console.log("HAIA");
     
+    // https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php
+
     axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php')
+      .get('https://perlanoderest.vinoitalia.gr/products/getProducts')
       .then(async (resData: any) => {
         console.log(resData.data);
         // console.log(resData.data)
