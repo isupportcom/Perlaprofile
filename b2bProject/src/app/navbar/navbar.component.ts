@@ -89,7 +89,7 @@ export class NavbarComponent implements OnInit{
     onResize(event: any){
       this.innerWidth = window.innerWidth
 
-      if(this.innerWidth < 768 ){
+      if(this.innerWidth < 1200 ){
         this.showSecondNav = false;
         this.makeSmallerDropDown = true;
       }
@@ -234,7 +234,7 @@ export class NavbarComponent implements OnInit{
     this.innerWidth = window.innerWidth;
     // console.log(this.innerWidth);
 
-    if(this.innerWidth < 768 ){
+    if(this.innerWidth < 1200 ){
       this.showSecondNav = false;
       this.makeSmallerDropDown = true;
     }

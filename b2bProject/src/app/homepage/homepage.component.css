@@ -5,11 +5,17 @@
     border: 0;
     /* transform: translate(-50%, -50%); */
     padding: 10px;
-    height: 612px;
+    height: 450px;
     border-radius: 25px;
     transition: all 0.2s;
     transform-style: preserve-3d;
     cursor: pointer;
+  }
+
+  @media (max-width: 1400px) {
+    .card{
+      height: 612px;
+    }
   }
         
         .text_back {
@@ -454,6 +460,7 @@
 
 .card-title {
   width: 70%;
+  height: 45px;
 }
 
 .categoriesLink {
@@ -593,59 +600,61 @@
     background-color: #4a7632;
 }
   
-  .hero {
-    margin-top: 300px;
-    position: relative;
-    height: 800px;
-    /* z-index: -1; */
-    /* background-image: url('https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/shutterstock_1681915153%201.png'); */
-    /* background-repeat: no-repeat;
-    background-size: cover; */
-  }
+.hero {
+  position: absolute;
+  top: 100px;
+  left: 23.5%;
+  z-index: 8000;
+  height: 800px;
+  /* z-index: -1; */
+  /* background-image: url('https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/shutterstock_1681915153%201.png'); */
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+}
 
   @media (max-width: 1700px) {
     .hero {
       height: 750px;
-      margin-top: 200px;
+      /* margin-top: 200px; */
     }
   }
 
   @media (max-width: 1500px) {
     .hero {
       height: 700px;
-      margin-top: 200px;
+      /* margin-top: 200px; */
     }
   }
   
   @media (max-width: 1400px) {
     .hero {
       height: 600px;
-      margin-top: 200px;
+      /* margin-top: 200px; */
     }
   }
   
   @media (max-width: 1200px) {
     .hero {
       height: 550px;
-      margin-top: 150px;
+      /* margin-top: 150px; */
     }
   }
   
   @media (max-width: 992px) {
     .hero {
       height: 450px;
-      margin-top: 120px;
+      /* margin-top: 120px; */
     }
   }
   
   @media (max-width: 768px) {
     .hero {
-        margin-top: 120px;
+        /* margin-top: 120px; */
       height: 330px;
     }
   }
   
-  
+
   
   @media (max-width: 576px) {
     .hero {

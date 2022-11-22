@@ -1,5 +1,5 @@
 <div *ngIf="showLoggedinNav" class="logged-in-nav">
-  <nav class="navbar navbar1 navbar-light navbar-expand-md py-3">
+  <nav class="navbar navbar1 navbar-light navbar-expand-xl py-3">
     <div class="container">
       <a
         routerLink="/home"
@@ -24,6 +24,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navcol-2">
         <ul class="navbar-nav ms-auto">
+          <li *ngIf="showSecondNav" class="topNav" style="margin-right: 12px;display: flex;align-items:center;">
+            <a routerLink="/home" routerLinkActive="my-active"  translate
+              >navbar.homepage</a
+            >
+          </li>
+          <li *ngIf="showSecondNav" class="topNav" style="margin-right: 12px;display: flex;align-items:center;">
+            <a routerLink="/company" routerLinkActive="my-active" translate
+              >navbar.company</a
+            >
+          </li>
+          <li *ngIf="showSecondNav" class="topNav" style="margin-right: 12px;display: flex;align-items:center;">
+            <a routerLink="/the-team" routerLinkActive="my-active" translate
+              >navbar.team</a
+            >
+          </li>
+          <li *ngIf="showSecondNav" class="topNav" style="margin-right: 12px;display: flex;align-items:center;">
+            <a routerLink="/contact" routerLinkActive="my-active" translate
+              >navbar.contanct</a
+            >
+          </li>
+          <li *ngIf="showSecondNav" class="topNav" style="margin-right: 12px;display: flex;align-items:center;">
+            <a routerLink="/catalogs" routerLinkActive="my-active">Κατάλογοι</a>
+          </li>
           <li class="nav-item my-nav-item2">
             <a
               (click)="handleFavorites()"
@@ -371,11 +394,7 @@
     <div class="bottom_nav">
       <div class="container">
         <ul>
-          <li>
-            <a routerLink="/home" routerLinkActive="my-active" translate
-              >navbar.homepage</a
-            >
-          </li>
+
 
 
 
@@ -393,21 +412,7 @@
 
 
 
-          <li>
-            <a routerLink="/company" routerLinkActive="my-active" translate
-              >navbar.company</a
-            >
-          </li>
-          <li>
-            <a routerLink="/the-team" routerLinkActive="my-active" translate
-              >navbar.team</a
-            >
-          </li>
-          <li>
-            <a routerLink="/contact" routerLinkActive="my-active" translate
-              >navbar.contanct</a
-            >
-          </li>
+
           <div class="products">
             <ul>
                   <li
@@ -455,9 +460,7 @@
         </li>
             </ul>
           </div>
-          <li>
-            <a routerLink="/catalogs" routerLinkActive="my-active">Κατάλογοι</a>
-          </li>
+
         </ul>
       </div>
     </div>

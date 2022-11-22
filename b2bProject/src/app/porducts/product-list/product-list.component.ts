@@ -342,11 +342,12 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   
             setTimeout(() => {
               console.log(this.filters);
-  
+
               for(let i=0; i<this.filters.length; i++){
                 for(let id of this.listArray){
                   if(id === this.filters[i].value){
                     this.filters[i].checked = true;
+                    this.updateProducts();
                     // this.handleCheckboxes(this.filters[i]);
                   }
                 }
@@ -362,7 +363,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
         })
 
-          this.updateProducts();
+          
 
 
         // setTimeout(() => {
@@ -411,32 +412,46 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             console.log(this.listArray);
             
             setTimeout(() => {
-              if(this.mainCategory.id != 116 && this.mainCategory.id != 117)
-              for(let i=0;i<this.categories.length;i++){
-                console.log("HEY");
-                
-                let id = 'check'+i;
-                console.log(id);
-                let check = document.getElementById(id)
-                console.log(this.listArray);
-                
-                console.log(this.categories[0].sub_id);
-                
-                console.log((<HTMLInputElement>check).value);
-                if((<HTMLInputElement>check).value == this.categories[0].sub_id){
-                  console.log("HEYYY");
-                  if(this.listArray.length == 0){
-                    (<HTMLInputElement>check).checked = true;
-                    // this.handleCheckboxes((<HTMLInputElement>check));
-                    this.listArray.push(this.categories[0].sub_id)
-                    // this.listArray[0] = (<HTMLInputElement>check).value;
-                    // this.updateProducts();
+              if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
+
+                for(let i=0;i<this.categories.length;i++){
+                  console.log("HEY");
+                  
+                  let id = 'check'+i+this.mainCategory.id;
+                  console.log(id);
+                  let check = document.getElementById(id)
+                  console.log(this.listArray);
+                  
+                  console.log(this.categories[0].sub_id);
+                  
+                  console.log((<HTMLInputElement>check).value);
+                  if((<HTMLInputElement>check).value == this.categories[0].sub_id){
+                    console.log("HEYYY");
+                    if(this.listArray){
+                      if(this.listArray.length == 0){
+
+                        (<HTMLInputElement>check).checked = true;
+                        // this.handleCheckboxes((<HTMLInputElement>check));
+                        this.listArray.push(this.categories[0].sub_id)
+                        this.updateProducts();
+                        // this.listArray[0] = (<HTMLInputElement>check).value;
+                        // this.updateProducts();
+                      }
+                    }
+                    else{
+                      (<HTMLInputElement>check).checked = true;
+                        // this.handleCheckboxes((<HTMLInputElement>check));
+                        this.listArray.push(this.categories[0].sub_id)
+                        this.updateProducts();
+                        // this.listArray[0] = (<HTMLInputElement>check).value;
+                        // this.updateProducts();
+                    }
+                    break;
                   }
-                  break;
                 }
               }
               
-            },50)
+            },200)
             console.log(this.categories.length);
             
 
@@ -526,6 +541,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         id: 117,
         name: 'Profile',
       });
+
     } else if (this.mainCategory.id === 115) {
       this.logoList = [];
 
@@ -589,6 +605,9 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         id: 116,
         name: 'Mosqui',
       });
+    }
+    else if (this.mainCategory.id === 118){
+      this.logoSource = '../../../assets/accessiries logo white.svg'
     }
 
     // this.route.params.subscribe(params => {
@@ -1269,6 +1288,8 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   }
   ngOnDestroy(): void {
     console.log(this.router.url);
+    this.shownProducts = [];
+    this.products = [];
     // /products/product-page
     localStorage.setItem('page', this.page.toString());
     this.products = [];

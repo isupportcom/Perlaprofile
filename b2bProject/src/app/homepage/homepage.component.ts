@@ -3,7 +3,32 @@ import { Router } from '@angular/router';
 import { ProductsService } from '../porducts/products.service';
 import axios from "axios";
 import { TranslateConfigService } from '../services/translate-config.service';
+import { SwiperComponent } from 'swiper/angular';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller,
+  Swiper,
+  SwiperOptions,
+} from 'swiper';
 
+SwiperCore.use([
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller,
+]);
 
 @Component({
   selector: 'app-homepage',
@@ -27,8 +52,27 @@ export class HomepageComponent implements OnInit {
   showLoggedInContent: boolean = false;
   username = localStorage.getItem('username');
   upokatastima: any;
+  swiper = new Swiper('.swiper', {
+    autoplay:{
+      delay: 2000,
+    }
+  })
+  config: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 50,
+    pagination: { clickable: true },
+    autoplay:{
+      delay: 5000
+    }
+  };
   constructor(private productsService: ProductsService,private router: Router,private translate:TranslateConfigService,private renderer: Renderer2,private elementRef: ElementRef) { }
+  onSwiper(e: Event) {}
+  onSlideChange(swiper: SwiperComponent) {}
 
+  thumbsSwiper: any;
+  setThumbsSwiper(swiper: any) {
+    this.thumbsSwiper = swiper;
+  }
   innerWidth:any;
   @HostListener('window:resize', ['$event'])
   onResize(event: any){
