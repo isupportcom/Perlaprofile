@@ -338,24 +338,28 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             for(let filter of this.filterList){
               this.listArray.push(filter);
             }
+            
+            if(!this.showBigFilters){
+              this.updateProducts()
+            }
+            else{
+              setTimeout(() => {
+                console.log(this.filters);
   
-  
-            setTimeout(() => {
-              console.log(this.filters);
-
-              for(let i=0; i<this.filters.length; i++){
-                for(let id of this.listArray){
-                  if(id === this.filters[i].value){
-                    this.filters[i].checked = true;
-                    this.updateProducts();
-                    // this.handleCheckboxes(this.filters[i]);
+                for(let i=0; i<this.filters.length; i++){
+                  for(let id of this.listArray){
+                    if(id === this.filters[i].value){
+                      this.filters[i].checked = true;
+                      this.updateProducts();
+                      // this.handleCheckboxes(this.filters[i]);
+                    }
                   }
                 }
-              }
-  
-  
-              this.executed = true;
-            },300)
+    
+    
+                this.executed = true;
+              },300)
+            }
           }
 
 
@@ -414,39 +418,47 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             setTimeout(() => {
               if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
 
-                for(let i=0;i<this.categories.length;i++){
-                  console.log("HEY");
-                  
-                  let id = 'check'+i+this.mainCategory.id;
-                  console.log(id);
-                  let check = document.getElementById(id)
-                  console.log(this.listArray);
-                  
-                  console.log(this.categories[0].sub_id);
-                  
-                  console.log((<HTMLInputElement>check).value);
-                  if((<HTMLInputElement>check).value == this.categories[0].sub_id){
-                    console.log("HEYYY");
-                    if(this.listArray){
-                      if(this.listArray.length == 0){
-
-                        (<HTMLInputElement>check).checked = true;
-                        // this.handleCheckboxes((<HTMLInputElement>check));
-                        this.listArray.push(this.categories[0].sub_id)
-                        this.updateProducts();
-                        // this.listArray[0] = (<HTMLInputElement>check).value;
-                        // this.updateProducts();
+                if(!this.showBigFilters && this.listArray.length == 0){
+                  console.log("TRELAA");
+                  this.listArray.push(this.categories[0].sub_id)
+                  this.updateProducts();
+                }
+                else{                  
+                  for(let i=0;i<this.categories.length;i++){
+                    console.log("HEY");
+                    
+                    let id = 'check'+i+this.mainCategory.id;
+                    console.log(id);
+                    let check = document.getElementById(id)
+                    console.log(check);
+                    
+                    console.log(this.categories[0].sub_id);
+                    
+                    console.log(check);
+  
+                    if((<HTMLInputElement>check).value == this.categories[0].sub_id){
+                      console.log("HEYYY");
+                      if(this.listArray){
+                        if(this.listArray.length == 0){
+  
+                          (<HTMLInputElement>check).checked = true;
+                          // this.handleCheckboxes((<HTMLInputElement>check));
+                          this.listArray.push(this.categories[0].sub_id)
+                          this.updateProducts();
+                          // this.listArray[0] = (<HTMLInputElement>check).value;
+                          // this.updateProducts();
+                        }
                       }
+                      else{
+                        (<HTMLInputElement>check).checked = true;
+                          // this.handleCheckboxes((<HTMLInputElement>check));
+                          this.listArray.push(this.categories[0].sub_id)
+                          this.updateProducts();
+                          // this.listArray[0] = (<HTMLInputElement>check).value;
+                          // this.updateProducts();
+                      }
+                      break;
                     }
-                    else{
-                      (<HTMLInputElement>check).checked = true;
-                        // this.handleCheckboxes((<HTMLInputElement>check));
-                        this.listArray.push(this.categories[0].sub_id)
-                        this.updateProducts();
-                        // this.listArray[0] = (<HTMLInputElement>check).value;
-                        // this.updateProducts();
-                    }
-                    break;
                   }
                 }
               }

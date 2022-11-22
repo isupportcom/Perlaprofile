@@ -472,10 +472,26 @@
 
 .topNav > a{
   color: black;
+  font-size: 14px;
 }
 
 @media (max-width: 1400px){
-  .topNav > a{
+  /* .topNav > a{
     font-size: 12px;
+  } */
+}
+
+
+
+
+@media (min-width: 1200px){
+  .container{
+    max-width: 1220px;
+  }
+}
+
+@media (min-width: 1400px){
+  .container{
+    max-width: 1420px;
   }
 }

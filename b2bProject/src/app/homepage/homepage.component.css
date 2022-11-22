@@ -496,11 +496,53 @@
   color: white;
   border-radius: 8px;
   margin-top: 12px;
-  transition: background-color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   overflow: hidden;
 }
 
+@media(max-width: 1400px){
+  .myBtn{
+    transform: scale(0.9);
+  }
+  .myBtn:active{
+    transform: scale(0.85) !important;
+  }
+}
 
+@media(max-width: 1200px){
+  .myBtn{
+    transform: scale(0.8);
+  }
+  .myBtn:active{
+    transform: scale(0.75) !important;
+  }
+}
+
+@media(max-width: 992px){
+  .myBtn{
+    transform: scale(0.7);
+  }
+  .myBtn:active{
+    transform: scale(0.65) !important;
+  }
+}
+@media(max-width: 576px){
+  .myBtn{
+    transform: scale(0.6);
+  }
+  .myBtn:active{
+    transform: scale(0.55) !important;
+  }
+}
+
+@media(max-width: 400px){
+  .myBtn{
+    transform: scale(0.5);
+  }
+  .myBtn:active{
+    transform: scale(0.45) !important;
+  }
+}
 
 .myBtn:active{
   transform: scale(0.95);
@@ -509,7 +551,28 @@
 .myBtn:hover{
   background-color: #4a7632;
 }
+
+.hero-text{
+  font-size: 32px;
+}
   
+@media(max-width: 840px){
+  .hero-text{
+    font-size: 24px;
+  } 
+}
+
+@media(max-width: 650px){
+  .hero-text{
+    font-size: 20px;
+  } 
+}
+@media(max-width: 520px){
+  .hero-text{
+    font-size: 18px;
+  } 
+}
+
 /* @media (max-width: 992px) {
     .myBtn {
       font-size: 12px;
@@ -523,7 +586,7 @@
   } */
 
   .scroll-downs {
-    /*position: absolute;*/
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;

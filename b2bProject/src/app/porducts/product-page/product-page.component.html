@@ -155,10 +155,10 @@
         </div>
         <div class="row">
           <button
-            [ngClass]="product.stock <= 0 || product.wholesale <= 0? 'button col-6 myDisabled' : 'button col-6'"
+            [ngClass]="product.wholesale <= 0? 'button col-6 myDisabled' : 'button col-6'"
             style="transition: background-color 0.2s ease-in-out"
             (click)="addToCart(addToCartBtn)"
-            [disabled]="product.stock <= 0 || product.wholesale <= 0"
+            [disabled]="product.wholesale <= 0"
             #addToCartBtn
           >
             <span translate> product_page.add </span>
@@ -200,10 +200,10 @@
       <div class="row">
         <img src="../../../assets/Line 8.svg" width="100%" alt="" srcset="" />
         <div style="margin-top: 18px">
-          <p *ngIf="product.diathesima > 0" style="color: #3e4148; margin: 0; font-size: 14px" translate>
+          <p *ngIf="product.diathesima > 0 && username" style="color: #3e4148; margin: 0; font-size: 14px" translate>
             Διαθεσιμότητα: <b style="color: #6dae49;">{{ product.diathesima }}</b>
           </p>
-          <p *ngIf="product.diathesima <= 0" style="color: #3e4148; margin: 0; font-size: 14px" translate>
+          <p *ngIf="product.diathesima <= 0 && username" style="color: #3e4148; margin: 0; font-size: 14px" translate>
             Διαθεσιμότητα: <b style="color: red;">{{ product.diathesima }}</b>
           </p>
           <p style="color: #3e4148; margin: 0; font-size: 14px" translate>

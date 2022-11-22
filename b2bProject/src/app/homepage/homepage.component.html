@@ -13,20 +13,56 @@
     [config]="config"
     (slideChange)="onSlideChange(swiper)"
     (swiper)="setThumbsSwiper($event)"
-    class="swiper"
+    class="swiperHome"
     #swiper
   >
-    <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);" width="100%"  src="../../assets/AdobeStock_327781015.jpeg" alt=""></ng-template>
-    <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_340805134.jpeg" alt=""></ng-template>
-    <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_323276777.jpeg" alt=""></ng-template>
-    <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""></ng-template>
+    <ng-template swiperSlide>
+      <div style="background-image: url(../../assets/AdobeStock_327781015.jpeg);background-size: cover;">
+        <p class="hero-text" translate>home.title_before_br</p>
+        <div class="container" style="width: 100%;height: fit-content;">
+
+          <button class="myBtn">Μάθε Περισσότερα</button>
+        </div>
+      </div>
+      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);" width="100%"  src="../../assets/AdobeStock_327781015.jpeg" alt=""> -->
+    </ng-template>
+    <ng-template swiperSlide>
+      <div style="background-image: url(../../assets/AdobeStock_340805134.jpeg);background-size: cover;">
+        <p class="hero-text" translate>home.title_before_br</p>
+        <div class="container" style="width: 100%;height: fit-content;">
+
+          <button class="myBtn">Μάθε Περισσότερα</button>
+        </div>
+      </div>
+      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_340805134.jpeg" alt=""> -->
+    </ng-template>
+    <ng-template swiperSlide>
+      <div style="background-image: url(../../assets/AdobeStock_323276777.jpeg);background-size: cover;">
+        <p class="hero-text" translate>home.title_before_br</p>
+        <div class="container" style="width: 100%;height: fit-content;">
+
+          <button class="myBtn">Μάθε Περισσότερα</button>
+        </div>
+      </div>
+      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_323276777.jpeg" alt=""> -->
+    </ng-template>
+    <ng-template swiperSlide>
+      <div style="background-image: url(../../assets/AdobeStock_199421624.jpeg);background-size: cover;">
+        <p class="hero-text" translate>home.title_before_br</p>
+        <div class="container" style="width: 100%;height: fit-content;">
+
+          <button class="myBtn">Μάθε Περισσότερα</button>
+        </div>
+      </div>
+      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""> -->
+    </ng-template>
     <!-- <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  [src]="" alt=""></ng-template> -->
   </swiper>
 
 </div>
 
 
-<div class="hero">
+<!-- <div class="hero">
   <div class="container heroText">
     <div class="row">
       <div class="col">
@@ -35,7 +71,6 @@
             class="col col-12 topText"
             style="text-align: center; color: white"
           >
-            <!-- <img class="index" src="../../assets/Frame 102.svg"> Lorem ipsum dolor sit amet, consectetur adipiscing-->
             <p translate>
               home.first_P_before_br<br />home.second_p_after_br<br />
             </p>
@@ -57,7 +92,7 @@
       <div class="scroller"></div>
     </div>
   </div>
-</div>
+</div> -->
 <div class="container cardHolder">
   <div class="row" style="justify-content: center; align-items: center">
     <div

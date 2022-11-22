@@ -9,7 +9,7 @@
     <div class="row">
         <ul style="width: fit-content;margin-left: 16px;">
             <li *ngFor="let catalogue of catalogueNames" style="margin-bottom: 12px;">
-                <a [href]="'https://perlarest.vinoitalia.gr/php-auth-api/catalogues/' + catalogue">
+                <a [href]="'https://perlarest.vinoitalia.gr/php-auth-api/catalogues/' + catalogue" target="_blank" rel="noopener noreferrer">
                     {{ catalogue }}
                 </a>
             </li>
