@@ -111,11 +111,13 @@ export class CartServiceService {
     console.log(product);
 
 
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
+    axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",
     {
-      mtrl:product.mtrl,
-      trdr:this.loadedUser.trdr,
-      mode:"deleteOne"
+      params:{
+        mtrl:product.mtrl,
+        trdr:this.loadedUser.trdr,
+        mode:"deleteOne"
+      }
     })
     .then(resData=>{
     })
@@ -129,11 +131,13 @@ export class CartServiceService {
   let loadedUser = JSON.parse(localStorage.getItem('userData')||'{}');
 
 
-  axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
+  axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",
   {
-    mtrl:product.mtrl,
-    trdr:loadedUser.trdr,
-    mode:"insert"
+    params:{
+      mtrl:product.mtrl,
+      trdr:loadedUser.trdr,
+      mode:"insert"
+    }
   })
   .then(resData=>{
     console.log(resData.data);
@@ -144,7 +148,7 @@ export class CartServiceService {
 
   addToCart(product: product | any,animate?: boolean,product_page?: boolean,decrement?: boolean) {
     console.log("MPHKA");
-    
+
     let dec;
     if(decrement){
       dec = 2;
@@ -228,14 +232,14 @@ export class CartServiceService {
 
     let upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
     let qty
-    
+
     if(product.qty == undefined){
       qty=1;
     }else{
       qty=product.qty
     }
       console.log('qty');
-    
+
     axios
     .post('https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php', {
       mtrl: product.mtrl,
@@ -260,10 +264,10 @@ export class CartServiceService {
       ypokat: upokatastima.trdrbranch
     })
     .then((resData) => {
-      
+
       console.log(resData.data)
-      
- 
+
+
     });
 
   }
@@ -271,10 +275,12 @@ export class CartServiceService {
   getItems() {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
-    return this.http.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+    return this.http.get(
+      'https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
       {
-        trdr: loadedUser.trdr,
+        params:{
+          trdr: loadedUser.trdr,
+        }
       }
     );
   }

@@ -42,6 +42,7 @@ export class AdminAreaComponent implements OnInit {
 
     this.cartService.openOffer.subscribe((resData) => {
       if (resData) {
+        console.log("nai edo einai ")
         this.offerProd = resData
         setTimeout(() => {
           this.offer = true;
@@ -51,10 +52,12 @@ export class AdminAreaComponent implements OnInit {
         this.modalService.offer.subscribe((res: number) => {
           if (+res === 0) {
             axios
-              .post(
-                'https://perlarest.vinoitalia.gr/php-auth-api/deleteOffer.php',
+              .delete(
+                'https://perlanoderest.vinoitalia.gr/products/deleteOffer',
                 {
+                 params:{
                   mtrl: resData.mtrl,
+                 }
                 }
               )
               .then((resData) => {

@@ -106,17 +106,17 @@ export class NavbarComponent implements OnInit{
   async ngOnInit(){
 
     let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
-   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
+   axios.get("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{params:{trdr:loadedUser.trdr}})
     .then(resData => {
       this.productCount = resData.data.products.length;
-
+      console.log(this.productCount)
     })
 
 
     this.cartService.productCount.subscribe(resData => {
 
 
-      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
+      axios.get("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{params:{trdr:loadedUser.trdr}})
         .then(resData => {
           this.productCount = resData.data.products.length;
 
@@ -124,10 +124,12 @@ export class NavbarComponent implements OnInit{
 
     })
     if(this.loggedIn){
-      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
+      axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",{
+         params:{
           trdr: this.loadedUser.trdr,
           mtrl:"dontNeedIt",
           mode:"fetch"
+         }
         })
         .then(resData=>{
           console.log(resData.data);
@@ -144,12 +146,13 @@ export class NavbarComponent implements OnInit{
     this.cartService.productAdded.subscribe(resData => {
 
       setTimeout(() => {
-        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php",{trdr:loadedUser.trdr})
+        axios.get("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{params:{trdr:loadedUser.trdr}})
         .then(resData => {
+          console.log(resData.data)
           this.productCount = resData.data.products.length;
 
         })
-      },500)
+      },800)
 
       if(window.scrollX === 0){
         if(!this.productAdded){
@@ -195,24 +198,26 @@ export class NavbarComponent implements OnInit{
 
       }
       else{
-        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
-          trdr: this.loadedUser.trdr,
-          mtrl:"dontNeedIt",
-          mode:"fetch"
+        axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",{
+          params:{
+            trdr: this.loadedUser.trdr,
+            mtrl:"dontNeedIt",
+            mode:"fetch"
+          }
         })
         .then(resData=>{
-          
+
           if(resData.data.products.length <= 0){
             console.log("SNFHKSNDHNKSD");
-            
+
             this.source = '../../assets/heart-alt.svg';
           }
           else{
             this.source = '../../assets/heart-alt-filled.svg';
-            
-            
+
+
           }
-          
+
         })
         this.productAddedToFav = false;
       }

@@ -60,9 +60,9 @@ export class InsertImagesComponent implements OnInit {
       }).then(resData=>{
         console.log( resData.data.products)
         this.products = resData.data.products
-   
+
       })
-      
+
     })
 
     this.cartService.addImagePopup.subscribe((resData) => {
@@ -198,7 +198,7 @@ export class InsertImagesComponent implements OnInit {
 
 
   getProducts(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then(resData => {
+    axios.post("https://perlanoderest.vinoitalia.gr/products/getProducts").then(resData => {
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < resData.data.products.length; i++) {

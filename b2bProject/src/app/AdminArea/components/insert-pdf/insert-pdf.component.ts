@@ -37,7 +37,7 @@ export class InsertPdfComponent implements OnInit {
     this.selectedMtrl = mtrl;
   }
   async prods(){
-    let req =  await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php")
+    let req =  await axios.get("https://perlanoderest.vinoitalia.gr/products/getProducts")
 
 
     console.log(req.data);
@@ -138,7 +138,7 @@ export class InsertPdfComponent implements OnInit {
 
 
   getProducts(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then(resData => {
+    axios.get("https://perlanoderest.vinoitalia.gr/products/getProducts").then(resData => {
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < resData.data.products.length; i++) {

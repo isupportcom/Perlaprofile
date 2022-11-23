@@ -23,10 +23,15 @@ export class FavoriteComponent implements OnInit {
 
   }
   getProducts(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",{
-        trdr: this.loadedUser.trdr,
-        mtrl:"dontNeedIt",
-        mode:"fetch"
+    axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",{
+
+        params:{
+          trdr: this.loadedUser.trdr,
+          mtrl:"dontNeedIt",
+          mode:"fetch"
+        }
+
+
       })
       .then(resData=>{
         console.log(resData.data);
@@ -43,11 +48,13 @@ export class FavoriteComponent implements OnInit {
     console.log(product);
 
 
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
+    axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",
     {
+     params:{
       mtrl:product,
       trdr:this.loadedUser.trdr,
       mode:"deleteOne"
+     }
     })
     .then(resData=>{
       console.log(resData.data);
@@ -60,11 +67,13 @@ export class FavoriteComponent implements OnInit {
 
   }
   removeAll(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/favorites.php",
+    axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",
     {
+     params:{
       mtrl:"notNeed",
       trdr:this.loadedUser.trdr,
       mode:"delete"
+     }
     })
     .then(resData=>{
       console.log(resData.data);
@@ -81,26 +90,26 @@ export class FavoriteComponent implements OnInit {
         setTimeout(() => btn.classList.remove('loading'), 3700);
         }
         let relatedProductsObs: Observable<any>;
-  
+
         relatedProductsObs = this.productsService.getRelatedProducts(
           product.mtrl
         );
-  
+
         relatedProductsObs.subscribe((resData) => {
           console.log(resData);
-  
+
           this.relatedProducts = resData.related;
         });
         setTimeout(() => {
-  
-  
+
+
           if (this.relatedProducts.length <= 0) {
             this.cartService.setId(product.mtrl);
-  
+
             this.productsService.setSingleProduct(product);
             product.show = true;
             this.cartService.addToCart(product, false, true);
-  
+
             this.cartService.sendProductAdded(true);
           } else {
             window.scroll({
@@ -123,26 +132,26 @@ export class FavoriteComponent implements OnInit {
             setTimeout(() => btn.classList.remove('loading'), 3700);
             }
             let relatedProductsObs: Observable<any>;
-      
+
             relatedProductsObs = this.productsService.getRelatedProducts(
               product.mtrl
             );
-      
+
             relatedProductsObs.subscribe((resData) => {
               console.log(resData);
-      
+
               this.relatedProducts = resData.related;
             });
             setTimeout(() => {
-      
-      
+
+
               if (this.relatedProducts.length <= 0) {
                 this.cartService.setId(product.mtrl);
-      
+
                 this.productsService.setSingleProduct(product);
                 product.show = true;
                 this.cartService.addToCart(product, false, true);
-      
+
                 this.cartService.sendProductAdded(true);
               } else {
                 window.scroll({
@@ -157,7 +166,7 @@ export class FavoriteComponent implements OnInit {
         }
       })
     }
-    
+
   }
 
 }

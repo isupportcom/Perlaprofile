@@ -44,8 +44,10 @@ export class OfferPopupComponent implements OnInit {
   }
 
   deleteOffer(item:any){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/deleteOffer.php",{
-      mtrl: item.mtrl
+    axios.delete("https://perlanoderest.vinoitalia.gr/products/deleteOffer",{
+      params:{
+        mtrl: item.mtrl
+      }
     }).then(resData=>{
       this.modalService.sendProducts(resData.data.products);
       console.log(resData.data)

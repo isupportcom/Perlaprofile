@@ -118,7 +118,7 @@ export class InsertProductsComponent implements OnInit {
 
 
   getProducts(){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php").then(resData => {
+    axios.get("https://perlanoderest.vinoitalia.gr/products/getProducts").then(resData => {
       // console.log(resData.data)
       console.log(resData.data)
       for (let i = 0; i < resData.data.products.length; i++) {
@@ -204,7 +204,7 @@ export class InsertProductsComponent implements OnInit {
      mtrl:item.mtrl,
      discount: item.discount
    }).then(resData=>{
-    this.products = resData.data.products; 
+    this.products = resData.data.products;
      console.log(resData.data.products)
    })
 
@@ -220,8 +220,12 @@ export class InsertProductsComponent implements OnInit {
 
 
   deleteOffer(item:any){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/deleteOffer.php",{
-      mtrl: item.mtrl
+    axios.delete("https://perlanoderest.vinoitalia.gr/products/deleteOffer",{
+
+      params:{
+        mtrl: item.mtrl
+      }
+
     }).then(resData=>{
       console.log(resData.data)
       this.answer = resData.data.message

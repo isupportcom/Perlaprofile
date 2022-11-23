@@ -109,7 +109,7 @@ export  class ProductsService {
 
  getAllProducts(){
     return this.http.get(
-        'https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php/?id=2&method=allProducts/'
+      'https://perlanoderest.vinoitalia.gr/products/getProducts'
     );
  }
 
@@ -128,8 +128,8 @@ export  class ProductsService {
 
  setGrouping(mtrl:any,grouping: any){
 
-   
-   
+
+
     return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/addProductBasedOnGrouping.php',
     {
         product_mtrl : mtrl ,
@@ -158,7 +158,7 @@ export  class ProductsService {
 
  getCategoriesArray(){
    console.log(this.allCategories.length);
-   
+
     return this.allCategories;
  }
 

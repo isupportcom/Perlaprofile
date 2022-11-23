@@ -9,11 +9,11 @@
       <div class="row" style="justify-content: right;">
         <a (click)="removeOne(fav.mtrl)" style="width: fit-content;cursor: pointer;">
           <img class="remove" alt=""  style="width: 32px;" srcset="">
-        </a> 
+        </a>
       </div>
       <div class="row">
         <div class="row" style="justify-content: center;align-items: center;margin-bottom: 12px;padding: 0;">
-          <img [src]="fav.img" class="product-image" alt=""/>
+          <img [src]="fav.image"class="product-image" alt=""/>
         </div>
         <div class="row" style="justify-content: center;text-align: center;">
           <p class="product-title" *ngIf="currentLang == 'el'">{{ fav.onoma }}</p>

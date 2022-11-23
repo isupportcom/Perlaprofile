@@ -169,7 +169,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   ngAfterViewInit(): void {
 
 
-    
+
 
   }
 
@@ -183,14 +183,14 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           this.notEmpty = true;
         }
         else{
-          this.notEmpty = false;  
+          this.notEmpty = false;
         }
       }
       else{
         this.notEmpty = false;
       }
-      
-      
+
+
     })
 
     this.currentLang = localStorage.getItem('lang') || 'el'
@@ -255,7 +255,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
 
     console.log("HAIA");
-    
+
     // https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php
 
     axios
@@ -298,7 +298,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
 
 
-        
+
 
 
         setTimeout(() => {
@@ -332,7 +332,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         this.productsService.prevfilters.subscribe(resData => {
           console.log("EIMMAI MESA");
           console.log(resData);
-          
+
           this.listArray = [];
           if(resData != null){
             this.filterList = Object.values(resData )
@@ -340,14 +340,14 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             for(let filter of this.filterList){
               this.listArray.push(filter);
             }
-            
+
             if(!this.showBigFilters){
               this.updateProducts()
             }
             else{
               setTimeout(() => {
                 console.log(this.filters);
-  
+
                 for(let i=0; i<this.filters.length; i++){
                   for(let id of this.listArray){
                     if(id === this.filters[i].value){
@@ -357,8 +357,8 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
                     }
                   }
                 }
-    
-    
+
+
                 this.executed = true;
               },300)
             }
@@ -369,7 +369,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
         })
 
-          
+
 
 
         // setTimeout(() => {
@@ -398,14 +398,14 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
       let checkboxes = document.getElementById('checkboxList')
       console.log(checkboxes);
-      
+
       console.log();
       this.route.params.subscribe((params) => {
         console.log(params);
-  
+
         console.log(+params['cat_id']);
         console.log(params['cat_name']);
-  
+
         this.mainCategory.id = +params['cat_id'];
         this.productsService
           .getAllCategories(this.mainCategory.id)
@@ -416,7 +416,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             );
             this.categories = this.productsService.getCategoriesArray();
             console.log(this.listArray);
-            
+
             setTimeout(() => {
               if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
 
@@ -425,24 +425,24 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
                   this.listArray.push(this.categories[0].sub_id)
                   this.updateProducts();
                 }
-                else{                  
+                else{
                   for(let i=0;i<this.categories.length;i++){
                     console.log("HEY");
-                    
+
                     let id = 'check'+i+this.mainCategory.id;
                     console.log(id);
                     let check = document.getElementById(id)
                     console.log(check);
-                    
+
                     console.log(this.categories[0].sub_id);
-                    
+
                     console.log(check);
-  
+
                     if((<HTMLInputElement>check).value == this.categories[0].sub_id){
                       console.log("HEYYY");
                       if(this.listArray){
                         if(this.listArray.length == 0){
-  
+
                           (<HTMLInputElement>check).checked = true;
                           // this.handleCheckboxes((<HTMLInputElement>check));
                           this.listArray.push(this.categories[0].sub_id)
@@ -464,23 +464,23 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
                   }
                 }
               }
-              
+
             },200)
             console.log(this.categories.length);
-            
+
 
           });
-  
+
 
         console.log(this.listArray);
-  
+
         this.mainCategory.name = params['cat_name'];
 
-        
 
-        
 
-        
+
+
+
         if ( this.paginationCat){
           if(+this.paginationCat == this.mainCategory.id){
             if(!this.keepPagination){
@@ -507,9 +507,9 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         }
         // page = this.paginationCat? (this.paginationCat == this.mainCategory?)  : 1;
         // (!this.keepPagination? 1 : (this.keepPagination == 'true'? (this.tempPage? +this.tempPage : 1)  : 1))
-  
+
         this.productsService.setMainCategory(this.mainCategory);
-  
+
         localStorage.setItem(
           'currentCategory',
           JSON.stringify(this.mainCategory)
@@ -699,12 +699,15 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   }
 
   getFavourites() {
-    return this.http.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/favorites.php',
+    return this.http.get(
+      'https://perlanoderest.vinoitalia.gr/products/favorites',
       {
-        trdr: this.loadedUser.trdr,
-        mtrl: 'dontNeedIt',
-        mode: 'fetch',
+        params:{
+          trdr: this.loadedUser.trdr,
+          mtrl: 'dontNeedIt',
+          mode: 'fetch',
+        }
+
       }
     );
   }
@@ -754,9 +757,9 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
   yoyo(e: any){
     console.log(e);
-    
+
     this.handleCheckboxes(e,false)
-    
+
   }
 
   handleWizzardProfile(name: string, id: number) {
@@ -773,28 +776,28 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   handleCheckboxes(e: any, clickeP?: boolean) {
     this.shownProducts = [];
     console.log(e);
-    
+
     let flag = false;
     let boxes;
     boxes = e.parentElement.parentElement.parentElement.parentElement.parentElement.children;
-    
-    
+
+
     if(clickeP){
       console.log("P");
-      
+
       console.log(boxes);
       for(let i=0; i<boxes.length;i++){
         if(boxes[i].children[0].children[0].children[0].children[0].checked){
           if(e.value == boxes[i].children[0].children[0].children[0].children[0].value){
             flag = true;
           }
-          boxes[i].children[0].children[0].children[0].children[0].checked = false;        
+          boxes[i].children[0].children[0].children[0].children[0].checked = false;
         }
       }
     }
     else{
       console.log("INPUT");
-      
+
       console.log(boxes);
       for(let i=0; i<boxes.length;i++){
         console.log(boxes[i].children[0].children[0].children[0].children[0].checked);
@@ -802,13 +805,13 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           console.log("OUAOU");
           console.log(e.value);
           console.log(boxes[i].children[0].children[0].children[0].children[0].value);
-          
+
           if(e.value == boxes[i].children[0].children[0].children[0].children[0].value){
             console.log("YEAHHHHHHH");
-            
+
             flag = true;
           }
-          boxes[i].children[0].children[0].children[0].children[0].checked = false;   
+          boxes[i].children[0].children[0].children[0].children[0].checked = false;
         }
       }
 
@@ -819,9 +822,9 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     this.filterOn = false;
     this.listArray = [];
     console.log(flag);
-    
+
     if((flag && !clickeP) || (!flag && clickeP)){
-      
+
       if (clickeP) {
         if (!e.checked) {
           e.checked = true;
@@ -834,12 +837,12 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           setTimeout(() => {
             this.updateProducts();
             this.waiting = false;
-  
+
           },600);
-  
+
         }
         else{
-  
+
           // this.listArray = this.listArray.filter((e: any) => e !== this.value)
           // console.log('hello');
           for (let i = 0; i < this.listArray.length; i++) {
@@ -851,18 +854,18 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           this.updateProducts();
           setTimeout(() => {
             this.waiting = false;
-  
+
           },600);
-  
-  
+
+
         }
         this.checked = true;
-  
+
         console.log(this.listArray);
       } else {
-        
+
         if (!e.checked) {
-          
+
           e.checked = true;
         } else {
           e.checked = false;
@@ -871,17 +874,17 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           this.listArray.push(e.value);
           this.waiting = true;
           console.log(this.listArray);
-          
-          
+
+
           this.updateProducts();
           setTimeout(() => {
             this.waiting = false;
-  
+
           },600);
-  
+
         }
         else{
-  
+
           // this.listArray = this.listArray.filter((e: any) => e !== this.value)
           // console.log('hello');
           for (let i = 0; i < this.listArray.length; i++) {
@@ -894,21 +897,21 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           this.updateProducts();
           setTimeout(() => {
             this.waiting = false;
-  
+
           },600);
-  
+
         }
         this.checked = true;
-  
+
         console.log(this.listArray);
       }
-  
+
       if(e.classList[0] === 'boxes'){
         for(let i=0;i< this.filters.length; i++){
           if(e.value === this.filters[i].value){
             this.filters[i].checked = e.checked;
           }
-  
+
         }
       }
     }
@@ -943,7 +946,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         // let temp: any = this.productsService.getAll();
         let temp: any = this.products;
         console.log(temp);
-        
+
         for (let product of temp) {
           let flag2 = true;
           if(this.favorites){

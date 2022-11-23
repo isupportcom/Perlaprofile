@@ -100,12 +100,12 @@ export class HomepageComponent implements OnInit {
   }
 
    ngOnInit() {
-     
+
      this.currentLang = localStorage.getItem('lang');
      this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
      this.upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
      // this.getSeeEarlier();
-     
+
      console.log(this.upokatastima);
 
     if(this.username){
@@ -123,13 +123,13 @@ export class HomepageComponent implements OnInit {
 
     });
 
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllOffers.php",{
+    axios.post("https://perlanoderest.vinoitalia.gr/products/getAllOffers",{
       product:"Home",
       offer:"Home"
     }).then(resData=>{
 
-      console.log(resData.data.offers)
-      this.offer1 = resData.data.offers[0]
+      console.log(resData.data.products)
+      this.offer1 = resData.data.products
       // console.log(this.offer1)
 
     })

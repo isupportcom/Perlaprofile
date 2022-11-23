@@ -54,17 +54,17 @@ export class ProductsCarouselComponent implements OnInit {
   async ngOnInit() {
     this.currentLang = localStorage.getItem('lang');
     console.log(this.category);
-    
-    
+
+
     if(this.mode == 'suggested'){
-      
-      let request = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllproductsRelated.php",{mtrl: +this.mtrl})
+
+      let request = await axios.get("https://perlanoderest.vinoitalia.gr/products/getProducts",{params:{mtrl: +this.mtrl}})
       console.log(request.data)
       this.suggestedProducts = request.data.products;
       if(this.suggestedProducts.length !=0){
         this.hasSuggested = true;
       }
-  
+
       let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
       {
         mtrl:this.mtrl
@@ -77,7 +77,7 @@ export class ProductsCarouselComponent implements OnInit {
         else{
           this.notEmpty = false;
         }
-  
+
         }
       )
       // console.log(sugg.data.products);
@@ -85,12 +85,12 @@ export class ProductsCarouselComponent implements OnInit {
       // if(this.suggested.length ==0){
       //     this.hasSuggested=false;
       // }else{
-      //   this.shownProducts = this.suggested 
+      //   this.shownProducts = this.suggested
       //   this.hasSuggested = true;
       // }
     }
-    
-    
+
+
     if(this.mode == 'offers'){
       axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
         category_id: this.category.id
@@ -103,8 +103,8 @@ export class ProductsCarouselComponent implements OnInit {
         else{
           this.notEmpty = false;
         }
-        
-        
+
+
       })
     }
   }
@@ -119,11 +119,11 @@ export class ProductsCarouselComponent implements OnInit {
     }).then(resData=>{
       console.log(resData.data);
     })
-    
+
     setTimeout(() => {
       this.router.navigate(['/products/product-page']);
     },100)
-    
+
   }
 
 

@@ -48,14 +48,14 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   upokatastima: any;
   address: any | string;
   zipCode: any | string;
-  area: any | string; 
-  city: any | string; 
-  name: any | string; 
-  doy: any | string; 
-  afm: any | string; 
-  phone: any | string; 
-  email: any | string; 
-  courier: any | string; 
+  area: any | string;
+  city: any | string;
+  name: any | string;
+  doy: any | string;
+  afm: any | string;
+  phone: any | string;
+  email: any | string;
+  courier: any | string;
   upokat_name: any | string;
   courier_name: any | string;
   shipping_method: any | string;
@@ -70,12 +70,12 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
-    
+
     console.log(this.upokatastima != {});
-    
+
     if(this.upokatastima != {}){
       console.log("HEY");
-      
+
       this.address = this.upokatastima.address;
       this.zipCode = this.loadedUser.zip;
       this.area = this.upokatastima.area;
@@ -121,7 +121,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       email: [{value: this.email, disabled: true}],
       courier: [{value: this.courier, disabled: true}],
       courier_name: [{value: this.courier_name, disabled: true}],
-      shipping_method: [{value: this.shipping_method, disabled: true}] 
+      shipping_method: [{value: this.shipping_method, disabled: true}]
     })
 
     this.BankData = this.builder.group({
@@ -137,14 +137,16 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       email: [{value: this.email, disabled: false}],
       courier: [{value: this.courier, disabled: false}],
       courier_name: [{value: this.courier_name, disabled: false}],
-      shipping_method: [{value: this.shipping_method, disabled: false}] 
+      shipping_method: [{value: this.shipping_method, disabled: false}]
     })
-    
 
-    let resData = await axios.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/fetchCartItems.php',
+
+    let resData = await axios.get(
+      'https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
       {
-        trdr: this.loadedUser.trdr,
+        params:{
+          trdr: this.loadedUser.trdr
+        },
       }
     );
 
@@ -206,12 +208,12 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         console.log(this.mtrlArr.join(','));
         console.log(this.qtyArr);
         console.log(this.qtyArr.join(','));
-    
+
         console.log(this.loadedUser.trdr);
         let payment;
-    
+
           payment = 14;
-    
+
         axios
           .post(
             'https://perlarest.vinoitalia.gr//php-auth-api/placeOrder.php/',
@@ -234,7 +236,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
           )
           .then((resData) => {
             console.log(resData);
-            
+
             // let h3 :any
               //  h3 = document.getElementById("orderComplete");
               // h3.innerHTML = resData.data.message  + "Click The button to navigate to Homepage or you will navigate in 10 seconds";
@@ -245,15 +247,15 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
                   // window.location.reload();
                 })
               },100)
-    
-    
+
+
           });
-        
+
       },1500);
     }
-   
 
-    
+
+
   }
 
   onSubmit(FormData:any,btn: any) {
@@ -270,14 +272,14 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   bankCredentials(showCredentials: boolean,row?: any){
 
-    
+
     if(showCredentials){
       this.showBankCredentials = false;
     }
     else{
       this.showBankCredentials = true;
     }
-    
+
   }
 
   handleTrigwnikh(event: any){
@@ -295,7 +297,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       this.FormData.controls['courier_name'].enable();
       this.FormData.controls['shipping_method'].enable();
       this.trigwnikh = false;
-    } 
+    }
     else{
       this.FormData.controls['address'].disable();
       this.FormData.controls['zipCode'].disable();
@@ -327,7 +329,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   handleUserDetails(f: NgForm) {
     console.log(f.value);
-    
+
 
     localStorage.setItem('showUserDetails', 'false');
     localStorage.setItem('showPayment', 'true');
@@ -387,7 +389,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
     var goToOrder: any;
     let price = this.float2int(this.GrandTotal * 100);
-    
+
     let req = await axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/checkout.php', {
         amount: price,
@@ -436,7 +438,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
               streetLine1: 'Revolut',
               streetLine2: '1 Canada Square',
               postcode: 'EC2V 6DN',
-              
+
             },
             shippingAddress: {
               countryCode: 'GB',
