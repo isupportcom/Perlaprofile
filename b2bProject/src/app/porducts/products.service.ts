@@ -103,8 +103,8 @@ export  class ProductsService {
  }
 
  getAllCategories(id:any){
-    return  this.http.post(
-        'https://perlarest.vinoitalia.gr/php-auth-api/getAllCategories.php',{category:id});
+    return  this.http.get(
+        'https://perlanoderest.vinoitalia.gr/categories/getCategories',{params:{category:id}});
  }
 
  getAllProducts(){
@@ -138,6 +138,7 @@ export  class ProductsService {
  }
 
  setAllCategoriesArray(arr: any){
+    console.log(arr);
     for(let i=0;i<arr.length;i++){
         this.allCategories[i] = arr[i];
     }

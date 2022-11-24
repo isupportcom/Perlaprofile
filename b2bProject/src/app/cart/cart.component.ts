@@ -229,7 +229,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   removeOne(item: any, index: number, reload: boolean) {
     if (this.length > 1) {
-      this.GrandTotal -= this.products[index].wholesalePrice;
+      this.GrandTotal -= +this.products[index].wholesalePrice;
     } else {
       this.GrandTotal = 0;
     }
@@ -237,14 +237,21 @@ export class CartComponent implements OnInit, OnDestroy {
     console.log(item);
 
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+    console.log(item.mtrl)
+    console.log(loadedUser.trdr)
+    console.log(item.group_id);
     axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php', {
-        mtrl: item.mtrl,
-        trdr: loadedUser.trdr,
-        id: 2,
-        group_id: item.group_id,
+
+      .get('https://perlanoderest.vinoitalia.gr/products/removeCartItem', {
+        params:{
+          mtrl: item.mtrl,
+          trdr: loadedUser.trdr,
+          id: 2,
+          group_id: item.group_id,
+        }
       })
       .then((resData) => {
+        console.log(resData.data)
         this.products = resData.data.products;
         this.temp = this.products;
         this.cartItems = [];
@@ -265,7 +272,7 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartService.shouldContinue.next(this.shouldContinue);
 
         for (let prod of this.products) {
-          this.GrandTotal += +prod.wholesalePricePrice * prod.qty;
+          this.GrandTotal += +prod.wholesalePrice * prod.qty;
         }
         this.GrandTotal = +this.GrandTotal.toFixed(4);
         console.log(this.GrandTotal);
@@ -285,11 +292,14 @@ export class CartComponent implements OnInit, OnDestroy {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php', {
-        mtrl: 10,
-        trdr: loadedUser.trdr,
-        id: 1,
-        group_id: 'test',
+      .get('https://perlanoderest.vinoitalia.gr/products/removeCartItem', {
+        params:{
+          mtrl: 10,
+          trdr: loadedUser.trdr,
+          id: 1,
+          group_id: 'test',
+        }
+
       })
       .then((resData) => {
         console.log(resData);
@@ -309,10 +319,11 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartService.shouldContinue.next(this.shouldContinue);
 
         for (let prod of this.products) {
-          this.GrandTotal += +prod.wholesalePricePrice * prod.qty;
+          this.GrandTotal += +prod.wholesalePrice * prod.qty;
         }
         this.GrandTotal = +this.GrandTotal.toFixed(4);
         console.log(this.GrandTotal);
+        setTimeout(() => {
         axios
           .get(
             'https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
@@ -323,10 +334,11 @@ export class CartComponent implements OnInit, OnDestroy {
             this.products = resData.data.products;
             this.cartService.sendProductCount(this.products.length);
           });
-      });
-    setTimeout(() => {
+
+
       this.declareArray();
     }, 400);
+  });
   }
 
   handleCheckout(btn: any) {

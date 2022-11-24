@@ -49,7 +49,7 @@ export class MosquiWizzardComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
 
     axios
       .post('https://perlarest.vinoitalia.gr/php-auth-api/getAllColors.php', {
@@ -91,23 +91,26 @@ export class MosquiWizzardComponent implements OnInit {
         btn.classList.remove('loading')
         if(this.dimentions.valid){
           axios
-          .post(
-            'https://perlarest.vinoitalia.gr/php-auth-api/findMosquiProduct.php',
+          .get(
+            'https://perlanoderest.vinoitalia.gr/products/findMosquiProduct',
             {
-              subcategory: this.sub_id,
+              params:{
+                subcategory: this.sub_id,
               fabric: this.dimentions.value.fabric,
               profile: this.dimentions.value.profile,
               width: this.dimentions.value.width,
               height: this.dimentions.value.height,
-              color: this.dimentions.value.extra? this.dimentions.value.extra : 'none' 
-            }
+              color: this.dimentions.value.extra? this.dimentions.value.extra : 'none'
+
+              }
+                }
           )
           .then((resData) => {
             console.log(resData.data);
-            this.product = resData.data.products
+            this.product = resData.data.product
             console.log(this.product);
             this.flag = true;
-            this.productService.sendMosquiProductFound(resData.data.products);
+            this.productService.sendMosquiProductFound(resData.data.product);
           });
       }}, 2700);
       }
@@ -115,13 +118,13 @@ export class MosquiWizzardComponent implements OnInit {
 
 
 
-    
-      
+
+
       // setTimeout(() => {
-        
+
       // },100)
     }
-  
+
 
   hasHeigh: boolean | any;
   hasWidth: boolean | any;

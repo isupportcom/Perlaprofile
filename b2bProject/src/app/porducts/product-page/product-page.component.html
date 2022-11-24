@@ -35,7 +35,7 @@
         direction="vertical"
         #secondSwiper
       >
-        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
+        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.img : mosquiProduct.image" alt=""></ng-template>
         <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
@@ -356,15 +356,15 @@
           style="margin-top: 32px; margin-bottom: 24px"
         >
           <p
-            *ngIf="mosquiProduct.offer == mosquiProduct.wholesale"
+            *ngIf="mosquiProduct.offer == mosquiProduct.wholesalePrice"
             style="font-size: 20px; margin: 0px; height: fit-content"
             translate
           >
             product_page.price
-            <b style="color: #6dae49">{{ mosquiProduct.wholesale }}&euro;</b>
+            <b style="color: #6dae49">{{ mosquiProduct.wholesalePrice }}&euro;</b>
           </p>
           <p
-            *ngIf="mosquiProduct.offer != mosquiProduct.wholesale"
+            *ngIf="mosquiProduct.offer != mosquiProduct.wholesalePrice"
             style="
               font-size: 20px;
               margin: 0px;
@@ -375,10 +375,10 @@
             translate
           >
             product_page.price
-            <b style="color: rgba(0, 0, 0, 0.4)">{{ mosquiProduct.wholesale }}&euro;</b>
+            <b style="color: rgba(0, 0, 0, 0.4)">{{ mosquiProduct.wholesalePrice }}&euro;</b>
           </p>
           <p
-            *ngIf="mosquiProduct.offer != mosquiProduct.wholesale"
+            *ngIf="mosquiProduct.offer != mosquiProduct.wholesalePrice"
             style="font-size: 20px; margin: 0px; height: fit-content;color: #6dae49;"
             translate
           >
@@ -440,7 +440,7 @@
               ngClass="button col-6"
               style="transition: background-color 0.2s ease-in-out"
               (click)="addToCartMosqui(addToCartBtn)"
-              
+
               #addToCartBtn
             >
               <span translate>product_page.add</span>
@@ -649,8 +649,8 @@
           <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           <p style="margin: 0px;color: rgba(0,0,0,0);font-size: 16px;">Αφαίρεση Video</p>
           <p class="textAnim" style="font-size: 16px;">Αφαίρεση Video</p>
-          
-  
+
+
         </button>
       </form>
 

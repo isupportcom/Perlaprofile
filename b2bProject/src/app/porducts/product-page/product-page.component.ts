@@ -184,7 +184,8 @@ export class ProductPageComponent implements OnInit {
       this.waitingProduct = true;
       this.showForm = false;
       setTimeout(() => {
-        this.mosquiProduct = resData[0];
+        console.log(resData);
+        this.mosquiProduct = resData;
         console.log(this.mosquiProduct);
         // this.product = this.mosquiProduct;
         let favouritesObs: Observable<any>;
@@ -643,10 +644,10 @@ export class ProductPageComponent implements OnInit {
   }
 
   async getSeeEarlier() {
-    let req = await axios.get(
-      'https://perlanoderest.vinoitalia.gr/products/seeEarlier.php',
+    let req = await axios.post(
+      'https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php',
       {
-        params:{trdr: this.loadedUser.trdr},
+        trdr: this.loadedUser.trdr,
       }
     );
     this.seeEarlier = req.data.products;
@@ -704,8 +705,10 @@ export class ProductPageComponent implements OnInit {
           console.log("JINGLE");
 
           this.cartService.addToCart(this.product, false, true);
+          setTimeout(()=>{
 
-          this.cartService.sendProductAdded(true);
+            this.cartService.sendProductAdded(true);
+          },200)
         } else {
           window.scroll({
             top: 0,

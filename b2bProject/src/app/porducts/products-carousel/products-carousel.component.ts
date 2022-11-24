@@ -113,9 +113,9 @@ export class ProductsCarouselComponent implements OnInit {
     console.log(product);
     this.productsService.setSingleProduct(product)
 
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
-      mtrl :product.mtrl,
-      trdr: this.loadedUser.trdr
+    axios.get("https://perlanoderest.vinoitalia.gr/products/seeEarlier",{
+      params:{mtrl :product.mtrl,
+        trdr: this.loadedUser.trdr}
     }).then(resData=>{
       console.log(resData.data);
     })

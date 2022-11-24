@@ -412,7 +412,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           .subscribe((resData: any) => {
             console.log(resData);
             this.productsService.setAllCategoriesArray(
-              resData.Categories[0].subcategoris
+              resData.categories[0].subcategoris
             );
             this.categories = this.productsService.getCategoriesArray();
             console.log(this.listArray);

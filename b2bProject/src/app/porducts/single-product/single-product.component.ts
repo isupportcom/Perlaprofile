@@ -136,9 +136,11 @@ export class SingleProductComponent implements OnInit, OnDestroy {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     this.productsService.setSingleProduct(this.index);
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/seeEarlier.php",{
+    axios.get("https://perlanoderest.vinoitalia.gr/products/seeEarlier",{
+    params:{
       mtrl:this.index.mtrl,
       trdr:loadedUser.trdr
+    }
     }).then(resData=>{
       console.log(resData.data);
 
@@ -207,35 +209,35 @@ export class SingleProductComponent implements OnInit, OnDestroy {
           setTimeout(() => btn.classList.remove('loading'), 3700);
           }
         console.log(btn);
-    
-        
+
+
         this.cartService.sendProductAdded(true);
-    
-    
+
+
         let relatedProductsObs: Observable<any>;
-    
+
         relatedProductsObs = this.productsService.getRelatedProducts(this.index.mtrl);
-    
+
         relatedProductsObs.subscribe(resData => {
           console.log(resData);
-    
+
           this.relatedProducts = resData.related;
-    
+
         })
         setTimeout(() => {
             console.log(this.relatedProducts);
-    
+
           if(this.relatedProducts.length <= 0){
-    
+
             this.cartService.setId(this.index.mtrl)
-    
+
             // this.productsService.setSingleProduct(this.index);
-            
+
             console.log("PEOS");
-            
-            this.cartService.sendProductAdded(true);
             this.cartService.addToCart(this.index);
-    
+            this.cartService.sendProductAdded(true);
+
+
           }
           else{
             window.scroll({
@@ -253,7 +255,7 @@ export class SingleProductComponent implements OnInit, OnDestroy {
 
       this.productsService.backOrder.subscribe(resData => {
         console.log(resData);
-        
+
         if(resData && counter == 0){
           console.log("this.index");
           if(!btn.classList.contains('loading')) {
@@ -261,31 +263,31 @@ export class SingleProductComponent implements OnInit, OnDestroy {
             setTimeout(() => btn.classList.remove('loading'), 3700);
           }
           console.log(btn);
-      
+
           this.cartService.sendProductAdded(true);
-      
-      
-      
+
+
+
           let relatedProductsObs: Observable<any>;
-      
+
           relatedProductsObs = this.productsService.getRelatedProducts(this.index.mtrl);
-      
+
           relatedProductsObs.subscribe(resData => {
             console.log(resData);
-      
+
             this.relatedProducts = resData.related;
-      
+
           })
           setTimeout(() => {
               console.log(this.relatedProducts);
-      
+
             if(this.relatedProducts.length <= 0){
-      
+
               this.cartService.setId(this.index.mtrl)
               counter++;
               this.cartService.addToCart(this.index);
               this.productsService.sendBackOrderPopup(false);
-      
+
               // this.cartService.sendProductAdded(true);
             }
             else{
@@ -300,7 +302,7 @@ export class SingleProductComponent implements OnInit, OnDestroy {
           },500);
         }
       });
-      
+
     }
 
 

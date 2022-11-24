@@ -85,9 +85,9 @@ export class CartServiceService {
   removeItem(index: any) {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php', {
-        trdr: loadedUser.trdr,
-        id: 2,
+      .get('https://perlanoderest.vinoitalia.gr/products/removeCartItem', {
+        params:{trdr: loadedUser.trdr,
+          id: 2,}
       })
       .then((resData) => {
         console.log(resData);
@@ -194,7 +194,11 @@ export class CartServiceService {
     if (product.hasOffer) {
       price = product.offer;
     } else {
+      if(product.wholesale != undefined){
       price = product.wholesale;
+      }else{
+        price = product.wholesalePrice;
+      }
     }
     console.log(price);
     console.log(product);
@@ -202,7 +206,12 @@ export class CartServiceService {
     let productAdded = true;
     localStorage.setItem('productAdded', 'true');
 
-
+    let retail;
+    if(product.retail != undefined){
+      retail = product.retail;
+    }else{
+      retail = product.retailPrice;
+    }
 
 
     let discount:any;
@@ -238,10 +247,10 @@ export class CartServiceService {
     }else{
       qty=product.qty
     }
-      console.log('qty');
+      console.log(product.omada);
 
     axios
-    .post('https://perlarest.vinoitalia.gr/php-auth-api/addToCart.php', {
+    .post('https://perlanoderest.vinoitalia.gr/products/addToCart', {
       mtrl: product.mtrl,
       trdr: loadedUser.trdr,
       code: product.code,
@@ -250,7 +259,7 @@ export class CartServiceService {
       img: image,
       category: category,
       qty: qty,
-      retail: product.retail,
+      retail: retail,
       wholesale: price,
       stock: product.stock,
       group_id: product.group_id,
@@ -260,7 +269,7 @@ export class CartServiceService {
       omada: product.omada,
       offer: product.offer,
       empor_katig: loadedUser.emporiki_katigoria,
-      geo_zoni: loadedUser.geografikh_zwnh,
+      geo_zoni: 1,
       ypokat: upokatastima.trdrbranch
     })
     .then((resData) => {

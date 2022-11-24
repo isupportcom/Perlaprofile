@@ -434,8 +434,10 @@ export class AppComponent implements OnInit {
 
 
       this.cartService.addToCart(prod);
+      setTimeout(()=>{
 
-      this.cartService.sendProductAdded(true);
+        this.cartService.sendProductAdded(true);
+      },100)
 
     }
     this.itemsToCart = [];
