@@ -134,14 +134,14 @@ export class AppComponent implements OnInit {
       relatedProductsObs.subscribe(resData => {
         this.relatedProducts = resData.related;
       })
-      setTimeout(() => {
+      setTimeout(async() => {
         console.log(this.relatedProducts);
         for(let relatedProd of this.relatedProducts){
           let groupingObs: Observable<any>;
           let temp;
           relatedProd.qty = this.singleProduct.qty;
           let scope2b;
-          groupingObs = this.productService.setGrouping(this.singleProduct.mtrl,relatedProd.grouping);
+          groupingObs = await this.productService.setGrouping(this.singleProduct.mtrl,relatedProd.grouping);
 
           groupingObs.subscribe(resData => {
             console.log(resData);

@@ -126,11 +126,11 @@ export  class ProductsService {
     });
  }
 
- setGrouping(mtrl:any,grouping: any){
+ async setGrouping(mtrl:any,grouping: any){
 
 
 
-    return this.http.post('https://perlarest.vinoitalia.gr/php-auth-api/addProductBasedOnGrouping.php',
+    return await this.http.post('https://perlanoderest.vinoitalia.gr/products/addProductBasedOnGrouping',
     {
         product_mtrl : mtrl ,
         grouping : grouping

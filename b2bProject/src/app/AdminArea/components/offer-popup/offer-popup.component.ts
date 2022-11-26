@@ -50,7 +50,7 @@ export class OfferPopupComponent implements OnInit {
       }
     }).then(resData=>{
       this.modalService.sendProducts(resData.data.products);
-      console.log(resData.data)
+      console.log(resData.data.products)
       // setTimeout(()=>{
       //   // window.location.reload()
       // },800)
