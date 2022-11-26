@@ -414,7 +414,7 @@ export class AppComponent implements OnInit {
     console.log(this.itemsToCart);
   }
 
-  addToCart(){
+ async addToCart(){
     console.log("PEOS")
     let id = '';
 
@@ -433,7 +433,7 @@ export class AppComponent implements OnInit {
       console.log(prod);
 
 
-      this.cartService.addToCart(prod);
+      await this.cartService.addToCart(prod);
       setTimeout(()=>{
 
         this.cartService.sendProductAdded(true);

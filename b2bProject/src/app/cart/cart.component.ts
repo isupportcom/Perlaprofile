@@ -45,7 +45,7 @@ export class CartComponent implements OnInit, OnDestroy {
     private cartService: CartServiceService
   ) {}
 
-  ngOnInit(): void {
+   ngOnInit() {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     axios
       .post('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {

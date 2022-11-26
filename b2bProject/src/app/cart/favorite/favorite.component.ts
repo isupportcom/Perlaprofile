@@ -100,7 +100,7 @@ export class FavoriteComponent implements OnInit {
 
           this.relatedProducts = resData.related;
         });
-        setTimeout(() => {
+        setTimeout(async() => {
 
 
           if (this.relatedProducts.length <= 0) {
@@ -108,7 +108,7 @@ export class FavoriteComponent implements OnInit {
 
             this.productsService.setSingleProduct(product);
             product.show = true;
-            this.cartService.addToCart(product, false, true);
+            await this.cartService.addToCart(product, false, true);
 
             this.cartService.sendProductAdded(true);
           } else {
@@ -142,7 +142,7 @@ export class FavoriteComponent implements OnInit {
 
               this.relatedProducts = resData.related;
             });
-            setTimeout(() => {
+            setTimeout(async() => {
 
 
               if (this.relatedProducts.length <= 0) {
@@ -150,7 +150,7 @@ export class FavoriteComponent implements OnInit {
 
                 this.productsService.setSingleProduct(product);
                 product.show = true;
-                this.cartService.addToCart(product, false, true);
+                await this.cartService.addToCart(product, false, true);
 
                 this.cartService.sendProductAdded(true);
               } else {

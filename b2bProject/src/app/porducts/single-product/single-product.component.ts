@@ -224,7 +224,7 @@ export class SingleProductComponent implements OnInit, OnDestroy {
           this.relatedProducts = resData.related;
 
         })
-        setTimeout(() => {
+        setTimeout(async() => {
             console.log(this.relatedProducts);
 
           if(this.relatedProducts.length <= 0){
@@ -234,7 +234,7 @@ export class SingleProductComponent implements OnInit, OnDestroy {
             // this.productsService.setSingleProduct(this.index);
 
             console.log("PEOS");
-            this.cartService.addToCart(this.index);
+            await this.cartService.addToCart(this.index);
             setTimeout(()=>{
 
               // this.cartService.sendProductAdded(true);
@@ -282,14 +282,14 @@ export class SingleProductComponent implements OnInit, OnDestroy {
             this.relatedProducts = resData.related;
 
           })
-          setTimeout(() => {
+          setTimeout(async() => {
               console.log(this.relatedProducts);
 
             if(this.relatedProducts.length <= 0){
 
               this.cartService.setId(this.index.mtrl)
               counter++;
-              this.cartService.addToCart(this.index);
+             await this.cartService.addToCart(this.index);
               this.productsService.sendBackOrderPopup(false);
 
               // this.cartService.sendProductAdded(true);

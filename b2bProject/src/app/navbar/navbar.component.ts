@@ -145,11 +145,11 @@ export class NavbarComponent implements OnInit{
 
     this.cartService.productAdded.subscribe( resData => {
 
-      setTimeout(() => {
-        axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
-        .then(resData => {
-          console.log(resData.data)
-          this.productCount = resData.data.products.length;
+      setTimeout(async() => {
+        await axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
+        .then(async resData => {
+          console.log(await resData.data)
+          this.productCount =await resData.data.products.length;
 
         })
         if(window.scrollX === 0){
@@ -259,7 +259,7 @@ export class NavbarComponent implements OnInit{
 
     let fetchProductsObs: Observable<any>;
 
-    fetchProductsObs = this.cartService.getItems()
+    fetchProductsObs = await this.cartService.getItems()
 
     fetchProductsObs.subscribe(resData => {
       this.temp = resData.products;

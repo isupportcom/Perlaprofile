@@ -33,6 +33,7 @@ import SwiperCore, {
 } from 'swiper';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { async } from '@angular/core/testing';
 
 SwiperCore.use([
   Navigation,
@@ -363,7 +364,7 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
-  handleFindNew() {
+  async handleFindNew() {
     this.mosquiProduct = {};
     this.waitingProduct = true;
     this.showForm = true;
@@ -372,7 +373,7 @@ export class ProductPageComponent implements OnInit {
     }, 200);
   }
 
-  addToCartMosqui(btn: any) {
+  async addToCartMosqui(btn: any) {
     if(+this.product.diathesima > 0){
       if (!btn.classList.contains('loading')) {
         btn.classList.add('loading');
@@ -389,14 +390,14 @@ export class ProductPageComponent implements OnInit {
       this.mosquiProduct.qty = this.qty;
 
       this.mosquiProduct.show = true;
-      this.cartService.addToCart(this.mosquiProduct);
+      await this.cartService.addToCart(this.mosquiProduct);
 
-      this.cartService.sendProductAdded(true);
+      await this.cartService.sendProductAdded(true);
     }
     else{
       this.productsService.sendBackOrderPopup(true);
 
-      this.productsService.backOrder.subscribe(resData => {
+      this.productsService.backOrder.subscribe(async resData => {
         if(resData){
           if (!btn.classList.contains('loading')) {
             btn.classList.add('loading');
@@ -413,9 +414,9 @@ export class ProductPageComponent implements OnInit {
           this.mosquiProduct.qty = this.qty;
 
           this.mosquiProduct.show = true;
-          this.cartService.addToCart(this.mosquiProduct);
+         await this.cartService.addToCart(this.mosquiProduct);
 
-          this.cartService.sendProductAdded(true);
+          await this.cartService.sendProductAdded(true);
         }
       })
     }
@@ -692,7 +693,7 @@ export class ProductPageComponent implements OnInit {
 
         this.relatedProducts = resData.related;
       });
-      setTimeout(() => {
+      setTimeout(async() => {
         this.product.qty = this.qty;
         console.log(this.product.qty);
         console.log(this.relatedProducts);
@@ -704,10 +705,10 @@ export class ProductPageComponent implements OnInit {
           this.product.show = true;
           console.log("JINGLE");
 
-          this.cartService.addToCart(this.product, false, true);
-          setTimeout(()=>{
+          await this.cartService.addToCart(this.product, false, true);
+          setTimeout(async ()=>{
 
-            this.cartService.sendProductAdded(true);
+            await this.cartService.sendProductAdded(true);
           },200)
         } else {
           window.scroll({
@@ -750,7 +751,7 @@ export class ProductPageComponent implements OnInit {
 
             this.relatedProducts = resData.related;
           });
-          setTimeout(() => {
+          setTimeout(async() => {
             this.product.qty = this.qty;
             console.log(this.product.qty);
             console.log(this.relatedProducts);
@@ -762,9 +763,9 @@ export class ProductPageComponent implements OnInit {
               this.product.show = true;
               console.log("JINGLE");
               counter++;
-              this.cartService.addToCart(this.product, false, true);
+             await this.cartService.addToCart(this.product, false, true);
 
-              this.cartService.sendProductAdded(true);
+             await this.cartService.sendProductAdded(true);
             } else {
               window.scroll({
                 top: 0,

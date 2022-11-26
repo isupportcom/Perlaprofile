@@ -275,15 +275,15 @@ export class CartServiceService {
 
 
       console.log(req.data)
-     await this.sendProductAdded(true);
+      await this.sendProductAdded(true);
 
 
   }
 
-  getItems() {
+  async getItems() {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
-    return this.http.post(
+    return await this.http.post(
       'https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
       {
 
