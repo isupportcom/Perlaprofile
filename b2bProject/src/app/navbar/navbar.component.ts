@@ -106,7 +106,7 @@ export class NavbarComponent implements OnInit{
   async ngOnInit(){
 
     let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
-   axios.get("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{params:{trdr:loadedUser.trdr}})
+     axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
     .then(resData => {
       this.productCount = resData.data.products.length;
       console.log(this.productCount)
@@ -116,7 +116,7 @@ export class NavbarComponent implements OnInit{
     this.cartService.productCount.subscribe(resData => {
 
 
-      axios.get("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{params:{trdr:loadedUser.trdr}})
+      axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
         .then(resData => {
           this.productCount = resData.data.products.length;
 
@@ -143,32 +143,35 @@ export class NavbarComponent implements OnInit{
         })
     }
 
-    this.cartService.productAdded.subscribe(resData => {
+    this.cartService.productAdded.subscribe( resData => {
 
-      // setTimeout(() => {
-        axios.get("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{params:{trdr:loadedUser.trdr}})
+      setTimeout(() => {
+        axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
         .then(resData => {
           console.log(resData.data)
           this.productCount = resData.data.products.length;
 
         })
-      // },1000)
-
-      if(window.scrollX === 0){
-        if(!this.productAdded){
-          setTimeout(() => {
-            this.productAdded = true;
-            this.productAdded2 = true;
+        if(window.scrollX === 0){
+          if(!this.productAdded){
             setTimeout(() => {
-              this.productAdded = false;
-              setTimeout((() => {
-                this.productAdded2 = false;
-              }),650)
-            },1500)
-          },400)
-
+              this.productAdded = true;
+              this.productAdded2 = true;
+              setTimeout(() => {
+                this.productAdded = false;
+                setTimeout((() => {
+                  this.productAdded2 = false;
+                }),650)
+              },1500)
+            },400)
+          }
         }
-      }
+       },200)
+
+
+
+
+
 
 
     });

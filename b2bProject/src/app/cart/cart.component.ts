@@ -48,10 +48,10 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     axios
-      .get('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
-        params: {
+      .post('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
+
           trdr: loadedUser.trdr,
-        },
+
       })
       .then((resData: any) => {
         console.log(resData);
@@ -241,18 +241,18 @@ export class CartComponent implements OnInit, OnDestroy {
     console.log(loadedUser.trdr)
     console.log(item.group_id);
     axios
+      .post('https://perlanoderest.vinoitalia.gr/products/removeCartItem', {
 
-      .get('https://perlanoderest.vinoitalia.gr/products/removeCartItem', {
-        params:{
+
           mtrl: item.mtrl,
           trdr: loadedUser.trdr,
-          id: 2,
+          id: "2",
           group_id: item.group_id,
-        }
+
       })
       .then((resData) => {
         console.log(resData.data)
-        this.products = resData.data.products;
+        this.products =  resData.data.products;
         this.temp = this.products;
         this.cartItems = [];
         this.declareArray();
@@ -292,13 +292,13 @@ export class CartComponent implements OnInit, OnDestroy {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     axios
-      .get('https://perlanoderest.vinoitalia.gr/products/removeCartItem', {
-        params:{
+      .post('https://perlanoderest.vinoitalia.gr/products/removeCartItem', {
+
           mtrl: 10,
           trdr: loadedUser.trdr,
-          id: 1,
+          id: "1",
           group_id: 'test',
-        }
+
 
       })
       .then((resData) => {
@@ -325,9 +325,9 @@ export class CartComponent implements OnInit, OnDestroy {
         console.log(this.GrandTotal);
         setTimeout(() => {
         axios
-          .get(
+          .post(
             'https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
-            { params:{trdr: loadedUser.trdr} }
+            { trdr: loadedUser.trdr }
           )
           .then((resData: any) => {
             console.log(resData);
@@ -337,7 +337,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
 
       this.declareArray();
-    }, 400);
+    }, 100);
   });
   }
 

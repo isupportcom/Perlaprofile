@@ -14,8 +14,8 @@ export class OrderCompletedComponent implements OnInit {
 
   ngOnInit(): void {
     let loadedUser = JSON.parse(localStorage.getItem("userData")|| '{}');
-    
-    
+
+
     axios.post("https://perlarest.vinoitalia.gr/php-auth-api/removeCartItem.php",
     {
       mtrl:10,
@@ -25,7 +25,7 @@ export class OrderCompletedComponent implements OnInit {
 
     }).then(resData => {
       console.log(resData);
-      
+
     })
   }
 

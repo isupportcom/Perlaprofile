@@ -87,7 +87,7 @@ export class CartServiceService {
     axios
       .get('https://perlanoderest.vinoitalia.gr/products/removeCartItem', {
         params:{trdr: loadedUser.trdr,
-          id: 2,}
+          id: "2",}
       })
       .then((resData) => {
         console.log(resData);
@@ -146,7 +146,7 @@ export class CartServiceService {
 
   }
 
-  addToCart(product: product | any,animate?: boolean,product_page?: boolean,decrement?: boolean) {
+  async addToCart(product: product | any,animate?: boolean,product_page?: boolean,decrement?: boolean) {
     console.log("MPHKA");
 
     let dec;
@@ -238,7 +238,7 @@ export class CartServiceService {
 
     }
     console.log(product.group_id);
-
+    console.log(retail);
     let upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
     let qty
 
@@ -249,7 +249,7 @@ export class CartServiceService {
     }
       console.log(product.omada);
 
-    axios
+   let req=await axios
     .post('https://perlanoderest.vinoitalia.gr/products/addToCart', {
       mtrl: product.mtrl,
       trdr: loadedUser.trdr,
@@ -272,24 +272,23 @@ export class CartServiceService {
       geo_zoni: 1,
       ypokat: upokatastima.trdrbranch
     })
-    .then((resData) => {
-
-      console.log(resData.data)
 
 
-    });
+      console.log(req.data)
+     await this.sendProductAdded(true);
+
 
   }
 
   getItems() {
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
-    return this.http.get(
+    return this.http.post(
       'https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
       {
-        params:{
+
           trdr: loadedUser.trdr,
-        }
+
       }
     );
   }

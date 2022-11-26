@@ -16,11 +16,11 @@ export interface user{
 
 export interface AuthResponseData{
   kind: string;
-  
+
   token: string;
   idToken: string;
   username: string;
-  
+
 
   refreshToken: string;
   expiresIn: string;
@@ -77,7 +77,7 @@ export class LogInComponent implements OnInit, OnDestroy {
         console.log(f);
         console.log(f.value);
         console.log("SDFGSDFGSDFG");
-        
+
           //  this.username = f.value.username;
           //  this.password = f.value.password;
         // console.log(f.value.username)
@@ -90,15 +90,15 @@ export class LogInComponent implements OnInit, OnDestroy {
 
           authObs.subscribe((resData:any) =>{
             if(resData.success == 1){
-              // console.log(resData);
-              // axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
-              //   method:"STOCKUPDATE"
-              // }).then(res=>{
-              //   console.log(res.data)
+              console.log(resData);
+              axios.post("https://perlarest.vinoitalia.gr/php-auth-api/updateStock.php",{
+                method:"STOCKUPDATE"
+              }).then(res=>{
+                console.log(res.data)
 
 
 
-              // })
+              })
               this.error = false;
               if(resData.isAdmin== "1"){
                 this.router.navigate(['dashboard/insert-products']);
@@ -114,7 +114,7 @@ export class LogInComponent implements OnInit, OnDestroy {
                     this.router.navigate(['home']);
                   }
                 })
-                 
+
               }
             }
             else{
@@ -122,7 +122,7 @@ export class LogInComponent implements OnInit, OnDestroy {
               this.error = true;
               localStorage.clear();
             }
-    
+
           })
         btn.classList.remove('loading');
       },1500)

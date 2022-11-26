@@ -235,7 +235,11 @@ export class SingleProductComponent implements OnInit, OnDestroy {
 
             console.log("PEOS");
             this.cartService.addToCart(this.index);
-            this.cartService.sendProductAdded(true);
+            setTimeout(()=>{
+
+              // this.cartService.sendProductAdded(true);
+
+            },200);
 
 
           }
