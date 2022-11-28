@@ -73,7 +73,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
     console.log(this.upokatastima != {});
 
-    if(this.upokatastima != {}){
+    if(this.upokatastima != undefined || this.upokatastima != null){
       console.log("HEY");
 
       this.address = this.upokatastima.address;
