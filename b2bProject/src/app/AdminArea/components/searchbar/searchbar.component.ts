@@ -35,7 +35,7 @@ id:number |any;
       this.id = 2
       this.name = "";
     }
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/search.php",{
+    axios.post("https://perlanoderest.vinoitalia.gr/products/search",{
       search:this.string,
       id: this.id
     })

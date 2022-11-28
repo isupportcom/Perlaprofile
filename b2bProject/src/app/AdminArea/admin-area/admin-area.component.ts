@@ -74,7 +74,7 @@ export class AdminAreaComponent implements OnInit {
             console.log(this.offerprice);
             console.log(typeof resData.mtrl);
             let data = {
-              product: resData.mtrl,
+              mtrl: resData.mtrl,
               offer: JSON.stringify(this.offerprice),
               discount: res,
               show: 'no',
@@ -82,7 +82,7 @@ export class AdminAreaComponent implements OnInit {
             console.log(data);
             axios
               .post(
-                'https://perlarest.vinoitalia.gr/php-auth-api/offers.php',
+                'https://perlanoderest.vinoitalia.gr/products/offers',
                 data
               )
               .then((resData) => {

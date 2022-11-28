@@ -103,7 +103,7 @@ export class InsertPdfComponent implements OnInit {
     }
     else{
       axios
-        .post('https://perlarest.vinoitalia.gr/php-auth-api/search.php', {
+        .post('https://perlanoderest.vinoitalia.gr/products/search', {
           search: this.search,
         })
         .then((resData) => {
@@ -123,7 +123,7 @@ export class InsertPdfComponent implements OnInit {
                  description :resData.data.products[i].description,
                  data_sheet:resData.data.products[i].data_sheet,
                 stock: resData.data.products[i].stock,
-                image : resData.data.products[i].img,
+                image : resData.data.products[i].image,
                 offer: resData.data.products[i].offer,
                 hasOffer:resData.data.products[i].hasOffer,
                 discount:resData.data.products[i].discount,

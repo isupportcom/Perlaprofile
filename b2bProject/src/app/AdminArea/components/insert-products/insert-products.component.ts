@@ -50,7 +50,8 @@ export class InsertProductsComponent implements OnInit {
     })
     this.modalService.products.subscribe((res:any)=>{
       console.log(res)
-      this.products = res
+      this.getProducts();
+      // this.products = res
       this.cartService.sendOpenOffer(false);
     })
     if(this.searched){
@@ -88,6 +89,7 @@ export class InsertProductsComponent implements OnInit {
           search: this.search,
         })
         .then((resData) => {
+          this.products = [];
           console.log(resData.data.products.length != 0);
           if (resData.data.products.length != 0) {
             for (let i = 0; i < resData.data.products.length; i++) {

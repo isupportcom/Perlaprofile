@@ -4,7 +4,7 @@
         <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
           <img class="remove" alt=""  style="width: 32px;" srcset="">
         </a>
-        <img width="500px" height="500px" style="border-radius: 8px;" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt="">
+        <img width="500px" height="500px" style="border-radius: 8px;" [src]="!mosquiProduct? product.image : mosquiProduct.img" alt="">
       </ng-template>
       <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide>
         <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
@@ -35,14 +35,14 @@
         direction="vertical"
         #secondSwiper
       >
-        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.img : mosquiProduct.image" alt=""></ng-template>
+        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.image : mosquiProduct.image" alt=""></ng-template>
         <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
 
     <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
       <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50"  [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
-        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" (click)="openFullscreen()" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
+        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" (click)="openFullscreen()" [src]="!mosquiProduct? product.image : mosquiProduct.img" alt=""></ng-template>
         <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img (click)="openFullscreen()" width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
@@ -63,7 +63,7 @@
       direction="horizontal"
       #secondSwiper
       >
-        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.img : mosquiProduct.img" alt=""></ng-template>
+        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.image : mosquiProduct.img" alt=""></ng-template>
         <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
@@ -698,11 +698,11 @@
   <div *ngIf="!howManySeen" class="row imageRow2">
     <div  class="col-2" *ngFor="let prod of seeEarlier">
       <div (click)="goToSeeEarlier(prod,img)" class="row imageRow2" #img>
-        <img [src]="prod.img"  style=" transition:all 0.3s ease-in-out;cursor: pointer;" width="150px" height="150px"  alt="" >
+        <img [src]="prod.image"  style=" transition:all 0.3s ease-in-out;cursor: pointer;" width="150px" height="150px"  alt="" >
       </div>
       <div class="row text-center">
-        <p *ngIf="currentLang == 'el'">{{ prod.onoma }}</p>
-        <p *ngIf="currentLang == 'en'">{{ prod.onoma_eng }}</p>
+        <p *ngIf="currentLang == 'el'">{{ prod.product_name }}</p>
+        <p *ngIf="currentLang == 'en'">{{ prod.product_name_eng }}</p>
       </div>
     </div>
   </div>

@@ -90,8 +90,8 @@
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><h6 style="width: 320px">{{ product.scope2.name }}</h6></div>
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Ποσότητα: {{ product.scope2.qty }}</p></div>
                         <div class="row" style="display: flex;justify-content: left;align-items: center;"><p>Διαθεσιμότητα: {{ product.scope2.diathesima }}</p></div>
-                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="!product.scope2.hasOffer">Price: {{ product.scope2.wholesalePrice * product.scope2.qty}}&#x20AC;</p></div>
-                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="product.scope2.hasOffer">Price: {{ product.scope2.wholesalePrice * product.scope2.qty}}&#x20AC;</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="!product.scope2.hasOffer">Price: {{ product.scope2.wholesale * product.scope2.qty}}&#x20AC;</p></div>
+                        <div class="row" style="display: flex;justify-content: left;align-items: center;"><p *ngIf="product.scope2.hasOffer">Price: {{ product.scope2.wholesale * product.scope2.qty}}&#x20AC;</p></div>
                     </div>
                   </div>
                 </div>
@@ -119,7 +119,7 @@
             <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><h6>{{ product.name }}</h6></div>
             <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Ποσότητα: {{ product.qty }}</p></div>
             <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Διαθεσιμότητα: {{ product.diathesima }}</p></div>
-            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Price: {{ product.wholesalePrice * product.qty}}&#x20AC;</p></div>
+            <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><p>Price: {{ product.wholesale * product.qty}}&#x20AC;</p></div>
             <!-- <div class="row" style="display: flex;justify-content: left;align-items: center; padding-left: 12px;"><button class="btn btn-success" (click)="addToCart(product)">
               <p *ngIf="!changeBtn">Προσθήκη</p>
               <img *ngIf="changeBtn" width="16px" src="../assets/shopping-cart.svg" alt="" srcset="">

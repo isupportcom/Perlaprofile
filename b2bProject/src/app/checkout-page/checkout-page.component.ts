@@ -71,7 +71,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     this.upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
-    console.log(this.upokatastima != {});
+    //console.log(this.upokatastima != {});
 
     if(this.upokatastima != undefined || this.upokatastima != null){
       console.log("HEY");
@@ -391,7 +391,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     let price = this.float2int(this.GrandTotal * 100);
 
     let req = await axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/checkout.php', {
+      .post('https://perlaNodeRest.vinoitalia.gr/revoloute/checkout', {
         amount: price,
         currency: 'EUR',
         email: 'johndoe001@gmail.com',

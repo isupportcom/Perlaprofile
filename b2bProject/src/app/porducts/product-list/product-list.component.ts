@@ -279,7 +279,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             stock: resData.data.products[i].stock,
             category: resData.data.products[i].category,
             subcategory: resData.data.products[i].subcategory,
-            img: resData.data.products[i].image,
+            image: resData.data.products[i].image,
             otherImages: resData.data.products[i].otherImages,
             description: resData.data.products[i].description,
             description_eng: resData.data.products[i].description_eng,
@@ -1229,7 +1229,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     console.log(this.search);
     if(this.search === ""){
       axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/search.php', {
+      .post('https://perlanoderest.vinoitalia.gr/products/search', {
         search: '100',
 
       })
@@ -1264,7 +1264,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     else{
       this.filterOn = true;
       axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/search.php', {
+      .post('https://perlanoderest.vinoitalia.gr/products/search', {
         search: this.search,
       })
       .then((resData) => {

@@ -646,7 +646,7 @@ export class ProductPageComponent implements OnInit {
 
   async getSeeEarlier() {
     let req = await axios.post(
-      'https://perlarest.vinoitalia.gr/php-auth-api/getAllSeeEarlier.php',
+      'https://perlanoderest.vinoitalia.gr/products/getSeeEarlier',
       {
         trdr: this.loadedUser.trdr,
       }
