@@ -13,12 +13,12 @@
             <div class="col-6">
               <div class="row" style="display: flex;justify-content: center;align-items:center;">
                 <div class="col-4">
-                  <img [src]="item.image" alt="productImage" class="productImg">
+                  <img style="cursor: pointer;" [src]="item.img" alt="productImage" class="productImg" (click)="seeProd(item)">
                 </div>
                 <div class="col-6">
                   <div class="row">
-                    <p class="productName" *ngIf="currentLang == 'el'">{{ item.onoma }}</p>
-                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.onoma_eng }}</p>
+                    <p style="cursor: pointer;" class="productName" *ngIf="currentLang == 'el'" (click)="seeProd(item)">{{ item.onoma }}</p>
+                    <p style="cursor: pointer;" class="productName" *ngIf="currentLang == 'en'" (click)="seeProd(item)">{{ item.onoma_eng }}</p>
                   </div>
                   <div class="row" style="align-items: end;">
                     <button class="trash" (click)="removeOne(item,i,true)" style="border: none;background-color: rgba(0,0,0,0);text-align: left;">
@@ -40,7 +40,7 @@
                   </div>
                 </div>
                 <div class="col-4">
-                  <h4 style="margin: 0;">{{ item.wholesalePrice }}<span style="color: #6dae49">&euro;</span></h4>
+                  <h4 style="margin: 0;">{{ item.wholesale }}<span style="color: #6dae49">&euro;</span></h4>
                 </div>
               </div>
             </div>
@@ -52,12 +52,12 @@
             <div class="col-6">
               <div class="row" style="display: flex;justify-content: center;align-items:center;">
                 <div class="col-4">
-                  <img [src]="item.image" alt="productImage" class="productImg">
+                  <img style="cursor: pointer;" [src]="item.img" alt="productImage" class="productImg" (click)="seeProd(item)">
                 </div>
                 <div class="col-6">
                   <div class="row">
-                    <p class="productName" *ngIf="currentLang == 'el'">{{ item.onoma }}</p>
-                    <p class="productName" *ngIf="currentLang == 'en'">{{ item.onoma_eng }}</p>
+                    <p style="cursor: pointer;" class="productName" *ngIf="currentLang == 'el'" (click)="seeProd(item)">{{ item.onoma }}</p>
+                    <p style="cursor: pointer;" class="productName" *ngIf="currentLang == 'en'" (click)="seeProd(item)">{{ item.onoma_eng }}</p>
                   </div>
                 </div>
               </div>
@@ -74,7 +74,7 @@
                   </div>
                 </div>
                 <div class="col-4">
-                  <h4 style="margin: 0;">{{ item.wholesalePrice }}<span style="color: #6dae49">&euro;</span></h4>
+                  <h4 style="margin: 0;">{{ item.wholesale }}<span style="color: #6dae49">&euro;</span></h4>
                 </div>
               </div>
             </div>

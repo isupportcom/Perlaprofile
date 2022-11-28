@@ -108,6 +108,8 @@ export class ProductPageComponent implements OnInit {
 
   notEmpty: boolean = false;
 
+  amount: number = 1;
+
   // isVisible: boolean = true;
 
   filters: any;
@@ -666,6 +668,10 @@ export class ProductPageComponent implements OnInit {
   }
 
   addToCart(btn: any) {
+    this.qty = this.amount;
+
+    console.log(this.product);
+    
     let counter = 0;
     if(+this.product.diathesima > 0){
       if (!btn.classList.contains('loading')) {
@@ -846,12 +852,22 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
+  newStepper(increment: boolean){
+    if(increment){
+      this.amount++;
+    }
+    else{
+      this.amount--;
+    }
+  }
+
   stepper(myInput: any, btn: any) {
     let id = btn.id;
     let min = myInput.getAttribute('min');
     let max = myInput.getAttribute('max');
     let step = myInput.getAttribute('step');
     let val = myInput.getAttribute('value');
+
     let calcStep = id == 'increment' ? step * 1 : step * -1;
     let newValue = parseInt(val) + calcStep;
     this.qty = newValue;

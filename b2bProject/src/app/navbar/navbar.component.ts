@@ -56,6 +56,13 @@ export class NavbarComponent implements OnInit{
   loggedIn: boolean = localStorage.getItem('username') ? true : false;
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
 
+
+  // [innerHTML]="
+  // (offer1.description | slice: 0:315) + '<span>...</span>'
+  // "
+
+
+
   constructor(
     private authService: AuthService,
     private router :Router,
@@ -104,6 +111,14 @@ export class NavbarComponent implements OnInit{
   username = localStorage.getItem("username");
 
   async ngOnInit(){
+
+    console.log(this.username!.length);
+    if(this.username!.length > 5){
+      this.username = this.username?.slice(0,5) + '...'!;
+    }
+    console.log(this.username);
+    
+    
 
     let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
      axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})

@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 import { CartServiceService } from './cart-service.service';
 import axios from 'axios';
 import { TranslateConfigService } from '../services/translate-config.service';
+import { ProductsService } from '../porducts/products.service';
 
 @Component({
   selector: 'app-cart',
@@ -24,7 +25,7 @@ export class CartComponent implements OnInit, OnDestroy {
   @ViewChild('text') text: ElementRef | undefined;
   products: product[] | any;
   GrandTotal: number = 0;
-  wholesalePrice: number = 0;
+  wholesale: number = 0;
   length: number | any;
   show: boolean = true;
   shouldContinue?: boolean;
@@ -42,7 +43,8 @@ export class CartComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private translateService: TranslateConfigService,
-    private cartService: CartServiceService
+    private cartService: CartServiceService,
+    private productsService: ProductsService
   ) {}
 
    ngOnInit() {
@@ -68,12 +70,12 @@ export class CartComponent implements OnInit, OnDestroy {
 
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].hasOffer) {
-            this.products[i].wholesalePrice = this.products[i].offer;
+            this.products[i].wholesale = this.products[i].offer;
           }
         }
 
         for (let prod of this.products) {
-          this.GrandTotal += +prod.wholesalePrice * prod.qty;
+          this.GrandTotal += +prod.wholesale * prod.qty;
         }
         this.GrandTotal = +this.GrandTotal.toFixed(4);
         console.log(this.GrandTotal);
@@ -219,7 +221,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
     this.GrandTotal = 0;
     for (let prod of this.products) {
-      this.GrandTotal += +prod.wholesalePrice * prod.qty;
+      this.GrandTotal += +prod.wholesale * prod.qty;
     }
 
     this.GrandTotal = +this.GrandTotal.toFixed(4);
@@ -229,7 +231,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   removeOne(item: any, index: number, reload: boolean) {
     if (this.length > 1) {
-      this.GrandTotal -= +this.products[index].wholesalePrice;
+      this.GrandTotal -= +this.products[index].wholesale;
     } else {
       this.GrandTotal = 0;
     }
@@ -272,7 +274,7 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartService.shouldContinue.next(this.shouldContinue);
 
         for (let prod of this.products) {
-          this.GrandTotal += +prod.wholesalePrice * prod.qty;
+          this.GrandTotal += +prod.wholesale * prod.qty;
         }
         this.GrandTotal = +this.GrandTotal.toFixed(4);
         console.log(this.GrandTotal);
@@ -319,7 +321,7 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartService.shouldContinue.next(this.shouldContinue);
 
         for (let prod of this.products) {
-          this.GrandTotal += +prod.wholesalePrice * prod.qty;
+          this.GrandTotal += +prod.wholesale * prod.qty;
         }
         this.GrandTotal = +this.GrandTotal.toFixed(4);
         console.log(this.GrandTotal);
@@ -378,6 +380,13 @@ export class CartComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate(['home']);
     }
+  }
+
+  seeProd(product: any){
+    console.log(product);
+    
+    this.productsService.setSingleProduct(product)
+    this.router.navigate(['products/product-page']);
   }
 
   ngOnDestroy(): void {}
