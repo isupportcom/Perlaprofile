@@ -141,12 +141,12 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     })
 
 
-    let resData = await axios.get(
+    let resData = await axios.post(
       'https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
       {
-        params:{
+
           trdr: this.loadedUser.trdr
-        },
+
       }
     );
 
@@ -154,19 +154,19 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
     for(let i=0;i<this.products.length;i++){
       if(this.products[i].hasOffer){
-        this.products[i].wholesale = this.products[i].offer
+        this.products[i].wholesalePrice = this.products[i].offer
       }
     }
     console.log(this.products);
     for(let prod of this.products){
-      this.GrandTotal += +prod.wholesale *prod.qty;
+      this.GrandTotal += +prod.wholesalePrice *prod.qty;
     }
     this.GrandTotal = +this.GrandTotal.toFixed(4)
     this.cartService.shouldContinue.next(true);
     // console.log(JSON.parse(localStorage.getItem('userData') || '{}'));
 
     for (let product of this.products) {
-      this.totalPrice += product.wholesale * product.qty;
+      this.totalPrice += product.wholesalePrice * product.qty;
     }
     console.log(this.totalPrice);
 

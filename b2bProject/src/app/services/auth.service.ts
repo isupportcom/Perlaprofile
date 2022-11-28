@@ -71,7 +71,7 @@ export class AuthService {
     console.log(username);
     console.log(password)
     return this.http.post<AuthResponseData>(
-      'https://perlarest.vinoitalia.gr/php-auth-api/login.php',
+      'https://perlanoderest.vinoitalia.gr/auth/login',
       {
         name: username,
         password: password,
@@ -203,7 +203,7 @@ export class AuthService {
   private handleAuthentication(username: string, userId: string, token: string, expiresIn: number,address: string,afm:string,city:string,doy:string,eponimia:string,phone1:string,phone2:string,zip:string,trdr:number,email:string,emporiki_katigoria: string,geografikh_zwnh: string,metaforeas: string,dromologio: string,metaforiko_meso: string,tropos_apostolis: string){
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000 * 6);
     console.log(expirationDate);
-    
+
 
     const user = new User(username, userId, token , expirationDate,address,afm,city,doy,eponimia,phone1,phone2,zip,trdr,email,emporiki_katigoria,geografikh_zwnh,metaforeas,dromologio,metaforiko_meso,tropos_apostolis);
     this.user.next(user);
