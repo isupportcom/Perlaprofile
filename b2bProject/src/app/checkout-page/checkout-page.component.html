@@ -7,7 +7,7 @@
           <h2 translate>checkout.company_details</h2>
         </div>
         <div class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;">
-            <form class="row" [formGroup]="FormData" >    
+            <form class="row" [formGroup]="FormData" >
                 <div class="row">
                     <div class="col-6" style="padding: 12px;">
                         <label for="address" translate>checkout.address</label>
@@ -89,7 +89,7 @@
                   </div>
                 </div>
 
-            
+
             <div class="row" style="padding-left: 24px;">
                 <div class="form-check">
                     <input type="checkbox" id="check" (click)="handleTrigwnikh($event)" class="form-check-input" #check>
@@ -108,7 +108,7 @@
             <div class="form-check">
               <input (click)="bankCredentials(true)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1" translate>
-                checkout.card 
+                checkout.card
               </label>
             </div>
             <div class="form-check">
@@ -128,18 +128,18 @@
             <div class="form-check">
               <input class="form-check-input" type="radio" name="check2" id="apostoleas" #check2 checked>
               <label class="form-check-label" for="apostoleas" translate>
-                Χρέωση Αποστολέα 
+                Χρέωση Αποστολέα
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="check2" id="paralhpths">
               <label class="form-check-label" for="paralhpths"  translate>
-                Χρέωση Παραλήπτη 
+                Χρέωση Παραλήπτη
               </label>
             </div>
           </div>
         </div>
-        
+
         <div class="row">
             <div class="col-12" style="margin-top: 12px;padding: 0;">
               <a class="goBackBtn" (click)="handleGoBackToCart()" translate>
@@ -169,16 +169,16 @@
                 </div>
                 <div class="col-3">
                     <div class="row" style="text-align: right">
-                        <p style="margin: 0;">{{ product.wholesale }}<span style="color: #6dae49">&euro;</span></p>
+                        <p style="margin: 0;">{{ product.wholesalePrice }}<span style="color: #6dae49">&euro;</span></p>
                     </div>
                 </div>
               </div>
-      
-            
+
+
             <div class="row" style="margin-top: 12px;">
                 <hr style="border: 1px solid #6dae49;opacity: 1;">
             </div>
-          
+
             <div class="row productValue" style="margin-bottom: 4px;">
             <div class="col-6">
               <div class="row">
@@ -191,7 +191,7 @@
               </div>
             </div>
           </div>
-  
+
           <div class="row shippingValue" style="margin-bottom: 4px;">
             <div class="col-6">
               <div class="row">
@@ -204,12 +204,12 @@
               </div>
             </div>
           </div>
-  
+
           <div class="row" style="margin-top: 12px;">
             <hr style="border: 1px solid #6dae49;opacity: 1;">
           </div>
-          
-  
+
+
           <div class="row totalValue" style="font-weight: 600;font-size: 18px;">
             <div class="col-6">
               <div class="row">
@@ -227,8 +227,8 @@
               <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
               <p style="margin: 0px;color: rgba(0,0,0,0);" [ngClass]="currentLang=='en'?'yoho' : ''" translate>checkout.complete_order</p>
               <p [ngClass]="currentLang=='el'? 'textAnim' : 'textAnim2'" translate>checkout.complete_order</p>
-              
-  
+
+
             </button>
             <!-- <a class="cart-btn" type="submit" (click)="showBankCredentials? onSubmit2() : onSubmit(FormData.value)" >
               Προχωρήστε σε αγορά
