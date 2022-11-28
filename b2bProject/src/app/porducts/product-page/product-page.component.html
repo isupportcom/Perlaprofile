@@ -128,7 +128,7 @@
             <div class="numberInput">
               <button
                 id="decrement"
-                (click)="stepper(input, decrement)"
+                (click)="newStepper(false)"
                 #decrement
               >
                 -
@@ -136,16 +136,16 @@
               <input
                 type="number"
                 min="1"
-                [max]="product.stock"
+                [max]="product.diathesima+100"
                 step="1"
-                value="1"
+                [value]="amount"
                 id="my-input"
-                readonly
+                [(ngModel)]="amount"
                 #input
               />
               <button
                 id="increment"
-                (click)="stepper(input, increment)"
+                (click)="newStepper(true)"
                 #increment
               >
                 +
