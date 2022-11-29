@@ -175,7 +175,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
   ngOnInit(){
 
-    axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
+    axios.post('https://perlaNodeRest.vinoitalia.gr/products/offersByCategory', {
       category_id: this.mainCategory.id
     }).then(resData => {
       if(resData.data.products){

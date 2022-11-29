@@ -313,7 +313,7 @@ export class ProductPageComponent implements OnInit {
     }, 200);
 
 
-    let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
+    let sugg = await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
     {
       mtrl:this.product.mtrl
     }).then(resData =>{
@@ -579,7 +579,7 @@ export class ProductPageComponent implements OnInit {
 
           axios
           .post(
-            'https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php',
+            'https://perlanoderest.vinoitalia.gr/products/updateDataSheet',
             {
               mtrl: this.mosquiProduct.mtrl,
               data_el: this.dataSheetForm.value.datas,
@@ -599,7 +599,7 @@ export class ProductPageComponent implements OnInit {
         else{
           axios
           .post(
-            'https://perlarest.vinoitalia.gr/php-auth-api/updateDataSheet.php',
+            'https://perlanoderest.vinoitalia.gr/products/updateDataSheet',
             {
               mtrl: this.product.mtrl,
               data_el: this.dataSheetForm.value.datas,
@@ -671,7 +671,7 @@ export class ProductPageComponent implements OnInit {
     this.qty = this.amount;
 
     console.log(this.product);
-    
+
     let counter = 0;
     if(+this.product.diathesima > 0){
       if (!btn.classList.contains('loading')) {

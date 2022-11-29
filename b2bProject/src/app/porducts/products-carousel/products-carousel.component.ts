@@ -92,7 +92,7 @@ export class ProductsCarouselComponent implements OnInit {
 
 
     if(this.mode == 'offers'){
-      axios.post('https://perlarest.vinoitalia.gr/php-auth-api/offersByCategory.php', {
+      axios.post('https://perlaNodeRest.vinoitalia.gr/products/offersByCategory', {
         category_id: this.category.id
       }).then(resData => {
         if(resData.data.products.length > 0){
@@ -114,7 +114,8 @@ export class ProductsCarouselComponent implements OnInit {
     this.productsService.setSingleProduct(product)
 
     axios.get("https://perlanoderest.vinoitalia.gr/products/seeEarlier",{
-      params:{mtrl :product.mtrl,
+      params:{
+        mtrl :product.mtrl,
         trdr: this.loadedUser.trdr}
     }).then(resData=>{
       console.log(resData.data);
