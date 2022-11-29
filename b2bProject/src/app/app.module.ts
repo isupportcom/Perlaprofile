@@ -188,7 +188,7 @@ export function rootLoaderactory(http:any){
     }),
 
     [LottieModule.forRoot({ player: playerFactory })],
-
+ 
     SwiperModule
 
   ],

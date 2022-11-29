@@ -23,6 +23,14 @@ export  class ProductsService {
 
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
 
+  suggProd = new Subject<any>();
+  castSuggProd = this.suggProd.asObservable();
+
+  sendSuggProd(prod: any){
+   this.suggProd.next(prod);
+  }
+
+
   backOrderPopup2 = new Subject<boolean>();
   castBackOrderPopup2 = this.backOrderPopup2.asObservable();
 

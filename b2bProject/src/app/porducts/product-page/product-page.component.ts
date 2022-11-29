@@ -167,7 +167,14 @@ export class ProductPageComponent implements OnInit {
 
   async ngOnInit() {
 
-
+    this.productsService.suggProd.subscribe(resData => {
+      let newProduct = JSON.parse(resData)
+      console.log(newProduct);
+      this.product = newProduct
+      console.log(this.product);
+      
+      window.scrollTo(0,0);
+    })
 
     setTimeout(() => {
       localStorage.setItem('keepPagination', 'true')

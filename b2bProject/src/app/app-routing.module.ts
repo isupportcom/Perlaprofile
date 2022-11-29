@@ -66,15 +66,16 @@ const routes :Routes =[
   {
     path:'products',
     component:PorductsComponent,
+    data: {breadcrumb: {alias: 'Προϊόντα'}},
     children: [
-      {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full'},
+      {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full',data: {breadcrumb: {alias: ':cat_name'}},},
       {path: 'product-page', component: ProductPageComponent,children: [
         {
           path: '**',
           component: ProductPageComponent
         }
       ]},
-      {path: 'mosqui/:sub_id/:sub_name',component:MosquiWizzardComponent}
+      {path: 'mosqui/:sub_id/:sub_name',data: {breadcrumb: {alias: 'Mosqui'}},component:MosquiWizzardComponent}
     ]
   },
   {
