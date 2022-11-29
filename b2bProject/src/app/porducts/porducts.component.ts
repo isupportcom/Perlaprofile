@@ -60,8 +60,6 @@ export class PorductsComponent implements OnInit {
     else if(this.mainCategory.id === 117){
       this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
     }
-
-    this.router.navigate(['products' , 114,'Control'])
     
   }
 
