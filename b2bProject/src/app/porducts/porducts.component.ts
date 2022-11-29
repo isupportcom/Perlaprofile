@@ -4,7 +4,7 @@ import { CartServiceService } from '../cart/cart-service.service';
 import { Category } from './categories.model';
 import { tap } from "rxjs/operators";
 import { product } from '../AdminArea/adminareaproducts/adminareaproducts.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from './products.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class PorductsComponent implements OnInit {
     id: 0,
     name: ''
   };
-  constructor(private cartService: CartServiceService,private route: ActivatedRoute) { }
+  constructor(private cartService: CartServiceService,private route: ActivatedRoute,private router: Router) { }
 
   innerWidth!: number;
   @HostListener('window:resize', ['$event'])
@@ -60,6 +60,9 @@ export class PorductsComponent implements OnInit {
     else if(this.mainCategory.id === 117){
       this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
     }
+
+    this.router.navigate(['products' , 114,'Control'])
+    
   }
 
 

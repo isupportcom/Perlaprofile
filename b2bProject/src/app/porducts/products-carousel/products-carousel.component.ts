@@ -65,7 +65,7 @@ export class ProductsCarouselComponent implements OnInit {
         this.hasSuggested = true;
       }
 
-      let sugg = await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/getAllSuggested.php",
+      let sugg = await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
       {
         mtrl:this.mtrl
       }).then(resData =>{
@@ -113,17 +113,15 @@ export class ProductsCarouselComponent implements OnInit {
     console.log(product);
     this.productsService.setSingleProduct(product)
 
-    axios.get("https://perlanoderest.vinoitalia.gr/products/seeEarlier",{
-      params:{
-        mtrl :product.mtrl,
-        trdr: this.loadedUser.trdr}
-    }).then(resData=>{
-      console.log(resData.data);
-    })
+    // axios.get("https://perlanoderest.vinoitalia.gr/products/seeEarlier",{
+    //   params:{mtrl :product.mtrl,
+    //     trdr: this.loadedUser.trdr}
+    // }).then(resData=>{
+    //   console.log(resData.data);
+    // })
 
-    setTimeout(() => {
-      this.router.navigate(['/products/product-page']);
-    },100)
+   this.productsService.sendSuggProd(JSON.stringify(product))
+
 
   }
 
