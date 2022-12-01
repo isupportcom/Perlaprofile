@@ -52,17 +52,17 @@ export class MosquiWizzardComponent implements OnInit {
 
 
     axios
-      .post('https://perlarest.vinoitalia.gr/php-auth-api/getAllColors.php', {
+      .post('https://perlaNodeRest.vinoitalia.gr/products/getColors', {
         method: 'notNeed',
       })
       .then((resData) => {
         console.log(resData.data);
 
-        this.fabric = resData.data.colors.fabric;
-        this.polydrox = resData.data.colors.polydrox;
-        this.profile = resData.data.colors.profile;
-        this.ral = resData.data.colors.ral;
-        this.wooden = resData.data.colors.wooden;
+        this.fabric = resData.data.fabric;
+        this.polydrox = resData.data.polydrox;
+        this.profile = resData.data.profile;
+        this.ral = resData.data.ral;
+        this.wooden = resData.data.wooden;
       });
 
 

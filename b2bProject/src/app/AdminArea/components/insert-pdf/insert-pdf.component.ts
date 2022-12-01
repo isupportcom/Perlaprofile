@@ -66,7 +66,7 @@ export class InsertPdfComponent implements OnInit {
     console.log(this.selectedMtrl);
     console.log(this.pdfForm.value.pdf);
     this.products.pdf = this.pdfForm.value.pdf
-    let req= await axios.post("https://perlarest.vinoitalia.gr/php-auth-api/uploadPdfToProduct.php",{
+    let req= await axios.post("https://perlaNodeRest.vinoitalia.gr/products/uploadPdfToProduct",{
       mtrl:this.selectedMtrl,
       pdfName:this.pdfForm.value.pdf
     })
@@ -85,7 +85,7 @@ export class InsertPdfComponent implements OnInit {
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
-        axios.post('https://perlarest.vinoitalia.gr/php-auth-api/removeSinglePdf.php',{
+        axios.post('https://perlaNodeRest.vinoitalia.gr/products/removeSinglePdf',{
           mtrl: mtrl
         }).then(resData =>{
           this.products = resData.data.products

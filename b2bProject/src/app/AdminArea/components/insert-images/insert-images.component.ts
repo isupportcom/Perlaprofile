@@ -39,7 +39,7 @@ export class InsertImagesComponent implements OnInit {
 //       this.products = res
 // ;
 //     })
-   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+   axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
      mtrl:"mtrl",
      img:"img",
      mode:"getimage"
@@ -53,7 +53,7 @@ export class InsertImagesComponent implements OnInit {
     // })
 
     this.modalService.imagesUpdated.subscribe((resData) => {
-      axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+      axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
         mtrl:"mtrl",
         img:"img",
         mode:"getimage"
@@ -116,7 +116,7 @@ export class InsertImagesComponent implements OnInit {
     this.modalService.image.subscribe((res:any)=> {
       console.log('HEYYYYY');
       setTimeout(() => {
-        axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+        axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
           mtrl:"mtrl",
           img:"img",
           mode:"getimage"
@@ -147,13 +147,13 @@ export class InsertImagesComponent implements OnInit {
     // })
   }
   remove(item:any,img:any){
-    axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+    axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
       mtrl:item,
       img:img,
       mode:"remove"
     }).then(res=>{
       console.log(res)
-      this.products = res.data.images;
+      this.products = res.data.products;
     })
 
   }

@@ -38,9 +38,10 @@ export class InsertProductsComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.cartService.addImagePopup.subscribe((resData) => {
-      setTimeout(() => {
-        this.getProducts();
+      setTimeout(async() => {
+        await this.getProducts();
       },300)
     })
     this.cartService.searchResult.subscribe((res:any)=>{
@@ -100,8 +101,8 @@ export class InsertProductsComponent implements OnInit {
                 name1: resData.data.products[i].name1,
                 product_name: resData.data.products[i].product_name,
                 code: resData.data.products[i].code,
-                retail: resData.data.products[i].retailPrice,
-                wholesale: resData.data.products[i].wholesalePrice,
+                retail: resData.data.products[i].retail,
+                wholesale: resData.data.products[i].wholesale,
                 qty: 1,
                  description :resData.data.products[i].description,
                  data_sheet:resData.data.products[i].data_sheet,
@@ -224,11 +225,32 @@ export class InsertProductsComponent implements OnInit {
     console.log(item);
 
 
-   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/homepageoffer.php",{
+   axios.post("https://perlaNodeRest.vinoitalia.gr/products/homepageOffer",{
      mtrl:item.mtrl,
      discount: item.discount
    }).then(resData=>{
-    this.products = resData.data.products;
+    this.products = [];
+    for (let i = 0; i < resData.data.products.length; i++) {
+
+      this.products[i] = {
+        mtrl: resData.data.products[i].mtrl,
+        name: resData.data.products[i].name,
+        name1: resData.data.products[i].name1,
+        product_name: resData.data.products[i].onoma,
+        code: resData.data.products[i].code,
+        retail: resData.data.products[i].retail,
+        wholesale: resData.data.products[i].wholesale,
+        qty: 1,
+        description :resData.data.products[i].description,
+        data_sheet:resData.data.products[i].data_sheet,
+        stock: resData.data.products[i].stock,
+        img : resData.data.products[i].image,
+        offer: resData.data.products[i].offer,
+        hasOffer:resData.data.products[i].hasOffer,
+        discount:resData.data.products[i].discount,
+        homePageOffer: resData.data.products[i].homePageOffer
+      }
+    }
      console.log(resData.data.products)
    })
 

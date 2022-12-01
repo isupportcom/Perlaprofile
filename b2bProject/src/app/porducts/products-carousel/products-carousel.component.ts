@@ -121,7 +121,7 @@ export class ProductsCarouselComponent implements OnInit {
     // })
 
    this.productsService.sendSuggProd(JSON.stringify(product))
-   
+
 
   }
 
