@@ -618,11 +618,16 @@
       </div>
       <div *ngIf="showDesc[1]&& !onEditData && currentLang=='el'" [innerHTML]="!mosquiProduct? product.data_sheet : mosquiProduct.data_sheet"></div>
       <div *ngIf="showDesc[1]&& !onEditData && currentLang=='en'" [innerHTML]="!mosquiProduct? product.data_sheet_eng : mosquiProduct.data_sheet_eng"></div>
-      <button *ngIf="showDesc[2]" (click)="downloadMyFile(product.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="product.pdf === 'empty' || product.category == 116 || product.category == 117 || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)" [ngClass]="product.pdf === 'empty' || product.category == 116 || product.category == 117 || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)? 'myBtn disabled' : 'myBtn'" #downBtn>
-        <fa-icon style="width: fit-content;pointer-events: none;" class="download" [icon]="faDownload"></fa-icon>
-        <p style="margin: 0px;color: rgba(0,0,0,0);pointer-events: none;" >Λήψη PDF</p>
-        <p class="textAnim2" style="pointer-events: none;">Λήψη PDF</p>
-      </button>
+      <div *ngIf="showDesc[2]">
+        <button  (click)="downloadMyFile(product.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="product.pdf === 'empty' || product.category == 116 || product.category == 117 || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)" [ngClass]="product.pdf === 'empty' || product.category == 116 || product.category == 117 || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)? 'myBtn disabled' : 'myBtn'" #downBtn>
+          <fa-icon style="width: fit-content;pointer-events: none;" class="download" [icon]="faDownload"></fa-icon>
+          <p style="margin: 0px;color: rgba(0,0,0,0);pointer-events: none;" >Λήψη PDF</p>
+          <p class="textAnim2" style="pointer-events: none;">Λήψη PDF</p>
+        </button>
+        <ul *ngIf="product.pdf" class="pdfName">
+          <li>{{ product.pdf }}</li>
+        </ul>
+      </div>
 
 
       <div *ngIf="isAdmin &&showDesc[3]" class="container" style="margin-bottom: 12px;">

@@ -205,14 +205,14 @@
   left: -30px;
   width: calc(100% + 60px);
   height: calc(100% - 60px);
-  background-color: #2C3A47;
+  /* background-color: #2C3A47; */
   border-radius: 3px;
   transition: 0.4s;
 }
 .box .text .fa1 {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 25px;
 }
 .box .text div {
   position: absolute;

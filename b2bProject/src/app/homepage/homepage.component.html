@@ -56,6 +56,16 @@
       </div>
       <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""> -->
     </ng-template>
+    <ng-template swiperSlide>
+      <div style="background-image: url(../../assets/shutterstock_1812242566\ \(1\).jpg);background-size: cover;">
+        <p class="hero-text" translate>Εξαρτήματα Μοτέρ, Εσωτερικής & Εξωτερικής Σκίασης</p>
+        <div class="container" style="width: 100%;height: fit-content;">
+
+          <button (click)="goToProducts({ id: 118, name: 'Accessories' })" class="myBtn">Μάθε Περισσότερα</button>
+        </div>
+      </div>
+      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""> -->
+    </ng-template>
     <!-- <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  [src]="" alt=""></ng-template> -->
   </swiper>
 
@@ -93,7 +103,7 @@
     </div>
   </div>
 </div> -->
-<div class="container cardHolder">
+<div class="container cardHolder" style="margin-top: 24px;">
   <div class="row" style="justify-content: center; align-items: center">
     <div
       (click)="goToProducts({ id: 114, name: 'Control' })"
@@ -320,7 +330,7 @@
     >
       <div class="row">
         <div
-          class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12"
+          class="col-xxl-6 col-xl-6 col-lg-10 col-md-10 col-sm-10 col-10"
           style="display: flex; justify-content: center; align-items: center"
         >
           <div
@@ -333,7 +343,7 @@
               <i class="fas fa1">-{{ offer1.discount }}%</i>
               <img
                 [src]="offer1.image"
-                width="100%"
+                width="85%"
                 height="100%"
                 alt=""
                 srcset=""
@@ -343,11 +353,11 @@
           </div>
         </div>
         <div
-          class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 description"
+          class="col-xxl-6 col-xl-6 col-lg-10 col-md-10 col-sm-10 col-10 description"
         >
           <div class="row">
-            <h2 *ngIf="currentLang == 'el'">{{ offer1.onoma }}</h2>
-            <h2 *ngIf="currentLang == 'en'">{{ offer1.onoma_eng }}</h2>
+            <h2 *ngIf="currentLang == 'el'">{{ offer1.product_name }}</h2>
+            <h2 *ngIf="currentLang == 'en'">{{ offer1.product_name_eng }}</h2>
           </div>
           <div class="row">
             <p
