@@ -140,12 +140,17 @@ export class PopUpLoginComponent implements OnInit {
                   axios.post("https://perlarest.vinoitalia.gr/php-auth-api/relatedProducts.php",{
                     method:"RELATEDMTRL"
                   }).then(resData=>{
-                    this.answer = resData.data.message;
-                    console.log(this.answer)
-                    this.spinnerVis = false;
-                    setTimeout(()=>{
-                      window.location.reload()
-                    },1000);
+                    axios.post('https://perlarest.vinoitalia.gr/php-auth-api/forceStockUpdate.php',{
+                      method:"STOCKUPDATE2"
+                    }).then(resData=>{
+                      this.answer = resData.data.message;
+                      console.log(this.answer)
+                      this.spinnerVis = false;
+                      setTimeout(()=>{
+                        window.location.reload()
+                      },1000);
+                    })
+
                   })
                 })
 
