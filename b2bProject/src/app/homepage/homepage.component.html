@@ -56,6 +56,16 @@
       </div>
       <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""> -->
     </ng-template>
+    <ng-template swiperSlide>
+      <div style="background-image: url(../../assets/shutterstock_1812242566\ \(1\).jpg);background-size: cover;">
+        <p class="hero-text" translate>Εξαρτήματα Μοτέρ, Εσωτερικής & Εξωτερικής Σκίασης</p>
+        <div class="container" style="width: 100%;height: fit-content;">
+
+          <button (click)="goToProducts({ id: 118, name: 'Accessories' })" class="myBtn">Μάθε Περισσότερα</button>
+        </div>
+      </div>
+      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""> -->
+    </ng-template>
     <!-- <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  [src]="" alt=""></ng-template> -->
   </swiper>
 
@@ -93,7 +103,7 @@
     </div>
   </div>
 </div> -->
-<div class="container cardHolder">
+<div class="container cardHolder" style="margin-top: 24px;">
   <div class="row" style="justify-content: center; align-items: center">
     <div
       (click)="goToProducts({ id: 114, name: 'Control' })"
