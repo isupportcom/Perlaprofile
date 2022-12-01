@@ -103,7 +103,7 @@ export class AddImagePopupComponent implements OnInit {
     // this.cartService.sendAddImagePopup(false);
   }
 
-  insertImages(btn: any){
+  async insertImages(btn: any){
 
     if(this.general){
       if(!btn.classList.contains('loading')) {
@@ -130,7 +130,7 @@ export class AddImagePopupComponent implements OnInit {
       console.log("TSATSA");
       if(!btn.classList.contains('loading')) {
         btn.classList.add('loading');
-        setTimeout(() => {
+        setTimeout(async () => {
           if(this.secondary){
             let joinedImagesArray =this.imagesToSend.join(',')
 
@@ -155,20 +155,22 @@ export class AddImagePopupComponent implements OnInit {
               // let splitted = this.thumbnail.split('/')
               // console.log(splitted);
 
-              axios
-              .get(
-                'https://perlarest.vinoitalia.gr/php-auth-api/updateSingleImage.php/?id=11&mtrl=' +
-                  this.mtrl +
-                  '&image=' +
-                  this.thumbnail
+             await axios
+              .post(
+                'https://perlanoderest.vinoitalia.gr/products/updateSingleImage' ,{
+                  mtrl:this.mtrl,
+                  image:this.thumbnail
+                }
+
               )
               .then((res) => {
                 console.log(res.data);
+                btn.classList.remove('loading')
+                this.cartService.sendAddImagePopup(false);
               });
             }
           }
-          btn.classList.remove('loading')
-          this.cartService.sendAddImagePopup(false);
+
         }, 1500);
       }
     }

@@ -172,7 +172,7 @@ export class ProductPageComponent implements OnInit {
       console.log(newProduct);
       this.product = newProduct
       console.log(this.product);
-      
+
       window.scrollTo(0,0);
     })
 
@@ -493,7 +493,7 @@ export class ProductPageComponent implements OnInit {
             console.log(this.desciptionForm.value.description);
             axios
               .post(
-                'https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php',
+                'https://perlanoderest.vinoitalia.gr/products/updateDescription',
                 {
                   mtrl: this.mosquiProduct.mtrl,
                   desc: this.desciptionForm.value.description,
@@ -517,7 +517,7 @@ export class ProductPageComponent implements OnInit {
             console.log(this.desciptionForm.value.description);
             axios
               .post(
-                'https://perlarest.vinoitalia.gr/php-auth-api/updateDescription.php',
+                'https://perlanoderest.vinoitalia.gr/products/updateDescription',
                 {
                   mtrl: this.product.mtrl,
                   desc: this.desciptionForm.value.description,
