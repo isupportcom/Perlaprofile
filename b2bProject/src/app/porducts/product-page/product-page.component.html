@@ -703,13 +703,13 @@
         <img [src]="prod.image"  style=" transition:all 0.3s ease-in-out;cursor: pointer;" width="150px" height="150px"  alt="" >
       </div>
       <div class="row" style="display: flex;justify-content: center;">
-        <p 
+        <p
         *ngIf="currentLang == 'el'"
         class="seeEarlier-text"
         [innerHTML]="
         (prod.product_name | slice: 0:20) + '<span>...</span>'
         " ></p>
-        <p 
+        <p
         *ngIf="currentLang == 'en'"
         class="seeEarlier-text"
         [innerHTML]="
@@ -732,14 +732,14 @@
         <img [src]="prod.image" style="transition: all 0.3s ease-in-out;cursor: pointer;" class="smallImages"  alt="" >
       </div>
       <div class="row" style="display: flex;justify-content: center;">
-        <p 
+        <p
         *ngIf="currentLang == 'el'"
         class="seeEarlier-text"
         style="font-size: 10px;"
         [innerHTML]="
         (prod.product_name | slice: 0:20) + '<span>...</span>'
         " ></p>
-        <p 
+        <p
         *ngIf="currentLang == 'en'"
         class="seeEarlier-text"
         style="font-size: 10px;"

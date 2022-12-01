@@ -103,7 +103,7 @@ export class LogInComponent implements OnInit, OnDestroy {
               if(resData.isAdmin== "1"){
                 this.router.navigate(['dashboard/insert-products']);
               }else{
-                axios.post('https://perlarest.vinoitalia.gr/php-auth-api/getYpokatastimata.php',{
+                axios.post('https://perlaNodeRest.vinoitalia.gr/user/getYpokatastimata',{
                   trdr: resData.trdr
                 }).then(resData => {
                   console.log(resData.data.ypokat);

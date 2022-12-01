@@ -550,7 +550,7 @@ export class ProductPageComponent implements OnInit {
       setTimeout(async () => {
         if(this.mosquiProduct){
           let req = await axios.post(
-            'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+            'https://perlaNodeRest.vinoitalia.gr/products/uploadVideo',
             {
               mtrl: this.mosquiProduct.mtrl,
               url: 'asd',
@@ -562,7 +562,7 @@ export class ProductPageComponent implements OnInit {
         }else{
 
           let req = await axios.post(
-            'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+            'https://perlaNodeRest.vinoitalia.gr/products/uploadVideo',
             {
               mtrl: this.product.mtrl,
               url: 'asd',
@@ -960,7 +960,7 @@ export class ProductPageComponent implements OnInit {
       setTimeout(async () => {
         if(this.mosquiProduct){
           let req = await axios.post(
-            'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+            'https://perlaNodeRest.vinoitalia.gr/products/uploadVideo',
             {
               mtrl: this.mosquiProduct.mtrl,
               url: this.urlVideoForm.value.video,
@@ -971,7 +971,7 @@ export class ProductPageComponent implements OnInit {
         }else{
 
           let req = await axios.post(
-            'https://perlarest.vinoitalia.gr/php-auth-api/uploadVideo.php',
+            'https://perlaNodeRest.vinoitalia.gr/products/uploadVideo',
             {
               mtrl: this.product.mtrl,
               url: this.urlVideoForm.value.video,

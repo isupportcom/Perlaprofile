@@ -134,7 +134,7 @@ export class AddImagePopupComponent implements OnInit {
           if(this.secondary){
             let joinedImagesArray =this.imagesToSend.join(',')
 
-            axios.post("https://perlarest.vinoitalia.gr/php-auth-api/secondaryImages.php",{
+           await axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
               mtrl:this.mtrl,
               img:  joinedImagesArray,
               mode:"insert"
@@ -144,6 +144,8 @@ export class AddImagePopupComponent implements OnInit {
             })
             this.imagesToSend = [];
             this.modalService.sendImage(joinedImagesArray);
+            btn.classList.remove('loading')
+            this.cartService.sendAddImagePopup(false);
           }
           else{
 

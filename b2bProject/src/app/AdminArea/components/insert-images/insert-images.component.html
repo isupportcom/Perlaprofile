@@ -6,7 +6,7 @@
       <div class="search-container">
         <input type="text" name="search" [(ngModel)]="search" placeholder="Search..." class="search-input">
         <a (click)="findProducts()" class="search-btn">
-          <img class="search-glass" src="../../../../assets/bx_search-alt.svg" width="20px" height="20px" alt="" srcset="">     
+          <img class="search-glass" src="../../../../assets/bx_search-alt.svg" width="20px" height="20px" alt="" srcset="">
         </a>
       </div>
       <button
@@ -29,7 +29,7 @@
       <div class="container" style="padding: 0px;">
         <div class="row">
           <div class="col-3">
-            <img [src]="product.img" style="width: 200px; height: 200px!important;">
+            <img [src]="product.image" style="width: 200px; height: 200px!important;">
           </div>
           <div class="col-9">
             <div class="container" style="padding: 0px;">
@@ -40,7 +40,7 @@
                 <hr style="opacity: 1;border: 1px solid #6dae49;width: 60%;border-radius: 16px;">
               </div>
               <div class="row">
-                <div class="container" style="padding: 0px;"> 
+                <div class="container" style="padding: 0px;">
                   <div class="row">
                     <div class="col-3">
                       <button class="myBtn" (click)="open(product)">Προσθήκη Φωτογραφίας</button>
@@ -54,15 +54,15 @@
                       [navigation]="true"
                       [draggable]="true"
                       (swiper)="setThumbsSwiper($event)"
-                
+
                       direction="horizontal"
                       #secondSwiper
                     >
-                    
+
                       <ng-template *ngFor="let img of product.otherImages" swiperSlide>
                         <a (click)="remove(product.mtrl,img.img)" class="ex" style="width: fit-content;cursor: pointer;">
                           <img class="remove" alt=""  style="width: 32px;" srcset="">
-                        </a> 
+                        </a>
                         <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt="">
                       </ng-template>
                     </swiper>
@@ -74,7 +74,7 @@
           </div>
         </div>
       </div>
-      
+
       </div>
 
 
