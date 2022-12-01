@@ -10,9 +10,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-image-popup.component.css'],
 })
 export class AddImagePopupComponent implements OnInit {
+
+
+
   @Input() secondary?: boolean;
   @Input() general?: boolean;
   @Input() mtrl?: string;
+  product?: any;
   isClicked: boolean = true;
   imagesArr :string|any= [];
   searchPhoto: FormGroup | any;
@@ -32,8 +36,14 @@ export class AddImagePopupComponent implements OnInit {
     console.log('general = ' + this.general);
     console.log('secondary = ' + this.secondary);
 
-
-
+    axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',{
+      mtrl: this.mtrl
+    }).then(resData => {
+      console.log(resData.data.product);
+      this.product = resData.data.product;
+    })
+    
+    // https://perlaNodeRest.vinoitalia.gr/products/
     this.searchPhoto = this.fb.group({
 
       imageName:[null]
@@ -101,6 +111,21 @@ export class AddImagePopupComponent implements OnInit {
 
     // this.modalService.sendImage(image);
     // this.cartService.sendAddImagePopup(false);
+  }
+
+  deleteThumbnail(btn:any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+
+        axios.post('https://perlanoderest.vinoitalia.gr/products/removeThumbnail',{
+          mtrl: this.mtrl
+        })
+
+        btn.classList.remove('loading')
+        this.cartService.sendAddImagePopup(false);
+      },2000)
+    }
   }
 
   async insertImages(btn: any){

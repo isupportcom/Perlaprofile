@@ -53,7 +53,16 @@
                 </a>
             </div>
           </div>
+          
           <div class="row" style="justify-content: right;">
+            <button type="button" *ngIf="!general && !secondary" style="position: relative;margin-top: 4px !important;margin-right: 8px;" (click)="deleteThumbnail(btn)" [disabled]="product.image == 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'" [ngClass]="product.image == 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'? 'myBtnDanger disabled' : 'myBtnDanger'" #btn>
+              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              <p style="margin: 0px;color: rgba(0,0,0,0);">Αφαίρεση</p>
+              <p class="textAnim">Αφαίρεση</p>
+
+
+            </button>
+
             <button type="button"  style="position: relative;margin-top: 4px !important;" (click)="insertImages(btn)" [disabled]="(secondary && imagesToSend.length<=0) || ((!secondary && !general)  && thumbnail==undefined) || (general && imagesToSend.length<=0)" [ngClass]="(imagesToSend.length>0) || (!secondary && thumbnail!=undefined)? (!general? 'myBtn' : 'myBtnDanger') :  (!general? 'myBtn disabled' : 'myBtnDanger disabled')" #btn>
               <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
               <p style="margin: 0px;color: rgba(0,0,0,0);">{{!general? 'Προσθήκη' : 'Διαγραφή'}}</p>
@@ -61,11 +70,12 @@
 
 
             </button>
+
           </div>
         </div>
         <div *ngIf="images.length <= 0">
           <div class="row" style="height: 600px;overflow:scroll;justify-content: center;align-items: center;">
-            <h3 style="width: fit-content;">Δεν βρέθηκαν προϊόντα</h3>
+            <h3 style="width: fit-content;">Δεν βρέθηκαν Φωτογραφίες</h3>
           </div>
         </div>
       </div>
