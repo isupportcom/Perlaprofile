@@ -1240,29 +1240,11 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       .then((resData) => {
         this.waiting = true;
         console.log(resData.data);
-        if (resData.data.products.length != 0) {
-          setTimeout(() => {
-            for (let favorite of this.favorites) {
-              for (let prod of resData.data.products) {
-                if (favorite.mtrl === prod.mtrl) {
-                  prod.addedToFav = true;
-                }
-              }
-            }
-            this.waiting = false;
-            // this.products = resData.data.products;
-            // this.updateProducts();
-            this.listArray = [];
-            this.searched = false;
-            this.message = '';
-          }, 100);
-        }
-        else {
+
           setTimeout(() => {
             this.waiting = false;
-            this.shownProducts = [];
+            this.updateProducts();
           }, 100);
-        }
       });
     }
     else{
@@ -1290,7 +1272,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         } else {
           setTimeout(() => {
             this.waiting = false;
+            this.message = 'no product found'
             this.shownProducts = [];
+            console.log(this.message);
+            this.noProducts = true;
           }, 100);
         }
       });
