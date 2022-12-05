@@ -2,6 +2,9 @@ import {Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild} from 
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 
+import {faImages} from '@fortawesome/free-solid-svg-icons';
+
+
 @Component({
   selector: 'app-admin-nav',
   templateUrl: './admin-nav.component.html',
@@ -21,6 +24,7 @@ export class AdminNavComponent implements OnInit {
   arr: any = [];
   arrow: any;
   component:number | any;
+  faImages = faImages;
   constructor(
       private authService: AuthService,
       private router:Router,

@@ -99,8 +99,20 @@
             </a>
           </div>
         </div>
+        <div class="row" style="margin-bottom: 44px;">
+          <div class="container">
+            <a (click)="navigateTo('/dashboard/carousel')" class="row my-nav-item2" (mouseover)="handleOver(carousel)" (mouseleave)="handleLeave(carousel)" #carousel>
+              <div class="col-4">
+                <fa-icon [icon]="faImages" style="color: #6dae49;width: 32px;height: 32px;"></fa-icon>
+              </div>
+              <div class="col-8" style="align-items: center;">
+                <p style="color: white;opacity: 0;transition: all 0.4s ease-in-out;margin: 0px;font-size: 14px;">Carousel</p>
+              </div>
+            </a>
+          </div>
+        </div>
         <div class="row" style="margin-bottom: 44px; padding: 0px;text-align: center;">
-          <a class="showAll" (click)="clickShowAll([home,products,categories,ral,pdf,img,catalog,users], arrow)">
+          <a class="showAll" (click)="clickShowAll([home,products,categories,ral,pdf,img,catalog,users,carousel], arrow)">
               <img src="../../../assets/showAll.svg" style="width: 20px;height: 20px;" alt="" #arrow>
 
             </a>

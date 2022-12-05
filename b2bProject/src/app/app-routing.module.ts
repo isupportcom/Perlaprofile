@@ -1,10 +1,11 @@
-import { NgModule } from "@angular/core";
+import { Component, NgModule } from "@angular/core";
 import { Routes,RouterModule } from "@angular/router";
 import { AdminAreaComponent } from "./AdminArea/admin-area/admin-area.component";
 import { AdminareaproductsComponent } from "./AdminArea/adminareaproducts/adminareaproducts.component";
 import { AdminareausersComponent } from "./AdminArea/adminareausers/adminareausers.component";
 import { CatalogsComponent } from "./AdminArea/catalogs/catalogs.component";
 import { DeleteCatalogsComponent } from "./AdminArea/components/delete-catalogs/delete-catalogs.component";
+import { HomepageCarouselComponent } from "./AdminArea/components/homepage-carousel/homepage-carousel.component";
 import { InsertImagesComponent } from "./AdminArea/components/insert-images/insert-images.component";
 import { InsertPdfComponent } from "./AdminArea/components/insert-pdf/insert-pdf.component";
 import { InsertProductsComponent } from "./AdminArea/components/insert-products/insert-products.component";
@@ -123,6 +124,10 @@ const routes :Routes =[
             component: InsertImagesComponent
           }
         ]
+      },
+      {
+        path: 'carousel',
+        component: HomepageCarouselComponent
       },
       {
         path: 'catalogs',

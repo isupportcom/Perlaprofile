@@ -86,6 +86,7 @@ import { UploadCatalogsComponent } from './AdminArea/components/upload-catalogs/
 import { DeleteCatalogsComponent } from './AdminArea/components/delete-catalogs/delete-catalogs.component';
 import { CatalogsFrontComponent } from './catalogs-front/catalogs-front.component';
 import { UpdateUsersComponent } from './AdminArea/components/update-users/update-users.component';
+import { HomepageCarouselComponent } from './AdminArea/components/homepage-carousel/homepage-carousel.component';
 
 
 
@@ -161,6 +162,7 @@ export function rootLoaderactory(http:any){
     DeleteCatalogsComponent,
     CatalogsFrontComponent,
     UpdateUsersComponent,
+    HomepageCarouselComponent,
 
 
 
