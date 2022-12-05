@@ -24,6 +24,7 @@ import { TranslateConfigService } from '../services/translate-config.service';
 })
 export class CheckoutPageComponent implements OnInit, OnDestroy {
   products: product | any;
+  showCourier: boolean = false;
   showCreditCard: boolean = true;
   mtrlArr: any = [];
   qtyArr: any = [];
@@ -36,7 +37,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   GrandTotal:number=0;
   discArr: any = [];
   loadedUser: User | any;
-
+  selectedCourier?: string;
   trigwnikh: boolean = true;
   FormData: FormGroup |any;
   BankData: FormGroup |any;
@@ -195,6 +196,16 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     // this.showPayment = localStorage.getItem('showPayment') == 'true'? true : false;
   }
 
+  showCourierSelect(show: boolean){
+    this.showCourier = show;
+    
+  }
+
+  selectCourier(){
+    console.log(this.selectedCourier);
+    
+  }
+
   onSubmit2(btn: any){
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
@@ -231,7 +242,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
               tk: this.zipCode,
               area: this.area,
               city: this.city,
-              dromologio: this.loadedUser.dromologio
+              dromologio: this.loadedUser.dromologio,
+              selectedCourier: this.selectCourier
             }
           )
           .then((resData) => {
