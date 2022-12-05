@@ -111,34 +111,34 @@ export class NavbarComponent implements OnInit{
   username = localStorage.getItem("username");
 
   async ngOnInit(){
-
-    console.log(this.username!.length);
-    if(this.username!.length > 5){
-      this.username = this.username?.slice(0,5) + '...'!;
-    }
-    console.log(this.username);
-    
-    
-
-    let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
-     axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
-    .then(resData => {
-      this.productCount = resData.data.products.length;
-      console.log(this.productCount)
-    })
-
-
-    this.cartService.productCount.subscribe(resData => {
-
-
-      axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
-        .then(resData => {
-          this.productCount = resData.data.products.length;
-
-        })
-
-    })
     if(this.loggedIn){
+      console.log(this.username!.length);
+      if(this.username!.length > 5){
+        this.username = this.username?.slice(0,5) + '...'!;
+      }
+      console.log(this.username);
+    }
+    
+    
+    if(this.loggedIn){
+      let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
+       axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
+      .then(resData => {
+        this.productCount = resData.data.products.length;
+        console.log(this.productCount)
+      })
+  
+  
+      this.cartService.productCount.subscribe(resData => {
+  
+  
+        axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
+          .then(resData => {
+            this.productCount = resData.data.products.length;
+  
+          })
+  
+      })
       axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",{
          params:{
           trdr: this.loadedUser.trdr,
@@ -161,6 +161,7 @@ export class NavbarComponent implements OnInit{
     this.cartService.productAdded.subscribe( resData => {
 
       setTimeout(async() => {
+        let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
         await axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
         .then(async resData => {
           console.log(await resData.data)

@@ -331,8 +331,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
         this.productsService.prevfilters.subscribe(resData => {
           console.log("EIMMAI MESA");
-          console.log(resData);
-
+          let prevPage = localStorage.getItem('page')!;
+          this.page = +prevPage;
+          console.log(this.page);
+          
           this.listArray = [];
           if(resData != null){
             this.filterList = Object.values(resData )
@@ -360,7 +362,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
 
                 this.executed = true;
-              },300)
+              },100)
             }
           }
 

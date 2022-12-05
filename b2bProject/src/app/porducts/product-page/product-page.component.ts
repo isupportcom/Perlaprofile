@@ -193,34 +193,37 @@ export class ProductPageComponent implements OnInit {
     this.productsService.mosquiProductFound.subscribe((resData) => {
       this.waitingProduct = true;
       this.showForm = false;
-      setTimeout(() => {
-        console.log(resData);
-        this.mosquiProduct = resData;
-        console.log(this.mosquiProduct);
-        // this.product = this.mosquiProduct;
-        let favouritesObs: Observable<any>;
-
-        favouritesObs = this.getFavourites();
-
-        favouritesObs.subscribe((resData) => {
-          this.favorites = resData.products;
-        });
+      if(this.loggedIn){ 
         setTimeout(() => {
-          for (let favorite of this.favorites) {
-            if (this.mosquiProduct.mtrl === favorite.mtrl) {
-              console.log('HeHe');
-              this.added = true;
-              this.mosquiProduct.addedToFav = true;
+          console.log(resData);
+          this.mosquiProduct = resData;
+          console.log(this.mosquiProduct);
+          // this.product = this.mosquiProduct;
+          let favouritesObs: Observable<any>;
+  
+  
+          favouritesObs = this.getFavourites()!;
+  
+          favouritesObs.subscribe((resData) => {
+            this.favorites = resData.products;
+          });
+          setTimeout(() => {
+            for (let favorite of this.favorites) {
+              if (this.mosquiProduct.mtrl === favorite.mtrl) {
+                console.log('HeHe');
+                this.added = true;
+                this.mosquiProduct.addedToFav = true;
+              }
             }
-          }
-
-          if (!this.mosquiProduct.addedToFav) {
-            this.added = false;
-            this.mosquiProduct.addedToFav = false;
-          }
-        }, 500);
-        this.waitingProduct = false;
-      }, 200);
+  
+            if (!this.mosquiProduct.addedToFav) {
+              this.added = false;
+              this.mosquiProduct.addedToFav = false;
+            }
+          }, 500);
+          this.waitingProduct = false;
+        }, 200);
+      }
     });
 
     this.dataSheetForm = this.fb.group({
@@ -290,34 +293,35 @@ export class ProductPageComponent implements OnInit {
 
     // console.log(this.product.category);
     // console.log(typeof(this.product.description));
-
-    let favouritesObs: Observable<any>;
-
-    favouritesObs = this.getFavourites();
-
-    favouritesObs.subscribe((resData) => {
-      this.favorites = resData.products;
-    });
-
-    setTimeout(() => {
-      console.log(this.favorites);
-      if (this.product.category != 116) {
-        if (this.favorites) {
-          for (let favorite of this.favorites) {
-            if (this.product.mtrl === favorite.mtrl) {
-              console.log('HeHe');
-              this.added = true;
-              this.product.addedToFav = true;
+    if(this.loggedIn){
+      let favouritesObs: Observable<any>;
+  
+      favouritesObs = this.getFavourites()!;
+  
+      favouritesObs.subscribe((resData) => {
+        this.favorites = resData.products;
+      });
+  
+      setTimeout(() => {
+        console.log(this.favorites);
+        if (this.product.category != 116) {
+          if (this.favorites) {
+            for (let favorite of this.favorites) {
+              if (this.product.mtrl === favorite.mtrl) {
+                console.log('HeHe');
+                this.added = true;
+                this.product.addedToFav = true;
+              }
             }
           }
+  
+          if (!this.product.addedToFav) {
+            this.added = false;
+            this.product.addedToFav = false;
+          }
         }
-
-        if (!this.product.addedToFav) {
-          this.added = false;
-          this.product.addedToFav = false;
-        }
-      }
-    }, 200);
+      }, 200);
+    }
 
 
     let sugg = await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
@@ -338,16 +342,18 @@ export class ProductPageComponent implements OnInit {
   }
 
   getFavourites() {
-    return this.http.get(
-      'https://perlanoderest.vinoitalia.gr/products/favorites',
-      {
-        params:{
-          trdr: this.loadedUser.trdr,
-           mtrl: 'dontNeedIt',
-           mode: 'fetch',
+    
+      return this.http.get(
+        'https://perlanoderest.vinoitalia.gr/products/favorites',
+        {
+          params:{
+            trdr: this.loadedUser.trdr,
+             mtrl: 'dontNeedIt',
+             mode: 'fetch',
+          }
         }
-      }
-    );
+      );
+    
   }
 
   openFullscreen(){
@@ -544,6 +550,10 @@ export class ProductPageComponent implements OnInit {
 
   }
 
+  login(){
+    this.router.navigate(['log-in']);
+  }
+
   deleteVideo(btn: any,mtrl: any){
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
@@ -654,24 +664,26 @@ export class ProductPageComponent implements OnInit {
   }
 
   async getSeeEarlier() {
-    let req = await axios.post(
-      'https://perlanoderest.vinoitalia.gr/products/getSeeEarlier',
-      {
-        trdr: this.loadedUser.trdr,
+    if(this.loggedIn){
+      let req = await axios.post(
+        'https://perlanoderest.vinoitalia.gr/products/getSeeEarlier',
+        {
+          trdr: this.loadedUser.trdr,
+        }
+      );
+      this.seeEarlier = req.data.products;
+      if (this.seeEarlier.length == 0) {
+        this.isEmpty = true;
+      } else {
+        this.isEmpty = false;
       }
-    );
-    this.seeEarlier = req.data.products;
-    if (this.seeEarlier.length == 0) {
-      this.isEmpty = true;
-    } else {
-      this.isEmpty = false;
+  
+      console.log(this.seeEarlier);
+      for (let i = 0; i < 4; i++) {
+        this.seeLess.push(this.seeEarlier[i]);
+      }
+      console.log(this.seeLess);
     }
-
-    console.log(this.seeEarlier);
-    for (let i = 0; i < 4; i++) {
-      this.seeLess.push(this.seeEarlier[i]);
-    }
-    console.log(this.seeLess);
   }
 
   addToCart(btn: any) {
