@@ -465,7 +465,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
                 }
               }
 
-            },200)
+            },300)
             console.log(this.categories.length);
 
 
