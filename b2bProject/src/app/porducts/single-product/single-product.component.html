@@ -76,6 +76,8 @@
               <img  [ngClass]="!loggedIn? 'itemHr' : 'itemHr2'" style="width: 100%;" src="../../../assets/Line%208.svg">
               <p class="details" *ngIf="loggedIn"><strong translate>product_page.avail</strong>: {{index.diathesima}}<br></p>
               <p class="details"><strong translate>product_page.texn</strong>: {{ index.texnikos_kodikos }}<br></p>
+              <p class="details" *ngIf="currentLang == 'el' && index.short_desc != '0'">{{ index.short_desc }}</p>
+              <p class="details" *ngIf="currentLang == 'en' && index.short_desc_eng != '0'">{{ index.short_desc_eng }}</p>
               <button *ngIf="!loggedIn" class="btn btn-primary seeMoreBtn" type="button" (click)="handleClick()" translate>home.see_more_button</button>
               <div *ngIf="loggedIn"  class="row logged-in-btns" style="margin-left: 0px">
                 <p *ngIf="!index.hasOffer" style="margin-bottom: 4px;padding-left: 0px;" translate>product_page.price <b style="color: #6dae49;">: {{index.wholesale}}&euro;</b></p>
