@@ -347,14 +347,14 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
               this.updateProducts()
             }
             else{
-              setTimeout(() => {
+              setTimeout(async() => {
                 console.log(this.filters);
 
                 for(let i=0; i<this.filters.length; i++){
                   for(let id of this.listArray){
                     if(id === this.filters[i].value){
                       this.filters[i].checked = true;
-                      this.updateProducts();
+                     await this.updateProducts();
                       // this.handleCheckboxes(this.filters[i]);
                     }
                   }
