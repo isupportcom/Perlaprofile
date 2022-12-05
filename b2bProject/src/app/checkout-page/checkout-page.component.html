@@ -125,17 +125,27 @@
         </div>
         <div class="row" style="background-color: white;border-radius: 16px;padding: 24px;box-shadow: 0 20px 30px rgba(0,0,0,0.08);margin-bottom: 12px;transition: height 0.5s ease-in-out;" #information>
           <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="check2" id="apostoleas" #check2 checked>
+            <div class="form-check" (click)="showCourierSelect(false)">
+              <input class="form-check-input"  type="radio" name="check2" id="apostoleas" #check2 checked>
               <label class="form-check-label" for="apostoleas" translate>
                 Χρέωση Αποστολέα
               </label>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="check2" id="paralhpths">
+            <div class="form-check" (click)="showCourierSelect(true)">
+              <input class="form-check-input"  type="radio" name="check2" id="paralhpths">
               <label class="form-check-label" for="paralhpths"  translate>
                 Χρέωση Παραλήπτη
               </label>
+            </div>
+
+            <div style="margin-top: 12px;" *ngIf="showCourier"  >
+              <select  id="courierSelect" class="filter-dropdown" name="selectedCourier" [(ngModel)]="selectedCourier">
+                <option value="ACS" selected>ACS</option>
+                <option value="Γενική Ταχυδρομική">Γενική Ταχυδρομική</option>
+                <option value="ΕΛΤΑ">ΕΛΤΑ</option>
+                <option value="Speedex">Speedex</option>
+              </select>
+              <!-- <button (click)="selectCourier()">hey</button> -->
             </div>
           </div>
         </div>
