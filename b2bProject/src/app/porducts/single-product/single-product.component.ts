@@ -20,6 +20,8 @@ export class SingleProductComponent implements OnInit, OnDestroy {
   @ViewChild('addToCartBtn') addToCartBtn: ElementRef | undefined;
   @Input() index:any | singleProduct;
   @Input() filters: any;
+  @Input() mainCategory: any;
+  @Input() selected_subcategory_id: any;
   loggedIn: boolean = localStorage.getItem('username')? true : false;
   added?: boolean;
   singleProduct: any;
@@ -133,6 +135,14 @@ export class SingleProductComponent implements OnInit, OnDestroy {
   }
 
   handleClick(){
+
+    let subcategories: any;
+    let selected_subcategory: any;
+    
+    
+
+
+
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
     this.productsService.setSingleProduct(this.index);
@@ -151,18 +161,21 @@ export class SingleProductComponent implements OnInit, OnDestroy {
 
     localStorage.setItem("single",JSON.stringify(this.index));
 
+    this.productsService.getAllCategories(this.mainCategory.id).subscribe((resData: any) => {
+      console.log(resData.categories[0].subcategories);
+      subcategories = resData.categories[0].subcategories;
+      subcategories.forEach((subcat: any) => {
+        if(subcat.sub_id == this.selected_subcategory_id){
+          selected_subcategory = subcat;
+        }
+      })
+      console.log(selected_subcategory!);
+      
+      this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,selected_subcategory.sub_id,selected_subcategory.name,this.index.mtrl]);
+    })
 
-
-    setTimeout(() => {
-      if(this.router.url === '/products/product-page'){
-        window.location.reload();
-      }
-      else{
-        this.router.navigate(['../../product-page', this.reduced],{relativeTo:this.route});
-      }
-
-    },100)
-
+   
+   
   }
   handleAddToFavorite(product:any){
     if(this.added){

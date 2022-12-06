@@ -57,16 +57,28 @@ const routes :Routes =[
   {
     path:'products',
     component:PorductsComponent,
-    data: {breadcrumb: {alias: 'Προϊόντα'}},
     children: [
-      {path: ':cat_id/:cat_name', component: ProductListComponent, pathMatch: 'full',data: {breadcrumb: {alias: ':cat_name'}},},
-      {path: 'product-page', component: ProductPageComponent,children: [
-        {
-          path: '**',
-          component: ProductPageComponent
-        }
-      ]},
-      {path: 'mosqui/:sub_id/:sub_name',data: {breadcrumb: {alias: 'Mosqui'}},component:MosquiWizzardComponent}
+      {
+        path: ':cat_id/:cat_name', 
+        component: ProductListComponent, 
+        pathMatch: 'full'
+      },
+      {
+        path: '116/Mosqui/:subcat_id/:subcat_name',
+        // component:MosquiWizzardComponent
+        pathMatch: 'full',
+        component: ProductPageComponent
+      },
+      {
+        path: ':cat_id/:cat_name/:subcat_id/:subcat_name',
+        component: ProductListComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: ':cat_id/:cat_name/:subcat_id/:subcat_name/:product_mtrl',
+        component: ProductPageComponent,     
+        pathMatch: 'full'
+      },
     ]
   },
   {
@@ -184,20 +196,20 @@ const routes :Routes =[
     path: 'the-team',
     component: TeamComponent
   },
-{
-  path:'**',
-  redirectTo:'404'
-},
-{
-  path:'404',
-  component:PageNotFoundComponent
-}
+// {
+//   path:'**',
+//   redirectTo:'404'
+// },
+// {
+//   path:'404',
+//   component:PageNotFoundComponent
+// }
 
 
 
 ];
 @NgModule({
-  imports:[RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'})],
+  imports:[RouterModule.forRoot(routes)],
   exports:[RouterModule]
 })
 

@@ -17,6 +17,7 @@ import SwiperCore, {
   Swiper,
   SwiperOptions,
 } from 'swiper';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 SwiperCore.use([
   Navigation,
@@ -158,7 +159,23 @@ export class HomepageComponent implements OnInit {
 
   goToProducts(mainCategory: any){
     console.log(mainCategory);
-    this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+    let subcategories: any;
+    let first_subcat: any;
+
+    this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
+      console.log(resData.categories[0].subcategories);
+      subcategories = resData.categories[0].subcategories;
+      first_subcat = subcategories[0];
+      console.log(first_subcat);     
+      setTimeout(() => {
+        if(mainCategory.id != 116 && mainCategory.id != 117){
+          this.router.navigate(['products', mainCategory.id,mainCategory.name,first_subcat.sub_id,first_subcat.name])
+        }
+        else{
+          this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+        }
+      },50)  
+    })
 
   }
 
