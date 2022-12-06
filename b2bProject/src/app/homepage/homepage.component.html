@@ -8,15 +8,16 @@
     alt="Φωτογραφια αρχικης σελιδας"
     i18n-alt
   /> -->
-
+  <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);" width="100%"  src="../../assets/AdobeStock_327781015.jpeg" alt=""> -->
     <swiper
     [config]="config"
     (slideChange)="onSlideChange(swiper)"
     (swiper)="setThumbsSwiper($event)"
     class="swiperHome"
     #swiper
+
   >
-    <ng-template swiperSlide>
+    <!-- <ng-template swiperSlide>
       <div style="background-image: url(../../assets/AdobeStock_327781015.jpeg);background-size: cover;">
         <p class="hero-text" translate>home.title_before_br</p>
         <div class="container" style="width: 100%;height: fit-content;">
@@ -24,7 +25,7 @@
           <button class="myBtn">Μάθε Περισσότερα</button>
         </div>
       </div>
-      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);" width="100%"  src="../../assets/AdobeStock_327781015.jpeg" alt=""> -->
+
     </ng-template>
     <ng-template swiperSlide>
       <div style="background-image: url(../../assets/AdobeStock_340805134.jpeg);background-size: cover;">
@@ -34,7 +35,7 @@
           <button class="myBtn">Μάθε Περισσότερα</button>
         </div>
       </div>
-      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_340805134.jpeg" alt=""> -->
+
     </ng-template>
     <ng-template swiperSlide>
       <div style="background-image: url(../../assets/AdobeStock_323276777.jpeg);background-size: cover;">
@@ -44,7 +45,7 @@
           <button class="myBtn">Μάθε Περισσότερα</button>
         </div>
       </div>
-      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_323276777.jpeg" alt=""> -->
+
     </ng-template>
     <ng-template swiperSlide>
       <div style="background-image: url(../../assets/AdobeStock_199421624.jpeg);background-size: cover;">
@@ -54,14 +55,15 @@
           <button class="myBtn">Μάθε Περισσότερα</button>
         </div>
       </div>
-      <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""> -->
-    </ng-template>
-    <ng-template swiperSlide>
-      <div style="background-image: url(../../assets/shutterstock_1812242566\ \(1\).jpg);background-size: cover;">
-        <p class="hero-text" translate>Εξαρτήματα Μοτέρ, Εσωτερικής & Εξωτερικής Σκίασης</p>
+
+    </ng-template> -->
+    <ng-template swiperSlide  *ngFor="let single of carousel">
+      <div style="background-size: cover;">
+        <img [src]="single.image">
+        <p class="hero-text" translate>{{single.text}}</p>
         <div class="container" style="width: 100%;height: fit-content;">
 
-          <button (click)="goToProducts({ id: 118, name: 'Accessories' })" class="myBtn">Μάθε Περισσότερα</button>
+          <button [routerLink]="single.route" class="myBtn">Μάθε Περισσότερα</button>
         </div>
       </div>
       <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""> -->

@@ -48,6 +48,7 @@ export class HomepageComponent implements OnInit {
   offer1:any = [];
   offer2:any=[];
   currentLang:string|any;
+  carousel : any;
   source: string = '../../assets/pexels-expect-best-323772.jpg';
   showLoggedInContent: boolean = false;
   username = localStorage.getItem('username');
@@ -100,6 +101,14 @@ export class HomepageComponent implements OnInit {
   }
 
    ngOnInit() {
+
+    axios.post('https://perlanoderest.vinoitalia.gr/carousel/getCarousel')
+    .then(resData=>{
+      console.log(resData.data)
+      this.carousel = resData.data.carousels
+    })
+
+
 
      this.currentLang = localStorage.getItem('lang');
      this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
