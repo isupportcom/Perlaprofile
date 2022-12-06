@@ -384,7 +384,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   seeProd(product: any){
     console.log(product);
-    
+
     this.productsService.setSingleProduct(product)
     this.router.navigate(['products/product-page']);
   }

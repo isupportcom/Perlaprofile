@@ -51,18 +51,8 @@ const routes :Routes =[
     component:HomepageComponent
   },
   {
-    path:'edit-products',
-    canActivate: [AuthGuard],
-    component:AdminareaproductsComponent
-  },
-  {
     path:'catalogs',
     component: CatalogsFrontComponent
-  },
-  {
-    path:'users',
-    canActivate: [AuthGuard],
-    component:AdminareausersComponent
   },
   {
     path:'products',
@@ -182,11 +172,6 @@ const routes :Routes =[
     component: MyOrdersComponent
   },
 
-
-  {
-    path:'contact',
-    component:ContatcFormComponent
-  },
   {
     path:'contact',
     component:ContatcFormComponent
