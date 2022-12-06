@@ -109,6 +109,7 @@ export class ProductPageComponent implements OnInit {
   notEmpty: boolean = false;
 
   amount: number = 1;
+  mainCategories: any;
 
   // isVisible: boolean = true;
 
@@ -166,6 +167,16 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    // this.route.params.subscribe(resData => {
+    //   console.log(resData);
+      
+    // })
+
+    this.productsService.getMainCategories().subscribe(resData => {
+      this.mainCategories = resData;
+      console.log(this.mainCategories);
+
+    });
 
     this.productsService.suggProd.subscribe(resData => {
       let newProduct = JSON.parse(resData)
@@ -184,11 +195,11 @@ export class ProductPageComponent implements OnInit {
     this.currentLang = localStorage.getItem('lang');
     console.log(this.currentLang);
 
-    // window.scrollTo(0,0);
+    window.scrollTo(0,0);
 
-    this.route.params.subscribe((params) => {
-      this.filters = params;
-    });
+    // this.route.params.subscribe((params) => {
+    //   this.filters = params;
+    // });
 
     this.productsService.mosquiProductFound.subscribe((resData) => {
       this.waitingProduct = true;
@@ -196,6 +207,8 @@ export class ProductPageComponent implements OnInit {
       if(this.loggedIn){ 
         setTimeout(() => {
           console.log(resData);
+          let subcategories: any;
+          let selected_subcategory: any;
           this.mosquiProduct = resData;
           console.log(this.mosquiProduct);
           // this.product = this.mosquiProduct;
@@ -222,6 +235,21 @@ export class ProductPageComponent implements OnInit {
             }
           }, 500);
           this.waitingProduct = false;
+          if(this.mosquiProduct != undefined){
+            console.log(this.mosquiProduct.category);
+            this.productsService.getAllCategories(116).subscribe((resData: any) => {
+              console.log(resData.categories[0].subcategories);
+              subcategories = resData.categories[0].subcategories;
+              subcategories.forEach((subcat: any) => {
+                if(subcat.sub_id == this.mosquiProduct.subcategory){
+                  selected_subcategory = subcat;
+                }
+              })
+              console.log(selected_subcategory!);
+              this.productsService.setSingleProduct(this.mosquiProduct);
+              this.router.navigate(['products/116/Mosqui',selected_subcategory.sub_id,selected_subcategory.name,this.mosquiProduct.mtrl])
+            })
+          }
         }, 200);
       }
     });
@@ -654,12 +682,36 @@ export class ProductPageComponent implements OnInit {
   }
 
   goToSeeEarlier(prod: any,div: any){
+    let mainCategory: any;
+    let subcategories: any;
+    let product_subcategory: any;
+
     this.renderer.setStyle(div, 'transform', 'scale(0.95)');
     setTimeout(() => {
       this.renderer.setStyle(div, 'transform', 'scale(1)');
     },30)
     this.productsService.setSingleProduct(prod);
     this.product = this.productsService.getSingelProduct();
+    console.log(this.product.category);
+    console.log(this.product.subcategory);
+    this.mainCategories.forEach((category: any) => {
+      if(this.product.category == category.id){
+        mainCategory = category
+      }
+    })
+
+    this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
+      console.log(resData.categories[0].subcategories);
+      subcategories = resData.categories[0].subcategories;
+      subcategories.forEach((subcat: any) => {
+        if(subcat.sub_id == this.product.subcategory){
+          product_subcategory = subcat;
+        }
+      })
+      console.log(product_subcategory!);
+      
+      this.router.navigate(['products',mainCategory.id,mainCategory.name,product_subcategory.sub_id,product_subcategory.name,this.product.mtrl]);
+    })
     window.scrollTo(0,0);
   }
 

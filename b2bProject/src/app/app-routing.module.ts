@@ -55,39 +55,39 @@ const routes: Routes = [
     path: 'catalogs',
     component: CatalogsFrontComponent,
   },
+
   {
-    path: 'products',
-    component: PorductsComponent,
-    data: { breadcrumb: { alias: 'Προϊόντα' } },
+    path:'products',
+    component:PorductsComponent,
     children: [
       {
         path: ':cat_id/:cat_name',
         component: ProductListComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: '116/Mosqui/:subcat_id/:subcat_name',
+        // component:MosquiWizzardComponent
         pathMatch: 'full',
-        data: { breadcrumb: { alias: ':cat_name' } },
+        component: ProductPageComponent
       },
       {
-        path: 'product-page',
+        path: ':cat_id/:cat_name/:subcat_id/:subcat_name',
+        component: ProductListComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: ':cat_id/:cat_name/:subcat_id/:subcat_name/:product_mtrl',
         component: ProductPageComponent,
-        children: [
-          {
-            path: '**',
-            component: ProductPageComponent,
-          },
-        ],
+        pathMatch: 'full'
       },
-      {
-        path: 'mosqui/:sub_id/:sub_name',
-        data: { breadcrumb: { alias: 'Mosqui' } },
-        component: MosquiWizzardComponent,
-      },
-    ],
+    ]
   },
   {
-    path: 'dashboard',
-    canActivate: [AdminGuard],
-    component: AdminAreaComponent,
-    children: [
+    path:'dashboard',
+    canActivate:[AdminGuard],
+    component:AdminAreaComponent,
+    children:[
       {
         path: 'insert-products',
         component: InsertProductsComponent,
@@ -196,19 +196,22 @@ const routes: Routes = [
   },
   {
     path: 'the-team',
-    component: TeamComponent,
+    component: TeamComponent
   },
-  {
-    path: '**',
-    redirectTo: '404',
-  },
-  {
-    path: '404',
-    component: PageNotFoundComponent,
-  },
+{
+  path:'**',
+  redirectTo:'404'
+},
+{
+  path:'404',
+  component:PageNotFoundComponent
+}
+
+
+
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
-  exports: [RouterModule],
+  imports:[RouterModule.forRoot(routes)],
+  exports:[RouterModule]
 })
 export class AppRoutingModule {}
