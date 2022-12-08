@@ -267,28 +267,7 @@ export class ProductPageComponent implements OnInit {
           this.mosquiProduct = resData;
           console.log(this.mosquiProduct);
           // this.product = this.mosquiProduct;
-          let favouritesObs: Observable<any>;
 
-
-          favouritesObs = this.getFavourites()!;
-
-          favouritesObs.subscribe((resData) => {
-            this.favorites = resData.products;
-          });
-          setTimeout(() => {
-            for (let favorite of this.favorites) {
-              if (this.mosquiProduct.mtrl === favorite.mtrl) {
-                console.log('HeHe');
-                this.added = true;
-                this.mosquiProduct.addedToFav = true;
-              }
-            }
-
-            if (!this.mosquiProduct.addedToFav) {
-              this.added = false;
-              this.mosquiProduct.addedToFav = false;
-            }
-          }, 500);
           this.waitingProduct = false;
           if(this.mosquiProduct != undefined){
             console.log(this.mosquiProduct.category);
@@ -301,8 +280,16 @@ export class ProductPageComponent implements OnInit {
                 }
               })
               console.log(selected_subcategory!);
-              this.productsService.setSingleProduct(this.mosquiProduct);
+              // this.productsService.setSingleProduct(this.mosquiProduct);
+              localStorage.setItem("mtrl",JSON.stringify(
+                {
+                  name: null,
+                  id: null,
+                  category: null,
+                  mtrl: this.mosquiProduct.mtrl
+                }));
               this.router.navigate(['products/116/Mosqui',selected_subcategory.sub_id,selected_subcategory.name,this.mosquiProduct.mtrl])
+
             })
           }
         }, 200);
