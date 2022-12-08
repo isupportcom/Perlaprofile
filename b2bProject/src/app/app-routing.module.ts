@@ -59,8 +59,8 @@ const routes :Routes =[
     component:PorductsComponent,
     children: [
       {
-        path: ':cat_id/:cat_name', 
-        component: ProductListComponent, 
+        path: ':cat_id/:cat_name',
+        component: ProductListComponent,
         pathMatch: 'full'
       },
       {
@@ -76,7 +76,7 @@ const routes :Routes =[
       },
       {
         path: ':cat_id/:cat_name/:subcat_id/:subcat_name/:product_mtrl',
-        component: ProductPageComponent,     
+        component: ProductPageComponent,
         pathMatch: 'full'
       },
     ]

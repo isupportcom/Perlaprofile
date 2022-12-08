@@ -602,19 +602,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
   }
 
-  getFavourites() {
-    return this.http.get(
-      'https://perlanoderest.vinoitalia.gr/products/favorites',
-      {
-        params:{
-          trdr: this.loadedUser.trdr,
-          mtrl: 'dontNeedIt',
-          mode: 'fetch',
-        }
 
-      }
-    );
-  }
 
   shouldContinueColors: boolean | any;
   checkColor() {
@@ -865,22 +853,24 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           this.noProducts = true;
         }
         else{
-          for(let i=0;i<this.shownProducts.length;i++){
-            axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
-            {
-              mtrl: this.shownProducts[i].mtrl,
-              trdr: this.loadedUser.trdr
-            }).then(resData => {
+          if(this.loggedIn){
+            for(let i=0;i<this.shownProducts.length;i++){
+              axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+              {
+                mtrl: this.shownProducts[i].mtrl,
+                trdr: this.loadedUser.trdr
+              }).then(resData => {
 
-              console.log(resData.data.exists);
+                console.log(resData.data.exists);
 
-              if(resData.data.exists){
-                this.shownProducts[i].addedToFav = true;
-              }
-              else{
-                this.shownProducts[i].addedToFav = false;
-              }
-            })
+                if(resData.data.exists){
+                  this.shownProducts[i].addedToFav = true;
+                }
+                else{
+                  this.shownProducts[i].addedToFav = false;
+                }
+              })
+            }
           }
 
           this.noProducts = false;
@@ -889,13 +879,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     })
 
 
-    let favouritesObs: Observable<any>;
 
-    favouritesObs = this.getFavourites();
-
-    favouritesObs.subscribe((resData) => {
-      this.favorites = resData.products;
-    });
 
     setTimeout(() => {
 
@@ -1204,22 +1188,25 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             this.waiting = false;
             this.shownProducts = resData.data.products;
             this.message = '';
-            for(let i=0;i<this.shownProducts.length;i++){
-              axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
-              {
-                mtrl: this.shownProducts[i].mtrl,
-                trdr: this.loadedUser.trdr
-              }).then(resData => {
+            if(this.loggedIn){
 
-                console.log(resData.data.exists);
+              for(let i=0;i<this.shownProducts.length;i++){
+                axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+                {
+                  mtrl: this.shownProducts[i].mtrl,
+                  trdr: this.loadedUser.trdr
+                }).then(resData => {
 
-                if(resData.data.exists){
-                  this.shownProducts[i].addedToFav = true;
-                }
-                else{
-                  this.shownProducts[i].addedToFav = false;
-                }
-              })
+                  console.log(resData.data.exists);
+
+                  if(resData.data.exists){
+                    this.shownProducts[i].addedToFav = true;
+                  }
+                  else{
+                    this.shownProducts[i].addedToFav = false;
+                  }
+                })
+              }
             }
 
           }, 100);
