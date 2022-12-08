@@ -178,35 +178,52 @@ export class ProductPageComponent implements OnInit {
 
 
     let temp = JSON.parse(localStorage.getItem("mtrl")||'{}');
+    console.log(temp);
+
+    if(temp.mtrl){
+      this.mtrl = temp.split('"')[1]
+      console.log(this.mtrl);
+
+      axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+      {
+        mtrl: this.mtrl
+      }).then(async resData => {
+        console.log(resData.data.product);
+          this.product = resData.data.product;
+          if(this.product.category != 116){
+            let sugg =await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
+            {
+              mtrl:this.product.mtrl
+            })
+              if(sugg.data.products.length > 0){
+                this.notEmpty = true;
+              }
+              else{
+                this.notEmpty = false;
+              }
 
 
-    this.mtrl = temp.split('"')[1]
-    console.log(this.mtrl);
-
-
-    axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
-    {
-      mtrl: this.mtrl
-    }).then(resData => {
-      console.log(resData.data.product);
-      if(resData.data.product.category != 116){
-        this.product = resData.data.product;
-
-        let sugg = axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
-        {
-          mtrl:this.product.mtrl
-        }).then(resData =>{
-          if(resData.data.products.length > 0){
-            this.notEmpty = true;
           }
-          else{
-            this.notEmpty = false;
-          }
+      })
 
-          }
-        )
-      }
-    })
+    }
+    else{
+      axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+      {
+        name: temp.name,
+        id: temp.id,
+        category: temp.category
+      }).then(async resData => {
+        console.log(resData.data);
+        this.product = resData.data;
+
+      })
+    }
+
+
+
+
+
 
 
     this.productsService.getMainCategories().subscribe(resData => {

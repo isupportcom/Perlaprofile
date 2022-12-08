@@ -160,7 +160,14 @@ export class SingleProductComponent implements OnInit, OnDestroy {
     this.index.addedToFav = this.added
 
     // localStorage.setItem("single",JSON.stringify(this.index));
-    localStorage.setItem("mtrl",JSON.stringify(JSON.stringify(this.index.mtrl)));
+
+    localStorage.setItem("mtrl",JSON.stringify(
+      {
+        name: null,
+        id: null,
+        category: null,
+        mtrl: this.index.mtrl
+      }));
 
     this.productsService.getAllCategories(this.mainCategory.id).subscribe((resData: any) => {
       console.log(resData.categories[0].subcategories);
