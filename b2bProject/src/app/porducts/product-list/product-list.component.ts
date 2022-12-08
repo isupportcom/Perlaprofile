@@ -260,74 +260,53 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
     // https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php
 
-    axios
-      .get('https://perlanoderest.vinoitalia.gr/products/getProducts')
-      .then(async (resData: any) => {
-        console.log(resData.data);
-        // console.log(resData.data)
-        console.log(resData.data);
-        for (let i = 0; i < resData.data.products.length; i++) {
-          this.products[i] = {
-            mtrl: resData.data.products[i].mtrl,
-            name: resData.data.products[i].name,
-            name1: resData.data.products[i].name1,
-            code: resData.data.products[i].code,
-            retail: resData.data.products[i].retail,
-            wholesale: resData.data.products[i].wholesale,
-            qty: 1,
-            offer: resData.data.products[i].offer,
-            discount: resData.data.products[i].discount,
-            hasOffer: resData.data.products[i].hasOffer,
-            stock: resData.data.products[i].stock,
-            category: resData.data.products[i].category,
-            subcategory: resData.data.products[i].subcategory,
-            image: resData.data.products[i].image,
-            otherImages: resData.data.products[i].otherImages,
-            description: resData.data.products[i].description,
-            description_eng: resData.data.products[i].description_eng,
-            data_sheet: resData.data.products[i].data_sheet,
-            pdf: resData.data.products[i].pdf,
-            video: resData.data.products[i].video,
-            product_name: resData.data.products[i].onoma,
-            product_name_eng: resData.data.products[i].onoma_eng,
-            kodikos_kataskeuasti: resData.data.products[i].kodikos_kataskeuasti,
-            texnikos_kodikos: resData.data.products[i].texnikos_kodikos,
-            diathesima: resData.data.products[i].diathesima,
-            omada: resData.data.products[i].omada,
-            short_desc: resData.data.products[i].sintomi_per,
-            short_desc_eng: resData.data.products[i].sintomi_per_eng
-          };
-          this.productsService.setAll(this.products[i]);
-        }
+    // axios
+    //   .get('https://perlanoderest.vinoitalia.gr/products/getProducts')
+    //   .then(async (resData: any) => {
+    //     console.log(resData.data);
+    //     // console.log(resData.data)
+    //     console.log(resData.data);
+    //     for (let i = 0; i < resData.data.products.length; i++) {
+    //       this.products[i] = {
+    //         mtrl: resData.data.products[i].mtrl,
+    //         name: resData.data.products[i].name,
+    //         name1: resData.data.products[i].name1,
+    //         code: resData.data.products[i].code,
+    //         retail: resData.data.products[i].retail,
+    //         wholesale: resData.data.products[i].wholesale,
+    //         qty: 1,
+    //         offer: resData.data.products[i].offer,
+    //         discount: resData.data.products[i].discount,
+    //         hasOffer: resData.data.products[i].hasOffer,
+    //         stock: resData.data.products[i].stock,
+    //         category: resData.data.products[i].category,
+    //         subcategory: resData.data.products[i].subcategory,
+    //         image: resData.data.products[i].image,
+    //         otherImages: resData.data.products[i].otherImages,
+    //         description: resData.data.products[i].description,
+    //         description_eng: resData.data.products[i].description_eng,
+    //         data_sheet: resData.data.products[i].data_sheet,
+    //         pdf: resData.data.products[i].pdf,
+    //         video: resData.data.products[i].video,
+    //         product_name: resData.data.products[i].onoma,
+    //         product_name_eng: resData.data.products[i].onoma_eng,
+    //         kodikos_kataskeuasti: resData.data.products[i].kodikos_kataskeuasti,
+    //         texnikos_kodikos: resData.data.products[i].texnikos_kodikos,
+    //         diathesima: resData.data.products[i].diathesima,
+    //         omada: resData.data.products[i].omada,
+    //         short_desc: resData.data.products[i].sintomi_per,
+    //         short_desc_eng: resData.data.products[i].sintomi_per_eng
+    //       };
+    //       this.productsService.setAll(this.products[i]);
+    //     }
 
 
 
 
 
 
-        setTimeout(() => {
 
-
-
-
-          if(this.favorites){
-            for (let favorite of this.favorites) {
-              for (let prod of this.products) {
-                if (prod.mtrl === favorite.mtrl) {
-                  prod.addedToFav = true;
-                }
-              }
-              for (let prod of this.products) {
-                if (!prod.addedToFav) {
-                  prod.addedToFav = false;
-                }
-              }
-          }
-          }
-        }, 200);
-
-        this.totalLength = this.products.length;
-      });
+    //   });
 
 
 
@@ -881,10 +860,29 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
         this.shownProducts = resData.data.products;
 
+
         if(this.shownProducts.length == 0){
           this.noProducts = true;
         }
         else{
+          for(let i=0;i<this.shownProducts.length;i++){
+            axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+            {
+              mtrl: this.shownProducts[i].mtrl,
+              trdr: this.loadedUser.trdr
+            }).then(resData => {
+
+              console.log(resData.data.exists);
+
+              if(resData.data.exists){
+                this.shownProducts[i].addedToFav = true;
+              }
+              else{
+                this.shownProducts[i].addedToFav = false;
+              }
+            })
+          }
+
           this.noProducts = false;
         }
       },200)
@@ -1203,16 +1201,27 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         console.log(resData.data);
         if (resData.data.products.length != 0) {
           setTimeout(() => {
-            for (let favorite of this.favorites) {
-              for (let prod of resData.data.products) {
-                if (favorite.mtrl === prod.mtrl) {
-                  prod.addedToFav = true;
-                }
-              }
-            }
             this.waiting = false;
             this.shownProducts = resData.data.products;
             this.message = '';
+            for(let i=0;i<this.shownProducts.length;i++){
+              axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+              {
+                mtrl: this.shownProducts[i].mtrl,
+                trdr: this.loadedUser.trdr
+              }).then(resData => {
+
+                console.log(resData.data.exists);
+
+                if(resData.data.exists){
+                  this.shownProducts[i].addedToFav = true;
+                }
+                else{
+                  this.shownProducts[i].addedToFav = false;
+                }
+              })
+            }
+
           }, 100);
         } else {
           setTimeout(() => {
