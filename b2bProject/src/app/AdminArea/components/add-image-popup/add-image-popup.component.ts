@@ -16,6 +16,7 @@ export class AddImagePopupComponent implements OnInit {
   @Input() secondary?: boolean;
   @Input() general?: boolean;
   @Input() mtrl?: string;
+  @Input() carousel?: boolean;
   product?: any;
   isClicked: boolean = true;
   imagesArr :string|any= [];
@@ -135,6 +136,8 @@ export class AddImagePopupComponent implements OnInit {
         btn.classList.add('loading');
         setTimeout(() => {
           let joinedImagesArray =this.imagesToSend.join(',')
+          console.log(joinedImagesArray);
+          
           axios.post('https://perlarest.vinoitalia.gr/php-auth-api/deleteImage.php',{
             "image_name":joinedImagesArray
           }).then(resData => {
@@ -154,53 +157,67 @@ export class AddImagePopupComponent implements OnInit {
 
     }
     else{
-      console.log("TSATSA");
-      if(!btn.classList.contains('loading')) {
-        btn.classList.add('loading');
-        setTimeout(async () => {
-          if(this.secondary){
-            let joinedImagesArray =this.imagesToSend.join(',')
-
-           await axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
-              mtrl:this.mtrl,
-              img:  joinedImagesArray,
-              mode:"insert"
-            }).then(res=>{
-              console.log(res)
-
-            })
-            this.imagesToSend = [];
-            this.modalService.sendImage(joinedImagesArray);
+      if(this.carousel){
+        if(!btn.classList.contains('loading')) {
+          btn.classList.add('loading');
+          setTimeout(() => {
+            this.modalService.sendImageName(this.thumbnail!);
             btn.classList.remove('loading')
             this.cartService.sendAddImagePopup(false);
-          }
-          else{
-
-
-            if(this.thumbnail){
-              console.log(this.thumbnail);
-              console.log(this.mtrl);
-
-              // let splitted = this.thumbnail.split('/')
-              // console.log(splitted);
-
-             await axios
-              .post(
-                'https://perlanoderest.vinoitalia.gr/products/updateSingleImage' ,{
-                  mtrl:this.mtrl,
-                  image:this.thumbnail
-                }
-
-              )
-              .then((res) => {
-                console.log(res.data);
-                btn.classList.remove('loading')
-                this.cartService.sendAddImagePopup(false);
-              });
+          },1000)
+        }
+        
+      }
+      else{        
+        console.log("TSATSA");
+        if(!btn.classList.contains('loading')) {
+          btn.classList.add('loading');
+          setTimeout(async () => {
+            if(this.secondary){
+              let joinedImagesArray =this.imagesToSend.join(',')
+            
+              
+             await axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
+                mtrl:this.mtrl,
+                img:  joinedImagesArray,
+                mode:"insert"
+              }).then(res=>{
+                console.log(res)
+  
+              })
+              this.imagesToSend = [];
+              this.modalService.sendImage(joinedImagesArray);
+              btn.classList.remove('loading')
+              this.cartService.sendAddImagePopup(false);
             }
-          }
-
-        }, 1500);
+            else{
+  
+  
+              if(this.thumbnail){
+                console.log(this.thumbnail);
+                console.log(this.mtrl);
+  
+                // let splitted = this.thumbnail.split('/')
+                // console.log(splitted);
+  
+               await axios
+                .post(
+                  'https://perlanoderest.vinoitalia.gr/products/updateSingleImage' ,{
+                    mtrl:this.mtrl,
+                    image:this.thumbnail
+                  }
+  
+                )
+                .then((res) => {
+                  console.log(res.data);
+                  btn.classList.remove('loading')
+                  this.cartService.sendAddImagePopup(false);
+                });
+              }
+            }
+  
+          }, 1500);
+        }
       }
     }
 

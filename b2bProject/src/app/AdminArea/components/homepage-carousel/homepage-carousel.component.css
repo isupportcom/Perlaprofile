@@ -44,7 +44,10 @@
     border-bottom-right-radius: 16px;
 
     padding: 0px !important;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
   ::-webkit-scrollbar {
     width: 5px;
@@ -65,4 +68,17 @@
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #4a7632; 
+  }
+
+  .table-btn{
+    border: none;
+    background-color: #6dae49;
+    color: white;
+    border-radius: 16px;
+    padding: 4px 24px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .table-btn:hover{
+    background-color: #4a7632;
   }

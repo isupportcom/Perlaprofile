@@ -16,8 +16,8 @@
           <img [src]="fav.image"class="product-image" alt=""/>
         </div>
         <div class="row" style="justify-content: center;text-align: center;">
-          <p class="product-title" *ngIf="currentLang == 'el'">{{ fav.onoma }}</p>
-          <p class="product-title" *ngIf="currentLang == 'en'">{{ fav.onoma_eng }}</p>
+          <p class="product-title" *ngIf="currentLang == 'el'">{{ fav.product_name }}</p>
+          <p class="product-title" *ngIf="currentLang == 'en'">{{ fav.product_name_eng }}</p>
         </div>
         <div class="row" style="justify-content: center;align-items: center">
           <hr style="opacity: 1;border: 1px solid #6dae49;width: 90%;">

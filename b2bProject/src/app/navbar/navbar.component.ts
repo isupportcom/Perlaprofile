@@ -55,7 +55,8 @@ export class NavbarComponent implements OnInit{
   mainCategories : any = [];
   loggedIn: boolean = localStorage.getItem('username') ? true : false;
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
-
+  
+  goToProductsArr: any;
 
   // [innerHTML]="
   // (offer1.description | slice: 0:315) + '<span>...</span>'
@@ -268,8 +269,36 @@ export class NavbarComponent implements OnInit{
     }
 
     this.productsService.getMainCategories().subscribe(resData => {
+      let subcategories: any;
+      let first_subcat: any;
+      let infoToPush: any;
       this.mainCategories = resData;
       console.log(this.mainCategories);
+      this.goToProductsArr = [];
+      this.mainCategories.forEach((mainCategory: any) => {
+
+        if(mainCategory.id != 116 && mainCategory.id != 117){
+
+          this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
+            console.log(resData.categories[0].subcategories);
+            subcategories = resData.categories[0].subcategories;
+            first_subcat = subcategories[0];
+            // console.log(first_subcat);     
+            infoToPush= {
+              main_id: mainCategory.id,
+              main_name: mainCategory.name,
+              sub_id: first_subcat.sub_id,
+              sub_name: first_subcat.name
+            }
+            console.log(infoToPush);
+            
+            this.goToProductsArr.push(infoToPush);  
+          })
+        }
+        
+      })
+      console.log(this.goToProductsArr);
+      
 
     });
 
@@ -334,6 +363,10 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['favorites'])
   }
   goToProducts(mainCategory: any){
+    // console.log(mainCategory);
+
+
+    
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);
     setTimeout(() => {
@@ -411,7 +444,7 @@ export class NavbarComponent implements OnInit{
 
 
   handleCategoryClick(){
-    window.location.reload();
+    // window.location.reload();
 
   }
 

@@ -55,7 +55,7 @@
           </div>
           
           <div class="row" style="justify-content: right;">
-            <button type="button" *ngIf="!general && !secondary" style="position: relative;margin-top: 4px !important;margin-right: 8px;" (click)="deleteThumbnail(btn)" [disabled]="product.image == 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'" [ngClass]="product.image == 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'? 'myBtnDanger disabled' : 'myBtnDanger'" #btn>
+            <button type="button" *ngIf="!general && !secondary && !carousel" style="position: relative;margin-top: 4px !important;margin-right: 8px;" (click)="deleteThumbnail(btn)" [disabled]="product.image == 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'" [ngClass]="product.image == 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'? 'myBtnDanger disabled' : 'myBtnDanger'" #btn>
               <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
               <p style="margin: 0px;color: rgba(0,0,0,0);">Αφαίρεση</p>
               <p class="textAnim">Αφαίρεση</p>

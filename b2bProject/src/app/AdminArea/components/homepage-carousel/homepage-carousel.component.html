@@ -1,3 +1,5 @@
+<app-add-image-popup [general]="false" [secondary]="false" [carousel]="true" style="position: absolute;top: 0;left: 0;" *ngIf="flag && window"></app-add-image-popup>
+
 <div class="container content">
     <div class="row" style="justify-content: center;align-items: center;">
       <h1 style="width: fit-content;">Επεξεργασία Carousel Αρχικής</h1>
@@ -19,46 +21,59 @@
         </div>
 
         <div class="row myRow">
-            <div>
-                <h1>Hello</h1>
+            <div style="display: flex;justify-content: center;">
                 <form [formGroup]="carousel" (ngSubmit)="upload()">
-                  <label>Επιλογη Καρουσελ</label>
-                  <select formControlName="id">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                  <br>
-                  <label>Εισαγωγη Τεξτ</label>
-                  <br>
-                  <textarea formControlName="text">
+                  <div>
+                      <label>Επιλογη Καρουσελ</label>
+                      <select class="form-select" aria-label="Default select example" formControlName="id">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                  </div>
+                  <div class="input-group" style="margin-top: 12px;">
+                      <label class="input-group-text">Εισαγωγη Κειμένου</label>
+                      <textarea class="form-control" formControlName="text">
+    
+                      </textarea>
+                  </div>
 
-                  </textarea>
-                  <br>
-                  <label>Photo</label>
-                  <input formControlName="image">
-                  <br>
-                  <label>Route</label>
-                  <select formControlName="route">
-                    <option >
-                      /products/114/Control
-                    </option>
-                    <option >
-                      /products/115/Motion
-                    </option>
-                    <option >
-                      /products/116/Mosqui%2520Plus
-                    </option>
-                    <option >
-                      /products/117/Profile
-                    </option>
-                    <option >
-                      /products/118/Accessories
-                    </option>
-                  </select>
-                  <button type="submit">Submit</button>
+                  <div style="display: flex;justify-content: space-between;flex-direction: row;margin-top: 12px;">
+                      
+                    <div style="display: flex;flex-direction: column;padding-right: 8px;">
+                        <label>Photo</label>
+                        <!-- <input class="form-control" formControlName="image"> -->
+
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="open()">Gallery</button>
+                            <input type="text" class="form-control" [placeholder]="imageName? imageName : 'Επιλέξτε Φωτογραφία'" formControlName="image" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                        </div>
+                    </div>
+
+                      <div style="display: flex;flex-direction: column;">
+                        <label>Routing</label>
+                        <select class="form-select" formControlName="route">
+                          <option>
+                            {{ controlRoute }}
+                          </option>
+                          <option >
+                            {{ motionRoute }}
+                          </option>
+                          <option >
+                            {{ mosquiRoute }}
+                          </option>
+                          <option >
+                            {{ profileRoute }}
+                          </option>
+                          <option >
+                            {{ accessoriesRoute }}
+                          </option>
+                        </select>
+                      </div>
+                  </div>
+                  <button class="table-btn" type="submit">Submit</button>
                 </form>
 
             </div>

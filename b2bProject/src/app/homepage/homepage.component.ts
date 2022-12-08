@@ -18,6 +18,7 @@ import SwiperCore, {
   SwiperOptions,
 } from 'swiper';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { Category } from '../porducts/categories.model';
 
 SwiperCore.use([
   Navigation,
@@ -153,8 +154,48 @@ export class HomepageComponent implements OnInit {
     offerImg.classList.remove('hoverBox');
   }
   goToProductPage( product:any){
-    this.productsService.setSingleProduct(product);
-    this.router.navigate(['../products/product-page']);
+    let subcategories: any;
+    let product_subcat: any;
+    let mainCategories: any;
+    let mainCategory: any 
+    this.productsService.getMainCategories().subscribe(resData => {
+      mainCategories = resData;
+      console.log(mainCategories);
+      
+      mainCategories.forEach((category: any) => {
+        if(category.id == product.category){
+          mainCategory = category;
+        }
+      })
+
+      this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
+        console.log(resData.categories[0].subcategories);
+        subcategories = resData.categories[0].subcategories;
+  
+        subcategories.forEach((subcat: any) => {
+          if(subcat.sub_id == product.subcategory){
+
+            
+            product_subcat = subcat;
+          }
+          })
+          console.log(product_subcat);
+          console.log(mainCategory);
+          this.productsService.setSingleProduct(product);
+          this.router.navigate(['products',mainCategory.id,mainCategory.name,product_subcat.sub_id,product_subcat.name,product.mtrl]);
+      })
+
+
+    });
+
+
+
+
+    
+    
+
+    
+    // this.router.navigate(['../products/product-page']);
   }
 
   goToProducts(mainCategory: any){
