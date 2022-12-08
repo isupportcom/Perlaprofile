@@ -198,14 +198,14 @@ const routes: Routes = [
     path: 'the-team',
     component: TeamComponent
   },
-{
-  path:'**',
-  redirectTo:'404'
-},
-{
-  path:'404',
-  component:PageNotFoundComponent
-}
+  {
+    path:'**',
+    redirectTo:'404'
+  },
+  {
+    path:'404',
+    component:PageNotFoundComponent
+  }
 
 
 

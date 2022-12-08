@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {ProductsService} from "../../../porducts/products.service";
 import {product} from "../../adminareaproducts/adminareaproducts.component";
 import axios from "axios";
@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './insert-products.component.html',
   styleUrls: ['./insert-products.component.css']
 })
-export class InsertProductsComponent implements OnInit {
+export class InsertProductsComponent implements OnInit, OnDestroy {
   search: string = "";
   offer:boolean = false;
   products:  any = [];
@@ -283,7 +283,8 @@ export class InsertProductsComponent implements OnInit {
   }
 
 
-
+ngOnDestroy(): void {
+}
 
 
   }

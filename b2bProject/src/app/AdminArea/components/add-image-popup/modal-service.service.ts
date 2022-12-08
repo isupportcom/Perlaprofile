@@ -14,6 +14,14 @@ export class ModalService {
   castOffer = this.image.asObservable();
 
 
+  imageName = new Subject<string>();
+  castImageName = this.imageName.asObservable();
+
+  sendImageName(image: string){
+    this.imageName.next(image);
+  }
+
+
   imagesUpdated = new Subject<any>();
   castImagesUpdated = this.imagesUpdated.asObservable();
 

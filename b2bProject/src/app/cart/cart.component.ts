@@ -15,6 +15,7 @@ import { CartServiceService } from './cart-service.service';
 import axios from 'axios';
 import { TranslateConfigService } from '../services/translate-config.service';
 import { ProductsService } from '../porducts/products.service';
+import { Category } from '../porducts/categories.model';
 
 @Component({
   selector: 'app-cart',
@@ -383,10 +384,37 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   seeProd(product: any){
+    let mainCategories: any;
+    let mainCategory: any;
+    let subcategories: any;
+    let subcategory: any;
     console.log(product);
 
-    this.productsService.setSingleProduct(product)
-    this.router.navigate(['products/product-page']);
+    this.productsService.getMainCategories().subscribe((resData: any) => {
+      
+      mainCategories = resData;
+      mainCategories.forEach((category: any) => {
+        if(category.id == product.category){
+          mainCategory = category;
+        }
+      });
+
+      this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
+        subcategories = resData.categories[0].subcategories
+
+        subcategories.forEach((sub: any) => {
+          if(sub.sub_id == product.subcategory){
+            subcategory = sub;
+          }
+        });
+
+
+        this.productsService.setSingleProduct(product)
+        this.router.navigate(['products',mainCategory.id,mainCategory.name,subcategory.sub_id,subcategory.name,product.mtrl]);
+      })
+
+    })
+
   }
 
   ngOnDestroy(): void {}
