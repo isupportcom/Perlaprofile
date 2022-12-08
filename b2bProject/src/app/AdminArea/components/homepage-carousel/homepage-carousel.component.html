@@ -21,7 +21,9 @@
         </div>
 
         <div class="row myRow">
-            <div style="display: flex;justify-content: center;">
+
+            <div style="display: flex;justify-content: center;flex-direction: column;">
+                <p style="margin: 0;color: #6dae49;">*Οι Φωτογραφίες να έχουν μεγάλες διαστάσεις.</p>
                 <form [formGroup]="carousel" (ngSubmit)="upload()">
                   <div>
                       <label>Επιλογη Καρουσελ</label>
@@ -36,12 +38,12 @@
                   <div class="input-group" style="margin-top: 12px;">
                       <label class="input-group-text">Εισαγωγη Κειμένου</label>
                       <textarea class="form-control" formControlName="text">
-    
+
                       </textarea>
                   </div>
 
                   <div style="display: flex;justify-content: space-between;flex-direction: row;margin-top: 12px;">
-                      
+
                     <div style="display: flex;flex-direction: column;padding-right: 8px;">
                         <label>Photo</label>
                         <!-- <input class="form-control" formControlName="image"> -->
@@ -73,7 +75,10 @@
                         </select>
                       </div>
                   </div>
-                  <button class="table-btn" type="submit">Submit</button>
+                  <div style="display: flex;flex-direction: row;">
+                    <button class="table-btn" type="submit">Submit</button>
+                    <p style="margin: 0;" *ngIf="success || error" [class.success]="success" [class.error]="error">{{ message }}</p>
+                  </div>
                 </form>
 
             </div>

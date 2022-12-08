@@ -26,6 +26,9 @@ export class HomepageCarouselComponent implements OnInit {
   profileRoute = '/products/117/Profile';
   accessoriesRoute: any;
 
+  message!: string;
+  error: boolean = false;
+  success: boolean = false;
 
   imageName!: string;
   constructor(private fb: FormBuilder,private cartService: CartServiceService,private modalService: ModalService,private productsService: ProductsService) { }
@@ -119,6 +122,13 @@ export class HomepageCarouselComponent implements OnInit {
     })
     .then(resData=>{
       console.log(resData.data)
+      this.error = false;
+      this.success = true;
+      this.message = 'Όλα πήγαν καλά.'
+    }).catch(err => {
+      this.error = true;
+      this.success = false;
+      this.message = 'Κάτι πήγε στραβά. Προσπαθήστε ξανά.'
     })
   }
 }
