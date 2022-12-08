@@ -4,7 +4,7 @@
       <a
         routerLink="/home"
         class="navbar-brand d-flex align-items-center"
-        
+
       >
         <img
           i18n-alt
@@ -299,14 +299,14 @@
                   <div class="dropdown">
                     <ul>
                       <li (click)="handleCategoryClick()">
-                        <a [routerLink]="'/products/114/Control/'+goToProductsArr[0].sub_id+'/'+goToProductsArr[0].sub_name" routerLinkActive="my-active">Control</a>
+                        <a [routerLink]="controlRoute" routerLinkActive="my-active">Control</a>
                       </li>
                       <li
 
                       (click)="handleCategoryClick()"
 
                     >
-                      <a [routerLink]="'/products/115/Motion/'+goToProductsArr[1].sub_id+'/'+goToProductsArr[1].sub_name" routerLinkActive="my-active">Motion</a>
+                      <a [routerLink]="motionRoute" routerLinkActive="my-active">Motion</a>
 
                     </li>
 
@@ -333,7 +333,7 @@
                   (click)="handleCategoryClick()"
 
                 >
-                  <a [routerLink]="'/products/118/Accessories/'+goToProductsArr[2].sub_id+'/'+goToProductsArr[2].sub_name" routerLinkActive="my-active">Accessories</a>
+                  <a [routerLink]="accessoriesRoute" routerLinkActive="my-active">Accessories</a>
 
                 </li>
                     </ul>
@@ -420,7 +420,7 @@
                 (click)="handleCategoryClick()"
 
               >
-              <a [routerLink]="'/products/114/Control/'+goToProductsArr[0].sub_id+'/'+goToProductsArr[0].sub_name" routerLinkActive="my-active">Control</a>
+              <a [routerLink]="controlRoute" routerLinkActive="my-active">Control</a>
 
               </li>
 
@@ -429,7 +429,7 @@
               (click)="handleCategoryClick()"
 
             >
-              <a [routerLink]="'/products/115/Motion/'+goToProductsArr[1].sub_id+'/'+goToProductsArr[1].sub_name"routerLinkActive="my-active">Motion</a>
+              <a [routerLink]="motionRoute"routerLinkActive="my-active">Motion</a>
 
             </li>
 
@@ -455,7 +455,7 @@
           (click)="handleCategoryClick()"
 
         >
-          <a [routerLink]="'/products/118/Accessories/'+goToProductsArr[2].sub_id+'/'+goToProductsArr[2].sub_name" routerLinkActive="my-active">Accessories</a>
+          <a [routerLink]="accessoriesRoute" routerLinkActive="my-active">Accessories</a>
 
         </li>
             </ul>
@@ -480,7 +480,7 @@
           src="https://perlarest.vinoitalia.gr/php-auth-api/upload/assets/PerlaProfilLogo-dark 1.svg"
         />
       </a>
-  
+
       <button
         data-bs-toggle="collapse"
         class="navbar-toggler"
@@ -515,7 +515,7 @@
               >navbar.contanct</a
             >
           </li>
-  
+
           <li class="nav-item">
             <a class="btn ms-md-2 myBtn" role="button" (click)="login()" translate
               >navbar.login</a
@@ -567,14 +567,14 @@
                   <div class="dropdown">
                     <ul>
                       <li (click)="handleCategoryClick()">
-                        <a [routerLink]="goToProducts? ('/products/114/Control/'+goToProductsArr[0].sub_id+'/'+goToProductsArr[0].sub_name) : ''" routerLinkActive="my-active">Control</a>
+                        <a [routerLink]="controlRoute" routerLinkActive="my-active">Control</a>
                       </li>
                       <li
 
                       (click)="handleCategoryClick()"
 
                     >
-                      <a [routerLink]="goToProducts? ('/products/115/Motion/'+goToProductsArr[1].sub_id+'/'+goToProductsArr[1].sub_name) : ''" routerLinkActive="my-active">Motion</a>
+                      <a [routerLink]="motionRoute" routerLinkActive="my-active">Motion</a>
 
                     </li>
 
@@ -601,11 +601,11 @@
                   (click)="handleCategoryClick()"
 
                 >
-                  <a [routerLink]="'/products/118/Accessories/'+goToProductsArr[2].sub_id+'/'+goToProductsArr[2].sub_name" routerLinkActive="my-active">Accessories</a>
+                  <a [routerLink]="accessoriesRoute" routerLinkActive="my-active">Accessories</a>
 
                 </li>
                     </ul>
-  
+
                     <!-- <a
                       routerLink="/products"
                       routerLinkActive="active"
@@ -680,7 +680,7 @@
                 (click)="handleCategoryClick()"
 
               >
-              <a [routerLink]="'/products/114/Control/'+goToProductsArr[0].sub_id+'/'+goToProductsArr[0].sub_name" routerLinkActive="my-active">Control</a>
+              <a [routerLink]="controlRoute" routerLinkActive="my-active">Control</a>
 
               </li>
 
@@ -689,7 +689,7 @@
               (click)="handleCategoryClick()"
 
             >
-              <a [routerLink]="'/products/115/Motion/'+goToProductsArr[1].sub_id+'/'+goToProductsArr[1].sub_name" routerLinkActive="my-active">Motion</a>
+              <a [routerLink]="motionRoute" routerLinkActive="my-active">Motion</a>
 
             </li>
 
@@ -715,7 +715,7 @@
           (click)="handleCategoryClick()"
 
         >
-          <a [routerLink]="'/products/118/Accessories/'+goToProductsArr[2].sub_id+'/'+goToProductsArr[2].sub_name" routerLinkActive="my-active">Accessories</a>
+          <a [routerLink]="accessoriesRoute" routerLinkActive="my-active">Accessories</a>
 
         </li>
             </ul>

@@ -46,6 +46,10 @@ export class NavbarComponent implements OnInit{
   sourceCart?: string;
 
 
+  controlRoute: any;
+  motionRoute: any;
+  accessoriesRoute: any;
+
   @Output() logoutEvent = new EventEmitter<boolean>();
   public isCollapsed = true;
   productCount: number|any;
@@ -55,7 +59,7 @@ export class NavbarComponent implements OnInit{
   mainCategories : any = [];
   loggedIn: boolean = localStorage.getItem('username') ? true : false;
   loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
-  
+
   goToProductsArr: any;
 
   // [innerHTML]="
@@ -119,8 +123,8 @@ export class NavbarComponent implements OnInit{
       }
       console.log(this.username);
     }
-    
-    
+
+
     if(this.loggedIn){
       let loadedUser = JSON.parse(localStorage.getItem("userData") || '{}')
        axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
@@ -128,17 +132,17 @@ export class NavbarComponent implements OnInit{
         this.productCount = resData.data.products.length;
         console.log(this.productCount)
       })
-  
-  
+
+
       this.cartService.productCount.subscribe(resData => {
-  
-  
+
+
         axios.post("https://perlanoderest.vinoitalia.gr/products/fetchCartItems",{trdr:loadedUser.trdr})
           .then(resData => {
             this.productCount = resData.data.products.length;
-  
+
           })
-  
+
       })
       axios.get("https://perlanoderest.vinoitalia.gr/products/favorites",{
          params:{
@@ -283,7 +287,7 @@ export class NavbarComponent implements OnInit{
             console.log(resData.categories[0].subcategories);
             subcategories = resData.categories[0].subcategories;
             first_subcat = subcategories[0];
-            // console.log(first_subcat);     
+            // console.log(first_subcat);
             infoToPush= {
               main_id: mainCategory.id,
               main_name: mainCategory.name,
@@ -291,14 +295,27 @@ export class NavbarComponent implements OnInit{
               sub_name: first_subcat.name
             }
             console.log(infoToPush);
-            
-            this.goToProductsArr.push(infoToPush);  
+
+            if(infoToPush.main_id == 114){
+              this.controlRoute = '/products/114/Control/'+infoToPush.sub_id+'/'+infoToPush.sub_name
+            }
+
+            if(infoToPush.main_id == 115){
+              this.motionRoute = '/products/115/Motion/'+infoToPush.sub_id+'/'+infoToPush.sub_name
+            }
+
+            if(infoToPush.main_id == 118){
+              this.accessoriesRoute = '/products/118/Accessories/'+infoToPush.sub_id+'/'+infoToPush.sub_name
+            }
+
+
+            this.goToProductsArr.push(infoToPush);
           })
         }
-        
+
       })
-      console.log(this.goToProductsArr);
-      
+
+
 
     });
 
@@ -366,7 +383,7 @@ export class NavbarComponent implements OnInit{
     // console.log(mainCategory);
 
 
-    
+
     console.log(mainCategory);
     this.router.navigate(['products', mainCategory.id,mainCategory.name]);
     setTimeout(() => {

@@ -39,7 +39,7 @@ export class HomepageCarouselComponent implements OnInit {
       route:[null]
     })
 
-    
+
     this.cartService.addImagePopup.subscribe((resData) => {
       if (resData == false) {
         this.flag = false;
@@ -67,41 +67,39 @@ export class HomepageCarouselComponent implements OnInit {
       this.goToProductsArr = [];
       this.mainCategories.forEach((mainCategory: any) => {
 
-        
+
           this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
             console.log(resData.categories[0].subcategories);
             subcategories = resData.categories[0].subcategories;
             first_subcat = subcategories[0];
-            // console.log(first_subcat);     
+            // console.log(first_subcat);
             infoToPush= {
               main_id: mainCategory.id,
               main_name: mainCategory.name,
               sub_id: first_subcat.sub_id,
               sub_name: first_subcat.name
             }
-            
-            this.goToProductsArr.push(infoToPush);  
-          })          
+
+            if(infoToPush.main_id == 114){
+              this.controlRoute = '/products/114/Control/'+infoToPush.sub_id+'/'+infoToPush.sub_name
+            }
+
+            if(infoToPush.main_id == 115){
+              this.motionRoute = '/products/115/Motion/'+infoToPush.sub_id+'/'+infoToPush.sub_name
+            }
+
+            if(infoToPush.main_id == 118){
+              this.accessoriesRoute = '/products/118/Accessories/'+infoToPush.sub_id+'/'+infoToPush.sub_name
+            }
+
+            this.goToProductsArr.push(infoToPush);
+          })
         });
         console.log(this.goToProductsArr);
-        
-       for(let i=0;i<this.goToProductsArr.length; i++ ){
-         console.log(this.goToProductsArr[i]);
-         
-         if(this.goToProductsArr[i].main_id == 114){
-           this.controlRoute = '/products/'+this.goToProductsArr[i].main_id+'/'+this.goToProductsArr[i].main_name+'/'+this.goToProductsArr[i].sub_id+'/'+this.goToProductsArr[i].sub_name
-           
-           
-         }
-         if(this.goToProductsArr[i].main_id == 115){
-           this.motionRoute = '/products/'+this.goToProductsArr[i].main_id+'/'+this.goToProductsArr[i].main_name+'/'+this.goToProductsArr[i].sub_id+'/'+this.goToProductsArr[i].sub_name
-         }
-         if(this.goToProductsArr[i].main_id == 118){
-           this.accessoriesRoute = '/products/'+this.goToProductsArr[i].main_id+'/'+this.goToProductsArr[i].main_name+'/'+this.goToProductsArr[i].sub_id+'/'+this.goToProductsArr[i].sub_name
-         }
-       }
+
+
       })
-     
+
   }
 
   open(){
