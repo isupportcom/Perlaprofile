@@ -1224,11 +1224,19 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
   }
   handleWizzard(name: string, id: number) {
-    this.productsService.setSingleProduct({
+    // this.productsService.setSingleProduct({
+      // name: name,
+      // id: id,
+      // category: 116,
+    // });
+
+    localStorage.setItem("mtrl",JSON.stringify(
+    {
       name: name,
       id: id,
       category: 116,
-    });
+      mtrl: undefined
+    }));
     this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,id,name]);
 
     // this.router.navigate(['products/mosqui',id,name]);
