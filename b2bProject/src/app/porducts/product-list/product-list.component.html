@@ -191,13 +191,6 @@
                     </li>
                   </ul>
                   <hr *ngIf="mainCategory.id != 116 && mainCategory.id != 117" />
-                  <button
-                    *ngIf="filterOn"
-                    class="btn btn-danger clearFilters"
-                    (click)="handleClearFilters()"
-                  >
-                    Clear Filters
-                  </button>
                 </div>
               </div>
             </div>
@@ -386,13 +379,6 @@
 
                 </li>
               </ul>
-              <button
-              *ngIf="filterOn"
-              class="btn btn-danger clearFilters col-3"
-              (click)="handleClearFilters()"
-            >
-              Clear Filters
-            </button>
             </div>
             <div class="row" *ngIf="waiting && mainCategory.id != 116 && mainCategory.id != 117" style="margin-left: 50%;margin-top: 40px;">
                 <app-spinner></app-spinner>
@@ -423,9 +409,9 @@
                 </div>
 
             </div>
-            <div *ngIf="(listArray? listArray.length == 0 && !searched : false) && !waiting && (mainCategory.id != 116 && mainCategory.id != 117)" style="display: flex;justify-content: center;align-items: center;margin-top: 12px;">
+            <!-- <div *ngIf="(listArray? listArray.length == 0 && !searched : false) && !waiting && (mainCategory.id != 116 && mainCategory.id != 117)" style="display: flex;justify-content: center;align-items: center;margin-top: 12px;">
               <h1>Παρακαλώ Επιλέξτε Κατηγορία</h1>
-            </div>
+            </div> -->
 
 
 

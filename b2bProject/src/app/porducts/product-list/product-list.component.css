@@ -422,7 +422,7 @@
 
 .ngx-pagination{
     margin-bottom: 0px !important;
-    
+
 }
 
 
@@ -671,7 +671,7 @@
 @media (max-width: 768px) {
   .myBtn {
     font-size: 14px;
-    
+
     margin-top: 110px;
   }
 }
@@ -679,7 +679,7 @@
 @media (max-width: 528px) {
   .myBtn {
     font-size: 12px;
-    
+
     margin-top: 65px;
   }
 }
@@ -687,7 +687,7 @@
 @media (max-width: 520px) {
   .myBtn {
     font-size: 12px;
-    
+
     margin-top: 30px;
   }
 }
@@ -695,7 +695,7 @@
 @media (max-width: 385px) {
   .myBtn {
     font-size: 12px;
-    
+
     margin-top: 20px;
   }
 }
@@ -1127,7 +1127,7 @@ input[type='checkbox']:checked ~ .checkbox{
 }
 
 .smallerFont{
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .title{
@@ -1337,14 +1337,14 @@ input[type='checkbox']:checked ~ .checkbox{
 .select:hover{
   color: #6DAE49;
   border-bottom: 1px solid #4a7632;
-  
+
   outline: 0;
 }
 
 .select:focus{
   border-bottom: 1px solid #4a7632;
   color: #4a7632;
-  
+
   outline: 0;
 }
 

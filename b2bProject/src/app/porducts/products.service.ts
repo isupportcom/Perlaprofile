@@ -1,3 +1,4 @@
+import { singleProduct } from './../AdminArea/adminareaproducts/adminareaproducts.component';
 import {Injectable} from "@angular/core";
 import {product} from "../AdminArea/adminareaproducts/adminareaproducts.component";
 import {BehaviorSubject, Subject} from "rxjs";
@@ -22,6 +23,14 @@ export  class ProductsService {
   filters: any;
 
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute) {}
+
+
+  singleProductMtrl = new Subject<any>();
+  castSingleProductMtrl = this.singleProductMtrl.asObservable();
+
+  sendSingleProductMtrl(mtrl: any){
+   this.singleProductMtrl.next(mtrl);
+  }
 
   suggProd = new Subject<any>();
   castSuggProd = this.suggProd.asObservable();

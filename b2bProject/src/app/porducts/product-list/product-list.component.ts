@@ -260,145 +260,53 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
     // https://perlarest.vinoitalia.gr/php-auth-api/getAllProducts.php
 
-    axios
-      .get('https://perlanoderest.vinoitalia.gr/products/getProducts')
-      .then(async (resData: any) => {
-        console.log(resData.data);
-        // console.log(resData.data)
-        console.log(resData.data);
-        for (let i = 0; i < resData.data.products.length; i++) {
-          this.products[i] = {
-            mtrl: resData.data.products[i].mtrl,
-            name: resData.data.products[i].name,
-            name1: resData.data.products[i].name1,
-            code: resData.data.products[i].code,
-            retail: resData.data.products[i].retail,
-            wholesale: resData.data.products[i].wholesale,
-            qty: 1,
-            offer: resData.data.products[i].offer,
-            discount: resData.data.products[i].discount,
-            hasOffer: resData.data.products[i].hasOffer,
-            stock: resData.data.products[i].stock,
-            category: resData.data.products[i].category,
-            subcategory: resData.data.products[i].subcategory,
-            image: resData.data.products[i].image,
-            otherImages: resData.data.products[i].otherImages,
-            description: resData.data.products[i].description,
-            description_eng: resData.data.products[i].description_eng,
-            data_sheet: resData.data.products[i].data_sheet,
-            pdf: resData.data.products[i].pdf,
-            video: resData.data.products[i].video,
-            product_name: resData.data.products[i].onoma,
-            product_name_eng: resData.data.products[i].onoma_eng,
-            kodikos_kataskeuasti: resData.data.products[i].kodikos_kataskeuasti,
-            texnikos_kodikos: resData.data.products[i].texnikos_kodikos,
-            diathesima: resData.data.products[i].diathesima,
-            omada: resData.data.products[i].omada,
-            short_desc: resData.data.products[i].sintomi_per,
-            short_desc_eng: resData.data.products[i].sintomi_per_eng
-          };
-          this.productsService.setAll(this.products[i]);
-        }
+    // axios
+    //   .get('https://perlanoderest.vinoitalia.gr/products/getProducts')
+    //   .then(async (resData: any) => {
+    //     console.log(resData.data);
+    //     // console.log(resData.data)
+    //     console.log(resData.data);
+    //     for (let i = 0; i < resData.data.products.length; i++) {
+    //       this.products[i] = {
+    //         mtrl: resData.data.products[i].mtrl,
+    //         name: resData.data.products[i].name,
+    //         name1: resData.data.products[i].name1,
+    //         code: resData.data.products[i].code,
+    //         retail: resData.data.products[i].retail,
+    //         wholesale: resData.data.products[i].wholesale,
+    //         qty: 1,
+    //         offer: resData.data.products[i].offer,
+    //         discount: resData.data.products[i].discount,
+    //         hasOffer: resData.data.products[i].hasOffer,
+    //         stock: resData.data.products[i].stock,
+    //         category: resData.data.products[i].category,
+    //         subcategory: resData.data.products[i].subcategory,
+    //         image: resData.data.products[i].image,
+    //         otherImages: resData.data.products[i].otherImages,
+    //         description: resData.data.products[i].description,
+    //         description_eng: resData.data.products[i].description_eng,
+    //         data_sheet: resData.data.products[i].data_sheet,
+    //         pdf: resData.data.products[i].pdf,
+    //         video: resData.data.products[i].video,
+    //         product_name: resData.data.products[i].onoma,
+    //         product_name_eng: resData.data.products[i].onoma_eng,
+    //         kodikos_kataskeuasti: resData.data.products[i].kodikos_kataskeuasti,
+    //         texnikos_kodikos: resData.data.products[i].texnikos_kodikos,
+    //         diathesima: resData.data.products[i].diathesima,
+    //         omada: resData.data.products[i].omada,
+    //         short_desc: resData.data.products[i].sintomi_per,
+    //         short_desc_eng: resData.data.products[i].sintomi_per_eng
+    //       };
+    //       this.productsService.setAll(this.products[i]);
+    //     }
 
 
 
 
 
 
-        setTimeout(() => {
 
-
-
-
-          if(this.favorites){
-            for (let favorite of this.favorites) {
-              for (let prod of this.products) {
-                if (prod.mtrl === favorite.mtrl) {
-                  prod.addedToFav = true;
-                }
-              }
-              for (let prod of this.products) {
-                if (!prod.addedToFav) {
-                  prod.addedToFav = false;
-                }
-              }
-          }
-          }
-        }, 200);
-
-        this.totalLength = this.products.length;
-
-        this.listArray = [];
-
-
-
-
-        // this.productsService.prevfilters.subscribe(resData => {
-        //   console.log("EIMMAI MESA");
-        //   let prevPage = localStorage.getItem('page')!;
-        //   this.page = +prevPage;
-        //   console.log(this.page);
-          
-        //   this.listArray = [];
-        //   if(resData != null){
-        //     this.filterList = Object.values(resData )
-
-        //     for(let filter of this.filterList){
-        //       this.listArray.push(filter);
-        //     }
-
-        //     if(!this.showBigFilters){
-        //       this.updateProducts()
-        //     }
-        //     else{
-        //       setTimeout(async() => {
-        //         console.log(this.filters);
-
-        //         for(let i=0; i<this.filters.length; i++){
-        //           for(let id of this.listArray){
-        //             if(id === this.filters[i].value){
-        //               this.filters[i].checked = true;
-        //              await this.updateProducts();
-        //               // this.handleCheckboxes(this.filters[i]);
-        //             }
-        //           }
-        //         }
-
-
-        //         this.executed = true;
-        //       },100)
-        //     }
-        //   }
-
-
-
-
-        // })
-
-
-
-
-        // setTimeout(() => {
-
-        //   for(let filter of this.filters){
-        //     if(filter.checked){
-        //       this.handleCheckboxes(filter)
-        //     }
-        //   }
-
-        //   for(let filter of this.filters2){
-        //     if(filter.checked){
-
-
-        //       this.handleCheckboxes(filter)
-        //     }
-
-        //   }
-        // },300)
-
-
-
-      });
+    //   });
 
 
 
@@ -407,16 +315,16 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
       console.log();
       this.route.params.subscribe((params) => {
-        
+
         console.log(+this.router.url.split('/')[4]);
         this.selected_subcategory_id = +this.router.url.split('/')[4];
-        
+
 
         console.log(+params['cat_id']);
         console.log(params['cat_name']);
         // console.log(params['subcat_id']);
         // console.log(params['subcat_name']);
-                
+
 
         this.mainCategory.id = +params['cat_id'];
         this.productsService
@@ -427,9 +335,9 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
               resData.categories[0].subcategories
             );
             this.categories = this.productsService.getCategoriesArray();
-            
+
             this.listArray = [];
-            this.updateFilters(true); 
+            this.updateFilters(true);
 
             console.log(this.categories.length);
 
@@ -441,37 +349,6 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
         this.mainCategory.name = params['cat_name'];
 
-
-
-
-
-
-        // if ( this.paginationCat){
-        //   if(+this.paginationCat == this.mainCategory.id){
-        //     if(!this.keepPagination){
-        //       this.page = 1;
-        //     }
-        //     else{
-        //       if(this.keepPagination == 'true'){
-        //         if(this.tempPage){
-        //           this.page = +this.tempPage
-        //         }
-        //         else{
-        //           this.page = 1;
-        //         }
-        //       }
-        //       else{
-        //         this.page = 1;
-        //       }
-        //     }
-        //   }
-        //   else{
-        //     localStorage.removeItem('paginationCat');
-        //     this.page = 1;
-        //   }
-        // }
-        // page = this.paginationCat? (this.paginationCat == this.mainCategory?)  : 1;
-        // (!this.keepPagination? 1 : (this.keepPagination == 'true'? (this.tempPage? +this.tempPage : 1)  : 1))
 
         this.productsService.setMainCategory(this.mainCategory);
 
@@ -485,19 +362,13 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
 
 
-    // this.productsService.getAllCategories().subscribe(resData => {
-    //   console.log(resData);
 
-    //  this.productsService.setAllCategoriesArray(resData);
-    // })
 
     console.log(this.categories);
 
     this.productsService.getMainCategories().subscribe((resData) => {
       this.productsService.setMainCategoriesArray(resData);
     });
-    // this.mainCategories = this.productsService.getMainCategoriesArray();
-    // console.log(this.mainCategories);
 
     if (this.mainCategory.id === 114) {
       this.logoList = [];
@@ -589,37 +460,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       this.logoSource = '../../../assets/accessiries logo white.svg'
     }
 
-    // this.route.params.subscribe(params => {
-    //   this.cat_id = +params['cat_id'];
-    //   this.subcat_id = +params['subcat_id'];
-    // })
 
-    // if(this.cat_id == 0 && this.subcat_id == 0){
-    // this.noProducts = false
-    // this.filterOn = false;
-    // this.shownProducts = this.productsService.getAll();
-    // }
-    // else{
-    // this.filterOn = true;
-    // let temp = this.productsService.getAll();
-    // let i = 0;
-    // for(let product of temp){
-    //   if(product.category == this.cat_id && product.subcategory == this.subcat_id){
-    //     this.shownProducts[i++] = product;
-    //   }
-    // }
-    // if(this.shownProducts.length > 0){
-    //   this.noProducts = false;
-    // }
-    // else{
-    //   this.noProducts = true;
-    // }
-    // }
+
+
   }
-  // this.productsService.cast.subscribe((res: any) => {
-  //   this.product = res;
-
-  // console.log(this.product);
   selectedCategory: boolean | any;
   selectedHeight: boolean | any;
   selectedWidth: boolean | any;
@@ -667,7 +511,8 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           if(!this.showBigFilters && this.listArray.length == 0){
             console.log("TRELAA");
             this.listArray.push(this.categories[0].sub_id)
-            this.updateProducts();
+            this.updateProducts(this.categories[0].sub_id);
+            this.selected_subcategory_id = this.categories[0].sub_id;
           }
           else{
             for(let i=0;i<this.categories.length;i++){
@@ -689,7 +534,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
                     (<HTMLInputElement>check).checked = true;
                     this.listArray.push(this.selected_subcategory_id)
-                    this.updateProducts();
+                    this.updateProducts(this.selected_subcategory_id);
                   // }
                 }
                 // else{
@@ -703,7 +548,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             }
           }
           console.log(this.listArray);
-          
+
         }
       },500)
     }
@@ -713,7 +558,8 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           if(!this.showBigFilters && this.listArray.length == 0){
             console.log("TRELAA");
             this.listArray.push(this.categories[0].sub_id)
-            this.updateProducts();
+            this.updateProducts(this.categories[0].sub_id);
+            this.selected_subcategory_id = this.categories[0].sub_id;
           }
           else{
             for(let i=0;i<this.categories.length;i++){
@@ -735,7 +581,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
                     (<HTMLInputElement>check).checked = true;
                     this.listArray.push(this.selected_subcategory_id)
-                    this.updateProducts();
+                    this.updateProducts(this.selected_subcategory_id);
                   // }
                 }
                 // else{
@@ -749,26 +595,14 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             }
           }
           console.log(this.listArray);
-          
+
         }
     }
-    
+
 
   }
 
-  getFavourites() {
-    return this.http.get(
-      'https://perlanoderest.vinoitalia.gr/products/favorites',
-      {
-        params:{
-          trdr: this.loadedUser.trdr,
-          mtrl: 'dontNeedIt',
-          mode: 'fetch',
-        }
 
-      }
-    );
-  }
 
   shouldContinueColors: boolean | any;
   checkColor() {
@@ -836,11 +670,11 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     console.log(e.value);
     console.log(this.categories);
     console.log(this.mainCategory);
-    
+
     let flag = false;
     let boxes;
     boxes = e.parentElement.parentElement.parentElement.parentElement.parentElement.children;
-    
+
     this.listArray = [];
 
     console.log(boxes);
@@ -870,7 +704,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       this.updateFilters(false);
       this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,subcategory_selected.sub_id,subcategory_selected.name]);
     }
-    
+
 
 
 
@@ -1000,23 +834,58 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     }
   }
 
-  updateProducts(listArray?: any) {
-    let favouritesObs: Observable<any>;
+  updateProducts(sub_id: any) {
+    this.waiting = true;
+    axios.get('https://perlanoderest.vinoitalia.gr/products/getProducts',
+    {
+      params:{
+        sub_cat_id: sub_id
+      }
+    }).then(resData => {
+      this.waiting = false;
+      setTimeout(() => {
+        console.log(resData.data.products);
 
-    favouritesObs = this.getFavourites();
+        this.shownProducts = resData.data.products;
 
-    favouritesObs.subscribe((resData) => {
-      this.favorites = resData.products;
-    });
 
-    console.log(listArray);
+        if(this.shownProducts.length == 0){
+          this.noProducts = true;
+        }
+        else{
+          if(this.loggedIn){
+            for(let i=0;i<this.shownProducts.length;i++){
+              axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+              {
+                mtrl: this.shownProducts[i].mtrl,
+                trdr: this.loadedUser.trdr
+              }).then(resData => {
+
+                console.log(resData.data.exists);
+
+                if(resData.data.exists){
+                  this.shownProducts[i].addedToFav = true;
+                }
+                else{
+                  this.shownProducts[i].addedToFav = false;
+                }
+              })
+            }
+          }
+
+          this.noProducts = false;
+        }
+      },200)
+    })
+
+
+
+
     setTimeout(() => {
 
       if (this.listArray.length == 0) {
         this.noProducts = false;
         this.filterOn = false;
-        // console.log(this.productsService.getAll());
-        // let temp: any = this.productsService.getAll();
         let temp: any = this.products;
         console.log(temp);
 
@@ -1036,62 +905,65 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             }
 
           }
-
-          let flag = false;
-          if (product.category == this.mainCategory.id) {
-            for (let el of this.shownProducts) {
-              if (product.mtrl == el.mtrl) {
-
-                flag = true;
-              }
-            }
-
-            if (!flag) {
-              if (product.stock !== 0) {
-                console.log(product.stock);
-                this.shownProducts.push(product);
-              }
-            }
-        }
-        }
-
-        if (this.shownProducts.length == 0) {
-          this.noProducts = true;
-        }
-
-        console.log(this.shownProducts);
-      } else {
-
-        this.filterOn = true;
-
-        let temp = this.products;
-        console.log(temp);
-
-        this.shownProducts = [];
-
-        let i = 0;
-
-        for (let subcat of this.listArray) {
-          for (let product of temp) {
-            if (product.subcategory == subcat) {
-              this.shownProducts.push(product);
-              console.log('yoyo!!!');
-            }
-          }
-        }
-        console.log(this.shownProducts);
-        if (this.shownProducts.length > 0) {
-          this.noProducts = false;
-          this.page = 1;
-        } else {
-          this.noProducts = true;
         }
       }
+    })
 
-    }, 300);
-    if(this.executed){
-      this.executed = false;
-    }
+    //       let flag = false;
+    //       if (product.category == this.mainCategory.id) {
+    //         for (let el of this.shownProducts) {
+    //           if (product.mtrl == el.mtrl) {
+
+    //             flag = true;
+    //           }
+    //         }
+
+    //         if (!flag) {
+    //           if (product.stock !== 0) {
+    //             console.log(product.stock);
+    //             this.shownProducts.push(product);
+    //           }
+    //         }
+    //     }
+    //     }
+
+    //     if (this.shownProducts.length == 0) {
+    //       this.noProducts = true;
+    //     }
+
+    //     console.log(this.shownProducts);
+    //   } else {
+
+    //     this.filterOn = true;
+
+    //     let temp = this.products;
+    //     console.log(temp);
+
+    //     this.shownProducts = [];
+
+    //     let i = 0;
+
+    //     for (let subcat of this.listArray) {
+    //       for (let product of temp) {
+    //         if (product.subcategory == subcat) {
+    //           this.shownProducts.push(product);
+    //           console.log('yoyo!!!');
+    //         }
+    //       }
+    //     }
+    //     console.log(this.shownProducts);
+    //     if (this.shownProducts.length > 0) {
+    //       this.noProducts = false;
+    //       this.page = 1;
+    //     } else {
+    //       this.noProducts = true;
+    //     }
+    //   }
+
+    // }, 300);
+    // if(this.executed){
+    //   this.executed = false;
+    // }
   }
 
   handleShowFilters() {
@@ -1125,25 +997,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     }
   }
 
-  handleClearFilters() {
-    this.filterOn = false;
-    this.listArray = [];
-    this.shownProducts = [];
-    this.search = '';
-    this.searched = false;
 
-    for(let i=0; i<this.filters.length; i++){
-      this.filters[i].checked = false;
-    }
-
-    this.waiting = true;
-    this.updateProducts();
-    setTimeout(() => {
-      this.waiting = false;
-
-    },600);
-
-  }
 
   getSubcategories() {
     let i = 0;
@@ -1296,6 +1150,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
   }
 
+  // findProducts(){
+
+  // }
+
   findProducts() {
     this.searched = true;
     this.filterOn = false;
@@ -1312,7 +1170,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
           setTimeout(() => {
             this.waiting = false;
-            this.updateProducts();
+            this.updateProducts(this.selected_subcategory_id);
           }, 100);
       });
     }
@@ -1327,16 +1185,30 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         console.log(resData.data);
         if (resData.data.products.length != 0) {
           setTimeout(() => {
-            for (let favorite of this.favorites) {
-              for (let prod of resData.data.products) {
-                if (favorite.mtrl === prod.mtrl) {
-                  prod.addedToFav = true;
-                }
-              }
-            }
             this.waiting = false;
             this.shownProducts = resData.data.products;
             this.message = '';
+            if(this.loggedIn){
+
+              for(let i=0;i<this.shownProducts.length;i++){
+                axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+                {
+                  mtrl: this.shownProducts[i].mtrl,
+                  trdr: this.loadedUser.trdr
+                }).then(resData => {
+
+                  console.log(resData.data.exists);
+
+                  if(resData.data.exists){
+                    this.shownProducts[i].addedToFav = true;
+                  }
+                  else{
+                    this.shownProducts[i].addedToFav = false;
+                  }
+                })
+              }
+            }
+
           }, 100);
         } else {
           setTimeout(() => {

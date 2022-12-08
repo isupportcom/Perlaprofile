@@ -1,3 +1,4 @@
+import { Category } from './../categories.model';
 import {
   ChangeDetectorRef,
   Component,
@@ -111,6 +112,8 @@ export class ProductPageComponent implements OnInit {
   amount: number = 1;
   mainCategories: any;
 
+  mtrl: any;
+
   // isVisible: boolean = true;
 
   filters: any;
@@ -169,8 +172,42 @@ export class ProductPageComponent implements OnInit {
   async ngOnInit() {
     // this.route.params.subscribe(resData => {
     //   console.log(resData);
-      
+
     // })
+
+
+
+    let temp = JSON.parse(localStorage.getItem("mtrl")||'{}');
+
+
+    this.mtrl = temp.split('"')[1]
+    console.log(this.mtrl);
+
+
+    axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+    {
+      mtrl: this.mtrl
+    }).then(resData => {
+      console.log(resData.data.product);
+      if(resData.data.product.category != 116){
+        this.product = resData.data.product;
+
+        let sugg = axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
+        {
+          mtrl:this.product.mtrl
+        }).then(resData =>{
+          if(resData.data.products.length > 0){
+            this.notEmpty = true;
+          }
+          else{
+            this.notEmpty = false;
+          }
+
+          }
+        )
+      }
+    })
+
 
     this.productsService.getMainCategories().subscribe(resData => {
       this.mainCategories = resData;
@@ -204,7 +241,7 @@ export class ProductPageComponent implements OnInit {
     this.productsService.mosquiProductFound.subscribe((resData) => {
       this.waitingProduct = true;
       this.showForm = false;
-      if(this.loggedIn){ 
+      if(this.loggedIn){
         setTimeout(() => {
           console.log(resData);
           let subcategories: any;
@@ -213,10 +250,10 @@ export class ProductPageComponent implements OnInit {
           console.log(this.mosquiProduct);
           // this.product = this.mosquiProduct;
           let favouritesObs: Observable<any>;
-  
-  
+
+
           favouritesObs = this.getFavourites()!;
-  
+
           favouritesObs.subscribe((resData) => {
             this.favorites = resData.products;
           });
@@ -228,7 +265,7 @@ export class ProductPageComponent implements OnInit {
                 this.mosquiProduct.addedToFav = true;
               }
             }
-  
+
             if (!this.mosquiProduct.addedToFav) {
               this.added = false;
               this.mosquiProduct.addedToFav = false;
@@ -301,7 +338,7 @@ export class ProductPageComponent implements OnInit {
       this.howManySeen = false;
     }
 
-    this.product = this.productsService.getSingelProduct();
+    // this.product = this.productsService.getSingelProduct();
     console.log(this.product);
 
     this.config = {
@@ -323,13 +360,13 @@ export class ProductPageComponent implements OnInit {
     // console.log(typeof(this.product.description));
     if(this.loggedIn){
       let favouritesObs: Observable<any>;
-  
+
       favouritesObs = this.getFavourites()!;
-  
+
       favouritesObs.subscribe((resData) => {
         this.favorites = resData.products;
       });
-  
+
       setTimeout(() => {
         console.log(this.favorites);
         if (this.product.category != 116) {
@@ -342,7 +379,7 @@ export class ProductPageComponent implements OnInit {
               }
             }
           }
-  
+
           if (!this.product.addedToFav) {
             this.added = false;
             this.product.addedToFav = false;
@@ -352,25 +389,13 @@ export class ProductPageComponent implements OnInit {
     }
 
 
-    let sugg = await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
-    {
-      mtrl:this.product.mtrl
-    }).then(resData =>{
-      if(resData.data.products.length > 0){
-        this.notEmpty = true;
-      }
-      else{
-        this.notEmpty = false;
-      }
 
-      }
-    )
 
     this.getSeeEarlier();
   }
 
   getFavourites() {
-    
+
       return this.http.get(
         'https://perlanoderest.vinoitalia.gr/products/favorites',
         {
@@ -381,7 +406,7 @@ export class ProductPageComponent implements OnInit {
           }
         }
       );
-    
+
   }
 
   openFullscreen(){
@@ -709,7 +734,7 @@ export class ProductPageComponent implements OnInit {
         }
       })
       console.log(product_subcategory!);
-      
+
       this.router.navigate(['products',mainCategory.id,mainCategory.name,product_subcategory.sub_id,product_subcategory.name,this.product.mtrl]);
     })
     window.scrollTo(0,0);
@@ -729,7 +754,7 @@ export class ProductPageComponent implements OnInit {
       } else {
         this.isEmpty = false;
       }
-  
+
       console.log(this.seeEarlier);
       for (let i = 0; i < 4; i++) {
         this.seeLess.push(this.seeEarlier[i]);
@@ -861,11 +886,11 @@ export class ProductPageComponent implements OnInit {
 
   handleAddToFavorite(prod?: any) {
     if (prod) {
-      if (this.added) {
+      if (this.product.addedToFav) {
         this.product.addedToFav = false;
         this.productAddedToFav = true;
         setTimeout(() => {
-          this.added = false;
+          this.product.addedToFav = false;
         }, 350);
         setTimeout(() => {
           this.productAddedToFav = false;
@@ -886,11 +911,11 @@ export class ProductPageComponent implements OnInit {
         this.cartService.addToFavorites(this.mosquiProduct);
       }
     } else {
-      if (this.added) {
+      if (this.product.addedToFav) {
         this.product.addedToFav = false;
         this.productAddedToFav = true;
         setTimeout(() => {
-          this.added = false;
+          this.product.addedToFav = false;
         }, 350);
         setTimeout(() => {
           this.productAddedToFav = false;
@@ -904,7 +929,7 @@ export class ProductPageComponent implements OnInit {
 
         this.productAddedToFav = true;
         setTimeout(() => {
-          this.added = true;
+          this.product.addedToFav = true;
         }, 350);
         setTimeout(() => {
           this.productAddedToFav = false;
@@ -1061,6 +1086,7 @@ export class ProductPageComponent implements OnInit {
       this.productsService.sendFilters(this.filters);
     }
 
+    localStorage.removeItem('mtrl');
     // /products/product-page
   }
 }

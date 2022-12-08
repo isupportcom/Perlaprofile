@@ -188,7 +188,7 @@
               [ngClass]="productAddedToFav ? 'heartAnim heart' : 'heart'"
               style="cursor: pointer"
               [src]="
-                added
+                product.addedToFav
                   ? '../../../assets/heart-alt-filled-green.svg'
                   : '../../../assets/heart-alt-green.svg'
               "
@@ -468,7 +468,7 @@
               <img
                 [ngClass]="productAddedToFav ? 'heartAnim heart' : 'heart'"
                 [src]="
-                  added
+                  mosquiProduct.addedToFav
                     ? '../../../assets/heart-alt-filled-green.svg'
                     : '../../../assets/heart-alt-green.svg'
                 "

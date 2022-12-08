@@ -138,8 +138,8 @@ export class SingleProductComponent implements OnInit, OnDestroy {
 
     let subcategories: any;
     let selected_subcategory: any;
-    
-    
+
+
 
 
 
@@ -159,7 +159,8 @@ export class SingleProductComponent implements OnInit, OnDestroy {
 
     this.index.addedToFav = this.added
 
-    localStorage.setItem("single",JSON.stringify(this.index));
+    // localStorage.setItem("single",JSON.stringify(this.index));
+    localStorage.setItem("mtrl",JSON.stringify(JSON.stringify(this.index.mtrl)));
 
     this.productsService.getAllCategories(this.mainCategory.id).subscribe((resData: any) => {
       console.log(resData.categories[0].subcategories);
@@ -170,21 +171,21 @@ export class SingleProductComponent implements OnInit, OnDestroy {
         }
       })
       console.log(selected_subcategory!);
-      
+
       this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,selected_subcategory.sub_id,selected_subcategory.name,this.index.mtrl]);
     })
 
-   
-   
+
+
   }
   handleAddToFavorite(product:any){
-    if(this.added){
+    if(this.index.addedToFav){
 
       this.index.addedToFav = false;
 
       this.productAddedToFav = true;
       setTimeout(() => {
-        this.added = false;
+        this.index.addedToFav = false;
       }, 350);
       setTimeout(() => {
         this.productAddedToFav = false;
@@ -200,7 +201,7 @@ export class SingleProductComponent implements OnInit, OnDestroy {
 
       this.productAddedToFav = true;
       setTimeout(() => {
-        this.added = true;
+        this.index.addedToFav = true;
       }, 350);
       setTimeout(() => {
         this.productAddedToFav = false;
