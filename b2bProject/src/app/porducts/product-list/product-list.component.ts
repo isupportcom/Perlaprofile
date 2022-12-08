@@ -327,77 +327,6 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         }, 200);
 
         this.totalLength = this.products.length;
-
-        this.listArray = [];
-
-
-
-
-        // this.productsService.prevfilters.subscribe(resData => {
-        //   console.log("EIMMAI MESA");
-        //   let prevPage = localStorage.getItem('page')!;
-        //   this.page = +prevPage;
-        //   console.log(this.page);
-          
-        //   this.listArray = [];
-        //   if(resData != null){
-        //     this.filterList = Object.values(resData )
-
-        //     for(let filter of this.filterList){
-        //       this.listArray.push(filter);
-        //     }
-
-        //     if(!this.showBigFilters){
-        //       this.updateProducts()
-        //     }
-        //     else{
-        //       setTimeout(async() => {
-        //         console.log(this.filters);
-
-        //         for(let i=0; i<this.filters.length; i++){
-        //           for(let id of this.listArray){
-        //             if(id === this.filters[i].value){
-        //               this.filters[i].checked = true;
-        //              await this.updateProducts();
-        //               // this.handleCheckboxes(this.filters[i]);
-        //             }
-        //           }
-        //         }
-
-
-        //         this.executed = true;
-        //       },100)
-        //     }
-        //   }
-
-
-
-
-        // })
-
-
-
-
-        // setTimeout(() => {
-
-        //   for(let filter of this.filters){
-        //     if(filter.checked){
-        //       this.handleCheckboxes(filter)
-        //     }
-        //   }
-
-        //   for(let filter of this.filters2){
-        //     if(filter.checked){
-
-
-        //       this.handleCheckboxes(filter)
-        //     }
-
-        //   }
-        // },300)
-
-
-
       });
 
 
@@ -407,16 +336,16 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
       console.log();
       this.route.params.subscribe((params) => {
-        
+
         console.log(+this.router.url.split('/')[4]);
         this.selected_subcategory_id = +this.router.url.split('/')[4];
-        
+
 
         console.log(+params['cat_id']);
         console.log(params['cat_name']);
         // console.log(params['subcat_id']);
         // console.log(params['subcat_name']);
-                
+
 
         this.mainCategory.id = +params['cat_id'];
         this.productsService
@@ -427,9 +356,9 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
               resData.categories[0].subcategories
             );
             this.categories = this.productsService.getCategoriesArray();
-            
+
             this.listArray = [];
-            this.updateFilters(true); 
+            this.updateFilters(true);
 
             console.log(this.categories.length);
 
@@ -441,37 +370,6 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
         this.mainCategory.name = params['cat_name'];
 
-
-
-
-
-
-        // if ( this.paginationCat){
-        //   if(+this.paginationCat == this.mainCategory.id){
-        //     if(!this.keepPagination){
-        //       this.page = 1;
-        //     }
-        //     else{
-        //       if(this.keepPagination == 'true'){
-        //         if(this.tempPage){
-        //           this.page = +this.tempPage
-        //         }
-        //         else{
-        //           this.page = 1;
-        //         }
-        //       }
-        //       else{
-        //         this.page = 1;
-        //       }
-        //     }
-        //   }
-        //   else{
-        //     localStorage.removeItem('paginationCat');
-        //     this.page = 1;
-        //   }
-        // }
-        // page = this.paginationCat? (this.paginationCat == this.mainCategory?)  : 1;
-        // (!this.keepPagination? 1 : (this.keepPagination == 'true'? (this.tempPage? +this.tempPage : 1)  : 1))
 
         this.productsService.setMainCategory(this.mainCategory);
 
@@ -485,19 +383,13 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
 
 
-    // this.productsService.getAllCategories().subscribe(resData => {
-    //   console.log(resData);
 
-    //  this.productsService.setAllCategoriesArray(resData);
-    // })
 
     console.log(this.categories);
 
     this.productsService.getMainCategories().subscribe((resData) => {
       this.productsService.setMainCategoriesArray(resData);
     });
-    // this.mainCategories = this.productsService.getMainCategoriesArray();
-    // console.log(this.mainCategories);
 
     if (this.mainCategory.id === 114) {
       this.logoList = [];
@@ -589,37 +481,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       this.logoSource = '../../../assets/accessiries logo white.svg'
     }
 
-    // this.route.params.subscribe(params => {
-    //   this.cat_id = +params['cat_id'];
-    //   this.subcat_id = +params['subcat_id'];
-    // })
 
-    // if(this.cat_id == 0 && this.subcat_id == 0){
-    // this.noProducts = false
-    // this.filterOn = false;
-    // this.shownProducts = this.productsService.getAll();
-    // }
-    // else{
-    // this.filterOn = true;
-    // let temp = this.productsService.getAll();
-    // let i = 0;
-    // for(let product of temp){
-    //   if(product.category == this.cat_id && product.subcategory == this.subcat_id){
-    //     this.shownProducts[i++] = product;
-    //   }
-    // }
-    // if(this.shownProducts.length > 0){
-    //   this.noProducts = false;
-    // }
-    // else{
-    //   this.noProducts = true;
-    // }
-    // }
+
+
   }
-  // this.productsService.cast.subscribe((res: any) => {
-  //   this.product = res;
-
-  // console.log(this.product);
   selectedCategory: boolean | any;
   selectedHeight: boolean | any;
   selectedWidth: boolean | any;
@@ -667,7 +532,8 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           if(!this.showBigFilters && this.listArray.length == 0){
             console.log("TRELAA");
             this.listArray.push(this.categories[0].sub_id)
-            this.updateProducts();
+            this.updateProducts(this.categories[0].sub_id);
+            this.selected_subcategory_id = this.categories[0].sub_id;
           }
           else{
             for(let i=0;i<this.categories.length;i++){
@@ -689,7 +555,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
                     (<HTMLInputElement>check).checked = true;
                     this.listArray.push(this.selected_subcategory_id)
-                    this.updateProducts();
+                    this.updateProducts(this.selected_subcategory_id);
                   // }
                 }
                 // else{
@@ -703,7 +569,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             }
           }
           console.log(this.listArray);
-          
+
         }
       },500)
     }
@@ -713,7 +579,8 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           if(!this.showBigFilters && this.listArray.length == 0){
             console.log("TRELAA");
             this.listArray.push(this.categories[0].sub_id)
-            this.updateProducts();
+            this.updateProducts(this.categories[0].sub_id);
+            this.selected_subcategory_id = this.categories[0].sub_id;
           }
           else{
             for(let i=0;i<this.categories.length;i++){
@@ -735,7 +602,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
                     (<HTMLInputElement>check).checked = true;
                     this.listArray.push(this.selected_subcategory_id)
-                    this.updateProducts();
+                    this.updateProducts(this.selected_subcategory_id);
                   // }
                 }
                 // else{
@@ -749,10 +616,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             }
           }
           console.log(this.listArray);
-          
+
         }
     }
-    
+
 
   }
 
@@ -836,11 +703,11 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     console.log(e.value);
     console.log(this.categories);
     console.log(this.mainCategory);
-    
+
     let flag = false;
     let boxes;
     boxes = e.parentElement.parentElement.parentElement.parentElement.parentElement.children;
-    
+
     this.listArray = [];
 
     console.log(boxes);
@@ -870,7 +737,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       this.updateFilters(false);
       this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,subcategory_selected.sub_id,subcategory_selected.name]);
     }
-    
+
 
 
 
@@ -1000,7 +867,30 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     }
   }
 
-  updateProducts(listArray?: any) {
+  updateProducts(sub_id: any) {
+    this.waiting = true;
+    axios.get('https://perlanoderest.vinoitalia.gr/products/getProducts',
+    {
+      params:{
+        sub_cat_id: sub_id
+      }
+    }).then(resData => {
+      this.waiting = false;
+      setTimeout(() => {
+        console.log(resData.data.products);
+
+        this.shownProducts = resData.data.products;
+
+        if(this.shownProducts.length == 0){
+          this.noProducts = true;
+        }
+        else{
+          this.noProducts = false;
+        }
+      },200)
+    })
+
+
     let favouritesObs: Observable<any>;
 
     favouritesObs = this.getFavourites();
@@ -1009,14 +899,11 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       this.favorites = resData.products;
     });
 
-    console.log(listArray);
     setTimeout(() => {
 
       if (this.listArray.length == 0) {
         this.noProducts = false;
         this.filterOn = false;
-        // console.log(this.productsService.getAll());
-        // let temp: any = this.productsService.getAll();
         let temp: any = this.products;
         console.log(temp);
 
@@ -1036,62 +923,65 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
             }
 
           }
-
-          let flag = false;
-          if (product.category == this.mainCategory.id) {
-            for (let el of this.shownProducts) {
-              if (product.mtrl == el.mtrl) {
-
-                flag = true;
-              }
-            }
-
-            if (!flag) {
-              if (product.stock !== 0) {
-                console.log(product.stock);
-                this.shownProducts.push(product);
-              }
-            }
-        }
-        }
-
-        if (this.shownProducts.length == 0) {
-          this.noProducts = true;
-        }
-
-        console.log(this.shownProducts);
-      } else {
-
-        this.filterOn = true;
-
-        let temp = this.products;
-        console.log(temp);
-
-        this.shownProducts = [];
-
-        let i = 0;
-
-        for (let subcat of this.listArray) {
-          for (let product of temp) {
-            if (product.subcategory == subcat) {
-              this.shownProducts.push(product);
-              console.log('yoyo!!!');
-            }
-          }
-        }
-        console.log(this.shownProducts);
-        if (this.shownProducts.length > 0) {
-          this.noProducts = false;
-          this.page = 1;
-        } else {
-          this.noProducts = true;
         }
       }
+    })
 
-    }, 300);
-    if(this.executed){
-      this.executed = false;
-    }
+    //       let flag = false;
+    //       if (product.category == this.mainCategory.id) {
+    //         for (let el of this.shownProducts) {
+    //           if (product.mtrl == el.mtrl) {
+
+    //             flag = true;
+    //           }
+    //         }
+
+    //         if (!flag) {
+    //           if (product.stock !== 0) {
+    //             console.log(product.stock);
+    //             this.shownProducts.push(product);
+    //           }
+    //         }
+    //     }
+    //     }
+
+    //     if (this.shownProducts.length == 0) {
+    //       this.noProducts = true;
+    //     }
+
+    //     console.log(this.shownProducts);
+    //   } else {
+
+    //     this.filterOn = true;
+
+    //     let temp = this.products;
+    //     console.log(temp);
+
+    //     this.shownProducts = [];
+
+    //     let i = 0;
+
+    //     for (let subcat of this.listArray) {
+    //       for (let product of temp) {
+    //         if (product.subcategory == subcat) {
+    //           this.shownProducts.push(product);
+    //           console.log('yoyo!!!');
+    //         }
+    //       }
+    //     }
+    //     console.log(this.shownProducts);
+    //     if (this.shownProducts.length > 0) {
+    //       this.noProducts = false;
+    //       this.page = 1;
+    //     } else {
+    //       this.noProducts = true;
+    //     }
+    //   }
+
+    // }, 300);
+    // if(this.executed){
+    //   this.executed = false;
+    // }
   }
 
   handleShowFilters() {
@@ -1125,25 +1015,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     }
   }
 
-  handleClearFilters() {
-    this.filterOn = false;
-    this.listArray = [];
-    this.shownProducts = [];
-    this.search = '';
-    this.searched = false;
 
-    for(let i=0; i<this.filters.length; i++){
-      this.filters[i].checked = false;
-    }
-
-    this.waiting = true;
-    this.updateProducts();
-    setTimeout(() => {
-      this.waiting = false;
-
-    },600);
-
-  }
 
   getSubcategories() {
     let i = 0;
@@ -1296,6 +1168,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
   }
 
+  // findProducts(){
+
+  // }
+
   findProducts() {
     this.searched = true;
     this.filterOn = false;
@@ -1312,7 +1188,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
           setTimeout(() => {
             this.waiting = false;
-            this.updateProducts();
+            this.updateProducts(this.selected_subcategory_id);
           }, 100);
       });
     }
