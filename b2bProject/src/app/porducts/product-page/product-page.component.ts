@@ -181,8 +181,9 @@ export class ProductPageComponent implements OnInit {
     console.log(temp);
 
     if(temp.mtrl){
-      this.mtrl = temp.split('"')[1]
-      console.log(this.mtrl);
+
+      console.log(temp.mtrl);
+      this.mtrl = temp.mtrl;
 
       axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
       {
