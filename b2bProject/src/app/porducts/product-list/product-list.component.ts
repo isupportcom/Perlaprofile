@@ -23,6 +23,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationControlsComponent } from 'ngx-pagination';
 import { Observable } from 'rxjs';
 import { TranslateConfigService } from 'src/app/services/translate-config.service';
+import { async } from '@angular/core/testing';
 
 interface mainCat {
   id: number;
@@ -844,7 +845,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       }
     }).then(resData => {
       this.waiting = false;
-      setTimeout(() => {
+      setTimeout(async() => {
         console.log(resData.data.products);
 
         this.shownProducts = resData.data.products;
@@ -856,21 +857,21 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         else{
           if(this.loggedIn){
             for(let i=0;i<this.shownProducts.length;i++){
-              axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+             let req=await axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
               {
                 mtrl: this.shownProducts[i].mtrl,
                 trdr: this.loadedUser.trdr
-              }).then(resData => {
+              })
 
-                console.log(resData.data.exists);
+                console.log(req.data.exists);
 
-                if(resData.data.exists){
+                if(req.data.exists){
                   this.shownProducts[i].addedToFav = true;
                 }
                 else{
                   this.shownProducts[i].addedToFav = false;
                 }
-              })
+
             }
           }
 
@@ -1185,28 +1186,28 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         this.waiting = true;
         console.log(resData.data);
         if (resData.data.products.length != 0) {
-          setTimeout(() => {
+          setTimeout(async() => {
             this.waiting = false;
             this.shownProducts = resData.data.products;
             this.message = '';
             if(this.loggedIn){
 
               for(let i=0;i<this.shownProducts.length;i++){
-                axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+                let req = await  axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
                 {
                   mtrl: this.shownProducts[i].mtrl,
                   trdr: this.loadedUser.trdr
-                }).then(resData => {
+                })
 
-                  console.log(resData.data.exists);
+                  console.log(req.data.exists);
 
-                  if(resData.data.exists){
+                  if(req.data.exists){
                     this.shownProducts[i].addedToFav = true;
                   }
                   else{
                     this.shownProducts[i].addedToFav = false;
                   }
-                })
+
               }
             }
 
