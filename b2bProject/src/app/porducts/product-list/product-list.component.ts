@@ -177,23 +177,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
   ngOnInit(){
 
-    axios.post('https://perlaNodeRest.vinoitalia.gr/products/offersByCategory', {
-      category_id: this.mainCategory.id
-    }).then(resData => {
-      if(resData.data.products){
-        if(resData.data.products.length > 0){
-          this.notEmpty = true;
-        }
-        else{
-          this.notEmpty = false;
-        }
-      }
-      else{
-        this.notEmpty = false;
-      }
 
-
-    })
 
     this.currentLang = localStorage.getItem('lang') || 'el'
 
@@ -460,7 +444,24 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       this.logoSource = '../../../assets/accessiries logo white.svg'
     }
 
+    axios.post('https://perlaNodeRest.vinoitalia.gr/products/offersByCategory', {
+      category_id: this.mainCategory.id
+    }).then(resData => {
+      console.log(resData.data);
+      if(resData.data.products){
+        if(resData.data.products.length > 0){
+          this.notEmpty = true;
+        }
+        else{
+          this.notEmpty = false;
+        }
+      }
+      else{
+        this.notEmpty = false;
+      }
 
+
+    })
 
 
   }
