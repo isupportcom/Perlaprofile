@@ -391,7 +391,7 @@ export class CartComponent implements OnInit, OnDestroy {
     console.log(product);
 
     this.productsService.getMainCategories().subscribe((resData: any) => {
-      
+
       mainCategories = resData;
       mainCategories.forEach((category: any) => {
         if(category.id == product.category){
@@ -408,8 +408,13 @@ export class CartComponent implements OnInit, OnDestroy {
           }
         });
 
-
-        this.productsService.setSingleProduct(product)
+        localStorage.setItem("mtrl",JSON.stringify(
+          {
+            name: null,
+            id: null,
+            category: null,
+            mtrl: product.mtrl
+          }));
         this.router.navigate(['products',mainCategory.id,mainCategory.name,subcategory.sub_id,subcategory.name,product.mtrl]);
       })
 

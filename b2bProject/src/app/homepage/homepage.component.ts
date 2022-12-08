@@ -157,11 +157,11 @@ export class HomepageComponent implements OnInit {
     let subcategories: any;
     let product_subcat: any;
     let mainCategories: any;
-    let mainCategory: any 
+    let mainCategory: any
     this.productsService.getMainCategories().subscribe(resData => {
       mainCategories = resData;
       console.log(mainCategories);
-      
+
       mainCategories.forEach((category: any) => {
         if(category.id == product.category){
           mainCategory = category;
@@ -171,17 +171,23 @@ export class HomepageComponent implements OnInit {
       this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
         console.log(resData.categories[0].subcategories);
         subcategories = resData.categories[0].subcategories;
-  
+
         subcategories.forEach((subcat: any) => {
           if(subcat.sub_id == product.subcategory){
 
-            
+
             product_subcat = subcat;
           }
           })
           console.log(product_subcat);
           console.log(mainCategory);
-          this.productsService.setSingleProduct(product);
+          localStorage.setItem("mtrl",JSON.stringify(
+            {
+              name: null,
+              id: null,
+              category: null,
+              mtrl: product.mtrl
+            }));
           this.router.navigate(['products',mainCategory.id,mainCategory.name,product_subcat.sub_id,product_subcat.name,product.mtrl]);
       })
 
@@ -191,10 +197,10 @@ export class HomepageComponent implements OnInit {
 
 
 
-    
-    
 
-    
+
+
+
     // this.router.navigate(['../products/product-page']);
   }
 
@@ -207,7 +213,7 @@ export class HomepageComponent implements OnInit {
       console.log(resData.categories[0].subcategories);
       subcategories = resData.categories[0].subcategories;
       first_subcat = subcategories[0];
-      console.log(first_subcat);     
+      console.log(first_subcat);
       setTimeout(() => {
         if(mainCategory.id != 116 && mainCategory.id != 117){
           this.router.navigate(['products', mainCategory.id,mainCategory.name,first_subcat.sub_id,first_subcat.name])
@@ -215,7 +221,7 @@ export class HomepageComponent implements OnInit {
         else{
           this.router.navigate(['products', mainCategory.id,mainCategory.name]);
         }
-      },50)  
+      },50)
     })
 
   }
