@@ -733,12 +733,17 @@ export class ProductPageComponent implements OnInit {
     setTimeout(() => {
       this.renderer.setStyle(div, 'transform', 'scale(1)');
     },30)
-    this.productsService.setSingleProduct(prod);
-    this.product = this.productsService.getSingelProduct();
-    console.log(this.product.category);
-    console.log(this.product.subcategory);
+    localStorage.setItem("mtrl",JSON.stringify(
+      {
+        name: null,
+        id: null,
+        category: null,
+        mtrl: prod.mtrl
+      }));
+    console.log(prod.category);
+    console.log(prod.subcategory);
     this.mainCategories.forEach((category: any) => {
-      if(this.product.category == category.id){
+      if(prod.category == category.id){
         mainCategory = category
       }
     })
@@ -753,9 +758,13 @@ export class ProductPageComponent implements OnInit {
       })
       console.log(product_subcategory!);
 
+
       this.router.navigate(['products',mainCategory.id,mainCategory.name,product_subcategory.sub_id,product_subcategory.name,this.product.mtrl]);
+      setTimeout(() => {
+        window.location.reload()
+      },50)
     })
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0);
   }
 
   async getSeeEarlier() {

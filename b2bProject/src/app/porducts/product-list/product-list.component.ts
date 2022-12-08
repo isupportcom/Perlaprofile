@@ -1155,7 +1155,9 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   // }
 
   findProducts() {
+    this.shownProducts = [];
     this.searched = true;
+    this.waiting = true;
     this.filterOn = false;
     console.log(this.search);
     if(this.search === ""){
@@ -1165,7 +1167,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
       })
       .then((resData) => {
-        this.waiting = true;
+
         console.log(resData.data);
 
           setTimeout(() => {
@@ -1181,7 +1183,6 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         search: this.search,
       })
       .then((resData) => {
-        this.waiting = true;
         console.log(resData.data);
         if (resData.data.products.length != 0) {
           setTimeout(() => {
