@@ -1,3 +1,4 @@
+import { MosquiProductPageComponent } from './porducts/mosqui-product-page/mosqui-product-page.component';
 import { Component, NgModule } from "@angular/core";
 import { Routes,RouterModule } from "@angular/router";
 import { AdminAreaComponent } from "./AdminArea/admin-area/admin-area.component";
@@ -66,7 +67,12 @@ const routes :Routes =[
       {
         path: '116/Mosqui/:subcat_id/:subcat_name',
         pathMatch: 'full',
-        component: ProductPageComponent
+        component: MosquiProductPageComponent
+      },
+      {
+        path: '116/Mosqui/:subcat_id/:subcat_name/:product_mtrl',
+        pathMatch: 'full',
+        component: MosquiProductPageComponent
       },
       {
         path: ':cat_id/:cat_name/:subcat_id/:subcat_name',

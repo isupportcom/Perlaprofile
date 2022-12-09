@@ -1236,7 +1236,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       name: name,
       id: id,
       category: 116,
-      mtrl: undefined
+      mtrl: null
     }));
     this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,id,name]);
 
