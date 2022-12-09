@@ -67,7 +67,6 @@ const routes: Routes = [
       },
       {
         path: '116/Mosqui/:subcat_id/:subcat_name',
-        // component:MosquiWizzardComponent
         pathMatch: 'full',
         component: ProductPageComponent
       },
