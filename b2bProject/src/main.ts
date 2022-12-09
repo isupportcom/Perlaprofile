@@ -5,14 +5,11 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
-  enableProdMode();
-  window.console.log = function (){};
-  window.console.warn = function (){};
-  window.console.error = function() {};
-}else{
-  window.console.log = function (){};
-  window.console.warn = function (){};
-  window.console.error = function(){};
+      enableProdMode();
+      console.log = function (): void { };
+      console.debug = function (): void { };
+      console.warn = function (): void { };
+      console.info = function (): void { };
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)

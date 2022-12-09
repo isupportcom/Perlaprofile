@@ -185,12 +185,12 @@ export class ProductPageComponent implements OnInit {
       console.log(temp.mtrl);
       this.mtrl = temp.mtrl;
 
-      axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+      let req = await axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
       {
         mtrl: this.mtrl
-      }).then(async resData => {
-        console.log(resData.data.product);
-          this.product = resData.data.product;
+      })
+        console.log(req.data.product);
+          this.product = req.data.product;
           if(this.product.category != 116){
             let sugg =await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
             {
@@ -205,20 +205,20 @@ export class ProductPageComponent implements OnInit {
 
 
           }
-      })
+
 
     }
     else{
-      axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+     let req = await axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
       {
         name: temp.name,
         id: temp.id,
         category: temp.category
-      }).then(async resData => {
-        console.log(resData.data);
-        this.product = resData.data;
-
       })
+        console.log(req.data);
+        this.product = req.data;
+
+
     }
 
 
@@ -244,8 +244,8 @@ export class ProductPageComponent implements OnInit {
 
     setTimeout(() => {
       localStorage.setItem('keepPagination', 'true')
-      localStorage.setItem('paginationCat' , this.product.category);
-    },100)
+      localStorage.setItem('paginationCat' ,  this.product.category);
+    },200)
     // console.log(this.ref.detectChanges());
     this.currentLang = localStorage.getItem('lang');
     console.log(this.currentLang);
