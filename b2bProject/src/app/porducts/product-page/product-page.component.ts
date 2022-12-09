@@ -242,10 +242,7 @@ export class ProductPageComponent implements OnInit {
       window.scrollTo(0,0);
     })
 
-    setTimeout(() => {
-      localStorage.setItem('keepPagination', 'true')
-      localStorage.setItem('paginationCat' , this.product.category);
-    },100)
+
     // console.log(this.ref.detectChanges());
     this.currentLang = localStorage.getItem('lang');
     console.log(this.currentLang);
@@ -265,11 +262,13 @@ export class ProductPageComponent implements OnInit {
           let subcategories: any;
           let selected_subcategory: any;
           this.mosquiProduct = resData;
+
           console.log(this.mosquiProduct);
           // this.product = this.mosquiProduct;
 
           this.waitingProduct = false;
           if(this.mosquiProduct != undefined){
+            // this.product = this.mosquiProduct;
             console.log(this.mosquiProduct.category);
             this.productsService.getAllCategories(116).subscribe((resData: any) => {
               console.log(resData.categories[0].subcategories);
@@ -281,15 +280,16 @@ export class ProductPageComponent implements OnInit {
               })
               console.log(selected_subcategory!);
               // this.productsService.setSingleProduct(this.mosquiProduct);
-              localStorage.setItem("mtrl",JSON.stringify(
-                {
-                  name: null,
-                  id: null,
-                  category: null,
-                  mtrl: this.mosquiProduct.mtrl
-                }));
-              this.router.navigate(['products/116/Mosqui',selected_subcategory.sub_id,selected_subcategory.name,this.mosquiProduct.mtrl])
-
+              // localStorage.setItem("mtrl",JSON.stringify(
+              //   {
+              //     name: null,
+              //     id: null,
+              //     category: null,
+              //     mtrl: this.mosquiProduct.mtrl
+              //   }));
+              // setTimeout(() => {
+                this.router.navigate(['products/',116,'Mosqui',selected_subcategory.sub_id,selected_subcategory.name,this.mosquiProduct.mtrl])
+              // },50)
             })
           }
         }, 200);
@@ -364,39 +364,13 @@ export class ProductPageComponent implements OnInit {
     // console.log(this.product.category);
     // console.log(typeof(this.product.description));
     if(this.loggedIn){
-      let favouritesObs: Observable<any>;
 
-      favouritesObs = this.getFavourites()!;
-
-      favouritesObs.subscribe((resData) => {
-        this.favorites = resData.products;
-      });
-
-      setTimeout(() => {
-        console.log(this.favorites);
-        if (this.product.category != 116) {
-          if (this.favorites) {
-            for (let favorite of this.favorites) {
-              if (this.product.mtrl === favorite.mtrl) {
-                console.log('HeHe');
-                this.added = true;
-                this.product.addedToFav = true;
-              }
-            }
-          }
-
-          if (!this.product.addedToFav) {
-            this.added = false;
-            this.product.addedToFav = false;
-          }
-        }
-      }, 200);
+      this.getSeeEarlier();
     }
 
 
 
 
-    this.getSeeEarlier();
   }
 
   getFavourites() {
@@ -460,7 +434,7 @@ export class ProductPageComponent implements OnInit {
         .then((resData) => {
           this.cartService.sendProductCount(resData.data.products.length);
         });
-      this.mosquiProduct.qty = this.qty;
+      this.mosquiProduct.qty = this.amount;
 
       this.mosquiProduct.show = true;
       await this.cartService.addToCart(this.mosquiProduct);
@@ -484,7 +458,7 @@ export class ProductPageComponent implements OnInit {
             .then((resData) => {
               this.cartService.sendProductCount(resData.data.products.length);
             });
-          this.mosquiProduct.qty = this.qty;
+          this.mosquiProduct.qty = this.amount;
 
           this.mosquiProduct.show = true;
          await this.cartService.addToCart(this.mosquiProduct);
@@ -900,11 +874,11 @@ export class ProductPageComponent implements OnInit {
 
   handleAddToFavorite(prod?: any) {
     if (prod) {
-      if (this.product.addedToFav) {
-        this.product.addedToFav = false;
+      if (prod.addedToFav) {
+        prod.addedToFav = false;
         this.productAddedToFav = true;
         setTimeout(() => {
-          this.product.addedToFav = false;
+          prod.addedToFav = false;
         }, 350);
         setTimeout(() => {
           this.productAddedToFav = false;
@@ -916,7 +890,7 @@ export class ProductPageComponent implements OnInit {
       } else {
         this.productAddedToFav = true;
         setTimeout(() => {
-          this.added = true;
+          prod.addedToFav = true;
         }, 350);
         setTimeout(() => {
           this.productAddedToFav = false;
@@ -926,7 +900,7 @@ export class ProductPageComponent implements OnInit {
       }
     } else {
       if (this.product.addedToFav) {
-        this.product.addedToFav = false;
+        this.product.addedToFav = true;
         this.productAddedToFav = true;
         setTimeout(() => {
           this.product.addedToFav = false;

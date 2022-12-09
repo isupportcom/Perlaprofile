@@ -5,9 +5,9 @@
         <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
           <img class="remove" alt=""  style="width: 32px;" srcset="">
         </a>
-        <img width="500px" height="500px" style="border-radius: 8px;" [src]="!mosquiProduct? product.image : mosquiProduct.img" alt="">
+        <img width="500px" height="500px" style="border-radius: 8px;" [src]="product.image" alt="">
       </ng-template>
-      <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide>
+      <ng-template *ngFor="let img of product.otherImages" swiperSlide>
         <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
           <img class="remove" alt=""  style="width: 32px;" srcset="">
         </a>
@@ -37,15 +37,15 @@
         direction="vertical"
         #secondSwiper
       >
-        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.image : mosquiProduct.image" alt=""></ng-template>
-        <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="product.image" alt=""></ng-template>
+        <ng-template *ngFor="let img of product.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
 
     <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
       <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50"  [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
-        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" (click)="openFullscreen()" [src]="!mosquiProduct? product.image : mosquiProduct.img" alt=""></ng-template>
-        <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img (click)="openFullscreen()" width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" [src]="img.img" alt=""></ng-template>
+        <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" (click)="openFullscreen()" [src]="product.image" alt=""></ng-template>
+        <ng-template *ngFor="let img of product.otherImages" swiperSlide><img (click)="openFullscreen()" width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
     <div
@@ -65,8 +65,8 @@
       direction="horizontal"
       #secondSwiper
       >
-        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="!mosquiProduct? product.image : mosquiProduct.img" alt=""></ng-template>
-        <ng-template *ngFor="let img of (!mosquiProduct? product.otherImages : mosquiProduct.otherImages)" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+        <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="product.image" alt=""></ng-template>
+        <ng-template *ngFor="let img of product.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
       </swiper>
     </div>
     <hr class="line" style="margin-top: 50px; display: none" />
@@ -358,15 +358,15 @@
           style="margin-top: 32px; margin-bottom: 24px"
         >
           <p
-            *ngIf="mosquiProduct.offer == mosquiProduct.wholesalePrice"
+            *ngIf="!mosquiProduct.hasOffer"
             style="font-size: 20px; margin: 0px; height: fit-content"
             translate
           >
             product_page.price
-            <b style="color: #6dae49">{{ mosquiProduct.wholesalePrice }}&euro;</b>
+            <b style="color: #6dae49">{{ mosquiProduct.wholesale }}&euro;</b>
           </p>
           <p
-            *ngIf="mosquiProduct.offer != mosquiProduct.wholesalePrice"
+            *ngIf="mosquiProduct.hasOffer"
             style="
               font-size: 20px;
               margin: 0px;
@@ -377,10 +377,10 @@
             translate
           >
             product_page.price
-            <b style="color: rgba(0, 0, 0, 0.4)">{{ mosquiProduct.wholesalePrice }}&euro;</b>
+            <b style="color: rgba(0, 0, 0, 0.4)">{{ mosquiProduct.wholesale }}&euro;</b>
           </p>
           <p
-            *ngIf="mosquiProduct.offer != mosquiProduct.wholesalePrice"
+            *ngIf="mosquiProduct.hasOffer"
             style="font-size: 20px; margin: 0px; height: fit-content;color: #6dae49;"
             translate
           >
@@ -412,7 +412,7 @@
               <div class="numberInput">
                 <button
                   id="decrement"
-                  (click)="stepper(input2, decrement)"
+                  (click)="newStepper(false)"
                   #decrement
                 >
                   -
@@ -420,16 +420,16 @@
                 <input
                   type="number"
                   min="1"
-                  [max]="mosquiProduct.stock"
+                  [max]="mosquiProduct.diathesima+100"
                   step="1"
-                  value="1"
+                  [value]="amount"
                   id="my-input"
-                  readonly
+                  [(ngModel)]="amount"
                   #input2
                 />
                 <button
                   id="increment"
-                  (click)="stepper(input2, increment)"
+                  (click)="newStepper(true)"
                   #increment
                 >
                   +
@@ -560,12 +560,12 @@
       <form  *ngIf="onEditDesc && showDesc[0]" style="margin-top: 24px;" [formGroup]="desciptionForm"  >
         <label for="elDesc">Περιγραφή Ελληνικά</label>
         <!-- <textarea formControlName="description" class="myForm" id="elDesc" style="height:200px; width:101%;  margin-bottom: 10px;"></textarea> -->
-        <div formControlName="description" id="elDesc" [ngxSummernote]="config" [innerHTML]="!mosquiProduct? product.description : mosquiProduct.description"> </div>
+        <div formControlName="description" id="elDesc" [ngxSummernote]="config" [innerHTML]="product.description"> </div>
         <!-- {{product.description}} -->
        </form>
       <form  *ngIf="onEditDesc && showDesc[0]" [formGroup]="desciptionFormEng" style="margin-top: 24px;" >
         <label for="engDesc">Περιγραφή Αγγλικά</label>
-        <div formControlName="descriptionEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="!mosquiProduct? product.description_eng : mosquiProduct.description_eng"></div>
+        <div formControlName="descriptionEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="product.description_eng"></div>
         <!-- <textarea formControlName="descriptionEng"  class="myForm"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή Αγγλικά..." ></textarea> -->
 
       </form>
@@ -580,8 +580,8 @@
       </div>
 
       <!-- <button  class="btn btn-success" *ngIf="onEditDesc" style="margin-bottom:10px;" type="submit" (click)="uploadDescription()">Αποθήκευση Αλλαγών</button> -->
-      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='el'" [innerHTML]="!mosquiProduct? product.description : mosquiProduct.description"></div>
-      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='en'" [innerHTML]="!mosquiProduct? product.description_eng : mosquiProduct.description_eng"></div>
+      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='el'" [innerHTML]="product.description"></div>
+      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='en'" [innerHTML]="product.description_eng"></div>
       <!-- <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button> -->
       <div *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" class="container">
         <div class="row" style="justify-content: right;align-items: center;">
@@ -595,11 +595,11 @@
       </div>
       <form  *ngIf="onEditData" style="margin-top: 24px;" [formGroup]="dataSheetForm"  >
         <label for="elData">Πρόσθετες Λεπτομέριες Ελληνικά</label>
-        <div formControlName="datas" id="elData" [ngxSummernote]="config" [innerHTML]="!mosquiProduct? product.data_sheet : mosquiProduct.data_sheet"></div>
+        <div formControlName="datas" id="elData" [ngxSummernote]="config" [innerHTML]="product.data_sheet"></div>
       </form>
       <form  *ngIf="onEditData " [formGroup]="dataSheetFormEng" style="margin-top: 24px;" >
         <label for="engDesc">Πρόσθετες Λεπτομέριες Αγγλικά</label>
-        <div formControlName="datasEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="!mosquiProduct? product.data_sheet_eng : mosquiProduct.data_sheet_eng "></div>
+        <div formControlName="datasEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="product.data_sheet_eng "></div>
       </form>
       <!-- <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetForm"  >
         <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες Ελληνικά..." ></textarea>
@@ -617,10 +617,10 @@
           </button>
         </div>
       </div>
-      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='el'" [innerHTML]="!mosquiProduct? product.data_sheet : mosquiProduct.data_sheet"></div>
-      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='en'" [innerHTML]="!mosquiProduct? product.data_sheet_eng : mosquiProduct.data_sheet_eng"></div>
+      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='el'" [innerHTML]="product.data_sheet"></div>
+      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='en'" [innerHTML]="product.data_sheet_eng"></div>
       <div *ngIf="showDesc[2] && loggedIn">
-        <button (click)="downloadMyFile(product.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="product.pdf === 'empty' || product.category == 116 || product.category == 117  || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)" [ngClass]="product.pdf === 'empty' || product.category == 116 || product.category == 117  || (mosquiProduct? (mosquiProduct.pdf === 'empty'? true : false) : false)? 'myBtn disabled' : 'myBtn'" #downBtn>
+        <button (click)="downloadMyFile(product.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="product.pdf === 'empty'" [ngClass]="product.pdf === 'empty'? 'myBtn disabled' : 'myBtn'" #downBtn>
           <fa-icon style="width: fit-content;pointer-events: none;" class="download" [icon]="faDownload"></fa-icon>
           <p style="margin: 0px;color: rgba(0,0,0,0);pointer-events: none;" >Λήψη PDF</p>
           <p class="textAnim2" style="pointer-events: none;">Λήψη PDF</p>
@@ -647,8 +647,8 @@
         </div>
       </div>
       <!-- <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button> -->
-      <iframe *ngIf="showDesc[3] && ((product.video && product.video != 'empty') || (mosquiProduct? (mosquiProduct.video && mosquiProduct.video != 'empty'? true : false) : false))" width="850" height="315"
-      [src]="(!mosquiProduct? product.video : mosquiProduct.video) | safePipe">
+      <iframe *ngIf="showDesc[3] && (product.video && product.video != 'empty')? true : false" width="850" height="315"
+      [src]="product.video | safePipe">
       </iframe>
 
       <form (ngSubmit)="uploadUrl(btn)" [formGroup]="urlVideoForm" style="margin-top: 24px;" *ngIf="!urlOpen && showDesc[3]">

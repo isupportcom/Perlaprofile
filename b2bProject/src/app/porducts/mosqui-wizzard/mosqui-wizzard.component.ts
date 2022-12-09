@@ -23,6 +23,10 @@ export class MosquiWizzardComponent implements OnInit {
   flag: boolean = false;
   color: any;
 
+  username = localStorage.getItem('username');
+  loggedIn = !this.username? false: true;
+  loadedUser = JSON.parse(localStorage.getItem("userData") || '{}');
+
   @Input() name: any;
   @Input() sub_id: any;
 
@@ -96,20 +100,40 @@ export class MosquiWizzardComponent implements OnInit {
             {
               params:{
                 subcategory: this.sub_id,
-              fabric: this.dimentions.value.fabric,
-              profile: this.dimentions.value.profile,
-              width: this.dimentions.value.width,
-              height: this.dimentions.value.height,
-              color: this.dimentions.value.extra? this.dimentions.value.extra : 'none'
+                fabric: this.dimentions.value.fabric,
+                profile: this.dimentions.value.profile,
+                width: this.dimentions.value.width,
+                height: this.dimentions.value.height,
+                color: this.dimentions.value.extra? this.dimentions.value.extra : 'none'
 
               }
-                }
+            }
           )
           .then((resData) => {
             console.log(resData.data);
             this.product = resData.data.product
             console.log(this.product);
             this.flag = true;
+
+            if(this.loggedIn && this.product){
+                axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+                {
+                  mtrl: this.product.mtrl,
+                  trdr: this.loadedUser.trdr
+                }).then(resData => {
+
+                  console.log(resData.data.exists);
+
+                  if(resData.data.exists){
+                    this.product.addedToFav = true;
+                  }
+                  else{
+                    this.product.addedToFav = false;
+                  }
+                })
+
+            }
+
             this.productService.sendMosquiProductFound(resData.data.product);
           });
       }}, 2700);
