@@ -169,10 +169,14 @@ export class SingleProductComponent implements OnInit, OnDestroy {
         mtrl: this.index.mtrl
       }));
 
-    console.log(this.productsService.getMainCategoriesArray());
     
-
+    let mainCategories = this.productsService.getMainCategoriesArray();
     
+    mainCategories.forEach((category: any) => {
+      if(category.id == this.index.category){
+        this.mainCategory = category;
+      }
+    });
 
     this.productsService.getAllCategories(this.index.category).subscribe((resData: any) => {
       console.log(resData.categories[0].subcategories);
@@ -184,7 +188,7 @@ export class SingleProductComponent implements OnInit, OnDestroy {
       })
       console.log(selected_subcategory!);
 
-      // this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,selected_subcategory.sub_id,selected_subcategory.name,this.index.mtrl]);
+      this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,selected_subcategory.sub_id,selected_subcategory.name,this.index.mtrl]);
     })
 
 
