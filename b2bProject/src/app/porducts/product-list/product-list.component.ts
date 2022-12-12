@@ -704,124 +704,6 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       this.updateFilters(false);
       this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,subcategory_selected.sub_id,subcategory_selected.name]);
     }
-
-
-
-
-
-
-    // if(clickeP){
-    //   console.log("P");
-
-    //   console.log(boxes);
-    //   for(let i=0; i<boxes.length;i++){
-    //     if(boxes[i].children[0].children[0].children[0].children[0].checked){
-    //       if(e.value == boxes[i].children[0].children[0].children[0].children[0].value){
-    //         flag = true;
-    //       }
-    //       boxes[i].children[0].children[0].children[0].children[0].checked = false;
-    //     }
-    //   }
-    // }
-    // else{
-    //   console.log("INPUT");
-
-
-
-
-    // }
-    // this.filterOn = false;
-    // this.listArray = [];
-    // console.log(flag);
-
-    // if((flag && !clickeP) || (!flag && clickeP)){
-
-    //   if (clickeP) {
-    //     if (!e.checked) {
-    //       e.checked = true;
-    //     } else {
-    //       e.checked = false;
-    //     }
-    //     if (e.checked) {
-    //       this.listArray.push(e.value);
-    //       this.waiting = true;
-    //       setTimeout(() => {
-    //         this.updateProducts();
-    //         this.waiting = false;
-
-    //       },600);
-
-    //     }
-    //     else{
-
-    //       for (let i = 0; i < this.listArray.length; i++) {
-    //         if (e.value == this.listArray[i]) {
-    //           this.listArray.splice(i, 1);
-    //         }
-    //       }
-    //       this.waiting = true;
-    //       this.updateProducts();
-    //       setTimeout(() => {
-    //         this.waiting = false;
-
-    //       },600);
-
-
-    //     }
-    //     this.checked = true;
-
-    //     console.log(this.listArray);
-    //   } else {
-
-    //     if (!e.checked) {
-
-    //       e.checked = true;
-    //     } else {
-    //       e.checked = false;
-    //     }
-    //     if (e.checked) {
-    //       this.listArray.push(e.value);
-    //       this.waiting = true;
-    //       console.log(this.listArray);
-
-
-    //       this.updateProducts();
-    //       setTimeout(() => {
-    //         this.waiting = false;
-
-    //       },600);
-
-    //     }
-    //     else{
-
-    //       for (let i = 0; i < this.listArray.length; i++) {
-    //         if (e.value == this.listArray[i]) {
-    //           this.listArray.splice(i, 1);
-    //         }
-    //       }
-    //       this.waiting = true;
-
-    //       this.updateProducts();
-    //       setTimeout(() => {
-    //         this.waiting = false;
-
-    //       },600);
-
-    //     }
-    //     this.checked = true;
-
-    //     console.log(this.listArray);
-    //   }
-
-    //   if(e.classList[0] === 'boxes'){
-    //     for(let i=0;i< this.filters.length; i++){
-    //       if(e.value === this.filters[i].value){
-    //         this.filters[i].checked = e.checked;
-    //       }
-
-    //     }
-    //   }
-    // }
   }
 
   hanldeCategoriesList(background: any, arrow: any) {
@@ -909,61 +791,6 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       }
     })
 
-    //       let flag = false;
-    //       if (product.category == this.mainCategory.id) {
-    //         for (let el of this.shownProducts) {
-    //           if (product.mtrl == el.mtrl) {
-
-    //             flag = true;
-    //           }
-    //         }
-
-    //         if (!flag) {
-    //           if (product.stock !== 0) {
-    //             console.log(product.stock);
-    //             this.shownProducts.push(product);
-    //           }
-    //         }
-    //     }
-    //     }
-
-    //     if (this.shownProducts.length == 0) {
-    //       this.noProducts = true;
-    //     }
-
-    //     console.log(this.shownProducts);
-    //   } else {
-
-    //     this.filterOn = true;
-
-    //     let temp = this.products;
-    //     console.log(temp);
-
-    //     this.shownProducts = [];
-
-    //     let i = 0;
-
-    //     for (let subcat of this.listArray) {
-    //       for (let product of temp) {
-    //         if (product.subcategory == subcat) {
-    //           this.shownProducts.push(product);
-    //           console.log('yoyo!!!');
-    //         }
-    //       }
-    //     }
-    //     console.log(this.shownProducts);
-    //     if (this.shownProducts.length > 0) {
-    //       this.noProducts = false;
-    //       this.page = 1;
-    //     } else {
-    //       this.noProducts = true;
-    //     }
-    //   }
-
-    // }, 300);
-    // if(this.executed){
-    //   this.executed = false;
-    // }
   }
 
   handleShowFilters() {
@@ -1225,11 +1052,6 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
   }
   handleWizzard(name: string, id: number) {
-    // this.productsService.setSingleProduct({
-      // name: name,
-      // id: id,
-      // category: 116,
-    // });
 
     localStorage.setItem("mtrl",JSON.stringify(
     {
@@ -1240,21 +1062,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     }));
     this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,id,name]);
 
-    // this.router.navigate(['products/mosqui',id,name]);
   }
   ngOnDestroy(): void {
-    // console.log(this.router.url);
     this.shownProducts = [];
     this.products = [];
-    // /products/product-page
-    // localStorage.setItem('page', this.page.toString());
-    // this.products = [];
-    // localStorage.setItem('keepPagination', 'false');
-    // console.log(this.listArray);
-    // this.shownProducts = [];
-    // if(this.router.url === '/products/product-page'){
-    //   this.productsService.sendFilters(this.listArray)
-    // }
-    // this.listArray = [];
+
   }
 }

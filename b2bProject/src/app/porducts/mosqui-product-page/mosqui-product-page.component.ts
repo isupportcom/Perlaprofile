@@ -168,36 +168,60 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
 
       console.log(params['cat_id']);
       console.log(params['product_mtrl']);
-
-      if(params['cat_id'] == '116' && params['product_mtrl']){
-        this.executeNgOnInit = false;
-
+      
+      if(params['product_mtrl']){
+        let newMtrl = params['product_mtrl'];
+        this.waitingProduct = true;
+        console.log("HEY");
+        setTimeout(() => {
+          axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+          {
+            mtrl: newMtrl
+          }).then(async resData => {
+            this.mosquiProduct = resData.data.product;
+            console.log(this.mosquiProduct);
+            this.waitingProduct = false;
+            this.showForm = false;
+          })
+        },200)
+      }
+      else{
+        axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+        {
+          name: temp.name,
+          id: temp.id,
+          category: temp.category
+        }).then(async resData => {
+          console.log(resData.data);
+          this.category_details = resData.data.product;
+  
+        })
       }
     })
 
     let temp = JSON.parse(localStorage.getItem("mtrl")||'{}');
     console.log(temp);
 
-    if(this.category_details.mtrl != undefined){
-      axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
-      {
-        name: temp.name,
-        id: temp.id,
-        category: temp.category
-      }).then(async resData => {
-        console.log(resData.data);
-        this.category_details = resData.data;
+    // if(this.category_details.mtrl != undefined){
+    //   axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+    //   {
+    //     name: temp.name,
+    //     id: temp.id,
+    //     category: temp.category
+    //   }).then(async resData => {
+    //     console.log(resData.data);
+    //     this.category_details = resData.data;
 
-      })
-    }
-    else{
-      axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
-      {
-        mtrl: this.category_details.mtrl
-      }).then(async resData => {
-        this.mosquiProduct = resData.data;
-      })
-    }
+    //   })
+    // }
+    // else{
+    //   axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',
+    //   {
+    //     mtrl: this.category_details.mtrl
+    //   }).then(async resData => {
+    //     this.mosquiProduct = resData.data;
+    //   })
+    // }
 
     this.productsService.getMainCategories().subscribe(resData => {
       this.mainCategories = resData;
@@ -249,7 +273,8 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
     this.productsService.mosquiProductFound.subscribe((resData) => {
       this.waitingProduct = true;
       this.showForm = false;
-      if(this.loggedIn){
+      
+      
         setTimeout(() => {
           console.log(resData);
           let subcategories: any;
@@ -277,13 +302,12 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
                   category: 116,
                   mtrl: this.mosquiProduct.mtrl
                 }));
-              setTimeout(() => {
-                this.router.navigate(['products/116/Mosqui',selected_subcategory.sub_id,selected_subcategory.name,this.mosquiProduct.mtrl])
-              },100)
+              this.router.navigate(['products/116/Mosqui',selected_subcategory.sub_id,selected_subcategory.name,this.mosquiProduct.mtrl])
+              
             })
           }
         }, 200);
-      }
+      
     });
 
   }
