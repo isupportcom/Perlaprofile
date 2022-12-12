@@ -761,7 +761,6 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
   }
 
   async addToCartMosqui(btn: any) {
-    if(+this.mosquiProduct.diathesima > 0){
       if (!btn.classList.contains('loading')) {
         btn.classList.add('loading');
         setTimeout(() => btn.classList.remove('loading'), 3700);
@@ -780,33 +779,8 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
       await this.cartService.addToCart(this.mosquiProduct);
 
       await this.cartService.sendProductAdded(true);
-    }
-    else{
-      this.productsService.sendBackOrderPopup(true);
 
-      this.productsService.backOrder.subscribe(async resData => {
-        if(resData){
-          if (!btn.classList.contains('loading')) {
-            btn.classList.add('loading');
-            setTimeout(() => btn.classList.remove('loading'), 3700);
-          }
 
-          axios
-            .get('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
-             params: {trdr: this.loadedUser.trdr},
-            })
-            .then((resData) => {
-              this.cartService.sendProductCount(resData.data.products.length);
-            });
-          this.mosquiProduct.qty = this.amount;
-
-          this.mosquiProduct.show = true;
-         await this.cartService.addToCart(this.mosquiProduct);
-
-          await this.cartService.sendProductAdded(true);
-        }
-      })
-    }
   }
 
   ngOnDestroy(): void {
