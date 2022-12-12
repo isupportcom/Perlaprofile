@@ -169,11 +169,20 @@ export class SingleProductComponent implements OnInit, OnDestroy {
         mtrl: this.index.mtrl
       }));
 
-    this.productsService.getAllCategories(this.mainCategory.id).subscribe((resData: any) => {
+    
+    let mainCategories = this.productsService.getMainCategoriesArray();
+    
+    mainCategories.forEach((category: any) => {
+      if(category.id == this.index.category){
+        this.mainCategory = category;
+      }
+    });
+
+    this.productsService.getAllCategories(this.index.category).subscribe((resData: any) => {
       console.log(resData.categories[0].subcategories);
       subcategories = resData.categories[0].subcategories;
       subcategories.forEach((subcat: any) => {
-        if(subcat.sub_id == this.selected_subcategory_id){
+        if(subcat.sub_id == this.index.subcategory){
           selected_subcategory = subcat;
         }
       })

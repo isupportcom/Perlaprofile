@@ -1,0 +1,496 @@
+<div class="image-fullscreen" *ngIf="fullscreen">
+    <swiper style="width: 461px" direction="horizontal" [slidesPerView]="1" [spaceBetween]="50" [navigation]="true"  [pagination]="{ clickable: true }" (slideChange)="onSlideChange(imageFullscreenSwiper)" (swiper)="setThumbsSwiper($event)" #imageFullscreenSwiper>
+      <ng-template swiperSlide>
+        <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
+          <img class="remove" alt=""  style="width: 32px;" srcset="">
+        </a>
+        <img width="500px" height="500px" style="border-radius: 8px;" [src]="category_details.image" alt="">
+      </ng-template>
+      <ng-template *ngFor="let img of category_details.otherImages" swiperSlide>
+        <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
+          <img class="remove" alt=""  style="width: 32px;" srcset="">
+        </a>
+        <img width="500px" height="500px" style="border-radius: 8px;" [src]="img.img" alt="">
+      </ng-template>
+    </swiper>
+</div>
+
+<div class="container" style="margin-top: 180px !important; display: block">
+
+    <div class="row" >
+        <div class="row">
+            <div
+                *ngIf="!slidesShown"
+                class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 second-swiper-holder"
+                style="display: flex; justify-content: right; align-items: center"
+            >
+                <swiper
+                class="second-swiper"
+                [slidesPerView]="3"
+                [spaceBetween]="10"
+                (slideChange)="onSlideChange(secondSwiper)"
+                [navigation]="true"
+                [draggable]="true"
+                (swiper)="setThumbsSwiper($event)"
+                style="width: 100px;"
+                direction="vertical"
+                #secondSwiper
+                >
+                <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="category_details.image" alt=""></ng-template>
+                <ng-template *ngFor="let img of category_details.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+                </swiper>
+            </div>
+
+            <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
+                <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50"  [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
+                <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" (click)="openFullscreen()" [src]="category_details.image" alt=""></ng-template>
+                <ng-template *ngFor="let img of category_details.otherImages" swiperSlide><img (click)="openFullscreen()" width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" [src]="img.img" alt=""></ng-template>
+                </swiper>
+            </div>
+
+
+            <hr class="line" style="margin-top: 50px; display: none" />
+            <div
+            *ngIf="category_details.category === 116"
+            class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 right-section"
+        >
+            <div class="row">
+            <h2>{{ category_details.name }}</h2>
+            </div>
+            <div class="row">
+            <img
+                src="../../../assets/Line 8.svg"
+                width="100%"
+                style="margin-top: 24px; margin-bottom: 12px"
+                alt=""
+                srcset=""
+            />
+            </div>
+            <div
+            *ngIf="category_details.category === 116 && showForm && !waitingProduct"
+            class="row"
+            >
+            <app-mosqui-wizzard
+                [name]="category_details.name"
+                [sub_id]="category_details.id"
+            ></app-mosqui-wizzard>
+            </div>
+            <!-- <div *ngIf="waitingcategory_details" class="row" >
+                <app-spinner style="display: flex;justify-content:center;align-items: center;"></app-spinner>
+            </div> -->
+            <div
+            *ngIf="
+                category_details.category === 116 &&
+                !showForm &&
+                !waitingProduct &&
+                mosquiProduct === undefined
+            "
+            class="row"
+            style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            "
+            >
+            <h2 translate>product_page.fail</h2>
+            <button class="myBtn" (click)="handleFindNew()" translate>
+                product_page.find
+            </button>
+            </div>
+            <div
+            *ngIf="
+                category_details.category === 116 &&
+                !showForm &&
+                !waitingProduct &&
+                mosquiProduct != undefined
+            "
+            class="row"
+            >
+            <div
+                *ngIf="username"
+                class="row first-row"
+                style="margin-top: 32px; margin-bottom: 24px"
+            >
+                <p
+                *ngIf="!mosquiProduct.hasOffer"
+                style="font-size: 20px; margin: 0px; height: fit-content"
+                translate
+                >
+                product_page.price
+                <b style="color: #6dae49">{{ mosquiProduct.wholesale }}&euro;</b>
+                </p>
+                <p
+                *ngIf="mosquiProduct.hasOffer"
+                style="
+                    font-size: 20px;
+                    margin: 0px;
+                    height: fit-content;
+                    text-decoration: line-through;
+                    color: rgba(0, 0, 0, 0.4);
+                "
+                translate
+                >
+                product_page.price
+                <b style="color: rgba(0, 0, 0, 0.4)">{{ mosquiProduct.wholesale }}&euro;</b>
+                </p>
+                <p
+                *ngIf="mosquiProduct.hasOffer"
+                style="font-size: 20px; margin: 0px; height: fit-content;color: #6dae49;"
+                translate
+                >
+                product_page.price<b style="color: #6dae49"
+                    >{{ mosquiProduct.offer }}&euro;</b
+                >
+                </p>
+
+                <p
+                style="font-size: 10px; margin: 0px; height: fit-content"
+                translate
+                >
+                product_page.fpa
+                </p>
+                <div class="row" style="margin-top: 24px; margin-bottom: 24px">
+                <div class="col-4" style="display: flex; align-items: center">
+                    <p style="font-size: 20px; margin: 0px" translate>
+                        product_page.qty
+                    </p>
+                </div>
+                <div
+                    class="col-8"
+                    style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    "
+                >
+                    <div class="numberInput">
+                    <button
+                        id="decrement"
+                        (click)="newStepper(false)"
+                        #decrement
+                    >
+                        -
+                    </button>
+                    <input
+                        type="number"
+                        min="1"
+                        [max]="mosquiProduct.diathesima+100"
+                        step="1"
+                        [value]="amount"
+                        id="my-input"
+                        [(ngModel)]="amount"
+                        #input2
+                    />
+                    <button
+                        id="increment"
+                        (click)="newStepper(true)"
+                        #increment
+                    >
+                        +
+                    </button>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <button
+                    ngClass="button col-6"
+                    style="transition: background-color 0.2s ease-in-out"
+                    (click)="addToCartMosqui(addToCartBtn)"
+
+                    #addToCartBtn
+                >
+                    <span translate>product_page.add</span>
+                    <div class="cart">
+                    <svg viewBox="0 0 36 26">
+                        <polyline
+                        points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"
+                        ></polyline>
+                        <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                    </svg>
+                    </div>
+                </button>
+
+                <button
+                    (click)="handleAddToFavorite(mosquiProduct)"
+                    class="col-4"
+                    style="
+                    border: none;
+                    background-color: rgba(0, 0, 0, 0);
+                    text-align: left;
+                    "
+                >
+                    <img
+                    [ngClass]="productAddedToFav ? 'heartAnim heart' : 'heart'"
+                    [src]="
+                    mosquiProduct.addedToFav
+                        ? '../../../assets/heart-alt-filled-green.svg'
+                        : '../../../assets/heart-alt-green.svg'
+                    "
+                    alt=""
+                    width="44px"
+                    />
+                </button>
+                </div>
+            </div>
+            <div class="row">
+                <img
+                *ngIf="username"
+                src="../../../assets/Line 8.svg"
+                width="100%"
+                alt=""
+                srcset=""
+                />
+                <div style="margin-top: 18px">
+                <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+                    Διαθεσιμότητα: <b style="color: #6dae49;">Διαθέσιμο</b>
+                </p>
+                <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+                    product_page.apoth<b> {{ mosquiProduct.code }}</b>
+                </p>
+                <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+                    product_page.texn <b>{{ mosquiProduct.texnikos_kodikos }}</b>
+                </p>
+                <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+                    product_page.kat <b>{{ mosquiProduct.kodikos_kataskeuasti }}</b>
+                </p>
+                </div>
+                <button
+                class="myBtn"
+                (click)="handleFindNew()"
+                style="margin-top: 24px"
+                translate
+                >
+                product_page.find
+                </button>
+            </div>
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div
+    class="row"
+    style="
+      background-color: white;
+      border-radius: 16px;
+      margin-top: 120px;
+      padding: 24px;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+    "
+    *ngIf="(!mosquiProduct? false : (!showForm)) || category_details"
+  >
+    <div class="row" style="padding: 0px">
+      <nav
+        class="black navigation"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <div class="underline col-3"></div>
+        <div class="underline col-3"></div>
+        <div class="underline col-3"></div>
+
+        <a class="col-3" (click)="ul(0)" translate>product_page.desc</a>
+        <a class="col-3" (click)="ul(1)" translate>product_page.additional</a>
+        <a class="col-3" (click)="ul(2)" translate>product_page.down</a>
+        <a class="col-3" (click)="ul(3)" translate>product_page.sol</a>
+      </nav>
+    </div>
+    <div class="row">
+      <hr />
+    </div>
+    <div class="row">
+      <div *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0]" class="container">
+        <div class="row" style="justify-content: right;align-items: center;">
+          <div *ngIf="!onEditDesc" (click)="editDescription()" class="editBtn">
+            <fa-icon style="width: fit-content;" [icon]="faPen"></fa-icon>
+          </div>
+          <a *ngIf="onEditDesc" (click)="closeForm()" style="width: fit-content;cursor: pointer;">
+            <img class="remove" alt=""  style="width: 32px;" srcset="">
+          </a>
+        </div>
+      </div>
+      <!-- <button *ngIf="!urlOpen &&isAdmin && !switchDesc && showDesc[0] " (click)="editDescription()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Περιγραφής </button> -->
+      <form  *ngIf="onEditDesc && showDesc[0]" style="margin-top: 24px;" [formGroup]="desciptionForm"  >
+        <label for="elDesc">Περιγραφή Ελληνικά</label>
+        <!-- <textarea formControlName="description" class="myForm" id="elDesc" style="height:200px; width:101%;  margin-bottom: 10px;"></textarea> -->
+        <div formControlName="description" id="elDesc" [ngxSummernote]="config" [innerHTML]="category_details.description"> </div>
+        <!-- {{product.description}} -->
+       </form>
+      <form  *ngIf="onEditDesc && showDesc[0]" [formGroup]="desciptionFormEng" style="margin-top: 24px;" >
+        <label for="engDesc">Περιγραφή Αγγλικά</label>
+        <div formControlName="descriptionEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="category_details.description_eng"></div>
+        <!-- <textarea formControlName="descriptionEng"  class="myForm"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή Αγγλικά..." ></textarea> -->
+
+      </form>
+      <div class="contaier">
+        <div class="row" style="justify-content: right;align-items: center;">
+          <button type="submit" *ngIf="onEditDesc && showDesc[0]"   style="position: relative;" (click)="uploadDescription(btn)" [disabled]="!desciptionForm.valid"  [ngClass]="desciptionForm.valid? 'myBtn' : 'disabled'" #btn>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p style="margin: 0px;color: rgba(0,0,0,0);">Αποθήκευση Αλλαγών</p>
+            <p class="textAnim">Αποθήκευση Αλλαγών</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- <button  class="btn btn-success" *ngIf="onEditDesc" style="margin-bottom:10px;" type="submit" (click)="uploadDescription()">Αποθήκευση Αλλαγών</button> -->
+      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='el'" [innerHTML]="category_details.description"></div>
+      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='en'" [innerHTML]="category_details.description_eng"></div>
+      <!-- <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button> -->
+      <div *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" class="container">
+        <div class="row" style="justify-content: right;align-items: center;">
+          <div *ngIf="!onEditData" (click)="editData()" class="editBtn">
+            <fa-icon style="width: fit-content;" [icon]="faPen"></fa-icon>
+          </div>
+          <a *ngIf="onEditData" (click)="closeForm()" style="width: fit-content;cursor: pointer;">
+            <img class="remove" alt=""  style="width: 32px;" srcset="">
+          </a>
+        </div>
+      </div>
+      <form  *ngIf="onEditData" style="margin-top: 24px;" [formGroup]="dataSheetForm"  >
+        <label for="elData">Πρόσθετες Λεπτομέριες Ελληνικά</label>
+        <div formControlName="datas" id="elData" [ngxSummernote]="config" [innerHTML]="category_details.data_sheet"></div>
+      </form>
+      <form  *ngIf="onEditData " [formGroup]="dataSheetFormEng" style="margin-top: 24px;" >
+        <label for="engDesc">Πρόσθετες Λεπτομέριες Αγγλικά</label>
+        <div formControlName="datasEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="category_details.data_sheet_eng "></div>
+      </form>
+      <!-- <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetForm"  >
+        <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες Ελληνικά..." ></textarea>
+       </form>
+      <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetFormEng"  >
+        <textarea formControlName="datasEng" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες Αγγλικά..." ></textarea>
+       </form> -->
+       <!-- <button  class="btn btn-success" *ngIf="onEditData" style="margin-bottom:10px;" (click)="updateDataSheet()" type="submit">Αποθήκευση Αλλαγών</button> -->
+       <div class="contaier">
+        <div class="row" style="justify-content: right;align-items: center;">
+          <button type="submit" *ngIf="onEditData"   style="position: relative;" (click)="updateDataSheet(btn)" [disabled]="!dataSheetForm.valid && !dataSheetFormEng.valid"  [ngClass]="desciptionForm.valid && dataSheetFormEng.valid? 'myBtn' : 'disabled'" #btn>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p style="margin: 0px;color: rgba(0,0,0,0);">Αποθήκευση Αλλαγών</p>
+            <p class="textAnim">Αποθήκευση Αλλαγών</p>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='el'" [innerHTML]="category_details.data_sheet"></div>
+      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='en'" [innerHTML]="category_details.data_sheet_eng"></div>
+      <div *ngIf="showDesc[2] && loggedIn">
+        <button (click)="downloadMyFile(category_details.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="category_details.pdf === 'empty'" [ngClass]="category_details.pdf === 'empty'? 'myBtn disabled' : 'myBtn'" #downBtn>
+          <fa-icon style="width: fit-content;pointer-events: none;" class="download" [icon]="faDownload"></fa-icon>
+          <p style="margin: 0px;color: rgba(0,0,0,0);pointer-events: none;" >Λήψη PDF</p>
+          <p class="textAnim2" style="pointer-events: none;">Λήψη PDF</p>
+        </button>
+        <ul *ngIf="category_details.pdf && loggedIn" class="pdfName">
+          <li>{{ category_details.pdf }}</li>
+        </ul>
+      </div>
+      <div *ngIf="showDesc[2] && !loggedIn">
+        <p>Για να δείτε και να κατεβάσετε τους τεχνικούς καταλόγους συστημάτων απαιτείται σύνδεση στο λογαριασμό σας.</p>
+        <a class="myBtn" role="button" (click)="login()" translate
+          >navbar.login</a
+        >
+      </div>
+
+      <div *ngIf="isAdmin &&showDesc[3]" class="container" style="margin-bottom: 12px;">
+        <div class="row" style="justify-content: right;align-items: center;">
+          <div *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="editBtn">
+            <fa-icon style="width: fit-content;" [icon]="faPen"></fa-icon>
+          </div>
+          <a *ngIf="!urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" style="width: fit-content;cursor: pointer;">
+            <img class="remove" alt=""  style="width: 32px;" srcset="">
+          </a>
+        </div>
+      </div>
+      <!-- <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button> -->
+      <iframe *ngIf="showDesc[3] && (category_details.video && category_details.video != 'empty')? true : false" width="850" height="315"
+      [src]="category_details.video | safePipe">
+      </iframe>
+
+      <form (ngSubmit)="uploadUrl(btn)" [formGroup]="urlVideoForm" style="margin-top: 24px;" *ngIf="!urlOpen && showDesc[3]">
+        <input class="form-control" formControlName="video" placeholder="https://example.com">
+        <button type="submit"   style="position: relative;" [disabled]="!urlVideoForm.valid"  [ngClass]="urlVideoForm.valid? 'myBtn' : 'disabled'" #btn>
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          <p style="margin: 0px;color: rgba(0,0,0,0);">Αποθήκευση Αλλαγών</p>
+          <p class="textAnim">Αποθήκευση Αλλαγών</p>
+        </button>
+        <button  type="button" (click)="deleteVideo(btn,category_details.mtrl)" *ngIf="!urlOpen && showDesc[3]" class="myBtn2"  style="position: relative;" #btn>
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          <p style="margin: 0px;color: rgba(0,0,0,0);font-size: 16px;">Αφαίρεση Video</p>
+          <p class="textAnim" style="font-size: 16px;">Αφαίρεση Video</p>
+
+
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container" *ngIf="loggedIn" style="margin-top: 120px">
+    <div class="row">
+      <div
+        class="col-12"
+        style="display: flex; justify-content: left; align-items: center"
+      >
+        <h3 style="margin: 0" translate>product_page.earlier</h3>
+      </div>
+      <div class="col-12">
+        <hr style="border: 1px solid #6dae49; margin-top: 4px; opacity: 1" />
+      </div>
+    </div>
+    <div *ngIf="!howManySeen" class="row imageRow2">
+      <div  class="col-2" *ngFor="let prod of seeEarlier">
+        <div (click)="goToSeeEarlier(prod,img)" class="row imageRow2" #img>
+          <img [src]="prod.image"  style=" transition:all 0.3s ease-in-out;cursor: pointer;" width="150px" height="150px"  alt="" >
+        </div>
+        <div class="row" style="display: flex;justify-content: center;">
+          <p
+          *ngIf="currentLang == 'el'"
+          class="seeEarlier-text"
+          [innerHTML]="
+          (prod.product_name | slice: 0:20) + '<span>...</span>'
+          " ></p>
+          <p
+          *ngIf="currentLang == 'en'"
+          class="seeEarlier-text"
+          [innerHTML]="
+          (prod.product_name_eng | slice: 0:20) + '<span>...</span>'
+          " ></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="howManySeen" class="seeEarlierRow">
+      <div *ngFor="let prod of seeLess">
+        <img [src]="prod.image" style="transition: all 0.3s ease-in-out;cursor: pointer;" class="smallImages"  alt="" >
+        <p class="seeEarlier-text" style="font-size: 10px">{{ prod.name }}</p>
+      </div>
+    </div> -->
+
+      <div *ngIf="howManySeen" class="row imageRow">
+      <div  class="col-3" *ngFor="let prod of seeLess">
+        <div class="row imageRow" (click)="goToSeeEarlier(prod,img2)" style="display: flex;justify-content: center;align-items: center;" #img2>
+          <img [src]="prod.image" style="transition: all 0.3s ease-in-out;cursor: pointer;" class="smallImages"  alt="" >
+        </div>
+        <div class="row" style="display: flex;justify-content: center;">
+          <p
+          *ngIf="currentLang == 'el'"
+          class="seeEarlier-text"
+          style="font-size: 10px;"
+          [innerHTML]="
+          (prod.product_name | slice: 0:20) + '<span>...</span>'
+          " ></p>
+          <p
+          *ngIf="currentLang == 'en'"
+          class="seeEarlier-text"
+          style="font-size: 10px;"
+          [innerHTML]="
+          (prod.product_name_eng | slice: 0:20) + '<span>...</span>'
+          " ></p>
+        </div>
+      </div>
+    </div>
+  </div>
+

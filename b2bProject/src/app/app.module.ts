@@ -87,6 +87,7 @@ import { DeleteCatalogsComponent } from './AdminArea/components/delete-catalogs/
 import { CatalogsFrontComponent } from './catalogs-front/catalogs-front.component';
 import { UpdateUsersComponent } from './AdminArea/components/update-users/update-users.component';
 import { HomepageCarouselComponent } from './AdminArea/components/homepage-carousel/homepage-carousel.component';
+import { MosquiProductPageComponent } from './porducts/mosqui-product-page/mosqui-product-page.component';
 
 
 
@@ -163,6 +164,7 @@ export function rootLoaderactory(http:any){
     CatalogsFrontComponent,
     UpdateUsersComponent,
     HomepageCarouselComponent,
+    MosquiProductPageComponent,
 
 
 
