@@ -70,30 +70,21 @@ export class InsertPdfComponent implements OnInit {
       mtrl:this.selectedMtrl,
       pdfName:this.pdfForm.value.pdf
     })
-    console.log(req.data);
-    setTimeout(()=>{
+    console.log(req.data.products);
+    this.products = req.data.products;
 
-      window.location.reload()
-
-    },50)
-
+    this.close();
   }
 
-  deletePDF(btn: any,mtrl: any){
+  deletePDF(product: any,pdf: any){
 
-
-    if(!btn.classList.contains('loading')) {
-      btn.classList.add('loading');
-      setTimeout(() => {
         axios.post('https://perlaNodeRest.vinoitalia.gr/products/removeSinglePdf',{
-          mtrl: mtrl
+          mtrl: product.mtrl,
+          pdf: pdf
         }).then(resData =>{
           this.products = resData.data.products
         })
 
-        btn.classList.remove('loading')
-      },2500)
-    }
   }
 
   findProducts() {

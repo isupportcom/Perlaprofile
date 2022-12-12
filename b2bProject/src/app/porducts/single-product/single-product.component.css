@@ -100,7 +100,7 @@
 @media (max-width: 768px) {
   .itemTitle {
     margin-bottom: 3px;
-    font-size: 18px;
+    font-size: 14px;
     height: 60px;
   }
 }
@@ -140,7 +140,7 @@
 @media (min-width: 769px) {
   .itemTitle {
     margin-bottom: 4px;
-    font-size: 12px;
+    font-size: 10px;
     height: 40px;
   }
 }
@@ -148,6 +148,7 @@
 @media (min-width: 993px) {
   .itemTitle {
     margin-bottom: 8px;
+    font-size: 12px;
     height: 35px;
   }
 }

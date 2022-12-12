@@ -18,13 +18,46 @@
 .mySelect:focus{
     box-shadow: 0 0 0 0.25rem rgba(109, 174, 73, .3) !important;
     border-color: #6dae49;
+    
 }
 
 .mySelect{
     border-radius: 6px;
     padding: 12px;
     color: #4a7632;
+    width: 400px !important;
 }
+
+a{
+  color: #6dae49;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+
+a:hover{
+  color: #4a7632;
+}
+
+li::marker{
+  color: #6dae49;
+  font-size: 30px;
+}
+
+.mySelect2:focus{
+  box-shadow: 0 0 0 0.25rem rgba(109, 174, 73, .3) !important;
+  border-color: #6dae49;
+  
+}
+
+.mySelect2{
+  border-radius: 6px;
+  padding: 12px;
+  color: #4a7632;
+}
+
+
+
 
 .remove{
     content: url(../../../../assets/x-black.svg);

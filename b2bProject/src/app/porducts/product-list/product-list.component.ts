@@ -316,7 +316,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       console.log();
       this.route.params.subscribe((params) => {
 
-        console.log(+this.router.url.split('/')[4]);
+        console.log(+this.router.url.split('/')[2]);
         this.selected_subcategory_id = +this.router.url.split('/')[4];
 
 
@@ -327,6 +327,21 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
 
         this.mainCategory.id = +params['cat_id'];
+        if (this.mainCategory.id === 114) {
+          this.logoSource = '../../../assets/control-logo-white-with-green.svg';
+        } 
+        else if (this.mainCategory.id === 115) {
+          this.logoSource = '../../../assets/motion-logo-white-with-green.svg';
+        } 
+        else if (this.mainCategory.id === 116) {
+          this.logoSource = '../../../assets/mosqui-logo-white-with-green.svg';
+        } 
+        else if (this.mainCategory.id === 117) {
+          this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
+        }
+        else if (this.mainCategory.id === 118){
+          this.logoSource = '../../../assets/accessiries logo white.svg'
+        }
         this.productsService
           .getAllCategories(this.mainCategory.id)
           .subscribe((resData: any) => {

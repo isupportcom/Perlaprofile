@@ -985,7 +985,7 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
       this.productsService.sendFilters(this.filters);
     }
 
-    localStorage.removeItem('mtrl');
+    // localStorage.removeItem('mtrl');
     // /products/product-page
   }
 }

@@ -128,6 +128,7 @@ export class AuthService {
     localStorage.removeItem('userData');
     localStorage.removeItem('username');
     localStorage.removeItem('lang');
+    localStorage.removeItem('mtrl')
 
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);

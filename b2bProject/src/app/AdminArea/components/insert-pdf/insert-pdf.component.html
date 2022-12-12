@@ -50,7 +50,7 @@
         <div class="row" style="justify-content: right;align-items: center;padding: 0px 48px">
           <button *ngIf="!showList" (click)="showListFunc()" class="myBtn" style="margin-top: 0px !important;">Λίστα PDF</button>
           <form *ngIf="showList" class="row" [formGroup]="pdfForm" (ngSubmit)="deletePDFfromDB(btn2)">
-            <select formControlName="pdf" class="mySelect col">
+            <select formControlName="pdf" class="col mySelect2">
               <option [ngValue]="p.pdf"  *ngFor="let p of pdf" style="width:100%!important;" required>{{p.pdf}}</option>
             </select>
             <button type="submit"  [ngClass]="pdfForm.valid? 'myBtn2' : 'myBtn2 disabled'"  style="position: relative;margin-top: 0px;width: fit;" #btn2>
@@ -73,7 +73,7 @@
           <div class="col-3">
             <img [src]="product.image" style="width: 200px; height: 200px!important;">
           </div>
-          <div class="col">
+          <div class="col-9">
             <div class="container" style="padding: 0px;">
               <div class="row">
                 <h5 style="padding: 0px;">{{ product.onoma }}</h5>
@@ -84,7 +84,7 @@
               <div class="row">
 
                 <div class="container" style="padding: 0px;">
-                  <div class="row" >
+                  <div class="row">
                     <div class="container">
                       <div class="row" *ngIf="selected && product.mtrl == selectedMtrl">
                         <form [formGroup]="pdfForm" (ngSubmit)="uploadPdf()">
@@ -93,27 +93,38 @@
                           </select>
                           <br>
                           <button class="myBtn">Αποθηκευση Αλλαγών</button>
-                          <a (click) = "close()" style="width: fit-content;cursor: pointer;margin-left: 120px;">
+                          <a (click)="close()" style="width: fit-content;cursor: pointer;margin-left: 120px;">
                             <img class="remove" alt=""  style="width: 32px;" srcset="">
                           </a>
                         </form>
                       </div>
-                      <div class="row" *ngIf="(product.mtrl != selectedMtrl || !selected) && product.pdf != 'empty'">
-                        <b style="color: #6dae49">Τρέχων PDF</b>
-                        <label><b>Όνομα Αρχείου</b>: {{product.pdf}}</label>
-                        <label><b>Επισκόπηση: </b><a style="color: #4a7632;" [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+product.pdf" target="_blank">Πάνε στο PDF</a></label>
+                      <div class="row" style="height: 90px;overflow-x:scroll;padding-left: 24px;" *ngIf="(product.mtrl != selectedMtrl || !selected) && product.pdf.length != 0">
+
+                        <ul style="width: fit-content;">
+                          <li *ngFor="let pdf of product.pdf" style="margin-bottom: 12px;">
+                              <a [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/' + pdf" target="_blank" style="margin-right: 12px;">
+                                  {{ pdf }}
+                              </a>
+                              <a class="remove" (click)="deletePDF(product,pdf)">
+                                  <img src="../../assets/trash-alt.svg" alt="" srcset="" style="width: 20px;height: 20px;">
+                              </a>
+                          </li>
+                      </ul>
+                        <!-- <b style="color: #6dae49">Τρέχων PDF</b> -->
+                        <!-- <label><b>Όνομα Αρχείου</b>: {{product.pdf}}</label>
+                        <label><b>Επισκόπηση: </b><a style="color: #4a7632;" [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/'+product.pdf" target="_blank">Πάνε στο PDF</a></label> -->
                         </div>
                       </div>
                     </div>
                 </div>
-                <button *ngIf="product.mtrl != selectedMtrl || !selected" class="myBtn" (click)="openDropDown(product.mtrl)">{{product.pdf != 'empty'? 'Άλλαξε PDF' : 'Πρόσθεσε PDF'}}</button>
-                <button  type="button" (click)="deletePDF(btn,product.mtrl)" *ngIf="product.pdf != 'empty' && (!selected || product.mtrl != selectedMtrl)" class="myBtn2"  style="position: relative;" #btn>
+                <button *ngIf="product.mtrl != selectedMtrl || !selected" class="myBtn" (click)="openDropDown(product.mtrl)">Πρόσθεσε PDF</button>
+               <!--  <button  type="button" (click)="deletePDF(btn,product)" *ngIf="product.pdf != 'empty' && (!selected || product.mtrl != selectedMtrl)" class="myBtn2"  style="position: relative;" #btn>
                   <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                   <p style="margin: 0px;color: rgba(0,0,0,0);font-size: 16px;">Αφαίρεση PDF</p>
                   <p class="textAnim" style="font-size: 16px;">Αφαίρεση PDF</p>
 
 
-                </button>
+                </button> -->
               </div>
             </div>
           </div>
