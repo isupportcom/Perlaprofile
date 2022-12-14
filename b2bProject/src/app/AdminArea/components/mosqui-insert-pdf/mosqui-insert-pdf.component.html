@@ -1,1 +1,61 @@
-<p>Υπο κατασκευή</p>
+<div class="container content">
+    <div class="row myRow">
+      <div *ngFor="let category of subCategoriesExtraArray" style="margin-bottom: 12px;">
+        <div class="container" style="padding: 0px;">
+          <div class="row">
+            <div class="col-3">
+              <img [src]="category.image" style="width: 200px; height: 200px!important;">
+            </div>
+            <div class="col-9">
+              <div class="container" style="padding: 0px;">
+                <div class="row">
+                  <h5 style="padding: 0px;">{{ category.sub_name }}</h5>
+                </div>
+                <div class="row">
+                  <hr style="opacity: 1;border: 1px solid #6dae49;width: 60%;border-radius: 16px;">
+                </div>
+                <div class="row">
+  
+                  <div class="container" style="padding: 0px;">
+                    <div class="row">
+                      <div class="container">
+                        <div class="row" *ngIf="selected && category.sub_id == selectedId">
+                          <form [formGroup]="pdfForm" (ngSubmit)="uploadPdf()">
+                            <select formControlName="pdf" class="mySelect">
+                              <option [ngValue]="p.pdf"  *ngFor="let p of pdf" style="width:100%!important;">{{p.pdf}}</option>
+                            </select>
+                            <br>
+                            <button class="myBtn">Αποθηκευση Αλλαγών</button>
+                            <a (click)="close()" style="width: fit-content;cursor: pointer;margin-left: 120px;">
+                              <img class="remove" alt=""  style="width: 32px;" srcset="">
+                            </a>
+                          </form>
+                        </div>
+                        <div class="row" style="height: 90px;overflow-x:scroll;padding-left: 24px;" *ngIf="(category.sub_id != selectedId || !selected) && category.pdf.length != 0">
+  
+                          <ul style="width: fit-content;">
+                            <li *ngFor="let pdf of category.pdf" style="margin-bottom: 12px;">
+                                <a [href]="'https://perlarest.vinoitalia.gr/php-auth-api/pdf/' + pdf.name" target="_blank" style="margin-right: 12px;">
+                                    {{ pdf.name }}
+                                </a>
+                                <a class="remove" style="cursor: pointer;" (click)="deletePDF(category.sub_id,pdf.name)">
+                                    <img src="../../assets/trash-alt.svg" alt="" srcset="" style="width: 20px;height: 20px;">
+                                </a>
+                            </li>
+                        </ul>
+                        </div>
+                        </div>
+                      </div>
+                  </div>
+                  <button *ngIf="category.sub_id != selectedId || !selected" class="myBtn" (click)="openDropDown(category.sub_id)">Πρόσθεσε PDF</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  

@@ -14,6 +14,13 @@ export class ModalService {
   castOffer = this.image.asObservable();
 
 
+  deleteMosquiThumb = new Subject<any>();
+  castDeleteMosquiThumb = this.deleteMosquiThumb.asObservable();
+
+  sendDeleteMosquiThumb(category: any){
+    this.deleteMosquiThumb.next(category);
+  }
+
   imageName = new Subject<string>();
   castImageName = this.imageName.asObservable();
 

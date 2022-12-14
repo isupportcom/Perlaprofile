@@ -19,6 +19,7 @@ export class AddImagePopupComponent implements OnInit {
   @Input() carousel?: boolean;
   @Input() mosquiOther?: boolean;
   @Input() mosquiThumbnail?: boolean;
+  @Input() category?: any;
   product?: any;
   isClicked: boolean = true;
   imagesArr :string|any= [];
@@ -54,7 +55,8 @@ export class AddImagePopupComponent implements OnInit {
       imageName:[null]
 
     })
-
+    
+    
     axios
       .get(
         'https://perlarest.vinoitalia.gr/php-auth-api/getImages.php/?id=9&method=allImages'
@@ -126,6 +128,19 @@ export class AddImagePopupComponent implements OnInit {
         axios.post('https://perlanoderest.vinoitalia.gr/products/removeThumbnail',{
           mtrl: this.mtrl
         })
+
+        btn.classList.remove('loading')
+        this.cartService.sendAddImagePopup(false);
+      },2000)
+    }
+  }
+
+    deleteThumbnailMosqui(btn:any){
+    if(!btn.classList.contains('loading')) {
+      btn.classList.add('loading');
+      setTimeout(() => {
+        this.modalService.sendDeleteMosquiThumb(this.category)
+
 
         btn.classList.remove('loading')
         this.cartService.sendAddImagePopup(false);

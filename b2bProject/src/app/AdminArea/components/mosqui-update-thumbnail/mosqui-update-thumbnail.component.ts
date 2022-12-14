@@ -21,7 +21,8 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
 
 
   //Selected Category 
-  selectedCategory: any;
+  selectedCategory: any; // --> id
+  categoryToSend: any; // --> oloklhrh kathgoria
 
   constructor(private productsService: ProductsService,private cartService: CartServiceService,private modalService: ModalService) { }
 
@@ -60,13 +61,23 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
       })
 
     })
+
+    this.modalService.deleteMosquiThumb.subscribe(resData => {
+      console.log(resData);
+      axios.post('https://perlaNodeRest.vinoitalia.gr/products/removeMosquiThumb',{
+        sub_cat_id: resData.sub_id
+      }).then(resData => {
+        this.subCategoriesExtraArray = resData.data.subcategories;
+      })
+    })
   }
 
   
 
 
-  openImagePopup(selected_cat: any){
+  openImagePopup(selected_cat: any,category: any){
     this.selectedCategory = selected_cat;
+    this.categoryToSend = category;
 
     this.flag = true;
     this.window = true;
