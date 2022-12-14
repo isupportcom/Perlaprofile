@@ -94,6 +94,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
   productAddedToFav: boolean = false;
 
   //Description
+  subcategory_extras: any;
   showDesc = [true, false, false, false];
   switchDesc = false;
   onEditDesc: boolean = false;
@@ -163,6 +164,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
     console.log(this.category_details);
 
 
+
     this.route.params.subscribe(params => {
       console.log(params);
 
@@ -197,7 +199,16 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
   
         })
       }
+
     })
+    
+    axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSubcategory',{
+      sub_cat_id : this.category_details.id 
+    }).then(resData => {
+      console.log(resData.data.subcategory);
+      this.subcategory_extras = resData.data.subcategory;
+    })
+    
 
     let temp = JSON.parse(localStorage.getItem("mtrl")||'{}');
     console.log(temp);
@@ -481,29 +492,19 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
     if (!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(async () => {
-        if(this.mosquiProduct){
-          let req = await axios.post(
-            'https://perlaNodeRest.vinoitalia.gr/products/uploadVideo',
-            {
-              mtrl: this.mosquiProduct.mtrl,
-              url: this.urlVideoForm.value.video,
-            }
-          );
-          console.log(req.data);
-          this.mosquiProduct.video = req.data.video;
-        }else{
+
 
           let req = await axios.post(
-            'https://perlaNodeRest.vinoitalia.gr/products/uploadVideo',
+            'https://perlaNodeRest.vinoitalia.gr/products/editMosquiUrl',
             {
-              mtrl: this.category_details.mtrl,
+              sub_cat_id : this.category_details.id,
               url: this.urlVideoForm.value.video,
             }
           );
-          console.log(req.data);
-          this.category_details.video = req.data.video;
-          this.productsService.setSingleProduct(this.category_details);
-        }
+          console.log(req.data.subcategory);
+          this.subcategory_extras = req.data.subcategory;
+
+        
 
         btn.classList.remove('loading')
       },1500);
@@ -511,35 +512,23 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
 
   }
 
-  deleteVideo(btn: any,mtrl: any){
+  deleteVideo(btn: any){
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(async () => {
-        if(this.mosquiProduct){
-          let req = await axios.post(
-            'https://perlaNodeRest.vinoitalia.gr/products/uploadVideo',
-            {
-              mtrl: this.mosquiProduct.mtrl,
-              url: 'asd',
-              method: 'Delete'
-            }
-          );
-          console.log(req.data);
-          this.mosquiProduct.video = req.data.video;
-        }else{
+
 
           let req = await axios.post(
-            'https://perlaNodeRest.vinoitalia.gr/products/uploadVideo',
+            'https://perlaNodeRest.vinoitalia.gr/products/editMosquiUrl',
             {
-              mtrl: this.category_details.mtrl,
+              sub_cat_id : this.category_details.id,
               url: 'asd',
               method: 'Delete'
             }
           );
-          console.log(req.data);
-          this.category_details.video = req.data.video;
-          this.productsService.setSingleProduct(this.category_details);
-        }
+          console.log(req.data.subcategory);
+          this.subcategory_extras = req.data.subcategory;
+        
         btn.classList.remove('loading')
       },1500);
     }
@@ -569,42 +558,23 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
         if (this.desciptionForm.value.description == null) {
 
 
-          if(this.mosquiProduct){
-            if(this.mosquiProduct.description){
-              this.desciptionForm.value.description = this.mosquiProduct.description
+            if(this.subcategory_extras.description){
+              this.desciptionForm.value.description = this.subcategory_extras.description
             }
             else{
               this.desciptionForm.value.description = '';
             }
-          }
-          else{
-            if(this.category_details.description){
-              this.desciptionForm.value.description = this.category_details.description
-            }
-            else{
-              this.desciptionForm.value.description = '';
-            }
-          }
         }
 
 
         if (this.desciptionFormEng.value.descriptionEng == null) {
-          if(this.mosquiProduct){
-            if(this.mosquiProduct.description_eng){
-              this.desciptionFormEng.value.descriptionEng = this.mosquiProduct.description_eng
+          
+            if(this.subcategory_extras.description_eng){
+              this.desciptionFormEng.value.descriptionEng = this.subcategory_extras.description_eng
             }
             else{
               this.desciptionFormEng.value.descriptionEng = '';
             }
-          }
-          else{
-            if(this.category_details.description_eng){
-              this.desciptionFormEng.value.descriptionEng = this.category_details.description_eng
-            }
-            else{
-              this.desciptionFormEng.value.descriptionEng = '';
-            }
-          }
         }
         // this.desciptionFormEng.value.descriptionEng != null
 
@@ -614,14 +584,13 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
         console.log(this.desciptionFormEng.value.descriptionEng);
 
 
-        if(this.mosquiProduct){
-
+   
             console.log(this.desciptionForm.value.description);
             axios
               .post(
-                'https://perlanoderest.vinoitalia.gr/products/updateDescription',
+                'https://perlaNodeRest.vinoitalia.gr/products/editMosquiSub',
                 {
-                  mtrl: this.mosquiProduct.mtrl,
+                  sub_cat_id: this.category_details.id,
                   desc: this.desciptionForm.value.description,
                   desc_eng: this.desciptionFormEng.value.descriptionEng,
                 }
@@ -630,38 +599,13 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
                 console.log(resData.data);
 
                 setTimeout(() => {
-                  this.mosquiProduct.description = resData.data.description;
-                  this.mosquiProduct.description_eng = resData.data.desc_eng;
-                  // window.location.reload();
+                  this.subcategory_extras = resData.data.subcategory;
                 }, 50);
               });
 
 
 
-        }
-        else{
-            console.log(this.desciptionForm.value.description);
-            axios
-              .post(
-                'https://perlanoderest.vinoitalia.gr/products/updateDescription',
-                {
-                  mtrl: this.category_details.mtrl,
-                  desc: this.desciptionForm.value.description,
-                  desc_eng: this.desciptionFormEng.value.descriptionEng,
-                }
-              )
-              .then((resData) => {
-                console.log(resData.data);
-
-                setTimeout(() => {
-                  this.category_details.description = resData.data.description;
-                  this.category_details.description_eng = resData.data.desc_eng;
-                  // this.productsService.setSingleProduct(this.category_details);
-                  // window.location.reload();
-                }, 50);
-              });
-
-        }
+   
 
         this.closeForm();
         btn.classList.remove('loading')
@@ -671,54 +615,32 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
   }
 
   updateDataSheet(btn: any) {
+    console.log(this.dataSheetForm.value.datas);
+    console.log(this.dataSheetFormEng.value.datasEng);
+    console.log(this.category_details.id);
+    
+    
+    
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
-        if(this.mosquiProduct){
-          console.log(this.mosquiProduct.mtrl);
-
           axios
           .post(
-            'https://perlanoderest.vinoitalia.gr/products/updateDataSheet',
+            'https://perlaNodeRest.vinoitalia.gr/products/editMosquiDataSheet',
             {
-              mtrl: this.mosquiProduct.mtrl,
-              data_el: this.dataSheetForm.value.datas,
-              data_en:this.dataSheetFormEng.value.datasEng
+              sub_cat_id: this.category_details.id,
+              data_sheet: this.dataSheetForm.value.datas,
+              data_sheet_eng :this.dataSheetFormEng.value.datasEng
             }
           )
           .then((resData) => {
             setTimeout(() => {
-              console.log(resData.data);
-
-              this.mosquiProduct.data_sheet = resData.data.data_sheet;
-              this.mosquiProduct.data_sheet_eng = resData.data.data_sheet_eng;
+              console.log(resData.data.subcategory);
+              this.subcategory_extras = resData.data.subcategory;
               //  window.location.reload();
             }, 50);
           });
-        }
-        else{
-          axios
-          .post(
-            'https://perlanoderest.vinoitalia.gr/products/updateDataSheet',
-            {
-              mtrl: this.category_details.mtrl,
-              data_el: this.dataSheetForm.value.datas,
-              data_en:this.dataSheetFormEng.value.datasEng
-            }
-          )
-          .then((resData) => {
-            setTimeout(() => {
-              console.log(resData.data);
-
-              this.category_details.data_sheet = resData.data.data_sheet;
-              this.category_details.data_sheet_eng = resData.data.data_sheet_eng;
-              console.log(this.category_details);
-
-              this.productsService.setSingleProduct(this.category_details);
-              //  window.location.reload();
-            }, 50);
-          });
-        }
+        
 
         this.closeForm();
         btn.classList.remove('loading')

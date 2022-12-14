@@ -8,7 +8,9 @@
 a{
   text-decoration: none;
 }
-
+.navFa > svg:not(:root).svg-inline--fa, .navFa > svg:not(:host).svg-inline--fa{
+  width: 26px !important;
+}
 
 .owl-next, .owl-prev
 {

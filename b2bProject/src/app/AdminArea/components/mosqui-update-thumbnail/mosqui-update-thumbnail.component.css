@@ -1,0 +1,64 @@
+.content{
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+.myRow{
+    margin-top: 12px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 58vh;
+    width: 100%;
+}
+
+.myBtn{
+    margin-top: 15px;
+    width: fit-content;
+    border: none;
+    background-color: #6dae49;
+    color: white;
+    border-radius: 16px;
+    padding: 8px 24px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .myBtn:hover{
+    background-color: #4a7632;
+  }
+
+  .myBtn:active{
+    transform: scale(0.7);
+  }
+  
+  .myBtnChange{
+    margin-top: 15px;
+    width: fit-content;
+    border: none;
+    background-color: #0056d8;
+    color: white;
+    border-radius: 16px;
+    padding: 8px 24px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .myBtnChange:hover{
+    background-color: #002256;
+  }
+
+  .myBtnChange:active{
+    transform: scale(0.7);
+  }
+
+  .remove{
+    content: url(../../../../assets/x-black.svg);
+    transition: all 1s ease-in-out;
+  }
+  
+  .remove:hover{
+    content: url(../../../../assets/x-red.svg);
+  }
+
+  .ex{
+    position: absolute;
+    left: 80px;
+  }

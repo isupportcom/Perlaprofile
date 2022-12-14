@@ -64,6 +64,8 @@ export class ProductsCarouselComponent implements OnInit {
       if(this.suggestedProducts.length !=0){
         this.hasSuggested = true;
       }
+      if(this.mtrl){
+
 
       let sugg = await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
       {
@@ -89,7 +91,7 @@ export class ProductsCarouselComponent implements OnInit {
       //   this.hasSuggested = true;
       // }
     }
-
+    }
 
     if(this.mode == 'offers'){
       axios.post('https://perlaNodeRest.vinoitalia.gr/products/offersByCategory', {

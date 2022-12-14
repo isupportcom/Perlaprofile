@@ -1,0 +1,33 @@
+<app-add-image-popup [general]="false" [secondary]="false" [carousel]="false" [mosquiOther]="false" [mosquiThumbnail]="true" style="position: absolute;top: 0;left: 0;" *ngIf="flag && window"></app-add-image-popup>
+
+<div class="container content">
+    <div *ngFor="let category of subCategoriesExtraArray" style="margin-bottom: 12px;">
+        <div class="container" style="padding: 0px;">
+          <div class="row">
+            <div class="col-3">
+              <img [src]="category.image" style="width: 200px; height: 200px!important;">
+            </div>
+            <div class="col-9">
+              <div class="container" style="padding: 0px;">
+                <div class="row">
+                  <h5 style="padding: 0px;">{{ category.sub_name }}</h5>
+                </div>
+                <div class="row">
+                  <hr style="opacity: 1;border: 1px solid #6dae49;width: 60%;border-radius: 16px;">
+                </div>
+                <div class="row">
+                  <div class="container" style="padding: 0px;">
+                    <div class="row">
+                      <div class="col-3">
+                        <button [ngClass]="category.image != 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'? 'myBtnChange' : 'myBtn'" (click)="openImagePopup(category.sub_id)">{{category.image != 'https://perlarest.vinoitalia.gr/php-auth-api/images.png'? 'Αλλαγή Φωτογραφίας' : 'Προσθήκη Φωτογραφίας'}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        </div>
+</div>

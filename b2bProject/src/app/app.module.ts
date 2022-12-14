@@ -88,6 +88,10 @@ import { CatalogsFrontComponent } from './catalogs-front/catalogs-front.componen
 import { UpdateUsersComponent } from './AdminArea/components/update-users/update-users.component';
 import { HomepageCarouselComponent } from './AdminArea/components/homepage-carousel/homepage-carousel.component';
 import { MosquiProductPageComponent } from './porducts/mosqui-product-page/mosqui-product-page.component';
+import { MosquiComponent } from './AdminArea/mosqui/mosqui.component';
+import { MosquiInsertImageComponent } from './AdminArea/components/mosqui-insert-image/mosqui-insert-image.component';
+import { MosquiUpdateThumbnailComponent } from './AdminArea/components/mosqui-update-thumbnail/mosqui-update-thumbnail.component';
+import { MosquiInsertPdfComponent } from './AdminArea/components/mosqui-insert-pdf/mosqui-insert-pdf.component';
 
 
 
@@ -165,6 +169,10 @@ export function rootLoaderactory(http:any){
     UpdateUsersComponent,
     HomepageCarouselComponent,
     MosquiProductPageComponent,
+    MosquiComponent,
+    MosquiInsertImageComponent,
+    MosquiUpdateThumbnailComponent,
+    MosquiInsertPdfComponent,
 
 
 

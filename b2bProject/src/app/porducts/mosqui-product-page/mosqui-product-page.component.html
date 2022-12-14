@@ -4,13 +4,13 @@
         <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
           <img class="remove" alt=""  style="width: 32px;" srcset="">
         </a>
-        <img width="500px" height="500px" style="border-radius: 8px;" [src]="category_details.image" alt="">
+        <img width="500px" height="500px" style="border-radius: 8px;" [src]="subcategory_extras.image" alt="">
       </ng-template>
-      <ng-template *ngFor="let img of category_details.otherImages" swiperSlide>
+      <ng-template *ngFor="let img of subcategory_extras.otherImages" swiperSlide>
         <a  (click)="closeFullscreen()" style="width: fit-content;cursor: pointer;">
           <img class="remove" alt=""  style="width: 32px;" srcset="">
         </a>
-        <img width="500px" height="500px" style="border-radius: 8px;" [src]="img.img" alt="">
+        <img width="500px" height="500px" style="border-radius: 8px;" [src]="img.image" alt="">
       </ng-template>
     </swiper>
 </div>
@@ -36,15 +36,15 @@
                 direction="vertical"
                 #secondSwiper
                 >
-                <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="category_details.image" alt=""></ng-template>
-                <ng-template *ngFor="let img of category_details.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.img" alt=""></ng-template>
+                <ng-template swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="subcategory_extras.image" alt=""></ng-template>
+                <ng-template *ngFor="let img of subcategory_extras.otherImages" swiperSlide><img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.image" alt=""></ng-template>
                 </swiper>
             </div>
 
             <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
                 <swiper class="big" style="width: 500px" [slidesPerView]="1" [spaceBetween]="50"  [pagination]="{ clickable: true }" [thumbs]="{ swiper: thumbsSwiper }">
-                <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" (click)="openFullscreen()" [src]="category_details.image" alt=""></ng-template>
-                <ng-template *ngFor="let img of category_details.otherImages" swiperSlide><img (click)="openFullscreen()" width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" [src]="img.img" alt=""></ng-template>
+                <ng-template swiperSlide><img width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" (click)="openFullscreen()" [src]="subcategory_extras.image" alt=""></ng-template>
+                <ng-template *ngFor="let img of subcategory_extras.otherImages" swiperSlide><img (click)="openFullscreen()" width="500px" height="500px" style="border-radius: 8px;cursor: pointer;" [src]="img.image" alt=""></ng-template>
                 </swiper>
             </div>
 
@@ -315,12 +315,12 @@
       <form  *ngIf="onEditDesc && showDesc[0]" style="margin-top: 24px;" [formGroup]="desciptionForm"  >
         <label for="elDesc">Περιγραφή Ελληνικά</label>
         <!-- <textarea formControlName="description" class="myForm" id="elDesc" style="height:200px; width:101%;  margin-bottom: 10px;"></textarea> -->
-        <div formControlName="description" id="elDesc" [ngxSummernote]="config" [innerHTML]="category_details.description"> </div>
+        <div formControlName="description" id="elDesc" [ngxSummernote]="config" [innerHTML]="subcategory_extras.description"> </div>
         <!-- {{product.description}} -->
        </form>
       <form  *ngIf="onEditDesc && showDesc[0]" [formGroup]="desciptionFormEng" style="margin-top: 24px;" >
         <label for="engDesc">Περιγραφή Αγγλικά</label>
-        <div formControlName="descriptionEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="category_details.description_eng"></div>
+        <div formControlName="descriptionEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="subcategory_extras.description_eng"></div>
         <!-- <textarea formControlName="descriptionEng"  class="myForm"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Περιγραφή Αγγλικά..." ></textarea> -->
 
       </form>
@@ -335,8 +335,8 @@
       </div>
 
       <!-- <button  class="btn btn-success" *ngIf="onEditDesc" style="margin-bottom:10px;" type="submit" (click)="uploadDescription()">Αποθήκευση Αλλαγών</button> -->
-      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='el'" [innerHTML]="category_details.description"></div>
-      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='en'" [innerHTML]="category_details.description_eng"></div>
+      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='el'" [innerHTML]="subcategory_extras.description"></div>
+      <div *ngIf="showDesc[0] && !onEditDesc && currentLang=='en'" [innerHTML]="subcategory_extras.description_eng"></div>
       <!-- <button *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" (click)="editData()"  style="margin-right:1em ;" class="btn btn-success">Επεξεργασία Πρόσθετων Λεπτομεριών</button> -->
       <div *ngIf="!urlOpen &&isAdmin && switchDesc && showDesc[1]" class="container">
         <div class="row" style="justify-content: right;align-items: center;">
@@ -350,11 +350,11 @@
       </div>
       <form  *ngIf="onEditData" style="margin-top: 24px;" [formGroup]="dataSheetForm"  >
         <label for="elData">Πρόσθετες Λεπτομέριες Ελληνικά</label>
-        <div formControlName="datas" id="elData" [ngxSummernote]="config" [innerHTML]="category_details.data_sheet"></div>
+        <div formControlName="datas" id="elData" [ngxSummernote]="config" [innerHTML]="subcategory_extras.data_sheet"></div>
       </form>
       <form  *ngIf="onEditData " [formGroup]="dataSheetFormEng" style="margin-top: 24px;" >
         <label for="engDesc">Πρόσθετες Λεπτομέριες Αγγλικά</label>
-        <div formControlName="datasEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="category_details.data_sheet_eng "></div>
+        <div formControlName="datasEng" id="engDesc" [ngxSummernote]="config" [innerHTML]="subcategory_extras.data_sheet_eng "></div>
       </form>
       <!-- <form class="form-control" *ngIf="onEditData" [formGroup]="dataSheetForm"  >
         <textarea formControlName="datas" class="form-control"  style="height:200px; width:101%;  margin-bottom: 10px;" placeholder="Πρόσθετες Λεπτομέριες Ελληνικά..." ></textarea>
@@ -372,8 +372,8 @@
           </button>
         </div>
       </div>
-      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='el'" [innerHTML]="category_details.data_sheet"></div>
-      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='en'" [innerHTML]="category_details.data_sheet_eng"></div>
+      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='el'" [innerHTML]="subcategory_extras.data_sheet"></div>
+      <div *ngIf="showDesc[1]&& !onEditData && currentLang=='en'" [innerHTML]="subcategory_extras.data_sheet_eng"></div>
       <div *ngIf="showDesc[2] && loggedIn">
         <button (click)="downloadMyFile(category_details.pdf)" (mouseover)="handleHoverDownload(downBtn)" (mouseleave)="handleHoverDownload(downBtn)" style="position: relative;" [disabled]="category_details.pdf === 'empty'" [ngClass]="category_details.pdf === 'empty'? 'myBtn disabled' : 'myBtn'" #downBtn>
           <fa-icon style="width: fit-content;pointer-events: none;" class="download" [icon]="faDownload"></fa-icon>
@@ -402,8 +402,8 @@
         </div>
       </div>
       <!-- <button *ngIf="urlOpen &&isAdmin &&showDesc[3]" (click)="openURL()" class="btn btn-success">Επεξεργασία Βιντεο</button> -->
-      <iframe *ngIf="showDesc[3] && (category_details.video && category_details.video != 'empty')? true : false" width="850" height="315"
-      [src]="category_details.video | safePipe">
+      <iframe *ngIf="showDesc[3] && (subcategory_extras.video && subcategory_extras.video != 'empty')? true : false" width="850" height="315"
+      [src]="subcategory_extras.video | safePipe">
       </iframe>
 
       <form (ngSubmit)="uploadUrl(btn)" [formGroup]="urlVideoForm" style="margin-top: 24px;" *ngIf="!urlOpen && showDesc[3]">
@@ -413,7 +413,7 @@
           <p style="margin: 0px;color: rgba(0,0,0,0);">Αποθήκευση Αλλαγών</p>
           <p class="textAnim">Αποθήκευση Αλλαγών</p>
         </button>
-        <button  type="button" (click)="deleteVideo(btn,category_details.mtrl)" *ngIf="!urlOpen && showDesc[3]" class="myBtn2"  style="position: relative;" #btn>
+        <button  type="button" (click)="deleteVideo(btn)" *ngIf="!urlOpen && showDesc[3]" class="myBtn2"  style="position: relative;" #btn>
           <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           <p style="margin: 0px;color: rgba(0,0,0,0);font-size: 16px;">Αφαίρεση Video</p>
           <p class="textAnim" style="font-size: 16px;">Αφαίρεση Video</p>

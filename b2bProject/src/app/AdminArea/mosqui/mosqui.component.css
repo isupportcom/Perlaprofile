@@ -1,0 +1,68 @@
+.content{
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+
+  .trapezoid {
+    opacity: 1 !important;
+    text-decoration: none !important;
+    color: white !important;
+    z-index: 100 !important;
+    border-bottom: 50px solid #6dae49 !important;
+    border-left: 1px solid transparent !important;
+    border-right: 25px solid transparent !important;
+    height: 50px !important;
+    width: 250px !important;
+  }
+
+  .trapezoid2{
+    color: #6dae49;
+    text-decoration: none;
+    z-index: 99;
+    opacity: 0.5;
+    border-bottom: 50px solid white;
+    border-left: 1px solid transparent;
+    border-right: 25px solid transparent;
+    height: 0;
+    width: 250px;
+  }
+
+  .secondLink{
+    position: relative;
+    left: -10px;
+  }
+
+
+  .myRow{
+    box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+    height: 70vh;
+
+    overflow-x: hidden;
+    background-color: rgba(255,255,255,1);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+
+    padding: 0px !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #6dae49; 
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a7632; 
+  }

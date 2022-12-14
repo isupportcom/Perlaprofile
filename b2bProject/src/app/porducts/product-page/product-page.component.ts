@@ -217,21 +217,41 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
           mtrl: this.mtrl
         }).then(async resData => {
           console.log(resData.data.product);
-            this.product = resData.data.product;
-            if(this.product.category != 116){
-              let sugg =await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
-              {
-                mtrl:this.product.mtrl
-              })
-                if(sugg.data.products.length > 0){
-                  this.notEmpty = true;
-                }
-                else{
-                  this.notEmpty = false;
-                }
 
 
+          this.product = resData.data.product;
+          if(this.loggedIn){
+            let req = await  axios.post('https://perlaNodeRest.vinoitalia.gr/products/isFavorite',
+            {
+              mtrl: this.product.mtrl,
+              trdr: this.loadedUser.trdr
+            })
+  
+              console.log(req.data.exists);
+  
+              if(req.data.exists){
+                this.product.addedToFav = true;
+              }
+              else{
+                this.product.addedToFav = false;
+              }
+          }
+
+
+          if(this.product.category != 116){
+            let sugg =await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
+            {
+              mtrl:this.product.mtrl
+            })
+            if(sugg.data.products.length > 0){
+              this.notEmpty = true;
             }
+            else{
+              this.notEmpty = false;
+            }
+
+
+          }
         })
 
       }
@@ -270,7 +290,6 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
       window.scrollTo(0,0);
     })
 
-
     // console.log(this.ref.detectChanges());
     this.currentLang = localStorage.getItem('lang');
     console.log(this.currentLang);
@@ -280,7 +299,6 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
     // this.route.params.subscribe((params) => {
     //   this.filters = params;
     // });
-
 
 
     this.dataSheetForm = this.fb.group({
@@ -977,13 +995,13 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    console.log(this.router.url.split('/')[2]);
-    console.log(this.product.category);
-    console.log(this.filters);
+    // console.log(this.router.url.split('/')[2]);
+    // console.log(this.product.category);
+    // console.log(this.filters);
 
-    if (this.router.url.split('/')[2] == this.product.category) {
-      this.productsService.sendFilters(this.filters);
-    }
+    // if (this.router.url.split('/')[2] == this.product.category ||this.router.url.split('/')[2] == this.mosquiProduct.category ) {
+    //   this.productsService.sendFilters(this.filters);
+    // }
 
     // localStorage.removeItem('mtrl');
     // /products/product-page

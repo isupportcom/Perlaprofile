@@ -145,6 +145,7 @@
                 [(ngModel)]="amount"
                 #input
               />
+
               <button
                 id="increment"
                 (click)="newStepper(true)"
@@ -153,7 +154,9 @@
                 +
               </button>
             </div>
+
           </div>
+
         </div>
         <div class="row">
           <button
@@ -216,6 +219,9 @@
           </p>
           <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
             product_page.kat <b>{{ product.kodikos_kataskeuasti }}</b>
+          </p>
+          <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+            Μονάδα Μέτρησης <b>{{ product.mm }}</b>
           </p>
         </div>
       </div>
@@ -427,6 +433,7 @@
                   [(ngModel)]="amount"
                   #input2
                 />
+
                 <button
                   id="increment"
                   (click)="newStepper(true)"

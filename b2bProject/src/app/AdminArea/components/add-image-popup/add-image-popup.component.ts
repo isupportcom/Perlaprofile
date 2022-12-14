@@ -17,6 +17,8 @@ export class AddImagePopupComponent implements OnInit {
   @Input() general?: boolean;
   @Input() mtrl?: string;
   @Input() carousel?: boolean;
+  @Input() mosquiOther?: boolean;
+  @Input() mosquiThumbnail?: boolean;
   product?: any;
   isClicked: boolean = true;
   imagesArr :string|any= [];
@@ -37,12 +39,14 @@ export class AddImagePopupComponent implements OnInit {
     console.log('general = ' + this.general);
     console.log('secondary = ' + this.secondary);
 
-    axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',{
-      mtrl: this.mtrl
-    }).then(resData => {
-      console.log(resData.data.product);
-      this.product = resData.data.product;
-    })
+    if(this.mtrl){
+      axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSingle',{
+        mtrl: this.mtrl
+      }).then(resData => {
+        console.log(resData.data.product);
+        this.product = resData.data.product;
+      })
+    }
     
     // https://perlaNodeRest.vinoitalia.gr/products/
     this.searchPhoto = this.fb.group({
@@ -169,54 +173,67 @@ export class AddImagePopupComponent implements OnInit {
         
       }
       else{        
-        console.log("TSATSA");
-        if(!btn.classList.contains('loading')) {
-          btn.classList.add('loading');
-          setTimeout(async () => {
-            if(this.secondary){
-              let joinedImagesArray =this.imagesToSend.join(',')
-            
+        if(this.mosquiOther){
+          console.log('mosquiOther'); 
+          let joinedImagesArray = this.imagesToSend.join(',');
+          this.modalService.sendImage(joinedImagesArray);
+          this.cartService.sendAddImagePopup(false);
+        }
+        else if(this.mosquiThumbnail){
+          console.log('mosquiThumbnail');
+          this.modalService.sendImage(this.thumbnail!);
+          this.cartService.sendAddImagePopup(false);
+        }
+        else{
+          console.log("TSATSA");
+          if(!btn.classList.contains('loading')) {
+            btn.classList.add('loading');
+            setTimeout(async () => {
+              if(this.secondary){
+                let joinedImagesArray =this.imagesToSend.join(',')
               
-             await axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
-                mtrl:this.mtrl,
-                img:  joinedImagesArray,
-                mode:"insert"
-              }).then(res=>{
-                console.log(res)
-  
-              })
-              this.imagesToSend = [];
-              this.modalService.sendImage(joinedImagesArray);
-              btn.classList.remove('loading')
-              this.cartService.sendAddImagePopup(false);
-            }
-            else{
-  
-  
-              if(this.thumbnail){
-                console.log(this.thumbnail);
-                console.log(this.mtrl);
-  
-                // let splitted = this.thumbnail.split('/')
-                // console.log(splitted);
-  
-               await axios
-                .post(
-                  'https://perlanoderest.vinoitalia.gr/products/updateSingleImage' ,{
-                    mtrl:this.mtrl,
-                    image:this.thumbnail
-                  }
-  
-                )
-                .then((res) => {
-                  console.log(res.data);
-                  btn.classList.remove('loading')
-                  this.cartService.sendAddImagePopup(false);
-                });
+                
+               await axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
+                  mtrl:this.mtrl,
+                  img:  joinedImagesArray,
+                  mode:"insert"
+                }).then(res=>{
+                  console.log(res)
+    
+                })
+                this.imagesToSend = [];
+                this.modalService.sendImage(joinedImagesArray);
+                btn.classList.remove('loading')
+                this.cartService.sendAddImagePopup(false);
               }
-            }
-  
-          }, 1500);
+              else{
+    
+    
+                if(this.thumbnail){
+                  console.log(this.thumbnail);
+                  console.log(this.mtrl);
+    
+                  // let splitted = this.thumbnail.split('/')
+                  // console.log(splitted);
+    
+                 await axios
+                  .post(
+                    'https://perlanoderest.vinoitalia.gr/products/updateSingleImage' ,{
+                      mtrl:this.mtrl,
+                      image:this.thumbnail
+                    }
+    
+                  )
+                  .then((res) => {
+                    console.log(res.data);
+                    btn.classList.remove('loading')
+                    this.cartService.sendAddImagePopup(false);
+                  });
+                }
+              }
+    
+            }, 1500);
+          }
         }
       }
     }

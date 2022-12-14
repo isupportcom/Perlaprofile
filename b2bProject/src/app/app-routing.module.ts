@@ -37,24 +37,30 @@ import { AuthGuard } from "./services/auth.guard";
 import { ContatcFormComponent } from "./shared/contatc-form/contatc-form.component";
 import { TeamComponent } from "./team/team.component";
 import { TheCompanyComponent } from "./the-company/the-company.component";
+import { MosquiInsertImageComponent } from './AdminArea/components/mosqui-insert-image/mosqui-insert-image.component';
+import { MosquiUpdateThumbnailComponent } from './AdminArea/components/mosqui-update-thumbnail/mosqui-update-thumbnail.component';
+import { MosquiInsertPdfComponent } from './AdminArea/components/mosqui-insert-pdf/mosqui-insert-pdf.component';
+import { MosquiComponent } from './AdminArea/mosqui/mosqui.component';
 
-const routes :Routes =[
+const routes: Routes = [
   {
-    path:'',
-    pathMatch:'full',
-    redirectTo:'home'
-  }, {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home',
+  },
+  {
     path: 'log-in',
-    component: LogInComponent
+    component: LogInComponent,
   },
   {
-    path:'home',
-    component:HomepageComponent
+    path: 'home',
+    component: HomepageComponent,
   },
   {
-    path:'catalogs',
-    component: CatalogsFrontComponent
+    path: 'catalogs',
+    component: CatalogsFrontComponent,
   },
+
   {
     path:'products',
     component:PorductsComponent,
@@ -93,30 +99,30 @@ const routes :Routes =[
     children:[
       {
         path: 'insert-products',
-        component: InsertProductsComponent
+        component: InsertProductsComponent,
       },
 
       {
         path: 'update-categories',
-        component: UpdateCategoriesComponent
+        component: UpdateCategoriesComponent,
       },
       {
         path: 'update-colors',
-        component: UpdateColorsComponent
+        component: UpdateColorsComponent,
       },
       {
         path: 'pdf',
         component: PdfComponent,
-        children:[
+        children: [
           {
             path: 'upload',
-            component: UploadPdfComponent
+            component: UploadPdfComponent,
           },
           {
             path: 'insert',
-            component: InsertPdfComponent
-          }
-        ]
+            component: InsertPdfComponent,
+          },
+        ],
       },
       {
         path: 'image',
@@ -124,17 +130,17 @@ const routes :Routes =[
         children: [
           {
             path: 'upload',
-            component: UploadImageComponent
+            component: UploadImageComponent,
           },
           {
             path: 'insert',
-            component: InsertImagesComponent
-          }
-        ]
+            component: InsertImagesComponent,
+          },
+        ],
       },
       {
         path: 'carousel',
-        component: HomepageCarouselComponent
+        component: HomepageCarouselComponent,
       },
       {
         path: 'catalogs',
@@ -142,60 +148,79 @@ const routes :Routes =[
         children: [
           {
             path: 'upload',
-            component: UploadCatalogsComponent
+            component: UploadCatalogsComponent,
           },
           {
             path: 'delete',
-            component: DeleteCatalogsComponent
-          }
-        ]
+            component: DeleteCatalogsComponent,
+          },
+        ],
       },
       {
-        path:'update-users',
-        component:UpdateUsersComponent
-      }
-    ]
+        path: 'mosqui',
+        component: MosquiComponent,
+        children: [
+          {
+            path: 'insert-image',
+            component: MosquiInsertImageComponent,
+          },
+          {
+            path: 'update-thumbnail',
+            component: MosquiUpdateThumbnailComponent,
+          },
+          {
+            path: 'insert-pdf',
+            component: MosquiInsertPdfComponent,  
+          }
+        ],
+      },
+      {
+        path: 'update-users',
+        component: UpdateUsersComponent,
+      },
+
+    ],
   },
 
   {
     path: 'cart',
     canActivate: [AuthGuard],
-    component: CartComponent
+    component: CartComponent,
   },
   {
-    path:'favorites',
-    component:FavoriteComponent,
-    canActivate:[AuthGuard]
+    path: 'favorites',
+    component: FavoriteComponent,
+    canActivate: [AuthGuard],
   },
 
   {
     path: 'checkout',
-    canActivate:[AuthGuard],
-    component: CheckoutPageComponent
+    canActivate: [AuthGuard],
+    component: CheckoutPageComponent,
   },
   {
     path: 'order-completed',
-    canActivate:[AuthGuard],
-    component: OrderCompletedComponent
+    canActivate: [AuthGuard],
+    component: OrderCompletedComponent,
   },
   {
     path: 'profile',
     canActivate: [AuthGuard],
-    component: ProfileComponent
+    component: ProfileComponent,
   },
   {
     path: 'my-orders',
     canActivate: [AuthGuard],
-    component: MyOrdersComponent
+    component: MyOrdersComponent,
   },
 
   {
-    path:'contact',
-    component:ContatcFormComponent
+    path: 'contact',
+    component: ContatcFormComponent,
   },
   {
     path: 'company',
-    component: TheCompanyComponent
+    component: TheCompanyComponent,
   },
   {
     path: 'the-team',
@@ -217,5 +242,4 @@ const routes :Routes =[
   imports:[RouterModule.forRoot(routes)],
   exports:[RouterModule]
 })
-
-export class AppRoutingModule{}
+export class AppRoutingModule {}

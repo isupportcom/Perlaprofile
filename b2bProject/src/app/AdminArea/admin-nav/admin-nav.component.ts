@@ -3,6 +3,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 
 import {faImages} from '@fortawesome/free-solid-svg-icons';
+import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class AdminNavComponent implements OnInit {
   arrow: any;
   component:number | any;
   faImages = faImages;
+  faSquarePlus = faSquarePlus;
   constructor(
       private authService: AuthService,
       private router:Router,

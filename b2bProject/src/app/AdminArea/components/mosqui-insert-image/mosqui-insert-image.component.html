@@ -1,0 +1,55 @@
+<app-add-image-popup [general]="false" [secondary]="true" [carousel]="false" [mosquiOther]="true" [mosquiThumbnail]="false" style="position: absolute;top: 0;left: 0;" *ngIf="flag && window"></app-add-image-popup>
+
+<div class="container content">
+    <div *ngFor="let category of subCategoriesExtraArray" style="margin-bottom: 12px;">
+        <div class="container" style="padding: 0px;">
+          <div class="row">
+            <div class="col-3">
+              <img [src]="category.image" style="width: 200px; height: 200px!important;">
+            </div>
+            <div class="col-9">
+              <div class="container" style="padding: 0px;">
+                <div class="row">
+                  <h5 style="padding: 0px;">{{ category.sub_name }}</h5>
+                </div>
+                <div class="row">
+                  <hr style="opacity: 1;border: 1px solid #6dae49;width: 60%;border-radius: 16px;">
+                </div>
+                <div class="row">
+                  <div class="container" style="padding: 0px;">
+                    <div class="row">
+                      <div class="col-3">
+                        <button class="myBtn" (click)="openImagePopup(category.sub_id)">Προσθήκη Φωτογραφίας</button>
+                      </div>
+                      <div *ngIf="category.otherImages.length > 0" class="col-7">
+                        <swiper
+                        class="fourth-swiper"
+                        [slidesPerView]="category.otherImages.length > 3? 3 : category.otherImages.length"
+                        [spaceBetween]="0"
+                        (slideChange)="onSlideChange(secondSwiper)"
+                        [navigation]="true"
+                        [draggable]="true"
+                        (swiper)="setThumbsSwiper($event)"
+  
+                        direction="horizontal"
+                        #secondSwiper
+                      >
+  
+                        <ng-template *ngFor="let img of category.otherImages" swiperSlide>
+                          <a (click)="removeImage(category.sub_id,img)" class="ex" style="width: fit-content;cursor: pointer;">
+                            <img class="remove" alt=""  style="width: 32px;" srcset="">
+                          </a>
+                          <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  width="100px" height="100px" [src]="img.image" alt="">
+                        </ng-template>
+                      </swiper>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        </div>
+</div>
