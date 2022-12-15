@@ -44,7 +44,7 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
       }
     });
 
-    this.modalService.image.subscribe(resData => {
+    this.modalService.updateMosquiThumb.subscribe(resData => {
       console.log(resData);
       console.log(this.selectedCategory);
       
