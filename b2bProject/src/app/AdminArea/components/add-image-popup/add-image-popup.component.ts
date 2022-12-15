@@ -196,7 +196,7 @@ export class AddImagePopupComponent implements OnInit {
         }
         else if(this.mosquiThumbnail){
           console.log('mosquiThumbnail');
-          this.modalService.sendImage(this.thumbnail!);
+          this.modalService.sendUpdateMosquiThumb(this.thumbnail!);
           this.cartService.sendAddImagePopup(false);
         }
         else{
