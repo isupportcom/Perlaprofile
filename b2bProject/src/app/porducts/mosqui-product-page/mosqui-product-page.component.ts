@@ -170,7 +170,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
 
       console.log(params['cat_id']);
       console.log(params['product_mtrl']);
-      
+
       if(params['product_mtrl']){
         let newMtrl = params['product_mtrl'];
         this.waitingProduct = true;
@@ -196,19 +196,19 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
         }).then(async resData => {
           console.log(resData.data);
           this.category_details = resData.data.product;
-  
+
         })
       }
 
     })
-    
+
     axios.post('https://perlaNodeRest.vinoitalia.gr/products/getSubcategory',{
-      sub_cat_id : this.category_details.id 
+      sub_cat_id : this.category_details.id
     }).then(resData => {
       console.log(resData.data.subcategory);
       this.subcategory_extras = resData.data.subcategory;
     })
-    
+
 
     let temp = JSON.parse(localStorage.getItem("mtrl")||'{}');
     console.log(temp);
@@ -284,8 +284,8 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
     this.productsService.mosquiProductFound.subscribe((resData) => {
       this.waitingProduct = true;
       this.showForm = false;
-      
-      
+
+
         setTimeout(() => {
           console.log(resData);
           let subcategories: any;
@@ -314,11 +314,11 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
                   mtrl: this.mosquiProduct.mtrl
                 }));
               this.router.navigate(['products/116/Mosqui',selected_subcategory.sub_id,selected_subcategory.name,this.mosquiProduct.mtrl])
-              
+
             })
           }
         }, 200);
-      
+
     });
 
   }
@@ -504,7 +504,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
           console.log(req.data.subcategory);
           this.subcategory_extras = req.data.subcategory;
 
-        
+
 
         btn.classList.remove('loading')
       },1500);
@@ -528,7 +528,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
           );
           console.log(req.data.subcategory);
           this.subcategory_extras = req.data.subcategory;
-        
+
         btn.classList.remove('loading')
       },1500);
     }
@@ -568,7 +568,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
 
 
         if (this.desciptionFormEng.value.descriptionEng == null) {
-          
+
             if(this.subcategory_extras.description_eng){
               this.desciptionFormEng.value.descriptionEng = this.subcategory_extras.description_eng
             }
@@ -584,7 +584,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
         console.log(this.desciptionFormEng.value.descriptionEng);
 
 
-   
+
             console.log(this.desciptionForm.value.description);
             axios
               .post(
@@ -605,7 +605,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
 
 
 
-   
+
 
         this.closeForm();
         btn.classList.remove('loading')
@@ -618,9 +618,9 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
     console.log(this.dataSheetForm.value.datas);
     console.log(this.dataSheetFormEng.value.datasEng);
     console.log(this.category_details.id);
-    
-    
-    
+
+
+
     if(!btn.classList.contains('loading')) {
       btn.classList.add('loading');
       setTimeout(() => {
@@ -640,7 +640,7 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
               //  window.location.reload();
             }, 50);
           });
-        
+
 
         this.closeForm();
         btn.classList.remove('loading')
@@ -713,9 +713,9 @@ export class MosquiProductPageComponent implements OnInit, OnDestroy {
       }
 
       axios
-        .get('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
-          params: {trdr: this.loadedUser.trdr},
-        })
+        .post('https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
+           {trdr: this.loadedUser.trdr},
+        )
         .then((resData) => {
           this.cartService.sendProductCount(resData.data.products.length);
         });

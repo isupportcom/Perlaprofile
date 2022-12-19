@@ -226,9 +226,9 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
               mtrl: this.product.mtrl,
               trdr: this.loadedUser.trdr
             })
-  
+
               console.log(req.data.exists);
-  
+
               if(req.data.exists){
                 this.product.addedToFav = true;
               }
@@ -437,9 +437,9 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
       }
 
       axios
-        .get('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
-          params: {trdr: this.loadedUser.trdr},
-        })
+        .post('https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
+         {trdr: this.loadedUser.trdr},
+        )
         .then((resData) => {
           this.cartService.sendProductCount(resData.data.products.length);
         });
@@ -461,9 +461,9 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
           }
 
           axios
-            .get('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
-             params: {trdr: this.loadedUser.trdr},
-            })
+            .post('https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
+             {trdr: this.loadedUser.trdr},
+            )
             .then((resData) => {
               this.cartService.sendProductCount(resData.data.products.length);
             });
@@ -705,9 +705,9 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
       console.log(btn);
 
       axios
-        .get('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
-          params:{trdr: this.loadedUser.trdr},
-        })
+        .post('https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
+          {trdr: this.loadedUser.trdr},
+      )
         .then((resData) => {
           this.cartService.sendProductCount(resData.data.products.length);
         });
@@ -763,9 +763,9 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
           console.log(btn);
 
           axios
-            .get('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
-              params:{trdr: this.loadedUser.trdr},
-            })
+            .post('https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
+              {trdr: this.loadedUser.trdr},
+            )
             .then((resData) => {
               this.cartService.sendProductCount(resData.data.products.length);
             });
