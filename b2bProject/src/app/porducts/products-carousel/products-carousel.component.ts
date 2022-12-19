@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import axios from 'axios';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { product } from 'src/app/AdminArea/adminareaproducts/adminareaproducts.component';
+import { A11yMethods } from 'swiper/types';
 import { ProductsService } from '../products.service';
 
 @Component({
@@ -55,33 +56,33 @@ export class ProductsCarouselComponent implements OnInit {
     this.currentLang = localStorage.getItem('lang');
     console.log(this.category);
 
+    
 
     if(this.mode == 'suggested'){
 
-      let request = await axios.get("https://perlanoderest.vinoitalia.gr/products/getProducts",{params:{mtrl: +this.mtrl}})
-      console.log(request.data)
-      this.suggestedProducts = request.data.products;
-      if(this.suggestedProducts.length !=0){
-        this.hasSuggested = true;
-      }
+      // let request = await axios.get("https://perlanoderest.vinoitalia.gr/products/getProducts",{params:{mtrl: +this.mtrl}})
+      // console.log(request.data)
+      // this.suggestedProducts = request.data.products;
+      // if(this.suggestedProducts.length !=0){
+      //   this.hasSuggested = true;
+      // }
       if(this.mtrl){
 
 
       let sugg = await axios.post("https://perlaNodeRest.vinoitalia.gr/products/getAllSuggested",
       {
         mtrl:this.mtrl
-      }).then(resData =>{
-        if(resData.data.products.length > 0){
-          this.notEmpty = true;
-          this.shownProducts = resData.data.products;
-          console.log(resData.data.products);
-        }
-        else{
-          this.notEmpty = false;
-        }
+      })
+      if(sugg.data.products.length > 0){
+        this.notEmpty = true;
+        this.shownProducts = sugg.data.products;
+        console.log(sugg.data.products);
+      }
+      else{
+        this.notEmpty = false;
+      }
 
-        }
-      )
+      
       // console.log(sugg.data.products);
       // this.suggested = sugg.data.products;
       // if(this.suggested.length ==0){
@@ -112,19 +113,63 @@ export class ProductsCarouselComponent implements OnInit {
   }
 
   seeProduct(product: any){
+    let subcategories: any;
+    let selected_subcategory: any;
+
+    let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    this.productsService.setSingleProduct(product);
+    axios.get("https://perlanoderest.vinoitalia.gr/products/seeEarlier",{
+    params:{
+      mtrl:product.mtrl,
+      trdr:loadedUser.trdr
+    }
+    }).then(resData=>{
+      console.log(resData.data);
+
+    })
     console.log(product);
-    this.productsService.setSingleProduct(product)
 
-    // axios.get("https://perlanoderest.vinoitalia.gr/products/seeEarlier",{
-    //   params:{mtrl :product.mtrl,
-    //     trdr: this.loadedUser.trdr}
-    // }).then(resData=>{
-    //   console.log(resData.data);
-    // })
+    // product.addedToFav = this.added
 
-   this.productsService.sendSuggProd(JSON.stringify(product))
+    // localStorage.setItem("single",JSON.stringify(product));
 
+    localStorage.setItem("mtrl",JSON.stringify(
+      {
+        name: null,
+        id: null,
+        category: null,
+        mtrl: product.mtrl
+      }));
 
+    
+    let mainCategories = this.productsService.getMainCategoriesArray();
+    let mainCategory: any;
+    mainCategories.forEach((category: any) => {
+      if(category.id == product.category){
+        mainCategory = category;
+      }
+    });
+    let id = mainCategory.id;
+    let name= mainCategory.name;
+    console.log(mainCategory);
+    
+
+    this.productsService.getAllCategories(product.category).subscribe((resData: any) => {
+      console.log(resData.categories[0].subcategories);
+      subcategories = resData.categories[0].subcategories;
+      subcategories.forEach((subcat: any) => {
+        if(subcat.sub_id == product.subcategory){
+          selected_subcategory = subcat;
+        }
+      })
+      console.log(selected_subcategory!);
+
+      this.router.navigate(['products',id,name,selected_subcategory.sub_id,selected_subcategory.name,product.mtrl]);
+      setTimeout(() => {
+        window.location.reload();
+      },50)
+    })
   }
 
 

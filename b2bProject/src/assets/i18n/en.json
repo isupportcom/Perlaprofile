@@ -183,6 +183,7 @@
     "apoth": "Warehouse Code:",
     "texn": "Technical Code",
     "kat": "Manufacturer Code",
+    "unit":"Measurment Unit: ",
     "desc": "Description",
     "color": "Choose Color",
     "width": "Length",

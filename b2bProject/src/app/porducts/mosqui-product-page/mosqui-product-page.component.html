@@ -107,10 +107,12 @@
             "
             class="row"
             >
+            <p *ngIf="currentLang=='el'" style="margin: 0;">{{ mosquiProduct.sintomi_per }}</p>
+            <p *ngIf="currentLang=='en'" style="margin: 0;">{{ mosquiProduct.sintomi_per_eng }}</p>
             <div
                 *ngIf="username"
                 class="row first-row"
-                style="margin-top: 32px; margin-bottom: 24px"
+                style="margin-top: 24px; margin-bottom: 24px"
             >
                 <p
                 *ngIf="!mosquiProduct.hasOffer"
@@ -253,6 +255,9 @@
                 </p>
                 <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
                     product_page.kat <b>{{ mosquiProduct.kodikos_kataskeuasti }}</b>
+                </p>
+                <p style="color: #3e4148; margin: 0; font-size: 14px" translate>
+                  product_page.unit <b>{{ mosquiProduct.mm }}</b>
                 </p>
                 </div>
                 <button

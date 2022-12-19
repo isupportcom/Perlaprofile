@@ -1047,6 +1047,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           setTimeout(async() => {
             this.waiting = false;
             this.shownProducts = resData.data.products;
+            this.noProducts = false;
             this.message = '';
             if(this.loggedIn){
 
