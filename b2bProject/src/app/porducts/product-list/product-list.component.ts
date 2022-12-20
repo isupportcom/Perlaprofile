@@ -481,6 +481,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   }
 
   updateFilters(first_time: boolean,smallFilters?: boolean){
+    this.page = 1;
     if(!smallFilters){
       if(first_time){
         setTimeout(() => {
