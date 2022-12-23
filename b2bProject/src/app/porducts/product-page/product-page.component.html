@@ -142,6 +142,7 @@
                 step="1"
                 [value]="amount"
                 id="my-input"
+                (keyup)="checkDecimal($event)"
                 [(ngModel)]="amount"
                 #input
               />
@@ -430,6 +431,7 @@
                   step="1"
                   [value]="amount"
                   id="my-input"
+                  (keyup)="checkDecimal($event)"
                   [(ngModel)]="amount"
                   #input2
                 />

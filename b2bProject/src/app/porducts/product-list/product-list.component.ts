@@ -441,6 +441,18 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
 
   }
+
+
+  handlePageChange2(e: any){
+    console.log("Hey");
+    scrollTo(0, 500);
+    this.waiting = true;
+    setTimeout(() => {
+      this.page = e;
+      this.waiting = false;
+    }, 200);
+  }
+
   selectedCategory: boolean | any;
   selectedHeight: boolean | any;
   selectedWidth: boolean | any;
@@ -712,6 +724,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           this.updateFilters(false,true);
         }
         this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,subcategory_selected.sub_id,subcategory_selected.name]);
+        
       }
 
   }

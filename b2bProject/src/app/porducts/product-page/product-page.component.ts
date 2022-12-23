@@ -667,6 +667,11 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
     })
     // window.scrollTo(0,0);
   }
+  checkDecimal(e: any){
+    if(this.product.mm == 'Τεμάχιο' || this.product.mm == 'Ζεύγος' || this.product.mm == 'Βέργα' || this.product.mm == 'Σετ' || this.product.mm == 'Πακέττο' || this.product.mm == 'Υπηρεσία'){
+      this.amount = Math.floor(this.amount);
+    }
+  }
 
   async getSeeEarlier() {
     if(this.loggedIn){

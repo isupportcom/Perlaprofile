@@ -69,12 +69,16 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    this.upokatastima = JSON.parse(localStorage.getItem('upokatastima') || '{}');
+    this.upokatastima = JSON.parse(localStorage.getItem('upokatastima') || 'null');
     this.loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
 
-    //console.log(this.upokatastima != {});
+    // console.log(this.loadedUser);
+      
+    // console.log(this.upokatastima);
+    
+    // console.log(this.upokatastima == {});
 
-    if(this.upokatastima != undefined || this.upokatastima != null){
+    if(this.upokatastima != null){
       console.log("HEY");
 
       this.address = this.upokatastima.address;
