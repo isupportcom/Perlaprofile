@@ -226,6 +226,25 @@ export class HomepageComponent implements OnInit {
 
   }
 
+  handleCarouselRouting(route: any){
+    console.log(route.split('/'));
+    let routeArr = route.split('/'); 
+    if(routeArr.length == 9){
+      localStorage.setItem("mtrl",JSON.stringify(
+        {
+          name: null,
+          id: null,
+          category: null,
+          mtrl: routeArr[8]
+        }));
+        this.router.navigate([routeArr[3],routeArr[4],routeArr[5],routeArr[6],routeArr[7],routeArr[8]]);
+    }
+    else{
+      // console.log(routeArr);
+      this.router.navigate([routeArr[3],routeArr[4],routeArr[5],routeArr[6],routeArr[7]]);
+    }
+  }
+
 
 
 }

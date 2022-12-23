@@ -62,7 +62,7 @@
         <p class="hero-text" translate>{{single.text}}</p>
         <div class="container" style="width: 100%;height: fit-content;">
 
-          <button [routerLink]="single.route" class="myBtn">Μάθε Περισσότερα</button>
+          <a (click)="handleCarouselRouting(single.route)" class="myBtn">Μάθε Περισσότερα</a>
         </div>
       </div>
       <!-- <img style="cursor: pointer;border-radius: 8px;border: 1px solid rgba(0,0,0,0.2);"  src="../../assets/AdobeStock_199421624.jpeg" alt=""> -->
