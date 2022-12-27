@@ -208,23 +208,27 @@ export class HomepageComponent implements OnInit {
     console.log(mainCategory);
     let subcategories: any;
     let first_subcat: any;
-
-    this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
-      console.log(resData.categories[0].subcategories);
-      subcategories = resData.categories[0].subcategories;
-      first_subcat = subcategories[0];
-      console.log(first_subcat);
-      setTimeout(() => {
-        if(mainCategory.id != 116 && mainCategory.id != 117){
-          this.router.navigate(['products', mainCategory.id,mainCategory.name,first_subcat.sub_id,first_subcat.name])
-        }
-        else{
-          this.router.navigate(['products', mainCategory.id,mainCategory.name]);
-        }
-      },50)
-    })
-
+    if(mainCategory.id != 999){
+      this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
+        console.log(resData.categories[0].subcategories);
+        subcategories = resData.categories[0].subcategories;
+        first_subcat = subcategories[0];
+        console.log(first_subcat);
+        setTimeout(() => {
+            if(mainCategory.id != 116){
+              this.router.navigate(['products', mainCategory.id,mainCategory.name,first_subcat.sub_id,first_subcat.name])
+            }
+            else{
+              this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+            }
+        },50)
+      })
+    }
+    else{
+      this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+    }
   }
+  
 
   handleCarouselRouting(route: any){
     console.log(route.split('/'));

@@ -118,6 +118,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   innerWidth!: number;
   executed: boolean = false;
   searched: boolean = false;
+  sub_id!: number;
   selected_subcategory_id!: number;
   selected_subcategory: any;
   subCategoriesExtraArray: any;
@@ -259,9 +260,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
         console.log(+params['cat_id']);
         console.log(params['cat_name']);
-        // console.log(params['subcat_id']);
-        // console.log(params['subcat_name']);
-
+        console.log(params['subcat_id']);
+        console.log(params['subcat_name']);
+        
+        this.sub_id = +params['subcat_id'];
 
         this.mainCategory.id = +params['cat_id'];
         if (this.mainCategory.id === 114) {
@@ -273,7 +275,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         else if (this.mainCategory.id === 116) {
           this.logoSource = '../../../assets/mosqui-logo-white-with-green.svg';
         } 
-        else if (this.mainCategory.id === 117) {
+        else if (this.mainCategory.id === 999) {
           this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
         }
         else if (this.mainCategory.id === 118){
@@ -348,7 +350,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       });
       this.logoList.push({
         source: '../../../assets/profile-logo-white-with-green.svg',
-        id: 117,
+        id: 999,
         name: 'Profile',
       });
 
@@ -370,7 +372,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       });
       this.logoList.push({
         source: '../../../assets/profile-logo-white-with-green.svg',
-        id: 117,
+        id: 999,
         name: 'Profile',
       });
     } else if (this.mainCategory.id === 116) {
@@ -391,10 +393,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       });
       this.logoList.push({
         source: '../../../assets/profile-logo-white-with-green.svg',
-        id: 117,
+        id: 999,
         name: 'Profile',
       });
-    } else if (this.mainCategory.id === 117) {
+    } else if (this.mainCategory.id === 999) {
       this.logoList = [];
 
       this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
@@ -497,7 +499,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     if(!smallFilters){
       if(first_time){
         setTimeout(() => {
-          if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
+          if(this.mainCategory.id != 116 && this.mainCategory.id != 999){
   
             if(!this.showBigFilters && this.listArray.length == 0){
               console.log("TRELAA");
@@ -544,7 +546,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         },500)
       }
       else{
-          if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
+          if(this.mainCategory.id != 116 && this.mainCategory.id != 999){
   
             if(!this.showBigFilters && this.listArray.length == 0){
               
@@ -594,7 +596,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     }
     else{
     //Mikra Filtra
-    if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
+    if(this.mainCategory.id != 116 && this.mainCategory.id != 999){
       if(!this.showFilters){
         this.listArray.push(this.selected_subcategory_id);
         this.updateProducts(this.selected_subcategory_id);
@@ -675,7 +677,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       id: id,
       category: 117,
     });
-    this.router.navigate(['products/product-page']);
+    this.router.navigate(['products/999/Profile/117', 'roplasto']);
 
     // this.router.navigate(['products/mosqui',id,name]);
   }
