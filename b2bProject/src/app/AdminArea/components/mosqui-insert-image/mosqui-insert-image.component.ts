@@ -62,7 +62,7 @@ export class MosquiInsertImageComponent implements OnInit {
     });
 
     this.modalService.mosquiOther.subscribe(async resData => {
-debugger
+
 
       console.log(this.images);
       // console.log(this.selectedCategory);
@@ -70,7 +70,7 @@ debugger
 
 
 
-      debugger;let req=await axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiOtherImages',
+      let req=await axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiOtherImages',
       {
         sub_cat_id: this.selectedCategory,
         images: resData.join(',')
@@ -83,7 +83,7 @@ debugger
             this.subCategoriesExtraArray[i] = req.data.subcategory;
           }
         }
-
+        window.location.reload();
       })
 
 

@@ -197,7 +197,7 @@ export class AddImagePopupComponent implements OnInit {
 
               let joinedImagesArray = this.imagesToSend.join(',');
               console.log(joinedImagesArray);
-              debugger
+
 
 
               btn.classList.remove('loading')
