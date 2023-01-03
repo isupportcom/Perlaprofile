@@ -48,15 +48,15 @@ export class AddImagePopupComponent implements OnInit {
         this.product = resData.data.product;
       })
     }
-    
+
     // https://perlaNodeRest.vinoitalia.gr/products/
     this.searchPhoto = this.fb.group({
 
       imageName:[null]
 
     })
-    
-    
+
+
     axios
       .get(
         'https://perlarest.vinoitalia.gr/php-auth-api/getImages.php/?id=9&method=allImages'
@@ -156,12 +156,12 @@ export class AddImagePopupComponent implements OnInit {
         setTimeout(() => {
           let joinedImagesArray =this.imagesToSend.join(',')
           console.log(joinedImagesArray);
-          
+
           axios.post('https://perlarest.vinoitalia.gr/php-auth-api/deleteImage.php',{
             "image_name":joinedImagesArray
           }).then(resData => {
             console.log(resData.data);
-            
+
             let tempImages = [];
             for(let img of resData.data.images){
               tempImages.push('https://perlarest.vinoitalia.gr/php-auth-api/upload/' + img);
@@ -185,14 +185,27 @@ export class AddImagePopupComponent implements OnInit {
             this.cartService.sendAddImagePopup(false);
           },1000)
         }
-        
+
       }
-      else{        
+      else{
         if(this.mosquiOther){
-          console.log('mosquiOther'); 
-          let joinedImagesArray = this.imagesToSend.join(',');
-          this.modalService.sendImage(joinedImagesArray);
-          this.cartService.sendAddImagePopup(false);
+          if(!btn.classList.contains('loading')) {
+            btn.classList.add('loading');
+            setTimeout(() => {
+              console.log('mosquiOther');
+              console.log(this.imagesToSend);
+
+              let joinedImagesArray = this.imagesToSend.join(',');
+              console.log(joinedImagesArray);
+              debugger
+
+
+              btn.classList.remove('loading')
+              this.cartService.sendAddImagePopup(false);
+              this.modalService.sendMosquiOther(this.imagesToSend);
+            },1000)
+          }
+
         }
         else if(this.mosquiThumbnail){
           console.log('mosquiThumbnail');
@@ -206,15 +219,15 @@ export class AddImagePopupComponent implements OnInit {
             setTimeout(async () => {
               if(this.secondary){
                 let joinedImagesArray =this.imagesToSend.join(',')
-              
-                
+
+
                await axios.post("https://perlaNodeRest.vinoitalia.gr/products/secondaryImages",{
                   mtrl:this.mtrl,
                   img:  joinedImagesArray,
                   mode:"insert"
                 }).then(res=>{
                   console.log(res)
-    
+
                 })
                 this.imagesToSend = [];
                 this.modalService.sendImage(joinedImagesArray);
@@ -222,22 +235,22 @@ export class AddImagePopupComponent implements OnInit {
                 this.cartService.sendAddImagePopup(false);
               }
               else{
-    
-    
+
+
                 if(this.thumbnail){
                   console.log(this.thumbnail);
                   console.log(this.mtrl);
-    
+
                   // let splitted = this.thumbnail.split('/')
                   // console.log(splitted);
-    
+
                  await axios
                   .post(
                     'https://perlanoderest.vinoitalia.gr/products/updateSingleImage' ,{
                       mtrl:this.mtrl,
                       image:this.thumbnail
                     }
-    
+
                   )
                   .then((res) => {
                     console.log(res.data);
@@ -246,7 +259,7 @@ export class AddImagePopupComponent implements OnInit {
                   });
                 }
               }
-    
+
             }, 1500);
           }
         }

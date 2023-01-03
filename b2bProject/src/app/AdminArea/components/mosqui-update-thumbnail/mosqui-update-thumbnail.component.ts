@@ -20,7 +20,7 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
 
 
 
-  //Selected Category 
+  //Selected Category
   selectedCategory: any; // --> id
   categoryToSend: any; // --> oloklhrh kathgoria
 
@@ -45,9 +45,10 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
     });
 
     this.modalService.updateMosquiThumb.subscribe(resData => {
+      debugger
       console.log(resData);
       console.log(this.selectedCategory);
-      
+
       axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiImage',
       {
         image: resData,
@@ -63,6 +64,7 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
     })
 
     this.modalService.deleteMosquiThumb.subscribe(resData => {
+      debugger
       console.log(resData);
       axios.post('https://perlaNodeRest.vinoitalia.gr/products/removeMosquiThumb',{
         sub_cat_id: resData.sub_id
@@ -72,7 +74,7 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
     })
   }
 
-  
+
 
 
   openImagePopup(selected_cat: any,category: any){
