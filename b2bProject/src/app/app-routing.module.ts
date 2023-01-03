@@ -81,15 +81,15 @@ const routes: Routes = [
         component: MosquiProductPageComponent
       },
       {
-        path: '999/Profile/117/:subcat_name/',
+        path: '999/Profile/:cat_id/:cat_name/:subcat_id/:subcat_name',
         pathMatch: 'full',
         component: ProductListComponent
       },
-      {
-        path: '999/Profile/:subcat_id/:subcat_name/:product_mtrl',
-        pathMatch: 'full',
-        component: MosquiProductPageComponent
-      },
+      // {
+      //   path: '999/Profile/:subcat_id/:subcat_name/:product_mtrl',
+      //   pathMatch: 'full',
+      //   component: MosquiProductPageComponent
+      // },
       {
         path: ':cat_id/:cat_name/:subcat_id/:subcat_name',
         component: ProductListComponent,
