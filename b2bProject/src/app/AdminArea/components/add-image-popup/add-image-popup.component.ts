@@ -189,10 +189,22 @@ export class AddImagePopupComponent implements OnInit {
       }
       else{        
         if(this.mosquiOther){
-          console.log('mosquiOther'); 
-          let joinedImagesArray = this.imagesToSend.join(',');
-          this.modalService.sendImage(joinedImagesArray);
-          this.cartService.sendAddImagePopup(false);
+          if(!btn.classList.contains('loading')) {
+            btn.classList.add('loading');
+            setTimeout(() => {
+              console.log('mosquiOther'); 
+              console.log(this.imagesToSend);
+              
+              let joinedImagesArray = this.imagesToSend.join(',');
+              console.log(joinedImagesArray);
+              
+              this.modalService.sendMosquiOther(joinedImagesArray);
+              
+              btn.classList.remove('loading')
+              this.cartService.sendAddImagePopup(false);
+            },1000)
+          }
+
         }
         else if(this.mosquiThumbnail){
           console.log('mosquiThumbnail');

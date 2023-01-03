@@ -11,7 +11,14 @@ export class ModalService {
   castImage = this.image.asObservable();
 
   offer = new Subject<number>()
-  castOffer = this.image.asObservable();
+  castOffer = this.offer.asObservable();
+
+  mosquiOther = new Subject<string>();
+  castMosquiOther = this.mosquiOther.asObservable();
+
+  sendMosquiOther(images: string){
+    this.mosquiOther.next(images);
+  }
 
   updateMosquiThumb = new Subject<string>();
   castUpdateMosquiThumb = this.updateMosquiThumb.asObservable();

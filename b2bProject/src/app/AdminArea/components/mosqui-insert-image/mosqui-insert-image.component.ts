@@ -39,6 +39,7 @@ export class MosquiInsertImageComponent implements OnInit {
   //Selected Category 
   selectedCategory: any;
 
+
   constructor(private productsService: ProductsService,private cartService: CartServiceService,private modalService: ModalService) { }
 
   ngOnInit(): void {
@@ -60,13 +61,15 @@ export class MosquiInsertImageComponent implements OnInit {
       }
     });
 
-    this.modalService.image.subscribe(resData => {
-      // console.log(resData);
-      this.images = resData;
-      // console.log(this.images);
-      // console.log(this.selectedCategory);
-      
+    this.modalService.mosquiOther.subscribe(resData => {
 
+      this.images = resData;
+      console.log(this.images);
+      // console.log(this.selectedCategory);
+
+      
+      
+      
       axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiOtherImages',
       {
         sub_cat_id: this.selectedCategory,
@@ -79,6 +82,7 @@ export class MosquiInsertImageComponent implements OnInit {
             this.subCategoriesExtraArray[i] = resData.data.subcategory;
           }
         }
+        
       })
     })
 
