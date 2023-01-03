@@ -92,6 +92,7 @@ import { MosquiComponent } from './AdminArea/mosqui/mosqui.component';
 import { MosquiInsertImageComponent } from './AdminArea/components/mosqui-insert-image/mosqui-insert-image.component';
 import { MosquiUpdateThumbnailComponent } from './AdminArea/components/mosqui-update-thumbnail/mosqui-update-thumbnail.component';
 import { MosquiInsertPdfComponent } from './AdminArea/components/mosqui-insert-pdf/mosqui-insert-pdf.component';
+import { ProfileWizardComponent } from './profile-wizard/profile-wizard.component';
 
 
 
@@ -173,6 +174,7 @@ export function rootLoaderactory(http:any){
     MosquiInsertImageComponent,
     MosquiUpdateThumbnailComponent,
     MosquiInsertPdfComponent,
+    ProfileWizardComponent,
 
 
 

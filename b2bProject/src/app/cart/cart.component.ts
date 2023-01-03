@@ -49,6 +49,7 @@ export class CartComponent implements OnInit, OnDestroy {
   ) {}
 
    ngOnInit() {
+
     let loadedUser = JSON.parse(localStorage.getItem('userData') || '{}');
     axios
       .post('https://perlanoderest.vinoitalia.gr/products/fetchCartItems', {
@@ -86,6 +87,7 @@ export class CartComponent implements OnInit, OnDestroy {
       this.declareArray();
     }, 200);
   }
+
 
   declareArray() {
     console.log(this.products);
@@ -384,41 +386,44 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   seeProd(product: any){
-    let mainCategories: any;
-    let mainCategory: any;
-    let subcategories: any;
-    let subcategory: any;
-    console.log(product);
-
-    this.productsService.getMainCategories().subscribe((resData: any) => {
-
-      mainCategories = resData;
-      mainCategories.forEach((category: any) => {
-        if(category.id == product.category){
-          mainCategory = category;
-        }
-      });
-
-      this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
-        subcategories = resData.categories[0].subcategories
-
-        subcategories.forEach((sub: any) => {
-          if(sub.sub_id == product.subcategory){
-            subcategory = sub;
+    if(+product.category != 116){
+      let mainCategories: any;
+      let mainCategory: any;
+      let subcategories: any;
+      let subcategory: any;
+      console.log(product);
+  
+      this.productsService.getMainCategories().subscribe((resData: any) => {
+  
+        mainCategories = resData;
+        mainCategories.forEach((category: any) => {
+          if(category.id == product.category){
+            mainCategory = category;
           }
         });
-
-        localStorage.setItem("mtrl",JSON.stringify(
-          {
-            name: null,
-            id: null,
-            category: null,
-            mtrl: product.mtrl
-          }));
-        this.router.navigate(['products',mainCategory.id,mainCategory.name,subcategory.sub_id,subcategory.name,product.mtrl]);
+  
+        this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
+          subcategories = resData.categories[0].subcategories
+  
+          subcategories.forEach((sub: any) => {
+            if(sub.sub_id == product.subcategory){
+              subcategory = sub;
+            }
+          });
+  
+          localStorage.setItem("mtrl",JSON.stringify(
+            {
+              name: null,
+              id: null,
+              category: null,
+              mtrl: product.mtrl
+            }));
+          this.router.navigate(['products',mainCategory.id,mainCategory.name,subcategory.sub_id,subcategory.name,product.mtrl]);
+        })
+  
       })
-
-    })
+    }
+    
 
   }
 

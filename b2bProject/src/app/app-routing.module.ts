@@ -81,6 +81,16 @@ const routes: Routes = [
         component: MosquiProductPageComponent
       },
       {
+        path: '999/Profile/:cat_id/:cat_name/:subcat_id/:subcat_name',
+        pathMatch: 'full',
+        component: ProductListComponent
+      },
+      // {
+      //   path: '999/Profile/:subcat_id/:subcat_name/:product_mtrl',
+      //   pathMatch: 'full',
+      //   component: MosquiProductPageComponent
+      // },
+      {
         path: ':cat_id/:cat_name/:subcat_id/:subcat_name',
         component: ProductListComponent,
         pathMatch: 'full'
@@ -226,20 +236,22 @@ const routes: Routes = [
     path: 'the-team',
     component: TeamComponent
   },
-  {
-    path:'**',
-    redirectTo:'404'
-  },
-  {
-    path:'404',
-    component:PageNotFoundComponent
-  }
+  // {
+  //   path:'**',
+  //   redirectTo:'404'
+  // },
+  // {
+  //   path:'404',
+  //   component:PageNotFoundComponent
+  // }
 
 
 
 ];
 @NgModule({
-  imports:[RouterModule.forRoot(routes)],
+  imports:[RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled'
+  })],
   exports:[RouterModule]
 })
 export class AppRoutingModule {}

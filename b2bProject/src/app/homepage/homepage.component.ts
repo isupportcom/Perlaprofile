@@ -208,22 +208,45 @@ export class HomepageComponent implements OnInit {
     console.log(mainCategory);
     let subcategories: any;
     let first_subcat: any;
+    if(mainCategory.id != 999){
+      this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
+        console.log(resData.categories[0].subcategories);
+        subcategories = resData.categories[0].subcategories;
+        first_subcat = subcategories[0];
+        console.log(first_subcat);
+        setTimeout(() => {
+            if(mainCategory.id != 116){
+              this.router.navigate(['products', mainCategory.id,mainCategory.name,first_subcat.sub_id,first_subcat.name])
+            }
+            else{
+              this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+            }
+        },50)
+      })
+    }
+    else{
+      this.router.navigate(['products', mainCategory.id,mainCategory.name]);
+    }
+  }
+  
 
-    this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
-      console.log(resData.categories[0].subcategories);
-      subcategories = resData.categories[0].subcategories;
-      first_subcat = subcategories[0];
-      console.log(first_subcat);
-      setTimeout(() => {
-        if(mainCategory.id != 116 && mainCategory.id != 117){
-          this.router.navigate(['products', mainCategory.id,mainCategory.name,first_subcat.sub_id,first_subcat.name])
-        }
-        else{
-          this.router.navigate(['products', mainCategory.id,mainCategory.name]);
-        }
-      },50)
-    })
-
+  handleCarouselRouting(route: any){
+    console.log(route.split('/'));
+    let routeArr = route.split('/'); 
+    if(routeArr.length == 9){
+      localStorage.setItem("mtrl",JSON.stringify(
+        {
+          name: null,
+          id: null,
+          category: null,
+          mtrl: routeArr[8]
+        }));
+        this.router.navigate([routeArr[3],routeArr[4],routeArr[5],routeArr[6],routeArr[7],routeArr[8]]);
+    }
+    else{
+      // console.log(routeArr);
+      this.router.navigate([routeArr[3],routeArr[4],routeArr[5],routeArr[6],routeArr[7]]);
+    }
   }
 
 

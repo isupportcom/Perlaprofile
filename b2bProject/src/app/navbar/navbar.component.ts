@@ -48,6 +48,7 @@ export class NavbarComponent implements OnInit{
 
   controlRoute: any;
   motionRoute: any;
+  profileRoute: any;
   accessoriesRoute: any;
 
   @Output() logoutEvent = new EventEmitter<boolean>();
@@ -281,7 +282,7 @@ export class NavbarComponent implements OnInit{
       this.goToProductsArr = [];
       this.mainCategories.forEach((mainCategory: any) => {
 
-        if(mainCategory.id != 116 && mainCategory.id != 117){
+        if(mainCategory.id != 116){
 
           this.productsService.getAllCategories(mainCategory.id).subscribe((resData: any) => {
             console.log(resData.categories[0].subcategories);
@@ -294,7 +295,7 @@ export class NavbarComponent implements OnInit{
               sub_id: first_subcat.sub_id,
               sub_name: first_subcat.name
             }
-            console.log(infoToPush);
+            // console.log(infoToPush);
 
             if(infoToPush.main_id == 114){
               this.controlRoute = '/products/114/Control/'+infoToPush.sub_id+'/'+infoToPush.sub_name
@@ -302,6 +303,10 @@ export class NavbarComponent implements OnInit{
 
             if(infoToPush.main_id == 115){
               this.motionRoute = '/products/115/Motion/'+infoToPush.sub_id+'/'+infoToPush.sub_name
+            }
+
+            if(infoToPush.main_id == 117){
+              this.profileRoute = '/products/117/Profile/'+infoToPush.sub_id+'/'+infoToPush.sub_name
             }
 
             if(infoToPush.main_id == 118){

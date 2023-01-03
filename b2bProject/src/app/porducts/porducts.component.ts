@@ -57,7 +57,7 @@ export class PorductsComponent implements OnInit {
     else if(this.mainCategory.id === 116){
       this.logoSource = '../../../assets/mosqui-logo-white-with-green.svg';
     }    
-    else if(this.mainCategory.id === 117){
+    else if(this.mainCategory.id === 999){
       this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
     }
     

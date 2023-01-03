@@ -118,6 +118,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   innerWidth!: number;
   executed: boolean = false;
   searched: boolean = false;
+  sub_id!: number;
   selected_subcategory_id!: number;
   selected_subcategory: any;
   subCategoriesExtraArray: any;
@@ -253,17 +254,24 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       console.log();
       this.route.params.subscribe((params) => {
 
-        console.log(+this.router.url.split('/')[2]);
+        console.log(Number(this.router.url.split('/')[4]));
         this.selected_subcategory_id = +this.router.url.split('/')[4];
 
+        console.log(this.selected_subcategory_id);
+        
+        console.log(this.router.url.split('/'));
+
+        
 
         console.log(+params['cat_id']);
         console.log(params['cat_name']);
-        // console.log(params['subcat_id']);
-        // console.log(params['subcat_name']);
+        console.log(params['subcat_id']);
+        console.log(params['subcat_name']);
+        
+        this.sub_id = +params['subcat_id'];
 
-
-        this.mainCategory.id = +params['cat_id'];
+        this.mainCategory.id = +params['cat_id']
+        
         if (this.mainCategory.id === 114) {
           this.logoSource = '../../../assets/control-logo-white-with-green.svg';
         } 
@@ -273,7 +281,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         else if (this.mainCategory.id === 116) {
           this.logoSource = '../../../assets/mosqui-logo-white-with-green.svg';
         } 
-        else if (this.mainCategory.id === 117) {
+        else if (this.mainCategory.id === 999) {
           this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
         }
         else if (this.mainCategory.id === 118){
@@ -307,7 +315,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
         console.log(this.listArray);
 
-        this.mainCategory.name = params['cat_name'];
+
+
+        this.mainCategory.name = params['cat_name']
+        
 
 
         this.productsService.setMainCategory(this.mainCategory);
@@ -348,7 +359,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       });
       this.logoList.push({
         source: '../../../assets/profile-logo-white-with-green.svg',
-        id: 117,
+        id: 999,
         name: 'Profile',
       });
 
@@ -370,7 +381,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       });
       this.logoList.push({
         source: '../../../assets/profile-logo-white-with-green.svg',
-        id: 117,
+        id: 999,
         name: 'Profile',
       });
     } else if (this.mainCategory.id === 116) {
@@ -391,10 +402,10 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       });
       this.logoList.push({
         source: '../../../assets/profile-logo-white-with-green.svg',
-        id: 117,
+        id: 999,
         name: 'Profile',
       });
-    } else if (this.mainCategory.id === 117) {
+    } else if (this.mainCategory.id === 999) {
       this.logoList = [];
 
       this.logoSource = '../../../assets/profile-logo-white-with-green.svg';
@@ -441,6 +452,18 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
 
 
   }
+
+
+  handlePageChange2(e: any){
+    console.log("Hey");
+    scrollTo(0, 500);
+    this.waiting = true;
+    setTimeout(() => {
+      this.page = e;
+      this.waiting = false;
+    }, 200);
+  }
+
   selectedCategory: boolean | any;
   selectedHeight: boolean | any;
   selectedWidth: boolean | any;
@@ -481,10 +504,11 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
   }
 
   updateFilters(first_time: boolean,smallFilters?: boolean){
+    this.page = 1;
     if(!smallFilters){
       if(first_time){
         setTimeout(() => {
-          if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
+          if(this.mainCategory.id != 116 && this.mainCategory.id != 999){
   
             if(!this.showBigFilters && this.listArray.length == 0){
               console.log("TRELAA");
@@ -501,7 +525,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
                 let check = document.getElementById(id)
                 console.log(check);
   
-                // console.log(this.categories[0].sub_id);
+                console.log(this.selected_subcategory_id);
   
                 console.log(check);
   
@@ -531,7 +555,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
         },500)
       }
       else{
-          if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
+          if(this.mainCategory.id != 116 && this.mainCategory.id != 999){
   
             if(!this.showBigFilters && this.listArray.length == 0){
               
@@ -581,7 +605,7 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
     }
     else{
     //Mikra Filtra
-    if(this.mainCategory.id != 116 && this.mainCategory.id != 117){
+    if(this.mainCategory.id != 116 && this.mainCategory.id != 999){
       if(!this.showFilters){
         this.listArray.push(this.selected_subcategory_id);
         this.updateProducts(this.selected_subcategory_id);
@@ -662,7 +686,22 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
       id: id,
       category: 117,
     });
-    this.router.navigate(['products/product-page']);
+
+    console.log(id);
+    
+
+    let subcategories: any;
+    let first_subcat: any;
+      this.productsService.getAllCategories(117).subscribe((resData: any) => {
+        console.log(resData.categories[0].subcategories);
+        subcategories = resData.categories[0].subcategories;
+        first_subcat = subcategories[0];
+        console.log(first_subcat);
+        setTimeout(() => {
+          this.router.navigate(['products', id,'Profile',117,'roplasto',first_subcat.sub_id,first_subcat.name])
+        },50)
+    })
+    // this.router.navigate(['products/999/Profile/117', 'roplasto']);
 
     // this.router.navigate(['products/mosqui',id,name]);
   }
@@ -700,8 +739,16 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           this.selected_subcategory_id = subcategory_selected.sub_id;
         }
       });
-      console.log('products'+'/'+this.mainCategory.id+'/'+this.mainCategory.name+'/'+subcategory_selected.sub_id+'/'+subcategory_selected.name);
-      let url = 'products'+'/'+this.mainCategory.id+'/'+this.mainCategory.name+'/'+subcategory_selected.sub_id+'/'+subcategory_selected.name;
+      // console.log('products'+'/'+this.mainCategory.id+'/'+this.mainCategory.name+'/'+subcategory_selected.sub_id+'/'+subcategory_selected.name);
+      let url;
+      console.log(this.mainCategory);
+      
+      // if(this.mainCategory.id != 117){
+      //   url = 'products'+'/'+this.mainCategory.id+'/'+this.mainCategory.name+'/'+subcategory_selected.sub_id+'/'+subcategory_selected.name;
+      // }
+      // else{
+      //   url = 'products/999/Profile/117/roplasto' +'/'+subcategory_selected.sub_id+'/'+subcategory_selected.name;
+      // }
       if(subcategory_selected){
         if(this.showBigFilters){
           this.updateFilters(false);
@@ -711,6 +758,9 @@ export class ProductListComponent implements OnInit, OnDestroy , AfterViewInit{
           this.updateFilters(false,true);
         }
         this.router.navigate(['products',this.mainCategory.id,this.mainCategory.name,subcategory_selected.sub_id,subcategory_selected.name]);
+
+        
+        
       }
 
   }

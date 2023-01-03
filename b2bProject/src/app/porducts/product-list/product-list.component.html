@@ -1,6 +1,7 @@
 <div style="z-index: -1000;"><img src="../../../assets/AdobeStock_314894229%201.png" style="width: 100%;"></div>
 
-<div class="container" style="margin-top: 78px;margin-bottom: 78px;">
+<!-- PERIGRAFI KATIGORIAS -->
+<!-- <div class="container" style="margin-top: 78px;margin-bottom: 78px;">
     <div class="row">
         <div class="col" style="display: flex;justify-content: center;">
             <div style="background-color: #002256;width: fit-content;padding: 12px;box-shadow: 0px 0px 13px rgba(0, 34, 86, 0.4);border-radius: 5px;"><img style="width: 200px;height: 50px;" [src]="logoSource"></div>
@@ -30,9 +31,9 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-      <div class="row" *ngIf="waiting && (mainCategory.id == 116 || mainCategory.id == 117)" style="margin-left: 50%;margin-top: 40px;">
+</div> -->
+<div class="container" style="margin-top: 78px;">
+      <div class="row" *ngIf="waiting && (mainCategory.id == 116 || mainCategory.id == 999)" style="margin-left: 50%;margin-top: 40px;">
           <app-spinner></app-spinner>
       </div>
       <div class="row" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;" *ngIf="!waiting && mainCategory.id == 116">
@@ -64,7 +65,7 @@
     </div>
     </div>
 
-    <div class="row" *ngIf="!waiting && mainCategory.id == 117" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;">
+    <div class="row" *ngIf="!waiting && mainCategory.id == 999" style="display: flex;justify-content: start;align-items: center;margin-top: 40px;">
       <div style="padding: 16px;padding-top: 0px;padding-bottom: 8px;" class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products">
         <div class="row" style="background-color: white;border-radius: 8px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.05);">
           <div class="col col-6" (click)="handleWizzardProfile('Προφίλ Roplasto', mainCategory.id)" style="padding: 0px;cursor: pointer;"><img class="image" style="border-top-left-radius: 8px;border-bottom-left-radius: 8px;" src="../../assets/Frame%20106%20(2).png"></div>
@@ -78,7 +79,7 @@
       </div>
       </div>
       <pagination-controls
-      *ngIf="!noProducts && mainCategory.id == 116 || mainCategory.id == 117 "
+      *ngIf="!noProducts && mainCategory.id == 116 || mainCategory.id == 999 "
       style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
       class="text-center my-pagination goLeft"
       (pageChange)="handlePageChange($event)"
@@ -103,7 +104,7 @@
         </div> -->
 
         <div class="row">
-            <div *ngIf="showBigFilters && mainCategory.id != 116 && mainCategory.id != 117 " class="col col-3 categories">
+            <div *ngIf="showBigFilters && mainCategory.id != 116 && mainCategory.id != 999 " class="col col-3 categories">
               <div>
                 <!-- <div
                   style="
@@ -142,7 +143,7 @@
                   </div>
                 </div> -->
                 <div
-                  *ngIf="mainCategory.id !=116 && mainCategory.id != 117"
+                  *ngIf="mainCategory.id !=116 && mainCategory.id != 999"
                   style="
                     padding-top: 5%;
                     text-align: center;
@@ -160,7 +161,7 @@
 
                 <div>
 
-                  <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="margin-top: -17px; padding-top: 15%; list-style: none" #checkboxes>
+                  <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 999" style="margin-top: -17px; padding-top: 15%; list-style: none" #checkboxes>
 
                     <li *ngFor="let subcategory of categories;let i = index" style="margin-bottom: 8%" >
 
@@ -190,14 +191,14 @@
                       </div>
                     </li>
                   </ul>
-                  <hr *ngIf="mainCategory.id != 116 && mainCategory.id != 117" />
+                  <hr *ngIf="mainCategory.id != 116 && mainCategory.id != 999" />
                 </div>
               </div>
             </div>
 
 
         <div class="col col-lg-9 col-md-12 col-sm-12">
-            <div *ngIf="mainCategory.id != 116 && mainCategory.id != 117" [ngClass]="showFilters? 'row straighten' : 'row circly'" style="background-color: white;border-radius: 8px;padding: 10px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);margin-left: 4px;transition: all 0.1s ease-in-out;">
+            <div *ngIf="mainCategory.id != 116 && mainCategory.id != 999" [ngClass]="showFilters? 'row straighten' : 'row circly'" style="background-color: white;border-radius: 8px;padding: 10px;box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.2);margin-left: 4px;transition: all 0.1s ease-in-out;">
                 <div
                 class="col-lg-3 col-md-4 col-sm-8 col-6"
                 style="height: fit-content; margin-top: 4px"
@@ -312,7 +313,7 @@
                 <!-- <div class="col col-3" style="display: flex;justify-content: center;align-items: center;"><button class="btn btn-primary dropdown-toggle filters" type="button" style="background-color: #6DAE49;padding: 8px;">Ταξινόμηση</button></div> -->
                 <div class="col col-4 filters" style="display: flex;justify-content: center;align-items: center;vertical-align: middle;">
                     <pagination-controls
-                    *ngIf="!noProducts && !waiting && shownProducts.length != 0 && (mainCategory.id != 116 && mainCategory.id != 117) && (listArray.length != 0 || searched)"
+                    *ngIf="!noProducts && !waiting && shownProducts.length != 0 && (mainCategory.id != 116 && mainCategory.id != 999) && (listArray.length != 0 || searched)"
                     style="text-decoration: none;"
                     [ngClass]="
                         innerWidth >= 768
@@ -350,7 +351,7 @@
               </div>
 
               <img style="width: 100%;margin-bottom: 12px;" src="../../../assets/Line%208.svg">
-              <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 117" style="list-style: none;padding-left: 0px;" #checkboxes>
+              <ul *ngIf="mainCategory.id != 116 && mainCategory.id != 999" style="list-style: none;padding-left: 0px;" #checkboxes>
                 <li *ngFor="let subcategory of categories;let i = index;">
                   <div class="row">
                     <div class="col-1 col-md-1 col-sm-1" style="display: flex;justify-content: center;align-items: center;vertical-align: middle;">
@@ -380,11 +381,11 @@
                 </li>
               </ul>
             </div>
-            <div class="row" *ngIf="waiting && mainCategory.id != 116 && mainCategory.id != 117" style="margin-left: 50%;margin-top: 40px;">
+            <div class="row" *ngIf="waiting && mainCategory.id != 116 && mainCategory.id != 999" style="margin-left: 50%;margin-top: 40px;">
                 <app-spinner></app-spinner>
             </div>
 
-            <div class="row" style="display: flex;justify-content: left;align-items: center;margin-top: 40px;" *ngIf="(!waiting || (mainCategory.id != 116 && mainCategory.id != 117)) && (listArray? listArray.length != 0 || searched : searched)">
+            <div class="row" style="display: flex;justify-content: left;align-items: center;margin-top: 40px;" *ngIf="(!waiting || (mainCategory.id != 116 && mainCategory.id != 999)) && (listArray? listArray.length != 0 || searched : searched)">
 
                 <app-single-product
                 class="col col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 products"
@@ -409,7 +410,7 @@
                 </div>
 
             </div>
-            <!-- <div *ngIf="(listArray? listArray.length == 0 && !searched : false) && !waiting && (mainCategory.id != 116 && mainCategory.id != 117)" style="display: flex;justify-content: center;align-items: center;margin-top: 12px;">
+            <!-- <div *ngIf="(listArray? listArray.length == 0 && !searched : false) && !waiting && (mainCategory.id != 116 && mainCategory.id != 999)" style="display: flex;justify-content: center;align-items: center;margin-top: 12px;">
               <h1>Παρακαλώ Επιλέξτε Κατηγορία</h1>
             </div> -->
 
@@ -421,7 +422,7 @@
         *ngIf="!noProducts && !waiting && shownProducts.length != 0 && (listArray.length != 0 || searched)"
         style="display: flex;justify-content: center;align-items: center;margin-top: 8px;text-decoration: none !important;"
         class="text-center my-pagination goLeft"
-        (pageChange)="handlePageChange($event)"
+        (pageChange)="handlePageChange2($event)"
         [responsive]="true"
         previousLabel=""
         nextLabel=""
@@ -433,13 +434,13 @@
 
 
 
-    <div *ngIf="loggedIn && mainCategory.id != 117 && mainCategory.id != 116 && notEmpty"  class="container"  style="margin-top: 120px;">
+    <div *ngIf="loggedIn && mainCategory.id != 999 && mainCategory.id != 116 && notEmpty"  class="container"  style="margin-top: 120px;">
       <div class="row">
         <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><h1 translate> product_page.offers </h1></div>
         <div class="col-12" style="display: flex;justify-content: center;align-items: center;"><img style="width: 20%;" src="../../../assets/Line%208.svg"></div>
       </div>
     </div>
-    <app-products-carousel  *ngIf="loggedIn && mainCategory.id != 117 && mainCategory.id != 116" [mode]="'offers'" [category]="mainCategory"></app-products-carousel>
+    <app-products-carousel  *ngIf="loggedIn && mainCategory.id != 999 && mainCategory.id != 116" [mode]="'offers'" [category]="mainCategory"></app-products-carousel>
 
 
 
