@@ -45,30 +45,34 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
     });
 
     this.modalService.updateMosquiThumb.subscribe(resData => {
-      console.log(resData);
-      console.log(this.selectedCategory);
-      
-      axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiImage',
-      {
-        image: resData,
-        sub_cat_id: this.selectedCategory
-      }).then(resData => {
-        for(let i=0;i<this.subCategoriesExtraArray.length;i++){
-          if(this.subCategoriesExtraArray[i].sub_id == resData.data.subcategory.sub_id){
-            this.subCategoriesExtraArray[i] = resData.data.subcategory;
+      setTimeout(() => {
+        console.log(resData);
+        console.log(this.selectedCategory);
+        
+        axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiImage',
+        {
+          image: resData,
+          sub_cat_id: this.selectedCategory
+        }).then(resData => {
+          for(let i=0;i<this.subCategoriesExtraArray.length;i++){
+            if(this.subCategoriesExtraArray[i].sub_id == resData.data.subcategory.sub_id){
+              this.subCategoriesExtraArray[i] = resData.data.subcategory;
+            }
           }
-        }
-      })
+        })
+      },500)
 
     })
 
     this.modalService.deleteMosquiThumb.subscribe(resData => {
-      console.log(resData);
-      axios.post('https://perlaNodeRest.vinoitalia.gr/products/removeMosquiThumb',{
-        sub_cat_id: resData.sub_id
-      }).then(resData => {
-        this.subCategoriesExtraArray = resData.data.subcategories;
-      })
+      setTimeout(() => {
+        console.log(resData);
+        axios.post('https://perlaNodeRest.vinoitalia.gr/products/removeMosquiThumb',{
+          sub_cat_id: resData.sub_id
+        }).then(resData => {
+          this.subCategoriesExtraArray = resData.data.subcategories;
+        })
+      },500)
     })
   }
 

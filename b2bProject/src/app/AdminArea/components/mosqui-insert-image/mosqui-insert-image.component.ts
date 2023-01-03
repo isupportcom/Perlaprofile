@@ -62,28 +62,27 @@ export class MosquiInsertImageComponent implements OnInit {
     });
 
     this.modalService.mosquiOther.subscribe(resData => {
-
-      this.images = resData;
-      console.log(this.images);
-      // console.log(this.selectedCategory);
-
-      
-      
-      
-      axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiOtherImages',
-      {
-        sub_cat_id: this.selectedCategory,
-        images: this.images
-      }
-      ).then(resData => {
-        // console.log(resData.data.subcategory.sub_id);
-        for(let i=0;i<this.subCategoriesExtraArray.length;i++){
-          if(this.subCategoriesExtraArray[i].sub_id == resData.data.subcategory.sub_id){
-            this.subCategoriesExtraArray[i] = resData.data.subcategory;
-          }
+      setTimeout(() => {
+        this.images = resData;
+        console.log(this.images);
+        // console.log(this.selectedCategory);
+        axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiOtherImages',
+        {
+          sub_cat_id: this.selectedCategory,
+          images: this.images
         }
-        
-      })
+        ).then(resData => {
+          // console.log(resData.data.subcategory.sub_id);
+          for(let i=0;i<this.subCategoriesExtraArray.length;i++){
+            if(this.subCategoriesExtraArray[i].sub_id == resData.data.subcategory.sub_id){
+              this.subCategoriesExtraArray[i] = resData.data.subcategory;
+            }
+          }
+          
+          
+        })
+      },1000)
+
     })
 
 
