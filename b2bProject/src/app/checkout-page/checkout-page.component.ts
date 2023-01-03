@@ -198,12 +198,12 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   showCourierSelect(show: boolean){
     this.showCourier = show;
-    
+
   }
 
   selectCourier(){
     console.log(this.selectedCourier);
-    
+
   }
 
   onSubmit2(btn: any){

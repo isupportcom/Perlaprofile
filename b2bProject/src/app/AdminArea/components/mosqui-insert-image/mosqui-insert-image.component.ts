@@ -65,7 +65,7 @@ export class MosquiInsertImageComponent implements OnInit {
       this.images = resData;
       // console.log(this.images);
       // console.log(this.selectedCategory);
-
+      console.log("Hello Twice")
       console.log(this.images);
       let req = await axios.post('https://perlaNodeRest.vinoitalia.gr/products/editMosquiOtherImages',
       {

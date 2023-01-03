@@ -286,9 +286,7 @@ export class CartServiceService {
     return this.http.post(
       'https://perlanoderest.vinoitalia.gr/products/fetchCartItems',
       {
-
           trdr: loadedUser.trdr,
-
       }
     );
   }
