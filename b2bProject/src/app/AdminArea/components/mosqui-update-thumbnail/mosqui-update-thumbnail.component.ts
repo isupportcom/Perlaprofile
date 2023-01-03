@@ -62,14 +62,13 @@ export class MosquiUpdateThumbnailComponent implements OnInit {
             }
           }
         })
-
       },500)
 
     })
-
     this.modalService.deleteMosquiThumb.subscribe(resData => {
-      setTimeout(()=>{
 
+
+      setTimeout(() => {
         console.log(resData);
         axios.post('https://perlaNodeRest.vinoitalia.gr/products/removeMosquiThumb',{
           sub_cat_id: resData.sub_id
