@@ -182,6 +182,7 @@
     "add": "Add To Cart",
     "apoth": "Warehouse Code:",
     "texn": "Technical Code",
+    "expected":"Expected: ",
     "kat": "Manufacturer Code",
     "unit":"Measurment Unit: ",
     "desc": "Description",
